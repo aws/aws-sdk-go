@@ -2942,6 +2942,49 @@ func (s *AutoScalingGroupConfiguration) SetMinSize(v int64) *AutoScalingGroupCon
 	return s
 }
 
+// An object that describes the estimated monthly savings possible by adopting
+// Compute Optimizer’s Auto Scaling group recommendations. This is based on
+// the Savings Plans and Reserved Instances discounts.
+type AutoScalingGroupEstimatedMonthlySavings struct {
+	_ struct{} `type:"structure"`
+
+	// The currency of the estimated monthly savings.
+	Currency *string `locationName:"currency" type:"string" enum:"Currency"`
+
+	// The value of the estimated monthly savings.
+	Value *float64 `locationName:"value" type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutoScalingGroupEstimatedMonthlySavings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutoScalingGroupEstimatedMonthlySavings) GoString() string {
+	return s.String()
+}
+
+// SetCurrency sets the Currency field's value.
+func (s *AutoScalingGroupEstimatedMonthlySavings) SetCurrency(v string) *AutoScalingGroupEstimatedMonthlySavings {
+	s.Currency = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *AutoScalingGroupEstimatedMonthlySavings) SetValue(v float64) *AutoScalingGroupEstimatedMonthlySavings {
+	s.Value = &v
+	return s
+}
+
 // Describes an Auto Scaling group recommendation.
 type AutoScalingGroupRecommendation struct {
 	_ struct{} `type:"structure"`
@@ -3181,6 +3224,12 @@ type AutoScalingGroupRecommendationOption struct {
 	// recommendation option. Savings opportunity includes the estimated monthly
 	// savings amount and percentage.
 	SavingsOpportunity *SavingsOpportunity `locationName:"savingsOpportunity" type:"structure"`
+
+	// An object that describes the savings opportunity for the Auto Scaling group
+	// recommendation option that includes Savings Plans and Reserved Instances
+	// discounts. Savings opportunity includes the estimated monthly savings and
+	// percentage.
+	SavingsOpportunityAfterDiscounts *AutoScalingGroupSavingsOpportunityAfterDiscounts `locationName:"savingsOpportunityAfterDiscounts" type:"structure"`
 }
 
 // String returns the string representation.
@@ -3240,6 +3289,61 @@ func (s *AutoScalingGroupRecommendationOption) SetRank(v int64) *AutoScalingGrou
 // SetSavingsOpportunity sets the SavingsOpportunity field's value.
 func (s *AutoScalingGroupRecommendationOption) SetSavingsOpportunity(v *SavingsOpportunity) *AutoScalingGroupRecommendationOption {
 	s.SavingsOpportunity = v
+	return s
+}
+
+// SetSavingsOpportunityAfterDiscounts sets the SavingsOpportunityAfterDiscounts field's value.
+func (s *AutoScalingGroupRecommendationOption) SetSavingsOpportunityAfterDiscounts(v *AutoScalingGroupSavingsOpportunityAfterDiscounts) *AutoScalingGroupRecommendationOption {
+	s.SavingsOpportunityAfterDiscounts = v
+	return s
+}
+
+// Describes the savings opportunity for Auto Scaling group recommendations
+// after applying the Savings Plans and Reserved Instances discounts.
+//
+// Savings opportunity represents the estimated monthly savings you can achieve
+// by implementing Compute Optimizer recommendations.
+type AutoScalingGroupSavingsOpportunityAfterDiscounts struct {
+	_ struct{} `type:"structure"`
+
+	// An object that describes the estimated monthly savings possible by adopting
+	// Compute Optimizer’s Auto Scaling group recommendations. This is based on
+	// the Savings Plans and Reserved Instances pricing discounts.
+	EstimatedMonthlySavings *AutoScalingGroupEstimatedMonthlySavings `locationName:"estimatedMonthlySavings" type:"structure"`
+
+	// The estimated monthly savings possible as a percentage of monthly cost after
+	// applying the Savings Plans and Reserved Instances discounts. This saving
+	// can be achieved by adopting Compute Optimizer’s Auto Scaling group recommendations.
+	SavingsOpportunityPercentage *float64 `locationName:"savingsOpportunityPercentage" type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutoScalingGroupSavingsOpportunityAfterDiscounts) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutoScalingGroupSavingsOpportunityAfterDiscounts) GoString() string {
+	return s.String()
+}
+
+// SetEstimatedMonthlySavings sets the EstimatedMonthlySavings field's value.
+func (s *AutoScalingGroupSavingsOpportunityAfterDiscounts) SetEstimatedMonthlySavings(v *AutoScalingGroupEstimatedMonthlySavings) *AutoScalingGroupSavingsOpportunityAfterDiscounts {
+	s.EstimatedMonthlySavings = v
+	return s
+}
+
+// SetSavingsOpportunityPercentage sets the SavingsOpportunityPercentage field's value.
+func (s *AutoScalingGroupSavingsOpportunityAfterDiscounts) SetSavingsOpportunityPercentage(v float64) *AutoScalingGroupSavingsOpportunityAfterDiscounts {
+	s.SavingsOpportunityPercentage = &v
 	return s
 }
 
@@ -3406,6 +3510,49 @@ func (s *CurrentPerformanceRiskRatings) SetMedium(v int64) *CurrentPerformanceRi
 // SetVeryLow sets the VeryLow field's value.
 func (s *CurrentPerformanceRiskRatings) SetVeryLow(v int64) *CurrentPerformanceRiskRatings {
 	s.VeryLow = &v
+	return s
+}
+
+// Defines the various metric parameters that can be customized, such as threshold
+// and headroom.
+type CustomizableMetricParameters struct {
+	_ struct{} `type:"structure"`
+
+	// The headroom threshold value in percentage used for the specified metric
+	// parameter.
+	Headroom *string `locationName:"headroom" type:"string" enum:"CustomizableMetricHeadroom"`
+
+	// The threshold value used for the specified metric parameter.
+	Threshold *string `locationName:"threshold" type:"string" enum:"CustomizableMetricThreshold"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomizableMetricParameters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomizableMetricParameters) GoString() string {
+	return s.String()
+}
+
+// SetHeadroom sets the Headroom field's value.
+func (s *CustomizableMetricParameters) SetHeadroom(v string) *CustomizableMetricParameters {
+	s.Headroom = &v
+	return s
+}
+
+// SetThreshold sets the Threshold field's value.
+func (s *CustomizableMetricParameters) SetThreshold(v string) *CustomizableMetricParameters {
+	s.Threshold = &v
 	return s
 }
 
@@ -3622,6 +3769,82 @@ func (s *DescribeRecommendationExportJobsOutput) SetRecommendationExportJobs(v [
 	return s
 }
 
+// Describes the effective recommendation preferences for Amazon EBS volumes.
+type EBSEffectiveRecommendationPreferences struct {
+	_ struct{} `type:"structure"`
+
+	// Describes the savings estimation mode preference applied for calculating
+	// savings opportunity for Amazon EBS volumes.
+	SavingsEstimationMode *EBSSavingsEstimationMode `locationName:"savingsEstimationMode" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EBSEffectiveRecommendationPreferences) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EBSEffectiveRecommendationPreferences) GoString() string {
+	return s.String()
+}
+
+// SetSavingsEstimationMode sets the SavingsEstimationMode field's value.
+func (s *EBSEffectiveRecommendationPreferences) SetSavingsEstimationMode(v *EBSSavingsEstimationMode) *EBSEffectiveRecommendationPreferences {
+	s.SavingsEstimationMode = v
+	return s
+}
+
+// An object that describes the estimated monthly savings possible by adopting
+// Compute Optimizer’s Amazon EBS volume recommendations. This includes any
+// applicable discounts.
+type EBSEstimatedMonthlySavings struct {
+	_ struct{} `type:"structure"`
+
+	// The currency of the estimated monthly savings.
+	Currency *string `locationName:"currency" type:"string" enum:"Currency"`
+
+	// The value of the estimated monthly savings.
+	Value *float64 `locationName:"value" type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EBSEstimatedMonthlySavings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EBSEstimatedMonthlySavings) GoString() string {
+	return s.String()
+}
+
+// SetCurrency sets the Currency field's value.
+func (s *EBSEstimatedMonthlySavings) SetCurrency(v string) *EBSEstimatedMonthlySavings {
+	s.Currency = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *EBSEstimatedMonthlySavings) SetValue(v float64) *EBSEstimatedMonthlySavings {
+	s.Value = &v
+	return s
+}
+
 // Describes a filter that returns a more specific list of Amazon Elastic Block
 // Store (Amazon EBS) volume recommendations. Use this filter with the GetEBSVolumeRecommendations
 // action.
@@ -3687,6 +3910,86 @@ func (s *EBSFilter) SetName(v string) *EBSFilter {
 // SetValues sets the Values field's value.
 func (s *EBSFilter) SetValues(v []*string) *EBSFilter {
 	s.Values = v
+	return s
+}
+
+// Describes the savings estimation mode used for calculating savings opportunity
+// for Amazon EBS volumes.
+type EBSSavingsEstimationMode struct {
+	_ struct{} `type:"structure"`
+
+	// Describes the source for calculating the savings opportunity for Amazon EBS
+	// volumes.
+	Source *string `locationName:"source" type:"string" enum:"EBSSavingsEstimationModeSource"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EBSSavingsEstimationMode) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EBSSavingsEstimationMode) GoString() string {
+	return s.String()
+}
+
+// SetSource sets the Source field's value.
+func (s *EBSSavingsEstimationMode) SetSource(v string) *EBSSavingsEstimationMode {
+	s.Source = &v
+	return s
+}
+
+// Describes the savings opportunity for Amazon EBS volume recommendations after
+// applying specific discounts.
+type EBSSavingsOpportunityAfterDiscounts struct {
+	_ struct{} `type:"structure"`
+
+	// The estimated monthly savings possible as a percentage of monthly cost by
+	// adopting Compute Optimizer’s Amazon EBS volume recommendations. This saving
+	// includes any applicable discounts.
+	EstimatedMonthlySavings *EBSEstimatedMonthlySavings `locationName:"estimatedMonthlySavings" type:"structure"`
+
+	// The estimated monthly savings possible as a percentage of monthly cost after
+	// applying the specific discounts. This saving can be achieved by adopting
+	// Compute Optimizer’s Amazon EBS volume recommendations.
+	SavingsOpportunityPercentage *float64 `locationName:"savingsOpportunityPercentage" type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EBSSavingsOpportunityAfterDiscounts) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EBSSavingsOpportunityAfterDiscounts) GoString() string {
+	return s.String()
+}
+
+// SetEstimatedMonthlySavings sets the EstimatedMonthlySavings field's value.
+func (s *EBSSavingsOpportunityAfterDiscounts) SetEstimatedMonthlySavings(v *EBSEstimatedMonthlySavings) *EBSSavingsOpportunityAfterDiscounts {
+	s.EstimatedMonthlySavings = v
+	return s
+}
+
+// SetSavingsOpportunityPercentage sets the SavingsOpportunityPercentage field's value.
+func (s *EBSSavingsOpportunityAfterDiscounts) SetSavingsOpportunityPercentage(v float64) *EBSSavingsOpportunityAfterDiscounts {
+	s.SavingsOpportunityPercentage = &v
 	return s
 }
 
@@ -3768,6 +4071,166 @@ func (s *EBSUtilizationMetric) SetStatistic(v string) *EBSUtilizationMetric {
 // SetValue sets the Value field's value.
 func (s *EBSUtilizationMetric) SetValue(v float64) *EBSUtilizationMetric {
 	s.Value = &v
+	return s
+}
+
+// Describes the effective recommendation preferences for Amazon ECS services.
+type ECSEffectiveRecommendationPreferences struct {
+	_ struct{} `type:"structure"`
+
+	// Describes the savings estimation mode preference applied for calculating
+	// savings opportunity for Amazon ECS services.
+	SavingsEstimationMode *ECSSavingsEstimationMode `locationName:"savingsEstimationMode" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ECSEffectiveRecommendationPreferences) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ECSEffectiveRecommendationPreferences) GoString() string {
+	return s.String()
+}
+
+// SetSavingsEstimationMode sets the SavingsEstimationMode field's value.
+func (s *ECSEffectiveRecommendationPreferences) SetSavingsEstimationMode(v *ECSSavingsEstimationMode) *ECSEffectiveRecommendationPreferences {
+	s.SavingsEstimationMode = v
+	return s
+}
+
+// Describes the estimated monthly savings possible for Amazon ECS services
+// by adopting Compute Optimizer recommendations. This is based on Amazon ECS
+// service pricing after applying Savings Plans discounts.
+type ECSEstimatedMonthlySavings struct {
+	_ struct{} `type:"structure"`
+
+	// The currency of the estimated monthly savings.
+	Currency *string `locationName:"currency" type:"string" enum:"Currency"`
+
+	// The value of the estimated monthly savings for Amazon ECS services.
+	Value *float64 `locationName:"value" type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ECSEstimatedMonthlySavings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ECSEstimatedMonthlySavings) GoString() string {
+	return s.String()
+}
+
+// SetCurrency sets the Currency field's value.
+func (s *ECSEstimatedMonthlySavings) SetCurrency(v string) *ECSEstimatedMonthlySavings {
+	s.Currency = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *ECSEstimatedMonthlySavings) SetValue(v float64) *ECSEstimatedMonthlySavings {
+	s.Value = &v
+	return s
+}
+
+// Describes the savings estimation mode used for calculating savings opportunity
+// for Amazon ECS services.
+type ECSSavingsEstimationMode struct {
+	_ struct{} `type:"structure"`
+
+	// Describes the source for calculating the savings opportunity for Amazon ECS
+	// services.
+	Source *string `locationName:"source" type:"string" enum:"ECSSavingsEstimationModeSource"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ECSSavingsEstimationMode) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ECSSavingsEstimationMode) GoString() string {
+	return s.String()
+}
+
+// SetSource sets the Source field's value.
+func (s *ECSSavingsEstimationMode) SetSource(v string) *ECSSavingsEstimationMode {
+	s.Source = &v
+	return s
+}
+
+// Describes the savings opportunity for Amazon ECS service recommendations
+// after applying Savings Plans discounts.
+//
+// Savings opportunity represents the estimated monthly savings after applying
+// Savings Plans discounts. You can achieve this by implementing a given Compute
+// Optimizer recommendation.
+type ECSSavingsOpportunityAfterDiscounts struct {
+	_ struct{} `type:"structure"`
+
+	// The estimated monthly savings possible by adopting Compute Optimizer’s
+	// Amazon ECS service recommendations. This includes any applicable Savings
+	// Plans discounts.
+	EstimatedMonthlySavings *ECSEstimatedMonthlySavings `locationName:"estimatedMonthlySavings" type:"structure"`
+
+	// The estimated monthly savings possible as a percentage of monthly cost by
+	// adopting Compute Optimizer’s Amazon ECS service recommendations. This includes
+	// any applicable Savings Plans discounts.
+	SavingsOpportunityPercentage *float64 `locationName:"savingsOpportunityPercentage" type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ECSSavingsOpportunityAfterDiscounts) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ECSSavingsOpportunityAfterDiscounts) GoString() string {
+	return s.String()
+}
+
+// SetEstimatedMonthlySavings sets the EstimatedMonthlySavings field's value.
+func (s *ECSSavingsOpportunityAfterDiscounts) SetEstimatedMonthlySavings(v *ECSEstimatedMonthlySavings) *ECSSavingsOpportunityAfterDiscounts {
+	s.EstimatedMonthlySavings = v
+	return s
+}
+
+// SetSavingsOpportunityPercentage sets the SavingsOpportunityPercentage field's value.
+func (s *ECSSavingsOpportunityAfterDiscounts) SetSavingsOpportunityPercentage(v float64) *ECSSavingsOpportunityAfterDiscounts {
+	s.SavingsOpportunityPercentage = &v
 	return s
 }
 
@@ -3941,6 +4404,9 @@ type ECSServiceRecommendation struct {
 	// The configuration of the current Amazon ECS service.
 	CurrentServiceConfiguration *ServiceConfiguration `locationName:"currentServiceConfiguration" type:"structure"`
 
+	// Describes the effective recommendation preferences for Amazon ECS services.
+	EffectiveRecommendationPreferences *ECSEffectiveRecommendationPreferences `locationName:"effectiveRecommendationPreferences" type:"structure"`
+
 	// The finding classification of an Amazon ECS service.
 	//
 	// Findings for Amazon ECS services include:
@@ -4046,6 +4512,12 @@ func (s *ECSServiceRecommendation) SetCurrentPerformanceRisk(v string) *ECSServi
 // SetCurrentServiceConfiguration sets the CurrentServiceConfiguration field's value.
 func (s *ECSServiceRecommendation) SetCurrentServiceConfiguration(v *ServiceConfiguration) *ECSServiceRecommendation {
 	s.CurrentServiceConfiguration = v
+	return s
+}
+
+// SetEffectiveRecommendationPreferences sets the EffectiveRecommendationPreferences field's value.
+func (s *ECSServiceRecommendation) SetEffectiveRecommendationPreferences(v *ECSEffectiveRecommendationPreferences) *ECSServiceRecommendation {
+	s.EffectiveRecommendationPreferences = v
 	return s
 }
 
@@ -4208,6 +4680,14 @@ type ECSServiceRecommendationOption struct {
 	// and Optimizing your cost with Rightsizing Recommendations (https://docs.aws.amazon.com/cost-management/latest/userguide/ce-rightsizing.html)
 	// in the Cost Management User Guide.
 	SavingsOpportunity *SavingsOpportunity `locationName:"savingsOpportunity" type:"structure"`
+
+	// Describes the savings opportunity for Amazon ECS service recommendations
+	// or for the recommendation option.
+	//
+	// Savings opportunity represents the estimated monthly savings after applying
+	// Savings Plans discounts. You can achieve this by implementing a given Compute
+	// Optimizer recommendation.
+	SavingsOpportunityAfterDiscounts *ECSSavingsOpportunityAfterDiscounts `locationName:"savingsOpportunityAfterDiscounts" type:"structure"`
 }
 
 // String returns the string representation.
@@ -4255,6 +4735,12 @@ func (s *ECSServiceRecommendationOption) SetProjectedUtilizationMetrics(v []*ECS
 // SetSavingsOpportunity sets the SavingsOpportunity field's value.
 func (s *ECSServiceRecommendationOption) SetSavingsOpportunity(v *SavingsOpportunity) *ECSServiceRecommendationOption {
 	s.SavingsOpportunity = v
+	return s
+}
+
+// SetSavingsOpportunityAfterDiscounts sets the SavingsOpportunityAfterDiscounts field's value.
+func (s *ECSServiceRecommendationOption) SetSavingsOpportunityAfterDiscounts(v *ECSSavingsOpportunityAfterDiscounts) *ECSServiceRecommendationOption {
+	s.SavingsOpportunityAfterDiscounts = v
 	return s
 }
 
@@ -4384,6 +4870,70 @@ func (s *ECSServiceUtilizationMetric) SetValue(v float64) *ECSServiceUtilization
 	return s
 }
 
+// Describes the effective preferred resources that Compute Optimizer considers
+// as rightsizing recommendation candidates.
+//
+// Compute Optimizer only supports Amazon EC2 instance types.
+type EffectivePreferredResource struct {
+	_ struct{} `type:"structure"`
+
+	// The expanded version of your preferred resource's include list.
+	EffectiveIncludeList []*string `locationName:"effectiveIncludeList" type:"list"`
+
+	// The list of preferred resources values that you want excluded from rightsizing
+	// recommendation candidates.
+	ExcludeList []*string `locationName:"excludeList" type:"list"`
+
+	// The list of preferred resource values that you want considered as rightsizing
+	// recommendation candidates.
+	IncludeList []*string `locationName:"includeList" type:"list"`
+
+	// The name of the preferred resource list.
+	Name *string `locationName:"name" type:"string" enum:"PreferredResourceName"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EffectivePreferredResource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EffectivePreferredResource) GoString() string {
+	return s.String()
+}
+
+// SetEffectiveIncludeList sets the EffectiveIncludeList field's value.
+func (s *EffectivePreferredResource) SetEffectiveIncludeList(v []*string) *EffectivePreferredResource {
+	s.EffectiveIncludeList = v
+	return s
+}
+
+// SetExcludeList sets the ExcludeList field's value.
+func (s *EffectivePreferredResource) SetExcludeList(v []*string) *EffectivePreferredResource {
+	s.ExcludeList = v
+	return s
+}
+
+// SetIncludeList sets the IncludeList field's value.
+func (s *EffectivePreferredResource) SetIncludeList(v []*string) *EffectivePreferredResource {
+	s.IncludeList = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *EffectivePreferredResource) SetName(v string) *EffectivePreferredResource {
+	s.Name = &v
+	return s
+}
+
 // Describes the effective recommendation preferences for a resource.
 type EffectiveRecommendationPreferences struct {
 	_ struct{} `type:"structure"`
@@ -4430,6 +4980,24 @@ type EffectiveRecommendationPreferences struct {
 	// recommendation refresh. A status of Inactive confirms that it's not yet applied
 	// to recommendations.
 	InferredWorkloadTypes *string `locationName:"inferredWorkloadTypes" type:"string" enum:"InferredWorkloadTypesPreference"`
+
+	// The number of days the utilization metrics of the Amazon Web Services resource
+	// are analyzed.
+	LookBackPeriod *string `locationName:"lookBackPeriod" type:"string" enum:"LookBackPeriodPreference"`
+
+	// The resource type values that are considered as candidates when generating
+	// rightsizing recommendations.
+	PreferredResources []*EffectivePreferredResource `locationName:"preferredResources" type:"list"`
+
+	// Describes the savings estimation mode applied for calculating savings opportunity
+	// for a resource.
+	SavingsEstimationMode *InstanceSavingsEstimationMode `locationName:"savingsEstimationMode" type:"structure"`
+
+	// The resource’s CPU utilization threshold preferences, such as threshold
+	// and headroom, that are used to generate rightsizing recommendations.
+	//
+	// This preference is only available for the Amazon EC2 instance resource type.
+	UtilizationPreferences []*UtilizationPreference `locationName:"utilizationPreferences" type:"list"`
 }
 
 // String returns the string representation.
@@ -4471,6 +5039,30 @@ func (s *EffectiveRecommendationPreferences) SetExternalMetricsPreference(v *Ext
 // SetInferredWorkloadTypes sets the InferredWorkloadTypes field's value.
 func (s *EffectiveRecommendationPreferences) SetInferredWorkloadTypes(v string) *EffectiveRecommendationPreferences {
 	s.InferredWorkloadTypes = &v
+	return s
+}
+
+// SetLookBackPeriod sets the LookBackPeriod field's value.
+func (s *EffectiveRecommendationPreferences) SetLookBackPeriod(v string) *EffectiveRecommendationPreferences {
+	s.LookBackPeriod = &v
+	return s
+}
+
+// SetPreferredResources sets the PreferredResources field's value.
+func (s *EffectiveRecommendationPreferences) SetPreferredResources(v []*EffectivePreferredResource) *EffectiveRecommendationPreferences {
+	s.PreferredResources = v
+	return s
+}
+
+// SetSavingsEstimationMode sets the SavingsEstimationMode field's value.
+func (s *EffectiveRecommendationPreferences) SetSavingsEstimationMode(v *InstanceSavingsEstimationMode) *EffectiveRecommendationPreferences {
+	s.SavingsEstimationMode = v
+	return s
+}
+
+// SetUtilizationPreferences sets the UtilizationPreferences field's value.
+func (s *EffectiveRecommendationPreferences) SetUtilizationPreferences(v []*UtilizationPreference) *EffectiveRecommendationPreferences {
+	s.UtilizationPreferences = v
 	return s
 }
 
@@ -6815,6 +7407,38 @@ type GetEffectiveRecommendationPreferencesOutput struct {
 	// For more information, see Enhanced infrastructure metrics (https://docs.aws.amazon.com/compute-optimizer/latest/ug/external-metrics-ingestion.html)
 	// in the Compute Optimizer User Guide.
 	ExternalMetricsPreference *ExternalMetricsPreference `locationName:"externalMetricsPreference" type:"structure"`
+
+	// The number of days the utilization metrics of the Amazon Web Services resource
+	// are analyzed.
+	//
+	// To validate that the preference is applied to your last generated set of
+	// recommendations, review the effectiveRecommendationPreferences value in the
+	// response of the GetAutoScalingGroupRecommendations or GetEC2InstanceRecommendations
+	// actions.
+	LookBackPeriod *string `locationName:"lookBackPeriod" type:"string" enum:"LookBackPeriodPreference"`
+
+	// The resource type values that are considered as candidates when generating
+	// rightsizing recommendations. This object resolves any wildcard expressions
+	// and returns the effective list of candidate resource type values. It also
+	// considers all applicable preferences that you set at the resource, account,
+	// and organization level.
+	//
+	// To validate that the preference is applied to your last generated set of
+	// recommendations, review the effectiveRecommendationPreferences value in the
+	// response of the GetAutoScalingGroupRecommendations or GetEC2InstanceRecommendations
+	// actions.
+	PreferredResources []*EffectivePreferredResource `locationName:"preferredResources" type:"list"`
+
+	// The resource’s CPU utilization threshold preferences, such as threshold
+	// and headroom, that were used to generate rightsizing recommendations. It
+	// considers all applicable preferences that you set at the resource, account,
+	// and organization level.
+	//
+	// To validate that the preference is applied to your last generated set of
+	// recommendations, review the effectiveRecommendationPreferences value in the
+	// response of the GetAutoScalingGroupRecommendations or GetEC2InstanceRecommendations
+	// actions.
+	UtilizationPreferences []*UtilizationPreference `locationName:"utilizationPreferences" type:"list"`
 }
 
 // String returns the string representation.
@@ -6844,6 +7468,24 @@ func (s *GetEffectiveRecommendationPreferencesOutput) SetEnhancedInfrastructureM
 // SetExternalMetricsPreference sets the ExternalMetricsPreference field's value.
 func (s *GetEffectiveRecommendationPreferencesOutput) SetExternalMetricsPreference(v *ExternalMetricsPreference) *GetEffectiveRecommendationPreferencesOutput {
 	s.ExternalMetricsPreference = v
+	return s
+}
+
+// SetLookBackPeriod sets the LookBackPeriod field's value.
+func (s *GetEffectiveRecommendationPreferencesOutput) SetLookBackPeriod(v string) *GetEffectiveRecommendationPreferencesOutput {
+	s.LookBackPeriod = &v
+	return s
+}
+
+// SetPreferredResources sets the PreferredResources field's value.
+func (s *GetEffectiveRecommendationPreferencesOutput) SetPreferredResources(v []*EffectivePreferredResource) *GetEffectiveRecommendationPreferencesOutput {
+	s.PreferredResources = v
+	return s
+}
+
+// SetUtilizationPreferences sets the UtilizationPreferences field's value.
+func (s *GetEffectiveRecommendationPreferencesOutput) SetUtilizationPreferences(v []*UtilizationPreference) *GetEffectiveRecommendationPreferencesOutput {
+	s.UtilizationPreferences = v
 	return s
 }
 
@@ -7729,6 +8371,49 @@ func (s *InferredWorkloadSaving) SetInferredWorkloadTypes(v []*string) *Inferred
 	return s
 }
 
+// An object that describes the estimated monthly savings possible by adopting
+// Compute Optimizer’s Amazon EC2 instance recommendations. This is based
+// on the Savings Plans and Reserved Instances pricing discounts.
+type InstanceEstimatedMonthlySavings struct {
+	_ struct{} `type:"structure"`
+
+	// The currency of the estimated monthly savings.
+	Currency *string `locationName:"currency" type:"string" enum:"Currency"`
+
+	// The value of the estimated monthly savings.
+	Value *float64 `locationName:"value" type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InstanceEstimatedMonthlySavings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InstanceEstimatedMonthlySavings) GoString() string {
+	return s.String()
+}
+
+// SetCurrency sets the Currency field's value.
+func (s *InstanceEstimatedMonthlySavings) SetCurrency(v string) *InstanceEstimatedMonthlySavings {
+	s.Currency = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *InstanceEstimatedMonthlySavings) SetValue(v float64) *InstanceEstimatedMonthlySavings {
+	s.Value = &v
+	return s
+}
+
 // Describes an Amazon EC2 instance recommendation.
 type InstanceRecommendation struct {
 	_ struct{} `type:"structure"`
@@ -8212,6 +8897,11 @@ type InstanceRecommendationOption struct {
 	// option. Savings opportunity includes the estimated monthly savings amount
 	// and percentage.
 	SavingsOpportunity *SavingsOpportunity `locationName:"savingsOpportunity" type:"structure"`
+
+	// An object that describes the savings opportunity for the instance recommendation
+	// option that includes Savings Plans and Reserved Instances discounts. Savings
+	// opportunity includes the estimated monthly savings and percentage.
+	SavingsOpportunityAfterDiscounts *InstanceSavingsOpportunityAfterDiscounts `locationName:"savingsOpportunityAfterDiscounts" type:"structure"`
 }
 
 // String returns the string representation.
@@ -8277,6 +8967,95 @@ func (s *InstanceRecommendationOption) SetRank(v int64) *InstanceRecommendationO
 // SetSavingsOpportunity sets the SavingsOpportunity field's value.
 func (s *InstanceRecommendationOption) SetSavingsOpportunity(v *SavingsOpportunity) *InstanceRecommendationOption {
 	s.SavingsOpportunity = v
+	return s
+}
+
+// SetSavingsOpportunityAfterDiscounts sets the SavingsOpportunityAfterDiscounts field's value.
+func (s *InstanceRecommendationOption) SetSavingsOpportunityAfterDiscounts(v *InstanceSavingsOpportunityAfterDiscounts) *InstanceRecommendationOption {
+	s.SavingsOpportunityAfterDiscounts = v
+	return s
+}
+
+// Describes the savings estimation mode used for calculating savings opportunity
+// for Amazon EC2 instances.
+type InstanceSavingsEstimationMode struct {
+	_ struct{} `type:"structure"`
+
+	// Describes the source for calculating the savings opportunity for Amazon EC2
+	// instances.
+	Source *string `locationName:"source" type:"string" enum:"InstanceSavingsEstimationModeSource"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InstanceSavingsEstimationMode) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InstanceSavingsEstimationMode) GoString() string {
+	return s.String()
+}
+
+// SetSource sets the Source field's value.
+func (s *InstanceSavingsEstimationMode) SetSource(v string) *InstanceSavingsEstimationMode {
+	s.Source = &v
+	return s
+}
+
+// Describes the savings opportunity for instance recommendations after applying
+// the Savings Plans and Reserved Instances discounts.
+//
+// Savings opportunity after discounts represents the estimated monthly savings
+// you can achieve by implementing Compute Optimizer recommendations.
+type InstanceSavingsOpportunityAfterDiscounts struct {
+	_ struct{} `type:"structure"`
+
+	// An object that describes the estimated monthly savings possible by adopting
+	// Compute Optimizer’s Amazon EC2 instance recommendations. This is based
+	// on pricing after applying the Savings Plans and Reserved Instances discounts.
+	EstimatedMonthlySavings *InstanceEstimatedMonthlySavings `locationName:"estimatedMonthlySavings" type:"structure"`
+
+	// The estimated monthly savings possible as a percentage of monthly cost after
+	// applying the Savings Plans and Reserved Instances discounts. This saving
+	// can be achieved by adopting Compute Optimizer’s EC2 instance recommendations.
+	SavingsOpportunityPercentage *float64 `locationName:"savingsOpportunityPercentage" type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InstanceSavingsOpportunityAfterDiscounts) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InstanceSavingsOpportunityAfterDiscounts) GoString() string {
+	return s.String()
+}
+
+// SetEstimatedMonthlySavings sets the EstimatedMonthlySavings field's value.
+func (s *InstanceSavingsOpportunityAfterDiscounts) SetEstimatedMonthlySavings(v *InstanceEstimatedMonthlySavings) *InstanceSavingsOpportunityAfterDiscounts {
+	s.EstimatedMonthlySavings = v
+	return s
+}
+
+// SetSavingsOpportunityPercentage sets the SavingsOpportunityPercentage field's value.
+func (s *InstanceSavingsOpportunityAfterDiscounts) SetSavingsOpportunityPercentage(v float64) *InstanceSavingsOpportunityAfterDiscounts {
+	s.SavingsOpportunityPercentage = &v
 	return s
 }
 
@@ -8469,6 +9248,82 @@ func (s *JobFilter) SetValues(v []*string) *JobFilter {
 	return s
 }
 
+// Describes the effective recommendation preferences for Lambda functions.
+type LambdaEffectiveRecommendationPreferences struct {
+	_ struct{} `type:"structure"`
+
+	// Describes the savings estimation mode applied for calculating savings opportunity
+	// for Lambda functions.
+	SavingsEstimationMode *LambdaSavingsEstimationMode `locationName:"savingsEstimationMode" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LambdaEffectiveRecommendationPreferences) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LambdaEffectiveRecommendationPreferences) GoString() string {
+	return s.String()
+}
+
+// SetSavingsEstimationMode sets the SavingsEstimationMode field's value.
+func (s *LambdaEffectiveRecommendationPreferences) SetSavingsEstimationMode(v *LambdaSavingsEstimationMode) *LambdaEffectiveRecommendationPreferences {
+	s.SavingsEstimationMode = v
+	return s
+}
+
+// Describes the estimated monthly savings possible for Lambda functions by
+// adopting Compute Optimizer recommendations. This is based on Lambda functions
+// pricing after applying Savings Plans discounts.
+type LambdaEstimatedMonthlySavings struct {
+	_ struct{} `type:"structure"`
+
+	// The currency of the estimated monthly savings.
+	Currency *string `locationName:"currency" type:"string" enum:"Currency"`
+
+	// The value of the estimated monthly savings.
+	Value *float64 `locationName:"value" type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LambdaEstimatedMonthlySavings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LambdaEstimatedMonthlySavings) GoString() string {
+	return s.String()
+}
+
+// SetCurrency sets the Currency field's value.
+func (s *LambdaEstimatedMonthlySavings) SetCurrency(v string) *LambdaEstimatedMonthlySavings {
+	s.Currency = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *LambdaEstimatedMonthlySavings) SetValue(v float64) *LambdaEstimatedMonthlySavings {
+	s.Value = &v
+	return s
+}
+
 // Describes a projected utilization metric of an Lambda function recommendation
 // option.
 type LambdaFunctionMemoryProjectedMetric struct {
@@ -8540,6 +9395,11 @@ type LambdaFunctionMemoryRecommendationOption struct {
 	// recommendation option. Savings opportunity includes the estimated monthly
 	// savings amount and percentage.
 	SavingsOpportunity *SavingsOpportunity `locationName:"savingsOpportunity" type:"structure"`
+
+	// An object that describes the savings opportunity for the Lambda recommendation
+	// option which includes Saving Plans discounts. Savings opportunity includes
+	// the estimated monthly savings and percentage.
+	SavingsOpportunityAfterDiscounts *LambdaSavingsOpportunityAfterDiscounts `locationName:"savingsOpportunityAfterDiscounts" type:"structure"`
 }
 
 // String returns the string representation.
@@ -8584,6 +9444,12 @@ func (s *LambdaFunctionMemoryRecommendationOption) SetSavingsOpportunity(v *Savi
 	return s
 }
 
+// SetSavingsOpportunityAfterDiscounts sets the SavingsOpportunityAfterDiscounts field's value.
+func (s *LambdaFunctionMemoryRecommendationOption) SetSavingsOpportunityAfterDiscounts(v *LambdaSavingsOpportunityAfterDiscounts) *LambdaFunctionMemoryRecommendationOption {
+	s.SavingsOpportunityAfterDiscounts = v
+	return s
+}
+
 // Describes an Lambda function recommendation.
 type LambdaFunctionRecommendation struct {
 	_ struct{} `type:"structure"`
@@ -8598,6 +9464,9 @@ type LambdaFunctionRecommendation struct {
 	// of its workloads. The higher the risk, the more likely the current Lambda
 	// function requires more memory.
 	CurrentPerformanceRisk *string `locationName:"currentPerformanceRisk" type:"string" enum:"CurrentPerformanceRisk"`
+
+	// Describes the effective recommendation preferences for Lambda functions.
+	EffectiveRecommendationPreferences *LambdaEffectiveRecommendationPreferences `locationName:"effectiveRecommendationPreferences" type:"structure"`
 
 	// The finding classification of the function.
 	//
@@ -8714,6 +9583,12 @@ func (s *LambdaFunctionRecommendation) SetCurrentMemorySize(v int64) *LambdaFunc
 // SetCurrentPerformanceRisk sets the CurrentPerformanceRisk field's value.
 func (s *LambdaFunctionRecommendation) SetCurrentPerformanceRisk(v string) *LambdaFunctionRecommendation {
 	s.CurrentPerformanceRisk = &v
+	return s
+}
+
+// SetEffectiveRecommendationPreferences sets the EffectiveRecommendationPreferences field's value.
+func (s *LambdaFunctionRecommendation) SetEffectiveRecommendationPreferences(v *LambdaEffectiveRecommendationPreferences) *LambdaFunctionRecommendation {
+	s.EffectiveRecommendationPreferences = v
 	return s
 }
 
@@ -8919,6 +9794,89 @@ func (s *LambdaFunctionUtilizationMetric) SetStatistic(v string) *LambdaFunction
 // SetValue sets the Value field's value.
 func (s *LambdaFunctionUtilizationMetric) SetValue(v float64) *LambdaFunctionUtilizationMetric {
 	s.Value = &v
+	return s
+}
+
+// Describes the savings estimation used for calculating savings opportunity
+// for Lambda functions.
+type LambdaSavingsEstimationMode struct {
+	_ struct{} `type:"structure"`
+
+	// Describes the source for calculation of savings opportunity for Lambda functions.
+	Source *string `locationName:"source" type:"string" enum:"LambdaSavingsEstimationModeSource"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LambdaSavingsEstimationMode) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LambdaSavingsEstimationMode) GoString() string {
+	return s.String()
+}
+
+// SetSource sets the Source field's value.
+func (s *LambdaSavingsEstimationMode) SetSource(v string) *LambdaSavingsEstimationMode {
+	s.Source = &v
+	return s
+}
+
+// Describes the savings opportunity for Lambda functions recommendations after
+// applying Savings Plans discounts.
+//
+// Savings opportunity represents the estimated monthly savings after applying
+// Savings Plans discounts. You can achieve this by implementing a given Compute
+// Optimizer recommendation.
+type LambdaSavingsOpportunityAfterDiscounts struct {
+	_ struct{} `type:"structure"`
+
+	// The estimated monthly savings possible by adopting Compute Optimizer’s
+	// Lambda function recommendations. This includes any applicable Savings Plans
+	// discounts.
+	EstimatedMonthlySavings *LambdaEstimatedMonthlySavings `locationName:"estimatedMonthlySavings" type:"structure"`
+
+	// The estimated monthly savings possible as a percentage of monthly cost by
+	// adopting Compute Optimizer’s Lambda function recommendations. This includes
+	// any applicable Savings Plans discounts.
+	SavingsOpportunityPercentage *float64 `locationName:"savingsOpportunityPercentage" type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LambdaSavingsOpportunityAfterDiscounts) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LambdaSavingsOpportunityAfterDiscounts) GoString() string {
+	return s.String()
+}
+
+// SetEstimatedMonthlySavings sets the EstimatedMonthlySavings field's value.
+func (s *LambdaSavingsOpportunityAfterDiscounts) SetEstimatedMonthlySavings(v *LambdaEstimatedMonthlySavings) *LambdaSavingsOpportunityAfterDiscounts {
+	s.EstimatedMonthlySavings = v
+	return s
+}
+
+// SetSavingsOpportunityPercentage sets the SavingsOpportunityPercentage field's value.
+func (s *LambdaSavingsOpportunityAfterDiscounts) SetSavingsOpportunityPercentage(v float64) *LambdaSavingsOpportunityAfterDiscounts {
+	s.SavingsOpportunityPercentage = &v
 	return s
 }
 
@@ -9585,6 +10543,74 @@ func (s *OptInRequiredException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The preference to control which resource type values are considered when
+// generating rightsizing recommendations. You can specify this preference as
+// a combination of include and exclude lists. You must specify either an includeList
+// or excludeList. If the preference is an empty set of resource type values,
+// an error occurs. For more information, see Rightsizing recommendation preferences
+// (https://docs.aws.amazon.com/compute-optimizer/latest/ug/rightsizing-preferences.html)
+// in the Compute Optimizer User Guide.
+//
+//   - This preference is only available for the Amazon EC2 instance and Auto
+//     Scaling group resource types.
+//
+//   - Compute Optimizer only supports the customization of Ec2InstanceTypes.
+type PreferredResource struct {
+	_ struct{} `type:"structure"`
+
+	// The preferred resource type values to exclude from the recommendation candidates.
+	// If this isn’t specified, all supported resources are included by default.
+	// You can specify up to 1000 values in this list.
+	ExcludeList []*string `locationName:"excludeList" type:"list"`
+
+	// The preferred resource type values to include in the recommendation candidates.
+	// You can specify the exact resource type value, such as m5.large, or use wild
+	// card expressions, such as m5. If this isn’t specified, all supported resources
+	// are included by default. You can specify up to 1000 values in this list.
+	IncludeList []*string `locationName:"includeList" type:"list"`
+
+	// The type of preferred resource to customize.
+	//
+	// Compute Optimizer only supports the customization of Ec2InstanceTypes.
+	Name *string `locationName:"name" type:"string" enum:"PreferredResourceName"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PreferredResource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PreferredResource) GoString() string {
+	return s.String()
+}
+
+// SetExcludeList sets the ExcludeList field's value.
+func (s *PreferredResource) SetExcludeList(v []*string) *PreferredResource {
+	s.ExcludeList = v
+	return s
+}
+
+// SetIncludeList sets the IncludeList field's value.
+func (s *PreferredResource) SetIncludeList(v []*string) *PreferredResource {
+	s.IncludeList = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *PreferredResource) SetName(v string) *PreferredResource {
+	s.Name = &v
+	return s
+}
+
 // Describes a projected utilization metric of a recommendation option, such
 // as an Amazon EC2 instance. This represents the projected utilization of a
 // recommendation option had you used that resource during the analyzed period.
@@ -9712,6 +10738,24 @@ type PutRecommendationPreferencesInput struct {
 	// in the Compute Optimizer User Guide.
 	InferredWorkloadTypes *string `locationName:"inferredWorkloadTypes" type:"string" enum:"InferredWorkloadTypesPreference"`
 
+	// The preference to control the number of days the utilization metrics of the
+	// Amazon Web Services resource are analyzed. When this preference isn't specified,
+	// we use the default value DAYS_14.
+	//
+	// You can only set this preference for the Amazon EC2 instance and Auto Scaling
+	// group resource types.
+	LookBackPeriod *string `locationName:"lookBackPeriod" type:"string" enum:"LookBackPeriodPreference"`
+
+	// The preference to control which resource type values are considered when
+	// generating rightsizing recommendations. You can specify this preference as
+	// a combination of include and exclude lists. You must specify either an includeList
+	// or excludeList. If the preference is an empty set of resource type values,
+	// an error occurs.
+	//
+	// You can only set this preference for the Amazon EC2 instance and Auto Scaling
+	// group resource types.
+	PreferredResources []*PreferredResource `locationName:"preferredResources" type:"list"`
+
 	// The target resource type of the recommendation preference to create.
 	//
 	// The Ec2Instance option encompasses standalone instances and instances that
@@ -9722,6 +10766,18 @@ type PutRecommendationPreferencesInput struct {
 	//
 	// ResourceType is a required field
 	ResourceType *string `locationName:"resourceType" type:"string" required:"true" enum:"ResourceType"`
+
+	// The status of the savings estimation mode preference to create or update.
+	//
+	// Specify the AfterDiscounts status to activate the preference, or specify
+	// BeforeDiscounts to deactivate the preference.
+	//
+	// Only the account manager or delegated administrator of your organization
+	// can activate this preference.
+	//
+	// For more information, see Savings estimation mode (https://docs.aws.amazon.com/compute-optimizer/latest/ug/savings-estimation-mode.html)
+	// in the Compute Optimizer User Guide.
+	SavingsEstimationMode *string `locationName:"savingsEstimationMode" type:"string" enum:"SavingsEstimationMode"`
 
 	// An object that describes the scope of the recommendation preference to create.
 	//
@@ -9741,6 +10797,17 @@ type PutRecommendationPreferencesInput struct {
 	// Scaling group. You can create recommendation preferences at the resource
 	// level only for standalone instances.
 	Scope *Scope `locationName:"scope" type:"structure"`
+
+	// The preference to control the resource’s CPU utilization thresholds - threshold
+	// and headroom. When this preference isn't specified, we use the following
+	// default values:
+	//
+	//    * P99_5 for threshold
+	//
+	//    * PERCENT_17 for headroom
+	//
+	// You can only set this preference for the Amazon EC2 instance resource type.
+	UtilizationPreferences []*UtilizationPreference `locationName:"utilizationPreferences" type:"list"`
 }
 
 // String returns the string representation.
@@ -9792,15 +10859,39 @@ func (s *PutRecommendationPreferencesInput) SetInferredWorkloadTypes(v string) *
 	return s
 }
 
+// SetLookBackPeriod sets the LookBackPeriod field's value.
+func (s *PutRecommendationPreferencesInput) SetLookBackPeriod(v string) *PutRecommendationPreferencesInput {
+	s.LookBackPeriod = &v
+	return s
+}
+
+// SetPreferredResources sets the PreferredResources field's value.
+func (s *PutRecommendationPreferencesInput) SetPreferredResources(v []*PreferredResource) *PutRecommendationPreferencesInput {
+	s.PreferredResources = v
+	return s
+}
+
 // SetResourceType sets the ResourceType field's value.
 func (s *PutRecommendationPreferencesInput) SetResourceType(v string) *PutRecommendationPreferencesInput {
 	s.ResourceType = &v
 	return s
 }
 
+// SetSavingsEstimationMode sets the SavingsEstimationMode field's value.
+func (s *PutRecommendationPreferencesInput) SetSavingsEstimationMode(v string) *PutRecommendationPreferencesInput {
+	s.SavingsEstimationMode = &v
+	return s
+}
+
 // SetScope sets the Scope field's value.
 func (s *PutRecommendationPreferencesInput) SetScope(v *Scope) *PutRecommendationPreferencesInput {
 	s.Scope = v
+	return s
+}
+
+// SetUtilizationPreferences sets the UtilizationPreferences field's value.
+func (s *PutRecommendationPreferencesInput) SetUtilizationPreferences(v []*UtilizationPreference) *PutRecommendationPreferencesInput {
+	s.UtilizationPreferences = v
 	return s
 }
 
@@ -10036,12 +11127,29 @@ type RecommendationPreferencesDetail struct {
 	// confirms that the preference isn't yet applied to recommendations.
 	InferredWorkloadTypes *string `locationName:"inferredWorkloadTypes" type:"string" enum:"InferredWorkloadTypesPreference"`
 
+	// The preference to control the number of days the utilization metrics of the
+	// Amazon Web Services resource are analyzed. If the preference isn’t set,
+	// this object is null.
+	LookBackPeriod *string `locationName:"lookBackPeriod" type:"string" enum:"LookBackPeriodPreference"`
+
+	// The preference to control which resource type values are considered when
+	// generating rightsizing recommendations. This object resolves any wildcard
+	// expressions and returns the effective list of candidate resource type values.
+	// If the preference isn’t set, this object is null.
+	PreferredResources []*EffectivePreferredResource `locationName:"preferredResources" type:"list"`
+
 	// The target resource type of the recommendation preference to create.
 	//
 	// The Ec2Instance option encompasses standalone instances and instances that
 	// are part of Auto Scaling groups. The AutoScalingGroup option encompasses
 	// only instances that are part of an Auto Scaling group.
 	ResourceType *string `locationName:"resourceType" type:"string" enum:"ResourceType"`
+
+	// Describes the savings estimation mode used for calculating savings opportunity.
+	//
+	// Only the account manager or delegated administrator of your organization
+	// can activate this preference.
+	SavingsEstimationMode *string `locationName:"savingsEstimationMode" type:"string" enum:"SavingsEstimationMode"`
 
 	// An object that describes the scope of the recommendation preference.
 	//
@@ -10051,6 +11159,12 @@ type RecommendationPreferencesDetail struct {
 	// (https://docs.aws.amazon.com/compute-optimizer/latest/ug/enhanced-infrastructure-metrics.html)
 	// in the Compute Optimizer User Guide.
 	Scope *Scope `locationName:"scope" type:"structure"`
+
+	// The preference to control the resource’s CPU utilization thresholds - threshold
+	// and headroom. If the preference isn’t set, this object is null.
+	//
+	// This preference is only available for the Amazon EC2 instance resource type.
+	UtilizationPreferences []*UtilizationPreference `locationName:"utilizationPreferences" type:"list"`
 }
 
 // String returns the string representation.
@@ -10089,15 +11203,39 @@ func (s *RecommendationPreferencesDetail) SetInferredWorkloadTypes(v string) *Re
 	return s
 }
 
+// SetLookBackPeriod sets the LookBackPeriod field's value.
+func (s *RecommendationPreferencesDetail) SetLookBackPeriod(v string) *RecommendationPreferencesDetail {
+	s.LookBackPeriod = &v
+	return s
+}
+
+// SetPreferredResources sets the PreferredResources field's value.
+func (s *RecommendationPreferencesDetail) SetPreferredResources(v []*EffectivePreferredResource) *RecommendationPreferencesDetail {
+	s.PreferredResources = v
+	return s
+}
+
 // SetResourceType sets the ResourceType field's value.
 func (s *RecommendationPreferencesDetail) SetResourceType(v string) *RecommendationPreferencesDetail {
 	s.ResourceType = &v
 	return s
 }
 
+// SetSavingsEstimationMode sets the SavingsEstimationMode field's value.
+func (s *RecommendationPreferencesDetail) SetSavingsEstimationMode(v string) *RecommendationPreferencesDetail {
+	s.SavingsEstimationMode = &v
+	return s
+}
+
 // SetScope sets the Scope field's value.
 func (s *RecommendationPreferencesDetail) SetScope(v *Scope) *RecommendationPreferencesDetail {
 	s.Scope = v
+	return s
+}
+
+// SetUtilizationPreferences sets the UtilizationPreferences field's value.
+func (s *RecommendationPreferencesDetail) SetUtilizationPreferences(v []*UtilizationPreference) *RecommendationPreferencesDetail {
+	s.UtilizationPreferences = v
 	return s
 }
 
@@ -11162,6 +12300,52 @@ func (s *UtilizationMetric) SetValue(v float64) *UtilizationMetric {
 	return s
 }
 
+// The preference to control the resource’s CPU utilization thresholds - threshold
+// and headroom.
+//
+// This preference is only available for the Amazon EC2 instance resource type.
+type UtilizationPreference struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the resource utilization metric name to customize.
+	//
+	// Compute Optimizer only supports CpuUtilization.
+	MetricName *string `locationName:"metricName" type:"string" enum:"CustomizableMetricName"`
+
+	// The parameters to set when customizing the resource utilization thresholds.
+	MetricParameters *CustomizableMetricParameters `locationName:"metricParameters" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UtilizationPreference) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UtilizationPreference) GoString() string {
+	return s.String()
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *UtilizationPreference) SetMetricName(v string) *UtilizationPreference {
+	s.MetricName = &v
+	return s
+}
+
+// SetMetricParameters sets the MetricParameters field's value.
+func (s *UtilizationPreference) SetMetricParameters(v *CustomizableMetricParameters) *UtilizationPreference {
+	s.MetricParameters = v
+	return s
+}
+
 // Describes the configuration of an Amazon Elastic Block Store (Amazon EBS)
 // volume.
 type VolumeConfiguration struct {
@@ -11268,6 +12452,9 @@ type VolumeRecommendation struct {
 	// have sufficient capacity.
 	CurrentPerformanceRisk *string `locationName:"currentPerformanceRisk" type:"string" enum:"CurrentPerformanceRisk"`
 
+	// Describes the effective recommendation preferences for Amazon EBS volume.
+	EffectiveRecommendationPreferences *EBSEffectiveRecommendationPreferences `locationName:"effectiveRecommendationPreferences" type:"structure"`
+
 	// The finding classification of the volume.
 	//
 	// Findings for volumes include:
@@ -11334,6 +12521,12 @@ func (s *VolumeRecommendation) SetCurrentConfiguration(v *VolumeConfiguration) *
 // SetCurrentPerformanceRisk sets the CurrentPerformanceRisk field's value.
 func (s *VolumeRecommendation) SetCurrentPerformanceRisk(v string) *VolumeRecommendation {
 	s.CurrentPerformanceRisk = &v
+	return s
+}
+
+// SetEffectiveRecommendationPreferences sets the EffectiveRecommendationPreferences field's value.
+func (s *VolumeRecommendation) SetEffectiveRecommendationPreferences(v *EBSEffectiveRecommendationPreferences) *VolumeRecommendation {
+	s.EffectiveRecommendationPreferences = v
 	return s
 }
 
@@ -11408,6 +12601,11 @@ type VolumeRecommendationOption struct {
 	// option. Savings opportunity includes the estimated monthly savings amount
 	// and percentage.
 	SavingsOpportunity *SavingsOpportunity `locationName:"savingsOpportunity" type:"structure"`
+
+	// An object that describes the savings opportunity for the Amazon EBS volume
+	// recommendation option with specific discounts. Savings opportunity includes
+	// the estimated monthly savings and percentage.
+	SavingsOpportunityAfterDiscounts *EBSSavingsOpportunityAfterDiscounts `locationName:"savingsOpportunityAfterDiscounts" type:"structure"`
 }
 
 // String returns the string representation.
@@ -11449,6 +12647,12 @@ func (s *VolumeRecommendationOption) SetRank(v int64) *VolumeRecommendationOptio
 // SetSavingsOpportunity sets the SavingsOpportunity field's value.
 func (s *VolumeRecommendationOption) SetSavingsOpportunity(v *SavingsOpportunity) *VolumeRecommendationOption {
 	s.SavingsOpportunity = v
+	return s
+}
+
+// SetSavingsOpportunityAfterDiscounts sets the SavingsOpportunityAfterDiscounts field's value.
+func (s *VolumeRecommendationOption) SetSavingsOpportunityAfterDiscounts(v *EBSSavingsOpportunityAfterDiscounts) *VolumeRecommendationOption {
+	s.SavingsOpportunityAfterDiscounts = v
 	return s
 }
 
@@ -11525,6 +12729,58 @@ func CurrentPerformanceRisk_Values() []string {
 }
 
 const (
+	// CustomizableMetricHeadroomPercent30 is a CustomizableMetricHeadroom enum value
+	CustomizableMetricHeadroomPercent30 = "PERCENT_30"
+
+	// CustomizableMetricHeadroomPercent20 is a CustomizableMetricHeadroom enum value
+	CustomizableMetricHeadroomPercent20 = "PERCENT_20"
+
+	// CustomizableMetricHeadroomPercent0 is a CustomizableMetricHeadroom enum value
+	CustomizableMetricHeadroomPercent0 = "PERCENT_0"
+)
+
+// CustomizableMetricHeadroom_Values returns all elements of the CustomizableMetricHeadroom enum
+func CustomizableMetricHeadroom_Values() []string {
+	return []string{
+		CustomizableMetricHeadroomPercent30,
+		CustomizableMetricHeadroomPercent20,
+		CustomizableMetricHeadroomPercent0,
+	}
+}
+
+const (
+	// CustomizableMetricNameCpuUtilization is a CustomizableMetricName enum value
+	CustomizableMetricNameCpuUtilization = "CpuUtilization"
+)
+
+// CustomizableMetricName_Values returns all elements of the CustomizableMetricName enum
+func CustomizableMetricName_Values() []string {
+	return []string{
+		CustomizableMetricNameCpuUtilization,
+	}
+}
+
+const (
+	// CustomizableMetricThresholdP90 is a CustomizableMetricThreshold enum value
+	CustomizableMetricThresholdP90 = "P90"
+
+	// CustomizableMetricThresholdP95 is a CustomizableMetricThreshold enum value
+	CustomizableMetricThresholdP95 = "P95"
+
+	// CustomizableMetricThresholdP995 is a CustomizableMetricThreshold enum value
+	CustomizableMetricThresholdP995 = "P99_5"
+)
+
+// CustomizableMetricThreshold_Values returns all elements of the CustomizableMetricThreshold enum
+func CustomizableMetricThreshold_Values() []string {
+	return []string{
+		CustomizableMetricThresholdP90,
+		CustomizableMetricThresholdP95,
+		CustomizableMetricThresholdP995,
+	}
+}
+
+const (
 	// EBSFilterNameFinding is a EBSFilterName enum value
 	EBSFilterNameFinding = "Finding"
 )
@@ -11573,6 +12829,46 @@ func EBSMetricName_Values() []string {
 		EBSMetricNameVolumeWriteOpsPerSecond,
 		EBSMetricNameVolumeReadBytesPerSecond,
 		EBSMetricNameVolumeWriteBytesPerSecond,
+	}
+}
+
+const (
+	// EBSSavingsEstimationModeSourcePublicPricing is a EBSSavingsEstimationModeSource enum value
+	EBSSavingsEstimationModeSourcePublicPricing = "PublicPricing"
+
+	// EBSSavingsEstimationModeSourceCostExplorerRightsizing is a EBSSavingsEstimationModeSource enum value
+	EBSSavingsEstimationModeSourceCostExplorerRightsizing = "CostExplorerRightsizing"
+
+	// EBSSavingsEstimationModeSourceCostOptimizationHub is a EBSSavingsEstimationModeSource enum value
+	EBSSavingsEstimationModeSourceCostOptimizationHub = "CostOptimizationHub"
+)
+
+// EBSSavingsEstimationModeSource_Values returns all elements of the EBSSavingsEstimationModeSource enum
+func EBSSavingsEstimationModeSource_Values() []string {
+	return []string{
+		EBSSavingsEstimationModeSourcePublicPricing,
+		EBSSavingsEstimationModeSourceCostExplorerRightsizing,
+		EBSSavingsEstimationModeSourceCostOptimizationHub,
+	}
+}
+
+const (
+	// ECSSavingsEstimationModeSourcePublicPricing is a ECSSavingsEstimationModeSource enum value
+	ECSSavingsEstimationModeSourcePublicPricing = "PublicPricing"
+
+	// ECSSavingsEstimationModeSourceCostExplorerRightsizing is a ECSSavingsEstimationModeSource enum value
+	ECSSavingsEstimationModeSourceCostExplorerRightsizing = "CostExplorerRightsizing"
+
+	// ECSSavingsEstimationModeSourceCostOptimizationHub is a ECSSavingsEstimationModeSource enum value
+	ECSSavingsEstimationModeSourceCostOptimizationHub = "CostOptimizationHub"
+)
+
+// ECSSavingsEstimationModeSource_Values returns all elements of the ECSSavingsEstimationModeSource enum
+func ECSSavingsEstimationModeSource_Values() []string {
+	return []string{
+		ECSSavingsEstimationModeSourcePublicPricing,
+		ECSSavingsEstimationModeSourceCostExplorerRightsizing,
+		ECSSavingsEstimationModeSourceCostOptimizationHub,
 	}
 }
 
@@ -11892,6 +13188,24 @@ const (
 
 	// ExportableAutoScalingGroupFieldRecommendationOptionsProjectedUtilizationMetricsGpuMemoryPercentageMaximum is a ExportableAutoScalingGroupField enum value
 	ExportableAutoScalingGroupFieldRecommendationOptionsProjectedUtilizationMetricsGpuMemoryPercentageMaximum = "RecommendationOptionsProjectedUtilizationMetricsGpuMemoryPercentageMaximum"
+
+	// ExportableAutoScalingGroupFieldEffectiveRecommendationPreferencesSavingsEstimationMode is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldEffectiveRecommendationPreferencesSavingsEstimationMode = "EffectiveRecommendationPreferencesSavingsEstimationMode"
+
+	// ExportableAutoScalingGroupFieldRecommendationOptionsSavingsOpportunityAfterDiscountsPercentage is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldRecommendationOptionsSavingsOpportunityAfterDiscountsPercentage = "RecommendationOptionsSavingsOpportunityAfterDiscountsPercentage"
+
+	// ExportableAutoScalingGroupFieldRecommendationOptionsEstimatedMonthlySavingsCurrencyAfterDiscounts is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldRecommendationOptionsEstimatedMonthlySavingsCurrencyAfterDiscounts = "RecommendationOptionsEstimatedMonthlySavingsCurrencyAfterDiscounts"
+
+	// ExportableAutoScalingGroupFieldRecommendationOptionsEstimatedMonthlySavingsValueAfterDiscounts is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldRecommendationOptionsEstimatedMonthlySavingsValueAfterDiscounts = "RecommendationOptionsEstimatedMonthlySavingsValueAfterDiscounts"
+
+	// ExportableAutoScalingGroupFieldEffectiveRecommendationPreferencesPreferredResources is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldEffectiveRecommendationPreferencesPreferredResources = "EffectiveRecommendationPreferencesPreferredResources"
+
+	// ExportableAutoScalingGroupFieldEffectiveRecommendationPreferencesLookBackPeriod is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldEffectiveRecommendationPreferencesLookBackPeriod = "EffectiveRecommendationPreferencesLookBackPeriod"
 )
 
 // ExportableAutoScalingGroupField_Values returns all elements of the ExportableAutoScalingGroupField enum
@@ -11957,6 +13271,12 @@ func ExportableAutoScalingGroupField_Values() []string {
 		ExportableAutoScalingGroupFieldUtilizationMetricsGpuMemoryPercentageMaximum,
 		ExportableAutoScalingGroupFieldRecommendationOptionsProjectedUtilizationMetricsGpuPercentageMaximum,
 		ExportableAutoScalingGroupFieldRecommendationOptionsProjectedUtilizationMetricsGpuMemoryPercentageMaximum,
+		ExportableAutoScalingGroupFieldEffectiveRecommendationPreferencesSavingsEstimationMode,
+		ExportableAutoScalingGroupFieldRecommendationOptionsSavingsOpportunityAfterDiscountsPercentage,
+		ExportableAutoScalingGroupFieldRecommendationOptionsEstimatedMonthlySavingsCurrencyAfterDiscounts,
+		ExportableAutoScalingGroupFieldRecommendationOptionsEstimatedMonthlySavingsValueAfterDiscounts,
+		ExportableAutoScalingGroupFieldEffectiveRecommendationPreferencesPreferredResources,
+		ExportableAutoScalingGroupFieldEffectiveRecommendationPreferencesLookBackPeriod,
 	}
 }
 
@@ -12032,6 +13352,18 @@ const (
 
 	// ExportableECSServiceFieldTags is a ExportableECSServiceField enum value
 	ExportableECSServiceFieldTags = "Tags"
+
+	// ExportableECSServiceFieldEffectiveRecommendationPreferencesSavingsEstimationMode is a ExportableECSServiceField enum value
+	ExportableECSServiceFieldEffectiveRecommendationPreferencesSavingsEstimationMode = "EffectiveRecommendationPreferencesSavingsEstimationMode"
+
+	// ExportableECSServiceFieldRecommendationOptionsSavingsOpportunityAfterDiscountsPercentage is a ExportableECSServiceField enum value
+	ExportableECSServiceFieldRecommendationOptionsSavingsOpportunityAfterDiscountsPercentage = "RecommendationOptionsSavingsOpportunityAfterDiscountsPercentage"
+
+	// ExportableECSServiceFieldRecommendationOptionsEstimatedMonthlySavingsCurrencyAfterDiscounts is a ExportableECSServiceField enum value
+	ExportableECSServiceFieldRecommendationOptionsEstimatedMonthlySavingsCurrencyAfterDiscounts = "RecommendationOptionsEstimatedMonthlySavingsCurrencyAfterDiscounts"
+
+	// ExportableECSServiceFieldRecommendationOptionsEstimatedMonthlySavingsValueAfterDiscounts is a ExportableECSServiceField enum value
+	ExportableECSServiceFieldRecommendationOptionsEstimatedMonthlySavingsValueAfterDiscounts = "RecommendationOptionsEstimatedMonthlySavingsValueAfterDiscounts"
 )
 
 // ExportableECSServiceField_Values returns all elements of the ExportableECSServiceField enum
@@ -12061,6 +13393,10 @@ func ExportableECSServiceField_Values() []string {
 		ExportableECSServiceFieldRecommendationOptionsProjectedUtilizationMetricsCpuMaximum,
 		ExportableECSServiceFieldRecommendationOptionsProjectedUtilizationMetricsMemoryMaximum,
 		ExportableECSServiceFieldTags,
+		ExportableECSServiceFieldEffectiveRecommendationPreferencesSavingsEstimationMode,
+		ExportableECSServiceFieldRecommendationOptionsSavingsOpportunityAfterDiscountsPercentage,
+		ExportableECSServiceFieldRecommendationOptionsEstimatedMonthlySavingsCurrencyAfterDiscounts,
+		ExportableECSServiceFieldRecommendationOptionsEstimatedMonthlySavingsValueAfterDiscounts,
 	}
 }
 
@@ -12256,6 +13592,27 @@ const (
 
 	// ExportableInstanceFieldIdle is a ExportableInstanceField enum value
 	ExportableInstanceFieldIdle = "Idle"
+
+	// ExportableInstanceFieldEffectiveRecommendationPreferencesPreferredResources is a ExportableInstanceField enum value
+	ExportableInstanceFieldEffectiveRecommendationPreferencesPreferredResources = "EffectiveRecommendationPreferencesPreferredResources"
+
+	// ExportableInstanceFieldEffectiveRecommendationPreferencesLookBackPeriod is a ExportableInstanceField enum value
+	ExportableInstanceFieldEffectiveRecommendationPreferencesLookBackPeriod = "EffectiveRecommendationPreferencesLookBackPeriod"
+
+	// ExportableInstanceFieldEffectiveRecommendationPreferencesUtilizationPreferences is a ExportableInstanceField enum value
+	ExportableInstanceFieldEffectiveRecommendationPreferencesUtilizationPreferences = "EffectiveRecommendationPreferencesUtilizationPreferences"
+
+	// ExportableInstanceFieldEffectiveRecommendationPreferencesSavingsEstimationMode is a ExportableInstanceField enum value
+	ExportableInstanceFieldEffectiveRecommendationPreferencesSavingsEstimationMode = "EffectiveRecommendationPreferencesSavingsEstimationMode"
+
+	// ExportableInstanceFieldRecommendationOptionsSavingsOpportunityAfterDiscountsPercentage is a ExportableInstanceField enum value
+	ExportableInstanceFieldRecommendationOptionsSavingsOpportunityAfterDiscountsPercentage = "RecommendationOptionsSavingsOpportunityAfterDiscountsPercentage"
+
+	// ExportableInstanceFieldRecommendationOptionsEstimatedMonthlySavingsCurrencyAfterDiscounts is a ExportableInstanceField enum value
+	ExportableInstanceFieldRecommendationOptionsEstimatedMonthlySavingsCurrencyAfterDiscounts = "RecommendationOptionsEstimatedMonthlySavingsCurrencyAfterDiscounts"
+
+	// ExportableInstanceFieldRecommendationOptionsEstimatedMonthlySavingsValueAfterDiscounts is a ExportableInstanceField enum value
+	ExportableInstanceFieldRecommendationOptionsEstimatedMonthlySavingsValueAfterDiscounts = "RecommendationOptionsEstimatedMonthlySavingsValueAfterDiscounts"
 )
 
 // ExportableInstanceField_Values returns all elements of the ExportableInstanceField enum
@@ -12325,6 +13682,13 @@ func ExportableInstanceField_Values() []string {
 		ExportableInstanceFieldRecommendationOptionsProjectedUtilizationMetricsGpuPercentageMaximum,
 		ExportableInstanceFieldRecommendationOptionsProjectedUtilizationMetricsGpuMemoryPercentageMaximum,
 		ExportableInstanceFieldIdle,
+		ExportableInstanceFieldEffectiveRecommendationPreferencesPreferredResources,
+		ExportableInstanceFieldEffectiveRecommendationPreferencesLookBackPeriod,
+		ExportableInstanceFieldEffectiveRecommendationPreferencesUtilizationPreferences,
+		ExportableInstanceFieldEffectiveRecommendationPreferencesSavingsEstimationMode,
+		ExportableInstanceFieldRecommendationOptionsSavingsOpportunityAfterDiscountsPercentage,
+		ExportableInstanceFieldRecommendationOptionsEstimatedMonthlySavingsCurrencyAfterDiscounts,
+		ExportableInstanceFieldRecommendationOptionsEstimatedMonthlySavingsValueAfterDiscounts,
 	}
 }
 
@@ -12409,6 +13773,18 @@ const (
 
 	// ExportableLambdaFunctionFieldTags is a ExportableLambdaFunctionField enum value
 	ExportableLambdaFunctionFieldTags = "Tags"
+
+	// ExportableLambdaFunctionFieldEffectiveRecommendationPreferencesSavingsEstimationMode is a ExportableLambdaFunctionField enum value
+	ExportableLambdaFunctionFieldEffectiveRecommendationPreferencesSavingsEstimationMode = "EffectiveRecommendationPreferencesSavingsEstimationMode"
+
+	// ExportableLambdaFunctionFieldRecommendationOptionsSavingsOpportunityAfterDiscountsPercentage is a ExportableLambdaFunctionField enum value
+	ExportableLambdaFunctionFieldRecommendationOptionsSavingsOpportunityAfterDiscountsPercentage = "RecommendationOptionsSavingsOpportunityAfterDiscountsPercentage"
+
+	// ExportableLambdaFunctionFieldRecommendationOptionsEstimatedMonthlySavingsCurrencyAfterDiscounts is a ExportableLambdaFunctionField enum value
+	ExportableLambdaFunctionFieldRecommendationOptionsEstimatedMonthlySavingsCurrencyAfterDiscounts = "RecommendationOptionsEstimatedMonthlySavingsCurrencyAfterDiscounts"
+
+	// ExportableLambdaFunctionFieldRecommendationOptionsEstimatedMonthlySavingsValueAfterDiscounts is a ExportableLambdaFunctionField enum value
+	ExportableLambdaFunctionFieldRecommendationOptionsEstimatedMonthlySavingsValueAfterDiscounts = "RecommendationOptionsEstimatedMonthlySavingsValueAfterDiscounts"
 )
 
 // ExportableLambdaFunctionField_Values returns all elements of the ExportableLambdaFunctionField enum
@@ -12441,6 +13817,10 @@ func ExportableLambdaFunctionField_Values() []string {
 		ExportableLambdaFunctionFieldRecommendationOptionsEstimatedMonthlySavingsCurrency,
 		ExportableLambdaFunctionFieldRecommendationOptionsEstimatedMonthlySavingsValue,
 		ExportableLambdaFunctionFieldTags,
+		ExportableLambdaFunctionFieldEffectiveRecommendationPreferencesSavingsEstimationMode,
+		ExportableLambdaFunctionFieldRecommendationOptionsSavingsOpportunityAfterDiscountsPercentage,
+		ExportableLambdaFunctionFieldRecommendationOptionsEstimatedMonthlySavingsCurrencyAfterDiscounts,
+		ExportableLambdaFunctionFieldRecommendationOptionsEstimatedMonthlySavingsValueAfterDiscounts,
 	}
 }
 
@@ -12629,6 +14009,18 @@ const (
 
 	// ExportableVolumeFieldCurrentConfigurationRootVolume is a ExportableVolumeField enum value
 	ExportableVolumeFieldCurrentConfigurationRootVolume = "CurrentConfigurationRootVolume"
+
+	// ExportableVolumeFieldEffectiveRecommendationPreferencesSavingsEstimationMode is a ExportableVolumeField enum value
+	ExportableVolumeFieldEffectiveRecommendationPreferencesSavingsEstimationMode = "EffectiveRecommendationPreferencesSavingsEstimationMode"
+
+	// ExportableVolumeFieldRecommendationOptionsSavingsOpportunityAfterDiscountsPercentage is a ExportableVolumeField enum value
+	ExportableVolumeFieldRecommendationOptionsSavingsOpportunityAfterDiscountsPercentage = "RecommendationOptionsSavingsOpportunityAfterDiscountsPercentage"
+
+	// ExportableVolumeFieldRecommendationOptionsEstimatedMonthlySavingsCurrencyAfterDiscounts is a ExportableVolumeField enum value
+	ExportableVolumeFieldRecommendationOptionsEstimatedMonthlySavingsCurrencyAfterDiscounts = "RecommendationOptionsEstimatedMonthlySavingsCurrencyAfterDiscounts"
+
+	// ExportableVolumeFieldRecommendationOptionsEstimatedMonthlySavingsValueAfterDiscounts is a ExportableVolumeField enum value
+	ExportableVolumeFieldRecommendationOptionsEstimatedMonthlySavingsValueAfterDiscounts = "RecommendationOptionsEstimatedMonthlySavingsValueAfterDiscounts"
 )
 
 // ExportableVolumeField_Values returns all elements of the ExportableVolumeField enum
@@ -12665,6 +14057,10 @@ func ExportableVolumeField_Values() []string {
 		ExportableVolumeFieldRootVolume,
 		ExportableVolumeFieldTags,
 		ExportableVolumeFieldCurrentConfigurationRootVolume,
+		ExportableVolumeFieldEffectiveRecommendationPreferencesSavingsEstimationMode,
+		ExportableVolumeFieldRecommendationOptionsSavingsOpportunityAfterDiscountsPercentage,
+		ExportableVolumeFieldRecommendationOptionsEstimatedMonthlySavingsCurrencyAfterDiscounts,
+		ExportableVolumeFieldRecommendationOptionsEstimatedMonthlySavingsValueAfterDiscounts,
 	}
 }
 
@@ -12981,6 +14377,26 @@ func InstanceRecommendationFindingReasonCode_Values() []string {
 }
 
 const (
+	// InstanceSavingsEstimationModeSourcePublicPricing is a InstanceSavingsEstimationModeSource enum value
+	InstanceSavingsEstimationModeSourcePublicPricing = "PublicPricing"
+
+	// InstanceSavingsEstimationModeSourceCostExplorerRightsizing is a InstanceSavingsEstimationModeSource enum value
+	InstanceSavingsEstimationModeSourceCostExplorerRightsizing = "CostExplorerRightsizing"
+
+	// InstanceSavingsEstimationModeSourceCostOptimizationHub is a InstanceSavingsEstimationModeSource enum value
+	InstanceSavingsEstimationModeSourceCostOptimizationHub = "CostOptimizationHub"
+)
+
+// InstanceSavingsEstimationModeSource_Values returns all elements of the InstanceSavingsEstimationModeSource enum
+func InstanceSavingsEstimationModeSource_Values() []string {
+	return []string{
+		InstanceSavingsEstimationModeSourcePublicPricing,
+		InstanceSavingsEstimationModeSourceCostExplorerRightsizing,
+		InstanceSavingsEstimationModeSourceCostOptimizationHub,
+	}
+}
+
+const (
 	// InstanceStatePending is a InstanceState enum value
 	InstanceStatePending = "pending"
 
@@ -13177,6 +14593,26 @@ func LambdaFunctionRecommendationFindingReasonCode_Values() []string {
 }
 
 const (
+	// LambdaSavingsEstimationModeSourcePublicPricing is a LambdaSavingsEstimationModeSource enum value
+	LambdaSavingsEstimationModeSourcePublicPricing = "PublicPricing"
+
+	// LambdaSavingsEstimationModeSourceCostExplorerRightsizing is a LambdaSavingsEstimationModeSource enum value
+	LambdaSavingsEstimationModeSourceCostExplorerRightsizing = "CostExplorerRightsizing"
+
+	// LambdaSavingsEstimationModeSourceCostOptimizationHub is a LambdaSavingsEstimationModeSource enum value
+	LambdaSavingsEstimationModeSourceCostOptimizationHub = "CostOptimizationHub"
+)
+
+// LambdaSavingsEstimationModeSource_Values returns all elements of the LambdaSavingsEstimationModeSource enum
+func LambdaSavingsEstimationModeSource_Values() []string {
+	return []string{
+		LambdaSavingsEstimationModeSourcePublicPricing,
+		LambdaSavingsEstimationModeSourceCostExplorerRightsizing,
+		LambdaSavingsEstimationModeSourceCostOptimizationHub,
+	}
+}
+
+const (
 	// LicenseEditionEnterprise is a LicenseEdition enum value
 	LicenseEditionEnterprise = "Enterprise"
 
@@ -13289,6 +14725,26 @@ func LicenseRecommendationFilterName_Values() []string {
 		LicenseRecommendationFilterNameFinding,
 		LicenseRecommendationFilterNameFindingReasonCode,
 		LicenseRecommendationFilterNameLicenseName,
+	}
+}
+
+const (
+	// LookBackPeriodPreferenceDays14 is a LookBackPeriodPreference enum value
+	LookBackPeriodPreferenceDays14 = "DAYS_14"
+
+	// LookBackPeriodPreferenceDays32 is a LookBackPeriodPreference enum value
+	LookBackPeriodPreferenceDays32 = "DAYS_32"
+
+	// LookBackPeriodPreferenceDays93 is a LookBackPeriodPreference enum value
+	LookBackPeriodPreferenceDays93 = "DAYS_93"
+)
+
+// LookBackPeriodPreference_Values returns all elements of the LookBackPeriodPreference enum
+func LookBackPeriodPreference_Values() []string {
+	return []string{
+		LookBackPeriodPreferenceDays14,
+		LookBackPeriodPreferenceDays32,
+		LookBackPeriodPreferenceDays93,
 	}
 }
 
@@ -13449,6 +14905,18 @@ func PlatformDifference_Values() []string {
 }
 
 const (
+	// PreferredResourceNameEc2instanceTypes is a PreferredResourceName enum value
+	PreferredResourceNameEc2instanceTypes = "Ec2InstanceTypes"
+)
+
+// PreferredResourceName_Values returns all elements of the PreferredResourceName enum
+func PreferredResourceName_Values() []string {
+	return []string{
+		PreferredResourceNameEc2instanceTypes,
+	}
+}
+
+const (
 	// RecommendationPreferenceNameEnhancedInfrastructureMetrics is a RecommendationPreferenceName enum value
 	RecommendationPreferenceNameEnhancedInfrastructureMetrics = "EnhancedInfrastructureMetrics"
 
@@ -13457,6 +14925,15 @@ const (
 
 	// RecommendationPreferenceNameExternalMetricsPreference is a RecommendationPreferenceName enum value
 	RecommendationPreferenceNameExternalMetricsPreference = "ExternalMetricsPreference"
+
+	// RecommendationPreferenceNameLookBackPeriodPreference is a RecommendationPreferenceName enum value
+	RecommendationPreferenceNameLookBackPeriodPreference = "LookBackPeriodPreference"
+
+	// RecommendationPreferenceNamePreferredResources is a RecommendationPreferenceName enum value
+	RecommendationPreferenceNamePreferredResources = "PreferredResources"
+
+	// RecommendationPreferenceNameUtilizationPreferences is a RecommendationPreferenceName enum value
+	RecommendationPreferenceNameUtilizationPreferences = "UtilizationPreferences"
 )
 
 // RecommendationPreferenceName_Values returns all elements of the RecommendationPreferenceName enum
@@ -13465,6 +14942,9 @@ func RecommendationPreferenceName_Values() []string {
 		RecommendationPreferenceNameEnhancedInfrastructureMetrics,
 		RecommendationPreferenceNameInferredWorkloadTypes,
 		RecommendationPreferenceNameExternalMetricsPreference,
+		RecommendationPreferenceNameLookBackPeriodPreference,
+		RecommendationPreferenceNamePreferredResources,
+		RecommendationPreferenceNameUtilizationPreferences,
 	}
 }
 
@@ -13533,6 +15013,22 @@ func ResourceType_Values() []string {
 		ResourceTypeNotApplicable,
 		ResourceTypeEcsService,
 		ResourceTypeLicense,
+	}
+}
+
+const (
+	// SavingsEstimationModeAfterDiscounts is a SavingsEstimationMode enum value
+	SavingsEstimationModeAfterDiscounts = "AfterDiscounts"
+
+	// SavingsEstimationModeBeforeDiscounts is a SavingsEstimationMode enum value
+	SavingsEstimationModeBeforeDiscounts = "BeforeDiscounts"
+)
+
+// SavingsEstimationMode_Values returns all elements of the SavingsEstimationMode enum
+func SavingsEstimationMode_Values() []string {
+	return []string{
+		SavingsEstimationModeAfterDiscounts,
+		SavingsEstimationModeBeforeDiscounts,
 	}
 }
 

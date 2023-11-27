@@ -92,6 +92,10 @@ type LakeFormationAPI interface {
 	CreateLFTagWithContext(aws.Context, *lakeformation.CreateLFTagInput, ...request.Option) (*lakeformation.CreateLFTagOutput, error)
 	CreateLFTagRequest(*lakeformation.CreateLFTagInput) (*request.Request, *lakeformation.CreateLFTagOutput)
 
+	CreateLakeFormationIdentityCenterConfiguration(*lakeformation.CreateLakeFormationIdentityCenterConfigurationInput) (*lakeformation.CreateLakeFormationIdentityCenterConfigurationOutput, error)
+	CreateLakeFormationIdentityCenterConfigurationWithContext(aws.Context, *lakeformation.CreateLakeFormationIdentityCenterConfigurationInput, ...request.Option) (*lakeformation.CreateLakeFormationIdentityCenterConfigurationOutput, error)
+	CreateLakeFormationIdentityCenterConfigurationRequest(*lakeformation.CreateLakeFormationIdentityCenterConfigurationInput) (*request.Request, *lakeformation.CreateLakeFormationIdentityCenterConfigurationOutput)
+
 	CreateLakeFormationOptIn(*lakeformation.CreateLakeFormationOptInInput) (*lakeformation.CreateLakeFormationOptInOutput, error)
 	CreateLakeFormationOptInWithContext(aws.Context, *lakeformation.CreateLakeFormationOptInInput, ...request.Option) (*lakeformation.CreateLakeFormationOptInOutput, error)
 	CreateLakeFormationOptInRequest(*lakeformation.CreateLakeFormationOptInInput) (*request.Request, *lakeformation.CreateLakeFormationOptInOutput)
@@ -104,6 +108,10 @@ type LakeFormationAPI interface {
 	DeleteLFTagWithContext(aws.Context, *lakeformation.DeleteLFTagInput, ...request.Option) (*lakeformation.DeleteLFTagOutput, error)
 	DeleteLFTagRequest(*lakeformation.DeleteLFTagInput) (*request.Request, *lakeformation.DeleteLFTagOutput)
 
+	DeleteLakeFormationIdentityCenterConfiguration(*lakeformation.DeleteLakeFormationIdentityCenterConfigurationInput) (*lakeformation.DeleteLakeFormationIdentityCenterConfigurationOutput, error)
+	DeleteLakeFormationIdentityCenterConfigurationWithContext(aws.Context, *lakeformation.DeleteLakeFormationIdentityCenterConfigurationInput, ...request.Option) (*lakeformation.DeleteLakeFormationIdentityCenterConfigurationOutput, error)
+	DeleteLakeFormationIdentityCenterConfigurationRequest(*lakeformation.DeleteLakeFormationIdentityCenterConfigurationInput) (*request.Request, *lakeformation.DeleteLakeFormationIdentityCenterConfigurationOutput)
+
 	DeleteLakeFormationOptIn(*lakeformation.DeleteLakeFormationOptInInput) (*lakeformation.DeleteLakeFormationOptInOutput, error)
 	DeleteLakeFormationOptInWithContext(aws.Context, *lakeformation.DeleteLakeFormationOptInInput, ...request.Option) (*lakeformation.DeleteLakeFormationOptInOutput, error)
 	DeleteLakeFormationOptInRequest(*lakeformation.DeleteLakeFormationOptInInput) (*request.Request, *lakeformation.DeleteLakeFormationOptInOutput)
@@ -115,6 +123,10 @@ type LakeFormationAPI interface {
 	DeregisterResource(*lakeformation.DeregisterResourceInput) (*lakeformation.DeregisterResourceOutput, error)
 	DeregisterResourceWithContext(aws.Context, *lakeformation.DeregisterResourceInput, ...request.Option) (*lakeformation.DeregisterResourceOutput, error)
 	DeregisterResourceRequest(*lakeformation.DeregisterResourceInput) (*request.Request, *lakeformation.DeregisterResourceOutput)
+
+	DescribeLakeFormationIdentityCenterConfiguration(*lakeformation.DescribeLakeFormationIdentityCenterConfigurationInput) (*lakeformation.DescribeLakeFormationIdentityCenterConfigurationOutput, error)
+	DescribeLakeFormationIdentityCenterConfigurationWithContext(aws.Context, *lakeformation.DescribeLakeFormationIdentityCenterConfigurationInput, ...request.Option) (*lakeformation.DescribeLakeFormationIdentityCenterConfigurationOutput, error)
+	DescribeLakeFormationIdentityCenterConfigurationRequest(*lakeformation.DescribeLakeFormationIdentityCenterConfigurationInput) (*request.Request, *lakeformation.DescribeLakeFormationIdentityCenterConfigurationOutput)
 
 	DescribeResource(*lakeformation.DescribeResourceInput) (*lakeformation.DescribeResourceOutput, error)
 	DescribeResourceWithContext(aws.Context, *lakeformation.DescribeResourceInput, ...request.Option) (*lakeformation.DescribeResourceOutput, error)
@@ -283,6 +295,10 @@ type LakeFormationAPI interface {
 	UpdateLFTag(*lakeformation.UpdateLFTagInput) (*lakeformation.UpdateLFTagOutput, error)
 	UpdateLFTagWithContext(aws.Context, *lakeformation.UpdateLFTagInput, ...request.Option) (*lakeformation.UpdateLFTagOutput, error)
 	UpdateLFTagRequest(*lakeformation.UpdateLFTagInput) (*request.Request, *lakeformation.UpdateLFTagOutput)
+
+	UpdateLakeFormationIdentityCenterConfiguration(*lakeformation.UpdateLakeFormationIdentityCenterConfigurationInput) (*lakeformation.UpdateLakeFormationIdentityCenterConfigurationOutput, error)
+	UpdateLakeFormationIdentityCenterConfigurationWithContext(aws.Context, *lakeformation.UpdateLakeFormationIdentityCenterConfigurationInput, ...request.Option) (*lakeformation.UpdateLakeFormationIdentityCenterConfigurationOutput, error)
+	UpdateLakeFormationIdentityCenterConfigurationRequest(*lakeformation.UpdateLakeFormationIdentityCenterConfigurationInput) (*request.Request, *lakeformation.UpdateLakeFormationIdentityCenterConfigurationOutput)
 
 	UpdateResource(*lakeformation.UpdateResourceInput) (*lakeformation.UpdateResourceOutput, error)
 	UpdateResourceWithContext(aws.Context, *lakeformation.UpdateResourceInput, ...request.Option) (*lakeformation.UpdateResourceOutput, error)

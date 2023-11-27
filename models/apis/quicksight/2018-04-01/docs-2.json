@@ -37,6 +37,7 @@
     "DeleteGroup": "<p>Removes a user group from Amazon QuickSight. </p>",
     "DeleteGroupMembership": "<p>Removes a user from a group so that the user is no longer a member of the group.</p>",
     "DeleteIAMPolicyAssignment": "<p>Deletes an existing IAM policy assignment.</p>",
+    "DeleteIdentityPropagationConfig": "<p>Deletes all access scopes and authorized targets that are associated with a service from the Amazon QuickSight IAM Identity Center application.</p> <p>This operation is only supported for Amazon QuickSight accounts that use IAM Identity Center.</p>",
     "DeleteNamespace": "<p>Deletes a namespace and the users and groups that are associated with the namespace. This is an asynchronous process. Assets including dashboards, analyses, datasets and data sources are not deleted. To delete these assets, you use the API operations for the relevant asset. </p>",
     "DeleteRefreshSchedule": "<p>Deletes a refresh schedule from a dataset.</p>",
     "DeleteRoleCustomPermission": "<p>Removes custom permissions from the role.</p>",
@@ -109,6 +110,7 @@
     "ListGroups": "<p>Lists all user groups in Amazon QuickSight. </p>",
     "ListIAMPolicyAssignments": "<p>Lists the IAM policy assignments in the current Amazon QuickSight account.</p>",
     "ListIAMPolicyAssignmentsForUser": "<p>Lists all of the IAM policy assignments, including the Amazon Resource Names (ARNs), for the IAM policies assigned to the specified user and group, or groups that the user belongs to.</p>",
+    "ListIdentityPropagationConfigs": "<p>Lists all services and authorized targets that the Amazon QuickSight IAM Identity Center application can access.</p> <p>This operation is only supported for Amazon QuickSight accounts that use IAM Identity Center.</p>",
     "ListIngestions": "<p>Lists the history of SPICE ingestions for a dataset.</p>",
     "ListNamespaces": "<p>Lists the namespaces for the specified Amazon Web Services account. This operation doesn't list deleted namespaces.</p>",
     "ListRefreshSchedules": "<p>Lists the refresh schedules of a dataset. Each dataset can have up to 5 schedules. </p>",
@@ -154,6 +156,7 @@
     "UpdateFolderPermissions": "<p>Updates permissions of a folder.</p>",
     "UpdateGroup": "<p>Changes a group description. </p>",
     "UpdateIAMPolicyAssignment": "<p>Updates an existing IAM policy assignment. This operation updates only the optional parameter or parameters that are specified in the request. This overwrites all of the users included in <code>Identities</code>. </p>",
+    "UpdateIdentityPropagationConfig": "<p>Adds or updates services and authorized targets to configure what the Amazon QuickSight IAM Identity Center application can access.</p> <p>This operation is only supported for Amazon QuickSight accounts using IAM Identity Center</p>",
     "UpdateIpRestriction": "<p>Updates the content and status of IP rules. To use this operation, you must provide the entire map of rules. You can use the <code>DescribeIpRestriction</code> operation to get the current rule map.</p>",
     "UpdatePublicSharingSettings": "<p>Use the <code>UpdatePublicSharingSettings</code> operation to turn on or turn off the public sharing settings of an Amazon QuickSight dashboard.</p> <p>To use this operation, turn on session capacity pricing for your Amazon QuickSight account.</p> <p>Before you can turn on public sharing on your account, make sure to give public sharing permissions to an administrative user in the Identity and Access Management (IAM) console. For more information on using IAM with Amazon QuickSight, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/security_iam_service-with-iam.html\">Using Amazon QuickSight with IAM</a> in the <i>Amazon QuickSight User Guide</i>.</p>",
     "UpdateRefreshSchedule": "<p>Updates a refresh schedule for a dataset.</p>",
@@ -1348,6 +1351,25 @@
         "TopicColumn$NotAllowedAggregations": "<p>The list of aggregation types that are not allowed for the column. Valid values for this structure are <code>COUNT</code>, <code>DISTINCT_COUNT</code>, <code>MIN</code>, <code>MAX</code>, <code>MEDIAN</code>, <code>SUM</code>, <code>AVERAGE</code>, <code>STDEV</code>, <code>STDEVP</code>, <code>VAR</code>, <code>VARP</code>, and <code>PERCENTILE</code>.</p>"
       }
     },
+    "AuthorizedTargetsByService": {
+      "base": "<p>The authorized targets that are associated with a service.</p>",
+      "refs": {
+        "AuthorizedTargetsByServices$member": null
+      }
+    },
+    "AuthorizedTargetsByServices": {
+      "base": null,
+      "refs": {
+        "ListIdentityPropagationConfigsResponse$Services": "<p>A list of services and their authorized targets that the Amazon QuickSight IAM Identity Center application can access.</p>"
+      }
+    },
+    "AuthorizedTargetsList": {
+      "base": null,
+      "refs": {
+        "AuthorizedTargetsByService$AuthorizedTargets": "<p>Aist of authorized targets that are represented by IAM Identity Center application ARNs.</p>",
+        "UpdateIdentityPropagationConfigRequest$AuthorizedTargets": "<p>Specifies a list of application ARNs that represent the authorized targets for a service.</p>"
+      }
+    },
     "AwsAccountId": {
       "base": null,
       "refs": {
@@ -1387,6 +1409,7 @@
         "DeleteGroupMembershipRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that the group is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.</p>",
         "DeleteGroupRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that the group is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.</p>",
         "DeleteIAMPolicyAssignmentRequest$AwsAccountId": "<p>The Amazon Web Services account ID where you want to delete the IAM policy assignment.</p>",
+        "DeleteIdentityPropagationConfigRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that you want to delete an identity propagation configuration from.</p>",
         "DeleteNamespaceRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that you want to delete the Amazon QuickSight namespace from.</p>",
         "DeleteRefreshScheduleRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
         "DeleteRoleCustomPermissionRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that the group is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.</p>",
@@ -1464,6 +1487,7 @@
         "ListGroupsRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that the group is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.</p>",
         "ListIAMPolicyAssignmentsForUserRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the assignments.</p>",
         "ListIAMPolicyAssignmentsRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains these IAM policy assignments.</p>",
+        "ListIdentityPropagationConfigsRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contain the identity propagation configurations of.</p>",
         "ListIngestionsRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
         "ListNamespacesRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that contains the Amazon QuickSight namespaces that you want to list.</p>",
         "ListRefreshSchedulesRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
@@ -1507,6 +1531,7 @@
         "UpdateFolderRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that contains the folder to update.</p>",
         "UpdateGroupRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that the group is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.</p>",
         "UpdateIAMPolicyAssignmentRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the IAM policy assignment. </p>",
+        "UpdateIdentityPropagationConfigRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the identity propagation configuration that you want to update.</p>",
         "UpdateIpRestrictionRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the IP rules.</p>",
         "UpdateIpRestrictionResponse$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the IP rules.</p>",
         "UpdatePublicSharingSettingsRequest$AwsAccountId": "<p>The Amazon Web Services account ID associated with your Amazon QuickSight subscription.</p>",
@@ -1770,6 +1795,7 @@
         "GetDashboardEmbedUrlRequest$ResetDisabled": "<p>Remove the reset button on the embedded dashboard. The default is FALSE, which enables the reset button.</p>",
         "GetDashboardEmbedUrlRequest$StatePersistenceEnabled": "<p>Adds persistence of state for the user session in an embedded dashboard. Persistence applies to the sheet and the parameter settings. These are control settings that the dashboard subscriber (Amazon QuickSight reader) chooses while viewing the dashboard. If this is set to <code>TRUE</code>, the settings are the same when the subscriber reopens the same dashboard URL. The state is stored in Amazon QuickSight, not in a browser cookie. If this is set to FALSE, the state of the user session is not persisted. The default is <code>FALSE</code>.</p>",
         "GutterStyle$Show": "<p>This Boolean value controls whether to display a gutter space between sheet tiles. </p>",
+        "IdentityCenterConfiguration$EnableIdentityPropagation": "<p>A Boolean option that controls whether Trusted Identity Propagation should be used.</p>",
         "JoinKeyProperties$UniqueKey": "<p>A value that indicates that a row in a table is uniquely identified by the columns in a join key. This is used by Amazon QuickSight to optimize query performance.</p>",
         "MarginStyle$Show": "<p>This Boolean value controls whether to display sheet margins.</p>",
         "NumericRangeFilter$IncludeMinimum": "<p>Determines whether the minimum value in the filter value range should be included in the filtered results.</p>",
@@ -3956,6 +3982,16 @@
       "refs": {
       }
     },
+    "DeleteIdentityPropagationConfigRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteIdentityPropagationConfigResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteNamespaceRequest": {
       "base": null,
       "refs": {
@@ -6083,6 +6119,12 @@
         "ConditionalFormattingCustomIconOptions$Icon": "<p>Determines the type of icon.</p>"
       }
     },
+    "IdentityCenterConfiguration": {
+      "base": "<p>The parameters for an IAM Identity Center configuration.</p>",
+      "refs": {
+        "RedshiftParameters$IdentityCenterConfiguration": "<p>An optional parameter that configures IAM Identity Center authentication to grant Amazon QuickSight access to your cluster.</p> <p>This parameter can only be specified if your Amazon QuickSight account is configured with IAM Identity Center.</p>"
+      }
+    },
     "IdentityMap": {
       "base": null,
       "refs": {
@@ -6863,6 +6905,22 @@
     "ListIAMPolicyAssignmentsResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "ListIdentityPropagationConfigsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListIdentityPropagationConfigsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListIdentityPropagationMaxResults": {
+      "base": null,
+      "refs": {
+        "ListIdentityPropagationConfigsRequest$MaxResults": "<p>The maximum number of results to be returned.</p>"
       }
     },
     "ListIngestionsRequest": {
@@ -9482,6 +9540,14 @@
         "DataSourceParameters$ServiceNowParameters": "<p>The parameters for ServiceNow.</p>"
       }
     },
+    "ServiceType": {
+      "base": null,
+      "refs": {
+        "AuthorizedTargetsByService$Service": "<p>The name of the Amazon Web Services service.</p>",
+        "DeleteIdentityPropagationConfigRequest$Service": "<p>The name of the Amazon Web Services service that you want to delete the associated access scopes and authorized targets from.</p>",
+        "UpdateIdentityPropagationConfigRequest$Service": "<p>The name of the Amazon Web Services service that contains the authorized targets that you want to add or update.</p>"
+      }
+    },
     "SessionLifetimeInMinutes": {
       "base": null,
       "refs": {
@@ -10362,6 +10428,7 @@
         "DeleteGroupMembershipResponse$Status": "<p>The HTTP status of the request.</p>",
         "DeleteGroupResponse$Status": "<p>The HTTP status of the request.</p>",
         "DeleteIAMPolicyAssignmentResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DeleteIdentityPropagationConfigResponse$Status": "<p>The HTTP status of the request.</p>",
         "DeleteNamespaceResponse$Status": "<p>The HTTP status of the request.</p>",
         "DeleteRefreshScheduleResponse$Status": "<p>The HTTP status of the request.</p>",
         "DeleteRoleCustomPermissionResponse$Status": "<p>The HTTP status of the request.</p>",
@@ -10434,6 +10501,7 @@
         "ListGroupsResponse$Status": "<p>The HTTP status of the request.</p>",
         "ListIAMPolicyAssignmentsForUserResponse$Status": "<p>The HTTP status of the request.</p>",
         "ListIAMPolicyAssignmentsResponse$Status": "<p>The HTTP status of the request.</p>",
+        "ListIdentityPropagationConfigsResponse$Status": "<p>The HTTP status of the request.</p>",
         "ListIngestionsResponse$Status": "<p>The HTTP status of the request.</p>",
         "ListNamespacesResponse$Status": "<p>The HTTP status of the request.</p>",
         "ListRefreshSchedulesResponse$Status": "<p>The HTTP status of the request.</p>",
@@ -10479,6 +10547,7 @@
         "UpdateFolderResponse$Status": "<p>The HTTP status of the request.</p>",
         "UpdateGroupResponse$Status": "<p>The HTTP status of the request.</p>",
         "UpdateIAMPolicyAssignmentResponse$Status": "<p>The HTTP status of the request.</p>",
+        "UpdateIdentityPropagationConfigResponse$Status": "<p>The HTTP status of the request.</p>",
         "UpdateIpRestrictionResponse$Status": "<p>The HTTP status of the request. </p>",
         "UpdatePublicSharingSettingsResponse$Status": "<p>The HTTP status of the request.</p>",
         "UpdateRefreshScheduleResponse$Status": "<p>The HTTP status of the request.</p>",
@@ -10514,6 +10583,7 @@
         "AssetBundleImportJobResourceIdOverrideConfiguration$PrefixForAllResources": "<p>An option to request a CloudFormation variable for a prefix to be prepended to each resource's ID before import. The prefix is only added to the asset IDs and does not change the name of the asset.</p>",
         "AssetOptions$Timezone": "<p>Determines the timezone for the analysis.</p>",
         "AttributeAggregationFunction$ValueForMultipleValues": "<p>Used by the <code>UNIQUE_VALUE</code> aggregation function. If there are multiple values for the field used by the aggregation, the value for this property will be returned instead. Defaults to '*'.</p>",
+        "AuthorizedTargetsList$member": null,
         "AxisLabelOptions$CustomLabel": "<p>The text for the axis label.</p>",
         "CancelIngestionRequest$DataSetId": "<p>The ID of the dataset used in the ingestion.</p>",
         "CancelIngestionResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
@@ -10581,6 +10651,7 @@
         "DeleteGroupMembershipResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DeleteGroupResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DeleteIAMPolicyAssignmentResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "DeleteIdentityPropagationConfigResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DeleteNamespaceResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DeleteRefreshScheduleRequest$ScheduleId": "<p>The ID of the refresh schedule.</p>",
         "DeleteRefreshScheduleResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
@@ -10712,6 +10783,9 @@
         "ListIAMPolicyAssignmentsRequest$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
         "ListIAMPolicyAssignmentsResponse$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
         "ListIAMPolicyAssignmentsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "ListIdentityPropagationConfigsRequest$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
+        "ListIdentityPropagationConfigsResponse$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
+        "ListIdentityPropagationConfigsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "ListIngestionsRequest$DataSetId": "<p>The ID of the dataset used in the ingestion.</p>",
         "ListIngestionsRequest$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
         "ListIngestionsResponse$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
@@ -10854,6 +10928,7 @@
         "UpdateGroupResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "UpdateIAMPolicyAssignmentResponse$AssignmentId": "<p>The ID of the assignment.</p>",
         "UpdateIAMPolicyAssignmentResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "UpdateIdentityPropagationConfigResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "UpdateIpRestrictionResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "UpdatePublicSharingSettingsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "UpdateRefreshScheduleResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
@@ -12378,6 +12453,16 @@
       }
     },
     "UpdateIAMPolicyAssignmentResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateIdentityPropagationConfigRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateIdentityPropagationConfigResponse": {
       "base": null,
       "refs": {
       }

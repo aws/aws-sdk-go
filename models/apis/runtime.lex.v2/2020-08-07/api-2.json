@@ -148,7 +148,7 @@
       "type":"string",
       "max":100,
       "min":1,
-      "pattern":"^([A-Za-z]_?)+$"
+      "pattern":"^([A-Za-z0-9]_?)+$"
     },
     "ActiveContextParametersMap":{
       "type":"map",
@@ -532,8 +532,16 @@
       "members":{
         "nluConfidence":{"shape":"ConfidenceScore"},
         "sentimentResponse":{"shape":"SentimentResponse"},
-        "intent":{"shape":"Intent"}
+        "intent":{"shape":"Intent"},
+        "interpretationSource":{"shape":"InterpretationSource"}
       }
+    },
+    "InterpretationSource":{
+      "type":"string",
+      "enum":[
+        "Bedrock",
+        "Lex"
+      ]
     },
     "Interpretations":{
       "type":"list",

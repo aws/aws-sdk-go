@@ -56,9 +56,28 @@ func (c *Personalize) CreateBatchInferenceJobRequest(input *CreateBatchInference
 
 // CreateBatchInferenceJob API operation for Amazon Personalize.
 //
-// Creates a batch inference job. The operation can handle up to 50 million
-// records and the input file must be in JSON format. For more information,
-// see Creating a batch inference job (https://docs.aws.amazon.com/personalize/latest/dg/creating-batch-inference-job.html).
+// Generates batch recommendations based on a list of items or users stored
+// in Amazon S3 and exports the recommendations to an Amazon S3 bucket.
+//
+// To generate batch recommendations, specify the ARN of a solution version
+// and an Amazon S3 URI for the input and output data. For user personalization,
+// popular items, and personalized ranking solutions, the batch inference job
+// generates a list of recommended items for each user ID in the input file.
+// For related items solutions, the job generates a list of recommended items
+// for each item ID in the input file.
+//
+// For more information, see Creating a batch inference job (https://docs.aws.amazon.com/personalize/latest/dg/getting-batch-recommendations.html).
+//
+// If you use the Similar-Items recipe, Amazon Personalize can add descriptive
+// themes to batch recommendations. To generate themes, set the job's mode to
+// THEME_GENERATION and specify the name of the field that contains item names
+// in the input data.
+//
+// For more information about generating themes, see Batch recommendations with
+// themes from Content Generator (https://docs.aws.amazon.com/personalize/latest/dg/themed-batch-recommendations.html).
+//
+// You can't get batch recommendations with the Trending-Now or Next-Best-Action
+// recipes.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -395,17 +414,21 @@ func (c *Personalize) CreateDatasetRequest(input *CreateDatasetInput) (req *requ
 // CreateDatasetImportJob (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDatasetImportJob.html)
 // to import your training data to a dataset.
 //
-// There are three types of datasets:
+// There are 5 types of datasets:
 //
-//   - Interactions
+//   - Item interactions
 //
 //   - Items
 //
 //   - Users
 //
+//   - Action interactions
+//
+//   - Actions
+//
 // Each dataset type has an associated schema with required field types. Only
-// the Interactions dataset is required in order to train a model (also referred
-// to as creating a solution).
+// the Item interactions dataset is required in order to train a model (also
+// referred to as creating a solution).
 //
 // A dataset can be in one of the following states:
 //
@@ -631,11 +654,15 @@ func (c *Personalize) CreateDatasetGroupRequest(input *CreateDatasetGroupInput) 
 // Personalize resources. A dataset group can contain at most three datasets,
 // one for each type of dataset:
 //
-//   - Interactions
+//   - Item interactions
 //
 //   - Items
 //
 //   - Users
+//
+//   - Actions
+//
+//   - Action interactions
 //
 // A dataset group can be a Domain dataset group, where you specify a domain
 // and use pre-configured resources like recommenders, or a Custom dataset group,
@@ -771,6 +798,11 @@ func (c *Personalize) CreateDatasetImportJobRequest(input *CreateDatasetImportJo
 // to your Amazon S3 bucket, see Giving Amazon Personalize Access to Amazon
 // S3 Resources (https://docs.aws.amazon.com/personalize/latest/dg/granting-personalize-s3-access.html).
 //
+// If you already created a recommender or deployed a custom solution version
+// with a campaign, how new bulk records influence recommendations depends on
+// the domain use case or recipe that you use. For more information, see How
+// new data influences real-time recommendations (https://docs.aws.amazon.com/personalize/latest/dg/how-new-data-influences-recommendations.html).
+//
 // By default, a dataset import job replaces any existing data in the dataset
 // that you imported in bulk. To add new records without replacing existing
 // data, specify INCREMENTAL for the import mode in the CreateDatasetImportJob
@@ -899,7 +931,7 @@ func (c *Personalize) CreateEventTrackerRequest(input *CreateEventTrackerInput) 
 //
 // When you create an event tracker, the response includes a tracking ID, which
 // you pass as a parameter when you use the PutEvents (https://docs.aws.amazon.com/personalize/latest/dg/API_UBS_PutEvents.html)
-// operation. Amazon Personalize then appends the event data to the Interactions
+// operation. Amazon Personalize then appends the event data to the Item interactions
 // dataset of the dataset group you specify in your event tracker.
 //
 // The event tracker can be in one of the following states:
@@ -1993,9 +2025,8 @@ func (c *Personalize) DeleteEventTrackerRequest(input *DeleteEventTrackerInput) 
 
 // DeleteEventTracker API operation for Amazon Personalize.
 //
-// Deletes the event tracker. Does not delete the event-interactions dataset
-// from the associated dataset group. For more information on event trackers,
-// see CreateEventTracker (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateEventTracker.html).
+// Deletes the event tracker. Does not delete the dataset from the dataset group.
+// For more information on event trackers, see CreateEventTracker (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateEventTracker.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6848,8 +6879,9 @@ func (c *Personalize) UpdateCampaignRequest(input *UpdateCampaignInput) (req *re
 
 // UpdateCampaign API operation for Amazon Personalize.
 //
-// Updates a campaign by either deploying a new solution or changing the value
-// of the campaign's minProvisionedTPS parameter.
+// Updates a campaign to deploy a retrained solution version with an existing
+// campaign, change your campaign's minProvisionedTPS, or modify your campaign's
+// configuration, such as the exploration configuration.
 //
 // To update a campaign, the campaign status must be ACTIVE or CREATE FAILED.
 // Check the campaign status using the DescribeCampaign (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeCampaign.html)
@@ -6859,7 +6891,9 @@ func (c *Personalize) UpdateCampaignRequest(input *UpdateCampaignInput) (req *re
 // The campaign will use the previous solution version and campaign configuration
 // to generate recommendations until the latest campaign update status is Active.
 //
-// For more information on campaigns, see CreateCampaign (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateCampaign.html).
+// For more information about updating a campaign, including code samples, see
+// Updating a campaign (https://docs.aws.amazon.com/personalize/latest/dg/update-campaigns.html).
+// For more information about campaigns, see Creating a campaign (https://docs.aws.amazon.com/personalize/latest/dg/campaigns.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7415,6 +7449,9 @@ type BatchInferenceJob struct {
 	// job.
 	BatchInferenceJobConfig *BatchInferenceJobConfig `locationName:"batchInferenceJobConfig" type:"structure"`
 
+	// The job's mode.
+	BatchInferenceJobMode *string `locationName:"batchInferenceJobMode" type:"string" enum:"BatchInferenceJobMode"`
+
 	// The time at which the batch inference job was created.
 	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
 
@@ -7461,6 +7498,9 @@ type BatchInferenceJob struct {
 	//
 	//    * CREATE FAILED
 	Status *string `locationName:"status" type:"string"`
+
+	// The job's theme generation settings.
+	ThemeGenerationConfig *ThemeGenerationConfig `locationName:"themeGenerationConfig" type:"structure"`
 }
 
 // String returns the string representation.
@@ -7490,6 +7530,12 @@ func (s *BatchInferenceJob) SetBatchInferenceJobArn(v string) *BatchInferenceJob
 // SetBatchInferenceJobConfig sets the BatchInferenceJobConfig field's value.
 func (s *BatchInferenceJob) SetBatchInferenceJobConfig(v *BatchInferenceJobConfig) *BatchInferenceJob {
 	s.BatchInferenceJobConfig = v
+	return s
+}
+
+// SetBatchInferenceJobMode sets the BatchInferenceJobMode field's value.
+func (s *BatchInferenceJob) SetBatchInferenceJobMode(v string) *BatchInferenceJob {
+	s.BatchInferenceJobMode = &v
 	return s
 }
 
@@ -7556,6 +7602,12 @@ func (s *BatchInferenceJob) SetSolutionVersionArn(v string) *BatchInferenceJob {
 // SetStatus sets the Status field's value.
 func (s *BatchInferenceJob) SetStatus(v string) *BatchInferenceJob {
 	s.Status = &v
+	return s
+}
+
+// SetThemeGenerationConfig sets the ThemeGenerationConfig field's value.
+func (s *BatchInferenceJob) SetThemeGenerationConfig(v *ThemeGenerationConfig) *BatchInferenceJob {
+	s.ThemeGenerationConfig = v
 	return s
 }
 
@@ -7709,6 +7761,9 @@ type BatchInferenceJobSummary struct {
 	// The Amazon Resource Name (ARN) of the batch inference job.
 	BatchInferenceJobArn *string `locationName:"batchInferenceJobArn" type:"string"`
 
+	// The job's mode.
+	BatchInferenceJobMode *string `locationName:"batchInferenceJobMode" type:"string" enum:"BatchInferenceJobMode"`
+
 	// The time at which the batch inference job was created.
 	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
 
@@ -7758,6 +7813,12 @@ func (s BatchInferenceJobSummary) GoString() string {
 // SetBatchInferenceJobArn sets the BatchInferenceJobArn field's value.
 func (s *BatchInferenceJobSummary) SetBatchInferenceJobArn(v string) *BatchInferenceJobSummary {
 	s.BatchInferenceJobArn = &v
+	return s
+}
+
+// SetBatchInferenceJobMode sets the BatchInferenceJobMode field's value.
+func (s *BatchInferenceJobSummary) SetBatchInferenceJobMode(v string) *BatchInferenceJobSummary {
+	s.BatchInferenceJobMode = &v
 	return s
 }
 
@@ -8271,6 +8332,15 @@ func (s *Campaign) SetStatus(v string) *Campaign {
 type CampaignConfig struct {
 	_ struct{} `type:"structure"`
 
+	// Whether metadata with recommendations is enabled for the campaign. If enabled,
+	// you can specify the columns from your Items dataset in your request for recommendations.
+	// Amazon Personalize returns this data for each item in the recommendation
+	// response.
+	//
+	// If you enable metadata in recommendations, you will incur additional costs.
+	// For more information, see Amazon Personalize pricing (https://aws.amazon.com/personalize/pricing/).
+	EnableMetadataWithRecommendations *bool `locationName:"enableMetadataWithRecommendations" type:"boolean"`
+
 	// Specifies the exploration configuration hyperparameters, including explorationWeight
 	// and explorationItemAgeCutOff, you want to use to configure the amount of
 	// item exploration Amazon Personalize uses when recommending items. Provide
@@ -8296,6 +8366,12 @@ func (s CampaignConfig) String() string {
 // value will be replaced with "sensitive".
 func (s CampaignConfig) GoString() string {
 	return s.String()
+}
+
+// SetEnableMetadataWithRecommendations sets the EnableMetadataWithRecommendations field's value.
+func (s *CampaignConfig) SetEnableMetadataWithRecommendations(v bool) *CampaignConfig {
+	s.EnableMetadataWithRecommendations = &v
+	return s
 }
 
 // SetItemExplorationConfig sets the ItemExplorationConfig field's value.
@@ -8597,6 +8673,14 @@ type CreateBatchInferenceJobInput struct {
 	// The configuration details of a batch inference job.
 	BatchInferenceJobConfig *BatchInferenceJobConfig `locationName:"batchInferenceJobConfig" type:"structure"`
 
+	// The mode of the batch inference job. To generate descriptive themes for groups
+	// of similar items, set the job mode to THEME_GENERATION. If you don't want
+	// to generate themes, use the default BATCH_INFERENCE.
+	//
+	// When you get batch recommendations with themes, you will incur additional
+	// costs. For more information, see Amazon Personalize pricing (https://aws.amazon.com/personalize/pricing/).
+	BatchInferenceJobMode *string `locationName:"batchInferenceJobMode" type:"string" enum:"BatchInferenceJobMode"`
+
 	// The ARN of the filter to apply to the batch inference job. For more information
 	// on using filters, see Filtering batch recommendations (https://docs.aws.amazon.com/personalize/latest/dg/filter-batch.html).
 	FilterArn *string `locationName:"filterArn" type:"string"`
@@ -8635,6 +8719,10 @@ type CreateBatchInferenceJobInput struct {
 	// A list of tags (https://docs.aws.amazon.com/personalize/latest/dg/tagging-resources.html)
 	// to apply to the batch inference job.
 	Tags []*Tag `locationName:"tags" type:"list"`
+
+	// For theme generation jobs, specify the name of the column in your Items dataset
+	// that contains each item's name.
+	ThemeGenerationConfig *ThemeGenerationConfig `locationName:"themeGenerationConfig" type:"structure"`
 }
 
 // String returns the string representation.
@@ -8696,6 +8784,11 @@ func (s *CreateBatchInferenceJobInput) Validate() error {
 			}
 		}
 	}
+	if s.ThemeGenerationConfig != nil {
+		if err := s.ThemeGenerationConfig.Validate(); err != nil {
+			invalidParams.AddNested("ThemeGenerationConfig", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -8706,6 +8799,12 @@ func (s *CreateBatchInferenceJobInput) Validate() error {
 // SetBatchInferenceJobConfig sets the BatchInferenceJobConfig field's value.
 func (s *CreateBatchInferenceJobInput) SetBatchInferenceJobConfig(v *BatchInferenceJobConfig) *CreateBatchInferenceJobInput {
 	s.BatchInferenceJobConfig = v
+	return s
+}
+
+// SetBatchInferenceJobMode sets the BatchInferenceJobMode field's value.
+func (s *CreateBatchInferenceJobInput) SetBatchInferenceJobMode(v string) *CreateBatchInferenceJobInput {
+	s.BatchInferenceJobMode = &v
 	return s
 }
 
@@ -8754,6 +8853,12 @@ func (s *CreateBatchInferenceJobInput) SetSolutionVersionArn(v string) *CreateBa
 // SetTags sets the Tags field's value.
 func (s *CreateBatchInferenceJobInput) SetTags(v []*Tag) *CreateBatchInferenceJobInput {
 	s.Tags = v
+	return s
+}
+
+// SetThemeGenerationConfig sets the ThemeGenerationConfig field's value.
+func (s *CreateBatchInferenceJobInput) SetThemeGenerationConfig(v *ThemeGenerationConfig) *CreateBatchInferenceJobInput {
+	s.ThemeGenerationConfig = v
 	return s
 }
 
@@ -9608,6 +9713,10 @@ type CreateDatasetInput struct {
 	//    * Items
 	//
 	//    * Users
+	//
+	//    * Actions
+	//
+	//    * Action_Interactions
 	//
 	// DatasetType is a required field
 	DatasetType *string `locationName:"datasetType" type:"string" required:"true"`
@@ -10605,16 +10714,21 @@ type CreateSolutionVersionInput struct {
 	Tags []*Tag `locationName:"tags" type:"list"`
 
 	// The scope of training to be performed when creating the solution version.
-	// The FULL option trains the solution version based on the entirety of the
-	// input solution's training data, while the UPDATE option processes only the
-	// data that has changed in comparison to the input solution. Choose UPDATE
-	// when you want to incrementally update your solution version instead of creating
-	// an entirely new one.
+	// The default is FULL. This creates a completely new model based on the entirety
+	// of the training data from the datasets in your dataset group.
+	//
+	// If you use User-Personalization (https://docs.aws.amazon.com/personalize/latest/dg/native-recipe-new-item-USER_PERSONALIZATION.html),
+	// you can specify a training mode of UPDATE. This updates the model to consider
+	// new items for recommendations. It is not a full retraining. You should still
+	// complete a full retraining weekly. If you specify UPDATE, Amazon Personalize
+	// will stop automatic updates for the solution version. To resume updates,
+	// create a new solution with training mode set to FULL and deploy it in a campaign.
+	// For more information about automatic updates, see Automatic updates (https://docs.aws.amazon.com/personalize/latest/dg/use-case-recipe-features.html#maintaining-with-automatic-updates).
 	//
 	// The UPDATE option can only be used when you already have an active solution
 	// version created from the input solution using the FULL option and the input
 	// solution was trained with the User-Personalization (https://docs.aws.amazon.com/personalize/latest/dg/native-recipe-new-item-USER_PERSONALIZATION.html)
-	// recipe or the HRNN-Coldstart (https://docs.aws.amazon.com/personalize/latest/dg/native-recipe-hrnn-coldstart.html)
+	// recipe or the legacy HRNN-Coldstart (https://docs.aws.amazon.com/personalize/latest/dg/native-recipe-hrnn-coldstart.html)
 	// recipe.
 	TrainingMode *string `locationName:"trainingMode" type:"string" enum:"TrainingMode"`
 }
@@ -10773,6 +10887,10 @@ type Dataset struct {
 	//    * Items
 	//
 	//    * Users
+	//
+	//    * Actions
+	//
+	//    * Action_Interactions
 	DatasetType *string `locationName:"datasetType" type:"string"`
 
 	// A time stamp that shows when the dataset was updated.
@@ -10795,6 +10913,12 @@ type Dataset struct {
 	//
 	//    * DELETE PENDING > DELETE IN_PROGRESS
 	Status *string `locationName:"status" type:"string"`
+
+	// The ID of the event tracker for an Action interactions dataset. You specify
+	// the tracker's ID in the PutActionInteractions API operation. Amazon Personalize
+	// uses it to direct new data to the Action interactions dataset in your dataset
+	// group.
+	TrackingId *string `locationName:"trackingId" type:"string"`
 }
 
 // String returns the string representation.
@@ -10866,6 +10990,12 @@ func (s *Dataset) SetSchemaArn(v string) *Dataset {
 // SetStatus sets the Status field's value.
 func (s *Dataset) SetStatus(v string) *Dataset {
 	s.Status = &v
+	return s
+}
+
+// SetTrackingId sets the TrackingId field's value.
+func (s *Dataset) SetTrackingId(v string) *Dataset {
+	s.TrackingId = &v
 	return s
 }
 
@@ -11134,8 +11264,9 @@ func (s *DatasetExportJobSummary) SetStatus(v string) *DatasetExportJobSummary {
 	return s
 }
 
-// A dataset group is a collection of related datasets (Interactions, User,
-// and Item). You create a dataset group by calling CreateDatasetGroup (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDatasetGroup.html).
+// A dataset group is a collection of related datasets (Item interactions, Users,
+// Items, Actions, Action interactions). You create a dataset group by calling
+// CreateDatasetGroup (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDatasetGroup.html).
 // You then create a dataset and add it to a dataset group by calling CreateDataset
 // (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDataset.html).
 // The dataset group is used to create and train a solution by calling CreateSolution
@@ -11169,7 +11300,9 @@ type DatasetGroup struct {
 	// The name of the dataset group.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
-	// The ARN of the IAM role that has permissions to create the dataset group.
+	// The ARN of the Identity and Access Management (IAM) role that has permissions
+	// to access the Key Management Service (KMS) key. Supplying an IAM role is
+	// only valid when also specifying a KMS key.
 	RoleArn *string `locationName:"roleArn" type:"string"`
 
 	// The current status of the dataset group.
@@ -14316,6 +14449,54 @@ func (s *FeatureTransformation) SetStatus(v string) *FeatureTransformation {
 	return s
 }
 
+// A string to string map of the configuration details for theme generation.
+type FieldsForThemeGeneration struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Items dataset column that stores the name of each item in
+	// the dataset.
+	//
+	// ItemName is a required field
+	ItemName *string `locationName:"itemName" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FieldsForThemeGeneration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FieldsForThemeGeneration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FieldsForThemeGeneration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FieldsForThemeGeneration"}
+	if s.ItemName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ItemName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetItemName sets the ItemName field's value.
+func (s *FieldsForThemeGeneration) SetItemName(v string) *FieldsForThemeGeneration {
+	s.ItemName = &v
+	return s
+}
+
 // Contains information on a recommendation filter, including its ARN, status,
 // and filter expression.
 type Filter struct {
@@ -15716,8 +15897,8 @@ type ListDatasetsInput struct {
 	// The maximum number of datasets to return.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
-	// A token returned from the previous call to ListDatasetImportJobs for getting
-	// the next set of dataset import jobs (if they exist).
+	// A token returned from the previous call to ListDatasets for getting the next
+	// set of dataset import jobs (if they exist).
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -17532,6 +17713,15 @@ func (s *Recommender) SetStatus(v string) *Recommender {
 type RecommenderConfig struct {
 	_ struct{} `type:"structure"`
 
+	// Whether metadata with recommendations is enabled for the recommender. If
+	// enabled, you can specify the columns from your Items dataset in your request
+	// for recommendations. Amazon Personalize returns this data for each item in
+	// the recommendation response.
+	//
+	// If you enable metadata in recommendations, you will incur additional costs.
+	// For more information, see Amazon Personalize pricing (https://aws.amazon.com/personalize/pricing/).
+	EnableMetadataWithRecommendations *bool `locationName:"enableMetadataWithRecommendations" type:"boolean"`
+
 	// Specifies the exploration configuration hyperparameters, including explorationWeight
 	// and explorationItemAgeCutOff, you want to use to configure the amount of
 	// item exploration Amazon Personalize uses when recommending items. Provide
@@ -17579,6 +17769,12 @@ func (s *RecommenderConfig) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetEnableMetadataWithRecommendations sets the EnableMetadataWithRecommendations field's value.
+func (s *RecommenderConfig) SetEnableMetadataWithRecommendations(v bool) *RecommenderConfig {
+	s.EnableMetadataWithRecommendations = &v
+	return s
 }
 
 // SetItemExplorationConfig sets the ItemExplorationConfig field's value.
@@ -18197,7 +18393,7 @@ func (s *Solution) SetStatus(v string) *Solution {
 type SolutionConfig struct {
 	_ struct{} `type:"structure"`
 
-	// Lists the hyperparameter names and ranges.
+	// Lists the algorithm hyperparameters and their values.
 	AlgorithmHyperParameters map[string]*string `locationName:"algorithmHyperParameters" type:"map"`
 
 	// The AutoMLConfig (https://docs.aws.amazon.com/personalize/latest/dg/API_AutoMLConfig.html)
@@ -19049,6 +19245,58 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
+// The configuration details for generating themes with a batch inference job.
+type ThemeGenerationConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Fields used to generate descriptive themes for a batch inference job.
+	//
+	// FieldsForThemeGeneration is a required field
+	FieldsForThemeGeneration *FieldsForThemeGeneration `locationName:"fieldsForThemeGeneration" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ThemeGenerationConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ThemeGenerationConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ThemeGenerationConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ThemeGenerationConfig"}
+	if s.FieldsForThemeGeneration == nil {
+		invalidParams.Add(request.NewErrParamRequired("FieldsForThemeGeneration"))
+	}
+	if s.FieldsForThemeGeneration != nil {
+		if err := s.FieldsForThemeGeneration.Validate(); err != nil {
+			invalidParams.AddNested("FieldsForThemeGeneration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFieldsForThemeGeneration sets the FieldsForThemeGeneration field's value.
+func (s *ThemeGenerationConfig) SetFieldsForThemeGeneration(v *FieldsForThemeGeneration) *ThemeGenerationConfig {
+	s.FieldsForThemeGeneration = v
+	return s
+}
+
 // The request contains more tag keys than can be associated with a resource
 // (50 tag keys per resource).
 type TooManyTagKeysException struct {
@@ -19741,6 +19989,22 @@ func (s UpdateRecommenderOutput) GoString() string {
 func (s *UpdateRecommenderOutput) SetRecommenderArn(v string) *UpdateRecommenderOutput {
 	s.RecommenderArn = &v
 	return s
+}
+
+const (
+	// BatchInferenceJobModeBatchInference is a BatchInferenceJobMode enum value
+	BatchInferenceJobModeBatchInference = "BATCH_INFERENCE"
+
+	// BatchInferenceJobModeThemeGeneration is a BatchInferenceJobMode enum value
+	BatchInferenceJobModeThemeGeneration = "THEME_GENERATION"
+)
+
+// BatchInferenceJobMode_Values returns all elements of the BatchInferenceJobMode enum
+func BatchInferenceJobMode_Values() []string {
+	return []string{
+		BatchInferenceJobModeBatchInference,
+		BatchInferenceJobModeThemeGeneration,
+	}
 }
 
 const (

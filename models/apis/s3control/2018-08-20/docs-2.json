@@ -2,12 +2,20 @@
   "version": "2.0",
   "service": "<p> Amazon Web Services S3 Control provides access to Amazon S3 control plane actions. </p>",
   "operations": {
+    "AssociateAccessGrantsIdentityCenter": "<p>Associate your S3 Access Grants instance with an Amazon Web Services IAM Identity Center instance. Use this action if you want to create access grants for users or groups from your corporate identity directory. First, you must add your corporate identity directory to Amazon Web Services IAM Identity Center. Then, you can associate this IAM Identity Center instance with your S3 Access Grants instance.</p> <dl> <dt>Permissions</dt> <dd> <p>You must have the <code>s3:AssociateAccessGrantsIdentityCenter</code> permission to use this operation. </p> </dd> <dt>Additional Permissions</dt> <dd> <p>You must also have the following permissions: <code>sso:CreateApplication</code>, <code>sso:PutApplicationGrant</code>, and <code>sso:PutApplicationAuthenticationMethod</code>. </p> </dd> </dl>",
+    "CreateAccessGrant": "<p>Creates an access grant that gives a grantee access to your S3 data. The grantee can be an IAM user or role or a directory user, or group. Before you can create a grant, you must have an S3 Access Grants instance in the same Region as the S3 data. You can create an S3 Access Grants instance using the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateAccessGrantsInstance.html\">CreateAccessGrantsInstance</a>. You must also have registered at least one S3 data location in your S3 Access Grants instance using <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateAccessGrantsLocation.html\">CreateAccessGrantsLocation</a>. </p> <dl> <dt>Permissions</dt> <dd> <p>You must have the <code>s3:CreateAccessGrant</code> permission to use this operation. </p> </dd> <dt>Additional Permissions</dt> <dd> <p>For any directory identity - <code>sso:DescribeInstance</code> and <code>sso:DescribeApplication</code> </p> <p>For directory users - <code>identitystore:DescribeUser</code> </p> <p>For directory groups - <code>identitystore:DescribeGroup</code> </p> </dd> </dl>",
+    "CreateAccessGrantsInstance": "<p>Creates an S3 Access Grants instance, which serves as a logical grouping for access grants. You can create one S3 Access Grants instance per Region per account. </p> <dl> <dt>Permissions</dt> <dd> <p>You must have the <code>s3:CreateAccessGrantsInstance</code> permission to use this operation. </p> </dd> <dt>Additional Permissions</dt> <dd> <p>To associate an IAM Identity Center instance with your S3 Access Grants instance, you must also have the <code>sso:DescribeInstance</code>, <code>sso:CreateApplication</code>, <code>sso:PutApplicationGrant</code>, and <code>sso:PutApplicationAuthenticationMethod</code> permissions. </p> </dd> </dl>",
+    "CreateAccessGrantsLocation": "<p>The S3 data location that you would like to register in your S3 Access Grants instance. Your S3 data must be in the same Region as your S3 Access Grants instance. The location can be one of the following: </p> <ul> <li> <p>The default S3 location <code>s3://</code> </p> </li> <li> <p>A bucket - <code>S3://&lt;bucket-name&gt;</code> </p> </li> <li> <p>A bucket and prefix - <code>S3://&lt;bucket-name&gt;/&lt;prefix&gt;</code> </p> </li> </ul> <p>When you register a location, you must include the IAM role that has permission to manage the S3 location that you are registering. Give S3 Access Grants permission to assume this role <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-grants-location.html\">using a policy</a>. S3 Access Grants assumes this role to manage access to the location and to vend temporary credentials to grantees or client applications. </p> <dl> <dt>Permissions</dt> <dd> <p>You must have the <code>s3:CreateAccessGrantsLocation</code> permission to use this operation. </p> </dd> <dt>Additional Permissions</dt> <dd> <p>You must also have the following permission for the specified IAM role: <code>iam:PassRole</code> </p> </dd> </dl>",
     "CreateAccessPoint": "<p>Creates an access point and associates it with the specified bucket. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-points.html\">Managing Data Access with Amazon S3 Access Points</a> in the <i>Amazon S3 User Guide</i>.</p> <p/> <note> <p>S3 on Outposts only supports VPC-style access points. </p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html\"> Accessing Amazon S3 on Outposts using virtual private cloud (VPC) only access points</a> in the <i>Amazon S3 User Guide</i>.</p> </note> <p>All Amazon S3 on Outposts REST API requests for this action require an additional parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition, you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>. For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by using the access point ARN, see the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateAccessPoint.html#API_control_CreateAccessPoint_Examples\">Examples</a> section.</p> <p/> <p>The following actions are related to <code>CreateAccessPoint</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPoint.html\">GetAccessPoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPoint.html\">DeleteAccessPoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListAccessPoints.html\">ListAccessPoints</a> </p> </li> </ul>",
     "CreateAccessPointForObjectLambda": "<p>Creates an Object Lambda Access Point. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/transforming-objects.html\">Transforming objects with Object Lambda Access Points</a> in the <i>Amazon S3 User Guide</i>.</p> <p>The following actions are related to <code>CreateAccessPointForObjectLambda</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPointForObjectLambda.html\">DeleteAccessPointForObjectLambda</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPointForObjectLambda.html\">GetAccessPointForObjectLambda</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListAccessPointsForObjectLambda.html\">ListAccessPointsForObjectLambda</a> </p> </li> </ul>",
     "CreateBucket": "<note> <p>This action creates an Amazon S3 on Outposts bucket. To create an S3 bucket, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucket.html\">Create Bucket</a> in the <i>Amazon S3 API Reference</i>. </p> </note> <p>Creates a new Outposts bucket. By creating the bucket, you become the bucket owner. To create an Outposts bucket, you must have S3 on Outposts. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html\">Using Amazon S3 on Outposts</a> in <i>Amazon S3 User Guide</i>.</p> <p>Not every string is an acceptable bucket name. For information on bucket naming restrictions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/BucketRestrictions.html#bucketnamingrules\">Working with Amazon S3 Buckets</a>.</p> <p>S3 on Outposts buckets support:</p> <ul> <li> <p>Tags</p> </li> <li> <p>LifecycleConfigurations for deleting expired objects</p> </li> </ul> <p>For a complete list of restrictions and Amazon S3 feature limitations on S3 on Outposts, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3OnOutpostsRestrictionsLimitations.html\"> Amazon S3 on Outposts Restrictions and Limitations</a>.</p> <p>For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname prefix and <code>x-amz-outpost-id</code> in your API request, see the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateBucket.html#API_control_CreateBucket_Examples\">Examples</a> section.</p> <p>The following actions are related to <code>CreateBucket</code> for Amazon S3 on Outposts:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html\">PutObject</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucket.html\">GetBucket</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucket.html\">DeleteBucket</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateAccessPoint.html\">CreateAccessPoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutAccessPointPolicy.html\">PutAccessPointPolicy</a> </p> </li> </ul>",
     "CreateJob": "<p>You can use S3 Batch Operations to perform large-scale batch actions on Amazon S3 objects. Batch Operations can run a single action on lists of Amazon S3 objects that you specify. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html\">S3 Batch Operations</a> in the <i>Amazon S3 User Guide</i>.</p> <p>This action creates a S3 Batch Operations job.</p> <p/> <p>Related actions include:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeJob.html\">DescribeJob</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListJobs.html\">ListJobs</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_UpdateJobPriority.html\">UpdateJobPriority</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_UpdateJobStatus.html\">UpdateJobStatus</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_JobOperation.html\">JobOperation</a> </p> </li> </ul>",
     "CreateMultiRegionAccessPoint": "<p>Creates a Multi-Region Access Point and associates it with the specified buckets. For more information about creating Multi-Region Access Points, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/CreatingMultiRegionAccessPoints.html\">Creating Multi-Region Access Points</a> in the <i>Amazon S3 User Guide</i>.</p> <p>This action will always be routed to the US West (Oregon) Region. For more information about the restrictions around managing Multi-Region Access Points, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html\">Managing Multi-Region Access Points</a> in the <i>Amazon S3 User Guide</i>.</p> <p>This request is asynchronous, meaning that you might receive a response before the command has completed. When this request provides a response, it provides a token that you can use to monitor the status of the request with <code>DescribeMultiRegionAccessPointOperation</code>.</p> <p>The following actions are related to <code>CreateMultiRegionAccessPoint</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteMultiRegionAccessPoint.html\">DeleteMultiRegionAccessPoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeMultiRegionAccessPointOperation.html\">DescribeMultiRegionAccessPointOperation</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetMultiRegionAccessPoint.html\">GetMultiRegionAccessPoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListMultiRegionAccessPoints.html\">ListMultiRegionAccessPoints</a> </p> </li> </ul>",
     "CreateStorageLensGroup": "<p> Creates a new S3 Storage Lens group and associates it with the specified Amazon Web Services account ID. An S3 Storage Lens group is a custom grouping of objects based on prefix, suffix, object tags, object size, object age, or a combination of these filters. For each Storage Lens group that you’ve created, you can also optionally add Amazon Web Services resource tags. For more information about S3 Storage Lens groups, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-lens-groups-overview.html\">Working with S3 Storage Lens groups</a>.</p> <p>To use this operation, you must have the permission to perform the <code>s3:CreateStorageLensGroup</code> action. If you’re trying to create a Storage Lens group with Amazon Web Services resource tags, you must also have permission to perform the <code>s3:TagResource</code> action. For more information about the required Storage Lens Groups permissions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_iam_permissions.html#storage_lens_groups_permissions\">Setting account permissions to use S3 Storage Lens groups</a>.</p> <p>For information about Storage Lens groups errors, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#S3LensErrorCodeList\">List of Amazon S3 Storage Lens error codes</a>.</p>",
+    "DeleteAccessGrant": "<p>Deletes the access grant from the S3 Access Grants instance. You cannot undo an access grant deletion and the grantee will no longer have access to the S3 data.</p> <dl> <dt>Permissions</dt> <dd> <p>You must have the <code>s3:DeleteAccessGrant</code> permission to use this operation. </p> </dd> </dl>",
+    "DeleteAccessGrantsInstance": "<p>Deletes your S3 Access Grants instance. You must first delete the access grants and locations before S3 Access Grants can delete the instance. See <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessGrant.html\">DeleteAccessGrant</a> and <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessGrantsLocation.html\">DeleteAccessGrantsLocation</a>. If you have associated an IAM Identity Center instance with your S3 Access Grants instance, you must first dissassociate the Identity Center instance from the S3 Access Grants instance before you can delete the S3 Access Grants instance. See <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_AssociateAccessGrantsIdentityCenter.html\">AssociateAccessGrantsIdentityCenter</a> and <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DissociateAccessGrantsIdentityCenter.html\">DissociateAccessGrantsIdentityCenter</a>.</p> <dl> <dt>Permissions</dt> <dd> <p>You must have the <code>s3:DeleteAccessGrantsInstance</code> permission to use this operation. </p> </dd> </dl>",
+    "DeleteAccessGrantsInstanceResourcePolicy": "<p>Deletes the resource policy of the S3 Access Grants instance. The resource policy is used to manage cross-account access to your S3 Access Grants instance. By deleting the resource policy, you delete any cross-account permissions to your S3 Access Grants instance. </p> <dl> <dt>Permissions</dt> <dd> <p>You must have the <code>s3:DeleteAccessGrantsInstanceResourcePolicy</code> permission to use this operation. </p> </dd> </dl>",
+    "DeleteAccessGrantsLocation": "<p>Deregisters a location from your S3 Access Grants instance. You can only delete a location registration from an S3 Access Grants instance if there are no grants associated with this location. See <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessGrant.html\">Delete a grant</a> for information on how to delete grants. You need to have at least one registered location in your S3 Access Grants instance in order to create access grants. </p> <dl> <dt>Permissions</dt> <dd> <p>You must have the <code>s3:DeleteAccessGrantsLocation</code> permission to use this operation. </p> </dd> </dl>",
     "DeleteAccessPoint": "<p>Deletes the specified access point.</p> <p>All Amazon S3 on Outposts REST API requests for this action require an additional parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition, you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>. For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by using the access point ARN, see the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPoint.html#API_control_DeleteAccessPoint_Examples\">Examples</a> section.</p> <p>The following actions are related to <code>DeleteAccessPoint</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateAccessPoint.html\">CreateAccessPoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPoint.html\">GetAccessPoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListAccessPoints.html\">ListAccessPoints</a> </p> </li> </ul>",
     "DeleteAccessPointForObjectLambda": "<p>Deletes the specified Object Lambda Access Point.</p> <p>The following actions are related to <code>DeleteAccessPointForObjectLambda</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateAccessPointForObjectLambda.html\">CreateAccessPointForObjectLambda</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPointForObjectLambda.html\">GetAccessPointForObjectLambda</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListAccessPointsForObjectLambda.html\">ListAccessPointsForObjectLambda</a> </p> </li> </ul>",
     "DeleteAccessPointPolicy": "<p>Deletes the access point policy for the specified access point.</p> <p/> <p>All Amazon S3 on Outposts REST API requests for this action require an additional parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition, you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>. For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by using the access point ARN, see the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPointPolicy.html#API_control_DeleteAccessPointPolicy_Examples\">Examples</a> section.</p> <p>The following actions are related to <code>DeleteAccessPointPolicy</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutAccessPointPolicy.html\">PutAccessPointPolicy</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPointPolicy.html\">GetAccessPointPolicy</a> </p> </li> </ul>",
@@ -25,6 +33,12 @@
     "DeleteStorageLensGroup": "<p> Deletes an existing S3 Storage Lens group.</p> <p>To use this operation, you must have the permission to perform the <code>s3:DeleteStorageLensGroup</code> action. For more information about the required Storage Lens Groups permissions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_iam_permissions.html#storage_lens_groups_permissions\">Setting account permissions to use S3 Storage Lens groups</a>.</p> <p>For information about Storage Lens groups errors, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#S3LensErrorCodeList\">List of Amazon S3 Storage Lens error codes</a>.</p>",
     "DescribeJob": "<p>Retrieves the configuration parameters and status for a Batch Operations job. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html\">S3 Batch Operations</a> in the <i>Amazon S3 User Guide</i>.</p> <p/> <p>Related actions include:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateJob.html\">CreateJob</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListJobs.html\">ListJobs</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_UpdateJobPriority.html\">UpdateJobPriority</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_UpdateJobStatus.html\">UpdateJobStatus</a> </p> </li> </ul>",
     "DescribeMultiRegionAccessPointOperation": "<p>Retrieves the status of an asynchronous request to manage a Multi-Region Access Point. For more information about managing Multi-Region Access Points and how asynchronous requests work, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html\">Managing Multi-Region Access Points</a> in the <i>Amazon S3 User Guide</i>.</p> <p>The following actions are related to <code>GetMultiRegionAccessPoint</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateMultiRegionAccessPoint.html\">CreateMultiRegionAccessPoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteMultiRegionAccessPoint.html\">DeleteMultiRegionAccessPoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetMultiRegionAccessPoint.html\">GetMultiRegionAccessPoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListMultiRegionAccessPoints.html\">ListMultiRegionAccessPoints</a> </p> </li> </ul>",
+    "DissociateAccessGrantsIdentityCenter": "<p>Dissociates the Amazon Web Services IAM Identity Center instance from the S3 Access Grants instance. </p> <dl> <dt>Permissions</dt> <dd> <p>You must have the <code>s3:DissociateAccessGrantsIdentityCenter</code> permission to use this operation. </p> </dd> <dt>Additional Permissions</dt> <dd> <p>You must have the <code>sso:DeleteApplication</code> permission to use this operation. </p> </dd> </dl>",
+    "GetAccessGrant": "<p>Get the details of an access grant from your S3 Access Grants instance.</p> <dl> <dt>Permissions</dt> <dd> <p>You must have the <code>s3:GetAccessGrant</code> permission to use this operation. </p> </dd> </dl>",
+    "GetAccessGrantsInstance": "<p>Retrieves the S3 Access Grants instance for a Region in your account. </p> <dl> <dt>Permissions</dt> <dd> <p>You must have the <code>s3:GetAccessGrantsInstance</code> permission to use this operation. </p> </dd> </dl>",
+    "GetAccessGrantsInstanceForPrefix": "<p>Retrieve the S3 Access Grants instance that contains a particular prefix. </p> <dl> <dt>Permissions</dt> <dd> <p>You must have the <code>s3:GetAccessGrantsInstanceForPrefix</code> permission for the caller account to use this operation. </p> </dd> <dt>Additional Permissions</dt> <dd> <p>The prefix owner account must grant you the following permissions to their S3 Access Grants instance: <code>s3:GetAccessGrantsInstanceForPrefix</code>. </p> </dd> </dl>",
+    "GetAccessGrantsInstanceResourcePolicy": "<p>Returns the resource policy of the S3 Access Grants instance. </p> <dl> <dt>Permissions</dt> <dd> <p>You must have the <code>s3:GetAccessGrantsInstanceResourcePolicy</code> permission to use this operation. </p> </dd> </dl>",
+    "GetAccessGrantsLocation": "<p>Retrieves the details of a particular location registered in your S3 Access Grants instance. </p> <dl> <dt>Permissions</dt> <dd> <p>You must have the <code>s3:GetAccessGrantsLocation</code> permission to use this operation. </p> </dd> </dl>",
     "GetAccessPoint": "<p>Returns configuration information about the specified access point.</p> <p/> <p>All Amazon S3 on Outposts REST API requests for this action require an additional parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition, you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>. For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by using the access point ARN, see the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPoint.html#API_control_GetAccessPoint_Examples\">Examples</a> section.</p> <p>The following actions are related to <code>GetAccessPoint</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateAccessPoint.html\">CreateAccessPoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPoint.html\">DeleteAccessPoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListAccessPoints.html\">ListAccessPoints</a> </p> </li> </ul>",
     "GetAccessPointConfigurationForObjectLambda": "<p>Returns configuration for an Object Lambda Access Point.</p> <p>The following actions are related to <code>GetAccessPointConfigurationForObjectLambda</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutAccessPointConfigurationForObjectLambda.html\">PutAccessPointConfigurationForObjectLambda</a> </p> </li> </ul>",
     "GetAccessPointForObjectLambda": "<p>Returns configuration information about the specified Object Lambda Access Point</p> <p>The following actions are related to <code>GetAccessPointForObjectLambda</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateAccessPointForObjectLambda.html\">CreateAccessPointForObjectLambda</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPointForObjectLambda.html\">DeleteAccessPointForObjectLambda</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListAccessPointsForObjectLambda.html\">ListAccessPointsForObjectLambda</a> </p> </li> </ul>",
@@ -38,6 +52,7 @@
     "GetBucketReplication": "<note> <p>This operation gets an Amazon S3 on Outposts bucket's replication configuration. To get an S3 bucket's replication configuration, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketReplication.html\">GetBucketReplication</a> in the <i>Amazon S3 API Reference</i>. </p> </note> <p>Returns the replication configuration of an S3 on Outposts bucket. For more information about S3 on Outposts, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html\">Using Amazon S3 on Outposts</a> in the <i>Amazon S3 User Guide</i>. For information about S3 replication on Outposts configuration, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3OutpostsReplication.html\">Replicating objects for S3 on Outposts</a> in the <i>Amazon S3 User Guide</i>.</p> <note> <p>It can take a while to propagate <code>PUT</code> or <code>DELETE</code> requests for a replication configuration to all S3 on Outposts systems. Therefore, the replication configuration that's returned by a <code>GET</code> request soon after a <code>PUT</code> or <code>DELETE</code> request might return a more recent result than what's on the Outpost. If an Outpost is offline, the delay in updating the replication configuration on that Outpost can be significant.</p> </note> <p>This action requires permissions for the <code>s3-outposts:GetReplicationConfiguration</code> action. The Outposts bucket owner has this permission by default and can grant it to others. For more information about permissions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3OutpostsIAM.html\">Setting up IAM with S3 on Outposts</a> and <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3OutpostsBucketPolicy.html\">Managing access to S3 on Outposts bucket</a> in the <i>Amazon S3 User Guide</i>.</p> <p>All Amazon S3 on Outposts REST API requests for this action require an additional parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition, you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>. For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by using the access point ARN, see the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketReplication.html#API_control_GetBucketReplication_Examples\">Examples</a> section.</p> <p>If you include the <code>Filter</code> element in a replication configuration, you must also include the <code>DeleteMarkerReplication</code>, <code>Status</code>, and <code>Priority</code> elements. The response also returns those elements.</p> <p>For information about S3 on Outposts replication failure reasons, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/outposts-replication-eventbridge.html#outposts-replication-failure-codes\">Replication failure reasons</a> in the <i>Amazon S3 User Guide</i>.</p> <p>The following operations are related to <code>GetBucketReplication</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketReplication.html\">PutBucketReplication</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucketReplication.html\">DeleteBucketReplication</a> </p> </li> </ul>",
     "GetBucketTagging": "<note> <p>This action gets an Amazon S3 on Outposts bucket's tags. To get an S3 bucket tags, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketTagging.html\">GetBucketTagging</a> in the <i>Amazon S3 API Reference</i>. </p> </note> <p>Returns the tag set associated with the Outposts bucket. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html\">Using Amazon S3 on Outposts</a> in the <i>Amazon S3 User Guide</i>.</p> <p>To use this action, you must have permission to perform the <code>GetBucketTagging</code> action. By default, the bucket owner has this permission and can grant this permission to others.</p> <p> <code>GetBucketTagging</code> has the following special error:</p> <ul> <li> <p>Error code: <code>NoSuchTagSetError</code> </p> <ul> <li> <p>Description: There is no tag set associated with the bucket.</p> </li> </ul> </li> </ul> <p>All Amazon S3 on Outposts REST API requests for this action require an additional parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition, you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>. For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by using the access point ARN, see the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketTagging.html#API_control_GetBucketTagging_Examples\">Examples</a> section.</p> <p>The following actions are related to <code>GetBucketTagging</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketTagging.html\">PutBucketTagging</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucketTagging.html\">DeleteBucketTagging</a> </p> </li> </ul>",
     "GetBucketVersioning": "<note> <p>This operation returns the versioning state for S3 on Outposts buckets only. To return the versioning state for an S3 bucket, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketVersioning.html\">GetBucketVersioning</a> in the <i>Amazon S3 API Reference</i>. </p> </note> <p>Returns the versioning state for an S3 on Outposts bucket. With S3 Versioning, you can save multiple distinct copies of your objects and recover from unintended user actions and application failures.</p> <p>If you've never set versioning on your bucket, it has no versioning state. In that case, the <code>GetBucketVersioning</code> request does not return a versioning state value.</p> <p>For more information about versioning, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/Versioning.html\">Versioning</a> in the <i>Amazon S3 User Guide</i>.</p> <p>All Amazon S3 on Outposts REST API requests for this action require an additional parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition, you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>. For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by using the access point ARN, see the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketVersioning.html#API_control_GetBucketVersioning_Examples\">Examples</a> section.</p> <p>The following operations are related to <code>GetBucketVersioning</code> for S3 on Outposts.</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketVersioning.html\">PutBucketVersioning</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketLifecycleConfiguration.html\">PutBucketLifecycleConfiguration</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketLifecycleConfiguration.html\">GetBucketLifecycleConfiguration</a> </p> </li> </ul>",
+    "GetDataAccess": "<p>Returns a temporary access credential from S3 Access Grants to the grantee or client application. The <a href=\"https://docs.aws.amazon.com/STS/latest/APIReference/API_Credentials.html\">temporary credential</a> is an Amazon Web Services STS token that grants them access to the S3 data. </p> <dl> <dt>Permissions</dt> <dd> <p>You must have the <code>s3:GetDataAccess</code> permission to use this operation. </p> </dd> <dt>Additional Permissions</dt> <dd> <p>The IAM role that S3 Access Grants assumes must have the following permissions specified in the trust policy when registering the location: <code>sts:AssumeRole</code>, for directory users or groups <code>sts:SetContext</code>, and for IAM users or roles <code>sts:SourceIdentity</code>. </p> </dd> </dl>",
     "GetJobTagging": "<p>Returns the tags on an S3 Batch Operations job. To use the <code>GetJobTagging</code> operation, you must have permission to perform the <code>s3:GetJobTagging</code> action. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-managing-jobs.html#batch-ops-job-tags\">Controlling access and labeling jobs using tags</a> in the <i>Amazon S3 User Guide</i>.</p> <p/> <p>Related actions include:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateJob.html\">CreateJob</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutJobTagging.html\">PutJobTagging</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteJobTagging.html\">DeleteJobTagging</a> </p> </li> </ul>",
     "GetMultiRegionAccessPoint": "<p>Returns configuration information about the specified Multi-Region Access Point.</p> <p>This action will always be routed to the US West (Oregon) Region. For more information about the restrictions around managing Multi-Region Access Points, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html\">Managing Multi-Region Access Points</a> in the <i>Amazon S3 User Guide</i>.</p> <p>The following actions are related to <code>GetMultiRegionAccessPoint</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateMultiRegionAccessPoint.html\">CreateMultiRegionAccessPoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteMultiRegionAccessPoint.html\">DeleteMultiRegionAccessPoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeMultiRegionAccessPointOperation.html\">DescribeMultiRegionAccessPointOperation</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListMultiRegionAccessPoints.html\">ListMultiRegionAccessPoints</a> </p> </li> </ul>",
     "GetMultiRegionAccessPointPolicy": "<p>Returns the access control policy of the specified Multi-Region Access Point.</p> <p>This action will always be routed to the US West (Oregon) Region. For more information about the restrictions around managing Multi-Region Access Points, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html\">Managing Multi-Region Access Points</a> in the <i>Amazon S3 User Guide</i>.</p> <p>The following actions are related to <code>GetMultiRegionAccessPointPolicy</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetMultiRegionAccessPointPolicyStatus.html\">GetMultiRegionAccessPointPolicyStatus</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutMultiRegionAccessPointPolicy.html\">PutMultiRegionAccessPointPolicy</a> </p> </li> </ul>",
@@ -47,6 +62,9 @@
     "GetStorageLensConfiguration": "<p>Gets the Amazon S3 Storage Lens configuration. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html\">Assessing your storage activity and usage with Amazon S3 Storage Lens </a> in the <i>Amazon S3 User Guide</i>. For a complete list of S3 Storage Lens metrics, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_metrics_glossary.html\">S3 Storage Lens metrics glossary</a> in the <i>Amazon S3 User Guide</i>.</p> <note> <p>To use this action, you must have permission to perform the <code>s3:GetStorageLensConfiguration</code> action. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens_iam_permissions.html\">Setting permissions to use Amazon S3 Storage Lens</a> in the <i>Amazon S3 User Guide</i>.</p> </note>",
     "GetStorageLensConfigurationTagging": "<p>Gets the tags of Amazon S3 Storage Lens configuration. For more information about S3 Storage Lens, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html\">Assessing your storage activity and usage with Amazon S3 Storage Lens </a> in the <i>Amazon S3 User Guide</i>.</p> <note> <p>To use this action, you must have permission to perform the <code>s3:GetStorageLensConfigurationTagging</code> action. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens_iam_permissions.html\">Setting permissions to use Amazon S3 Storage Lens</a> in the <i>Amazon S3 User Guide</i>.</p> </note>",
     "GetStorageLensGroup": "<p> Retrieves the Storage Lens group configuration details.</p> <p>To use this operation, you must have the permission to perform the <code>s3:GetStorageLensGroup</code> action. For more information about the required Storage Lens Groups permissions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_iam_permissions.html#storage_lens_groups_permissions\">Setting account permissions to use S3 Storage Lens groups</a>.</p> <p>For information about Storage Lens groups errors, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#S3LensErrorCodeList\">List of Amazon S3 Storage Lens error codes</a>.</p>",
+    "ListAccessGrants": "<p>Returns the list of access grants in your S3 Access Grants instance.</p> <dl> <dt>Permissions</dt> <dd> <p>You must have the <code>s3:ListAccessGrants</code> permission to use this operation. </p> </dd> </dl>",
+    "ListAccessGrantsInstances": "<p>Returns a list of S3 Access Grants instances. An S3 Access Grants instance serves as a logical grouping for your individual access grants. You can only have one S3 Access Grants instance per Region per account.</p> <dl> <dt>Permissions</dt> <dd> <p>You must have the <code>s3:ListAccessGrantsInstances</code> permission to use this operation. </p> </dd> </dl>",
+    "ListAccessGrantsLocations": "<p>Returns a list of the locations registered in your S3 Access Grants instance.</p> <dl> <dt>Permissions</dt> <dd> <p>You must have the <code>s3:ListAccessGrantsLocations</code> permission to use this operation. </p> </dd> </dl>",
     "ListAccessPoints": "<p>Returns a list of the access points that are owned by the current account that's associated with the specified bucket. You can retrieve up to 1000 access points per call. If the specified bucket has more than 1,000 access points (or the number specified in <code>maxResults</code>, whichever is less), the response will include a continuation token that you can use to list the additional access points.</p> <p/> <p>All Amazon S3 on Outposts REST API requests for this action require an additional parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition, you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>. For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by using the access point ARN, see the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPoint.html#API_control_GetAccessPoint_Examples\">Examples</a> section.</p> <p>The following actions are related to <code>ListAccessPoints</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateAccessPoint.html\">CreateAccessPoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPoint.html\">DeleteAccessPoint</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPoint.html\">GetAccessPoint</a> </p> </li> </ul>",
     "ListAccessPointsForObjectLambda": "<p>Returns some or all (up to 1,000) access points associated with the Object Lambda Access Point per call. If there are more access points than what can be returned in one call, the response will include a continuation token that you can use to list the additional access points.</p> <p>The following actions are related to <code>ListAccessPointsForObjectLambda</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateAccessPointForObjectLambda.html\">CreateAccessPointForObjectLambda</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPointForObjectLambda.html\">DeleteAccessPointForObjectLambda</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPointForObjectLambda.html\">GetAccessPointForObjectLambda</a> </p> </li> </ul>",
     "ListJobs": "<p>Lists current S3 Batch Operations jobs and jobs that have ended within the last 30 days for the Amazon Web Services account making the request. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html\">S3 Batch Operations</a> in the <i>Amazon S3 User Guide</i>.</p> <p>Related actions include:</p> <p/> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateJob.html\">CreateJob</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeJob.html\">DescribeJob</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_UpdateJobPriority.html\">UpdateJobPriority</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_UpdateJobStatus.html\">UpdateJobStatus</a> </p> </li> </ul>",
@@ -54,7 +72,8 @@
     "ListRegionalBuckets": "<p>Returns a list of all Outposts buckets in an Outpost that are owned by the authenticated sender of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html\">Using Amazon S3 on Outposts</a> in the <i>Amazon S3 User Guide</i>.</p> <p>For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname prefix and <code>x-amz-outpost-id</code> in your request, see the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListRegionalBuckets.html#API_control_ListRegionalBuckets_Examples\">Examples</a> section.</p>",
     "ListStorageLensConfigurations": "<p>Gets a list of Amazon S3 Storage Lens configurations. For more information about S3 Storage Lens, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html\">Assessing your storage activity and usage with Amazon S3 Storage Lens </a> in the <i>Amazon S3 User Guide</i>.</p> <note> <p>To use this action, you must have permission to perform the <code>s3:ListStorageLensConfigurations</code> action. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens_iam_permissions.html\">Setting permissions to use Amazon S3 Storage Lens</a> in the <i>Amazon S3 User Guide</i>.</p> </note>",
     "ListStorageLensGroups": "<p> Lists all the Storage Lens groups in the specified home Region. </p> <p>To use this operation, you must have the permission to perform the <code>s3:ListStorageLensGroups</code> action. For more information about the required Storage Lens Groups permissions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_iam_permissions.html#storage_lens_groups_permissions\">Setting account permissions to use S3 Storage Lens groups</a>.</p> <p>For information about Storage Lens groups errors, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#S3LensErrorCodeList\">List of Amazon S3 Storage Lens error codes</a>.</p>",
-    "ListTagsForResource": "<p> This operation allows you to list all the Amazon Web Services resource tags for the specified resource. </p> <p>To use this operation, you must have the permission to perform the <code>s3:ListTagsForResource</code> action. For more information about the required Storage Lens Groups permissions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_iam_permissions.html#storage_lens_groups_permissions\">Setting account permissions to use S3 Storage Lens groups</a>.</p> <p>For information about S3 Tagging errors, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#S3TaggingErrorCodeList\">List of Amazon S3 Tagging error codes</a>.</p> <note> <p>This operation is only supported for <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-lens-groups.html\">S3 Storage Lens groups</a>.</p> </note>",
+    "ListTagsForResource": "<p>This operation allows you to list all the Amazon Web Services resource tags for a specified resource. Each tag is a label consisting of a user-defined key and value. Tags can help you manage, identify, organize, search for, and filter resources. </p> <dl> <dt>Permissions</dt> <dd> <p>You must have the <code>s3:ListTagsForResource</code> permission to use this operation. </p> </dd> </dl> <note> <p>This operation is only supported for <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-lens-groups.html\">S3 Storage Lens groups</a> and for <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-grants-tagging.html\">S3 Access Grants</a>. The tagged resource can be an S3 Storage Lens group or S3 Access Grants instance, registered location, or grant. </p> </note> <p>For more information about the required Storage Lens Groups permissions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_iam_permissions.html#storage_lens_groups_permissions\">Setting account permissions to use S3 Storage Lens groups</a>.</p> <p>For information about S3 Tagging errors, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#S3TaggingErrorCodeList\">List of Amazon S3 Tagging error codes</a>.</p>",
+    "PutAccessGrantsInstanceResourcePolicy": "<p>Updates the resource policy of the S3 Access Grants instance. </p> <dl> <dt>Permissions</dt> <dd> <p>You must have the <code>s3:PutAccessGrantsInstanceResourcePolicy</code> permission to use this operation. </p> </dd> </dl>",
     "PutAccessPointConfigurationForObjectLambda": "<p>Replaces configuration for an Object Lambda Access Point.</p> <p>The following actions are related to <code>PutAccessPointConfigurationForObjectLambda</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPointConfigurationForObjectLambda.html\">GetAccessPointConfigurationForObjectLambda</a> </p> </li> </ul>",
     "PutAccessPointPolicy": "<p>Associates an access policy with the specified access point. Each access point can have only one policy, so a request made to this API replaces any existing policy associated with the specified access point.</p> <p/> <p>All Amazon S3 on Outposts REST API requests for this action require an additional parameter of <code>x-amz-outpost-id</code> to be passed with the request. In addition, you must use an S3 on Outposts endpoint hostname prefix instead of <code>s3-control</code>. For an example of the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname prefix and the <code>x-amz-outpost-id</code> derived by using the access point ARN, see the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutAccessPointPolicy.html#API_control_PutAccessPointPolicy_Examples\">Examples</a> section.</p> <p>The following actions are related to <code>PutAccessPointPolicy</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPointPolicy.html\">GetAccessPointPolicy</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPointPolicy.html\">DeleteAccessPointPolicy</a> </p> </li> </ul>",
     "PutAccessPointPolicyForObjectLambda": "<p>Creates or replaces resource policy for an Object Lambda Access Point. For an example policy, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/olap-create.html#olap-create-cli\">Creating Object Lambda Access Points</a> in the <i>Amazon S3 User Guide</i>.</p> <p>The following actions are related to <code>PutAccessPointPolicyForObjectLambda</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPointPolicyForObjectLambda.html\">DeleteAccessPointPolicyForObjectLambda</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPointPolicyForObjectLambda.html\">GetAccessPointPolicyForObjectLambda</a> </p> </li> </ul>",
@@ -69,8 +88,9 @@
     "PutStorageLensConfiguration": "<p>Puts an Amazon S3 Storage Lens configuration. For more information about S3 Storage Lens, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html\">Working with Amazon S3 Storage Lens</a> in the <i>Amazon S3 User Guide</i>. For a complete list of S3 Storage Lens metrics, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_metrics_glossary.html\">S3 Storage Lens metrics glossary</a> in the <i>Amazon S3 User Guide</i>.</p> <note> <p>To use this action, you must have permission to perform the <code>s3:PutStorageLensConfiguration</code> action. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens_iam_permissions.html\">Setting permissions to use Amazon S3 Storage Lens</a> in the <i>Amazon S3 User Guide</i>.</p> </note>",
     "PutStorageLensConfigurationTagging": "<p>Put or replace tags on an existing Amazon S3 Storage Lens configuration. For more information about S3 Storage Lens, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html\">Assessing your storage activity and usage with Amazon S3 Storage Lens </a> in the <i>Amazon S3 User Guide</i>.</p> <note> <p>To use this action, you must have permission to perform the <code>s3:PutStorageLensConfigurationTagging</code> action. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens_iam_permissions.html\">Setting permissions to use Amazon S3 Storage Lens</a> in the <i>Amazon S3 User Guide</i>.</p> </note>",
     "SubmitMultiRegionAccessPointRoutes": "<p>Submits an updated route configuration for a Multi-Region Access Point. This API operation updates the routing status for the specified Regions from active to passive, or from passive to active. A value of <code>0</code> indicates a passive status, which means that traffic won't be routed to the specified Region. A value of <code>100</code> indicates an active status, which means that traffic will be routed to the specified Region. At least one Region must be active at all times.</p> <p>When the routing configuration is changed, any in-progress operations (uploads, copies, deletes, and so on) to formerly active Regions will continue to run to their final completion state (success or failure). The routing configurations of any Regions that aren’t specified remain unchanged.</p> <note> <p>Updated routing configurations might not be immediately applied. It can take up to 2 minutes for your changes to take effect.</p> </note> <p>To submit routing control changes and failover requests, use the Amazon S3 failover control infrastructure endpoints in these five Amazon Web Services Regions:</p> <ul> <li> <p> <code>us-east-1</code> </p> </li> <li> <p> <code>us-west-2</code> </p> </li> <li> <p> <code>ap-southeast-2</code> </p> </li> <li> <p> <code>ap-northeast-1</code> </p> </li> <li> <p> <code>eu-west-1</code> </p> </li> </ul> <note> <p>Your Amazon S3 bucket does not need to be in these five Regions.</p> </note>",
-    "TagResource": "<p> Creates a new Amazon Web Services resource tag or updates an existing resource tag. You can add up to 50 Amazon Web Services resource tags for each S3 resource. </p> <p>To use this operation, you must have the permission to perform the <code>s3:TagResource</code> action. For more information about the required Storage Lens Groups permissions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_iam_permissions.html#storage_lens_groups_permissions\">Setting account permissions to use S3 Storage Lens groups</a>.</p> <p>For information about S3 Tagging errors, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#S3TaggingErrorCodeList\">List of Amazon S3 Tagging error codes</a>.</p> <note> <p>This operation is only supported for <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-lens-groups.html\">S3 Storage Lens groups</a>.</p> </note>",
-    "UntagResource": "<p> This operation removes the specified Amazon Web Services resource tags from an S3 resource. </p> <p>To use this operation, you must have the permission to perform the <code>s3:UntagResource</code> action. For more information about the required Storage Lens Groups permissions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_iam_permissions.html#storage_lens_groups_permissions\">Setting account permissions to use S3 Storage Lens groups</a>.</p> <p>For information about S3 Tagging errors, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#S3TaggingErrorCodeList\">List of Amazon S3 Tagging error codes</a>.</p> <note> <p>This operation is only supported for <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-lens-groups.html\">S3 Storage Lens groups</a>.</p> </note>",
+    "TagResource": "<p> Creates a new Amazon Web Services resource tag or updates an existing resource tag. Each tag is a label consisting of a user-defined key and value. Tags can help you manage, identify, organize, search for, and filter resources. You can add up to 50 Amazon Web Services resource tags for each S3 resource. </p> <note> <p>This operation is only supported for <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-lens-groups.html\">S3 Storage Lens groups</a> and for <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-grants-tagging.html\">S3 Access Grants</a>. The tagged resource can be an S3 Storage Lens group or S3 Access Grants instance, registered location, or grant. </p> </note> <dl> <dt>Permissions</dt> <dd> <p>You must have the <code>s3:TagResource</code> permission to use this operation. </p> </dd> </dl> <p>For more information about the required Storage Lens Groups permissions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_iam_permissions.html#storage_lens_groups_permissions\">Setting account permissions to use S3 Storage Lens groups</a>.</p> <p>For information about S3 Tagging errors, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#S3TaggingErrorCodeList\">List of Amazon S3 Tagging error codes</a>.</p>",
+    "UntagResource": "<p> This operation removes the specified Amazon Web Services resource tags from an S3 resource. Each tag is a label consisting of a user-defined key and value. Tags can help you manage, identify, organize, search for, and filter resources. </p> <note> <p>This operation is only supported for <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-lens-groups.html\">S3 Storage Lens groups</a> and for <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-grants-tagging.html\">S3 Access Grants</a>. The tagged resource can be an S3 Storage Lens group or S3 Access Grants instance, registered location, or grant. </p> </note> <dl> <dt>Permissions</dt> <dd> <p>You must have the <code>s3:UntagResource</code> permission to use this operation. </p> </dd> </dl> <p>For more information about the required Storage Lens Groups permissions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_iam_permissions.html#storage_lens_groups_permissions\">Setting account permissions to use S3 Storage Lens groups</a>.</p> <p>For information about S3 Tagging errors, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#S3TaggingErrorCodeList\">List of Amazon S3 Tagging error codes</a>.</p>",
+    "UpdateAccessGrantsLocation": "<p>Updates the IAM role of a registered location in your S3 Access Grants instance.</p> <dl> <dt>Permissions</dt> <dd> <p>You must have the <code>s3:UpdateAccessGrantsLocation</code> permission to use this operation. </p> </dd> <dt>Additional Permissions</dt> <dd> <p>You must also have the following permission: <code>iam:PassRole</code> </p> </dd> </dl>",
     "UpdateJobPriority": "<p>Updates an existing S3 Batch Operations job's priority. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html\">S3 Batch Operations</a> in the <i>Amazon S3 User Guide</i>.</p> <p/> <p>Related actions include:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateJob.html\">CreateJob</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListJobs.html\">ListJobs</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeJob.html\">DescribeJob</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_UpdateJobStatus.html\">UpdateJobStatus</a> </p> </li> </ul>",
     "UpdateJobStatus": "<p>Updates the status for the specified job. Use this action to confirm that you want to run a job or to cancel an existing job. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html\">S3 Batch Operations</a> in the <i>Amazon S3 User Guide</i>.</p> <p/> <p>Related actions include:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateJob.html\">CreateJob</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListJobs.html\">ListJobs</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeJob.html\">DescribeJob</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_UpdateJobStatus.html\">UpdateJobStatus</a> </p> </li> </ul>",
     "UpdateStorageLensGroup": "<p> Updates the existing Storage Lens group.</p> <p>To use this operation, you must have the permission to perform the <code>s3:UpdateStorageLensGroup</code> action. For more information about the required Storage Lens Groups permissions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_iam_permissions.html#storage_lens_groups_permissions\">Setting account permissions to use S3 Storage Lens groups</a>.</p> <p>For information about Storage Lens groups errors, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#S3LensErrorCodeList\">List of Amazon S3 Storage Lens error codes</a>.</p>"
@@ -86,6 +106,100 @@
       "base": "<p>A container for information about access control for replicas.</p> <note> <p>This is not supported by Amazon S3 on Outposts buckets.</p> </note>",
       "refs": {
         "Destination$AccessControlTranslation": "<p>Specify this property only in a cross-account scenario (where the source and destination bucket owners are not the same), and you want to change replica ownership to the Amazon Web Services account that owns the destination bucket. If this property is not specified in the replication configuration, the replicas are owned by same Amazon Web Services account that owns the source object.</p> <note> <p>This is not supported by Amazon S3 on Outposts buckets.</p> </note>"
+      }
+    },
+    "AccessGrantArn": {
+      "base": null,
+      "refs": {
+        "CreateAccessGrantResult$AccessGrantArn": "<p>The Amazon Resource Name (ARN) of the access grant. </p>",
+        "GetAccessGrantResult$AccessGrantArn": "<p>The Amazon Resource Name (ARN) of the access grant. </p>",
+        "ListAccessGrantEntry$AccessGrantArn": "<p>The Amazon Resource Name (ARN) of the access grant. </p>"
+      }
+    },
+    "AccessGrantId": {
+      "base": null,
+      "refs": {
+        "CreateAccessGrantResult$AccessGrantId": "<p>The ID of the access grant. S3 Access Grants auto-generates this ID when you create the access grant.</p>",
+        "DeleteAccessGrantRequest$AccessGrantId": "<p>The ID of the access grant. S3 Access Grants auto-generates this ID when you create the access grant.</p>",
+        "GetAccessGrantRequest$AccessGrantId": "<p>The ID of the access grant. S3 Access Grants auto-generates this ID when you create the access grant.</p>",
+        "GetAccessGrantResult$AccessGrantId": "<p>The ID of the access grant. S3 Access Grants auto-generates this ID when you create the access grant.</p>",
+        "ListAccessGrantEntry$AccessGrantId": "<p>The ID of the access grant. S3 Access Grants auto-generates this ID when you create the access grant.</p>"
+      }
+    },
+    "AccessGrantsInstanceArn": {
+      "base": null,
+      "refs": {
+        "CreateAccessGrantsInstanceResult$AccessGrantsInstanceArn": "<p>The Amazon Resource Name (ARN) of the S3 Access Grants instance. </p>",
+        "GetAccessGrantsInstanceForPrefixResult$AccessGrantsInstanceArn": "<p>The Amazon Resource Name (ARN) of the S3 Access Grants instance. </p>",
+        "GetAccessGrantsInstanceResult$AccessGrantsInstanceArn": "<p>The Amazon Resource Name (ARN) of the S3 Access Grants instance. </p>",
+        "ListAccessGrantsInstanceEntry$AccessGrantsInstanceArn": "<p>The Amazon Resource Name (ARN) of the S3 Access Grants instance. </p>"
+      }
+    },
+    "AccessGrantsInstanceId": {
+      "base": null,
+      "refs": {
+        "CreateAccessGrantsInstanceResult$AccessGrantsInstanceId": "<p>The ID of the S3 Access Grants instance. The ID is <code>default</code>. You can have one S3 Access Grants instance per Region per account. </p>",
+        "GetAccessGrantsInstanceForPrefixResult$AccessGrantsInstanceId": "<p>The ID of the S3 Access Grants instance. The ID is <code>default</code>. You can have one S3 Access Grants instance per Region per account. </p>",
+        "GetAccessGrantsInstanceResult$AccessGrantsInstanceId": "<p>The ID of the S3 Access Grants instance. The ID is <code>default</code>. You can have one S3 Access Grants instance per Region per account. </p>",
+        "ListAccessGrantsInstanceEntry$AccessGrantsInstanceId": "<p>The ID of the S3 Access Grants instance. The ID is <code>default</code>. You can have one S3 Access Grants instance per Region per account. </p>"
+      }
+    },
+    "AccessGrantsInstancesList": {
+      "base": null,
+      "refs": {
+        "ListAccessGrantsInstancesResult$AccessGrantsInstancesList": "<p>A container for a list of S3 Access Grants instances.</p>"
+      }
+    },
+    "AccessGrantsList": {
+      "base": null,
+      "refs": {
+        "ListAccessGrantsResult$AccessGrantsList": "<p>A container for a list of grants in an S3 Access Grants instance.</p>"
+      }
+    },
+    "AccessGrantsLocationArn": {
+      "base": null,
+      "refs": {
+        "CreateAccessGrantsLocationResult$AccessGrantsLocationArn": "<p>The Amazon Resource Name (ARN) of the location you are registering.</p>",
+        "GetAccessGrantsLocationResult$AccessGrantsLocationArn": "<p>The Amazon Resource Name (ARN) of the registered location. </p>",
+        "ListAccessGrantsLocationsEntry$AccessGrantsLocationArn": "<p>The Amazon Resource Name (ARN) of the registered location. </p>",
+        "UpdateAccessGrantsLocationResult$AccessGrantsLocationArn": "<p>The Amazon Resource Name (ARN) of the registered location that you are updating. </p>"
+      }
+    },
+    "AccessGrantsLocationConfiguration": {
+      "base": "<p>The configuration options of the S3 Access Grants location. It contains the <code>S3SubPrefix</code> field. The grant scope, the data to which you are granting access, is the result of appending the <code>Subprefix</code> field to the scope of the registered location.</p>",
+      "refs": {
+        "CreateAccessGrantRequest$AccessGrantsLocationConfiguration": "<p>The configuration options of the grant location. The grant location is the S3 path to the data to which you are granting access. It contains the <code>S3SubPrefix</code> field. The grant scope is the result of appending the subprefix to the location scope of the registered location.</p>",
+        "CreateAccessGrantResult$AccessGrantsLocationConfiguration": "<p>The configuration options of the grant location. The grant location is the S3 path to the data to which you are granting access. </p>",
+        "GetAccessGrantResult$AccessGrantsLocationConfiguration": "<p>The configuration options of the grant location. The grant location is the S3 path to the data to which you are granting access. </p>",
+        "ListAccessGrantEntry$AccessGrantsLocationConfiguration": "<p>The configuration options of the grant location. The grant location is the S3 path to the data to which you are granting access. </p>"
+      }
+    },
+    "AccessGrantsLocationId": {
+      "base": null,
+      "refs": {
+        "CreateAccessGrantRequest$AccessGrantsLocationId": "<p>The ID of the registered location to which you are granting access. S3 Access Grants assigns this ID when you register the location. S3 Access Grants assigns the ID <code>default</code> to the default location <code>s3://</code> and assigns an auto-generated ID to other locations that you register. </p> <p>If you are passing the <code>default</code> location, you cannot create an access grant for the entire default location. You must also specify a bucket or a bucket and prefix in the <code>Subprefix</code> field. </p>",
+        "CreateAccessGrantResult$AccessGrantsLocationId": "<p>The ID of the registered location to which you are granting access. S3 Access Grants assigns this ID when you register the location. S3 Access Grants assigns the ID <code>default</code> to the default location <code>s3://</code> and assigns an auto-generated ID to other locations that you register. </p>",
+        "CreateAccessGrantsLocationResult$AccessGrantsLocationId": "<p>The ID of the registered location to which you are granting access. S3 Access Grants assigns this ID when you register the location. S3 Access Grants assigns the ID <code>default</code> to the default location <code>s3://</code> and assigns an auto-generated ID to other locations that you register. </p>",
+        "DeleteAccessGrantsLocationRequest$AccessGrantsLocationId": "<p>The ID of the registered location that you are deregistering from your S3 Access Grants instance. S3 Access Grants assigned this ID when you registered the location. S3 Access Grants assigns the ID <code>default</code> to the default location <code>s3://</code> and assigns an auto-generated ID to other locations that you register. </p>",
+        "GetAccessGrantResult$AccessGrantsLocationId": "<p>The ID of the registered location to which you are granting access. S3 Access Grants assigns this ID when you register the location. S3 Access Grants assigns the ID <code>default</code> to the default location <code>s3://</code> and assigns an auto-generated ID to other locations that you register. </p>",
+        "GetAccessGrantsLocationRequest$AccessGrantsLocationId": "<p>The ID of the registered location that you are retrieving. S3 Access Grants assigns this ID when you register the location. S3 Access Grants assigns the ID <code>default</code> to the default location <code>s3://</code> and assigns an auto-generated ID to other locations that you register. </p>",
+        "GetAccessGrantsLocationResult$AccessGrantsLocationId": "<p>The ID of the registered location to which you are granting access. S3 Access Grants assigns this ID when you register the location. S3 Access Grants assigns the ID <code>default</code> to the default location <code>s3://</code> and assigns an auto-generated ID to other locations that you register. </p>",
+        "ListAccessGrantEntry$AccessGrantsLocationId": "<p>The ID of the registered location to which you are granting access. S3 Access Grants assigns this ID when you register the location. S3 Access Grants assigns the ID <code>default</code> to the default location <code>s3://</code> and assigns an auto-generated ID to other locations that you register. </p>",
+        "ListAccessGrantsLocationsEntry$AccessGrantsLocationId": "<p>The ID of the registered location to which you are granting access. S3 Access Grants assigns this ID when you register the location. S3 Access Grants assigns the ID <code>default</code> to the default location <code>s3://</code> and assigns an auto-generated ID to other locations that you register. </p>",
+        "UpdateAccessGrantsLocationRequest$AccessGrantsLocationId": "<p>The ID of the registered location that you are updating. S3 Access Grants assigns this ID when you register the location. S3 Access Grants assigns the ID <code>default</code> to the default location <code>s3://</code> and assigns an auto-generated ID to other locations that you register. </p> <p>The ID of the registered location to which you are granting access. S3 Access Grants assigned this ID when you registered the location. S3 Access Grants assigns the ID <code>default</code> to the default location <code>s3://</code> and assigns an auto-generated ID to other locations that you register. </p> <p>If you are passing the <code>default</code> location, you cannot create an access grant for the entire default location. You must also specify a bucket or a bucket and prefix in the <code>Subprefix</code> field. </p>",
+        "UpdateAccessGrantsLocationResult$AccessGrantsLocationId": "<p>The ID of the registered location to which you are granting access. S3 Access Grants assigned this ID when you registered the location. S3 Access Grants assigns the ID <code>default</code> to the default location <code>s3://</code> and assigns an auto-generated ID to other locations that you register. </p>"
+      }
+    },
+    "AccessGrantsLocationsList": {
+      "base": null,
+      "refs": {
+        "ListAccessGrantsLocationsResult$AccessGrantsLocationsList": "<p>A container for a list of registered locations in an S3 Access Grants instance.</p>"
+      }
+    },
+    "AccessKeyId": {
+      "base": null,
+      "refs": {
+        "Credentials$AccessKeyId": "<p>The unique access key ID of the Amazon Web Services STS temporary credential that S3 Access Grants vends to grantees and client applications. </p>"
       }
     },
     "AccessPoint": {
@@ -118,12 +232,20 @@
       "base": null,
       "refs": {
         "AccessPoint$BucketAccountId": "<p>The Amazon Web Services account ID associated with the S3 bucket associated with this access point.</p>",
+        "AssociateAccessGrantsIdentityCenterRequest$AccountId": "<p>The ID of the Amazon Web Services account that is making this request.</p>",
+        "CreateAccessGrantRequest$AccountId": "<p>The ID of the Amazon Web Services account that is making this request.</p>",
+        "CreateAccessGrantsInstanceRequest$AccountId": "<p>The ID of the Amazon Web Services account that is making this request.</p>",
+        "CreateAccessGrantsLocationRequest$AccountId": "<p>The ID of the Amazon Web Services account that is making this request.</p>",
         "CreateAccessPointForObjectLambdaRequest$AccountId": "<p>The Amazon Web Services account ID for owner of the specified Object Lambda Access Point.</p>",
         "CreateAccessPointRequest$AccountId": "<p>The Amazon Web Services account ID for the account that owns the specified access point.</p>",
         "CreateAccessPointRequest$BucketAccountId": "<p>The Amazon Web Services account ID associated with the S3 bucket associated with this access point.</p>",
         "CreateJobRequest$AccountId": "<p>The Amazon Web Services account ID that creates the job.</p>",
         "CreateMultiRegionAccessPointRequest$AccountId": "<p>The Amazon Web Services account ID for the owner of the Multi-Region Access Point. The owner of the Multi-Region Access Point also must own the underlying buckets.</p>",
         "CreateStorageLensGroupRequest$AccountId": "<p> The Amazon Web Services account ID that the Storage Lens group is created from and associated with. </p>",
+        "DeleteAccessGrantRequest$AccountId": "<p>The ID of the Amazon Web Services account that is making this request.</p>",
+        "DeleteAccessGrantsInstanceRequest$AccountId": "<p>The ID of the Amazon Web Services account that is making this request.</p>",
+        "DeleteAccessGrantsInstanceResourcePolicyRequest$AccountId": "<p>The ID of the Amazon Web Services account that is making this request.</p>",
+        "DeleteAccessGrantsLocationRequest$AccountId": "<p>The ID of the Amazon Web Services account that is making this request.</p>",
         "DeleteAccessPointForObjectLambdaRequest$AccountId": "<p>The account ID for the account that owns the specified Object Lambda Access Point.</p>",
         "DeleteAccessPointPolicyForObjectLambdaRequest$AccountId": "<p>The account ID for the account that owns the specified Object Lambda Access Point.</p>",
         "DeleteAccessPointPolicyRequest$AccountId": "<p>The account ID for the account that owns the specified access point.</p>",
@@ -142,6 +264,12 @@
         "DescribeJobRequest$AccountId": "<p>The Amazon Web Services account ID associated with the S3 Batch Operations job.</p>",
         "DescribeMultiRegionAccessPointOperationRequest$AccountId": "<p>The Amazon Web Services account ID for the owner of the Multi-Region Access Point.</p>",
         "Destination$Account": "<p>The destination bucket owner's account ID. </p>",
+        "DissociateAccessGrantsIdentityCenterRequest$AccountId": "<p>The ID of the Amazon Web Services account that is making this request.</p>",
+        "GetAccessGrantRequest$AccountId": "<p>The ID of the Amazon Web Services account that is making this request.</p>",
+        "GetAccessGrantsInstanceForPrefixRequest$AccountId": "<p>The ID of the Amazon Web Services account that is making this request.</p>",
+        "GetAccessGrantsInstanceRequest$AccountId": "<p>The ID of the Amazon Web Services account that is making this request.</p>",
+        "GetAccessGrantsInstanceResourcePolicyRequest$AccountId": "<p>The ID of the Amazon Web Services account that is making this request.</p>",
+        "GetAccessGrantsLocationRequest$AccountId": "<p>The ID of the Amazon Web Services account that is making this request.</p>",
         "GetAccessPointConfigurationForObjectLambdaRequest$AccountId": "<p>The account ID for the account that owns the specified Object Lambda Access Point.</p>",
         "GetAccessPointForObjectLambdaRequest$AccountId": "<p>The account ID for the account that owns the specified Object Lambda Access Point.</p>",
         "GetAccessPointPolicyForObjectLambdaRequest$AccountId": "<p>The account ID for the account that owns the specified Object Lambda Access Point.</p>",
@@ -156,6 +284,7 @@
         "GetBucketRequest$AccountId": "<p>The Amazon Web Services account ID of the Outposts bucket.</p>",
         "GetBucketTaggingRequest$AccountId": "<p>The Amazon Web Services account ID of the Outposts bucket.</p>",
         "GetBucketVersioningRequest$AccountId": "<p>The Amazon Web Services account ID of the S3 on Outposts bucket.</p>",
+        "GetDataAccessRequest$AccountId": "<p>The ID of the Amazon Web Services account that is making this request.</p>",
         "GetJobTaggingRequest$AccountId": "<p>The Amazon Web Services account ID associated with the S3 Batch Operations job.</p>",
         "GetMultiRegionAccessPointPolicyRequest$AccountId": "<p>The Amazon Web Services account ID for the owner of the Multi-Region Access Point.</p>",
         "GetMultiRegionAccessPointPolicyStatusRequest$AccountId": "<p>The Amazon Web Services account ID for the owner of the Multi-Region Access Point.</p>",
@@ -165,6 +294,9 @@
         "GetStorageLensConfigurationRequest$AccountId": "<p>The account ID of the requester.</p>",
         "GetStorageLensConfigurationTaggingRequest$AccountId": "<p>The account ID of the requester.</p>",
         "GetStorageLensGroupRequest$AccountId": "<p> The Amazon Web Services account ID associated with the Storage Lens group that you're trying to retrieve the details for. </p>",
+        "ListAccessGrantsInstancesRequest$AccountId": "<p>The ID of the Amazon Web Services account that is making this request.</p>",
+        "ListAccessGrantsLocationsRequest$AccountId": "<p>The ID of the Amazon Web Services account that is making this request.</p>",
+        "ListAccessGrantsRequest$AccountId": "<p>The ID of the Amazon Web Services account that is making this request.</p>",
         "ListAccessPointsForObjectLambdaRequest$AccountId": "<p>The account ID for the account that owns the specified Object Lambda Access Point.</p>",
         "ListAccessPointsRequest$AccountId": "<p>The Amazon Web Services account ID for the account that owns the specified access points.</p>",
         "ListJobsRequest$AccountId": "<p>The Amazon Web Services account ID associated with the S3 Batch Operations job.</p>",
@@ -173,6 +305,7 @@
         "ListStorageLensConfigurationsRequest$AccountId": "<p>The account ID of the requester.</p>",
         "ListStorageLensGroupsRequest$AccountId": "<p> The Amazon Web Services account ID that owns the Storage Lens groups. </p>",
         "ListTagsForResourceRequest$AccountId": "<p> The Amazon Web Services account ID of the resource owner. </p>",
+        "PutAccessGrantsInstanceResourcePolicyRequest$AccountId": "<p>The ID of the Amazon Web Services account that is making this request.</p>",
         "PutAccessPointConfigurationForObjectLambdaRequest$AccountId": "<p>The account ID for the account that owns the specified Object Lambda Access Point.</p>",
         "PutAccessPointPolicyForObjectLambdaRequest$AccountId": "<p>The account ID for the account that owns the specified Object Lambda Access Point.</p>",
         "PutAccessPointPolicyRequest$AccountId": "<p>The Amazon Web Services account ID for owner of the bucket associated with the specified access point.</p>",
@@ -192,8 +325,9 @@
         "S3JobManifestGenerator$ExpectedBucketOwner": "<p>The Amazon Web Services account ID that owns the bucket the generated manifest is written to. If provided the generated manifest bucket's owner Amazon Web Services account ID must match this value, else the job fails.</p>",
         "S3ManifestOutputLocation$ExpectedManifestBucketOwner": "<p>The Account ID that owns the bucket the generated manifest is written to.</p>",
         "SubmitMultiRegionAccessPointRoutesRequest$AccountId": "<p>The Amazon Web Services account ID for the owner of the Multi-Region Access Point.</p>",
-        "TagResourceRequest$AccountId": "<p> The Amazon Web Services account ID that created the S3 resource that you're trying to add tags to. </p>",
+        "TagResourceRequest$AccountId": "<p> The Amazon Web Services account ID that created the S3 resource that you're trying to add tags to or the requester's account ID. </p>",
         "UntagResourceRequest$AccountId": "<p> The Amazon Web Services account ID that owns the resource that you're trying to remove the tags from. </p>",
+        "UpdateAccessGrantsLocationRequest$AccountId": "<p>The ID of the Amazon Web Services account that is making this request.</p>",
         "UpdateJobPriorityRequest$AccountId": "<p>The Amazon Web Services account ID associated with the S3 Batch Operations job.</p>",
         "UpdateJobStatusRequest$AccountId": "<p>The Amazon Web Services account ID associated with the S3 Batch Operations job.</p>",
         "UpdateStorageLensGroupRequest$AccountId": "<p> The Amazon Web Services account ID of the Storage Lens group owner. </p>"
@@ -232,6 +366,11 @@
         "AccessPoint$Alias": "<p>The name or alias of the access point.</p>",
         "CreateAccessPointResult$Alias": "<p>The name or alias of the access point.</p>",
         "GetAccessPointResult$Alias": "<p>The name or alias of the access point.</p>"
+      }
+    },
+    "AssociateAccessGrantsIdentityCenterRequest": {
+      "base": null,
+      "refs": {
       }
     },
     "AsyncCreationTimestamp": {
@@ -438,10 +577,46 @@
     "ContinuationToken": {
       "base": null,
       "refs": {
+        "ListAccessGrantsInstancesRequest$NextToken": "<p>A pagination token to request the next page of results. Pass this value into a subsequent <code>List Access Grants Instances</code> request in order to retrieve the next page of results.</p>",
+        "ListAccessGrantsInstancesResult$NextToken": "<p>A pagination token to request the next page of results. Pass this value into a subsequent <code>List Access Grants Instances</code> request in order to retrieve the next page of results.</p>",
+        "ListAccessGrantsLocationsRequest$NextToken": "<p>A pagination token to request the next page of results. Pass this value into a subsequent <code>List Access Grants Locations</code> request in order to retrieve the next page of results.</p>",
+        "ListAccessGrantsLocationsResult$NextToken": "<p>A pagination token to request the next page of results. Pass this value into a subsequent <code>List Access Grants Locations</code> request in order to retrieve the next page of results.</p>",
+        "ListAccessGrantsRequest$NextToken": "<p>A pagination token to request the next page of results. Pass this value into a subsequent <code>List Access Grants</code> request in order to retrieve the next page of results.</p>",
+        "ListAccessGrantsResult$NextToken": "<p>A pagination token to request the next page of results. Pass this value into a subsequent <code>List Access Grants</code> request in order to retrieve the next page of results.</p>",
         "ListStorageLensConfigurationsRequest$NextToken": "<p>A pagination token to request the next page of results.</p>",
         "ListStorageLensConfigurationsResult$NextToken": "<p>If the request produced more than the maximum number of S3 Storage Lens configuration results, you can pass this value into a subsequent request to retrieve the next page of results.</p>",
         "ListStorageLensGroupsRequest$NextToken": "<p>The token for the next set of results, or <code>null</code> if there are no more results. </p>",
         "ListStorageLensGroupsResult$NextToken": "<p> If <code>NextToken</code> is returned, there are more Storage Lens groups results available. The value of <code>NextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged. Each pagination token expires after 24 hours. </p>"
+      }
+    },
+    "CreateAccessGrantRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateAccessGrantResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateAccessGrantsInstanceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateAccessGrantsInstanceResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateAccessGrantsLocationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateAccessGrantsLocationResult": {
+      "base": null,
+      "refs": {
       }
     },
     "CreateAccessPointForObjectLambdaRequest": {
@@ -524,7 +699,25 @@
     "CreationTimestamp": {
       "base": null,
       "refs": {
-        "MultiRegionAccessPointReport$CreatedAt": "<p>When the Multi-Region Access Point create request was received.</p>"
+        "CreateAccessGrantResult$CreatedAt": "<p>The date and time when you created the access grant. </p>",
+        "CreateAccessGrantsInstanceResult$CreatedAt": "<p>The date and time when you created the S3 Access Grants instance. </p>",
+        "CreateAccessGrantsLocationResult$CreatedAt": "<p>The date and time when you registered the location. </p>",
+        "GetAccessGrantResult$CreatedAt": "<p>The date and time when you created the access grant. </p>",
+        "GetAccessGrantsInstanceResourcePolicyResult$CreatedAt": "<p>The date and time when you created the S3 Access Grants instance resource policy. </p>",
+        "GetAccessGrantsInstanceResult$CreatedAt": "<p>The date and time when you created the S3 Access Grants instance. </p>",
+        "GetAccessGrantsLocationResult$CreatedAt": "<p>The date and time when you registered the location. </p>",
+        "ListAccessGrantEntry$CreatedAt": "<p>The date and time when you created the S3 Access Grants instance. </p>",
+        "ListAccessGrantsInstanceEntry$CreatedAt": "<p>The date and time when you created the S3 Access Grants instance. </p>",
+        "ListAccessGrantsLocationsEntry$CreatedAt": "<p>The date and time when you registered the location. </p>",
+        "MultiRegionAccessPointReport$CreatedAt": "<p>When the Multi-Region Access Point create request was received.</p>",
+        "PutAccessGrantsInstanceResourcePolicyResult$CreatedAt": "<p>The date and time when you created the S3 Access Grants instance resource policy. </p>",
+        "UpdateAccessGrantsLocationResult$CreatedAt": "<p>The date and time when you registered the location. </p>"
+      }
+    },
+    "Credentials": {
+      "base": "<p>The Amazon Web Services Security Token Service temporary credential that S3 Access Grants vends to grantees and client applications. </p>",
+      "refs": {
+        "GetDataAccessResult$Credentials": "<p>The temporary credential token that S3 Access Grants vends.</p>"
       }
     },
     "Date": {
@@ -547,6 +740,26 @@
       "base": null,
       "refs": {
         "AbortIncompleteMultipartUpload$DaysAfterInitiation": "<p>Specifies the number of days after which Amazon S3 aborts an incomplete multipart upload to the Outposts bucket.</p>"
+      }
+    },
+    "DeleteAccessGrantRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteAccessGrantsInstanceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteAccessGrantsInstanceResourcePolicyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteAccessGrantsLocationRequest": {
+      "base": null,
+      "refs": {
       }
     },
     "DeleteAccessPointForObjectLambdaRequest": {
@@ -691,6 +904,17 @@
         "BucketLevel$DetailedStatusCodesMetrics": "<p>A container for bucket-level detailed status code metrics for S3 Storage Lens.</p>"
       }
     },
+    "DissociateAccessGrantsIdentityCenterRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DurationSeconds": {
+      "base": null,
+      "refs": {
+        "GetDataAccessRequest$DurationSeconds": "<p>The session duration, in seconds, of the temporary access credential that S3 Access Grants vends to the grantee or client application. The default value is 1 hour, but the grantee can specify a range from 900 seconds (15 minutes) up to 43200 seconds (12 hours). If the grantee requests a value higher than this maximum, the operation fails. </p>"
+      }
+    },
     "EncryptionConfiguration": {
       "base": "<p>Specifies encryption-related information for an Amazon S3 bucket that is a destination for replicated objects.</p> <note> <p>This is not supported by Amazon S3 on Outposts buckets.</p> </note>",
       "refs": {
@@ -741,6 +965,12 @@
         "ExistingObjectReplication$Status": "<p>Specifies whether Amazon S3 replicates existing source bucket objects. </p>"
       }
     },
+    "Expiration": {
+      "base": null,
+      "refs": {
+        "Credentials$Expiration": "<p>The expiration date and time of the temporary credential that S3 Access Grants vends to grantees and client applications. </p>"
+      }
+    },
     "ExpirationStatus": {
       "base": null,
       "refs": {
@@ -777,6 +1007,56 @@
       "refs": {
         "S3GeneratedManifestDescriptor$Format": "<p>The format of the generated manifest.</p>",
         "S3ManifestOutputLocation$ManifestFormat": "<p>The format of the generated manifest.</p>"
+      }
+    },
+    "GetAccessGrantRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetAccessGrantResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetAccessGrantsInstanceForPrefixRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetAccessGrantsInstanceForPrefixResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetAccessGrantsInstanceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetAccessGrantsInstanceResourcePolicyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetAccessGrantsInstanceResourcePolicyResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetAccessGrantsInstanceResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetAccessGrantsLocationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetAccessGrantsLocationResult": {
+      "base": null,
+      "refs": {
       }
     },
     "GetAccessPointConfigurationForObjectLambdaRequest": {
@@ -909,6 +1189,16 @@
       "refs": {
       }
     },
+    "GetDataAccessRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetDataAccessResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetJobTaggingRequest": {
       "base": null,
       "refs": {
@@ -1029,11 +1319,40 @@
         "CreateBucketRequest$GrantWriteACP": "<p>Allows grantee to write the ACL for the applicable bucket.</p> <note> <p>This is not supported by Amazon S3 on Outposts buckets.</p> </note>"
       }
     },
+    "Grantee": {
+      "base": "<p>The user, group, or role to which you are granting access. You can grant access to an IAM user or role. If you have added your corporate directory to Amazon Web Services IAM Identity Center and associated your Identity Center instance with your S3 Access Grants instance, the grantee can also be a corporate directory user or group.</p>",
+      "refs": {
+        "CreateAccessGrantRequest$Grantee": "<p>The user, group, or role to which you are granting access. You can grant access to an IAM user or role. If you have added your corporate directory to Amazon Web Services IAM Identity Center and associated your Identity Center instance with your S3 Access Grants instance, the grantee can also be a corporate directory user or group.</p>",
+        "CreateAccessGrantResult$Grantee": "<p>The user, group, or role to which you are granting access. You can grant access to an IAM user or role. If you have added your corporate directory to Amazon Web Services IAM Identity Center and associated your Identity Center instance with your S3 Access Grants instance, the grantee can also be a corporate directory user or group.</p>",
+        "GetAccessGrantResult$Grantee": "<p>The user, group, or role to which you are granting access. You can grant access to an IAM user or role. If you have added a corporate directory to Amazon Web Services IAM Identity Center and associated this Identity Center instance with the S3 Access Grants instance, the grantee can also be a corporate directory user or group.</p>",
+        "ListAccessGrantEntry$Grantee": "<p>The user, group, or role to which you are granting access. You can grant access to an IAM user or role. If you have added your corporate directory to Amazon Web Services IAM Identity Center and associated your Identity Center instance with your S3 Access Grants instance, the grantee can also be a corporate directory user or group.</p>"
+      }
+    },
+    "GranteeIdentifier": {
+      "base": null,
+      "refs": {
+        "Grantee$GranteeIdentifier": "<p>The unique identifier of the <code>Grantee</code>. If the grantee type is <code>IAM</code>, the identifier is the IAM Amazon Resource Name (ARN) of the user or role. If the grantee type is a directory user or group, the identifier is 128-bit universally unique identifier (UUID) in the format <code>a1b2c3d4-5678-90ab-cdef-EXAMPLE11111</code>. You can obtain this UUID from your Amazon Web Services IAM Identity Center instance.</p>",
+        "ListAccessGrantsRequest$GranteeIdentifier": "<p>The unique identifer of the <code>Grantee</code>. If the grantee type is <code>IAM</code>, the identifier is the IAM Amazon Resource Name (ARN) of the user or role. If the grantee type is a directory user or group, the identifier is 128-bit universally unique identifier (UUID) in the format <code>a1b2c3d4-5678-90ab-cdef-EXAMPLE11111</code>. You can obtain this UUID from your Amazon Web Services IAM Identity Center instance.</p>"
+      }
+    },
+    "GranteeType": {
+      "base": null,
+      "refs": {
+        "Grantee$GranteeType": "<p>The type of the grantee to which access has been granted. It can be one of the following values:</p> <ul> <li> <p> <code>IAM</code> - An IAM user or role.</p> </li> <li> <p> <code>DIRECTORY_USER</code> - Your corporate directory user. You can use this option if you have added your corporate identity directory to IAM Identity Center and associated the IAM Identity Center instance with your S3 Access Grants instance.</p> </li> <li> <p> <code>DIRECTORY_GROUP</code> - Your corporate directory group. You can use this option if you have added your corporate identity directory to IAM Identity Center and associated the IAM Identity Center instance with your S3 Access Grants instance.</p> </li> </ul>",
+        "ListAccessGrantsRequest$GranteeType": "<p>The type of the grantee to which access has been granted. It can be one of the following values:</p> <ul> <li> <p> <code>IAM</code> - An IAM user or role.</p> </li> <li> <p> <code>DIRECTORY_USER</code> - Your corporate directory user. You can use this option if you have added your corporate identity directory to IAM Identity Center and associated the IAM Identity Center instance with your S3 Access Grants instance.</p> </li> <li> <p> <code>DIRECTORY_GROUP</code> - Your corporate directory group. You can use this option if you have added your corporate identity directory to IAM Identity Center and associated the IAM Identity Center instance with your S3 Access Grants instance.</p> </li> </ul>"
+      }
+    },
     "IAMRoleArn": {
       "base": null,
       "refs": {
+        "CreateAccessGrantsLocationRequest$IAMRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role for the registered location. S3 Access Grants assumes this role to manage access to the registered location. </p>",
+        "CreateAccessGrantsLocationResult$IAMRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role for the registered location. S3 Access Grants assumes this role to manage access to the registered location. </p>",
         "CreateJobRequest$RoleArn": "<p>The Amazon Resource Name (ARN) for the Identity and Access Management (IAM) role that Batch Operations will use to run this job's action on every object in the manifest.</p>",
-        "JobDescriptor$RoleArn": "<p>The Amazon Resource Name (ARN) for the Identity and Access Management (IAM) role assigned to run the tasks for this job.</p>"
+        "GetAccessGrantsLocationResult$IAMRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role for the registered location. S3 Access Grants assumes this role to manage access to the registered location. </p>",
+        "JobDescriptor$RoleArn": "<p>The Amazon Resource Name (ARN) for the Identity and Access Management (IAM) role assigned to run the tasks for this job.</p>",
+        "ListAccessGrantsLocationsEntry$IAMRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role for the registered location. S3 Access Grants assumes this role to manage access to the registered location. </p>",
+        "UpdateAccessGrantsLocationRequest$IAMRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role for the registered location. S3 Access Grants assumes this role to manage access to the registered location. </p>",
+        "UpdateAccessGrantsLocationResult$IAMRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role of the registered location. S3 Access Grants assumes this role to manage access to the registered location. </p>"
       }
     },
     "ID": {
@@ -1046,6 +1365,26 @@
     "IdempotencyException": {
       "base": "<p/>",
       "refs": {
+      }
+    },
+    "IdentityCenterApplicationArn": {
+      "base": null,
+      "refs": {
+        "CreateAccessGrantRequest$ApplicationArn": "<p>The Amazon Resource Name (ARN) of an Amazon Web Services IAM Identity Center application associated with your Identity Center instance. If an application ARN is included in the request to create an access grant, the grantee can only access the S3 data through this application. </p>",
+        "CreateAccessGrantResult$ApplicationArn": "<p>The Amazon Resource Name (ARN) of an Amazon Web Services IAM Identity Center application associated with your Identity Center instance. If the grant includes an application ARN, the grantee can only access the S3 data through this application. </p>",
+        "GetAccessGrantResult$ApplicationArn": "<p>The Amazon Resource Name (ARN) of an Amazon Web Services IAM Identity Center application associated with your Identity Center instance. If the grant includes an application ARN, the grantee can only access the S3 data through this application. </p>",
+        "ListAccessGrantEntry$ApplicationArn": "<p>The Amazon Resource Name (ARN) of an Amazon Web Services IAM Identity Center application associated with your Identity Center instance. If the grant includes an application ARN, the grantee can only access the S3 data through this application. </p>",
+        "ListAccessGrantsRequest$ApplicationArn": "<p>The Amazon Resource Name (ARN) of an Amazon Web Services IAM Identity Center application associated with your Identity Center instance. If the grant includes an application ARN, the grantee can only access the S3 data through this application. </p>"
+      }
+    },
+    "IdentityCenterArn": {
+      "base": null,
+      "refs": {
+        "AssociateAccessGrantsIdentityCenterRequest$IdentityCenterArn": "<p>The Amazon Resource Name (ARN) of the Amazon Web Services IAM Identity Center instance that you are associating with your S3 Access Grants instance. An IAM Identity Center instance is your corporate identity directory that you added to the IAM Identity Center. You can use the <a href=\"https://docs.aws.amazon.com/singlesignon/latest/APIReference/API_ListInstances.html\">ListInstances</a> API operation to retrieve a list of your Identity Center instances and their ARNs.</p>",
+        "CreateAccessGrantsInstanceRequest$IdentityCenterArn": "<p>If you would like to associate your S3 Access Grants instance with an Amazon Web Services IAM Identity Center instance, use this field to pass the Amazon Resource Name (ARN) of the Amazon Web Services IAM Identity Center instance that you are associating with your S3 Access Grants instance. An IAM Identity Center instance is your corporate identity directory that you added to the IAM Identity Center. You can use the <a href=\"https://docs.aws.amazon.com/singlesignon/latest/APIReference/API_ListInstances.html\">ListInstances</a> API operation to retrieve a list of your Identity Center instances and their ARNs. </p>",
+        "CreateAccessGrantsInstanceResult$IdentityCenterArn": "<p>If you associated your S3 Access Grants instance with an Amazon Web Services IAM Identity Center instance, this field returns the Amazon Resource Name (ARN) of the IAM Identity Center instance application; a subresource of the original Identity Center instance passed in the request. S3 Access Grants creates this Identity Center application for this specific S3 Access Grants instance. </p>",
+        "GetAccessGrantsInstanceResult$IdentityCenterArn": "<p>If you associated your S3 Access Grants instance with an Amazon Web Services IAM Identity Center instance, this field returns the Amazon Resource Name (ARN) of the Amazon Web Services IAM Identity Center instance application; a subresource of the original Identity Center instance. S3 Access Grants creates this Identity Center application for the specific S3 Access Grants instance. </p>",
+        "ListAccessGrantsInstanceEntry$IdentityCenterArn": "<p>If you associated your S3 Access Grants instance with an Amazon Web Services IAM Identity Center instance, this field returns the Amazon Resource Name (ARN) of the IAM Identity Center instance application; a subresource of the original Identity Center instance. S3 Access Grants creates this Identity Center application for the specific S3 Access Grants instance. </p>"
       }
     },
     "Include": {
@@ -1374,6 +1713,54 @@
         "LifecycleConfiguration$Rules": "<p>A lifecycle rule for individual objects in an Outposts bucket. </p>"
       }
     },
+    "ListAccessGrantEntry": {
+      "base": "<p>Information about the access grant.</p>",
+      "refs": {
+        "AccessGrantsList$member": null
+      }
+    },
+    "ListAccessGrantsInstanceEntry": {
+      "base": "<p>Information about the S3 Access Grants instance.</p>",
+      "refs": {
+        "AccessGrantsInstancesList$member": null
+      }
+    },
+    "ListAccessGrantsInstancesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListAccessGrantsInstancesResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListAccessGrantsLocationsEntry": {
+      "base": "<p>A container for information about the registered location.</p>",
+      "refs": {
+        "AccessGrantsLocationsList$member": null
+      }
+    },
+    "ListAccessGrantsLocationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListAccessGrantsLocationsResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListAccessGrantsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListAccessGrantsResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListAccessPointsForObjectLambdaRequest": {
       "base": null,
       "refs": {
@@ -1549,6 +1936,9 @@
     "MaxResults": {
       "base": null,
       "refs": {
+        "ListAccessGrantsInstancesRequest$MaxResults": "<p>The maximum number of access grants that you would like returned in the <code>List Access Grants</code> response. If the results include the pagination token <code>NextToken</code>, make another call using the <code>NextToken</code> to determine if there are more results.</p>",
+        "ListAccessGrantsLocationsRequest$MaxResults": "<p>The maximum number of access grants that you would like returned in the <code>List Access Grants</code> response. If the results include the pagination token <code>NextToken</code>, make another call using the <code>NextToken</code> to determine if there are more results.</p>",
+        "ListAccessGrantsRequest$MaxResults": "<p>The maximum number of access grants that you would like returned in the <code>List Access Grants</code> response. If the results include the pagination token <code>NextToken</code>, make another call using the <code>NextToken</code> to determine if there are more results.</p>",
         "ListAccessPointsForObjectLambdaRequest$MaxResults": "<p>The maximum number of access points that you want to include in the list. The response may contain fewer access points but will never contain more. If there are more than this number of access points, then the response will include a continuation token in the <code>NextToken</code> field that you can use to retrieve the next page of access points.</p>",
         "ListAccessPointsRequest$MaxResults": "<p>The maximum number of access points that you want to include in the list. If the specified bucket has more than this number of access points, then the response will include a continuation token in the <code>NextToken</code> field that you can use to retrieve the next page of access points.</p>",
         "ListJobsRequest$MaxResults": "<p>The maximum number of jobs that Amazon S3 will include in the <code>List Jobs</code> response. If there are more jobs than this number, the response will include a pagination token in the <code>NextToken</code> field to enable you to retrieve the next page of results.</p>",
@@ -1937,6 +2327,14 @@
         "JobListDescriptor$Operation": "<p>The operation that the specified job is configured to run on every object listed in the manifest.</p>"
       }
     },
+    "Organization": {
+      "base": null,
+      "refs": {
+        "GetAccessGrantsInstanceResourcePolicyResult$Organization": "<p>The Organization of the resource policy of the S3 Access Grants instance.</p>",
+        "PutAccessGrantsInstanceResourcePolicyRequest$Organization": "<p>The Organization of the resource policy of the S3 Access Grants instance.</p>",
+        "PutAccessGrantsInstanceResourcePolicyResult$Organization": "<p>The Organization of the resource policy of the S3 Access Grants instance.</p>"
+      }
+    },
     "OutputSchemaVersion": {
       "base": null,
       "refs": {
@@ -1949,6 +2347,17 @@
         "AccessControlTranslation$Owner": "<p>Specifies the replica ownership.</p>"
       }
     },
+    "Permission": {
+      "base": null,
+      "refs": {
+        "CreateAccessGrantRequest$Permission": "<p>The type of access that you are granting to your S3 data, which can be set to one of the following values:</p> <ul> <li> <p> <code>READ</code> – Grant read-only access to the S3 data.</p> </li> <li> <p> <code>WRITE</code> – Grant write-only access to the S3 data.</p> </li> <li> <p> <code>READWRITE</code> – Grant both read and write access to the S3 data.</p> </li> </ul>",
+        "CreateAccessGrantResult$Permission": "<p>The type of access that you are granting to your S3 data, which can be set to one of the following values:</p> <ul> <li> <p> <code>READ</code> – Grant read-only access to the S3 data.</p> </li> <li> <p> <code>WRITE</code> – Grant write-only access to the S3 data.</p> </li> <li> <p> <code>READWRITE</code> – Grant both read and write access to the S3 data.</p> </li> </ul>",
+        "GetAccessGrantResult$Permission": "<p>The type of permission that was granted in the access grant. Can be one of the following values:</p> <ul> <li> <p> <code>READ</code> – Grant read-only access to the S3 data.</p> </li> <li> <p> <code>WRITE</code> – Grant write-only access to the S3 data.</p> </li> <li> <p> <code>READWRITE</code> – Grant both read and write access to the S3 data.</p> </li> </ul>",
+        "GetDataAccessRequest$Permission": "<p>The type of permission granted to your S3 data, which can be set to one of the following values:</p> <ul> <li> <p> <code>READ</code> – Grant read-only access to the S3 data.</p> </li> <li> <p> <code>WRITE</code> – Grant write-only access to the S3 data.</p> </li> <li> <p> <code>READWRITE</code> – Grant both read and write access to the S3 data.</p> </li> </ul>",
+        "ListAccessGrantEntry$Permission": "<p>The type of access granted to your S3 data, which can be set to one of the following values:</p> <ul> <li> <p> <code>READ</code> – Grant read-only access to the S3 data.</p> </li> <li> <p> <code>WRITE</code> – Grant write-only access to the S3 data.</p> </li> <li> <p> <code>READWRITE</code> – Grant both read and write access to the S3 data.</p> </li> </ul>",
+        "ListAccessGrantsRequest$Permission": "<p>The type of permission granted to your S3 data, which can be set to one of the following values:</p> <ul> <li> <p> <code>READ</code> – Grant read-only access to the S3 data.</p> </li> <li> <p> <code>WRITE</code> – Grant write-only access to the S3 data.</p> </li> <li> <p> <code>READWRITE</code> – Grant both read and write access to the S3 data.</p> </li> </ul>"
+      }
+    },
     "Policy": {
       "base": null,
       "refs": {
@@ -1959,6 +2368,14 @@
         "PutAccessPointPolicyRequest$Policy": "<p>The policy that you want to apply to the specified access point. For more information about access point policies, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-points.html\">Managing data access with Amazon S3 access points</a> in the <i>Amazon S3 User Guide</i>.</p>",
         "PutBucketPolicyRequest$Policy": "<p>The bucket policy as a JSON document.</p>",
         "PutMultiRegionAccessPointPolicyInput$Policy": "<p>The policy details for the <code>PutMultiRegionAccessPoint</code> request.</p>"
+      }
+    },
+    "PolicyDocument": {
+      "base": null,
+      "refs": {
+        "GetAccessGrantsInstanceResourcePolicyResult$Policy": "<p>The resource policy of the S3 Access Grants instance.</p>",
+        "PutAccessGrantsInstanceResourcePolicyRequest$Policy": "<p>The resource policy of the S3 Access Grants instance that you are updating.</p>",
+        "PutAccessGrantsInstanceResourcePolicyResult$Policy": "<p>The updated resource policy of the S3 Access Grants instance.</p>"
       }
     },
     "PolicyStatus": {
@@ -1999,6 +2416,12 @@
         "ReplicationRule$Priority": "<p>The priority indicates which rule has precedence whenever two or more replication rules conflict. S3 on Outposts attempts to replicate objects according to all replication rules. However, if there are two or more rules with the same destination Outposts bucket, then objects will be replicated according to the rule with the highest priority. The higher the number, the higher the priority. </p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication-between-outposts.html\">Creating replication rules on Outposts</a> in the <i>Amazon S3 User Guide</i>.</p>"
       }
     },
+    "Privilege": {
+      "base": null,
+      "refs": {
+        "GetDataAccessRequest$Privilege": "<p>The scope of the temporary access credential that S3 Access Grants vends to the grantee or client application. </p> <ul> <li> <p> <code>Default</code> – The scope of the returned temporary access token is the scope of the grant that is closest to the target scope.</p> </li> <li> <p> <code>Minimal</code> – The scope of the returned temporary access token is the same as the requested target scope as long as the requested scope is the same as or a subset of the grant scope. </p> </li> </ul>"
+      }
+    },
     "ProposedMultiRegionAccessPointPolicy": {
       "base": "<p>The proposed access control policy for the Multi-Region Access Point.</p> <p>When you update the policy, the update is first listed as the proposed policy. After the update is finished and all Regions have been updated, the proposed policy is listed as the established policy. If both policies have the same version number, the proposed policy is the established policy.</p>",
       "refs": {
@@ -2022,6 +2445,16 @@
       "refs": {
         "GetBucketResult$PublicAccessBlockEnabled": "<p/>",
         "RegionalBucket$PublicAccessBlockEnabled": "<p/>"
+      }
+    },
+    "PutAccessGrantsInstanceResourcePolicyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutAccessGrantsInstanceResourcePolicyResult": {
+      "base": null,
+      "refs": {
       }
     },
     "PutAccessPointConfigurationForObjectLambdaRequest": {
@@ -2477,6 +2910,32 @@
         "S3Grant$Permission": "<p/>"
       }
     },
+    "S3Prefix": {
+      "base": null,
+      "refs": {
+        "AccessGrantsLocationConfiguration$S3SubPrefix": "<p>The <code>S3SubPrefix</code> is appended to the location scope creating the grant scope. Use this field to narrow the scope of the grant to a subset of the location scope. This field is required if the location scope is the default location <code>s3://</code> because you cannot create a grant for all of your S3 data in the Region and must narrow the scope. For example, if the location scope is the default location <code>s3://</code>, the <code>S3SubPrefx</code> can be a &lt;bucket-name&gt;/*, so the full grant scope path would be <code>s3://&lt;bucket-name&gt;/*</code>. Or the <code>S3SubPrefx</code> can be <code>&lt;bucket-name&gt;/&lt;prefix-name&gt;*</code>, so the full grant scope path would be or <code>s3://&lt;bucket-name&gt;/&lt;prefix-name&gt;*</code>.</p> <p>If the <code>S3SubPrefix</code> includes a prefix, append the wildcard character <code>*</code> after the prefix to indicate that you want to include all object key names in the bucket that start with that prefix. </p>",
+        "CreateAccessGrantResult$GrantScope": "<p>The S3 path of the data to which you are granting access. It is the result of appending the <code>Subprefix</code> to the location scope. </p>",
+        "CreateAccessGrantsLocationRequest$LocationScope": "<p>The S3 path to the location that you are registering. The location scope can be the default S3 location <code>s3://</code>, the S3 path to a bucket <code>s3://&lt;bucket&gt;</code>, or the S3 path to a bucket and prefix <code>s3://&lt;bucket&gt;/&lt;prefix&gt;</code>. A prefix in S3 is a string of characters at the beginning of an object key name used to organize the objects that you store in your S3 buckets. For example, object key names that start with the <code>engineering/</code> prefix or object key names that start with the <code>marketing/campaigns/</code> prefix.</p>",
+        "CreateAccessGrantsLocationResult$LocationScope": "<p>The S3 URI path to the location that you are registering. The location scope can be the default S3 location <code>s3://</code>, the S3 path to a bucket, or the S3 path to a bucket and prefix. A prefix in S3 is a string of characters at the beginning of an object key name used to organize the objects that you store in your S3 buckets. For example, object key names that start with the <code>engineering/</code> prefix or object key names that start with the <code>marketing/campaigns/</code> prefix.</p>",
+        "GetAccessGrantResult$GrantScope": "<p>The S3 path of the data to which you are granting access. It is the result of appending the <code>Subprefix</code> to the location scope.</p>",
+        "GetAccessGrantsInstanceForPrefixRequest$S3Prefix": "<p>The S3 prefix of the access grants that you would like to retrieve.</p>",
+        "GetAccessGrantsLocationResult$LocationScope": "<p>The S3 URI path to the registered location. The location scope can be the default S3 location <code>s3://</code>, the S3 path to a bucket, or the S3 path to a bucket and prefix. A prefix in S3 is a string of characters at the beginning of an object key name used to organize the objects that you store in your S3 buckets. For example, object key names that start with the <code>engineering/</code> prefix or object key names that start with the <code>marketing/campaigns/</code> prefix.</p>",
+        "GetDataAccessRequest$Target": "<p>The S3 URI path of the data to which you are requesting temporary access credentials. If the requesting account has an access grant for this data, S3 Access Grants vends temporary access credentials in the response.</p>",
+        "GetDataAccessResult$MatchedGrantTarget": "<p>The S3 URI path of the data to which you are being granted temporary access credentials. </p>",
+        "ListAccessGrantEntry$GrantScope": "<p>The S3 path of the data to which you are granting access. It is the result of appending the <code>Subprefix</code> to the location scope.</p>",
+        "ListAccessGrantsLocationsEntry$LocationScope": "<p>The S3 path to the location that you are registering. The location scope can be the default S3 location <code>s3://</code>, the S3 path to a bucket <code>s3://&lt;bucket&gt;</code>, or the S3 path to a bucket and prefix <code>s3://&lt;bucket&gt;/&lt;prefix&gt;</code>. A prefix in S3 is a string of characters at the beginning of an object key name used to organize the objects that you store in your S3 buckets. For example, object key names that start with the <code>engineering/</code> prefix or object key names that start with the <code>marketing/campaigns/</code> prefix.</p>",
+        "ListAccessGrantsLocationsRequest$LocationScope": "<p>The S3 path to the location that you are registering. The location scope can be the default S3 location <code>s3://</code>, the S3 path to a bucket <code>s3://&lt;bucket&gt;</code>, or the S3 path to a bucket and prefix <code>s3://&lt;bucket&gt;/&lt;prefix&gt;</code>. A prefix in S3 is a string of characters at the beginning of an object key name used to organize the objects that you store in your S3 buckets. For example, object key names that start with the <code>engineering/</code> prefix or object key names that start with the <code>marketing/campaigns/</code> prefix.</p>",
+        "ListAccessGrantsRequest$GrantScope": "<p>The S3 path of the data to which you are granting access. It is the result of appending the <code>Subprefix</code> to the location scope.</p>",
+        "UpdateAccessGrantsLocationResult$LocationScope": "<p>The S3 URI path of the location that you are updating. You cannot update the scope of the registered location. The location scope can be the default S3 location <code>s3://</code>, the S3 path to a bucket <code>s3://&lt;bucket&gt;</code>, or the S3 path to a bucket and prefix <code>s3://&lt;bucket&gt;/&lt;prefix&gt;</code>. </p>"
+      }
+    },
+    "S3PrefixType": {
+      "base": null,
+      "refs": {
+        "CreateAccessGrantRequest$S3PrefixType": "<p>The type of <code>S3SubPrefix</code>. The only possible value is <code>Object</code>. Pass this value if the access grant scope is an object. Do not pass this value if the access grant scope is a bucket or a bucket and a prefix. </p>",
+        "GetDataAccessRequest$TargetType": "<p>The type of <code>Target</code>. The only possible value is <code>Object</code>. Pass this value if the target data that you would like to access is a path to an object. Do not pass this value if the target data is a bucket or a bucket and a prefix. </p>"
+      }
+    },
     "S3RegionalBucketArn": {
       "base": null,
       "refs": {
@@ -2493,9 +2952,9 @@
     "S3ResourceArn": {
       "base": null,
       "refs": {
-        "ListTagsForResourceRequest$ResourceArn": "<p> The Amazon Resource Name (ARN) of the S3 resource that you want to list the tags for. </p>",
-        "TagResourceRequest$ResourceArn": "<p> The Amazon Resource Name (ARN) of the S3 resource that you're trying to add tags to. </p>",
-        "UntagResourceRequest$ResourceArn": "<p> The Amazon Resource Name (ARN) of the S3 resource that you want to remove the resource tags from. </p>"
+        "ListTagsForResourceRequest$ResourceArn": "<p> The Amazon Resource Name (ARN) of the S3 resource that you want to list the tags for. The tagged resource can be an S3 Storage Lens group or S3 Access Grants instance, registered location, or grant. </p>",
+        "TagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the S3 resource that you're trying to add tags to. The tagged resource can be an S3 Storage Lens group or S3 Access Grants instance, registered location, or grant.</p>",
+        "UntagResourceRequest$ResourceArn": "<p> The Amazon Resource Name (ARN) of the S3 resource that you're trying to remove the tags from. </p>"
       }
     },
     "S3Retention": {
@@ -2600,10 +3059,22 @@
         "GeneratedManifestEncryption$SSES3": "<p>Specifies the use of SSE-S3 to encrypt generated manifest objects.</p>"
       }
     },
+    "SecretAccessKey": {
+      "base": null,
+      "refs": {
+        "Credentials$SecretAccessKey": "<p>The secret access key of the Amazon Web Services STS temporary credential that S3 Access Grants vends to grantees and client applications. </p>"
+      }
+    },
     "SelectionCriteria": {
       "base": "<p/>",
       "refs": {
         "PrefixLevelStorageMetrics$SelectionCriteria": null
+      }
+    },
+    "SessionToken": {
+      "base": null,
+      "refs": {
+        "Credentials$SessionToken": "<p>The Amazon Web Services STS temporary credential that S3 Access Grants vends to grantees and client applications. </p>"
       }
     },
     "Setting": {
@@ -2814,7 +3285,7 @@
       }
     },
     "Tag": {
-      "base": "<p> An Amazon Web Services resource tag that's associated with your S3 resource. You can add tags to new objects when you upload them, or you can add object tags to existing objects. </p> <note> <p>This data type is only supported for <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-lens-groups.html\">S3 Storage Lens groups</a>.</p> </note>",
+      "base": "<p> An Amazon Web Services resource tag that's associated with your S3 resource. You can add tags to new objects when you upload them, or you can add object tags to existing objects. </p> <note> <p>This operation is only supported for <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-lens-groups.html\">S3 Storage Lens groups</a> and for <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-grants-tagging.html\">S3 Access Grants</a>. The tagged resource can be an S3 Storage Lens group or S3 Access Grants instance, registered location, or grant. </p> </note>",
       "refs": {
         "TagList$member": null
       }
@@ -2822,7 +3293,7 @@
     "TagKeyList": {
       "base": null,
       "refs": {
-        "UntagResourceRequest$TagKeys": "<p> The tag key pair of the S3 resource tag that you're trying to remove. </p>"
+        "UntagResourceRequest$TagKeys": "<p> The array of tag key-value pairs that you're trying to remove from of the S3 resource. </p>"
       }
     },
     "TagKeyString": {
@@ -2830,13 +3301,16 @@
       "refs": {
         "S3Tag$Key": "<p>Key of the tag</p>",
         "StorageLensTag$Key": "<p/>",
-        "Tag$Key": "<p> The tag key for your Amazon Web Services resource. A tag key can be up to 128 Unicode characters in length and is case-sensitive. System created tags that begin with <code>aws:</code> aren’t supported. </p>",
+        "Tag$Key": "<p>The key of the key-value pair of a tag added to your Amazon Web Services resource. A tag key can be up to 128 Unicode characters in length and is case-sensitive. System created tags that begin with <code>aws:</code> aren’t supported. </p>",
         "TagKeyList$member": null
       }
     },
     "TagList": {
       "base": null,
       "refs": {
+        "CreateAccessGrantRequest$Tags": "<p>The Amazon Web Services resource tags that you are adding to the access grant. Each tag is a label consisting of a user-defined key and value. Tags can help you manage, identify, organize, search for, and filter resources. </p>",
+        "CreateAccessGrantsInstanceRequest$Tags": "<p>The Amazon Web Services resource tags that you are adding to the S3 Access Grants instance. Each tag is a label consisting of a user-defined key and value. Tags can help you manage, identify, organize, search for, and filter resources. </p>",
+        "CreateAccessGrantsLocationRequest$Tags": "<p>The Amazon Web Services resource tags that you are adding to the S3 Access Grants location. Each tag is a label consisting of a user-defined key and value. Tags can help you manage, identify, organize, search for, and filter resources.</p>",
         "CreateStorageLensGroupRequest$Tags": "<p> The Amazon Web Services resource tags that you're adding to your Storage Lens group. This parameter is optional. </p>",
         "ListTagsForResourceResult$Tags": "<p> The Amazon Web Services resource tags that are associated with the resource. </p>",
         "TagResourceRequest$Tags": "<p> The Amazon Web Services resource tags that you want to add to the specified S3 resource. </p>"
@@ -2857,7 +3331,7 @@
       "refs": {
         "S3Tag$Value": "<p>Value of the tag</p>",
         "StorageLensTag$Value": "<p/>",
-        "Tag$Value": "<p> The tag value for your Amazon Web Services resource. A tag value can be up to 256 Unicode characters in length and is case-sensitive. </p>"
+        "Tag$Value": "<p> The value of the key-value pair of a tag added to your Amazon Web Services resource. A tag value can be up to 256 Unicode characters in length and is case-sensitive. </p>"
       }
     },
     "Tagging": {
@@ -2917,6 +3391,16 @@
       }
     },
     "UntagResourceResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateAccessGrantsLocationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateAccessGrantsLocationResult": {
       "base": null,
       "refs": {
       }

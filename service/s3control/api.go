@@ -15,6 +15,390 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restxml"
 )
 
+const opAssociateAccessGrantsIdentityCenter = "AssociateAccessGrantsIdentityCenter"
+
+// AssociateAccessGrantsIdentityCenterRequest generates a "aws/request.Request" representing the
+// client's request for the AssociateAccessGrantsIdentityCenter operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AssociateAccessGrantsIdentityCenter for more information on using the AssociateAccessGrantsIdentityCenter
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the AssociateAccessGrantsIdentityCenterRequest method.
+//	req, resp := client.AssociateAccessGrantsIdentityCenterRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/AssociateAccessGrantsIdentityCenter
+func (c *S3Control) AssociateAccessGrantsIdentityCenterRequest(input *AssociateAccessGrantsIdentityCenterInput) (req *request.Request, output *AssociateAccessGrantsIdentityCenterOutput) {
+	op := &request.Operation{
+		Name:       opAssociateAccessGrantsIdentityCenter,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v20180820/accessgrantsinstance/identitycenter",
+	}
+
+	if input == nil {
+		input = &AssociateAccessGrantsIdentityCenterInput{}
+	}
+
+	output = &AssociateAccessGrantsIdentityCenterOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	req.Handlers.Build.PushBackNamed(request.NamedHandler{
+		Name: "contentMd5Handler",
+		Fn:   checksum.AddBodyContentMD5Handler,
+	})
+	return
+}
+
+// AssociateAccessGrantsIdentityCenter API operation for AWS S3 Control.
+//
+// Associate your S3 Access Grants instance with an Amazon Web Services IAM
+// Identity Center instance. Use this action if you want to create access grants
+// for users or groups from your corporate identity directory. First, you must
+// add your corporate identity directory to Amazon Web Services IAM Identity
+// Center. Then, you can associate this IAM Identity Center instance with your
+// S3 Access Grants instance.
+//
+// # Permissions
+//
+// You must have the s3:AssociateAccessGrantsIdentityCenter permission to use
+// this operation.
+//
+// # Additional Permissions
+//
+// You must also have the following permissions: sso:CreateApplication, sso:PutApplicationGrant,
+// and sso:PutApplicationAuthenticationMethod.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation AssociateAccessGrantsIdentityCenter for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/AssociateAccessGrantsIdentityCenter
+func (c *S3Control) AssociateAccessGrantsIdentityCenter(input *AssociateAccessGrantsIdentityCenterInput) (*AssociateAccessGrantsIdentityCenterOutput, error) {
+	req, out := c.AssociateAccessGrantsIdentityCenterRequest(input)
+	return out, req.Send()
+}
+
+// AssociateAccessGrantsIdentityCenterWithContext is the same as AssociateAccessGrantsIdentityCenter with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AssociateAccessGrantsIdentityCenter for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) AssociateAccessGrantsIdentityCenterWithContext(ctx aws.Context, input *AssociateAccessGrantsIdentityCenterInput, opts ...request.Option) (*AssociateAccessGrantsIdentityCenterOutput, error) {
+	req, out := c.AssociateAccessGrantsIdentityCenterRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateAccessGrant = "CreateAccessGrant"
+
+// CreateAccessGrantRequest generates a "aws/request.Request" representing the
+// client's request for the CreateAccessGrant operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateAccessGrant for more information on using the CreateAccessGrant
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateAccessGrantRequest method.
+//	req, resp := client.CreateAccessGrantRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/CreateAccessGrant
+func (c *S3Control) CreateAccessGrantRequest(input *CreateAccessGrantInput) (req *request.Request, output *CreateAccessGrantOutput) {
+	op := &request.Operation{
+		Name:       opCreateAccessGrant,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v20180820/accessgrantsinstance/grant",
+	}
+
+	if input == nil {
+		input = &CreateAccessGrantInput{}
+	}
+
+	output = &CreateAccessGrantOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	req.Handlers.Build.PushBackNamed(request.NamedHandler{
+		Name: "contentMd5Handler",
+		Fn:   checksum.AddBodyContentMD5Handler,
+	})
+	return
+}
+
+// CreateAccessGrant API operation for AWS S3 Control.
+//
+// Creates an access grant that gives a grantee access to your S3 data. The
+// grantee can be an IAM user or role or a directory user, or group. Before
+// you can create a grant, you must have an S3 Access Grants instance in the
+// same Region as the S3 data. You can create an S3 Access Grants instance using
+// the CreateAccessGrantsInstance (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateAccessGrantsInstance.html).
+// You must also have registered at least one S3 data location in your S3 Access
+// Grants instance using CreateAccessGrantsLocation (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateAccessGrantsLocation.html).
+//
+// # Permissions
+//
+// You must have the s3:CreateAccessGrant permission to use this operation.
+//
+// # Additional Permissions
+//
+// For any directory identity - sso:DescribeInstance and sso:DescribeApplication
+//
+// For directory users - identitystore:DescribeUser
+//
+// For directory groups - identitystore:DescribeGroup
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation CreateAccessGrant for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/CreateAccessGrant
+func (c *S3Control) CreateAccessGrant(input *CreateAccessGrantInput) (*CreateAccessGrantOutput, error) {
+	req, out := c.CreateAccessGrantRequest(input)
+	return out, req.Send()
+}
+
+// CreateAccessGrantWithContext is the same as CreateAccessGrant with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateAccessGrant for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) CreateAccessGrantWithContext(ctx aws.Context, input *CreateAccessGrantInput, opts ...request.Option) (*CreateAccessGrantOutput, error) {
+	req, out := c.CreateAccessGrantRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateAccessGrantsInstance = "CreateAccessGrantsInstance"
+
+// CreateAccessGrantsInstanceRequest generates a "aws/request.Request" representing the
+// client's request for the CreateAccessGrantsInstance operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateAccessGrantsInstance for more information on using the CreateAccessGrantsInstance
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateAccessGrantsInstanceRequest method.
+//	req, resp := client.CreateAccessGrantsInstanceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/CreateAccessGrantsInstance
+func (c *S3Control) CreateAccessGrantsInstanceRequest(input *CreateAccessGrantsInstanceInput) (req *request.Request, output *CreateAccessGrantsInstanceOutput) {
+	op := &request.Operation{
+		Name:       opCreateAccessGrantsInstance,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v20180820/accessgrantsinstance",
+	}
+
+	if input == nil {
+		input = &CreateAccessGrantsInstanceInput{}
+	}
+
+	output = &CreateAccessGrantsInstanceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	req.Handlers.Build.PushBackNamed(request.NamedHandler{
+		Name: "contentMd5Handler",
+		Fn:   checksum.AddBodyContentMD5Handler,
+	})
+	return
+}
+
+// CreateAccessGrantsInstance API operation for AWS S3 Control.
+//
+// Creates an S3 Access Grants instance, which serves as a logical grouping
+// for access grants. You can create one S3 Access Grants instance per Region
+// per account.
+//
+// # Permissions
+//
+// You must have the s3:CreateAccessGrantsInstance permission to use this operation.
+//
+// # Additional Permissions
+//
+// To associate an IAM Identity Center instance with your S3 Access Grants instance,
+// you must also have the sso:DescribeInstance, sso:CreateApplication, sso:PutApplicationGrant,
+// and sso:PutApplicationAuthenticationMethod permissions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation CreateAccessGrantsInstance for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/CreateAccessGrantsInstance
+func (c *S3Control) CreateAccessGrantsInstance(input *CreateAccessGrantsInstanceInput) (*CreateAccessGrantsInstanceOutput, error) {
+	req, out := c.CreateAccessGrantsInstanceRequest(input)
+	return out, req.Send()
+}
+
+// CreateAccessGrantsInstanceWithContext is the same as CreateAccessGrantsInstance with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateAccessGrantsInstance for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) CreateAccessGrantsInstanceWithContext(ctx aws.Context, input *CreateAccessGrantsInstanceInput, opts ...request.Option) (*CreateAccessGrantsInstanceOutput, error) {
+	req, out := c.CreateAccessGrantsInstanceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateAccessGrantsLocation = "CreateAccessGrantsLocation"
+
+// CreateAccessGrantsLocationRequest generates a "aws/request.Request" representing the
+// client's request for the CreateAccessGrantsLocation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateAccessGrantsLocation for more information on using the CreateAccessGrantsLocation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateAccessGrantsLocationRequest method.
+//	req, resp := client.CreateAccessGrantsLocationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/CreateAccessGrantsLocation
+func (c *S3Control) CreateAccessGrantsLocationRequest(input *CreateAccessGrantsLocationInput) (req *request.Request, output *CreateAccessGrantsLocationOutput) {
+	op := &request.Operation{
+		Name:       opCreateAccessGrantsLocation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v20180820/accessgrantsinstance/location",
+	}
+
+	if input == nil {
+		input = &CreateAccessGrantsLocationInput{}
+	}
+
+	output = &CreateAccessGrantsLocationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	req.Handlers.Build.PushBackNamed(request.NamedHandler{
+		Name: "contentMd5Handler",
+		Fn:   checksum.AddBodyContentMD5Handler,
+	})
+	return
+}
+
+// CreateAccessGrantsLocation API operation for AWS S3 Control.
+//
+// The S3 data location that you would like to register in your S3 Access Grants
+// instance. Your S3 data must be in the same Region as your S3 Access Grants
+// instance. The location can be one of the following:
+//
+//   - The default S3 location s3://
+//
+//   - A bucket - S3://<bucket-name>
+//
+//   - A bucket and prefix - S3://<bucket-name>/<prefix>
+//
+// When you register a location, you must include the IAM role that has permission
+// to manage the S3 location that you are registering. Give S3 Access Grants
+// permission to assume this role using a policy (https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-grants-location.html).
+// S3 Access Grants assumes this role to manage access to the location and to
+// vend temporary credentials to grantees or client applications.
+//
+// # Permissions
+//
+// You must have the s3:CreateAccessGrantsLocation permission to use this operation.
+//
+// # Additional Permissions
+//
+// You must also have the following permission for the specified IAM role: iam:PassRole
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation CreateAccessGrantsLocation for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/CreateAccessGrantsLocation
+func (c *S3Control) CreateAccessGrantsLocation(input *CreateAccessGrantsLocationInput) (*CreateAccessGrantsLocationOutput, error) {
+	req, out := c.CreateAccessGrantsLocationRequest(input)
+	return out, req.Send()
+}
+
+// CreateAccessGrantsLocationWithContext is the same as CreateAccessGrantsLocation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateAccessGrantsLocation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) CreateAccessGrantsLocationWithContext(ctx aws.Context, input *CreateAccessGrantsLocationInput, opts ...request.Option) (*CreateAccessGrantsLocationOutput, error) {
+	req, out := c.CreateAccessGrantsLocationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateAccessPoint = "CreateAccessPoint"
 
 // CreateAccessPointRequest generates a "aws/request.Request" representing the
@@ -616,6 +1000,360 @@ func (c *S3Control) CreateStorageLensGroup(input *CreateStorageLensGroupInput) (
 // for more information on using Contexts.
 func (c *S3Control) CreateStorageLensGroupWithContext(ctx aws.Context, input *CreateStorageLensGroupInput, opts ...request.Option) (*CreateStorageLensGroupOutput, error) {
 	req, out := c.CreateStorageLensGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteAccessGrant = "DeleteAccessGrant"
+
+// DeleteAccessGrantRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteAccessGrant operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteAccessGrant for more information on using the DeleteAccessGrant
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteAccessGrantRequest method.
+//	req, resp := client.DeleteAccessGrantRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DeleteAccessGrant
+func (c *S3Control) DeleteAccessGrantRequest(input *DeleteAccessGrantInput) (req *request.Request, output *DeleteAccessGrantOutput) {
+	op := &request.Operation{
+		Name:       opDeleteAccessGrant,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/v20180820/accessgrantsinstance/grant/{id}",
+	}
+
+	if input == nil {
+		input = &DeleteAccessGrantInput{}
+	}
+
+	output = &DeleteAccessGrantOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	req.Handlers.Build.PushBackNamed(request.NamedHandler{
+		Name: "contentMd5Handler",
+		Fn:   checksum.AddBodyContentMD5Handler,
+	})
+	return
+}
+
+// DeleteAccessGrant API operation for AWS S3 Control.
+//
+// Deletes the access grant from the S3 Access Grants instance. You cannot undo
+// an access grant deletion and the grantee will no longer have access to the
+// S3 data.
+//
+// # Permissions
+//
+// You must have the s3:DeleteAccessGrant permission to use this operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation DeleteAccessGrant for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DeleteAccessGrant
+func (c *S3Control) DeleteAccessGrant(input *DeleteAccessGrantInput) (*DeleteAccessGrantOutput, error) {
+	req, out := c.DeleteAccessGrantRequest(input)
+	return out, req.Send()
+}
+
+// DeleteAccessGrantWithContext is the same as DeleteAccessGrant with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteAccessGrant for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) DeleteAccessGrantWithContext(ctx aws.Context, input *DeleteAccessGrantInput, opts ...request.Option) (*DeleteAccessGrantOutput, error) {
+	req, out := c.DeleteAccessGrantRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteAccessGrantsInstance = "DeleteAccessGrantsInstance"
+
+// DeleteAccessGrantsInstanceRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteAccessGrantsInstance operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteAccessGrantsInstance for more information on using the DeleteAccessGrantsInstance
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteAccessGrantsInstanceRequest method.
+//	req, resp := client.DeleteAccessGrantsInstanceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DeleteAccessGrantsInstance
+func (c *S3Control) DeleteAccessGrantsInstanceRequest(input *DeleteAccessGrantsInstanceInput) (req *request.Request, output *DeleteAccessGrantsInstanceOutput) {
+	op := &request.Operation{
+		Name:       opDeleteAccessGrantsInstance,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/v20180820/accessgrantsinstance",
+	}
+
+	if input == nil {
+		input = &DeleteAccessGrantsInstanceInput{}
+	}
+
+	output = &DeleteAccessGrantsInstanceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	req.Handlers.Build.PushBackNamed(request.NamedHandler{
+		Name: "contentMd5Handler",
+		Fn:   checksum.AddBodyContentMD5Handler,
+	})
+	return
+}
+
+// DeleteAccessGrantsInstance API operation for AWS S3 Control.
+//
+// Deletes your S3 Access Grants instance. You must first delete the access
+// grants and locations before S3 Access Grants can delete the instance. See
+// DeleteAccessGrant (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessGrant.html)
+// and DeleteAccessGrantsLocation (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessGrantsLocation.html).
+// If you have associated an IAM Identity Center instance with your S3 Access
+// Grants instance, you must first dissassociate the Identity Center instance
+// from the S3 Access Grants instance before you can delete the S3 Access Grants
+// instance. See AssociateAccessGrantsIdentityCenter (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_AssociateAccessGrantsIdentityCenter.html)
+// and DissociateAccessGrantsIdentityCenter (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DissociateAccessGrantsIdentityCenter.html).
+//
+// # Permissions
+//
+// You must have the s3:DeleteAccessGrantsInstance permission to use this operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation DeleteAccessGrantsInstance for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DeleteAccessGrantsInstance
+func (c *S3Control) DeleteAccessGrantsInstance(input *DeleteAccessGrantsInstanceInput) (*DeleteAccessGrantsInstanceOutput, error) {
+	req, out := c.DeleteAccessGrantsInstanceRequest(input)
+	return out, req.Send()
+}
+
+// DeleteAccessGrantsInstanceWithContext is the same as DeleteAccessGrantsInstance with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteAccessGrantsInstance for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) DeleteAccessGrantsInstanceWithContext(ctx aws.Context, input *DeleteAccessGrantsInstanceInput, opts ...request.Option) (*DeleteAccessGrantsInstanceOutput, error) {
+	req, out := c.DeleteAccessGrantsInstanceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteAccessGrantsInstanceResourcePolicy = "DeleteAccessGrantsInstanceResourcePolicy"
+
+// DeleteAccessGrantsInstanceResourcePolicyRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteAccessGrantsInstanceResourcePolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteAccessGrantsInstanceResourcePolicy for more information on using the DeleteAccessGrantsInstanceResourcePolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteAccessGrantsInstanceResourcePolicyRequest method.
+//	req, resp := client.DeleteAccessGrantsInstanceResourcePolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DeleteAccessGrantsInstanceResourcePolicy
+func (c *S3Control) DeleteAccessGrantsInstanceResourcePolicyRequest(input *DeleteAccessGrantsInstanceResourcePolicyInput) (req *request.Request, output *DeleteAccessGrantsInstanceResourcePolicyOutput) {
+	op := &request.Operation{
+		Name:       opDeleteAccessGrantsInstanceResourcePolicy,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/v20180820/accessgrantsinstance/resourcepolicy",
+	}
+
+	if input == nil {
+		input = &DeleteAccessGrantsInstanceResourcePolicyInput{}
+	}
+
+	output = &DeleteAccessGrantsInstanceResourcePolicyOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	req.Handlers.Build.PushBackNamed(request.NamedHandler{
+		Name: "contentMd5Handler",
+		Fn:   checksum.AddBodyContentMD5Handler,
+	})
+	return
+}
+
+// DeleteAccessGrantsInstanceResourcePolicy API operation for AWS S3 Control.
+//
+// Deletes the resource policy of the S3 Access Grants instance. The resource
+// policy is used to manage cross-account access to your S3 Access Grants instance.
+// By deleting the resource policy, you delete any cross-account permissions
+// to your S3 Access Grants instance.
+//
+// # Permissions
+//
+// You must have the s3:DeleteAccessGrantsInstanceResourcePolicy permission
+// to use this operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation DeleteAccessGrantsInstanceResourcePolicy for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DeleteAccessGrantsInstanceResourcePolicy
+func (c *S3Control) DeleteAccessGrantsInstanceResourcePolicy(input *DeleteAccessGrantsInstanceResourcePolicyInput) (*DeleteAccessGrantsInstanceResourcePolicyOutput, error) {
+	req, out := c.DeleteAccessGrantsInstanceResourcePolicyRequest(input)
+	return out, req.Send()
+}
+
+// DeleteAccessGrantsInstanceResourcePolicyWithContext is the same as DeleteAccessGrantsInstanceResourcePolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteAccessGrantsInstanceResourcePolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) DeleteAccessGrantsInstanceResourcePolicyWithContext(ctx aws.Context, input *DeleteAccessGrantsInstanceResourcePolicyInput, opts ...request.Option) (*DeleteAccessGrantsInstanceResourcePolicyOutput, error) {
+	req, out := c.DeleteAccessGrantsInstanceResourcePolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteAccessGrantsLocation = "DeleteAccessGrantsLocation"
+
+// DeleteAccessGrantsLocationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteAccessGrantsLocation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteAccessGrantsLocation for more information on using the DeleteAccessGrantsLocation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteAccessGrantsLocationRequest method.
+//	req, resp := client.DeleteAccessGrantsLocationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DeleteAccessGrantsLocation
+func (c *S3Control) DeleteAccessGrantsLocationRequest(input *DeleteAccessGrantsLocationInput) (req *request.Request, output *DeleteAccessGrantsLocationOutput) {
+	op := &request.Operation{
+		Name:       opDeleteAccessGrantsLocation,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/v20180820/accessgrantsinstance/location/{id}",
+	}
+
+	if input == nil {
+		input = &DeleteAccessGrantsLocationInput{}
+	}
+
+	output = &DeleteAccessGrantsLocationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	req.Handlers.Build.PushBackNamed(request.NamedHandler{
+		Name: "contentMd5Handler",
+		Fn:   checksum.AddBodyContentMD5Handler,
+	})
+	return
+}
+
+// DeleteAccessGrantsLocation API operation for AWS S3 Control.
+//
+// Deregisters a location from your S3 Access Grants instance. You can only
+// delete a location registration from an S3 Access Grants instance if there
+// are no grants associated with this location. See Delete a grant (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessGrant.html)
+// for information on how to delete grants. You need to have at least one registered
+// location in your S3 Access Grants instance in order to create access grants.
+//
+// # Permissions
+//
+// You must have the s3:DeleteAccessGrantsLocation permission to use this operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation DeleteAccessGrantsLocation for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DeleteAccessGrantsLocation
+func (c *S3Control) DeleteAccessGrantsLocation(input *DeleteAccessGrantsLocationInput) (*DeleteAccessGrantsLocationOutput, error) {
+	req, out := c.DeleteAccessGrantsLocationRequest(input)
+	return out, req.Send()
+}
+
+// DeleteAccessGrantsLocationWithContext is the same as DeleteAccessGrantsLocation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteAccessGrantsLocation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) DeleteAccessGrantsLocationWithContext(ctx aws.Context, input *DeleteAccessGrantsLocationInput, opts ...request.Option) (*DeleteAccessGrantsLocationOutput, error) {
+	req, out := c.DeleteAccessGrantsLocationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2246,6 +2984,519 @@ func (c *S3Control) DescribeMultiRegionAccessPointOperationWithContext(ctx aws.C
 	return out, req.Send()
 }
 
+const opDissociateAccessGrantsIdentityCenter = "DissociateAccessGrantsIdentityCenter"
+
+// DissociateAccessGrantsIdentityCenterRequest generates a "aws/request.Request" representing the
+// client's request for the DissociateAccessGrantsIdentityCenter operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DissociateAccessGrantsIdentityCenter for more information on using the DissociateAccessGrantsIdentityCenter
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DissociateAccessGrantsIdentityCenterRequest method.
+//	req, resp := client.DissociateAccessGrantsIdentityCenterRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DissociateAccessGrantsIdentityCenter
+func (c *S3Control) DissociateAccessGrantsIdentityCenterRequest(input *DissociateAccessGrantsIdentityCenterInput) (req *request.Request, output *DissociateAccessGrantsIdentityCenterOutput) {
+	op := &request.Operation{
+		Name:       opDissociateAccessGrantsIdentityCenter,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/v20180820/accessgrantsinstance/identitycenter",
+	}
+
+	if input == nil {
+		input = &DissociateAccessGrantsIdentityCenterInput{}
+	}
+
+	output = &DissociateAccessGrantsIdentityCenterOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	req.Handlers.Build.PushBackNamed(request.NamedHandler{
+		Name: "contentMd5Handler",
+		Fn:   checksum.AddBodyContentMD5Handler,
+	})
+	return
+}
+
+// DissociateAccessGrantsIdentityCenter API operation for AWS S3 Control.
+//
+// Dissociates the Amazon Web Services IAM Identity Center instance from the
+// S3 Access Grants instance.
+//
+// # Permissions
+//
+// You must have the s3:DissociateAccessGrantsIdentityCenter permission to use
+// this operation.
+//
+// # Additional Permissions
+//
+// You must have the sso:DeleteApplication permission to use this operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation DissociateAccessGrantsIdentityCenter for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DissociateAccessGrantsIdentityCenter
+func (c *S3Control) DissociateAccessGrantsIdentityCenter(input *DissociateAccessGrantsIdentityCenterInput) (*DissociateAccessGrantsIdentityCenterOutput, error) {
+	req, out := c.DissociateAccessGrantsIdentityCenterRequest(input)
+	return out, req.Send()
+}
+
+// DissociateAccessGrantsIdentityCenterWithContext is the same as DissociateAccessGrantsIdentityCenter with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DissociateAccessGrantsIdentityCenter for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) DissociateAccessGrantsIdentityCenterWithContext(ctx aws.Context, input *DissociateAccessGrantsIdentityCenterInput, opts ...request.Option) (*DissociateAccessGrantsIdentityCenterOutput, error) {
+	req, out := c.DissociateAccessGrantsIdentityCenterRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetAccessGrant = "GetAccessGrant"
+
+// GetAccessGrantRequest generates a "aws/request.Request" representing the
+// client's request for the GetAccessGrant operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetAccessGrant for more information on using the GetAccessGrant
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetAccessGrantRequest method.
+//	req, resp := client.GetAccessGrantRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetAccessGrant
+func (c *S3Control) GetAccessGrantRequest(input *GetAccessGrantInput) (req *request.Request, output *GetAccessGrantOutput) {
+	op := &request.Operation{
+		Name:       opGetAccessGrant,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v20180820/accessgrantsinstance/grant/{id}",
+	}
+
+	if input == nil {
+		input = &GetAccessGrantInput{}
+	}
+
+	output = &GetAccessGrantOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	req.Handlers.Build.PushBackNamed(request.NamedHandler{
+		Name: "contentMd5Handler",
+		Fn:   checksum.AddBodyContentMD5Handler,
+	})
+	return
+}
+
+// GetAccessGrant API operation for AWS S3 Control.
+//
+// Get the details of an access grant from your S3 Access Grants instance.
+//
+// # Permissions
+//
+// You must have the s3:GetAccessGrant permission to use this operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation GetAccessGrant for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetAccessGrant
+func (c *S3Control) GetAccessGrant(input *GetAccessGrantInput) (*GetAccessGrantOutput, error) {
+	req, out := c.GetAccessGrantRequest(input)
+	return out, req.Send()
+}
+
+// GetAccessGrantWithContext is the same as GetAccessGrant with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetAccessGrant for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) GetAccessGrantWithContext(ctx aws.Context, input *GetAccessGrantInput, opts ...request.Option) (*GetAccessGrantOutput, error) {
+	req, out := c.GetAccessGrantRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetAccessGrantsInstance = "GetAccessGrantsInstance"
+
+// GetAccessGrantsInstanceRequest generates a "aws/request.Request" representing the
+// client's request for the GetAccessGrantsInstance operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetAccessGrantsInstance for more information on using the GetAccessGrantsInstance
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetAccessGrantsInstanceRequest method.
+//	req, resp := client.GetAccessGrantsInstanceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetAccessGrantsInstance
+func (c *S3Control) GetAccessGrantsInstanceRequest(input *GetAccessGrantsInstanceInput) (req *request.Request, output *GetAccessGrantsInstanceOutput) {
+	op := &request.Operation{
+		Name:       opGetAccessGrantsInstance,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v20180820/accessgrantsinstance",
+	}
+
+	if input == nil {
+		input = &GetAccessGrantsInstanceInput{}
+	}
+
+	output = &GetAccessGrantsInstanceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	req.Handlers.Build.PushBackNamed(request.NamedHandler{
+		Name: "contentMd5Handler",
+		Fn:   checksum.AddBodyContentMD5Handler,
+	})
+	return
+}
+
+// GetAccessGrantsInstance API operation for AWS S3 Control.
+//
+// Retrieves the S3 Access Grants instance for a Region in your account.
+//
+// # Permissions
+//
+// You must have the s3:GetAccessGrantsInstance permission to use this operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation GetAccessGrantsInstance for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetAccessGrantsInstance
+func (c *S3Control) GetAccessGrantsInstance(input *GetAccessGrantsInstanceInput) (*GetAccessGrantsInstanceOutput, error) {
+	req, out := c.GetAccessGrantsInstanceRequest(input)
+	return out, req.Send()
+}
+
+// GetAccessGrantsInstanceWithContext is the same as GetAccessGrantsInstance with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetAccessGrantsInstance for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) GetAccessGrantsInstanceWithContext(ctx aws.Context, input *GetAccessGrantsInstanceInput, opts ...request.Option) (*GetAccessGrantsInstanceOutput, error) {
+	req, out := c.GetAccessGrantsInstanceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetAccessGrantsInstanceForPrefix = "GetAccessGrantsInstanceForPrefix"
+
+// GetAccessGrantsInstanceForPrefixRequest generates a "aws/request.Request" representing the
+// client's request for the GetAccessGrantsInstanceForPrefix operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetAccessGrantsInstanceForPrefix for more information on using the GetAccessGrantsInstanceForPrefix
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetAccessGrantsInstanceForPrefixRequest method.
+//	req, resp := client.GetAccessGrantsInstanceForPrefixRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetAccessGrantsInstanceForPrefix
+func (c *S3Control) GetAccessGrantsInstanceForPrefixRequest(input *GetAccessGrantsInstanceForPrefixInput) (req *request.Request, output *GetAccessGrantsInstanceForPrefixOutput) {
+	op := &request.Operation{
+		Name:       opGetAccessGrantsInstanceForPrefix,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v20180820/accessgrantsinstance/prefix",
+	}
+
+	if input == nil {
+		input = &GetAccessGrantsInstanceForPrefixInput{}
+	}
+
+	output = &GetAccessGrantsInstanceForPrefixOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	req.Handlers.Build.PushBackNamed(request.NamedHandler{
+		Name: "contentMd5Handler",
+		Fn:   checksum.AddBodyContentMD5Handler,
+	})
+	return
+}
+
+// GetAccessGrantsInstanceForPrefix API operation for AWS S3 Control.
+//
+// Retrieve the S3 Access Grants instance that contains a particular prefix.
+//
+// # Permissions
+//
+// You must have the s3:GetAccessGrantsInstanceForPrefix permission for the
+// caller account to use this operation.
+//
+// # Additional Permissions
+//
+// The prefix owner account must grant you the following permissions to their
+// S3 Access Grants instance: s3:GetAccessGrantsInstanceForPrefix.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation GetAccessGrantsInstanceForPrefix for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetAccessGrantsInstanceForPrefix
+func (c *S3Control) GetAccessGrantsInstanceForPrefix(input *GetAccessGrantsInstanceForPrefixInput) (*GetAccessGrantsInstanceForPrefixOutput, error) {
+	req, out := c.GetAccessGrantsInstanceForPrefixRequest(input)
+	return out, req.Send()
+}
+
+// GetAccessGrantsInstanceForPrefixWithContext is the same as GetAccessGrantsInstanceForPrefix with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetAccessGrantsInstanceForPrefix for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) GetAccessGrantsInstanceForPrefixWithContext(ctx aws.Context, input *GetAccessGrantsInstanceForPrefixInput, opts ...request.Option) (*GetAccessGrantsInstanceForPrefixOutput, error) {
+	req, out := c.GetAccessGrantsInstanceForPrefixRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetAccessGrantsInstanceResourcePolicy = "GetAccessGrantsInstanceResourcePolicy"
+
+// GetAccessGrantsInstanceResourcePolicyRequest generates a "aws/request.Request" representing the
+// client's request for the GetAccessGrantsInstanceResourcePolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetAccessGrantsInstanceResourcePolicy for more information on using the GetAccessGrantsInstanceResourcePolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetAccessGrantsInstanceResourcePolicyRequest method.
+//	req, resp := client.GetAccessGrantsInstanceResourcePolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetAccessGrantsInstanceResourcePolicy
+func (c *S3Control) GetAccessGrantsInstanceResourcePolicyRequest(input *GetAccessGrantsInstanceResourcePolicyInput) (req *request.Request, output *GetAccessGrantsInstanceResourcePolicyOutput) {
+	op := &request.Operation{
+		Name:       opGetAccessGrantsInstanceResourcePolicy,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v20180820/accessgrantsinstance/resourcepolicy",
+	}
+
+	if input == nil {
+		input = &GetAccessGrantsInstanceResourcePolicyInput{}
+	}
+
+	output = &GetAccessGrantsInstanceResourcePolicyOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	req.Handlers.Build.PushBackNamed(request.NamedHandler{
+		Name: "contentMd5Handler",
+		Fn:   checksum.AddBodyContentMD5Handler,
+	})
+	return
+}
+
+// GetAccessGrantsInstanceResourcePolicy API operation for AWS S3 Control.
+//
+// Returns the resource policy of the S3 Access Grants instance.
+//
+// # Permissions
+//
+// You must have the s3:GetAccessGrantsInstanceResourcePolicy permission to
+// use this operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation GetAccessGrantsInstanceResourcePolicy for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetAccessGrantsInstanceResourcePolicy
+func (c *S3Control) GetAccessGrantsInstanceResourcePolicy(input *GetAccessGrantsInstanceResourcePolicyInput) (*GetAccessGrantsInstanceResourcePolicyOutput, error) {
+	req, out := c.GetAccessGrantsInstanceResourcePolicyRequest(input)
+	return out, req.Send()
+}
+
+// GetAccessGrantsInstanceResourcePolicyWithContext is the same as GetAccessGrantsInstanceResourcePolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetAccessGrantsInstanceResourcePolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) GetAccessGrantsInstanceResourcePolicyWithContext(ctx aws.Context, input *GetAccessGrantsInstanceResourcePolicyInput, opts ...request.Option) (*GetAccessGrantsInstanceResourcePolicyOutput, error) {
+	req, out := c.GetAccessGrantsInstanceResourcePolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetAccessGrantsLocation = "GetAccessGrantsLocation"
+
+// GetAccessGrantsLocationRequest generates a "aws/request.Request" representing the
+// client's request for the GetAccessGrantsLocation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetAccessGrantsLocation for more information on using the GetAccessGrantsLocation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetAccessGrantsLocationRequest method.
+//	req, resp := client.GetAccessGrantsLocationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetAccessGrantsLocation
+func (c *S3Control) GetAccessGrantsLocationRequest(input *GetAccessGrantsLocationInput) (req *request.Request, output *GetAccessGrantsLocationOutput) {
+	op := &request.Operation{
+		Name:       opGetAccessGrantsLocation,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v20180820/accessgrantsinstance/location/{id}",
+	}
+
+	if input == nil {
+		input = &GetAccessGrantsLocationInput{}
+	}
+
+	output = &GetAccessGrantsLocationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	req.Handlers.Build.PushBackNamed(request.NamedHandler{
+		Name: "contentMd5Handler",
+		Fn:   checksum.AddBodyContentMD5Handler,
+	})
+	return
+}
+
+// GetAccessGrantsLocation API operation for AWS S3 Control.
+//
+// Retrieves the details of a particular location registered in your S3 Access
+// Grants instance.
+//
+// # Permissions
+//
+// You must have the s3:GetAccessGrantsLocation permission to use this operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation GetAccessGrantsLocation for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetAccessGrantsLocation
+func (c *S3Control) GetAccessGrantsLocation(input *GetAccessGrantsLocationInput) (*GetAccessGrantsLocationOutput, error) {
+	req, out := c.GetAccessGrantsLocationRequest(input)
+	return out, req.Send()
+}
+
+// GetAccessGrantsLocationWithContext is the same as GetAccessGrantsLocation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetAccessGrantsLocation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) GetAccessGrantsLocationWithContext(ctx aws.Context, input *GetAccessGrantsLocationInput, opts ...request.Option) (*GetAccessGrantsLocationOutput, error) {
+	req, out := c.GetAccessGrantsLocationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetAccessPoint = "GetAccessPoint"
 
 // GetAccessPointRequest generates a "aws/request.Request" representing the
@@ -3497,6 +4748,98 @@ func (c *S3Control) GetBucketVersioningWithContext(ctx aws.Context, input *GetBu
 	return out, req.Send()
 }
 
+const opGetDataAccess = "GetDataAccess"
+
+// GetDataAccessRequest generates a "aws/request.Request" representing the
+// client's request for the GetDataAccess operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetDataAccess for more information on using the GetDataAccess
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetDataAccessRequest method.
+//	req, resp := client.GetDataAccessRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetDataAccess
+func (c *S3Control) GetDataAccessRequest(input *GetDataAccessInput) (req *request.Request, output *GetDataAccessOutput) {
+	op := &request.Operation{
+		Name:       opGetDataAccess,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v20180820/accessgrantsinstance/dataaccess",
+	}
+
+	if input == nil {
+		input = &GetDataAccessInput{}
+	}
+
+	output = &GetDataAccessOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	req.Handlers.Build.PushBackNamed(request.NamedHandler{
+		Name: "contentMd5Handler",
+		Fn:   checksum.AddBodyContentMD5Handler,
+	})
+	return
+}
+
+// GetDataAccess API operation for AWS S3 Control.
+//
+// Returns a temporary access credential from S3 Access Grants to the grantee
+// or client application. The temporary credential (https://docs.aws.amazon.com/STS/latest/APIReference/API_Credentials.html)
+// is an Amazon Web Services STS token that grants them access to the S3 data.
+//
+// # Permissions
+//
+// You must have the s3:GetDataAccess permission to use this operation.
+//
+// # Additional Permissions
+//
+// The IAM role that S3 Access Grants assumes must have the following permissions
+// specified in the trust policy when registering the location: sts:AssumeRole,
+// for directory users or groups sts:SetContext, and for IAM users or roles
+// sts:SourceIdentity.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation GetDataAccess for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetDataAccess
+func (c *S3Control) GetDataAccess(input *GetDataAccessInput) (*GetDataAccessOutput, error) {
+	req, out := c.GetDataAccessRequest(input)
+	return out, req.Send()
+}
+
+// GetDataAccessWithContext is the same as GetDataAccess with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetDataAccess for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) GetDataAccessWithContext(ctx aws.Context, input *GetDataAccessInput, opts ...request.Option) (*GetDataAccessOutput, error) {
+	req, out := c.GetDataAccessRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetJobTagging = "GetJobTagging"
 
 // GetJobTaggingRequest generates a "aws/request.Request" representing the
@@ -4300,6 +5643,428 @@ func (c *S3Control) GetStorageLensGroupWithContext(ctx aws.Context, input *GetSt
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opListAccessGrants = "ListAccessGrants"
+
+// ListAccessGrantsRequest generates a "aws/request.Request" representing the
+// client's request for the ListAccessGrants operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAccessGrants for more information on using the ListAccessGrants
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListAccessGrantsRequest method.
+//	req, resp := client.ListAccessGrantsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/ListAccessGrants
+func (c *S3Control) ListAccessGrantsRequest(input *ListAccessGrantsInput) (req *request.Request, output *ListAccessGrantsOutput) {
+	op := &request.Operation{
+		Name:       opListAccessGrants,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v20180820/accessgrantsinstance/grants",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListAccessGrantsInput{}
+	}
+
+	output = &ListAccessGrantsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	req.Handlers.Build.PushBackNamed(request.NamedHandler{
+		Name: "contentMd5Handler",
+		Fn:   checksum.AddBodyContentMD5Handler,
+	})
+	return
+}
+
+// ListAccessGrants API operation for AWS S3 Control.
+//
+// Returns the list of access grants in your S3 Access Grants instance.
+//
+// # Permissions
+//
+// You must have the s3:ListAccessGrants permission to use this operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation ListAccessGrants for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/ListAccessGrants
+func (c *S3Control) ListAccessGrants(input *ListAccessGrantsInput) (*ListAccessGrantsOutput, error) {
+	req, out := c.ListAccessGrantsRequest(input)
+	return out, req.Send()
+}
+
+// ListAccessGrantsWithContext is the same as ListAccessGrants with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAccessGrants for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) ListAccessGrantsWithContext(ctx aws.Context, input *ListAccessGrantsInput, opts ...request.Option) (*ListAccessGrantsOutput, error) {
+	req, out := c.ListAccessGrantsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListAccessGrantsPages iterates over the pages of a ListAccessGrants operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListAccessGrants method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListAccessGrants operation.
+//	pageNum := 0
+//	err := client.ListAccessGrantsPages(params,
+//	    func(page *s3control.ListAccessGrantsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *S3Control) ListAccessGrantsPages(input *ListAccessGrantsInput, fn func(*ListAccessGrantsOutput, bool) bool) error {
+	return c.ListAccessGrantsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListAccessGrantsPagesWithContext same as ListAccessGrantsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) ListAccessGrantsPagesWithContext(ctx aws.Context, input *ListAccessGrantsInput, fn func(*ListAccessGrantsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListAccessGrantsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListAccessGrantsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListAccessGrantsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListAccessGrantsInstances = "ListAccessGrantsInstances"
+
+// ListAccessGrantsInstancesRequest generates a "aws/request.Request" representing the
+// client's request for the ListAccessGrantsInstances operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAccessGrantsInstances for more information on using the ListAccessGrantsInstances
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListAccessGrantsInstancesRequest method.
+//	req, resp := client.ListAccessGrantsInstancesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/ListAccessGrantsInstances
+func (c *S3Control) ListAccessGrantsInstancesRequest(input *ListAccessGrantsInstancesInput) (req *request.Request, output *ListAccessGrantsInstancesOutput) {
+	op := &request.Operation{
+		Name:       opListAccessGrantsInstances,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v20180820/accessgrantsinstances",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListAccessGrantsInstancesInput{}
+	}
+
+	output = &ListAccessGrantsInstancesOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	req.Handlers.Build.PushBackNamed(request.NamedHandler{
+		Name: "contentMd5Handler",
+		Fn:   checksum.AddBodyContentMD5Handler,
+	})
+	return
+}
+
+// ListAccessGrantsInstances API operation for AWS S3 Control.
+//
+// Returns a list of S3 Access Grants instances. An S3 Access Grants instance
+// serves as a logical grouping for your individual access grants. You can only
+// have one S3 Access Grants instance per Region per account.
+//
+// # Permissions
+//
+// You must have the s3:ListAccessGrantsInstances permission to use this operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation ListAccessGrantsInstances for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/ListAccessGrantsInstances
+func (c *S3Control) ListAccessGrantsInstances(input *ListAccessGrantsInstancesInput) (*ListAccessGrantsInstancesOutput, error) {
+	req, out := c.ListAccessGrantsInstancesRequest(input)
+	return out, req.Send()
+}
+
+// ListAccessGrantsInstancesWithContext is the same as ListAccessGrantsInstances with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAccessGrantsInstances for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) ListAccessGrantsInstancesWithContext(ctx aws.Context, input *ListAccessGrantsInstancesInput, opts ...request.Option) (*ListAccessGrantsInstancesOutput, error) {
+	req, out := c.ListAccessGrantsInstancesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListAccessGrantsInstancesPages iterates over the pages of a ListAccessGrantsInstances operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListAccessGrantsInstances method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListAccessGrantsInstances operation.
+//	pageNum := 0
+//	err := client.ListAccessGrantsInstancesPages(params,
+//	    func(page *s3control.ListAccessGrantsInstancesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *S3Control) ListAccessGrantsInstancesPages(input *ListAccessGrantsInstancesInput, fn func(*ListAccessGrantsInstancesOutput, bool) bool) error {
+	return c.ListAccessGrantsInstancesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListAccessGrantsInstancesPagesWithContext same as ListAccessGrantsInstancesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) ListAccessGrantsInstancesPagesWithContext(ctx aws.Context, input *ListAccessGrantsInstancesInput, fn func(*ListAccessGrantsInstancesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListAccessGrantsInstancesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListAccessGrantsInstancesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListAccessGrantsInstancesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListAccessGrantsLocations = "ListAccessGrantsLocations"
+
+// ListAccessGrantsLocationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListAccessGrantsLocations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAccessGrantsLocations for more information on using the ListAccessGrantsLocations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListAccessGrantsLocationsRequest method.
+//	req, resp := client.ListAccessGrantsLocationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/ListAccessGrantsLocations
+func (c *S3Control) ListAccessGrantsLocationsRequest(input *ListAccessGrantsLocationsInput) (req *request.Request, output *ListAccessGrantsLocationsOutput) {
+	op := &request.Operation{
+		Name:       opListAccessGrantsLocations,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v20180820/accessgrantsinstance/locations",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListAccessGrantsLocationsInput{}
+	}
+
+	output = &ListAccessGrantsLocationsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	req.Handlers.Build.PushBackNamed(request.NamedHandler{
+		Name: "contentMd5Handler",
+		Fn:   checksum.AddBodyContentMD5Handler,
+	})
+	return
+}
+
+// ListAccessGrantsLocations API operation for AWS S3 Control.
+//
+// Returns a list of the locations registered in your S3 Access Grants instance.
+//
+// # Permissions
+//
+// You must have the s3:ListAccessGrantsLocations permission to use this operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation ListAccessGrantsLocations for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/ListAccessGrantsLocations
+func (c *S3Control) ListAccessGrantsLocations(input *ListAccessGrantsLocationsInput) (*ListAccessGrantsLocationsOutput, error) {
+	req, out := c.ListAccessGrantsLocationsRequest(input)
+	return out, req.Send()
+}
+
+// ListAccessGrantsLocationsWithContext is the same as ListAccessGrantsLocations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAccessGrantsLocations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) ListAccessGrantsLocationsWithContext(ctx aws.Context, input *ListAccessGrantsLocationsInput, opts ...request.Option) (*ListAccessGrantsLocationsOutput, error) {
+	req, out := c.ListAccessGrantsLocationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListAccessGrantsLocationsPages iterates over the pages of a ListAccessGrantsLocations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListAccessGrantsLocations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListAccessGrantsLocations operation.
+//	pageNum := 0
+//	err := client.ListAccessGrantsLocationsPages(params,
+//	    func(page *s3control.ListAccessGrantsLocationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *S3Control) ListAccessGrantsLocationsPages(input *ListAccessGrantsLocationsInput, fn func(*ListAccessGrantsLocationsOutput, bool) bool) error {
+	return c.ListAccessGrantsLocationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListAccessGrantsLocationsPagesWithContext same as ListAccessGrantsLocationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) ListAccessGrantsLocationsPagesWithContext(ctx aws.Context, input *ListAccessGrantsLocationsInput, fn func(*ListAccessGrantsLocationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListAccessGrantsLocationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListAccessGrantsLocationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListAccessGrantsLocationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListAccessPoints = "ListAccessPoints"
@@ -5374,16 +7139,24 @@ func (c *S3Control) ListTagsForResourceRequest(input *ListTagsForResourceInput) 
 // ListTagsForResource API operation for AWS S3 Control.
 //
 // This operation allows you to list all the Amazon Web Services resource tags
-// for the specified resource.
+// for a specified resource. Each tag is a label consisting of a user-defined
+// key and value. Tags can help you manage, identify, organize, search for,
+// and filter resources.
 //
-// To use this operation, you must have the permission to perform the s3:ListTagsForResource
-// action. For more information about the required Storage Lens Groups permissions,
+// # Permissions
+//
+// You must have the s3:ListTagsForResource permission to use this operation.
+//
+// This operation is only supported for S3 Storage Lens groups (https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-lens-groups.html)
+// and for S3 Access Grants (https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-grants-tagging.html).
+// The tagged resource can be an S3 Storage Lens group or S3 Access Grants instance,
+// registered location, or grant.
+//
+// For more information about the required Storage Lens Groups permissions,
 // see Setting account permissions to use S3 Storage Lens groups (https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_iam_permissions.html#storage_lens_groups_permissions).
 //
 // For information about S3 Tagging errors, see List of Amazon S3 Tagging error
 // codes (https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#S3TaggingErrorCodeList).
-//
-// This operation is only supported for S3 Storage Lens groups (https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-lens-groups.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5408,6 +7181,90 @@ func (c *S3Control) ListTagsForResource(input *ListTagsForResourceInput) (*ListT
 // for more information on using Contexts.
 func (c *S3Control) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
 	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPutAccessGrantsInstanceResourcePolicy = "PutAccessGrantsInstanceResourcePolicy"
+
+// PutAccessGrantsInstanceResourcePolicyRequest generates a "aws/request.Request" representing the
+// client's request for the PutAccessGrantsInstanceResourcePolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutAccessGrantsInstanceResourcePolicy for more information on using the PutAccessGrantsInstanceResourcePolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the PutAccessGrantsInstanceResourcePolicyRequest method.
+//	req, resp := client.PutAccessGrantsInstanceResourcePolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/PutAccessGrantsInstanceResourcePolicy
+func (c *S3Control) PutAccessGrantsInstanceResourcePolicyRequest(input *PutAccessGrantsInstanceResourcePolicyInput) (req *request.Request, output *PutAccessGrantsInstanceResourcePolicyOutput) {
+	op := &request.Operation{
+		Name:       opPutAccessGrantsInstanceResourcePolicy,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/v20180820/accessgrantsinstance/resourcepolicy",
+	}
+
+	if input == nil {
+		input = &PutAccessGrantsInstanceResourcePolicyInput{}
+	}
+
+	output = &PutAccessGrantsInstanceResourcePolicyOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	req.Handlers.Build.PushBackNamed(request.NamedHandler{
+		Name: "contentMd5Handler",
+		Fn:   checksum.AddBodyContentMD5Handler,
+	})
+	return
+}
+
+// PutAccessGrantsInstanceResourcePolicy API operation for AWS S3 Control.
+//
+// Updates the resource policy of the S3 Access Grants instance.
+//
+// # Permissions
+//
+// You must have the s3:PutAccessGrantsInstanceResourcePolicy permission to
+// use this operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation PutAccessGrantsInstanceResourcePolicy for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/PutAccessGrantsInstanceResourcePolicy
+func (c *S3Control) PutAccessGrantsInstanceResourcePolicy(input *PutAccessGrantsInstanceResourcePolicyInput) (*PutAccessGrantsInstanceResourcePolicyOutput, error) {
+	req, out := c.PutAccessGrantsInstanceResourcePolicyRequest(input)
+	return out, req.Send()
+}
+
+// PutAccessGrantsInstanceResourcePolicyWithContext is the same as PutAccessGrantsInstanceResourcePolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutAccessGrantsInstanceResourcePolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) PutAccessGrantsInstanceResourcePolicyWithContext(ctx aws.Context, input *PutAccessGrantsInstanceResourcePolicyInput, opts ...request.Option) (*PutAccessGrantsInstanceResourcePolicyOutput, error) {
+	req, out := c.PutAccessGrantsInstanceResourcePolicyRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -6962,16 +8819,24 @@ func (c *S3Control) TagResourceRequest(input *TagResourceInput) (req *request.Re
 // TagResource API operation for AWS S3 Control.
 //
 // Creates a new Amazon Web Services resource tag or updates an existing resource
-// tag. You can add up to 50 Amazon Web Services resource tags for each S3 resource.
+// tag. Each tag is a label consisting of a user-defined key and value. Tags
+// can help you manage, identify, organize, search for, and filter resources.
+// You can add up to 50 Amazon Web Services resource tags for each S3 resource.
 //
-// To use this operation, you must have the permission to perform the s3:TagResource
-// action. For more information about the required Storage Lens Groups permissions,
+// This operation is only supported for S3 Storage Lens groups (https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-lens-groups.html)
+// and for S3 Access Grants (https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-grants-tagging.html).
+// The tagged resource can be an S3 Storage Lens group or S3 Access Grants instance,
+// registered location, or grant.
+//
+// # Permissions
+//
+// You must have the s3:TagResource permission to use this operation.
+//
+// For more information about the required Storage Lens Groups permissions,
 // see Setting account permissions to use S3 Storage Lens groups (https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_iam_permissions.html#storage_lens_groups_permissions).
 //
 // For information about S3 Tagging errors, see List of Amazon S3 Tagging error
 // codes (https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#S3TaggingErrorCodeList).
-//
-// This operation is only supported for S3 Storage Lens groups (https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-lens-groups.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7048,16 +8913,24 @@ func (c *S3Control) UntagResourceRequest(input *UntagResourceInput) (req *reques
 // UntagResource API operation for AWS S3 Control.
 //
 // This operation removes the specified Amazon Web Services resource tags from
-// an S3 resource.
+// an S3 resource. Each tag is a label consisting of a user-defined key and
+// value. Tags can help you manage, identify, organize, search for, and filter
+// resources.
 //
-// To use this operation, you must have the permission to perform the s3:UntagResource
-// action. For more information about the required Storage Lens Groups permissions,
+// This operation is only supported for S3 Storage Lens groups (https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-lens-groups.html)
+// and for S3 Access Grants (https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-grants-tagging.html).
+// The tagged resource can be an S3 Storage Lens group or S3 Access Grants instance,
+// registered location, or grant.
+//
+// # Permissions
+//
+// You must have the s3:UntagResource permission to use this operation.
+//
+// For more information about the required Storage Lens Groups permissions,
 // see Setting account permissions to use S3 Storage Lens groups (https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_iam_permissions.html#storage_lens_groups_permissions).
 //
 // For information about S3 Tagging errors, see List of Amazon S3 Tagging error
 // codes (https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#S3TaggingErrorCodeList).
-//
-// This operation is only supported for S3 Storage Lens groups (https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-lens-groups.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7082,6 +8955,93 @@ func (c *S3Control) UntagResource(input *UntagResourceInput) (*UntagResourceOutp
 // for more information on using Contexts.
 func (c *S3Control) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
 	req, out := c.UntagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateAccessGrantsLocation = "UpdateAccessGrantsLocation"
+
+// UpdateAccessGrantsLocationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateAccessGrantsLocation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateAccessGrantsLocation for more information on using the UpdateAccessGrantsLocation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateAccessGrantsLocationRequest method.
+//	req, resp := client.UpdateAccessGrantsLocationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/UpdateAccessGrantsLocation
+func (c *S3Control) UpdateAccessGrantsLocationRequest(input *UpdateAccessGrantsLocationInput) (req *request.Request, output *UpdateAccessGrantsLocationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateAccessGrantsLocation,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/v20180820/accessgrantsinstance/location/{id}",
+	}
+
+	if input == nil {
+		input = &UpdateAccessGrantsLocationInput{}
+	}
+
+	output = &UpdateAccessGrantsLocationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	req.Handlers.Build.PushBackNamed(request.NamedHandler{
+		Name: "contentMd5Handler",
+		Fn:   checksum.AddBodyContentMD5Handler,
+	})
+	return
+}
+
+// UpdateAccessGrantsLocation API operation for AWS S3 Control.
+//
+// Updates the IAM role of a registered location in your S3 Access Grants instance.
+//
+// # Permissions
+//
+// You must have the s3:UpdateAccessGrantsLocation permission to use this operation.
+//
+// # Additional Permissions
+//
+// You must also have the following permission: iam:PassRole
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation UpdateAccessGrantsLocation for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/UpdateAccessGrantsLocation
+func (c *S3Control) UpdateAccessGrantsLocation(input *UpdateAccessGrantsLocationInput) (*UpdateAccessGrantsLocationOutput, error) {
+	req, out := c.UpdateAccessGrantsLocationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateAccessGrantsLocationWithContext is the same as UpdateAccessGrantsLocation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateAccessGrantsLocation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) UpdateAccessGrantsLocationWithContext(ctx aws.Context, input *UpdateAccessGrantsLocationInput, opts ...request.Option) (*UpdateAccessGrantsLocationOutput, error) {
+	req, out := c.UpdateAccessGrantsLocationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -7451,6 +9411,65 @@ func (s *AccessControlTranslation) SetOwner(v string) *AccessControlTranslation 
 	return s
 }
 
+// The configuration options of the S3 Access Grants location. It contains the
+// S3SubPrefix field. The grant scope, the data to which you are granting access,
+// is the result of appending the Subprefix field to the scope of the registered
+// location.
+type AccessGrantsLocationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The S3SubPrefix is appended to the location scope creating the grant scope.
+	// Use this field to narrow the scope of the grant to a subset of the location
+	// scope. This field is required if the location scope is the default location
+	// s3:// because you cannot create a grant for all of your S3 data in the Region
+	// and must narrow the scope. For example, if the location scope is the default
+	// location s3://, the S3SubPrefx can be a <bucket-name>/*, so the full grant
+	// scope path would be s3://<bucket-name>/*. Or the S3SubPrefx can be <bucket-name>/<prefix-name>*,
+	// so the full grant scope path would be or s3://<bucket-name>/<prefix-name>*.
+	//
+	// If the S3SubPrefix includes a prefix, append the wildcard character * after
+	// the prefix to indicate that you want to include all object key names in the
+	// bucket that start with that prefix.
+	S3SubPrefix *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccessGrantsLocationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccessGrantsLocationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AccessGrantsLocationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AccessGrantsLocationConfiguration"}
+	if s.S3SubPrefix != nil && len(*s.S3SubPrefix) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("S3SubPrefix", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3SubPrefix sets the S3SubPrefix field's value.
+func (s *AccessGrantsLocationConfiguration) SetS3SubPrefix(v string) *AccessGrantsLocationConfiguration {
+	s.S3SubPrefix = &v
+	return s
+}
+
 // An access point used to access a bucket.
 type AccessPoint struct {
 	_ struct{} `type:"structure"`
@@ -7777,6 +9796,105 @@ func (s AdvancedDataProtectionMetrics) GoString() string {
 func (s *AdvancedDataProtectionMetrics) SetIsEnabled(v bool) *AdvancedDataProtectionMetrics {
 	s.IsEnabled = &v
 	return s
+}
+
+type AssociateAccessGrantsIdentityCenterInput struct {
+	_ struct{} `locationName:"AssociateAccessGrantsIdentityCenterRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
+
+	// The ID of the Amazon Web Services account that is making this request.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the Amazon Web Services IAM Identity Center
+	// instance that you are associating with your S3 Access Grants instance. An
+	// IAM Identity Center instance is your corporate identity directory that you
+	// added to the IAM Identity Center. You can use the ListInstances (https://docs.aws.amazon.com/singlesignon/latest/APIReference/API_ListInstances.html)
+	// API operation to retrieve a list of your Identity Center instances and their
+	// ARNs.
+	//
+	// IdentityCenterArn is a required field
+	IdentityCenterArn *string `min:"10" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateAccessGrantsIdentityCenterInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateAccessGrantsIdentityCenterInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociateAccessGrantsIdentityCenterInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociateAccessGrantsIdentityCenterInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.IdentityCenterArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdentityCenterArn"))
+	}
+	if s.IdentityCenterArn != nil && len(*s.IdentityCenterArn) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("IdentityCenterArn", 10))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *AssociateAccessGrantsIdentityCenterInput) SetAccountId(v string) *AssociateAccessGrantsIdentityCenterInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetIdentityCenterArn sets the IdentityCenterArn field's value.
+func (s *AssociateAccessGrantsIdentityCenterInput) SetIdentityCenterArn(v string) *AssociateAccessGrantsIdentityCenterInput {
+	s.IdentityCenterArn = &v
+	return s
+}
+
+func (s *AssociateAccessGrantsIdentityCenterInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type AssociateAccessGrantsIdentityCenterOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateAccessGrantsIdentityCenterOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateAccessGrantsIdentityCenterOutput) GoString() string {
+	return s.String()
 }
 
 // Error details for the failed asynchronous operation.
@@ -8212,6 +10330,666 @@ func (s *CloudWatchMetrics) Validate() error {
 // SetIsEnabled sets the IsEnabled field's value.
 func (s *CloudWatchMetrics) SetIsEnabled(v bool) *CloudWatchMetrics {
 	s.IsEnabled = &v
+	return s
+}
+
+type CreateAccessGrantInput struct {
+	_ struct{} `locationName:"CreateAccessGrantRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
+
+	// The configuration options of the grant location. The grant location is the
+	// S3 path to the data to which you are granting access. It contains the S3SubPrefix
+	// field. The grant scope is the result of appending the subprefix to the location
+	// scope of the registered location.
+	AccessGrantsLocationConfiguration *AccessGrantsLocationConfiguration `type:"structure"`
+
+	// The ID of the registered location to which you are granting access. S3 Access
+	// Grants assigns this ID when you register the location. S3 Access Grants assigns
+	// the ID default to the default location s3:// and assigns an auto-generated
+	// ID to other locations that you register.
+	//
+	// If you are passing the default location, you cannot create an access grant
+	// for the entire default location. You must also specify a bucket or a bucket
+	// and prefix in the Subprefix field.
+	//
+	// AccessGrantsLocationId is a required field
+	AccessGrantsLocationId *string `min:"1" type:"string" required:"true"`
+
+	// The ID of the Amazon Web Services account that is making this request.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of an Amazon Web Services IAM Identity Center
+	// application associated with your Identity Center instance. If an application
+	// ARN is included in the request to create an access grant, the grantee can
+	// only access the S3 data through this application.
+	ApplicationArn *string `min:"10" type:"string"`
+
+	// The user, group, or role to which you are granting access. You can grant
+	// access to an IAM user or role. If you have added your corporate directory
+	// to Amazon Web Services IAM Identity Center and associated your Identity Center
+	// instance with your S3 Access Grants instance, the grantee can also be a corporate
+	// directory user or group.
+	//
+	// Grantee is a required field
+	Grantee *Grantee `type:"structure" required:"true"`
+
+	// The type of access that you are granting to your S3 data, which can be set
+	// to one of the following values:
+	//
+	//    * READ – Grant read-only access to the S3 data.
+	//
+	//    * WRITE – Grant write-only access to the S3 data.
+	//
+	//    * READWRITE – Grant both read and write access to the S3 data.
+	//
+	// Permission is a required field
+	Permission *string `type:"string" required:"true" enum:"Permission"`
+
+	// The type of S3SubPrefix. The only possible value is Object. Pass this value
+	// if the access grant scope is an object. Do not pass this value if the access
+	// grant scope is a bucket or a bucket and a prefix.
+	S3PrefixType *string `type:"string" enum:"S3PrefixType"`
+
+	// The Amazon Web Services resource tags that you are adding to the access grant.
+	// Each tag is a label consisting of a user-defined key and value. Tags can
+	// help you manage, identify, organize, search for, and filter resources.
+	Tags []*Tag `locationNameList:"Tag" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAccessGrantInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAccessGrantInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateAccessGrantInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateAccessGrantInput"}
+	if s.AccessGrantsLocationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccessGrantsLocationId"))
+	}
+	if s.AccessGrantsLocationId != nil && len(*s.AccessGrantsLocationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccessGrantsLocationId", 1))
+	}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.ApplicationArn != nil && len(*s.ApplicationArn) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("ApplicationArn", 10))
+	}
+	if s.Grantee == nil {
+		invalidParams.Add(request.NewErrParamRequired("Grantee"))
+	}
+	if s.Permission == nil {
+		invalidParams.Add(request.NewErrParamRequired("Permission"))
+	}
+	if s.AccessGrantsLocationConfiguration != nil {
+		if err := s.AccessGrantsLocationConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("AccessGrantsLocationConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccessGrantsLocationConfiguration sets the AccessGrantsLocationConfiguration field's value.
+func (s *CreateAccessGrantInput) SetAccessGrantsLocationConfiguration(v *AccessGrantsLocationConfiguration) *CreateAccessGrantInput {
+	s.AccessGrantsLocationConfiguration = v
+	return s
+}
+
+// SetAccessGrantsLocationId sets the AccessGrantsLocationId field's value.
+func (s *CreateAccessGrantInput) SetAccessGrantsLocationId(v string) *CreateAccessGrantInput {
+	s.AccessGrantsLocationId = &v
+	return s
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *CreateAccessGrantInput) SetAccountId(v string) *CreateAccessGrantInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetApplicationArn sets the ApplicationArn field's value.
+func (s *CreateAccessGrantInput) SetApplicationArn(v string) *CreateAccessGrantInput {
+	s.ApplicationArn = &v
+	return s
+}
+
+// SetGrantee sets the Grantee field's value.
+func (s *CreateAccessGrantInput) SetGrantee(v *Grantee) *CreateAccessGrantInput {
+	s.Grantee = v
+	return s
+}
+
+// SetPermission sets the Permission field's value.
+func (s *CreateAccessGrantInput) SetPermission(v string) *CreateAccessGrantInput {
+	s.Permission = &v
+	return s
+}
+
+// SetS3PrefixType sets the S3PrefixType field's value.
+func (s *CreateAccessGrantInput) SetS3PrefixType(v string) *CreateAccessGrantInput {
+	s.S3PrefixType = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateAccessGrantInput) SetTags(v []*Tag) *CreateAccessGrantInput {
+	s.Tags = v
+	return s
+}
+
+func (s *CreateAccessGrantInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type CreateAccessGrantOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the access grant.
+	AccessGrantArn *string `min:"1" type:"string"`
+
+	// The ID of the access grant. S3 Access Grants auto-generates this ID when
+	// you create the access grant.
+	AccessGrantId *string `min:"1" type:"string"`
+
+	// The configuration options of the grant location. The grant location is the
+	// S3 path to the data to which you are granting access.
+	AccessGrantsLocationConfiguration *AccessGrantsLocationConfiguration `type:"structure"`
+
+	// The ID of the registered location to which you are granting access. S3 Access
+	// Grants assigns this ID when you register the location. S3 Access Grants assigns
+	// the ID default to the default location s3:// and assigns an auto-generated
+	// ID to other locations that you register.
+	AccessGrantsLocationId *string `min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of an Amazon Web Services IAM Identity Center
+	// application associated with your Identity Center instance. If the grant includes
+	// an application ARN, the grantee can only access the S3 data through this
+	// application.
+	ApplicationArn *string `min:"10" type:"string"`
+
+	// The date and time when you created the access grant.
+	CreatedAt *time.Time `type:"timestamp"`
+
+	// The S3 path of the data to which you are granting access. It is the result
+	// of appending the Subprefix to the location scope.
+	GrantScope *string `min:"1" type:"string"`
+
+	// The user, group, or role to which you are granting access. You can grant
+	// access to an IAM user or role. If you have added your corporate directory
+	// to Amazon Web Services IAM Identity Center and associated your Identity Center
+	// instance with your S3 Access Grants instance, the grantee can also be a corporate
+	// directory user or group.
+	Grantee *Grantee `type:"structure"`
+
+	// The type of access that you are granting to your S3 data, which can be set
+	// to one of the following values:
+	//
+	//    * READ – Grant read-only access to the S3 data.
+	//
+	//    * WRITE – Grant write-only access to the S3 data.
+	//
+	//    * READWRITE – Grant both read and write access to the S3 data.
+	Permission *string `type:"string" enum:"Permission"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAccessGrantOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAccessGrantOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccessGrantArn sets the AccessGrantArn field's value.
+func (s *CreateAccessGrantOutput) SetAccessGrantArn(v string) *CreateAccessGrantOutput {
+	s.AccessGrantArn = &v
+	return s
+}
+
+// SetAccessGrantId sets the AccessGrantId field's value.
+func (s *CreateAccessGrantOutput) SetAccessGrantId(v string) *CreateAccessGrantOutput {
+	s.AccessGrantId = &v
+	return s
+}
+
+// SetAccessGrantsLocationConfiguration sets the AccessGrantsLocationConfiguration field's value.
+func (s *CreateAccessGrantOutput) SetAccessGrantsLocationConfiguration(v *AccessGrantsLocationConfiguration) *CreateAccessGrantOutput {
+	s.AccessGrantsLocationConfiguration = v
+	return s
+}
+
+// SetAccessGrantsLocationId sets the AccessGrantsLocationId field's value.
+func (s *CreateAccessGrantOutput) SetAccessGrantsLocationId(v string) *CreateAccessGrantOutput {
+	s.AccessGrantsLocationId = &v
+	return s
+}
+
+// SetApplicationArn sets the ApplicationArn field's value.
+func (s *CreateAccessGrantOutput) SetApplicationArn(v string) *CreateAccessGrantOutput {
+	s.ApplicationArn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *CreateAccessGrantOutput) SetCreatedAt(v time.Time) *CreateAccessGrantOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetGrantScope sets the GrantScope field's value.
+func (s *CreateAccessGrantOutput) SetGrantScope(v string) *CreateAccessGrantOutput {
+	s.GrantScope = &v
+	return s
+}
+
+// SetGrantee sets the Grantee field's value.
+func (s *CreateAccessGrantOutput) SetGrantee(v *Grantee) *CreateAccessGrantOutput {
+	s.Grantee = v
+	return s
+}
+
+// SetPermission sets the Permission field's value.
+func (s *CreateAccessGrantOutput) SetPermission(v string) *CreateAccessGrantOutput {
+	s.Permission = &v
+	return s
+}
+
+type CreateAccessGrantsInstanceInput struct {
+	_ struct{} `locationName:"CreateAccessGrantsInstanceRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
+
+	// The ID of the Amazon Web Services account that is making this request.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// If you would like to associate your S3 Access Grants instance with an Amazon
+	// Web Services IAM Identity Center instance, use this field to pass the Amazon
+	// Resource Name (ARN) of the Amazon Web Services IAM Identity Center instance
+	// that you are associating with your S3 Access Grants instance. An IAM Identity
+	// Center instance is your corporate identity directory that you added to the
+	// IAM Identity Center. You can use the ListInstances (https://docs.aws.amazon.com/singlesignon/latest/APIReference/API_ListInstances.html)
+	// API operation to retrieve a list of your Identity Center instances and their
+	// ARNs.
+	IdentityCenterArn *string `min:"10" type:"string"`
+
+	// The Amazon Web Services resource tags that you are adding to the S3 Access
+	// Grants instance. Each tag is a label consisting of a user-defined key and
+	// value. Tags can help you manage, identify, organize, search for, and filter
+	// resources.
+	Tags []*Tag `locationNameList:"Tag" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAccessGrantsInstanceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAccessGrantsInstanceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateAccessGrantsInstanceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateAccessGrantsInstanceInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.IdentityCenterArn != nil && len(*s.IdentityCenterArn) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("IdentityCenterArn", 10))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *CreateAccessGrantsInstanceInput) SetAccountId(v string) *CreateAccessGrantsInstanceInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetIdentityCenterArn sets the IdentityCenterArn field's value.
+func (s *CreateAccessGrantsInstanceInput) SetIdentityCenterArn(v string) *CreateAccessGrantsInstanceInput {
+	s.IdentityCenterArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateAccessGrantsInstanceInput) SetTags(v []*Tag) *CreateAccessGrantsInstanceInput {
+	s.Tags = v
+	return s
+}
+
+func (s *CreateAccessGrantsInstanceInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type CreateAccessGrantsInstanceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the S3 Access Grants instance.
+	AccessGrantsInstanceArn *string `min:"1" type:"string"`
+
+	// The ID of the S3 Access Grants instance. The ID is default. You can have
+	// one S3 Access Grants instance per Region per account.
+	AccessGrantsInstanceId *string `min:"1" type:"string"`
+
+	// The date and time when you created the S3 Access Grants instance.
+	CreatedAt *time.Time `type:"timestamp"`
+
+	// If you associated your S3 Access Grants instance with an Amazon Web Services
+	// IAM Identity Center instance, this field returns the Amazon Resource Name
+	// (ARN) of the IAM Identity Center instance application; a subresource of the
+	// original Identity Center instance passed in the request. S3 Access Grants
+	// creates this Identity Center application for this specific S3 Access Grants
+	// instance.
+	IdentityCenterArn *string `min:"10" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAccessGrantsInstanceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAccessGrantsInstanceOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccessGrantsInstanceArn sets the AccessGrantsInstanceArn field's value.
+func (s *CreateAccessGrantsInstanceOutput) SetAccessGrantsInstanceArn(v string) *CreateAccessGrantsInstanceOutput {
+	s.AccessGrantsInstanceArn = &v
+	return s
+}
+
+// SetAccessGrantsInstanceId sets the AccessGrantsInstanceId field's value.
+func (s *CreateAccessGrantsInstanceOutput) SetAccessGrantsInstanceId(v string) *CreateAccessGrantsInstanceOutput {
+	s.AccessGrantsInstanceId = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *CreateAccessGrantsInstanceOutput) SetCreatedAt(v time.Time) *CreateAccessGrantsInstanceOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetIdentityCenterArn sets the IdentityCenterArn field's value.
+func (s *CreateAccessGrantsInstanceOutput) SetIdentityCenterArn(v string) *CreateAccessGrantsInstanceOutput {
+	s.IdentityCenterArn = &v
+	return s
+}
+
+type CreateAccessGrantsLocationInput struct {
+	_ struct{} `locationName:"CreateAccessGrantsLocationRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
+
+	// The ID of the Amazon Web Services account that is making this request.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the IAM role for the registered location.
+	// S3 Access Grants assumes this role to manage access to the registered location.
+	//
+	// IAMRoleArn is a required field
+	IAMRoleArn *string `min:"1" type:"string" required:"true"`
+
+	// The S3 path to the location that you are registering. The location scope
+	// can be the default S3 location s3://, the S3 path to a bucket s3://<bucket>,
+	// or the S3 path to a bucket and prefix s3://<bucket>/<prefix>. A prefix in
+	// S3 is a string of characters at the beginning of an object key name used
+	// to organize the objects that you store in your S3 buckets. For example, object
+	// key names that start with the engineering/ prefix or object key names that
+	// start with the marketing/campaigns/ prefix.
+	//
+	// LocationScope is a required field
+	LocationScope *string `min:"1" type:"string" required:"true"`
+
+	// The Amazon Web Services resource tags that you are adding to the S3 Access
+	// Grants location. Each tag is a label consisting of a user-defined key and
+	// value. Tags can help you manage, identify, organize, search for, and filter
+	// resources.
+	Tags []*Tag `locationNameList:"Tag" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAccessGrantsLocationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAccessGrantsLocationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateAccessGrantsLocationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateAccessGrantsLocationInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.IAMRoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("IAMRoleArn"))
+	}
+	if s.IAMRoleArn != nil && len(*s.IAMRoleArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IAMRoleArn", 1))
+	}
+	if s.LocationScope == nil {
+		invalidParams.Add(request.NewErrParamRequired("LocationScope"))
+	}
+	if s.LocationScope != nil && len(*s.LocationScope) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LocationScope", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *CreateAccessGrantsLocationInput) SetAccountId(v string) *CreateAccessGrantsLocationInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetIAMRoleArn sets the IAMRoleArn field's value.
+func (s *CreateAccessGrantsLocationInput) SetIAMRoleArn(v string) *CreateAccessGrantsLocationInput {
+	s.IAMRoleArn = &v
+	return s
+}
+
+// SetLocationScope sets the LocationScope field's value.
+func (s *CreateAccessGrantsLocationInput) SetLocationScope(v string) *CreateAccessGrantsLocationInput {
+	s.LocationScope = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateAccessGrantsLocationInput) SetTags(v []*Tag) *CreateAccessGrantsLocationInput {
+	s.Tags = v
+	return s
+}
+
+func (s *CreateAccessGrantsLocationInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type CreateAccessGrantsLocationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the location you are registering.
+	AccessGrantsLocationArn *string `min:"1" type:"string"`
+
+	// The ID of the registered location to which you are granting access. S3 Access
+	// Grants assigns this ID when you register the location. S3 Access Grants assigns
+	// the ID default to the default location s3:// and assigns an auto-generated
+	// ID to other locations that you register.
+	AccessGrantsLocationId *string `min:"1" type:"string"`
+
+	// The date and time when you registered the location.
+	CreatedAt *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the IAM role for the registered location.
+	// S3 Access Grants assumes this role to manage access to the registered location.
+	IAMRoleArn *string `min:"1" type:"string"`
+
+	// The S3 URI path to the location that you are registering. The location scope
+	// can be the default S3 location s3://, the S3 path to a bucket, or the S3
+	// path to a bucket and prefix. A prefix in S3 is a string of characters at
+	// the beginning of an object key name used to organize the objects that you
+	// store in your S3 buckets. For example, object key names that start with the
+	// engineering/ prefix or object key names that start with the marketing/campaigns/
+	// prefix.
+	LocationScope *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAccessGrantsLocationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAccessGrantsLocationOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccessGrantsLocationArn sets the AccessGrantsLocationArn field's value.
+func (s *CreateAccessGrantsLocationOutput) SetAccessGrantsLocationArn(v string) *CreateAccessGrantsLocationOutput {
+	s.AccessGrantsLocationArn = &v
+	return s
+}
+
+// SetAccessGrantsLocationId sets the AccessGrantsLocationId field's value.
+func (s *CreateAccessGrantsLocationOutput) SetAccessGrantsLocationId(v string) *CreateAccessGrantsLocationOutput {
+	s.AccessGrantsLocationId = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *CreateAccessGrantsLocationOutput) SetCreatedAt(v time.Time) *CreateAccessGrantsLocationOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetIAMRoleArn sets the IAMRoleArn field's value.
+func (s *CreateAccessGrantsLocationOutput) SetIAMRoleArn(v string) *CreateAccessGrantsLocationOutput {
+	s.IAMRoleArn = &v
+	return s
+}
+
+// SetLocationScope sets the LocationScope field's value.
+func (s *CreateAccessGrantsLocationOutput) SetLocationScope(v string) *CreateAccessGrantsLocationOutput {
+	s.LocationScope = &v
 	return s
 }
 
@@ -9403,6 +12181,428 @@ func (s CreateStorageLensGroupOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s CreateStorageLensGroupOutput) GoString() string {
+	return s.String()
+}
+
+// The Amazon Web Services Security Token Service temporary credential that
+// S3 Access Grants vends to grantees and client applications.
+type Credentials struct {
+	_ struct{} `type:"structure" sensitive:"true"`
+
+	// The unique access key ID of the Amazon Web Services STS temporary credential
+	// that S3 Access Grants vends to grantees and client applications.
+	//
+	// AccessKeyId is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Credentials's
+	// String and GoString methods.
+	AccessKeyId *string `type:"string" sensitive:"true"`
+
+	// The expiration date and time of the temporary credential that S3 Access Grants
+	// vends to grantees and client applications.
+	Expiration *time.Time `type:"timestamp"`
+
+	// The secret access key of the Amazon Web Services STS temporary credential
+	// that S3 Access Grants vends to grantees and client applications.
+	//
+	// SecretAccessKey is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Credentials's
+	// String and GoString methods.
+	SecretAccessKey *string `type:"string" sensitive:"true"`
+
+	// The Amazon Web Services STS temporary credential that S3 Access Grants vends
+	// to grantees and client applications.
+	//
+	// SessionToken is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Credentials's
+	// String and GoString methods.
+	SessionToken *string `type:"string" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Credentials) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Credentials) GoString() string {
+	return s.String()
+}
+
+// SetAccessKeyId sets the AccessKeyId field's value.
+func (s *Credentials) SetAccessKeyId(v string) *Credentials {
+	s.AccessKeyId = &v
+	return s
+}
+
+// SetExpiration sets the Expiration field's value.
+func (s *Credentials) SetExpiration(v time.Time) *Credentials {
+	s.Expiration = &v
+	return s
+}
+
+// SetSecretAccessKey sets the SecretAccessKey field's value.
+func (s *Credentials) SetSecretAccessKey(v string) *Credentials {
+	s.SecretAccessKey = &v
+	return s
+}
+
+// SetSessionToken sets the SessionToken field's value.
+func (s *Credentials) SetSessionToken(v string) *Credentials {
+	s.SessionToken = &v
+	return s
+}
+
+type DeleteAccessGrantInput struct {
+	_ struct{} `locationName:"DeleteAccessGrantRequest" type:"structure"`
+
+	// The ID of the access grant. S3 Access Grants auto-generates this ID when
+	// you create the access grant.
+	//
+	// AccessGrantId is a required field
+	AccessGrantId *string `location:"uri" locationName:"id" min:"1" type:"string" required:"true"`
+
+	// The ID of the Amazon Web Services account that is making this request.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAccessGrantInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAccessGrantInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteAccessGrantInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteAccessGrantInput"}
+	if s.AccessGrantId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccessGrantId"))
+	}
+	if s.AccessGrantId != nil && len(*s.AccessGrantId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccessGrantId", 1))
+	}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccessGrantId sets the AccessGrantId field's value.
+func (s *DeleteAccessGrantInput) SetAccessGrantId(v string) *DeleteAccessGrantInput {
+	s.AccessGrantId = &v
+	return s
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *DeleteAccessGrantInput) SetAccountId(v string) *DeleteAccessGrantInput {
+	s.AccountId = &v
+	return s
+}
+
+func (s *DeleteAccessGrantInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type DeleteAccessGrantOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAccessGrantOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAccessGrantOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteAccessGrantsInstanceInput struct {
+	_ struct{} `locationName:"DeleteAccessGrantsInstanceRequest" type:"structure"`
+
+	// The ID of the Amazon Web Services account that is making this request.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAccessGrantsInstanceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAccessGrantsInstanceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteAccessGrantsInstanceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteAccessGrantsInstanceInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *DeleteAccessGrantsInstanceInput) SetAccountId(v string) *DeleteAccessGrantsInstanceInput {
+	s.AccountId = &v
+	return s
+}
+
+func (s *DeleteAccessGrantsInstanceInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type DeleteAccessGrantsInstanceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAccessGrantsInstanceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAccessGrantsInstanceOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteAccessGrantsInstanceResourcePolicyInput struct {
+	_ struct{} `locationName:"DeleteAccessGrantsInstanceResourcePolicyRequest" type:"structure"`
+
+	// The ID of the Amazon Web Services account that is making this request.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAccessGrantsInstanceResourcePolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAccessGrantsInstanceResourcePolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteAccessGrantsInstanceResourcePolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteAccessGrantsInstanceResourcePolicyInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *DeleteAccessGrantsInstanceResourcePolicyInput) SetAccountId(v string) *DeleteAccessGrantsInstanceResourcePolicyInput {
+	s.AccountId = &v
+	return s
+}
+
+func (s *DeleteAccessGrantsInstanceResourcePolicyInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type DeleteAccessGrantsInstanceResourcePolicyOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAccessGrantsInstanceResourcePolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAccessGrantsInstanceResourcePolicyOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteAccessGrantsLocationInput struct {
+	_ struct{} `locationName:"DeleteAccessGrantsLocationRequest" type:"structure"`
+
+	// The ID of the registered location that you are deregistering from your S3
+	// Access Grants instance. S3 Access Grants assigned this ID when you registered
+	// the location. S3 Access Grants assigns the ID default to the default location
+	// s3:// and assigns an auto-generated ID to other locations that you register.
+	//
+	// AccessGrantsLocationId is a required field
+	AccessGrantsLocationId *string `location:"uri" locationName:"id" min:"1" type:"string" required:"true"`
+
+	// The ID of the Amazon Web Services account that is making this request.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAccessGrantsLocationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAccessGrantsLocationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteAccessGrantsLocationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteAccessGrantsLocationInput"}
+	if s.AccessGrantsLocationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccessGrantsLocationId"))
+	}
+	if s.AccessGrantsLocationId != nil && len(*s.AccessGrantsLocationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccessGrantsLocationId", 1))
+	}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccessGrantsLocationId sets the AccessGrantsLocationId field's value.
+func (s *DeleteAccessGrantsLocationInput) SetAccessGrantsLocationId(v string) *DeleteAccessGrantsLocationInput {
+	s.AccessGrantsLocationId = &v
+	return s
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *DeleteAccessGrantsLocationInput) SetAccountId(v string) *DeleteAccessGrantsLocationInput {
+	s.AccountId = &v
+	return s
+}
+
+func (s *DeleteAccessGrantsLocationInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type DeleteAccessGrantsLocationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAccessGrantsLocationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAccessGrantsLocationOutput) GoString() string {
 	return s.String()
 }
 
@@ -11684,6 +14884,83 @@ func (s *DetailedStatusCodesMetrics) SetIsEnabled(v bool) *DetailedStatusCodesMe
 	return s
 }
 
+type DissociateAccessGrantsIdentityCenterInput struct {
+	_ struct{} `locationName:"DissociateAccessGrantsIdentityCenterRequest" type:"structure"`
+
+	// The ID of the Amazon Web Services account that is making this request.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DissociateAccessGrantsIdentityCenterInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DissociateAccessGrantsIdentityCenterInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DissociateAccessGrantsIdentityCenterInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DissociateAccessGrantsIdentityCenterInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *DissociateAccessGrantsIdentityCenterInput) SetAccountId(v string) *DissociateAccessGrantsIdentityCenterInput {
+	s.AccountId = &v
+	return s
+}
+
+func (s *DissociateAccessGrantsIdentityCenterInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type DissociateAccessGrantsIdentityCenterOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DissociateAccessGrantsIdentityCenterOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DissociateAccessGrantsIdentityCenterOutput) GoString() string {
+	return s.String()
+}
+
 // Specifies encryption-related information for an Amazon S3 bucket that is
 // a destination for replicated objects.
 //
@@ -11906,6 +15183,690 @@ func (s *GeneratedManifestEncryption) SetSSEKMS(v *SSEKMSEncryption) *GeneratedM
 // SetSSES3 sets the SSES3 field's value.
 func (s *GeneratedManifestEncryption) SetSSES3(v *SSES3Encryption) *GeneratedManifestEncryption {
 	s.SSES3 = v
+	return s
+}
+
+type GetAccessGrantInput struct {
+	_ struct{} `locationName:"GetAccessGrantRequest" type:"structure"`
+
+	// The ID of the access grant. S3 Access Grants auto-generates this ID when
+	// you create the access grant.
+	//
+	// AccessGrantId is a required field
+	AccessGrantId *string `location:"uri" locationName:"id" min:"1" type:"string" required:"true"`
+
+	// The ID of the Amazon Web Services account that is making this request.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAccessGrantInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAccessGrantInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetAccessGrantInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetAccessGrantInput"}
+	if s.AccessGrantId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccessGrantId"))
+	}
+	if s.AccessGrantId != nil && len(*s.AccessGrantId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccessGrantId", 1))
+	}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccessGrantId sets the AccessGrantId field's value.
+func (s *GetAccessGrantInput) SetAccessGrantId(v string) *GetAccessGrantInput {
+	s.AccessGrantId = &v
+	return s
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *GetAccessGrantInput) SetAccountId(v string) *GetAccessGrantInput {
+	s.AccountId = &v
+	return s
+}
+
+func (s *GetAccessGrantInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type GetAccessGrantOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the access grant.
+	AccessGrantArn *string `min:"1" type:"string"`
+
+	// The ID of the access grant. S3 Access Grants auto-generates this ID when
+	// you create the access grant.
+	AccessGrantId *string `min:"1" type:"string"`
+
+	// The configuration options of the grant location. The grant location is the
+	// S3 path to the data to which you are granting access.
+	AccessGrantsLocationConfiguration *AccessGrantsLocationConfiguration `type:"structure"`
+
+	// The ID of the registered location to which you are granting access. S3 Access
+	// Grants assigns this ID when you register the location. S3 Access Grants assigns
+	// the ID default to the default location s3:// and assigns an auto-generated
+	// ID to other locations that you register.
+	AccessGrantsLocationId *string `min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of an Amazon Web Services IAM Identity Center
+	// application associated with your Identity Center instance. If the grant includes
+	// an application ARN, the grantee can only access the S3 data through this
+	// application.
+	ApplicationArn *string `min:"10" type:"string"`
+
+	// The date and time when you created the access grant.
+	CreatedAt *time.Time `type:"timestamp"`
+
+	// The S3 path of the data to which you are granting access. It is the result
+	// of appending the Subprefix to the location scope.
+	GrantScope *string `min:"1" type:"string"`
+
+	// The user, group, or role to which you are granting access. You can grant
+	// access to an IAM user or role. If you have added a corporate directory to
+	// Amazon Web Services IAM Identity Center and associated this Identity Center
+	// instance with the S3 Access Grants instance, the grantee can also be a corporate
+	// directory user or group.
+	Grantee *Grantee `type:"structure"`
+
+	// The type of permission that was granted in the access grant. Can be one of
+	// the following values:
+	//
+	//    * READ – Grant read-only access to the S3 data.
+	//
+	//    * WRITE – Grant write-only access to the S3 data.
+	//
+	//    * READWRITE – Grant both read and write access to the S3 data.
+	Permission *string `type:"string" enum:"Permission"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAccessGrantOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAccessGrantOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccessGrantArn sets the AccessGrantArn field's value.
+func (s *GetAccessGrantOutput) SetAccessGrantArn(v string) *GetAccessGrantOutput {
+	s.AccessGrantArn = &v
+	return s
+}
+
+// SetAccessGrantId sets the AccessGrantId field's value.
+func (s *GetAccessGrantOutput) SetAccessGrantId(v string) *GetAccessGrantOutput {
+	s.AccessGrantId = &v
+	return s
+}
+
+// SetAccessGrantsLocationConfiguration sets the AccessGrantsLocationConfiguration field's value.
+func (s *GetAccessGrantOutput) SetAccessGrantsLocationConfiguration(v *AccessGrantsLocationConfiguration) *GetAccessGrantOutput {
+	s.AccessGrantsLocationConfiguration = v
+	return s
+}
+
+// SetAccessGrantsLocationId sets the AccessGrantsLocationId field's value.
+func (s *GetAccessGrantOutput) SetAccessGrantsLocationId(v string) *GetAccessGrantOutput {
+	s.AccessGrantsLocationId = &v
+	return s
+}
+
+// SetApplicationArn sets the ApplicationArn field's value.
+func (s *GetAccessGrantOutput) SetApplicationArn(v string) *GetAccessGrantOutput {
+	s.ApplicationArn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *GetAccessGrantOutput) SetCreatedAt(v time.Time) *GetAccessGrantOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetGrantScope sets the GrantScope field's value.
+func (s *GetAccessGrantOutput) SetGrantScope(v string) *GetAccessGrantOutput {
+	s.GrantScope = &v
+	return s
+}
+
+// SetGrantee sets the Grantee field's value.
+func (s *GetAccessGrantOutput) SetGrantee(v *Grantee) *GetAccessGrantOutput {
+	s.Grantee = v
+	return s
+}
+
+// SetPermission sets the Permission field's value.
+func (s *GetAccessGrantOutput) SetPermission(v string) *GetAccessGrantOutput {
+	s.Permission = &v
+	return s
+}
+
+type GetAccessGrantsInstanceForPrefixInput struct {
+	_ struct{} `locationName:"GetAccessGrantsInstanceForPrefixRequest" type:"structure"`
+
+	// The ID of the Amazon Web Services account that is making this request.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The S3 prefix of the access grants that you would like to retrieve.
+	//
+	// S3Prefix is a required field
+	S3Prefix *string `location:"querystring" locationName:"s3prefix" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAccessGrantsInstanceForPrefixInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAccessGrantsInstanceForPrefixInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetAccessGrantsInstanceForPrefixInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetAccessGrantsInstanceForPrefixInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.S3Prefix == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3Prefix"))
+	}
+	if s.S3Prefix != nil && len(*s.S3Prefix) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("S3Prefix", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *GetAccessGrantsInstanceForPrefixInput) SetAccountId(v string) *GetAccessGrantsInstanceForPrefixInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetS3Prefix sets the S3Prefix field's value.
+func (s *GetAccessGrantsInstanceForPrefixInput) SetS3Prefix(v string) *GetAccessGrantsInstanceForPrefixInput {
+	s.S3Prefix = &v
+	return s
+}
+
+func (s *GetAccessGrantsInstanceForPrefixInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type GetAccessGrantsInstanceForPrefixOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the S3 Access Grants instance.
+	AccessGrantsInstanceArn *string `min:"1" type:"string"`
+
+	// The ID of the S3 Access Grants instance. The ID is default. You can have
+	// one S3 Access Grants instance per Region per account.
+	AccessGrantsInstanceId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAccessGrantsInstanceForPrefixOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAccessGrantsInstanceForPrefixOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccessGrantsInstanceArn sets the AccessGrantsInstanceArn field's value.
+func (s *GetAccessGrantsInstanceForPrefixOutput) SetAccessGrantsInstanceArn(v string) *GetAccessGrantsInstanceForPrefixOutput {
+	s.AccessGrantsInstanceArn = &v
+	return s
+}
+
+// SetAccessGrantsInstanceId sets the AccessGrantsInstanceId field's value.
+func (s *GetAccessGrantsInstanceForPrefixOutput) SetAccessGrantsInstanceId(v string) *GetAccessGrantsInstanceForPrefixOutput {
+	s.AccessGrantsInstanceId = &v
+	return s
+}
+
+type GetAccessGrantsInstanceInput struct {
+	_ struct{} `locationName:"GetAccessGrantsInstanceRequest" type:"structure"`
+
+	// The ID of the Amazon Web Services account that is making this request.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAccessGrantsInstanceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAccessGrantsInstanceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetAccessGrantsInstanceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetAccessGrantsInstanceInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *GetAccessGrantsInstanceInput) SetAccountId(v string) *GetAccessGrantsInstanceInput {
+	s.AccountId = &v
+	return s
+}
+
+func (s *GetAccessGrantsInstanceInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type GetAccessGrantsInstanceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the S3 Access Grants instance.
+	AccessGrantsInstanceArn *string `min:"1" type:"string"`
+
+	// The ID of the S3 Access Grants instance. The ID is default. You can have
+	// one S3 Access Grants instance per Region per account.
+	AccessGrantsInstanceId *string `min:"1" type:"string"`
+
+	// The date and time when you created the S3 Access Grants instance.
+	CreatedAt *time.Time `type:"timestamp"`
+
+	// If you associated your S3 Access Grants instance with an Amazon Web Services
+	// IAM Identity Center instance, this field returns the Amazon Resource Name
+	// (ARN) of the Amazon Web Services IAM Identity Center instance application;
+	// a subresource of the original Identity Center instance. S3 Access Grants
+	// creates this Identity Center application for the specific S3 Access Grants
+	// instance.
+	IdentityCenterArn *string `min:"10" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAccessGrantsInstanceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAccessGrantsInstanceOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccessGrantsInstanceArn sets the AccessGrantsInstanceArn field's value.
+func (s *GetAccessGrantsInstanceOutput) SetAccessGrantsInstanceArn(v string) *GetAccessGrantsInstanceOutput {
+	s.AccessGrantsInstanceArn = &v
+	return s
+}
+
+// SetAccessGrantsInstanceId sets the AccessGrantsInstanceId field's value.
+func (s *GetAccessGrantsInstanceOutput) SetAccessGrantsInstanceId(v string) *GetAccessGrantsInstanceOutput {
+	s.AccessGrantsInstanceId = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *GetAccessGrantsInstanceOutput) SetCreatedAt(v time.Time) *GetAccessGrantsInstanceOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetIdentityCenterArn sets the IdentityCenterArn field's value.
+func (s *GetAccessGrantsInstanceOutput) SetIdentityCenterArn(v string) *GetAccessGrantsInstanceOutput {
+	s.IdentityCenterArn = &v
+	return s
+}
+
+type GetAccessGrantsInstanceResourcePolicyInput struct {
+	_ struct{} `locationName:"GetAccessGrantsInstanceResourcePolicyRequest" type:"structure"`
+
+	// The ID of the Amazon Web Services account that is making this request.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAccessGrantsInstanceResourcePolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAccessGrantsInstanceResourcePolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetAccessGrantsInstanceResourcePolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetAccessGrantsInstanceResourcePolicyInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *GetAccessGrantsInstanceResourcePolicyInput) SetAccountId(v string) *GetAccessGrantsInstanceResourcePolicyInput {
+	s.AccountId = &v
+	return s
+}
+
+func (s *GetAccessGrantsInstanceResourcePolicyInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type GetAccessGrantsInstanceResourcePolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time when you created the S3 Access Grants instance resource
+	// policy.
+	CreatedAt *time.Time `type:"timestamp"`
+
+	// The Organization of the resource policy of the S3 Access Grants instance.
+	Organization *string `min:"12" type:"string"`
+
+	// The resource policy of the S3 Access Grants instance.
+	Policy *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAccessGrantsInstanceResourcePolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAccessGrantsInstanceResourcePolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *GetAccessGrantsInstanceResourcePolicyOutput) SetCreatedAt(v time.Time) *GetAccessGrantsInstanceResourcePolicyOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetOrganization sets the Organization field's value.
+func (s *GetAccessGrantsInstanceResourcePolicyOutput) SetOrganization(v string) *GetAccessGrantsInstanceResourcePolicyOutput {
+	s.Organization = &v
+	return s
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *GetAccessGrantsInstanceResourcePolicyOutput) SetPolicy(v string) *GetAccessGrantsInstanceResourcePolicyOutput {
+	s.Policy = &v
+	return s
+}
+
+type GetAccessGrantsLocationInput struct {
+	_ struct{} `locationName:"GetAccessGrantsLocationRequest" type:"structure"`
+
+	// The ID of the registered location that you are retrieving. S3 Access Grants
+	// assigns this ID when you register the location. S3 Access Grants assigns
+	// the ID default to the default location s3:// and assigns an auto-generated
+	// ID to other locations that you register.
+	//
+	// AccessGrantsLocationId is a required field
+	AccessGrantsLocationId *string `location:"uri" locationName:"id" min:"1" type:"string" required:"true"`
+
+	// The ID of the Amazon Web Services account that is making this request.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAccessGrantsLocationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAccessGrantsLocationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetAccessGrantsLocationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetAccessGrantsLocationInput"}
+	if s.AccessGrantsLocationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccessGrantsLocationId"))
+	}
+	if s.AccessGrantsLocationId != nil && len(*s.AccessGrantsLocationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccessGrantsLocationId", 1))
+	}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccessGrantsLocationId sets the AccessGrantsLocationId field's value.
+func (s *GetAccessGrantsLocationInput) SetAccessGrantsLocationId(v string) *GetAccessGrantsLocationInput {
+	s.AccessGrantsLocationId = &v
+	return s
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *GetAccessGrantsLocationInput) SetAccountId(v string) *GetAccessGrantsLocationInput {
+	s.AccountId = &v
+	return s
+}
+
+func (s *GetAccessGrantsLocationInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type GetAccessGrantsLocationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the registered location.
+	AccessGrantsLocationArn *string `min:"1" type:"string"`
+
+	// The ID of the registered location to which you are granting access. S3 Access
+	// Grants assigns this ID when you register the location. S3 Access Grants assigns
+	// the ID default to the default location s3:// and assigns an auto-generated
+	// ID to other locations that you register.
+	AccessGrantsLocationId *string `min:"1" type:"string"`
+
+	// The date and time when you registered the location.
+	CreatedAt *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the IAM role for the registered location.
+	// S3 Access Grants assumes this role to manage access to the registered location.
+	IAMRoleArn *string `min:"1" type:"string"`
+
+	// The S3 URI path to the registered location. The location scope can be the
+	// default S3 location s3://, the S3 path to a bucket, or the S3 path to a bucket
+	// and prefix. A prefix in S3 is a string of characters at the beginning of
+	// an object key name used to organize the objects that you store in your S3
+	// buckets. For example, object key names that start with the engineering/ prefix
+	// or object key names that start with the marketing/campaigns/ prefix.
+	LocationScope *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAccessGrantsLocationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAccessGrantsLocationOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccessGrantsLocationArn sets the AccessGrantsLocationArn field's value.
+func (s *GetAccessGrantsLocationOutput) SetAccessGrantsLocationArn(v string) *GetAccessGrantsLocationOutput {
+	s.AccessGrantsLocationArn = &v
+	return s
+}
+
+// SetAccessGrantsLocationId sets the AccessGrantsLocationId field's value.
+func (s *GetAccessGrantsLocationOutput) SetAccessGrantsLocationId(v string) *GetAccessGrantsLocationOutput {
+	s.AccessGrantsLocationId = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *GetAccessGrantsLocationOutput) SetCreatedAt(v time.Time) *GetAccessGrantsLocationOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetIAMRoleArn sets the IAMRoleArn field's value.
+func (s *GetAccessGrantsLocationOutput) SetIAMRoleArn(v string) *GetAccessGrantsLocationOutput {
+	s.IAMRoleArn = &v
+	return s
+}
+
+// SetLocationScope sets the LocationScope field's value.
+func (s *GetAccessGrantsLocationOutput) SetLocationScope(v string) *GetAccessGrantsLocationOutput {
+	s.LocationScope = &v
 	return s
 }
 
@@ -13817,6 +17778,190 @@ func (s *GetBucketVersioningOutput) SetStatus(v string) *GetBucketVersioningOutp
 	return s
 }
 
+type GetDataAccessInput struct {
+	_ struct{} `locationName:"GetDataAccessRequest" type:"structure"`
+
+	// The ID of the Amazon Web Services account that is making this request.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The session duration, in seconds, of the temporary access credential that
+	// S3 Access Grants vends to the grantee or client application. The default
+	// value is 1 hour, but the grantee can specify a range from 900 seconds (15
+	// minutes) up to 43200 seconds (12 hours). If the grantee requests a value
+	// higher than this maximum, the operation fails.
+	DurationSeconds *int64 `location:"querystring" locationName:"durationSeconds" min:"900" type:"integer"`
+
+	// The type of permission granted to your S3 data, which can be set to one of
+	// the following values:
+	//
+	//    * READ – Grant read-only access to the S3 data.
+	//
+	//    * WRITE – Grant write-only access to the S3 data.
+	//
+	//    * READWRITE – Grant both read and write access to the S3 data.
+	//
+	// Permission is a required field
+	Permission *string `location:"querystring" locationName:"permission" type:"string" required:"true" enum:"Permission"`
+
+	// The scope of the temporary access credential that S3 Access Grants vends
+	// to the grantee or client application.
+	//
+	//    * Default – The scope of the returned temporary access token is the
+	//    scope of the grant that is closest to the target scope.
+	//
+	//    * Minimal – The scope of the returned temporary access token is the
+	//    same as the requested target scope as long as the requested scope is the
+	//    same as or a subset of the grant scope.
+	Privilege *string `location:"querystring" locationName:"privilege" type:"string" enum:"Privilege"`
+
+	// The S3 URI path of the data to which you are requesting temporary access
+	// credentials. If the requesting account has an access grant for this data,
+	// S3 Access Grants vends temporary access credentials in the response.
+	//
+	// Target is a required field
+	Target *string `location:"querystring" locationName:"target" min:"1" type:"string" required:"true"`
+
+	// The type of Target. The only possible value is Object. Pass this value if
+	// the target data that you would like to access is a path to an object. Do
+	// not pass this value if the target data is a bucket or a bucket and a prefix.
+	TargetType *string `location:"querystring" locationName:"targetType" type:"string" enum:"S3PrefixType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataAccessInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataAccessInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetDataAccessInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetDataAccessInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.DurationSeconds != nil && *s.DurationSeconds < 900 {
+		invalidParams.Add(request.NewErrParamMinValue("DurationSeconds", 900))
+	}
+	if s.Permission == nil {
+		invalidParams.Add(request.NewErrParamRequired("Permission"))
+	}
+	if s.Target == nil {
+		invalidParams.Add(request.NewErrParamRequired("Target"))
+	}
+	if s.Target != nil && len(*s.Target) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Target", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *GetDataAccessInput) SetAccountId(v string) *GetDataAccessInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetDurationSeconds sets the DurationSeconds field's value.
+func (s *GetDataAccessInput) SetDurationSeconds(v int64) *GetDataAccessInput {
+	s.DurationSeconds = &v
+	return s
+}
+
+// SetPermission sets the Permission field's value.
+func (s *GetDataAccessInput) SetPermission(v string) *GetDataAccessInput {
+	s.Permission = &v
+	return s
+}
+
+// SetPrivilege sets the Privilege field's value.
+func (s *GetDataAccessInput) SetPrivilege(v string) *GetDataAccessInput {
+	s.Privilege = &v
+	return s
+}
+
+// SetTarget sets the Target field's value.
+func (s *GetDataAccessInput) SetTarget(v string) *GetDataAccessInput {
+	s.Target = &v
+	return s
+}
+
+// SetTargetType sets the TargetType field's value.
+func (s *GetDataAccessInput) SetTargetType(v string) *GetDataAccessInput {
+	s.TargetType = &v
+	return s
+}
+
+func (s *GetDataAccessInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type GetDataAccessOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The temporary credential token that S3 Access Grants vends.
+	//
+	// Credentials is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetDataAccessOutput's
+	// String and GoString methods.
+	Credentials *Credentials `type:"structure" sensitive:"true"`
+
+	// The S3 URI path of the data to which you are being granted temporary access
+	// credentials.
+	MatchedGrantTarget *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataAccessOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataAccessOutput) GoString() string {
+	return s.String()
+}
+
+// SetCredentials sets the Credentials field's value.
+func (s *GetDataAccessOutput) SetCredentials(v *Credentials) *GetDataAccessOutput {
+	s.Credentials = v
+	return s
+}
+
+// SetMatchedGrantTarget sets the MatchedGrantTarget field's value.
+func (s *GetDataAccessOutput) SetMatchedGrantTarget(v string) *GetDataAccessOutput {
+	s.MatchedGrantTarget = &v
+	return s
+}
+
 type GetJobTaggingInput struct {
 	_ struct{} `locationName:"GetJobTaggingRequest" type:"structure"`
 
@@ -14761,6 +18906,69 @@ func (s GetStorageLensGroupOutput) GoString() string {
 // SetStorageLensGroup sets the StorageLensGroup field's value.
 func (s *GetStorageLensGroupOutput) SetStorageLensGroup(v *StorageLensGroup) *GetStorageLensGroupOutput {
 	s.StorageLensGroup = v
+	return s
+}
+
+// The user, group, or role to which you are granting access. You can grant
+// access to an IAM user or role. If you have added your corporate directory
+// to Amazon Web Services IAM Identity Center and associated your Identity Center
+// instance with your S3 Access Grants instance, the grantee can also be a corporate
+// directory user or group.
+type Grantee struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the Grantee. If the grantee type is IAM, the identifier
+	// is the IAM Amazon Resource Name (ARN) of the user or role. If the grantee
+	// type is a directory user or group, the identifier is 128-bit universally
+	// unique identifier (UUID) in the format a1b2c3d4-5678-90ab-cdef-EXAMPLE11111.
+	// You can obtain this UUID from your Amazon Web Services IAM Identity Center
+	// instance.
+	GranteeIdentifier *string `type:"string"`
+
+	// The type of the grantee to which access has been granted. It can be one of
+	// the following values:
+	//
+	//    * IAM - An IAM user or role.
+	//
+	//    * DIRECTORY_USER - Your corporate directory user. You can use this option
+	//    if you have added your corporate identity directory to IAM Identity Center
+	//    and associated the IAM Identity Center instance with your S3 Access Grants
+	//    instance.
+	//
+	//    * DIRECTORY_GROUP - Your corporate directory group. You can use this option
+	//    if you have added your corporate identity directory to IAM Identity Center
+	//    and associated the IAM Identity Center instance with your S3 Access Grants
+	//    instance.
+	GranteeType *string `type:"string" enum:"GranteeType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Grantee) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Grantee) GoString() string {
+	return s.String()
+}
+
+// SetGranteeIdentifier sets the GranteeIdentifier field's value.
+func (s *Grantee) SetGranteeIdentifier(v string) *Grantee {
+	s.GranteeIdentifier = &v
+	return s
+}
+
+// SetGranteeType sets the GranteeType field's value.
+func (s *Grantee) SetGranteeType(v string) *Grantee {
+	s.GranteeType = &v
 	return s
 }
 
@@ -16374,6 +20582,727 @@ func (s *LifecycleRuleFilter) SetTag(v *S3Tag) *LifecycleRuleFilter {
 	return s
 }
 
+// Information about the access grant.
+type ListAccessGrantEntry struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the access grant.
+	AccessGrantArn *string `min:"1" type:"string"`
+
+	// The ID of the access grant. S3 Access Grants auto-generates this ID when
+	// you create the access grant.
+	AccessGrantId *string `min:"1" type:"string"`
+
+	// The configuration options of the grant location. The grant location is the
+	// S3 path to the data to which you are granting access.
+	AccessGrantsLocationConfiguration *AccessGrantsLocationConfiguration `type:"structure"`
+
+	// The ID of the registered location to which you are granting access. S3 Access
+	// Grants assigns this ID when you register the location. S3 Access Grants assigns
+	// the ID default to the default location s3:// and assigns an auto-generated
+	// ID to other locations that you register.
+	AccessGrantsLocationId *string `min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of an Amazon Web Services IAM Identity Center
+	// application associated with your Identity Center instance. If the grant includes
+	// an application ARN, the grantee can only access the S3 data through this
+	// application.
+	ApplicationArn *string `min:"10" type:"string"`
+
+	// The date and time when you created the S3 Access Grants instance.
+	CreatedAt *time.Time `type:"timestamp"`
+
+	// The S3 path of the data to which you are granting access. It is the result
+	// of appending the Subprefix to the location scope.
+	GrantScope *string `min:"1" type:"string"`
+
+	// The user, group, or role to which you are granting access. You can grant
+	// access to an IAM user or role. If you have added your corporate directory
+	// to Amazon Web Services IAM Identity Center and associated your Identity Center
+	// instance with your S3 Access Grants instance, the grantee can also be a corporate
+	// directory user or group.
+	Grantee *Grantee `type:"structure"`
+
+	// The type of access granted to your S3 data, which can be set to one of the
+	// following values:
+	//
+	//    * READ – Grant read-only access to the S3 data.
+	//
+	//    * WRITE – Grant write-only access to the S3 data.
+	//
+	//    * READWRITE – Grant both read and write access to the S3 data.
+	Permission *string `type:"string" enum:"Permission"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAccessGrantEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAccessGrantEntry) GoString() string {
+	return s.String()
+}
+
+// SetAccessGrantArn sets the AccessGrantArn field's value.
+func (s *ListAccessGrantEntry) SetAccessGrantArn(v string) *ListAccessGrantEntry {
+	s.AccessGrantArn = &v
+	return s
+}
+
+// SetAccessGrantId sets the AccessGrantId field's value.
+func (s *ListAccessGrantEntry) SetAccessGrantId(v string) *ListAccessGrantEntry {
+	s.AccessGrantId = &v
+	return s
+}
+
+// SetAccessGrantsLocationConfiguration sets the AccessGrantsLocationConfiguration field's value.
+func (s *ListAccessGrantEntry) SetAccessGrantsLocationConfiguration(v *AccessGrantsLocationConfiguration) *ListAccessGrantEntry {
+	s.AccessGrantsLocationConfiguration = v
+	return s
+}
+
+// SetAccessGrantsLocationId sets the AccessGrantsLocationId field's value.
+func (s *ListAccessGrantEntry) SetAccessGrantsLocationId(v string) *ListAccessGrantEntry {
+	s.AccessGrantsLocationId = &v
+	return s
+}
+
+// SetApplicationArn sets the ApplicationArn field's value.
+func (s *ListAccessGrantEntry) SetApplicationArn(v string) *ListAccessGrantEntry {
+	s.ApplicationArn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *ListAccessGrantEntry) SetCreatedAt(v time.Time) *ListAccessGrantEntry {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetGrantScope sets the GrantScope field's value.
+func (s *ListAccessGrantEntry) SetGrantScope(v string) *ListAccessGrantEntry {
+	s.GrantScope = &v
+	return s
+}
+
+// SetGrantee sets the Grantee field's value.
+func (s *ListAccessGrantEntry) SetGrantee(v *Grantee) *ListAccessGrantEntry {
+	s.Grantee = v
+	return s
+}
+
+// SetPermission sets the Permission field's value.
+func (s *ListAccessGrantEntry) SetPermission(v string) *ListAccessGrantEntry {
+	s.Permission = &v
+	return s
+}
+
+type ListAccessGrantsInput struct {
+	_ struct{} `locationName:"ListAccessGrantsRequest" type:"structure"`
+
+	// The ID of the Amazon Web Services account that is making this request.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of an Amazon Web Services IAM Identity Center
+	// application associated with your Identity Center instance. If the grant includes
+	// an application ARN, the grantee can only access the S3 data through this
+	// application.
+	ApplicationArn *string `location:"querystring" locationName:"application_arn" min:"10" type:"string"`
+
+	// The S3 path of the data to which you are granting access. It is the result
+	// of appending the Subprefix to the location scope.
+	GrantScope *string `location:"querystring" locationName:"grantscope" min:"1" type:"string"`
+
+	// The unique identifer of the Grantee. If the grantee type is IAM, the identifier
+	// is the IAM Amazon Resource Name (ARN) of the user or role. If the grantee
+	// type is a directory user or group, the identifier is 128-bit universally
+	// unique identifier (UUID) in the format a1b2c3d4-5678-90ab-cdef-EXAMPLE11111.
+	// You can obtain this UUID from your Amazon Web Services IAM Identity Center
+	// instance.
+	GranteeIdentifier *string `location:"querystring" locationName:"granteeidentifier" type:"string"`
+
+	// The type of the grantee to which access has been granted. It can be one of
+	// the following values:
+	//
+	//    * IAM - An IAM user or role.
+	//
+	//    * DIRECTORY_USER - Your corporate directory user. You can use this option
+	//    if you have added your corporate identity directory to IAM Identity Center
+	//    and associated the IAM Identity Center instance with your S3 Access Grants
+	//    instance.
+	//
+	//    * DIRECTORY_GROUP - Your corporate directory group. You can use this option
+	//    if you have added your corporate identity directory to IAM Identity Center
+	//    and associated the IAM Identity Center instance with your S3 Access Grants
+	//    instance.
+	GranteeType *string `location:"querystring" locationName:"granteetype" type:"string" enum:"GranteeType"`
+
+	// The maximum number of access grants that you would like returned in the List
+	// Access Grants response. If the results include the pagination token NextToken,
+	// make another call using the NextToken to determine if there are more results.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
+
+	// A pagination token to request the next page of results. Pass this value into
+	// a subsequent List Access Grants request in order to retrieve the next page
+	// of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// The type of permission granted to your S3 data, which can be set to one of
+	// the following values:
+	//
+	//    * READ – Grant read-only access to the S3 data.
+	//
+	//    * WRITE – Grant write-only access to the S3 data.
+	//
+	//    * READWRITE – Grant both read and write access to the S3 data.
+	Permission *string `location:"querystring" locationName:"permission" type:"string" enum:"Permission"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAccessGrantsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAccessGrantsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAccessGrantsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAccessGrantsInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.ApplicationArn != nil && len(*s.ApplicationArn) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("ApplicationArn", 10))
+	}
+	if s.GrantScope != nil && len(*s.GrantScope) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GrantScope", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *ListAccessGrantsInput) SetAccountId(v string) *ListAccessGrantsInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetApplicationArn sets the ApplicationArn field's value.
+func (s *ListAccessGrantsInput) SetApplicationArn(v string) *ListAccessGrantsInput {
+	s.ApplicationArn = &v
+	return s
+}
+
+// SetGrantScope sets the GrantScope field's value.
+func (s *ListAccessGrantsInput) SetGrantScope(v string) *ListAccessGrantsInput {
+	s.GrantScope = &v
+	return s
+}
+
+// SetGranteeIdentifier sets the GranteeIdentifier field's value.
+func (s *ListAccessGrantsInput) SetGranteeIdentifier(v string) *ListAccessGrantsInput {
+	s.GranteeIdentifier = &v
+	return s
+}
+
+// SetGranteeType sets the GranteeType field's value.
+func (s *ListAccessGrantsInput) SetGranteeType(v string) *ListAccessGrantsInput {
+	s.GranteeType = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListAccessGrantsInput) SetMaxResults(v int64) *ListAccessGrantsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAccessGrantsInput) SetNextToken(v string) *ListAccessGrantsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPermission sets the Permission field's value.
+func (s *ListAccessGrantsInput) SetPermission(v string) *ListAccessGrantsInput {
+	s.Permission = &v
+	return s
+}
+
+func (s *ListAccessGrantsInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+// Information about the S3 Access Grants instance.
+type ListAccessGrantsInstanceEntry struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the S3 Access Grants instance.
+	AccessGrantsInstanceArn *string `min:"1" type:"string"`
+
+	// The ID of the S3 Access Grants instance. The ID is default. You can have
+	// one S3 Access Grants instance per Region per account.
+	AccessGrantsInstanceId *string `min:"1" type:"string"`
+
+	// The date and time when you created the S3 Access Grants instance.
+	CreatedAt *time.Time `type:"timestamp"`
+
+	// If you associated your S3 Access Grants instance with an Amazon Web Services
+	// IAM Identity Center instance, this field returns the Amazon Resource Name
+	// (ARN) of the IAM Identity Center instance application; a subresource of the
+	// original Identity Center instance. S3 Access Grants creates this Identity
+	// Center application for the specific S3 Access Grants instance.
+	IdentityCenterArn *string `min:"10" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAccessGrantsInstanceEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAccessGrantsInstanceEntry) GoString() string {
+	return s.String()
+}
+
+// SetAccessGrantsInstanceArn sets the AccessGrantsInstanceArn field's value.
+func (s *ListAccessGrantsInstanceEntry) SetAccessGrantsInstanceArn(v string) *ListAccessGrantsInstanceEntry {
+	s.AccessGrantsInstanceArn = &v
+	return s
+}
+
+// SetAccessGrantsInstanceId sets the AccessGrantsInstanceId field's value.
+func (s *ListAccessGrantsInstanceEntry) SetAccessGrantsInstanceId(v string) *ListAccessGrantsInstanceEntry {
+	s.AccessGrantsInstanceId = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *ListAccessGrantsInstanceEntry) SetCreatedAt(v time.Time) *ListAccessGrantsInstanceEntry {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetIdentityCenterArn sets the IdentityCenterArn field's value.
+func (s *ListAccessGrantsInstanceEntry) SetIdentityCenterArn(v string) *ListAccessGrantsInstanceEntry {
+	s.IdentityCenterArn = &v
+	return s
+}
+
+type ListAccessGrantsInstancesInput struct {
+	_ struct{} `locationName:"ListAccessGrantsInstancesRequest" type:"structure"`
+
+	// The ID of the Amazon Web Services account that is making this request.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The maximum number of access grants that you would like returned in the List
+	// Access Grants response. If the results include the pagination token NextToken,
+	// make another call using the NextToken to determine if there are more results.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
+
+	// A pagination token to request the next page of results. Pass this value into
+	// a subsequent List Access Grants Instances request in order to retrieve the
+	// next page of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAccessGrantsInstancesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAccessGrantsInstancesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAccessGrantsInstancesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAccessGrantsInstancesInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *ListAccessGrantsInstancesInput) SetAccountId(v string) *ListAccessGrantsInstancesInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListAccessGrantsInstancesInput) SetMaxResults(v int64) *ListAccessGrantsInstancesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAccessGrantsInstancesInput) SetNextToken(v string) *ListAccessGrantsInstancesInput {
+	s.NextToken = &v
+	return s
+}
+
+func (s *ListAccessGrantsInstancesInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type ListAccessGrantsInstancesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A container for a list of S3 Access Grants instances.
+	AccessGrantsInstancesList []*ListAccessGrantsInstanceEntry `locationNameList:"AccessGrantsInstance" type:"list"`
+
+	// A pagination token to request the next page of results. Pass this value into
+	// a subsequent List Access Grants Instances request in order to retrieve the
+	// next page of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAccessGrantsInstancesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAccessGrantsInstancesOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccessGrantsInstancesList sets the AccessGrantsInstancesList field's value.
+func (s *ListAccessGrantsInstancesOutput) SetAccessGrantsInstancesList(v []*ListAccessGrantsInstanceEntry) *ListAccessGrantsInstancesOutput {
+	s.AccessGrantsInstancesList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAccessGrantsInstancesOutput) SetNextToken(v string) *ListAccessGrantsInstancesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// A container for information about the registered location.
+type ListAccessGrantsLocationsEntry struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the registered location.
+	AccessGrantsLocationArn *string `min:"1" type:"string"`
+
+	// The ID of the registered location to which you are granting access. S3 Access
+	// Grants assigns this ID when you register the location. S3 Access Grants assigns
+	// the ID default to the default location s3:// and assigns an auto-generated
+	// ID to other locations that you register.
+	AccessGrantsLocationId *string `min:"1" type:"string"`
+
+	// The date and time when you registered the location.
+	CreatedAt *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the IAM role for the registered location.
+	// S3 Access Grants assumes this role to manage access to the registered location.
+	IAMRoleArn *string `min:"1" type:"string"`
+
+	// The S3 path to the location that you are registering. The location scope
+	// can be the default S3 location s3://, the S3 path to a bucket s3://<bucket>,
+	// or the S3 path to a bucket and prefix s3://<bucket>/<prefix>. A prefix in
+	// S3 is a string of characters at the beginning of an object key name used
+	// to organize the objects that you store in your S3 buckets. For example, object
+	// key names that start with the engineering/ prefix or object key names that
+	// start with the marketing/campaigns/ prefix.
+	LocationScope *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAccessGrantsLocationsEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAccessGrantsLocationsEntry) GoString() string {
+	return s.String()
+}
+
+// SetAccessGrantsLocationArn sets the AccessGrantsLocationArn field's value.
+func (s *ListAccessGrantsLocationsEntry) SetAccessGrantsLocationArn(v string) *ListAccessGrantsLocationsEntry {
+	s.AccessGrantsLocationArn = &v
+	return s
+}
+
+// SetAccessGrantsLocationId sets the AccessGrantsLocationId field's value.
+func (s *ListAccessGrantsLocationsEntry) SetAccessGrantsLocationId(v string) *ListAccessGrantsLocationsEntry {
+	s.AccessGrantsLocationId = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *ListAccessGrantsLocationsEntry) SetCreatedAt(v time.Time) *ListAccessGrantsLocationsEntry {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetIAMRoleArn sets the IAMRoleArn field's value.
+func (s *ListAccessGrantsLocationsEntry) SetIAMRoleArn(v string) *ListAccessGrantsLocationsEntry {
+	s.IAMRoleArn = &v
+	return s
+}
+
+// SetLocationScope sets the LocationScope field's value.
+func (s *ListAccessGrantsLocationsEntry) SetLocationScope(v string) *ListAccessGrantsLocationsEntry {
+	s.LocationScope = &v
+	return s
+}
+
+type ListAccessGrantsLocationsInput struct {
+	_ struct{} `locationName:"ListAccessGrantsLocationsRequest" type:"structure"`
+
+	// The ID of the Amazon Web Services account that is making this request.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The S3 path to the location that you are registering. The location scope
+	// can be the default S3 location s3://, the S3 path to a bucket s3://<bucket>,
+	// or the S3 path to a bucket and prefix s3://<bucket>/<prefix>. A prefix in
+	// S3 is a string of characters at the beginning of an object key name used
+	// to organize the objects that you store in your S3 buckets. For example, object
+	// key names that start with the engineering/ prefix or object key names that
+	// start with the marketing/campaigns/ prefix.
+	LocationScope *string `location:"querystring" locationName:"locationscope" min:"1" type:"string"`
+
+	// The maximum number of access grants that you would like returned in the List
+	// Access Grants response. If the results include the pagination token NextToken,
+	// make another call using the NextToken to determine if there are more results.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
+
+	// A pagination token to request the next page of results. Pass this value into
+	// a subsequent List Access Grants Locations request in order to retrieve the
+	// next page of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAccessGrantsLocationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAccessGrantsLocationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAccessGrantsLocationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAccessGrantsLocationsInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.LocationScope != nil && len(*s.LocationScope) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LocationScope", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *ListAccessGrantsLocationsInput) SetAccountId(v string) *ListAccessGrantsLocationsInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetLocationScope sets the LocationScope field's value.
+func (s *ListAccessGrantsLocationsInput) SetLocationScope(v string) *ListAccessGrantsLocationsInput {
+	s.LocationScope = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListAccessGrantsLocationsInput) SetMaxResults(v int64) *ListAccessGrantsLocationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAccessGrantsLocationsInput) SetNextToken(v string) *ListAccessGrantsLocationsInput {
+	s.NextToken = &v
+	return s
+}
+
+func (s *ListAccessGrantsLocationsInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type ListAccessGrantsLocationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A container for a list of registered locations in an S3 Access Grants instance.
+	AccessGrantsLocationsList []*ListAccessGrantsLocationsEntry `locationNameList:"AccessGrantsLocation" type:"list"`
+
+	// A pagination token to request the next page of results. Pass this value into
+	// a subsequent List Access Grants Locations request in order to retrieve the
+	// next page of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAccessGrantsLocationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAccessGrantsLocationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccessGrantsLocationsList sets the AccessGrantsLocationsList field's value.
+func (s *ListAccessGrantsLocationsOutput) SetAccessGrantsLocationsList(v []*ListAccessGrantsLocationsEntry) *ListAccessGrantsLocationsOutput {
+	s.AccessGrantsLocationsList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAccessGrantsLocationsOutput) SetNextToken(v string) *ListAccessGrantsLocationsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListAccessGrantsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A container for a list of grants in an S3 Access Grants instance.
+	AccessGrantsList []*ListAccessGrantEntry `locationNameList:"AccessGrant" type:"list"`
+
+	// A pagination token to request the next page of results. Pass this value into
+	// a subsequent List Access Grants request in order to retrieve the next page
+	// of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAccessGrantsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAccessGrantsOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccessGrantsList sets the AccessGrantsList field's value.
+func (s *ListAccessGrantsOutput) SetAccessGrantsList(v []*ListAccessGrantEntry) *ListAccessGrantsOutput {
+	s.AccessGrantsList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAccessGrantsOutput) SetNextToken(v string) *ListAccessGrantsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListAccessPointsForObjectLambdaInput struct {
 	_ struct{} `locationName:"ListAccessPointsForObjectLambdaRequest" type:"structure"`
 
@@ -17434,7 +22363,8 @@ type ListTagsForResourceInput struct {
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the S3 resource that you want to list the
-	// tags for.
+	// tags for. The tagged resource can be an S3 Storage Lens group or S3 Access
+	// Grants instance, registered location, or grant.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
@@ -18664,6 +23594,140 @@ func (s *PublicAccessBlockConfiguration) SetIgnorePublicAcls(v bool) *PublicAcce
 // SetRestrictPublicBuckets sets the RestrictPublicBuckets field's value.
 func (s *PublicAccessBlockConfiguration) SetRestrictPublicBuckets(v bool) *PublicAccessBlockConfiguration {
 	s.RestrictPublicBuckets = &v
+	return s
+}
+
+type PutAccessGrantsInstanceResourcePolicyInput struct {
+	_ struct{} `locationName:"PutAccessGrantsInstanceResourcePolicyRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
+
+	// The ID of the Amazon Web Services account that is making this request.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The Organization of the resource policy of the S3 Access Grants instance.
+	Organization *string `min:"12" type:"string"`
+
+	// The resource policy of the S3 Access Grants instance that you are updating.
+	//
+	// Policy is a required field
+	Policy *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutAccessGrantsInstanceResourcePolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutAccessGrantsInstanceResourcePolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutAccessGrantsInstanceResourcePolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutAccessGrantsInstanceResourcePolicyInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Organization != nil && len(*s.Organization) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("Organization", 12))
+	}
+	if s.Policy == nil {
+		invalidParams.Add(request.NewErrParamRequired("Policy"))
+	}
+	if s.Policy != nil && len(*s.Policy) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Policy", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *PutAccessGrantsInstanceResourcePolicyInput) SetAccountId(v string) *PutAccessGrantsInstanceResourcePolicyInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetOrganization sets the Organization field's value.
+func (s *PutAccessGrantsInstanceResourcePolicyInput) SetOrganization(v string) *PutAccessGrantsInstanceResourcePolicyInput {
+	s.Organization = &v
+	return s
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *PutAccessGrantsInstanceResourcePolicyInput) SetPolicy(v string) *PutAccessGrantsInstanceResourcePolicyInput {
+	s.Policy = &v
+	return s
+}
+
+func (s *PutAccessGrantsInstanceResourcePolicyInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type PutAccessGrantsInstanceResourcePolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time when you created the S3 Access Grants instance resource
+	// policy.
+	CreatedAt *time.Time `type:"timestamp"`
+
+	// The Organization of the resource policy of the S3 Access Grants instance.
+	Organization *string `min:"12" type:"string"`
+
+	// The updated resource policy of the S3 Access Grants instance.
+	Policy *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutAccessGrantsInstanceResourcePolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutAccessGrantsInstanceResourcePolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *PutAccessGrantsInstanceResourcePolicyOutput) SetCreatedAt(v time.Time) *PutAccessGrantsInstanceResourcePolicyOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetOrganization sets the Organization field's value.
+func (s *PutAccessGrantsInstanceResourcePolicyOutput) SetOrganization(v string) *PutAccessGrantsInstanceResourcePolicyOutput {
+	s.Organization = &v
+	return s
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *PutAccessGrantsInstanceResourcePolicyOutput) SetPolicy(v string) *PutAccessGrantsInstanceResourcePolicyOutput {
+	s.Policy = &v
 	return s
 }
 
@@ -24136,19 +29200,23 @@ func (s SubmitMultiRegionAccessPointRoutesOutput) GoString() string {
 // You can add tags to new objects when you upload them, or you can add object
 // tags to existing objects.
 //
-// This data type is only supported for S3 Storage Lens groups (https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-lens-groups.html).
+// This operation is only supported for S3 Storage Lens groups (https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-lens-groups.html)
+// and for S3 Access Grants (https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-grants-tagging.html).
+// The tagged resource can be an S3 Storage Lens group or S3 Access Grants instance,
+// registered location, or grant.
 type Tag struct {
 	_ struct{} `type:"structure"`
 
-	// The tag key for your Amazon Web Services resource. A tag key can be up to
-	// 128 Unicode characters in length and is case-sensitive. System created tags
-	// that begin with aws: aren’t supported.
+	// The key of the key-value pair of a tag added to your Amazon Web Services
+	// resource. A tag key can be up to 128 Unicode characters in length and is
+	// case-sensitive. System created tags that begin with aws: aren’t supported.
 	//
 	// Key is a required field
 	Key *string `min:"1" type:"string" required:"true"`
 
-	// The tag value for your Amazon Web Services resource. A tag value can be up
-	// to 256 Unicode characters in length and is case-sensitive.
+	// The value of the key-value pair of a tag added to your Amazon Web Services
+	// resource. A tag value can be up to 256 Unicode characters in length and is
+	// case-sensitive.
 	//
 	// Value is a required field
 	Value *string `type:"string" required:"true"`
@@ -24207,13 +29275,14 @@ type TagResourceInput struct {
 	_ struct{} `locationName:"TagResourceRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
 
 	// The Amazon Web Services account ID that created the S3 resource that you're
-	// trying to add tags to.
+	// trying to add tags to or the requester's account ID.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the S3 resource that you're trying to add
-	// tags to.
+	// tags to. The tagged resource can be an S3 Storage Lens group or S3 Access
+	// Grants instance, registered location, or grant.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
@@ -24444,13 +29513,14 @@ type UntagResourceInput struct {
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the S3 resource that you want to remove
-	// the resource tags from.
+	// The Amazon Resource Name (ARN) of the S3 resource that you're trying to remove
+	// the tags from.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
 
-	// The tag key pair of the S3 resource tag that you're trying to remove.
+	// The array of tag key-value pairs that you're trying to remove from of the
+	// S3 resource.
 	//
 	// TagKeys is a required field
 	TagKeys []*string `location:"querystring" locationName:"tagKeys" type:"list" required:"true"`
@@ -24543,6 +29613,182 @@ func (s UntagResourceOutput) String() string {
 // value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
+}
+
+type UpdateAccessGrantsLocationInput struct {
+	_ struct{} `locationName:"UpdateAccessGrantsLocationRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
+
+	// The ID of the registered location that you are updating. S3 Access Grants
+	// assigns this ID when you register the location. S3 Access Grants assigns
+	// the ID default to the default location s3:// and assigns an auto-generated
+	// ID to other locations that you register.
+	//
+	// The ID of the registered location to which you are granting access. S3 Access
+	// Grants assigned this ID when you registered the location. S3 Access Grants
+	// assigns the ID default to the default location s3:// and assigns an auto-generated
+	// ID to other locations that you register.
+	//
+	// If you are passing the default location, you cannot create an access grant
+	// for the entire default location. You must also specify a bucket or a bucket
+	// and prefix in the Subprefix field.
+	//
+	// AccessGrantsLocationId is a required field
+	AccessGrantsLocationId *string `location:"uri" locationName:"id" min:"1" type:"string" required:"true"`
+
+	// The ID of the Amazon Web Services account that is making this request.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the IAM role for the registered location.
+	// S3 Access Grants assumes this role to manage access to the registered location.
+	//
+	// IAMRoleArn is a required field
+	IAMRoleArn *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAccessGrantsLocationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAccessGrantsLocationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateAccessGrantsLocationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateAccessGrantsLocationInput"}
+	if s.AccessGrantsLocationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccessGrantsLocationId"))
+	}
+	if s.AccessGrantsLocationId != nil && len(*s.AccessGrantsLocationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccessGrantsLocationId", 1))
+	}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.IAMRoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("IAMRoleArn"))
+	}
+	if s.IAMRoleArn != nil && len(*s.IAMRoleArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IAMRoleArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccessGrantsLocationId sets the AccessGrantsLocationId field's value.
+func (s *UpdateAccessGrantsLocationInput) SetAccessGrantsLocationId(v string) *UpdateAccessGrantsLocationInput {
+	s.AccessGrantsLocationId = &v
+	return s
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *UpdateAccessGrantsLocationInput) SetAccountId(v string) *UpdateAccessGrantsLocationInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetIAMRoleArn sets the IAMRoleArn field's value.
+func (s *UpdateAccessGrantsLocationInput) SetIAMRoleArn(v string) *UpdateAccessGrantsLocationInput {
+	s.IAMRoleArn = &v
+	return s
+}
+
+func (s *UpdateAccessGrantsLocationInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type UpdateAccessGrantsLocationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the registered location that you are updating.
+	AccessGrantsLocationArn *string `min:"1" type:"string"`
+
+	// The ID of the registered location to which you are granting access. S3 Access
+	// Grants assigned this ID when you registered the location. S3 Access Grants
+	// assigns the ID default to the default location s3:// and assigns an auto-generated
+	// ID to other locations that you register.
+	AccessGrantsLocationId *string `min:"1" type:"string"`
+
+	// The date and time when you registered the location.
+	CreatedAt *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the IAM role of the registered location.
+	// S3 Access Grants assumes this role to manage access to the registered location.
+	IAMRoleArn *string `min:"1" type:"string"`
+
+	// The S3 URI path of the location that you are updating. You cannot update
+	// the scope of the registered location. The location scope can be the default
+	// S3 location s3://, the S3 path to a bucket s3://<bucket>, or the S3 path
+	// to a bucket and prefix s3://<bucket>/<prefix>.
+	LocationScope *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAccessGrantsLocationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAccessGrantsLocationOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccessGrantsLocationArn sets the AccessGrantsLocationArn field's value.
+func (s *UpdateAccessGrantsLocationOutput) SetAccessGrantsLocationArn(v string) *UpdateAccessGrantsLocationOutput {
+	s.AccessGrantsLocationArn = &v
+	return s
+}
+
+// SetAccessGrantsLocationId sets the AccessGrantsLocationId field's value.
+func (s *UpdateAccessGrantsLocationOutput) SetAccessGrantsLocationId(v string) *UpdateAccessGrantsLocationOutput {
+	s.AccessGrantsLocationId = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *UpdateAccessGrantsLocationOutput) SetCreatedAt(v time.Time) *UpdateAccessGrantsLocationOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetIAMRoleArn sets the IAMRoleArn field's value.
+func (s *UpdateAccessGrantsLocationOutput) SetIAMRoleArn(v string) *UpdateAccessGrantsLocationOutput {
+	s.IAMRoleArn = &v
+	return s
+}
+
+// SetLocationScope sets the LocationScope field's value.
+func (s *UpdateAccessGrantsLocationOutput) SetLocationScope(v string) *UpdateAccessGrantsLocationOutput {
+	s.LocationScope = &v
+	return s
 }
 
 type UpdateJobPriorityInput struct {
@@ -25221,6 +30467,26 @@ func GeneratedManifestFormat_Values() []string {
 }
 
 const (
+	// GranteeTypeDirectoryUser is a GranteeType enum value
+	GranteeTypeDirectoryUser = "DIRECTORY_USER"
+
+	// GranteeTypeDirectoryGroup is a GranteeType enum value
+	GranteeTypeDirectoryGroup = "DIRECTORY_GROUP"
+
+	// GranteeTypeIam is a GranteeType enum value
+	GranteeTypeIam = "IAM"
+)
+
+// GranteeType_Values returns all elements of the GranteeType enum
+func GranteeType_Values() []string {
+	return []string{
+		GranteeTypeDirectoryUser,
+		GranteeTypeDirectoryGroup,
+		GranteeTypeIam,
+	}
+}
+
+const (
 	// JobManifestFieldNameIgnore is a JobManifestFieldName enum value
 	JobManifestFieldNameIgnore = "Ignore"
 
@@ -25577,6 +30843,42 @@ func OwnerOverride_Values() []string {
 }
 
 const (
+	// PermissionRead is a Permission enum value
+	PermissionRead = "READ"
+
+	// PermissionWrite is a Permission enum value
+	PermissionWrite = "WRITE"
+
+	// PermissionReadwrite is a Permission enum value
+	PermissionReadwrite = "READWRITE"
+)
+
+// Permission_Values returns all elements of the Permission enum
+func Permission_Values() []string {
+	return []string{
+		PermissionRead,
+		PermissionWrite,
+		PermissionReadwrite,
+	}
+}
+
+const (
+	// PrivilegeMinimal is a Privilege enum value
+	PrivilegeMinimal = "Minimal"
+
+	// PrivilegeDefault is a Privilege enum value
+	PrivilegeDefault = "Default"
+)
+
+// Privilege_Values returns all elements of the Privilege enum
+func Privilege_Values() []string {
+	return []string{
+		PrivilegeMinimal,
+		PrivilegeDefault,
+	}
+}
+
+const (
 	// ReplicaModificationsStatusEnabled is a ReplicaModificationsStatus enum value
 	ReplicaModificationsStatusEnabled = "Enabled"
 
@@ -25893,6 +31195,18 @@ func S3Permission_Values() []string {
 		S3PermissionWrite,
 		S3PermissionReadAcp,
 		S3PermissionWriteAcp,
+	}
+}
+
+const (
+	// S3PrefixTypeObject is a S3PrefixType enum value
+	S3PrefixTypeObject = "Object"
+)
+
+// S3PrefixType_Values returns all elements of the S3PrefixType enum
+func S3PrefixType_Values() []string {
+	return []string{
+		S3PrefixTypeObject,
 	}
 }
 

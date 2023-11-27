@@ -276,6 +276,10 @@ type SecurityHubAPI interface {
 	GetMembersWithContext(aws.Context, *securityhub.GetMembersInput, ...request.Option) (*securityhub.GetMembersOutput, error)
 	GetMembersRequest(*securityhub.GetMembersInput) (*request.Request, *securityhub.GetMembersOutput)
 
+	GetSecurityControlDefinition(*securityhub.GetSecurityControlDefinitionInput) (*securityhub.GetSecurityControlDefinitionOutput, error)
+	GetSecurityControlDefinitionWithContext(aws.Context, *securityhub.GetSecurityControlDefinitionInput, ...request.Option) (*securityhub.GetSecurityControlDefinitionOutput, error)
+	GetSecurityControlDefinitionRequest(*securityhub.GetSecurityControlDefinitionInput) (*request.Request, *securityhub.GetSecurityControlDefinitionOutput)
+
 	InviteMembers(*securityhub.InviteMembersInput) (*securityhub.InviteMembersOutput, error)
 	InviteMembersWithContext(aws.Context, *securityhub.InviteMembersInput, ...request.Option) (*securityhub.InviteMembersOutput, error)
 	InviteMembersRequest(*securityhub.InviteMembersInput) (*request.Request, *securityhub.InviteMembersOutput)
@@ -364,6 +368,10 @@ type SecurityHubAPI interface {
 	UpdateOrganizationConfiguration(*securityhub.UpdateOrganizationConfigurationInput) (*securityhub.UpdateOrganizationConfigurationOutput, error)
 	UpdateOrganizationConfigurationWithContext(aws.Context, *securityhub.UpdateOrganizationConfigurationInput, ...request.Option) (*securityhub.UpdateOrganizationConfigurationOutput, error)
 	UpdateOrganizationConfigurationRequest(*securityhub.UpdateOrganizationConfigurationInput) (*request.Request, *securityhub.UpdateOrganizationConfigurationOutput)
+
+	UpdateSecurityControl(*securityhub.UpdateSecurityControlInput) (*securityhub.UpdateSecurityControlOutput, error)
+	UpdateSecurityControlWithContext(aws.Context, *securityhub.UpdateSecurityControlInput, ...request.Option) (*securityhub.UpdateSecurityControlOutput, error)
+	UpdateSecurityControlRequest(*securityhub.UpdateSecurityControlInput) (*request.Request, *securityhub.UpdateSecurityControlOutput)
 
 	UpdateSecurityHubConfiguration(*securityhub.UpdateSecurityHubConfigurationInput) (*securityhub.UpdateSecurityHubConfigurationOutput, error)
 	UpdateSecurityHubConfigurationWithContext(aws.Context, *securityhub.UpdateSecurityHubConfigurationInput, ...request.Option) (*securityhub.UpdateSecurityHubConfigurationOutput, error)

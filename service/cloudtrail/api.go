@@ -941,8 +941,9 @@ func (c *CloudTrail) DeleteEventDataStoreRequest(input *DeleteEventDataStoreInpu
 // an event data store ARN. After you run DeleteEventDataStore, the event data
 // store enters a PENDING_DELETION state, and is automatically deleted after
 // a wait period of seven days. TerminationProtectionEnabled must be set to
-// False on the event data store; this operation cannot work if TerminationProtectionEnabled
-// is True.
+// False on the event data store and the FederationStatus must be DISABLED.
+// You cannot delete an event data store if TerminationProtectionEnabled is
+// True or the FederationStatus is ENABLED.
 //
 // After you run DeleteEventDataStore on an event data store, you cannot run
 // ListQueries, DescribeQuery, or GetQueryResults on queries that are using
@@ -1004,6 +1005,18 @@ func (c *CloudTrail) DeleteEventDataStoreRequest(input *DeleteEventDataStoreInpu
 //     This exception is thrown when the IAM identity that is used to create the
 //     organization resource lacks one or more required permissions for creating
 //     an organization resource in a required service.
+//
+//   - ConflictException
+//     This exception is thrown when the specified resource is not ready for an
+//     operation. This can occur when you try to run an operation on a resource
+//     before CloudTrail has time to fully load the resource, or because another
+//     operation is modifying the resource. If this exception occurs, wait a few
+//     minutes, and then try the operation again.
+//
+//   - EventDataStoreFederationEnabledException
+//     You cannot delete the event data store because Lake query federation is enabled.
+//     To delete the event data store, run the DisableFederation operation to disable
+//     Lake query federation on the event data store.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/DeleteEventDataStore
 func (c *CloudTrail) DeleteEventDataStore(input *DeleteEventDataStoreInput) (*DeleteEventDataStoreOutput, error) {
@@ -1602,6 +1615,301 @@ func (c *CloudTrail) DescribeTrails(input *DescribeTrailsInput) (*DescribeTrails
 // for more information on using Contexts.
 func (c *CloudTrail) DescribeTrailsWithContext(ctx aws.Context, input *DescribeTrailsInput, opts ...request.Option) (*DescribeTrailsOutput, error) {
 	req, out := c.DescribeTrailsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDisableFederation = "DisableFederation"
+
+// DisableFederationRequest generates a "aws/request.Request" representing the
+// client's request for the DisableFederation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DisableFederation for more information on using the DisableFederation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DisableFederationRequest method.
+//	req, resp := client.DisableFederationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/DisableFederation
+func (c *CloudTrail) DisableFederationRequest(input *DisableFederationInput) (req *request.Request, output *DisableFederationOutput) {
+	op := &request.Operation{
+		Name:       opDisableFederation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DisableFederationInput{}
+	}
+
+	output = &DisableFederationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DisableFederation API operation for AWS CloudTrail.
+//
+// Disables Lake query federation on the specified event data store. When you
+// disable federation, CloudTrail removes the metadata associated with the federated
+// event data store in the Glue Data Catalog and removes registration for the
+// federation role ARN and event data store in Lake Formation. No CloudTrail
+// Lake data is deleted when you disable federation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CloudTrail's
+// API operation DisableFederation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - EventDataStoreARNInvalidException
+//     The specified event data store ARN is not valid or does not map to an event
+//     data store in your account.
+//
+//   - EventDataStoreNotFoundException
+//     The specified event data store was not found.
+//
+//   - InvalidParameterException
+//     The request includes a parameter that is not valid.
+//
+//   - InactiveEventDataStoreException
+//     The event data store is inactive.
+//
+//   - OperationNotPermittedException
+//     This exception is thrown when the requested operation is not permitted.
+//
+//   - UnsupportedOperationException
+//     This exception is thrown when the requested operation is not supported.
+//
+//   - AccessNotEnabledException
+//     This exception is thrown when trusted access has not been enabled between
+//     CloudTrail and Organizations. For more information, see Enabling Trusted
+//     Access with Other Amazon Web Services Services (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_services.html)
+//     and Prepare For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
+//
+//   - InsufficientDependencyServiceAccessPermissionException
+//     This exception is thrown when the IAM identity that is used to create the
+//     organization resource lacks one or more required permissions for creating
+//     an organization resource in a required service.
+//
+//   - NotOrganizationMasterAccountException
+//     This exception is thrown when the Amazon Web Services account making the
+//     request to create or update an organization trail or event data store is
+//     not the management account for an organization in Organizations. For more
+//     information, see Prepare For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html)
+//     or Create an event data store (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/query-event-data-store.html).
+//
+//   - NoManagementAccountSLRExistsException
+//     This exception is thrown when the management account does not have a service-linked
+//     role.
+//
+//   - OrganizationsNotInUseException
+//     This exception is thrown when the request is made from an Amazon Web Services
+//     account that is not a member of an organization. To make this request, sign
+//     in using the credentials of an account that belongs to an organization.
+//
+//   - OrganizationNotInAllFeaturesModeException
+//     This exception is thrown when Organizations is not configured to support
+//     all features. All features must be enabled in Organizations to support creating
+//     an organization trail or event data store.
+//
+//   - ConcurrentModificationException
+//     You are trying to update a resource when another request is in progress.
+//     Allow sufficient wait time for the previous request to complete, then retry
+//     your request.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/DisableFederation
+func (c *CloudTrail) DisableFederation(input *DisableFederationInput) (*DisableFederationOutput, error) {
+	req, out := c.DisableFederationRequest(input)
+	return out, req.Send()
+}
+
+// DisableFederationWithContext is the same as DisableFederation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisableFederation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudTrail) DisableFederationWithContext(ctx aws.Context, input *DisableFederationInput, opts ...request.Option) (*DisableFederationOutput, error) {
+	req, out := c.DisableFederationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opEnableFederation = "EnableFederation"
+
+// EnableFederationRequest generates a "aws/request.Request" representing the
+// client's request for the EnableFederation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See EnableFederation for more information on using the EnableFederation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the EnableFederationRequest method.
+//	req, resp := client.EnableFederationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/EnableFederation
+func (c *CloudTrail) EnableFederationRequest(input *EnableFederationInput) (req *request.Request, output *EnableFederationOutput) {
+	op := &request.Operation{
+		Name:       opEnableFederation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &EnableFederationInput{}
+	}
+
+	output = &EnableFederationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// EnableFederation API operation for AWS CloudTrail.
+//
+// Enables Lake query federation on the specified event data store. Federating
+// an event data store lets you view the metadata associated with the event
+// data store in the Glue Data Catalog (https://docs.aws.amazon.com/glue/latest/dg/components-overview.html#data-catalog-intro)
+// and run SQL queries against your event data using Amazon Athena. The table
+// metadata stored in the Glue Data Catalog lets the Athena query engine know
+// how to find, read, and process the data that you want to query.
+//
+// When you enable Lake query federation, CloudTrail creates a federated database
+// named aws:cloudtrail (if the database doesn't already exist) and a federated
+// table in the Glue Data Catalog. The event data store ID is used for the table
+// name. CloudTrail registers the role ARN and event data store in Lake Formation
+// (https://docs.aws.amazon.com/lake-formation/latest/dg/how-it-works.html),
+// the service responsible for revoking or granting permissions to the federated
+// resources in the Glue Data Catalog.
+//
+// For more information about Lake query federation, see Federate an event data
+// store (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/query-federation.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CloudTrail's
+// API operation EnableFederation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - EventDataStoreARNInvalidException
+//     The specified event data store ARN is not valid or does not map to an event
+//     data store in your account.
+//
+//   - EventDataStoreNotFoundException
+//     The specified event data store was not found.
+//
+//   - InvalidParameterException
+//     The request includes a parameter that is not valid.
+//
+//   - InactiveEventDataStoreException
+//     The event data store is inactive.
+//
+//   - OperationNotPermittedException
+//     This exception is thrown when the requested operation is not permitted.
+//
+//   - UnsupportedOperationException
+//     This exception is thrown when the requested operation is not supported.
+//
+//   - AccessNotEnabledException
+//     This exception is thrown when trusted access has not been enabled between
+//     CloudTrail and Organizations. For more information, see Enabling Trusted
+//     Access with Other Amazon Web Services Services (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_services.html)
+//     and Prepare For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
+//
+//   - InsufficientDependencyServiceAccessPermissionException
+//     This exception is thrown when the IAM identity that is used to create the
+//     organization resource lacks one or more required permissions for creating
+//     an organization resource in a required service.
+//
+//   - NotOrganizationMasterAccountException
+//     This exception is thrown when the Amazon Web Services account making the
+//     request to create or update an organization trail or event data store is
+//     not the management account for an organization in Organizations. For more
+//     information, see Prepare For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html)
+//     or Create an event data store (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/query-event-data-store.html).
+//
+//   - NoManagementAccountSLRExistsException
+//     This exception is thrown when the management account does not have a service-linked
+//     role.
+//
+//   - OrganizationsNotInUseException
+//     This exception is thrown when the request is made from an Amazon Web Services
+//     account that is not a member of an organization. To make this request, sign
+//     in using the credentials of an account that belongs to an organization.
+//
+//   - OrganizationNotInAllFeaturesModeException
+//     This exception is thrown when Organizations is not configured to support
+//     all features. All features must be enabled in Organizations to support creating
+//     an organization trail or event data store.
+//
+//   - ConcurrentModificationException
+//     You are trying to update a resource when another request is in progress.
+//     Allow sufficient wait time for the previous request to complete, then retry
+//     your request.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - EventDataStoreFederationEnabledException
+//     You cannot delete the event data store because Lake query federation is enabled.
+//     To delete the event data store, run the DisableFederation operation to disable
+//     Lake query federation on the event data store.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/EnableFederation
+func (c *CloudTrail) EnableFederation(input *EnableFederationInput) (*EnableFederationOutput, error) {
+	req, out := c.EnableFederationRequest(input)
+	return out, req.Send()
+}
+
+// EnableFederationWithContext is the same as EnableFederation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See EnableFederation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudTrail) EnableFederationWithContext(ctx aws.Context, input *EnableFederationInput, opts ...request.Option) (*EnableFederationOutput, error) {
+	req, out := c.EnableFederationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -6560,6 +6868,70 @@ func (s *ARNInvalidException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// You do not have sufficient access to perform this action.
+type AccessDeniedException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccessDeniedException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccessDeniedException) GoString() string {
+	return s.String()
+}
+
+func newErrorAccessDeniedException(v protocol.ResponseMetadata) error {
+	return &AccessDeniedException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *AccessDeniedException) Code() string {
+	return "AccessDeniedException"
+}
+
+// Message returns the exception's message.
+func (s *AccessDeniedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *AccessDeniedException) OrigErr() error {
+	return nil
+}
+
+func (s *AccessDeniedException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *AccessDeniedException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *AccessDeniedException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // This exception is thrown when trusted access has not been enabled between
 // CloudTrail and Organizations. For more information, see Enabling Trusted
 // Access with Other Amazon Web Services Services (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_services.html)
@@ -8010,6 +8382,72 @@ func (s *CloudWatchLogsDeliveryUnavailableException) StatusCode() int {
 
 // RequestID returns the service's response RequestID for request.
 func (s *CloudWatchLogsDeliveryUnavailableException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// You are trying to update a resource when another request is in progress.
+// Allow sufficient wait time for the previous request to complete, then retry
+// your request.
+type ConcurrentModificationException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConcurrentModificationException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConcurrentModificationException) GoString() string {
+	return s.String()
+}
+
+func newErrorConcurrentModificationException(v protocol.ResponseMetadata) error {
+	return &ConcurrentModificationException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ConcurrentModificationException) Code() string {
+	return "ConcurrentModificationException"
+}
+
+// Message returns the exception's message.
+func (s *ConcurrentModificationException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ConcurrentModificationException) OrigErr() error {
+	return nil
+}
+
+func (s *ConcurrentModificationException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ConcurrentModificationException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ConcurrentModificationException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -9969,6 +10407,215 @@ func (s *Destination) SetType(v string) *Destination {
 	return s
 }
 
+type DisableFederationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN (or ID suffix of the ARN) of the event data store for which you want
+	// to disable Lake query federation.
+	//
+	// EventDataStore is a required field
+	EventDataStore *string `min:"3" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisableFederationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisableFederationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisableFederationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisableFederationInput"}
+	if s.EventDataStore == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventDataStore"))
+	}
+	if s.EventDataStore != nil && len(*s.EventDataStore) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("EventDataStore", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEventDataStore sets the EventDataStore field's value.
+func (s *DisableFederationInput) SetEventDataStore(v string) *DisableFederationInput {
+	s.EventDataStore = &v
+	return s
+}
+
+type DisableFederationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the event data store for which you disabled Lake query federation.
+	EventDataStoreArn *string `min:"3" type:"string"`
+
+	// The federation status.
+	FederationStatus *string `type:"string" enum:"FederationStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisableFederationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisableFederationOutput) GoString() string {
+	return s.String()
+}
+
+// SetEventDataStoreArn sets the EventDataStoreArn field's value.
+func (s *DisableFederationOutput) SetEventDataStoreArn(v string) *DisableFederationOutput {
+	s.EventDataStoreArn = &v
+	return s
+}
+
+// SetFederationStatus sets the FederationStatus field's value.
+func (s *DisableFederationOutput) SetFederationStatus(v string) *DisableFederationOutput {
+	s.FederationStatus = &v
+	return s
+}
+
+type EnableFederationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN (or ID suffix of the ARN) of the event data store for which you want
+	// to enable Lake query federation.
+	//
+	// EventDataStore is a required field
+	EventDataStore *string `min:"3" type:"string" required:"true"`
+
+	// The ARN of the federation role to use for the event data store. Amazon Web
+	// Services services like Lake Formation use this federation role to access
+	// data for the federated event data store. The federation role must exist in
+	// your account and provide the required minimum permissions (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/query-federation.html#query-federation-permissions-role).
+	//
+	// FederationRoleArn is a required field
+	FederationRoleArn *string `min:"3" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EnableFederationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EnableFederationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EnableFederationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EnableFederationInput"}
+	if s.EventDataStore == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventDataStore"))
+	}
+	if s.EventDataStore != nil && len(*s.EventDataStore) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("EventDataStore", 3))
+	}
+	if s.FederationRoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("FederationRoleArn"))
+	}
+	if s.FederationRoleArn != nil && len(*s.FederationRoleArn) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("FederationRoleArn", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEventDataStore sets the EventDataStore field's value.
+func (s *EnableFederationInput) SetEventDataStore(v string) *EnableFederationInput {
+	s.EventDataStore = &v
+	return s
+}
+
+// SetFederationRoleArn sets the FederationRoleArn field's value.
+func (s *EnableFederationInput) SetFederationRoleArn(v string) *EnableFederationInput {
+	s.FederationRoleArn = &v
+	return s
+}
+
+type EnableFederationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the event data store for which you enabled Lake query federation.
+	EventDataStoreArn *string `min:"3" type:"string"`
+
+	// The ARN of the federation role.
+	FederationRoleArn *string `min:"3" type:"string"`
+
+	// The federation status.
+	FederationStatus *string `type:"string" enum:"FederationStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EnableFederationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EnableFederationOutput) GoString() string {
+	return s.String()
+}
+
+// SetEventDataStoreArn sets the EventDataStoreArn field's value.
+func (s *EnableFederationOutput) SetEventDataStoreArn(v string) *EnableFederationOutput {
+	s.EventDataStoreArn = &v
+	return s
+}
+
+// SetFederationRoleArn sets the FederationRoleArn field's value.
+func (s *EnableFederationOutput) SetFederationRoleArn(v string) *EnableFederationOutput {
+	s.FederationRoleArn = &v
+	return s
+}
+
+// SetFederationStatus sets the FederationStatus field's value.
+func (s *EnableFederationOutput) SetFederationStatus(v string) *EnableFederationOutput {
+	s.FederationStatus = &v
+	return s
+}
+
 // Contains information about an event that was returned by a lookup request.
 // The result includes a representation of a CloudTrail event.
 type Event struct {
@@ -10339,6 +10986,72 @@ func (s *EventDataStoreAlreadyExistsException) StatusCode() int {
 
 // RequestID returns the service's response RequestID for request.
 func (s *EventDataStoreAlreadyExistsException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// You cannot delete the event data store because Lake query federation is enabled.
+// To delete the event data store, run the DisableFederation operation to disable
+// Lake query federation on the event data store.
+type EventDataStoreFederationEnabledException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EventDataStoreFederationEnabledException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EventDataStoreFederationEnabledException) GoString() string {
+	return s.String()
+}
+
+func newErrorEventDataStoreFederationEnabledException(v protocol.ResponseMetadata) error {
+	return &EventDataStoreFederationEnabledException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *EventDataStoreFederationEnabledException) Code() string {
+	return "EventDataStoreFederationEnabledException"
+}
+
+// Message returns the exception's message.
+func (s *EventDataStoreFederationEnabledException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *EventDataStoreFederationEnabledException) OrigErr() error {
+	return nil
+}
+
+func (s *EventDataStoreFederationEnabledException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *EventDataStoreFederationEnabledException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *EventDataStoreFederationEnabledException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -10897,6 +11610,16 @@ type GetEventDataStoreOutput struct {
 	// The event data store Amazon Resource Number (ARN).
 	EventDataStoreArn *string `min:"3" type:"string"`
 
+	// If Lake query federation is enabled, provides the ARN of the federation role
+	// used to access the resources for the federated event data store.
+	FederationRoleArn *string `min:"3" type:"string"`
+
+	// Indicates the Lake query federation (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/query-federation.html)
+	// status. The status is ENABLED if Lake query federation is enabled, or DISABLED
+	// if Lake query federation is disabled. You cannot delete an event data store
+	// if the FederationStatus is ENABLED.
+	FederationStatus *string `type:"string" enum:"FederationStatus"`
+
 	// Specifies the KMS key ID that encrypts the events delivered by CloudTrail.
 	// The value is a fully specified ARN to a KMS key in the following format.
 	//
@@ -10967,6 +11690,18 @@ func (s *GetEventDataStoreOutput) SetCreatedTimestamp(v time.Time) *GetEventData
 // SetEventDataStoreArn sets the EventDataStoreArn field's value.
 func (s *GetEventDataStoreOutput) SetEventDataStoreArn(v string) *GetEventDataStoreOutput {
 	s.EventDataStoreArn = &v
+	return s
+}
+
+// SetFederationRoleArn sets the FederationRoleArn field's value.
+func (s *GetEventDataStoreOutput) SetFederationRoleArn(v string) *GetEventDataStoreOutput {
+	s.FederationRoleArn = &v
+	return s
+}
+
+// SetFederationStatus sets the FederationStatus field's value.
+func (s *GetEventDataStoreOutput) SetFederationStatus(v string) *GetEventDataStoreOutput {
+	s.FederationStatus = &v
 	return s
 }
 
@@ -19925,6 +20660,16 @@ type UpdateEventDataStoreOutput struct {
 	// The ARN of the event data store.
 	EventDataStoreArn *string `min:"3" type:"string"`
 
+	// If Lake query federation is enabled, provides the ARN of the federation role
+	// used to access the resources for the federated event data store.
+	FederationRoleArn *string `min:"3" type:"string"`
+
+	// Indicates the Lake query federation (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/query-federation.html)
+	// status. The status is ENABLED if Lake query federation is enabled, or DISABLED
+	// if Lake query federation is disabled. You cannot delete an event data store
+	// if the FederationStatus is ENABLED.
+	FederationStatus *string `type:"string" enum:"FederationStatus"`
+
 	// Specifies the KMS key ID that encrypts the events delivered by CloudTrail.
 	// The value is a fully specified ARN to a KMS key in the following format.
 	//
@@ -19995,6 +20740,18 @@ func (s *UpdateEventDataStoreOutput) SetCreatedTimestamp(v time.Time) *UpdateEve
 // SetEventDataStoreArn sets the EventDataStoreArn field's value.
 func (s *UpdateEventDataStoreOutput) SetEventDataStoreArn(v string) *UpdateEventDataStoreOutput {
 	s.EventDataStoreArn = &v
+	return s
+}
+
+// SetFederationRoleArn sets the FederationRoleArn field's value.
+func (s *UpdateEventDataStoreOutput) SetFederationRoleArn(v string) *UpdateEventDataStoreOutput {
+	s.FederationRoleArn = &v
+	return s
+}
+
+// SetFederationStatus sets the FederationStatus field's value.
+func (s *UpdateEventDataStoreOutput) SetFederationStatus(v string) *UpdateEventDataStoreOutput {
+	s.FederationStatus = &v
 	return s
 }
 
@@ -20532,6 +21289,30 @@ func EventDataStoreStatus_Values() []string {
 		EventDataStoreStatusStartingIngestion,
 		EventDataStoreStatusStoppingIngestion,
 		EventDataStoreStatusStoppedIngestion,
+	}
+}
+
+const (
+	// FederationStatusEnabling is a FederationStatus enum value
+	FederationStatusEnabling = "ENABLING"
+
+	// FederationStatusEnabled is a FederationStatus enum value
+	FederationStatusEnabled = "ENABLED"
+
+	// FederationStatusDisabling is a FederationStatus enum value
+	FederationStatusDisabling = "DISABLING"
+
+	// FederationStatusDisabled is a FederationStatus enum value
+	FederationStatusDisabled = "DISABLED"
+)
+
+// FederationStatus_Values returns all elements of the FederationStatus enum
+func FederationStatus_Values() []string {
+	return []string{
+		FederationStatusEnabling,
+		FederationStatusEnabled,
+		FederationStatusDisabling,
+		FederationStatusDisabled,
 	}
 }
 

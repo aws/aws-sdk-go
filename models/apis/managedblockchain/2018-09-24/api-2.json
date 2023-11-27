@@ -476,7 +476,8 @@
         "Status":{"shape":"AccessorStatus"},
         "CreationDate":{"shape":"Timestamp"},
         "Arn":{"shape":"ArnString"},
-        "Tags":{"shape":"OutputTagMap"}
+        "Tags":{"shape":"OutputTagMap"},
+        "NetworkType":{"shape":"AccessorNetworkType"}
       }
     },
     "AccessorBillingTokenString":{
@@ -489,6 +490,16 @@
       "box":true,
       "max":50,
       "min":1
+    },
+    "AccessorNetworkType":{
+      "type":"string",
+      "enum":[
+        "ETHEREUM_GOERLI",
+        "ETHEREUM_MAINNET",
+        "ETHEREUM_MAINNET_AND_GOERLI",
+        "POLYGON_MAINNET",
+        "POLYGON_MUMBAI"
+      ]
     },
     "AccessorStatus":{
       "type":"string",
@@ -505,7 +516,8 @@
         "Type":{"shape":"AccessorType"},
         "Status":{"shape":"AccessorStatus"},
         "CreationDate":{"shape":"Timestamp"},
-        "Arn":{"shape":"ArnString"}
+        "Arn":{"shape":"ArnString"},
+        "NetworkType":{"shape":"AccessorNetworkType"}
       }
     },
     "AccessorSummaryList":{
@@ -548,14 +560,16 @@
           "idempotencyToken":true
         },
         "AccessorType":{"shape":"AccessorType"},
-        "Tags":{"shape":"InputTagMap"}
+        "Tags":{"shape":"InputTagMap"},
+        "NetworkType":{"shape":"AccessorNetworkType"}
       }
     },
     "CreateAccessorOutput":{
       "type":"structure",
       "members":{
         "AccessorId":{"shape":"ResourceIdString"},
-        "BillingToken":{"shape":"AccessorBillingTokenString"}
+        "BillingToken":{"shape":"AccessorBillingTokenString"},
+        "NetworkType":{"shape":"AccessorNetworkType"}
       }
     },
     "CreateMemberInput":{
@@ -970,6 +984,11 @@
           "shape":"PaginationToken",
           "location":"querystring",
           "locationName":"nextToken"
+        },
+        "NetworkType":{
+          "shape":"AccessorNetworkType",
+          "location":"querystring",
+          "locationName":"networkType"
         }
       }
     },

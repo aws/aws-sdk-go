@@ -75,6 +75,22 @@
         {"shape":"ResourceAlreadyExistsException"}
       ]
     },
+    "CreateLogAnomalyDetector":{
+      "name":"CreateLogAnomalyDetector",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateLogAnomalyDetectorRequest"},
+      "output":{"shape":"CreateLogAnomalyDetectorResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"OperationAbortedException"},
+        {"shape":"LimitExceededException"}
+      ]
+    },
     "CreateLogGroup":{
       "name":"CreateLogGroup",
       "http":{
@@ -206,6 +222,20 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"OperationAbortedException"},
         {"shape":"ServiceUnavailableException"}
+      ]
+    },
+    "DeleteLogAnomalyDetector":{
+      "name":"DeleteLogAnomalyDetector",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteLogAnomalyDetectorRequest"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"OperationAbortedException"}
       ]
     },
     "DeleteLogGroup":{
@@ -591,6 +621,21 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "GetLogAnomalyDetector":{
+      "name":"GetLogAnomalyDetector",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetLogAnomalyDetectorRequest"},
+      "output":{"shape":"GetLogAnomalyDetectorResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"OperationAbortedException"}
+      ]
+    },
     "GetLogEvents":{
       "name":"GetLogEvents",
       "http":{
@@ -647,6 +692,36 @@
         {"shape":"InvalidParameterException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ServiceUnavailableException"}
+      ]
+    },
+    "ListAnomalies":{
+      "name":"ListAnomalies",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListAnomaliesRequest"},
+      "output":{"shape":"ListAnomaliesResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"OperationAbortedException"}
+      ]
+    },
+    "ListLogAnomalyDetectors":{
+      "name":"ListLogAnomalyDetectors",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListLogAnomalyDetectorsRequest"},
+      "output":{"shape":"ListLogAnomalyDetectorsResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"OperationAbortedException"}
       ]
     },
     "ListTagsForResource":{
@@ -971,6 +1046,34 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ServiceUnavailableException"}
       ]
+    },
+    "UpdateAnomaly":{
+      "name":"UpdateAnomaly",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateAnomalyRequest"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"OperationAbortedException"}
+      ]
+    },
+    "UpdateLogAnomalyDetector":{
+      "name":"UpdateLogAnomalyDetector",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateLogAnomalyDetectorRequest"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"OperationAbortedException"}
+      ]
     }
   },
   "shapes":{
@@ -1018,6 +1121,94 @@
       "min":1,
       "pattern":"[\\w+=/:,.@-]*"
     },
+    "Anomalies":{
+      "type":"list",
+      "member":{"shape":"Anomaly"}
+    },
+    "Anomaly":{
+      "type":"structure",
+      "required":[
+        "anomalyId",
+        "patternId",
+        "anomalyDetectorArn",
+        "patternString",
+        "firstSeen",
+        "lastSeen",
+        "description",
+        "active",
+        "state",
+        "histogram",
+        "logSamples",
+        "patternTokens",
+        "logGroupArnList"
+      ],
+      "members":{
+        "anomalyId":{"shape":"AnomalyId"},
+        "patternId":{"shape":"PatternId"},
+        "anomalyDetectorArn":{"shape":"AnomalyDetectorArn"},
+        "patternString":{"shape":"PatternString"},
+        "patternRegex":{"shape":"PatternRegex"},
+        "priority":{"shape":"Priority"},
+        "firstSeen":{"shape":"EpochMillis"},
+        "lastSeen":{"shape":"EpochMillis"},
+        "description":{"shape":"Description"},
+        "active":{"shape":"Boolean"},
+        "state":{"shape":"State"},
+        "histogram":{"shape":"Histogram"},
+        "logSamples":{"shape":"LogSamples"},
+        "patternTokens":{"shape":"PatternTokens"},
+        "logGroupArnList":{"shape":"LogGroupArnList"},
+        "suppressed":{"shape":"Boolean"},
+        "suppressedDate":{"shape":"EpochMillis"},
+        "suppressedUntil":{"shape":"EpochMillis"},
+        "isPatternLevelSuppression":{"shape":"Boolean"}
+      }
+    },
+    "AnomalyDetector":{
+      "type":"structure",
+      "members":{
+        "anomalyDetectorArn":{"shape":"AnomalyDetectorArn"},
+        "detectorName":{"shape":"DetectorName"},
+        "logGroupArnList":{"shape":"LogGroupArnList"},
+        "evaluationFrequency":{"shape":"EvaluationFrequency"},
+        "filterPattern":{"shape":"FilterPattern"},
+        "anomalyDetectorStatus":{"shape":"AnomalyDetectorStatus"},
+        "kmsKeyId":{"shape":"KmsKeyId"},
+        "creationTimeStamp":{"shape":"EpochMillis"},
+        "lastModifiedTimeStamp":{"shape":"EpochMillis"},
+        "anomalyVisibilityTime":{"shape":"AnomalyVisibilityTime"}
+      }
+    },
+    "AnomalyDetectorArn":{
+      "type":"string",
+      "min":1,
+      "pattern":"[\\w#+=/:,.@-]*"
+    },
+    "AnomalyDetectorStatus":{
+      "type":"string",
+      "enum":[
+        "INITIALIZING",
+        "TRAINING",
+        "ANALYZING",
+        "FAILED",
+        "DELETED",
+        "PAUSED"
+      ]
+    },
+    "AnomalyDetectors":{
+      "type":"list",
+      "member":{"shape":"AnomalyDetector"}
+    },
+    "AnomalyId":{
+      "type":"string",
+      "max":36,
+      "min":36
+    },
+    "AnomalyVisibilityTime":{
+      "type":"long",
+      "max":90,
+      "min":7
+    },
     "Arn":{"type":"string"},
     "AssociateKmsKeyRequest":{
       "type":"structure",
@@ -1028,6 +1219,7 @@
         "resourceIdentifier":{"shape":"ResourceIdentifier"}
       }
     },
+    "Boolean":{"type":"boolean"},
     "CancelExportTaskRequest":{
       "type":"structure",
       "required":["taskId"],
@@ -1047,6 +1239,7 @@
       },
       "exception":true
     },
+    "Count":{"type":"long"},
     "CreateDeliveryRequest":{
       "type":"structure",
       "required":[
@@ -1089,13 +1282,33 @@
         "taskId":{"shape":"ExportTaskId"}
       }
     },
+    "CreateLogAnomalyDetectorRequest":{
+      "type":"structure",
+      "required":["logGroupArnList"],
+      "members":{
+        "logGroupArnList":{"shape":"LogGroupArnList"},
+        "detectorName":{"shape":"DetectorName"},
+        "evaluationFrequency":{"shape":"EvaluationFrequency"},
+        "filterPattern":{"shape":"FilterPattern"},
+        "kmsKeyId":{"shape":"KmsKeyId"},
+        "anomalyVisibilityTime":{"shape":"AnomalyVisibilityTime"},
+        "tags":{"shape":"Tags"}
+      }
+    },
+    "CreateLogAnomalyDetectorResponse":{
+      "type":"structure",
+      "members":{
+        "anomalyDetectorArn":{"shape":"AnomalyDetectorArn"}
+      }
+    },
     "CreateLogGroupRequest":{
       "type":"structure",
       "required":["logGroupName"],
       "members":{
         "logGroupName":{"shape":"LogGroupName"},
         "kmsKeyId":{"shape":"KmsKeyId"},
-        "tags":{"shape":"Tags"}
+        "tags":{"shape":"Tags"},
+        "logGroupClass":{"shape":"LogGroupClass"}
       }
     },
     "CreateLogStreamRequest":{
@@ -1179,6 +1392,13 @@
       "required":["destinationName"],
       "members":{
         "destinationName":{"shape":"DestinationName"}
+      }
+    },
+    "DeleteLogAnomalyDetectorRequest":{
+      "type":"structure",
+      "required":["anomalyDetectorArn"],
+      "members":{
+        "anomalyDetectorArn":{"shape":"AnomalyDetectorArn"}
       }
     },
     "DeleteLogGroupRequest":{
@@ -1432,7 +1652,8 @@
         "logGroupNamePattern":{"shape":"LogGroupNamePattern"},
         "nextToken":{"shape":"NextToken"},
         "limit":{"shape":"DescribeLimit"},
-        "includeLinkedAccounts":{"shape":"IncludeLinkedAccounts"}
+        "includeLinkedAccounts":{"shape":"IncludeLinkedAccounts"},
+        "logGroupClass":{"shape":"LogGroupClass"}
       }
     },
     "DescribeLogGroupsResponse":{
@@ -1546,6 +1767,10 @@
         "nextToken":{"shape":"NextToken"}
       }
     },
+    "Description":{
+      "type":"string",
+      "min":1
+    },
     "Destination":{
       "type":"structure",
       "members":{
@@ -1570,6 +1795,10 @@
     "Destinations":{
       "type":"list",
       "member":{"shape":"Destination"}
+    },
+    "DetectorName":{
+      "type":"string",
+      "min":1
     },
     "Dimensions":{
       "type":"map",
@@ -1598,9 +1827,30 @@
         "ByLogStream"
       ]
     },
+    "DynamicTokenPosition":{"type":"integer"},
     "EncryptionKey":{
       "type":"string",
       "max":256
+    },
+    "Enumerations":{
+      "type":"map",
+      "key":{"shape":"TokenString"},
+      "value":{"shape":"TokenValue"}
+    },
+    "EpochMillis":{
+      "type":"long",
+      "min":0
+    },
+    "EvaluationFrequency":{
+      "type":"string",
+      "enum":[
+        "ONE_MIN",
+        "FIVE_MIN",
+        "TEN_MIN",
+        "FIFTEEN_MIN",
+        "THIRTY_MIN",
+        "ONE_HOUR"
+      ]
     },
     "EventId":{"type":"string"},
     "EventMessage":{
@@ -1801,6 +2051,27 @@
         "deliverySource":{"shape":"DeliverySource"}
       }
     },
+    "GetLogAnomalyDetectorRequest":{
+      "type":"structure",
+      "required":["anomalyDetectorArn"],
+      "members":{
+        "anomalyDetectorArn":{"shape":"AnomalyDetectorArn"}
+      }
+    },
+    "GetLogAnomalyDetectorResponse":{
+      "type":"structure",
+      "members":{
+        "detectorName":{"shape":"DetectorName"},
+        "logGroupArnList":{"shape":"LogGroupArnList"},
+        "evaluationFrequency":{"shape":"EvaluationFrequency"},
+        "filterPattern":{"shape":"FilterPattern"},
+        "anomalyDetectorStatus":{"shape":"AnomalyDetectorStatus"},
+        "kmsKeyId":{"shape":"KmsKeyId"},
+        "creationTimeStamp":{"shape":"EpochMillis"},
+        "lastModifiedTimeStamp":{"shape":"EpochMillis"},
+        "anomalyVisibilityTime":{"shape":"AnomalyVisibilityTime"}
+      }
+    },
     "GetLogEventsRequest":{
       "type":"structure",
       "required":["logStreamName"],
@@ -1868,6 +2139,11 @@
         "encryptionKey":{"shape":"EncryptionKey"}
       }
     },
+    "Histogram":{
+      "type":"map",
+      "key":{"shape":"Time"},
+      "value":{"shape":"Count"}
+    },
     "IncludeLinkedAccounts":{"type":"boolean"},
     "InheritedProperties":{
       "type":"list",
@@ -1900,6 +2176,7 @@
       "max":100,
       "min":1
     },
+    "Integer":{"type":"integer"},
     "Interleaved":{"type":"boolean"},
     "InvalidOperationException":{
       "type":"structure",
@@ -1929,6 +2206,47 @@
       "members":{
       },
       "exception":true
+    },
+    "ListAnomaliesLimit":{
+      "type":"integer",
+      "max":50,
+      "min":1
+    },
+    "ListAnomaliesRequest":{
+      "type":"structure",
+      "members":{
+        "anomalyDetectorArn":{"shape":"AnomalyDetectorArn"},
+        "suppressionState":{"shape":"SuppressionState"},
+        "limit":{"shape":"ListAnomaliesLimit"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListAnomaliesResponse":{
+      "type":"structure",
+      "members":{
+        "anomalies":{"shape":"Anomalies"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListLogAnomalyDetectorsLimit":{
+      "type":"integer",
+      "max":50,
+      "min":1
+    },
+    "ListLogAnomalyDetectorsRequest":{
+      "type":"structure",
+      "members":{
+        "filterLogGroupArn":{"shape":"LogGroupArn"},
+        "limit":{"shape":"ListLogAnomalyDetectorsLimit"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListLogAnomalyDetectorsResponse":{
+      "type":"structure",
+      "members":{
+        "anomalyDetectors":{"shape":"AnomalyDetectors"},
+        "nextToken":{"shape":"NextToken"}
+      }
     },
     "ListTagsForResourceRequest":{
       "type":"structure",
@@ -1960,6 +2278,10 @@
       "deprecated":true,
       "deprecatedMessage":"Please use the generic tagging API model ListTagsForResourceRequest and ListTagsForResourceResponse"
     },
+    "LogEvent":{
+      "type":"string",
+      "min":1
+    },
     "LogEventIndex":{"type":"integer"},
     "LogGroup":{
       "type":"structure",
@@ -1972,8 +2294,26 @@
         "storedBytes":{"shape":"StoredBytes"},
         "kmsKeyId":{"shape":"KmsKeyId"},
         "dataProtectionStatus":{"shape":"DataProtectionStatus"},
-        "inheritedProperties":{"shape":"InheritedProperties"}
+        "inheritedProperties":{"shape":"InheritedProperties"},
+        "logGroupClass":{"shape":"LogGroupClass"}
       }
+    },
+    "LogGroupArn":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"[\\w#+=/:,.@-]*"
+    },
+    "LogGroupArnList":{
+      "type":"list",
+      "member":{"shape":"LogGroupArn"}
+    },
+    "LogGroupClass":{
+      "type":"string",
+      "enum":[
+        "STANDARD",
+        "INFREQUENT_ACCESS"
+      ]
     },
     "LogGroupField":{
       "type":"structure",
@@ -2022,6 +2362,10 @@
       "value":{"shape":"Value"}
     },
     "LogRecordPointer":{"type":"string"},
+    "LogSamples":{
+      "type":"list",
+      "member":{"shape":"LogEvent"}
+    },
     "LogStream":{
       "type":"structure",
       "members":{
@@ -2165,6 +2509,32 @@
       "type":"list",
       "member":{"shape":"OutputLogEvent"}
     },
+    "PatternId":{
+      "type":"string",
+      "max":32,
+      "min":32
+    },
+    "PatternRegex":{
+      "type":"string",
+      "min":1
+    },
+    "PatternString":{
+      "type":"string",
+      "min":1
+    },
+    "PatternToken":{
+      "type":"structure",
+      "members":{
+        "dynamicTokenPosition":{"shape":"DynamicTokenPosition"},
+        "isDynamic":{"shape":"Boolean"},
+        "tokenString":{"shape":"TokenString"},
+        "enumerations":{"shape":"Enumerations"}
+      }
+    },
+    "PatternTokens":{
+      "type":"list",
+      "member":{"shape":"PatternToken"}
+    },
     "Percentage":{
       "type":"integer",
       "max":100,
@@ -2185,6 +2555,10 @@
     "PolicyType":{
       "type":"string",
       "enum":["DATA_PROTECTION_POLICY"]
+    },
+    "Priority":{
+      "type":"string",
+      "min":1
     },
     "PutAccountPolicyRequest":{
       "type":"structure",
@@ -2656,6 +3030,14 @@
         "queryId":{"shape":"QueryId"}
       }
     },
+    "State":{
+      "type":"string",
+      "enum":[
+        "Active",
+        "Suppressed",
+        "Baseline"
+      ]
+    },
     "StatsValue":{"type":"double"},
     "StopQueryRequest":{
       "type":"structure",
@@ -2691,6 +3073,35 @@
       "member":{"shape":"SubscriptionFilter"}
     },
     "Success":{"type":"boolean"},
+    "SuppressionPeriod":{
+      "type":"structure",
+      "members":{
+        "value":{"shape":"Integer"},
+        "suppressionUnit":{"shape":"SuppressionUnit"}
+      }
+    },
+    "SuppressionState":{
+      "type":"string",
+      "enum":[
+        "SUPPRESSED",
+        "UNSUPPRESSED"
+      ]
+    },
+    "SuppressionType":{
+      "type":"string",
+      "enum":[
+        "LIMITED",
+        "INFINITE"
+      ]
+    },
+    "SuppressionUnit":{
+      "type":"string",
+      "enum":[
+        "SECONDS",
+        "MINUTES",
+        "HOURS"
+      ]
+    },
     "TagKey":{
       "type":"string",
       "max":128,
@@ -2777,11 +3188,20 @@
       },
       "exception":true
     },
+    "Time":{
+      "type":"string",
+      "min":1
+    },
     "Timestamp":{
       "type":"long",
       "min":0
     },
     "Token":{"type":"string"},
+    "TokenString":{
+      "type":"string",
+      "min":1
+    },
+    "TokenValue":{"type":"long"},
     "TooManyTagsException":{
       "type":"structure",
       "members":{
@@ -2819,6 +3239,31 @@
       "members":{
         "resourceArn":{"shape":"AmazonResourceName"},
         "tagKeys":{"shape":"TagKeyList"}
+      }
+    },
+    "UpdateAnomalyRequest":{
+      "type":"structure",
+      "required":["anomalyDetectorArn"],
+      "members":{
+        "anomalyId":{"shape":"AnomalyId"},
+        "patternId":{"shape":"PatternId"},
+        "anomalyDetectorArn":{"shape":"AnomalyDetectorArn"},
+        "suppressionType":{"shape":"SuppressionType"},
+        "suppressionPeriod":{"shape":"SuppressionPeriod"}
+      }
+    },
+    "UpdateLogAnomalyDetectorRequest":{
+      "type":"structure",
+      "required":[
+        "anomalyDetectorArn",
+        "enabled"
+      ],
+      "members":{
+        "anomalyDetectorArn":{"shape":"AnomalyDetectorArn"},
+        "evaluationFrequency":{"shape":"EvaluationFrequency"},
+        "filterPattern":{"shape":"FilterPattern"},
+        "anomalyVisibilityTime":{"shape":"AnomalyVisibilityTime"},
+        "enabled":{"shape":"Boolean"}
       }
     },
     "ValidationException":{

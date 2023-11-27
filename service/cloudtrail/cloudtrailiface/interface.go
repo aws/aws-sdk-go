@@ -108,6 +108,14 @@ type CloudTrailAPI interface {
 	DescribeTrailsWithContext(aws.Context, *cloudtrail.DescribeTrailsInput, ...request.Option) (*cloudtrail.DescribeTrailsOutput, error)
 	DescribeTrailsRequest(*cloudtrail.DescribeTrailsInput) (*request.Request, *cloudtrail.DescribeTrailsOutput)
 
+	DisableFederation(*cloudtrail.DisableFederationInput) (*cloudtrail.DisableFederationOutput, error)
+	DisableFederationWithContext(aws.Context, *cloudtrail.DisableFederationInput, ...request.Option) (*cloudtrail.DisableFederationOutput, error)
+	DisableFederationRequest(*cloudtrail.DisableFederationInput) (*request.Request, *cloudtrail.DisableFederationOutput)
+
+	EnableFederation(*cloudtrail.EnableFederationInput) (*cloudtrail.EnableFederationOutput, error)
+	EnableFederationWithContext(aws.Context, *cloudtrail.EnableFederationInput, ...request.Option) (*cloudtrail.EnableFederationOutput, error)
+	EnableFederationRequest(*cloudtrail.EnableFederationInput) (*request.Request, *cloudtrail.EnableFederationOutput)
+
 	GetChannel(*cloudtrail.GetChannelInput) (*cloudtrail.GetChannelOutput, error)
 	GetChannelWithContext(aws.Context, *cloudtrail.GetChannelInput, ...request.Option) (*cloudtrail.GetChannelOutput, error)
 	GetChannelRequest(*cloudtrail.GetChannelInput) (*request.Request, *cloudtrail.GetChannelOutput)

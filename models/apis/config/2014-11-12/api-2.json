@@ -983,6 +983,7 @@
       "input":{"shape":"PutConfigurationRecorderRequest"},
       "errors":[
         {"shape":"MaxNumberOfConfigurationRecordersExceededException"},
+        {"shape":"ValidationException"},
         {"shape":"InvalidConfigurationRecorderNameException"},
         {"shape":"InvalidRoleException"},
         {"shape":"InvalidRecordingGroupException"}
@@ -1518,7 +1519,9 @@
         "availabilityZone":{"shape":"AvailabilityZone"},
         "resourceCreationTime":{"shape":"ResourceCreationTime"},
         "configuration":{"shape":"Configuration"},
-        "supplementaryConfiguration":{"shape":"SupplementaryConfiguration"}
+        "supplementaryConfiguration":{"shape":"SupplementaryConfiguration"},
+        "recordingFrequency":{"shape":"RecordingFrequency"},
+        "configurationItemDeliveryTime":{"shape":"ConfigurationItemDeliveryTime"}
       }
     },
     "BaseConfigurationItems":{
@@ -1826,10 +1829,13 @@
         "relatedEvents":{"shape":"RelatedEventList"},
         "relationships":{"shape":"RelationshipList"},
         "configuration":{"shape":"Configuration"},
-        "supplementaryConfiguration":{"shape":"SupplementaryConfiguration"}
+        "supplementaryConfiguration":{"shape":"SupplementaryConfiguration"},
+        "recordingFrequency":{"shape":"RecordingFrequency"},
+        "configurationItemDeliveryTime":{"shape":"ConfigurationItemDeliveryTime"}
       }
     },
     "ConfigurationItemCaptureTime":{"type":"timestamp"},
+    "ConfigurationItemDeliveryTime":{"type":"timestamp"},
     "ConfigurationItemList":{
       "type":"list",
       "member":{"shape":"ConfigurationItem"}
@@ -1850,7 +1856,8 @@
       "members":{
         "name":{"shape":"RecorderName"},
         "roleARN":{"shape":"String"},
-        "recordingGroup":{"shape":"RecordingGroup"}
+        "recordingGroup":{"shape":"RecordingGroup"},
+        "recordingMode":{"shape":"RecordingMode"}
       }
     },
     "ConfigurationRecorderList":{
@@ -2739,6 +2746,11 @@
         "RetentionConfigurations":{"shape":"RetentionConfigurationList"},
         "NextToken":{"shape":"NextToken"}
       }
+    },
+    "Description":{
+      "type":"string",
+      "max":256,
+      "min":1
     },
     "DiscoveredResourceIdentifierList":{
       "type":"list",
@@ -4320,6 +4332,13 @@
         "Failure"
       ]
     },
+    "RecordingFrequency":{
+      "type":"string",
+      "enum":[
+        "CONTINUOUS",
+        "DAILY"
+      ]
+    },
     "RecordingGroup":{
       "type":"structure",
       "members":{
@@ -4329,6 +4348,36 @@
         "exclusionByResourceTypes":{"shape":"ExclusionByResourceTypes"},
         "recordingStrategy":{"shape":"RecordingStrategy"}
       }
+    },
+    "RecordingMode":{
+      "type":"structure",
+      "required":["recordingFrequency"],
+      "members":{
+        "recordingFrequency":{"shape":"RecordingFrequency"},
+        "recordingModeOverrides":{"shape":"RecordingModeOverrides"}
+      }
+    },
+    "RecordingModeOverride":{
+      "type":"structure",
+      "required":[
+        "resourceTypes",
+        "recordingFrequency"
+      ],
+      "members":{
+        "description":{"shape":"Description"},
+        "resourceTypes":{"shape":"RecordingModeResourceTypesList"},
+        "recordingFrequency":{"shape":"RecordingFrequency"}
+      }
+    },
+    "RecordingModeOverrides":{
+      "type":"list",
+      "member":{"shape":"RecordingModeOverride"},
+      "max":1,
+      "min":0
+    },
+    "RecordingModeResourceTypesList":{
+      "type":"list",
+      "member":{"shape":"ResourceType"}
     },
     "RecordingStrategy":{
       "type":"structure",

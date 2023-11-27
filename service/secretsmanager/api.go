@@ -13,6 +13,189 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 )
 
+const opBatchGetSecretValue = "BatchGetSecretValue"
+
+// BatchGetSecretValueRequest generates a "aws/request.Request" representing the
+// client's request for the BatchGetSecretValue operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchGetSecretValue for more information on using the BatchGetSecretValue
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the BatchGetSecretValueRequest method.
+//	req, resp := client.BatchGetSecretValueRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/secretsmanager-2017-10-17/BatchGetSecretValue
+func (c *SecretsManager) BatchGetSecretValueRequest(input *BatchGetSecretValueInput) (req *request.Request, output *BatchGetSecretValueOutput) {
+	op := &request.Operation{
+		Name:       opBatchGetSecretValue,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &BatchGetSecretValueInput{}
+	}
+
+	output = &BatchGetSecretValueOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchGetSecretValue API operation for AWS Secrets Manager.
+//
+// Retrieves the contents of the encrypted fields SecretString or SecretBinary
+// for up to 20 secrets. To retrieve a single secret, call GetSecretValue.
+//
+// To choose which secrets to retrieve, you can specify a list of secrets by
+// name or ARN, or you can use filters. If Secrets Manager encounters errors
+// such as AccessDeniedException while attempting to retrieve any of the secrets,
+// you can see the errors in Errors in the response.
+//
+// Secrets Manager generates CloudTrail GetSecretValue log entries for each
+// secret you request when you call this action. Do not include sensitive information
+// in request parameters because it might be logged. For more information, see
+// Logging Secrets Manager events with CloudTrail (https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html).
+//
+// Required permissions: secretsmanager:BatchGetSecretValue, and you must have
+// secretsmanager:GetSecretValue for each secret. If you use filters, you must
+// also have secretsmanager:ListSecrets. If the secrets are encrypted using
+// customer-managed keys instead of the Amazon Web Services managed key aws/secretsmanager,
+// then you also need kms:Decrypt permissions for the keys. For more information,
+// see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
+// and Authentication and access control in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Secrets Manager's
+// API operation BatchGetSecretValue for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     Secrets Manager can't find the resource that you asked for.
+//
+//   - InvalidParameterException
+//     The parameter name or value is invalid.
+//
+//   - InvalidRequestException
+//     A parameter value is not valid for the current state of the resource.
+//
+//     Possible causes:
+//
+//   - The secret is scheduled for deletion.
+//
+//   - You tried to enable rotation on a secret that doesn't already have a
+//     Lambda function ARN configured and you didn't include such an ARN as a
+//     parameter in this call.
+//
+//   - The secret is managed by another service, and you must use that service
+//     to update it. For more information, see Secrets managed by other Amazon
+//     Web Services services (https://docs.aws.amazon.com/secretsmanager/latest/userguide/service-linked-secrets.html).
+//
+//   - DecryptionFailure
+//     Secrets Manager can't decrypt the protected secret text using the provided
+//     KMS key.
+//
+//   - InternalServiceError
+//     An error occurred on the server side.
+//
+//   - InvalidNextTokenException
+//     The NextToken value is invalid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/secretsmanager-2017-10-17/BatchGetSecretValue
+func (c *SecretsManager) BatchGetSecretValue(input *BatchGetSecretValueInput) (*BatchGetSecretValueOutput, error) {
+	req, out := c.BatchGetSecretValueRequest(input)
+	return out, req.Send()
+}
+
+// BatchGetSecretValueWithContext is the same as BatchGetSecretValue with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchGetSecretValue for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecretsManager) BatchGetSecretValueWithContext(ctx aws.Context, input *BatchGetSecretValueInput, opts ...request.Option) (*BatchGetSecretValueOutput, error) {
+	req, out := c.BatchGetSecretValueRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// BatchGetSecretValuePages iterates over the pages of a BatchGetSecretValue operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See BatchGetSecretValue method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a BatchGetSecretValue operation.
+//	pageNum := 0
+//	err := client.BatchGetSecretValuePages(params,
+//	    func(page *secretsmanager.BatchGetSecretValueOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *SecretsManager) BatchGetSecretValuePages(input *BatchGetSecretValueInput, fn func(*BatchGetSecretValueOutput, bool) bool) error {
+	return c.BatchGetSecretValuePagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// BatchGetSecretValuePagesWithContext same as BatchGetSecretValuePages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecretsManager) BatchGetSecretValuePagesWithContext(ctx aws.Context, input *BatchGetSecretValueInput, fn func(*BatchGetSecretValueOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *BatchGetSecretValueInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.BatchGetSecretValueRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*BatchGetSecretValueOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opCancelRotateSecret = "CancelRotateSecret"
 
 // CancelRotateSecretRequest generates a "aws/request.Request" representing the
@@ -910,6 +1093,8 @@ func (c *SecretsManager) GetSecretValueRequest(input *GetSecretValueInput) (req 
 // Retrieves the contents of the encrypted fields SecretString or SecretBinary
 // from the specified version of a secret, whichever contains content.
 //
+// To retrieve the values for a group of secrets, call BatchGetSecretValue.
+//
 // We recommend that you cache your secret values by using client-side caching.
 // Caching secrets improves speed and reduces your costs. For more information,
 // see Cache secrets for your applications (https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieving-secrets.html).
@@ -1205,7 +1390,7 @@ func (c *SecretsManager) ListSecretsRequest(input *ListSecretsInput) (req *reque
 //
 // To list the versions of a secret, use ListSecretVersionIds.
 //
-// To get the secret value from SecretString or SecretBinary, call GetSecretValue.
+// To retrieve the values for the secrets, call BatchGetSecretValue or GetSecretValue.
 //
 // For information about finding secrets in the console, see Find secrets in
 // Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/manage_search-secret.html).
@@ -2814,6 +2999,208 @@ func (c *SecretsManager) ValidateResourcePolicyWithContext(ctx aws.Context, inpu
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// The error Secrets Manager encountered while retrieving an individual secret
+// as part of BatchGetSecretValue.
+type APIErrorType struct {
+	_ struct{} `type:"structure"`
+
+	// The error Secrets Manager encountered while retrieving an individual secret
+	// as part of BatchGetSecretValue, for example ResourceNotFoundException,InvalidParameterException,
+	// InvalidRequestException, DecryptionFailure, or AccessDeniedException.
+	ErrorCode *string `type:"string"`
+
+	// A message describing the error.
+	Message *string `type:"string"`
+
+	// The ARN or name of the secret.
+	SecretId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s APIErrorType) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s APIErrorType) GoString() string {
+	return s.String()
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *APIErrorType) SetErrorCode(v string) *APIErrorType {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *APIErrorType) SetMessage(v string) *APIErrorType {
+	s.Message = &v
+	return s
+}
+
+// SetSecretId sets the SecretId field's value.
+func (s *APIErrorType) SetSecretId(v string) *APIErrorType {
+	s.SecretId = &v
+	return s
+}
+
+type BatchGetSecretValueInput struct {
+	_ struct{} `type:"structure"`
+
+	// The filters to choose which secrets to retrieve. You must include Filters
+	// or SecretIdList, but not both.
+	Filters []*Filter `type:"list"`
+
+	// The number of results to include in the response.
+	//
+	// If there are more results available, in the response, Secrets Manager includes
+	// NextToken. To get the next results, call BatchGetSecretValue again with the
+	// value from NextToken.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A token that indicates where the output should continue from, if a previous
+	// call did not show all results. To get the next results, call BatchGetSecretValue
+	// again with this value.
+	NextToken *string `min:"1" type:"string"`
+
+	// The ARN or names of the secrets to retrieve. You must include Filters or
+	// SecretIdList, but not both.
+	SecretIdList []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetSecretValueInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetSecretValueInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchGetSecretValueInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchGetSecretValueInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.SecretIdList != nil && len(s.SecretIdList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecretIdList", 1))
+	}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *BatchGetSecretValueInput) SetFilters(v []*Filter) *BatchGetSecretValueInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *BatchGetSecretValueInput) SetMaxResults(v int64) *BatchGetSecretValueInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *BatchGetSecretValueInput) SetNextToken(v string) *BatchGetSecretValueInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSecretIdList sets the SecretIdList field's value.
+func (s *BatchGetSecretValueInput) SetSecretIdList(v []*string) *BatchGetSecretValueInput {
+	s.SecretIdList = v
+	return s
+}
+
+type BatchGetSecretValueOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of errors Secrets Manager encountered while attempting to retrieve
+	// individual secrets.
+	Errors []*APIErrorType `type:"list"`
+
+	// Secrets Manager includes this value if there's more output available than
+	// what is included in the current response. This can occur even when the response
+	// includes no values at all, such as when you ask for a filtered view of a
+	// long list. To get the next results, call BatchGetSecretValue again with this
+	// value.
+	NextToken *string `min:"1" type:"string"`
+
+	// A list of secret values.
+	SecretValues []*SecretValueEntry `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetSecretValueOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetSecretValueOutput) GoString() string {
+	return s.String()
+}
+
+// SetErrors sets the Errors field's value.
+func (s *BatchGetSecretValueOutput) SetErrors(v []*APIErrorType) *BatchGetSecretValueOutput {
+	s.Errors = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *BatchGetSecretValueOutput) SetNextToken(v string) *BatchGetSecretValueOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSecretValues sets the SecretValues field's value.
+func (s *BatchGetSecretValueOutput) SetSecretValues(v []*SecretValueEntry) *BatchGetSecretValueOutput {
+	s.SecretValues = v
+	return s
 }
 
 type CancelRotateSecretInput struct {
@@ -6478,10 +6865,7 @@ type SecretListEntry struct {
 	// successfully completed. This value is null if the secret hasn't ever rotated.
 	LastRotatedDate *time.Time `type:"timestamp"`
 
-	// The friendly name of the secret. You can use forward slashes in the name
-	// to represent a path hierarchy. For example, /prod/databases/dbserver1 could
-	// represent the secret for a server named dbserver1 in the folder databases
-	// in the folder prod.
+	// The friendly name of the secret.
 	Name *string `min:"1" type:"string"`
 
 	// The next rotation is scheduled to occur on or before this date. If the secret
@@ -6636,6 +7020,107 @@ func (s *SecretListEntry) SetSecretVersionsToStages(v map[string][]*string) *Sec
 // SetTags sets the Tags field's value.
 func (s *SecretListEntry) SetTags(v []*Tag) *SecretListEntry {
 	s.Tags = v
+	return s
+}
+
+// A structure that contains the secret value and other details for a secret.
+type SecretValueEntry struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the secret.
+	ARN *string `min:"20" type:"string"`
+
+	// The date the secret was created.
+	CreatedDate *time.Time `type:"timestamp"`
+
+	// The friendly name of the secret.
+	Name *string `min:"1" type:"string"`
+
+	// The decrypted secret value, if the secret value was originally provided as
+	// binary data in the form of a byte array. The parameter represents the binary
+	// data as a base64-encoded (https://tools.ietf.org/html/rfc4648#section-4)
+	// string.
+	//
+	// SecretBinary is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SecretValueEntry's
+	// String and GoString methods.
+	//
+	// SecretBinary is automatically base64 encoded/decoded by the SDK.
+	SecretBinary []byte `min:"1" type:"blob" sensitive:"true"`
+
+	// The decrypted secret value, if the secret value was originally provided as
+	// a string or through the Secrets Manager console.
+	//
+	// SecretString is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SecretValueEntry's
+	// String and GoString methods.
+	SecretString *string `min:"1" type:"string" sensitive:"true"`
+
+	// The unique version identifier of this version of the secret.
+	VersionId *string `min:"32" type:"string"`
+
+	// A list of all of the staging labels currently attached to this version of
+	// the secret.
+	VersionStages []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SecretValueEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SecretValueEntry) GoString() string {
+	return s.String()
+}
+
+// SetARN sets the ARN field's value.
+func (s *SecretValueEntry) SetARN(v string) *SecretValueEntry {
+	s.ARN = &v
+	return s
+}
+
+// SetCreatedDate sets the CreatedDate field's value.
+func (s *SecretValueEntry) SetCreatedDate(v time.Time) *SecretValueEntry {
+	s.CreatedDate = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *SecretValueEntry) SetName(v string) *SecretValueEntry {
+	s.Name = &v
+	return s
+}
+
+// SetSecretBinary sets the SecretBinary field's value.
+func (s *SecretValueEntry) SetSecretBinary(v []byte) *SecretValueEntry {
+	s.SecretBinary = v
+	return s
+}
+
+// SetSecretString sets the SecretString field's value.
+func (s *SecretValueEntry) SetSecretString(v string) *SecretValueEntry {
+	s.SecretString = &v
+	return s
+}
+
+// SetVersionId sets the VersionId field's value.
+func (s *SecretValueEntry) SetVersionId(v string) *SecretValueEntry {
+	s.VersionId = &v
+	return s
+}
+
+// SetVersionStages sets the VersionStages field's value.
+func (s *SecretValueEntry) SetVersionStages(v []*string) *SecretValueEntry {
+	s.VersionStages = v
 	return s
 }
 

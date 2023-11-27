@@ -61,6 +61,8 @@ func ExampleELBV2_AddTags_shared00() {
 				fmt.Println(elbv2.ErrCodeListenerNotFoundException, aerr.Error())
 			case elbv2.ErrCodeRuleNotFoundException:
 				fmt.Println(elbv2.ErrCodeRuleNotFoundException, aerr.Error())
+			case elbv2.ErrCodeTrustStoreNotFoundException:
+				fmt.Println(elbv2.ErrCodeTrustStoreNotFoundException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -132,6 +134,10 @@ func ExampleELBV2_CreateListener_shared00() {
 				fmt.Println(elbv2.ErrCodeALPNPolicyNotSupportedException, aerr.Error())
 			case elbv2.ErrCodeTooManyTagsException:
 				fmt.Println(elbv2.ErrCodeTooManyTagsException, aerr.Error())
+			case elbv2.ErrCodeTrustStoreNotFoundException:
+				fmt.Println(elbv2.ErrCodeTrustStoreNotFoundException, aerr.Error())
+			case elbv2.ErrCodeTrustStoreNotReadyException:
+				fmt.Println(elbv2.ErrCodeTrustStoreNotReadyException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -213,6 +219,10 @@ func ExampleELBV2_CreateListener_shared01() {
 				fmt.Println(elbv2.ErrCodeALPNPolicyNotSupportedException, aerr.Error())
 			case elbv2.ErrCodeTooManyTagsException:
 				fmt.Println(elbv2.ErrCodeTooManyTagsException, aerr.Error())
+			case elbv2.ErrCodeTrustStoreNotFoundException:
+				fmt.Println(elbv2.ErrCodeTrustStoreNotFoundException, aerr.Error())
+			case elbv2.ErrCodeTrustStoreNotReadyException:
+				fmt.Println(elbv2.ErrCodeTrustStoreNotReadyException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -785,6 +795,8 @@ func ExampleELBV2_DescribeTags_shared00() {
 				fmt.Println(elbv2.ErrCodeListenerNotFoundException, aerr.Error())
 			case elbv2.ErrCodeRuleNotFoundException:
 				fmt.Println(elbv2.ErrCodeRuleNotFoundException, aerr.Error())
+			case elbv2.ErrCodeTrustStoreNotFoundException:
+				fmt.Println(elbv2.ErrCodeTrustStoreNotFoundException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -983,6 +995,10 @@ func ExampleELBV2_ModifyListener_shared00() {
 				fmt.Println(elbv2.ErrCodeTooManyUniqueTargetGroupsPerLoadBalancerException, aerr.Error())
 			case elbv2.ErrCodeALPNPolicyNotSupportedException:
 				fmt.Println(elbv2.ErrCodeALPNPolicyNotSupportedException, aerr.Error())
+			case elbv2.ErrCodeTrustStoreNotFoundException:
+				fmt.Println(elbv2.ErrCodeTrustStoreNotFoundException, aerr.Error())
+			case elbv2.ErrCodeTrustStoreNotReadyException:
+				fmt.Println(elbv2.ErrCodeTrustStoreNotReadyException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -1048,6 +1064,10 @@ func ExampleELBV2_ModifyListener_shared01() {
 				fmt.Println(elbv2.ErrCodeTooManyUniqueTargetGroupsPerLoadBalancerException, aerr.Error())
 			case elbv2.ErrCodeALPNPolicyNotSupportedException:
 				fmt.Println(elbv2.ErrCodeALPNPolicyNotSupportedException, aerr.Error())
+			case elbv2.ErrCodeTrustStoreNotFoundException:
+				fmt.Println(elbv2.ErrCodeTrustStoreNotFoundException, aerr.Error())
+			case elbv2.ErrCodeTrustStoreNotReadyException:
+				fmt.Println(elbv2.ErrCodeTrustStoreNotReadyException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -1422,6 +1442,8 @@ func ExampleELBV2_RemoveTags_shared00() {
 				fmt.Println(elbv2.ErrCodeRuleNotFoundException, aerr.Error())
 			case elbv2.ErrCodeTooManyTagsException:
 				fmt.Println(elbv2.ErrCodeTooManyTagsException, aerr.Error())
+			case elbv2.ErrCodeTrustStoreNotFoundException:
+				fmt.Println(elbv2.ErrCodeTrustStoreNotFoundException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

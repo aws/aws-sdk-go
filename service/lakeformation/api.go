@@ -766,6 +766,101 @@ func (c *LakeFormation) CreateLFTagWithContext(ctx aws.Context, input *CreateLFT
 	return out, req.Send()
 }
 
+const opCreateLakeFormationIdentityCenterConfiguration = "CreateLakeFormationIdentityCenterConfiguration"
+
+// CreateLakeFormationIdentityCenterConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the CreateLakeFormationIdentityCenterConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateLakeFormationIdentityCenterConfiguration for more information on using the CreateLakeFormationIdentityCenterConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateLakeFormationIdentityCenterConfigurationRequest method.
+//	req, resp := client.CreateLakeFormationIdentityCenterConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/CreateLakeFormationIdentityCenterConfiguration
+func (c *LakeFormation) CreateLakeFormationIdentityCenterConfigurationRequest(input *CreateLakeFormationIdentityCenterConfigurationInput) (req *request.Request, output *CreateLakeFormationIdentityCenterConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opCreateLakeFormationIdentityCenterConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/CreateLakeFormationIdentityCenterConfiguration",
+	}
+
+	if input == nil {
+		input = &CreateLakeFormationIdentityCenterConfigurationInput{}
+	}
+
+	output = &CreateLakeFormationIdentityCenterConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateLakeFormationIdentityCenterConfiguration API operation for AWS Lake Formation.
+//
+// Creates an IAM Identity Center connection with Lake Formation to allow IAM
+// Identity Center users and groups to access Data Catalog resources.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lake Formation's
+// API operation CreateLakeFormationIdentityCenterConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidInputException
+//     The input provided was not valid.
+//
+//   - AlreadyExistsException
+//     A resource to be created or added already exists.
+//
+//   - InternalServiceException
+//     An internal service error occurred.
+//
+//   - OperationTimeoutException
+//     The operation timed out.
+//
+//   - AccessDeniedException
+//     Access to a resource was denied.
+//
+//   - ConcurrentModificationException
+//     Two processes are trying to modify a resource simultaneously.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/CreateLakeFormationIdentityCenterConfiguration
+func (c *LakeFormation) CreateLakeFormationIdentityCenterConfiguration(input *CreateLakeFormationIdentityCenterConfigurationInput) (*CreateLakeFormationIdentityCenterConfigurationOutput, error) {
+	req, out := c.CreateLakeFormationIdentityCenterConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// CreateLakeFormationIdentityCenterConfigurationWithContext is the same as CreateLakeFormationIdentityCenterConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateLakeFormationIdentityCenterConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LakeFormation) CreateLakeFormationIdentityCenterConfigurationWithContext(ctx aws.Context, input *CreateLakeFormationIdentityCenterConfigurationInput, opts ...request.Option) (*CreateLakeFormationIdentityCenterConfigurationOutput, error) {
+	req, out := c.CreateLakeFormationIdentityCenterConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateLakeFormationOptIn = "CreateLakeFormationOptIn"
 
 // CreateLakeFormationOptInRequest generates a "aws/request.Request" representing the
@@ -1044,6 +1139,101 @@ func (c *LakeFormation) DeleteLFTag(input *DeleteLFTagInput) (*DeleteLFTagOutput
 // for more information on using Contexts.
 func (c *LakeFormation) DeleteLFTagWithContext(ctx aws.Context, input *DeleteLFTagInput, opts ...request.Option) (*DeleteLFTagOutput, error) {
 	req, out := c.DeleteLFTagRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteLakeFormationIdentityCenterConfiguration = "DeleteLakeFormationIdentityCenterConfiguration"
+
+// DeleteLakeFormationIdentityCenterConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteLakeFormationIdentityCenterConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteLakeFormationIdentityCenterConfiguration for more information on using the DeleteLakeFormationIdentityCenterConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteLakeFormationIdentityCenterConfigurationRequest method.
+//	req, resp := client.DeleteLakeFormationIdentityCenterConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/DeleteLakeFormationIdentityCenterConfiguration
+func (c *LakeFormation) DeleteLakeFormationIdentityCenterConfigurationRequest(input *DeleteLakeFormationIdentityCenterConfigurationInput) (req *request.Request, output *DeleteLakeFormationIdentityCenterConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opDeleteLakeFormationIdentityCenterConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/DeleteLakeFormationIdentityCenterConfiguration",
+	}
+
+	if input == nil {
+		input = &DeleteLakeFormationIdentityCenterConfigurationInput{}
+	}
+
+	output = &DeleteLakeFormationIdentityCenterConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteLakeFormationIdentityCenterConfiguration API operation for AWS Lake Formation.
+//
+// Deletes an IAM Identity Center connection with Lake Formation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lake Formation's
+// API operation DeleteLakeFormationIdentityCenterConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidInputException
+//     The input provided was not valid.
+//
+//   - EntityNotFoundException
+//     A specified entity does not exist.
+//
+//   - InternalServiceException
+//     An internal service error occurred.
+//
+//   - OperationTimeoutException
+//     The operation timed out.
+//
+//   - AccessDeniedException
+//     Access to a resource was denied.
+//
+//   - ConcurrentModificationException
+//     Two processes are trying to modify a resource simultaneously.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/DeleteLakeFormationIdentityCenterConfiguration
+func (c *LakeFormation) DeleteLakeFormationIdentityCenterConfiguration(input *DeleteLakeFormationIdentityCenterConfigurationInput) (*DeleteLakeFormationIdentityCenterConfigurationOutput, error) {
+	req, out := c.DeleteLakeFormationIdentityCenterConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// DeleteLakeFormationIdentityCenterConfigurationWithContext is the same as DeleteLakeFormationIdentityCenterConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteLakeFormationIdentityCenterConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LakeFormation) DeleteLakeFormationIdentityCenterConfigurationWithContext(ctx aws.Context, input *DeleteLakeFormationIdentityCenterConfigurationInput, opts ...request.Option) (*DeleteLakeFormationIdentityCenterConfigurationOutput, error) {
+	req, out := c.DeleteLakeFormationIdentityCenterConfigurationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1342,6 +1532,97 @@ func (c *LakeFormation) DeregisterResource(input *DeregisterResourceInput) (*Der
 // for more information on using Contexts.
 func (c *LakeFormation) DeregisterResourceWithContext(ctx aws.Context, input *DeregisterResourceInput, opts ...request.Option) (*DeregisterResourceOutput, error) {
 	req, out := c.DeregisterResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeLakeFormationIdentityCenterConfiguration = "DescribeLakeFormationIdentityCenterConfiguration"
+
+// DescribeLakeFormationIdentityCenterConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeLakeFormationIdentityCenterConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeLakeFormationIdentityCenterConfiguration for more information on using the DescribeLakeFormationIdentityCenterConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeLakeFormationIdentityCenterConfigurationRequest method.
+//	req, resp := client.DescribeLakeFormationIdentityCenterConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/DescribeLakeFormationIdentityCenterConfiguration
+func (c *LakeFormation) DescribeLakeFormationIdentityCenterConfigurationRequest(input *DescribeLakeFormationIdentityCenterConfigurationInput) (req *request.Request, output *DescribeLakeFormationIdentityCenterConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opDescribeLakeFormationIdentityCenterConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/DescribeLakeFormationIdentityCenterConfiguration",
+	}
+
+	if input == nil {
+		input = &DescribeLakeFormationIdentityCenterConfigurationInput{}
+	}
+
+	output = &DescribeLakeFormationIdentityCenterConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeLakeFormationIdentityCenterConfiguration API operation for AWS Lake Formation.
+//
+// Retrieves the instance ARN and application ARN for the connection.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lake Formation's
+// API operation DescribeLakeFormationIdentityCenterConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidInputException
+//     The input provided was not valid.
+//
+//   - EntityNotFoundException
+//     A specified entity does not exist.
+//
+//   - InternalServiceException
+//     An internal service error occurred.
+//
+//   - OperationTimeoutException
+//     The operation timed out.
+//
+//   - AccessDeniedException
+//     Access to a resource was denied.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/DescribeLakeFormationIdentityCenterConfiguration
+func (c *LakeFormation) DescribeLakeFormationIdentityCenterConfiguration(input *DescribeLakeFormationIdentityCenterConfigurationInput) (*DescribeLakeFormationIdentityCenterConfigurationOutput, error) {
+	req, out := c.DescribeLakeFormationIdentityCenterConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// DescribeLakeFormationIdentityCenterConfigurationWithContext is the same as DescribeLakeFormationIdentityCenterConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeLakeFormationIdentityCenterConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LakeFormation) DescribeLakeFormationIdentityCenterConfigurationWithContext(ctx aws.Context, input *DescribeLakeFormationIdentityCenterConfigurationInput, opts ...request.Option) (*DescribeLakeFormationIdentityCenterConfigurationOutput, error) {
+	req, out := c.DescribeLakeFormationIdentityCenterConfigurationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5109,6 +5390,101 @@ func (c *LakeFormation) UpdateLFTagWithContext(ctx aws.Context, input *UpdateLFT
 	return out, req.Send()
 }
 
+const opUpdateLakeFormationIdentityCenterConfiguration = "UpdateLakeFormationIdentityCenterConfiguration"
+
+// UpdateLakeFormationIdentityCenterConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateLakeFormationIdentityCenterConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateLakeFormationIdentityCenterConfiguration for more information on using the UpdateLakeFormationIdentityCenterConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateLakeFormationIdentityCenterConfigurationRequest method.
+//	req, resp := client.UpdateLakeFormationIdentityCenterConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/UpdateLakeFormationIdentityCenterConfiguration
+func (c *LakeFormation) UpdateLakeFormationIdentityCenterConfigurationRequest(input *UpdateLakeFormationIdentityCenterConfigurationInput) (req *request.Request, output *UpdateLakeFormationIdentityCenterConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateLakeFormationIdentityCenterConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/UpdateLakeFormationIdentityCenterConfiguration",
+	}
+
+	if input == nil {
+		input = &UpdateLakeFormationIdentityCenterConfigurationInput{}
+	}
+
+	output = &UpdateLakeFormationIdentityCenterConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateLakeFormationIdentityCenterConfiguration API operation for AWS Lake Formation.
+//
+// Updates the IAM Identity Center connection parameters.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lake Formation's
+// API operation UpdateLakeFormationIdentityCenterConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidInputException
+//     The input provided was not valid.
+//
+//   - EntityNotFoundException
+//     A specified entity does not exist.
+//
+//   - InternalServiceException
+//     An internal service error occurred.
+//
+//   - OperationTimeoutException
+//     The operation timed out.
+//
+//   - AccessDeniedException
+//     Access to a resource was denied.
+//
+//   - ConcurrentModificationException
+//     Two processes are trying to modify a resource simultaneously.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/UpdateLakeFormationIdentityCenterConfiguration
+func (c *LakeFormation) UpdateLakeFormationIdentityCenterConfiguration(input *UpdateLakeFormationIdentityCenterConfigurationInput) (*UpdateLakeFormationIdentityCenterConfigurationOutput, error) {
+	req, out := c.UpdateLakeFormationIdentityCenterConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateLakeFormationIdentityCenterConfigurationWithContext is the same as UpdateLakeFormationIdentityCenterConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateLakeFormationIdentityCenterConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LakeFormation) UpdateLakeFormationIdentityCenterConfigurationWithContext(ctx aws.Context, input *UpdateLakeFormationIdentityCenterConfigurationInput, opts ...request.Option) (*UpdateLakeFormationIdentityCenterConfigurationOutput, error) {
+	req, out := c.UpdateLakeFormationIdentityCenterConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateResource = "UpdateResource"
 
 // UpdateResourceRequest generates a "aws/request.Request" representing the
@@ -6792,6 +7168,111 @@ func (s CreateLFTagOutput) GoString() string {
 	return s.String()
 }
 
+type CreateLakeFormationIdentityCenterConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the Data Catalog. By default, the account ID. The Data
+	// Catalog is the persistent metadata store. It contains database definitions,
+	// table definitions, view definitions, and other control information to manage
+	// your Lake Formation environment.
+	CatalogId *string `min:"1" type:"string"`
+
+	// A list of the account IDs of Amazon Web Services accounts of third-party
+	// applications that are allowed to to access data managed by Lake Formation.
+	ExternalFiltering *ExternalFilteringConfiguration `type:"structure"`
+
+	// The ARN of the IAM Identity Center instance for which the operation will
+	// be executed. For more information about ARNs, see Amazon Resource Names (ARNs)
+	// and Amazon Web Services Service Namespaces in the Amazon Web Services General
+	// Reference.
+	InstanceArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLakeFormationIdentityCenterConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLakeFormationIdentityCenterConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateLakeFormationIdentityCenterConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateLakeFormationIdentityCenterConfigurationInput"}
+	if s.CatalogId != nil && len(*s.CatalogId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CatalogId", 1))
+	}
+	if s.ExternalFiltering != nil {
+		if err := s.ExternalFiltering.Validate(); err != nil {
+			invalidParams.AddNested("ExternalFiltering", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *CreateLakeFormationIdentityCenterConfigurationInput) SetCatalogId(v string) *CreateLakeFormationIdentityCenterConfigurationInput {
+	s.CatalogId = &v
+	return s
+}
+
+// SetExternalFiltering sets the ExternalFiltering field's value.
+func (s *CreateLakeFormationIdentityCenterConfigurationInput) SetExternalFiltering(v *ExternalFilteringConfiguration) *CreateLakeFormationIdentityCenterConfigurationInput {
+	s.ExternalFiltering = v
+	return s
+}
+
+// SetInstanceArn sets the InstanceArn field's value.
+func (s *CreateLakeFormationIdentityCenterConfigurationInput) SetInstanceArn(v string) *CreateLakeFormationIdentityCenterConfigurationInput {
+	s.InstanceArn = &v
+	return s
+}
+
+type CreateLakeFormationIdentityCenterConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the integrated application.
+	ApplicationArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLakeFormationIdentityCenterConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLakeFormationIdentityCenterConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetApplicationArn sets the ApplicationArn field's value.
+func (s *CreateLakeFormationIdentityCenterConfigurationOutput) SetApplicationArn(v string) *CreateLakeFormationIdentityCenterConfigurationOutput {
+	s.ApplicationArn = &v
+	return s
+}
+
 type CreateLakeFormationOptInInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7224,8 +7705,8 @@ type DataLakeSettings struct {
 	ExternalDataFilteringAllowList []*DataLakePrincipal `type:"list"`
 
 	// A key-value map that provides an additional configuration on your data lake.
-	// CrossAccountVersion is the key you can configure in the Parameters field.
-	// Accepted values for the CrossAccountVersion key are 1, 2, and 3.
+	// CROSS_ACCOUNT_VERSION is the key you can configure in the Parameters field.
+	// Accepted values for the CrossAccountVersion key are 1, 2, 3, and 4.
 	Parameters map[string]*string `type:"map"`
 
 	// A list of Lake Formation principals with only view access to the resources,
@@ -7692,6 +8173,75 @@ func (s DeleteLFTagOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteLakeFormationIdentityCenterConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the Data Catalog. By default, the account ID. The Data
+	// Catalog is the persistent metadata store. It contains database definitions,
+	// table definitions, view definition, and other control information to manage
+	// your Lake Formation environment.
+	CatalogId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteLakeFormationIdentityCenterConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteLakeFormationIdentityCenterConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteLakeFormationIdentityCenterConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteLakeFormationIdentityCenterConfigurationInput"}
+	if s.CatalogId != nil && len(*s.CatalogId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CatalogId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *DeleteLakeFormationIdentityCenterConfigurationInput) SetCatalogId(v string) *DeleteLakeFormationIdentityCenterConfigurationInput {
+	s.CatalogId = &v
+	return s
+}
+
+type DeleteLakeFormationIdentityCenterConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteLakeFormationIdentityCenterConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteLakeFormationIdentityCenterConfigurationOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteLakeFormationOptInInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8072,6 +8622,114 @@ func (s DeregisterResourceOutput) String() string {
 // value will be replaced with "sensitive".
 func (s DeregisterResourceOutput) GoString() string {
 	return s.String()
+}
+
+type DescribeLakeFormationIdentityCenterConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the Data Catalog. By default, the account ID. The Data
+	// Catalog is the persistent metadata store. It contains database definitions,
+	// table definitions, and other control information to manage your Lake Formation
+	// environment.
+	CatalogId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLakeFormationIdentityCenterConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLakeFormationIdentityCenterConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeLakeFormationIdentityCenterConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeLakeFormationIdentityCenterConfigurationInput"}
+	if s.CatalogId != nil && len(*s.CatalogId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CatalogId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *DescribeLakeFormationIdentityCenterConfigurationInput) SetCatalogId(v string) *DescribeLakeFormationIdentityCenterConfigurationInput {
+	s.CatalogId = &v
+	return s
+}
+
+type DescribeLakeFormationIdentityCenterConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the integrated application.
+	ApplicationArn *string `type:"string"`
+
+	// The identifier for the Data Catalog. By default, the account ID. The Data
+	// Catalog is the persistent metadata store. It contains database definitions,
+	// table definitions, and other control information to manage your Lake Formation
+	// environment.
+	CatalogId *string `min:"1" type:"string"`
+
+	// Indicates if external filtering is enabled.
+	ExternalFiltering *ExternalFilteringConfiguration `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the connection.
+	InstanceArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLakeFormationIdentityCenterConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLakeFormationIdentityCenterConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetApplicationArn sets the ApplicationArn field's value.
+func (s *DescribeLakeFormationIdentityCenterConfigurationOutput) SetApplicationArn(v string) *DescribeLakeFormationIdentityCenterConfigurationOutput {
+	s.ApplicationArn = &v
+	return s
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *DescribeLakeFormationIdentityCenterConfigurationOutput) SetCatalogId(v string) *DescribeLakeFormationIdentityCenterConfigurationOutput {
+	s.CatalogId = &v
+	return s
+}
+
+// SetExternalFiltering sets the ExternalFiltering field's value.
+func (s *DescribeLakeFormationIdentityCenterConfigurationOutput) SetExternalFiltering(v *ExternalFilteringConfiguration) *DescribeLakeFormationIdentityCenterConfigurationOutput {
+	s.ExternalFiltering = v
+	return s
+}
+
+// SetInstanceArn sets the InstanceArn field's value.
+func (s *DescribeLakeFormationIdentityCenterConfigurationOutput) SetInstanceArn(v string) *DescribeLakeFormationIdentityCenterConfigurationOutput {
+	s.InstanceArn = &v
+	return s
 }
 
 type DescribeResourceInput struct {
@@ -8553,6 +9211,69 @@ func (s ExtendTransactionOutput) String() string {
 // value will be replaced with "sensitive".
 func (s ExtendTransactionOutput) GoString() string {
 	return s.String()
+}
+
+// Configuration for enabling external data filtering for third-party applications
+// to access data managed by Lake Formation .
+type ExternalFilteringConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// List of third-party application ARNs integrated with Lake Formation.
+	//
+	// AuthorizedTargets is a required field
+	AuthorizedTargets []*string `type:"list" required:"true"`
+
+	// Allows to enable or disable the third-party applications that are allowed
+	// to access data managed by Lake Formation.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"EnableStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExternalFilteringConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExternalFilteringConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ExternalFilteringConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ExternalFilteringConfiguration"}
+	if s.AuthorizedTargets == nil {
+		invalidParams.Add(request.NewErrParamRequired("AuthorizedTargets"))
+	}
+	if s.Status == nil {
+		invalidParams.Add(request.NewErrParamRequired("Status"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuthorizedTargets sets the AuthorizedTargets field's value.
+func (s *ExternalFilteringConfiguration) SetAuthorizedTargets(v []*string) *ExternalFilteringConfiguration {
+	s.AuthorizedTargets = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ExternalFilteringConfiguration) SetStatus(v string) *ExternalFilteringConfiguration {
+	s.Status = &v
+	return s
 }
 
 // This structure describes the filtering of columns in a table based on a filter
@@ -13371,6 +14092,8 @@ type SearchTablesByLFTagsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A continuation token, present if the current list segment is not the last.
+	// On the first run, if you include a not null (a value) token you can get empty
+	// pages.
 	NextToken *string `type:"string"`
 
 	// A list of tables that meet the LF-tag conditions.
@@ -14594,6 +15317,99 @@ func (s UpdateLFTagOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateLakeFormationIdentityCenterConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// Allows to enable or disable the IAM Identity Center connection.
+	ApplicationStatus *string `type:"string" enum:"ApplicationStatus"`
+
+	// The identifier for the Data Catalog. By default, the account ID. The Data
+	// Catalog is the persistent metadata store. It contains database definitions,
+	// table definitions, view definitions, and other control information to manage
+	// your Lake Formation environment.
+	CatalogId *string `min:"1" type:"string"`
+
+	// A list of the account IDs of Amazon Web Services accounts of third-party
+	// applications that are allowed to access data managed by Lake Formation.
+	ExternalFiltering *ExternalFilteringConfiguration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateLakeFormationIdentityCenterConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateLakeFormationIdentityCenterConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateLakeFormationIdentityCenterConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateLakeFormationIdentityCenterConfigurationInput"}
+	if s.CatalogId != nil && len(*s.CatalogId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CatalogId", 1))
+	}
+	if s.ExternalFiltering != nil {
+		if err := s.ExternalFiltering.Validate(); err != nil {
+			invalidParams.AddNested("ExternalFiltering", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationStatus sets the ApplicationStatus field's value.
+func (s *UpdateLakeFormationIdentityCenterConfigurationInput) SetApplicationStatus(v string) *UpdateLakeFormationIdentityCenterConfigurationInput {
+	s.ApplicationStatus = &v
+	return s
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *UpdateLakeFormationIdentityCenterConfigurationInput) SetCatalogId(v string) *UpdateLakeFormationIdentityCenterConfigurationInput {
+	s.CatalogId = &v
+	return s
+}
+
+// SetExternalFiltering sets the ExternalFiltering field's value.
+func (s *UpdateLakeFormationIdentityCenterConfigurationInput) SetExternalFiltering(v *ExternalFilteringConfiguration) *UpdateLakeFormationIdentityCenterConfigurationInput {
+	s.ExternalFiltering = v
+	return s
+}
+
+type UpdateLakeFormationIdentityCenterConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateLakeFormationIdentityCenterConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateLakeFormationIdentityCenterConfigurationOutput) GoString() string {
+	return s.String()
+}
+
 type UpdateResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -15206,6 +16022,22 @@ func (s *WriteOperation) SetDeleteObject(v *DeleteObjectInput_) *WriteOperation 
 }
 
 const (
+	// ApplicationStatusEnabled is a ApplicationStatus enum value
+	ApplicationStatusEnabled = "ENABLED"
+
+	// ApplicationStatusDisabled is a ApplicationStatus enum value
+	ApplicationStatusDisabled = "DISABLED"
+)
+
+// ApplicationStatus_Values returns all elements of the ApplicationStatus enum
+func ApplicationStatus_Values() []string {
+	return []string{
+		ApplicationStatusEnabled,
+		ApplicationStatusDisabled,
+	}
+}
+
+const (
 	// ComparisonOperatorEq is a ComparisonOperator enum value
 	ComparisonOperatorEq = "EQ"
 
@@ -15294,6 +16126,22 @@ func DataLakeResourceType_Values() []string {
 		DataLakeResourceTypeLfTagPolicy,
 		DataLakeResourceTypeLfTagPolicyDatabase,
 		DataLakeResourceTypeLfTagPolicyTable,
+	}
+}
+
+const (
+	// EnableStatusEnabled is a EnableStatus enum value
+	EnableStatusEnabled = "ENABLED"
+
+	// EnableStatusDisabled is a EnableStatus enum value
+	EnableStatusDisabled = "DISABLED"
+)
+
+// EnableStatus_Values returns all elements of the EnableStatus enum
+func EnableStatus_Values() []string {
+	return []string{
+		EnableStatusEnabled,
+		EnableStatusDisabled,
 	}
 }
 

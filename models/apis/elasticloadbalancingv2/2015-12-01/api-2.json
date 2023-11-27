@@ -46,7 +46,26 @@
         {"shape":"LoadBalancerNotFoundException"},
         {"shape":"TargetGroupNotFoundException"},
         {"shape":"ListenerNotFoundException"},
-        {"shape":"RuleNotFoundException"}
+        {"shape":"RuleNotFoundException"},
+        {"shape":"TrustStoreNotFoundException"}
+      ]
+    },
+    "AddTrustStoreRevocations":{
+      "name":"AddTrustStoreRevocations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AddTrustStoreRevocationsInput"},
+      "output":{
+        "shape":"AddTrustStoreRevocationsOutput",
+        "resultWrapper":"AddTrustStoreRevocationsResult"
+      },
+      "errors":[
+        {"shape":"TrustStoreNotFoundException"},
+        {"shape":"InvalidRevocationContentException"},
+        {"shape":"TooManyTrustStoreRevocationEntriesException"},
+        {"shape":"RevocationContentNotFoundException"}
       ]
     },
     "CreateListener":{
@@ -78,7 +97,9 @@
         {"shape":"InvalidLoadBalancerActionException"},
         {"shape":"TooManyUniqueTargetGroupsPerLoadBalancerException"},
         {"shape":"ALPNPolicyNotSupportedException"},
-        {"shape":"TooManyTagsException"}
+        {"shape":"TooManyTagsException"},
+        {"shape":"TrustStoreNotFoundException"},
+        {"shape":"TrustStoreNotReadyException"}
       ]
     },
     "CreateLoadBalancer":{
@@ -155,6 +176,26 @@
         {"shape":"TooManyTagsException"}
       ]
     },
+    "CreateTrustStore":{
+      "name":"CreateTrustStore",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateTrustStoreInput"},
+      "output":{
+        "shape":"CreateTrustStoreOutput",
+        "resultWrapper":"CreateTrustStoreResult"
+      },
+      "errors":[
+        {"shape":"DuplicateTrustStoreNameException"},
+        {"shape":"TooManyTrustStoresException"},
+        {"shape":"InvalidCaCertificatesBundleException"},
+        {"shape":"CaCertificatesBundleNotFoundException"},
+        {"shape":"TooManyTagsException"},
+        {"shape":"DuplicateTagKeysException"}
+      ]
+    },
     "DeleteListener":{
       "name":"DeleteListener",
       "http":{
@@ -217,6 +258,22 @@
       },
       "errors":[
         {"shape":"ResourceInUseException"}
+      ]
+    },
+    "DeleteTrustStore":{
+      "name":"DeleteTrustStore",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteTrustStoreInput"},
+      "output":{
+        "shape":"DeleteTrustStoreOutput",
+        "resultWrapper":"DeleteTrustStoreResult"
+      },
+      "errors":[
+        {"shape":"TrustStoreNotFoundException"},
+        {"shape":"TrustStoreInUseException"}
       ]
     },
     "DeregisterTargets":{
@@ -356,7 +413,8 @@
         {"shape":"LoadBalancerNotFoundException"},
         {"shape":"TargetGroupNotFoundException"},
         {"shape":"ListenerNotFoundException"},
-        {"shape":"RuleNotFoundException"}
+        {"shape":"RuleNotFoundException"},
+        {"shape":"TrustStoreNotFoundException"}
       ]
     },
     "DescribeTargetGroupAttributes":{
@@ -407,6 +465,83 @@
         {"shape":"HealthUnavailableException"}
       ]
     },
+    "DescribeTrustStoreAssociations":{
+      "name":"DescribeTrustStoreAssociations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeTrustStoreAssociationsInput"},
+      "output":{
+        "shape":"DescribeTrustStoreAssociationsOutput",
+        "resultWrapper":"DescribeTrustStoreAssociationsResult"
+      },
+      "errors":[
+        {"shape":"TrustStoreNotFoundException"}
+      ]
+    },
+    "DescribeTrustStoreRevocations":{
+      "name":"DescribeTrustStoreRevocations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeTrustStoreRevocationsInput"},
+      "output":{
+        "shape":"DescribeTrustStoreRevocationsOutput",
+        "resultWrapper":"DescribeTrustStoreRevocationsResult"
+      },
+      "errors":[
+        {"shape":"TrustStoreNotFoundException"},
+        {"shape":"RevocationIdNotFoundException"}
+      ]
+    },
+    "DescribeTrustStores":{
+      "name":"DescribeTrustStores",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeTrustStoresInput"},
+      "output":{
+        "shape":"DescribeTrustStoresOutput",
+        "resultWrapper":"DescribeTrustStoresResult"
+      },
+      "errors":[
+        {"shape":"TrustStoreNotFoundException"}
+      ]
+    },
+    "GetTrustStoreCaCertificatesBundle":{
+      "name":"GetTrustStoreCaCertificatesBundle",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetTrustStoreCaCertificatesBundleInput"},
+      "output":{
+        "shape":"GetTrustStoreCaCertificatesBundleOutput",
+        "resultWrapper":"GetTrustStoreCaCertificatesBundleResult"
+      },
+      "errors":[
+        {"shape":"TrustStoreNotFoundException"}
+      ]
+    },
+    "GetTrustStoreRevocationContent":{
+      "name":"GetTrustStoreRevocationContent",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetTrustStoreRevocationContentInput"},
+      "output":{
+        "shape":"GetTrustStoreRevocationContentOutput",
+        "resultWrapper":"GetTrustStoreRevocationContentResult"
+      },
+      "errors":[
+        {"shape":"TrustStoreNotFoundException"},
+        {"shape":"RevocationIdNotFoundException"}
+      ]
+    },
     "ModifyListener":{
       "name":"ModifyListener",
       "http":{
@@ -435,7 +570,9 @@
         {"shape":"TooManyActionsException"},
         {"shape":"InvalidLoadBalancerActionException"},
         {"shape":"TooManyUniqueTargetGroupsPerLoadBalancerException"},
-        {"shape":"ALPNPolicyNotSupportedException"}
+        {"shape":"ALPNPolicyNotSupportedException"},
+        {"shape":"TrustStoreNotFoundException"},
+        {"shape":"TrustStoreNotReadyException"}
       ]
     },
     "ModifyLoadBalancerAttributes":{
@@ -511,6 +648,23 @@
         {"shape":"InvalidConfigurationRequestException"}
       ]
     },
+    "ModifyTrustStore":{
+      "name":"ModifyTrustStore",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyTrustStoreInput"},
+      "output":{
+        "shape":"ModifyTrustStoreOutput",
+        "resultWrapper":"ModifyTrustStoreResult"
+      },
+      "errors":[
+        {"shape":"TrustStoreNotFoundException"},
+        {"shape":"InvalidCaCertificatesBundleException"},
+        {"shape":"CaCertificatesBundleNotFoundException"}
+      ]
+    },
     "RegisterTargets":{
       "name":"RegisterTargets",
       "http":{
@@ -561,7 +715,24 @@
         {"shape":"TargetGroupNotFoundException"},
         {"shape":"ListenerNotFoundException"},
         {"shape":"RuleNotFoundException"},
-        {"shape":"TooManyTagsException"}
+        {"shape":"TooManyTagsException"},
+        {"shape":"TrustStoreNotFoundException"}
+      ]
+    },
+    "RemoveTrustStoreRevocations":{
+      "name":"RemoveTrustStoreRevocations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RemoveTrustStoreRevocationsInput"},
+      "output":{
+        "shape":"RemoveTrustStoreRevocationsOutput",
+        "resultWrapper":"RemoveTrustStoreRevocationsResult"
+      },
+      "errors":[
+        {"shape":"TrustStoreNotFoundException"},
+        {"shape":"RevocationIdNotFoundException"}
       ]
     },
     "SetIpAddressType":{
@@ -714,6 +885,20 @@
       "members":{
       }
     },
+    "AddTrustStoreRevocationsInput":{
+      "type":"structure",
+      "required":["TrustStoreArn"],
+      "members":{
+        "TrustStoreArn":{"shape":"TrustStoreArn"},
+        "RevocationContents":{"shape":"RevocationContents"}
+      }
+    },
+    "AddTrustStoreRevocationsOutput":{
+      "type":"structure",
+      "members":{
+        "TrustStoreRevocations":{"shape":"TrustStoreRevocations"}
+      }
+    },
     "AllocationId":{"type":"string"},
     "AllocationIdNotFoundException":{
       "type":"structure",
@@ -731,6 +916,20 @@
       "member":{"shape":"AlpnPolicyValue"}
     },
     "AlpnPolicyValue":{"type":"string"},
+    "AnomalyDetection":{
+      "type":"structure",
+      "members":{
+        "Result":{"shape":"AnomalyResultEnum"},
+        "MitigationInEffect":{"shape":"MitigationInEffectEnum"}
+      }
+    },
+    "AnomalyResultEnum":{
+      "type":"string",
+      "enum":[
+        "anomalous",
+        "normal"
+      ]
+    },
     "AuthenticateCognitoActionAuthenticationRequestExtraParams":{
       "type":"map",
       "key":{"shape":"AuthenticateCognitoActionAuthenticationRequestParamName"},
@@ -843,6 +1042,17 @@
       "type":"list",
       "member":{"shape":"AvailabilityZone"}
     },
+    "CaCertificatesBundleNotFoundException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"CaCertificatesBundleNotFound",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "CanonicalHostedZoneId":{"type":"string"},
     "Certificate":{
       "type":"structure",
@@ -898,7 +1108,8 @@
         "Certificates":{"shape":"CertificateList"},
         "DefaultActions":{"shape":"Actions"},
         "AlpnPolicy":{"shape":"AlpnPolicyName"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "MutualAuthentication":{"shape":"MutualAuthenticationAttributes"}
       }
     },
     "CreateListenerOutput":{
@@ -979,6 +1190,27 @@
         "TargetGroups":{"shape":"TargetGroups"}
       }
     },
+    "CreateTrustStoreInput":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "CaCertificatesBundleS3Bucket",
+        "CaCertificatesBundleS3Key"
+      ],
+      "members":{
+        "Name":{"shape":"TrustStoreName"},
+        "CaCertificatesBundleS3Bucket":{"shape":"S3Bucket"},
+        "CaCertificatesBundleS3Key":{"shape":"S3Key"},
+        "CaCertificatesBundleS3ObjectVersion":{"shape":"S3ObjectVersion"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "CreateTrustStoreOutput":{
+      "type":"structure",
+      "members":{
+        "TrustStores":{"shape":"TrustStores"}
+      }
+    },
     "CreatedTime":{"type":"timestamp"},
     "CustomerOwnedIpv4Pool":{
       "type":"string",
@@ -1031,6 +1263,18 @@
       }
     },
     "DeleteTargetGroupOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteTrustStoreInput":{
+      "type":"structure",
+      "required":["TrustStoreArn"],
+      "members":{
+        "TrustStoreArn":{"shape":"TrustStoreArn"}
+      }
+    },
+    "DeleteTrustStoreOutput":{
       "type":"structure",
       "members":{
       }
@@ -1206,13 +1450,83 @@
       "required":["TargetGroupArn"],
       "members":{
         "TargetGroupArn":{"shape":"TargetGroupArn"},
-        "Targets":{"shape":"TargetDescriptions"}
+        "Targets":{"shape":"TargetDescriptions"},
+        "Include":{"shape":"ListOfDescribeTargetHealthIncludeOptions"}
       }
+    },
+    "DescribeTargetHealthInputIncludeEnum":{
+      "type":"string",
+      "enum":[
+        "AnomalyDetection",
+        "All"
+      ]
     },
     "DescribeTargetHealthOutput":{
       "type":"structure",
       "members":{
         "TargetHealthDescriptions":{"shape":"TargetHealthDescriptions"}
+      }
+    },
+    "DescribeTrustStoreAssociationsInput":{
+      "type":"structure",
+      "required":["TrustStoreArn"],
+      "members":{
+        "TrustStoreArn":{"shape":"TrustStoreArn"},
+        "Marker":{"shape":"Marker"},
+        "PageSize":{"shape":"PageSize"}
+      }
+    },
+    "DescribeTrustStoreAssociationsOutput":{
+      "type":"structure",
+      "members":{
+        "TrustStoreAssociations":{"shape":"TrustStoreAssociations"},
+        "NextMarker":{"shape":"Marker"}
+      }
+    },
+    "DescribeTrustStoreRevocation":{
+      "type":"structure",
+      "members":{
+        "TrustStoreArn":{"shape":"TrustStoreArn"},
+        "RevocationId":{"shape":"RevocationId"},
+        "RevocationType":{"shape":"RevocationType"},
+        "NumberOfRevokedEntries":{"shape":"NumberOfRevokedEntries"}
+      }
+    },
+    "DescribeTrustStoreRevocationResponse":{
+      "type":"list",
+      "member":{"shape":"DescribeTrustStoreRevocation"}
+    },
+    "DescribeTrustStoreRevocationsInput":{
+      "type":"structure",
+      "required":["TrustStoreArn"],
+      "members":{
+        "TrustStoreArn":{"shape":"TrustStoreArn"},
+        "RevocationIds":{"shape":"RevocationIds"},
+        "Marker":{"shape":"Marker"},
+        "PageSize":{"shape":"PageSize"}
+      }
+    },
+    "DescribeTrustStoreRevocationsOutput":{
+      "type":"structure",
+      "members":{
+        "TrustStoreRevocations":{"shape":"DescribeTrustStoreRevocationResponse"},
+        "NextMarker":{"shape":"Marker"}
+      }
+    },
+    "DescribeTrustStoresInput":{
+      "type":"structure",
+      "members":{
+        "TrustStoreArns":{"shape":"TrustStoreArns"},
+        "Names":{"shape":"TrustStoreNames"},
+        "Marker":{"shape":"Marker"},
+        "PageSize":{"shape":"PageSize"}
+      }
+    },
+    "DescribeTrustStoresOutput":{
+      "type":"structure",
+      "members":{
+        "TrustStores":{"shape":"TrustStores"},
+        "NextMarker":{"shape":"Marker"}
       }
     },
     "Description":{"type":"string"},
@@ -1260,6 +1574,17 @@
       },
       "exception":true
     },
+    "DuplicateTrustStoreNameException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"DuplicateTrustStoreName",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "EnforceSecurityGroupInboundRulesOnPrivateLinkTraffic":{"type":"string"},
     "EnforceSecurityGroupInboundRulesOnPrivateLinkTrafficEnum":{
       "type":"string",
@@ -1296,6 +1621,36 @@
       "members":{
         "TargetGroups":{"shape":"TargetGroupList"},
         "TargetGroupStickinessConfig":{"shape":"TargetGroupStickinessConfig"}
+      }
+    },
+    "GetTrustStoreCaCertificatesBundleInput":{
+      "type":"structure",
+      "required":["TrustStoreArn"],
+      "members":{
+        "TrustStoreArn":{"shape":"TrustStoreArn"}
+      }
+    },
+    "GetTrustStoreCaCertificatesBundleOutput":{
+      "type":"structure",
+      "members":{
+        "Location":{"shape":"Location"}
+      }
+    },
+    "GetTrustStoreRevocationContentInput":{
+      "type":"structure",
+      "required":[
+        "TrustStoreArn",
+        "RevocationId"
+      ],
+      "members":{
+        "TrustStoreArn":{"shape":"TrustStoreArn"},
+        "RevocationId":{"shape":"RevocationId"}
+      }
+    },
+    "GetTrustStoreRevocationContentOutput":{
+      "type":"structure",
+      "members":{
+        "Location":{"shape":"Location"}
       }
     },
     "GrpcCode":{"type":"string"},
@@ -1348,12 +1703,24 @@
       }
     },
     "IPv6Address":{"type":"string"},
+    "IgnoreClientCertificateExpiry":{"type":"boolean"},
     "IncompatibleProtocolsException":{
       "type":"structure",
       "members":{
       },
       "error":{
         "code":"IncompatibleProtocols",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "InvalidCaCertificatesBundleException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"InvalidCaCertificatesBundle",
         "httpStatusCode":400,
         "senderFault":true
       },
@@ -1376,6 +1743,17 @@
       },
       "error":{
         "code":"InvalidLoadBalancerAction",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "InvalidRevocationContentException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"InvalidRevocationContent",
         "httpStatusCode":400,
         "senderFault":true
       },
@@ -1445,6 +1823,10 @@
       "type":"list",
       "member":{"shape":"Limit"}
     },
+    "ListOfDescribeTargetHealthIncludeOptions":{
+      "type":"list",
+      "member":{"shape":"DescribeTargetHealthInputIncludeEnum"}
+    },
     "ListOfString":{
       "type":"list",
       "member":{"shape":"StringValue"}
@@ -1459,7 +1841,8 @@
         "Certificates":{"shape":"CertificateList"},
         "SslPolicy":{"shape":"SslPolicyName"},
         "DefaultActions":{"shape":"Actions"},
-        "AlpnPolicy":{"shape":"AlpnPolicyName"}
+        "AlpnPolicy":{"shape":"AlpnPolicyName"},
+        "MutualAuthentication":{"shape":"MutualAuthenticationAttributes"}
       }
     },
     "ListenerArn":{"type":"string"},
@@ -1591,6 +1974,7 @@
       "type":"list",
       "member":{"shape":"LoadBalancer"}
     },
+    "Location":{"type":"string"},
     "Marker":{"type":"string"},
     "Matcher":{
       "type":"structure",
@@ -1600,6 +1984,14 @@
       }
     },
     "Max":{"type":"string"},
+    "MitigationInEffectEnum":{
+      "type":"string",
+      "enum":[
+        "yes",
+        "no"
+      ]
+    },
+    "Mode":{"type":"string"},
     "ModifyListenerInput":{
       "type":"structure",
       "required":["ListenerArn"],
@@ -1610,7 +2002,8 @@
         "SslPolicy":{"shape":"SslPolicyName"},
         "Certificates":{"shape":"CertificateList"},
         "DefaultActions":{"shape":"Actions"},
-        "AlpnPolicy":{"shape":"AlpnPolicyName"}
+        "AlpnPolicy":{"shape":"AlpnPolicyName"},
+        "MutualAuthentication":{"shape":"MutualAuthenticationAttributes"}
       }
     },
     "ModifyListenerOutput":{
@@ -1690,7 +2083,37 @@
         "TargetGroups":{"shape":"TargetGroups"}
       }
     },
+    "ModifyTrustStoreInput":{
+      "type":"structure",
+      "required":[
+        "TrustStoreArn",
+        "CaCertificatesBundleS3Bucket",
+        "CaCertificatesBundleS3Key"
+      ],
+      "members":{
+        "TrustStoreArn":{"shape":"TrustStoreArn"},
+        "CaCertificatesBundleS3Bucket":{"shape":"S3Bucket"},
+        "CaCertificatesBundleS3Key":{"shape":"S3Key"},
+        "CaCertificatesBundleS3ObjectVersion":{"shape":"S3ObjectVersion"}
+      }
+    },
+    "ModifyTrustStoreOutput":{
+      "type":"structure",
+      "members":{
+        "TrustStores":{"shape":"TrustStores"}
+      }
+    },
+    "MutualAuthenticationAttributes":{
+      "type":"structure",
+      "members":{
+        "Mode":{"shape":"Mode"},
+        "TrustStoreArn":{"shape":"TrustStoreArn"},
+        "IgnoreClientCertificateExpiry":{"shape":"IgnoreClientCertificateExpiry"}
+      }
+    },
     "Name":{"type":"string"},
+    "NumberOfCaCertificates":{"type":"integer"},
+    "NumberOfRevokedEntries":{"type":"long"},
     "OperationNotPermittedException":{
       "type":"structure",
       "members":{
@@ -1853,6 +2276,22 @@
       "members":{
       }
     },
+    "RemoveTrustStoreRevocationsInput":{
+      "type":"structure",
+      "required":[
+        "TrustStoreArn",
+        "RevocationIds"
+      ],
+      "members":{
+        "TrustStoreArn":{"shape":"TrustStoreArn"},
+        "RevocationIds":{"shape":"RevocationIds"}
+      }
+    },
+    "RemoveTrustStoreRevocationsOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "ResourceArn":{"type":"string"},
     "ResourceArns":{
       "type":"list",
@@ -1868,6 +2307,50 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "RevocationContent":{
+      "type":"structure",
+      "members":{
+        "S3Bucket":{"shape":"S3Bucket"},
+        "S3Key":{"shape":"S3Key"},
+        "S3ObjectVersion":{"shape":"S3ObjectVersion"},
+        "RevocationType":{"shape":"RevocationType"}
+      }
+    },
+    "RevocationContentNotFoundException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"RevocationContentNotFound",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "RevocationContents":{
+      "type":"list",
+      "member":{"shape":"RevocationContent"}
+    },
+    "RevocationId":{"type":"long"},
+    "RevocationIdNotFoundException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"RevocationIdNotFound",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "RevocationIds":{
+      "type":"list",
+      "member":{"shape":"RevocationId"}
+    },
+    "RevocationType":{
+      "type":"string",
+      "enum":["CRL"]
     },
     "Rule":{
       "type":"structure",
@@ -1932,6 +2415,9 @@
       "type":"list",
       "member":{"shape":"Rule"}
     },
+    "S3Bucket":{"type":"string"},
+    "S3Key":{"type":"string"},
+    "S3ObjectVersion":{"type":"string"},
     "SSLPolicyNotFoundException":{
       "type":"structure",
       "members":{
@@ -2245,7 +2731,8 @@
       "members":{
         "Target":{"shape":"TargetDescription"},
         "HealthCheckPort":{"shape":"HealthCheckPort"},
-        "TargetHealth":{"shape":"TargetHealth"}
+        "TargetHealth":{"shape":"TargetHealth"},
+        "AnomalyDetection":{"shape":"AnomalyDetection"}
       }
     },
     "TargetHealthDescriptions":{
@@ -2389,6 +2876,28 @@
       },
       "exception":true
     },
+    "TooManyTrustStoreRevocationEntriesException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"TooManyTrustStoreRevocationEntries",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "TooManyTrustStoresException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"TooManyTrustStores",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "TooManyUniqueTargetGroupsPerLoadBalancerException":{
       "type":"structure",
       "members":{
@@ -2399,6 +2908,100 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "TotalRevokedEntries":{"type":"long"},
+    "TrustStore":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"TrustStoreName"},
+        "TrustStoreArn":{"shape":"TrustStoreArn"},
+        "Status":{"shape":"TrustStoreStatus"},
+        "NumberOfCaCertificates":{"shape":"NumberOfCaCertificates"},
+        "TotalRevokedEntries":{"shape":"TotalRevokedEntries"}
+      }
+    },
+    "TrustStoreArn":{"type":"string"},
+    "TrustStoreArns":{
+      "type":"list",
+      "member":{"shape":"TrustStoreArn"}
+    },
+    "TrustStoreAssociation":{
+      "type":"structure",
+      "members":{
+        "ResourceArn":{"shape":"TrustStoreAssociationResourceArn"}
+      }
+    },
+    "TrustStoreAssociationResourceArn":{"type":"string"},
+    "TrustStoreAssociations":{
+      "type":"list",
+      "member":{"shape":"TrustStoreAssociation"}
+    },
+    "TrustStoreInUseException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"TrustStoreInUse",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "TrustStoreName":{
+      "type":"string",
+      "max":32,
+      "min":1,
+      "pattern":"^([a-zA-Z0-9]+-)*[a-zA-Z0-9]+$"
+    },
+    "TrustStoreNames":{
+      "type":"list",
+      "member":{"shape":"TrustStoreName"}
+    },
+    "TrustStoreNotFoundException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"TrustStoreNotFound",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "TrustStoreNotReadyException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"TrustStoreNotReady",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "TrustStoreRevocation":{
+      "type":"structure",
+      "members":{
+        "TrustStoreArn":{"shape":"TrustStoreArn"},
+        "RevocationId":{"shape":"RevocationId"},
+        "RevocationType":{"shape":"RevocationType"},
+        "NumberOfRevokedEntries":{"shape":"NumberOfRevokedEntries"}
+      }
+    },
+    "TrustStoreRevocations":{
+      "type":"list",
+      "member":{"shape":"TrustStoreRevocation"}
+    },
+    "TrustStoreStatus":{
+      "type":"string",
+      "enum":[
+        "ACTIVE",
+        "CREATING"
+      ]
+    },
+    "TrustStores":{
+      "type":"list",
+      "member":{"shape":"TrustStore"}
     },
     "UnsupportedProtocolException":{
       "type":"structure",

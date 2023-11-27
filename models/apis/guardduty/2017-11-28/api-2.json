@@ -1263,6 +1263,15 @@
       "key":{"shape":"String"},
       "value":{"shape":"String"}
     },
+    "AgentDetails":{
+      "type":"structure",
+      "members":{
+        "Version":{
+          "shape":"String",
+          "locationName":"version"
+        }
+      }
+    },
     "Anomaly":{
       "type":"structure",
       "members":{
@@ -1596,6 +1605,19 @@
         }
       }
     },
+    "ContainerInstanceDetails":{
+      "type":"structure",
+      "members":{
+        "CoveredContainerInstances":{
+          "shape":"Long",
+          "locationName":"coveredContainerInstances"
+        },
+        "CompatibleContainerInstances":{
+          "shape":"Long",
+          "locationName":"compatibleContainerInstances"
+        }
+      }
+    },
     "Containers":{
       "type":"list",
       "member":{"shape":"Container"}
@@ -1625,6 +1647,48 @@
         "CountryName":{
           "shape":"String",
           "locationName":"countryName"
+        }
+      }
+    },
+    "CoverageEc2InstanceDetails":{
+      "type":"structure",
+      "members":{
+        "InstanceId":{
+          "shape":"String",
+          "locationName":"instanceId"
+        },
+        "InstanceType":{
+          "shape":"String",
+          "locationName":"instanceType"
+        },
+        "ClusterArn":{
+          "shape":"String",
+          "locationName":"clusterArn"
+        },
+        "AgentDetails":{
+          "shape":"AgentDetails",
+          "locationName":"agentDetails"
+        },
+        "ManagementType":{
+          "shape":"ManagementType",
+          "locationName":"managementType"
+        }
+      }
+    },
+    "CoverageEcsClusterDetails":{
+      "type":"structure",
+      "members":{
+        "ClusterName":{
+          "shape":"String",
+          "locationName":"clusterName"
+        },
+        "FargateDetails":{
+          "shape":"FargateDetails",
+          "locationName":"fargateDetails"
+        },
+        "ContainerInstanceDetails":{
+          "shape":"ContainerInstanceDetails",
+          "locationName":"containerInstanceDetails"
         }
       }
     },
@@ -1697,7 +1761,11 @@
         "COVERAGE_STATUS",
         "ADDON_VERSION",
         "MANAGEMENT_TYPE",
-        "EKS_CLUSTER_NAME"
+        "EKS_CLUSTER_NAME",
+        "ECS_CLUSTER_NAME",
+        "AGENT_VERSION",
+        "INSTANCE_ID",
+        "CLUSTER_ARN"
       ]
     },
     "CoverageFilterCriterionList":{
@@ -1749,6 +1817,14 @@
         "ResourceType":{
           "shape":"ResourceType",
           "locationName":"resourceType"
+        },
+        "EcsClusterDetails":{
+          "shape":"CoverageEcsClusterDetails",
+          "locationName":"ecsClusterDetails"
+        },
+        "Ec2InstanceDetails":{
+          "shape":"CoverageEc2InstanceDetails",
+          "locationName":"ec2InstanceDetails"
         }
       }
     },
@@ -1778,7 +1854,9 @@
         "ISSUE",
         "ADDON_VERSION",
         "UPDATED_AT",
-        "EKS_CLUSTER_NAME"
+        "EKS_CLUSTER_NAME",
+        "ECS_CLUSTER_NAME",
+        "INSTANCE_ID"
       ]
     },
     "CoverageStatistics":{
@@ -2683,7 +2761,8 @@
         "EBS_MALWARE_PROTECTION",
         "RDS_LOGIN_EVENTS",
         "EKS_RUNTIME_MONITORING",
-        "LAMBDA_NETWORK_LOGS"
+        "LAMBDA_NETWORK_LOGS",
+        "RUNTIME_MONITORING"
       ]
     },
     "DetectorFeatureConfiguration":{
@@ -2743,7 +2822,8 @@
         "EBS_MALWARE_PROTECTION",
         "RDS_LOGIN_EVENTS",
         "EKS_RUNTIME_MONITORING",
-        "LAMBDA_NETWORK_LOGS"
+        "LAMBDA_NETWORK_LOGS",
+        "RUNTIME_MONITORING"
       ]
     },
     "DetectorId":{
@@ -3090,9 +3170,25 @@
         }
       }
     },
+    "FargateDetails":{
+      "type":"structure",
+      "members":{
+        "Issues":{
+          "shape":"Issues",
+          "locationName":"issues"
+        },
+        "ManagementType":{
+          "shape":"ManagementType",
+          "locationName":"managementType"
+        }
+      }
+    },
     "FeatureAdditionalConfiguration":{
       "type":"string",
-      "enum":["EKS_ADDON_MANAGEMENT"]
+      "enum":[
+        "EKS_ADDON_MANAGEMENT",
+        "ECS_FARGATE_AGENT_MANAGEMENT"
+      ]
     },
     "FeatureStatus":{
       "type":"string",
@@ -3370,7 +3466,9 @@
         "EBS_MALWARE_PROTECTION",
         "RDS_LOGIN_EVENTS",
         "EKS_RUNTIME_MONITORING",
-        "LAMBDA_NETWORK_LOGS"
+        "LAMBDA_NETWORK_LOGS",
+        "FARGATE_RUNTIME_MONITORING",
+        "EC2_RUNTIME_MONITORING"
       ]
     },
     "GeoLocation":{
@@ -4160,6 +4258,12 @@
       "type":"list",
       "member":{"shape":"String"}
     },
+    "Issues":{
+      "type":"list",
+      "member":{"shape":"String"},
+      "max":50,
+      "min":0
+    },
     "KubernetesApiCallAction":{
       "type":"structure",
       "members":{
@@ -4945,7 +5049,8 @@
       "type":"string",
       "enum":[
         "AUTO_MANAGED",
-        "MANUAL"
+        "MANUAL",
+        "DISABLED"
       ]
     },
     "MapEquals":{
@@ -5270,12 +5375,16 @@
         "EBS_MALWARE_PROTECTION",
         "RDS_LOGIN_EVENTS",
         "EKS_RUNTIME_MONITORING",
-        "LAMBDA_NETWORK_LOGS"
+        "LAMBDA_NETWORK_LOGS",
+        "RUNTIME_MONITORING"
       ]
     },
     "OrgFeatureAdditionalConfiguration":{
       "type":"string",
-      "enum":["EKS_ADDON_MANAGEMENT"]
+      "enum":[
+        "EKS_ADDON_MANAGEMENT",
+        "ECS_FARGATE_AGENT_MANAGEMENT"
+      ]
     },
     "OrgFeatureStatus":{
       "type":"string",
@@ -5906,7 +6015,11 @@
     },
     "ResourceType":{
       "type":"string",
-      "enum":["EKS"]
+      "enum":[
+        "EKS",
+        "ECS",
+        "EC2"
+      ]
     },
     "RuntimeContext":{
       "type":"structure",
@@ -7159,7 +7272,9 @@
         "EBS_MALWARE_PROTECTION",
         "RDS_LOGIN_EVENTS",
         "LAMBDA_NETWORK_LOGS",
-        "EKS_RUNTIME_MONITORING"
+        "EKS_RUNTIME_MONITORING",
+        "FARGATE_RUNTIME_MONITORING",
+        "EC2_RUNTIME_MONITORING"
       ]
     },
     "UsageFeatureList":{

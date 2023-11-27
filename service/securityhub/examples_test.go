@@ -1884,6 +1884,42 @@ func ExampleSecurityHub_GetMembers_shared00() {
 	fmt.Println(result)
 }
 
+// To get the definition of a security control.
+// The following example retrieves definition details for the specified security control.
+func ExampleSecurityHub_GetSecurityControlDefinition_shared00() {
+	svc := securityhub.New(session.New())
+	input := &securityhub.GetSecurityControlDefinitionInput{
+		SecurityControlId: aws.String("EC2.4"),
+	}
+
+	result, err := svc.GetSecurityControlDefinition(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case securityhub.ErrCodeInternalException:
+				fmt.Println(securityhub.ErrCodeInternalException, aerr.Error())
+			case securityhub.ErrCodeInvalidInputException:
+				fmt.Println(securityhub.ErrCodeInvalidInputException, aerr.Error())
+			case securityhub.ErrCodeInvalidAccessException:
+				fmt.Println(securityhub.ErrCodeInvalidAccessException, aerr.Error())
+			case securityhub.ErrCodeLimitExceededException:
+				fmt.Println(securityhub.ErrCodeLimitExceededException, aerr.Error())
+			case securityhub.ErrCodeResourceNotFoundException:
+				fmt.Println(securityhub.ErrCodeResourceNotFoundException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
 // To invite accounts to become members
 // The following example invites the specified AWS accounts to become member accounts
 // associated with the calling Security Hub administrator account. You only use this
@@ -2460,6 +2496,54 @@ func ExampleSecurityHub_UpdateOrganizationConfiguration_shared00() {
 				fmt.Println(securityhub.ErrCodeInvalidAccessException, aerr.Error())
 			case securityhub.ErrCodeLimitExceededException:
 				fmt.Println(securityhub.ErrCodeLimitExceededException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// To update security control properties
+// The following example updates the specified security control. Specifically, this
+// example updates control parameters.
+func ExampleSecurityHub_UpdateSecurityControl_shared00() {
+	svc := securityhub.New(session.New())
+	input := &securityhub.UpdateSecurityControlInput{
+		LastUpdateReason: aws.String("Comply with internal requirements"),
+		Parameters: map[string]*securityhub.ParameterConfiguration{
+			"maxCredentialUsageAge": {
+				Value: &securityhub.ParameterValue{
+					Integer: aws.Int64(15),
+				},
+				ValueType: aws.String("CUSTOM"),
+			},
+		},
+		SecurityControlId: aws.String("ACM.1"),
+	}
+
+	result, err := svc.UpdateSecurityControl(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case securityhub.ErrCodeInternalException:
+				fmt.Println(securityhub.ErrCodeInternalException, aerr.Error())
+			case securityhub.ErrCodeInvalidInputException:
+				fmt.Println(securityhub.ErrCodeInvalidInputException, aerr.Error())
+			case securityhub.ErrCodeInvalidAccessException:
+				fmt.Println(securityhub.ErrCodeInvalidAccessException, aerr.Error())
+			case securityhub.ErrCodeLimitExceededException:
+				fmt.Println(securityhub.ErrCodeLimitExceededException, aerr.Error())
+			case securityhub.ErrCodeResourceNotFoundException:
+				fmt.Println(securityhub.ErrCodeResourceNotFoundException, aerr.Error())
+			case securityhub.ErrCodeResourceInUseException:
+				fmt.Println(securityhub.ErrCodeResourceInUseException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

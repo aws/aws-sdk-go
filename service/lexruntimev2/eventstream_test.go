@@ -285,6 +285,7 @@ func mockStartConversationReadEvents() (
 						},
 						State: aws.String("string value goes here"),
 					},
+					InterpretationSource: aws.String("string value goes here"),
 					NluConfidence: &ConfidenceScore{
 						Score: aws.Float64(123.45),
 					},
@@ -348,6 +349,7 @@ func mockStartConversationReadEvents() (
 						},
 						State: aws.String("string value goes here"),
 					},
+					InterpretationSource: aws.String("string value goes here"),
 					NluConfidence: &ConfidenceScore{
 						Score: aws.Float64(123.45),
 					},
@@ -411,6 +413,7 @@ func mockStartConversationReadEvents() (
 						},
 						State: aws.String("string value goes here"),
 					},
+					InterpretationSource: aws.String("string value goes here"),
 					NluConfidence: &ConfidenceScore{
 						Score: aws.Float64(123.45),
 					},

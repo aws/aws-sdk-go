@@ -448,6 +448,8 @@
       "base": null,
       "refs": {
         "AssociateDataShareConsumerMessage$AssociateEntireAccount": "<p>A value that specifies whether the datashare is associated with the entire account.</p>",
+        "AssociateDataShareConsumerMessage$AllowWrites": "<p>If set to true, allows write operations for a datashare.</p>",
+        "AuthorizeDataShareMessage$AllowWrites": "<p>If set to true, allows write operations for a datashare.</p>",
         "CreateClusterMessage$AllowVersionUpgrade": "<p>If <code>true</code>, major version upgrades can be applied during the maintenance window to the Amazon Redshift engine that is running on the cluster.</p> <p>When a new major version of the Amazon Redshift engine is released, you can request that the service automatically apply upgrades during the maintenance window to the Amazon Redshift engine that is running on your cluster.</p> <p>Default: <code>true</code> </p>",
         "CreateClusterMessage$PubliclyAccessible": "<p>If <code>true</code>, the cluster can be accessed from a public network. </p>",
         "CreateClusterMessage$Encrypted": "<p>If <code>true</code>, the data in the cluster is encrypted at rest. </p> <p>Default: false</p>",
@@ -458,6 +460,8 @@
         "CreateEventSubscriptionMessage$Enabled": "<p>A boolean value; set to <code>true</code> to activate the subscription, and set to <code>false</code> to create the subscription but not activate it. </p>",
         "CreateScheduledActionMessage$Enable": "<p>If true, the schedule is enabled. If false, the scheduled action does not trigger. For more information about <code>state</code> of the scheduled action, see <a>ScheduledAction</a>. </p>",
         "CreateSnapshotScheduleMessage$DryRun": "<p/>",
+        "DataShareAssociation$ProducerAllowedWrites": "<p>Specifies whether write operations were allowed during data share authorization.</p>",
+        "DataShareAssociation$ConsumerAcceptedWrites": "<p>Specifies whether write operations were allowed during data share association.</p>",
         "DescribeClusterSnapshotsMessage$ClusterExists": "<p>A value that indicates whether to return snapshots only for an existing cluster. You can perform table-level restore only by using a snapshot of an existing cluster, that is, a cluster that has not been deleted. Values for this parameter work as follows: </p> <ul> <li> <p>If <code>ClusterExists</code> is set to <code>true</code>, <code>ClusterIdentifier</code> is required.</p> </li> <li> <p>If <code>ClusterExists</code> is set to <code>false</code> and <code>ClusterIdentifier</code> isn't specified, all snapshots associated with deleted clusters (orphaned snapshots) are returned. </p> </li> <li> <p>If <code>ClusterExists</code> is set to <code>false</code> and <code>ClusterIdentifier</code> is specified for a deleted cluster, snapshots associated with that cluster are returned.</p> </li> <li> <p>If <code>ClusterExists</code> is set to <code>false</code> and <code>ClusterIdentifier</code> is specified for an existing cluster, no snapshots are returned. </p> </li> </ul>",
         "DescribeEndpointAuthorizationMessage$Grantee": "<p>Indicates whether to check authorization from a grantor or grantee point of view. If true, Amazon Redshift returns endpoint authorizations that you've been granted. If false (default), checks authorization from a grantor point of view.</p>",
         "DescribeScheduledActionsMessage$Active": "<p>If true, retrieve only active scheduled actions. If false, retrieve only disabled scheduled actions. </p>",

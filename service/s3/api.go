@@ -9973,8 +9973,8 @@ func (c *S3) PutObjectLockConfigurationRequest(input *PutObjectLockConfiguration
 //   - The DefaultRetention period can be either Days or Years but you must
 //     select one. You cannot specify Days and Years at the same time.
 //
-//   - You can only enable Object Lock for new buckets. If you want to turn
-//     on Object Lock for an existing bucket, contact Amazon Web Services Support.
+//   - You can enable Object Lock for new or existing buckets. For more information,
+//     see Configuring Object Lock (https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock-configure.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about

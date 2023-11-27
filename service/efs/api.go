@@ -218,12 +218,18 @@ func (c *EFS) CreateFileSystemRequest(input *CreateFileSystemInput) (req *reques
 // system state.
 //
 // This operation accepts an optional PerformanceMode parameter that you choose
-// for your file system. We recommend generalPurpose performance mode for most
-// file systems. File systems using the maxIO performance mode can scale to
-// higher levels of aggregate throughput and operations per second with a tradeoff
-// of slightly higher latencies for most file operations. The performance mode
-// can't be changed after the file system has been created. For more information,
-// see Amazon EFS performance modes (https://docs.aws.amazon.com/efs/latest/ug/performance.html#performancemodes.html).
+// for your file system. We recommend generalPurpose performance mode for all
+// file systems. File systems using the maxIO mode is a previous generation
+// performance type that is designed for highly parallelized workloads that
+// can tolerate higher latencies than the General Purpose mode. Max I/O mode
+// is not supported for One Zone file systems or file systems that use Elastic
+// throughput.
+//
+// Due to the higher per-operation latencies with Max I/O, we recommend using
+// General Purpose performance mode for all file systems.
+//
+// The performance mode can't be changed after the file system has been created.
+// For more information, see Amazon EFS performance modes (https://docs.aws.amazon.com/efs/latest/ug/performance.html#performancemodes.html).
 //
 // You can set the throughput mode for the file system using the ThroughputMode
 // parameter.
@@ -360,12 +366,12 @@ func (c *EFS) CreateMountTargetRequest(input *CreateMountTargetInput) (req *requ
 // need to be in the same subnet as the mount target in order to access their
 // file system.
 //
-// You can create only one mount target for an EFS file system using One Zone
-// storage classes. You must create that mount target in the same Availability
-// Zone in which the file system is located. Use the AvailabilityZoneName and
-// AvailabiltyZoneId properties in the DescribeFileSystems response object to
-// get this information. Use the subnetId associated with the file system's
-// Availability Zone when creating the mount target.
+// You can create only one mount target for a One Zone file system. You must
+// create that mount target in the same Availability Zone in which the file
+// system is located. Use the AvailabilityZoneName and AvailabiltyZoneId properties
+// in the DescribeFileSystems response object to get this information. Use the
+// subnetId associated with the file system's Availability Zone when creating
+// the mount target.
 //
 // For more information, see Amazon EFS: How it Works (https://docs.aws.amazon.com/efs/latest/ug/how-it-works.html).
 //
@@ -598,16 +604,15 @@ func (c *EFS) CreateReplicationConfigurationRequest(input *CreateReplicationConf
 //     in to the Region. For more information, see Managing Amazon Web Services
 //     Regions (https://docs.aws.amazon.com/general/latest/gr/rande-manage.html#rande-manage-enable)
 //     in the Amazon Web Services General Reference Reference Guide Availability
-//     Zone - If you want the destination file system to use EFS One Zone availability
-//     and durability, you must specify the Availability Zone to create the file
-//     system in. For more information about EFS storage classes, see Amazon
-//     EFS storage classes (https://docs.aws.amazon.com/efs/latest/ug/storage-classes.html)
-//     in the Amazon EFS User Guide. Encryption - All destination file systems
-//     are created with encryption at rest enabled. You can specify the Key Management
-//     Service (KMS) key that is used to encrypt the destination file system.
-//     If you don't specify a KMS key, your service-managed KMS key for Amazon
-//     EFS is used. After the file system is created, you cannot change the KMS
-//     key.
+//     Zone - If you want the destination file system to use EFS One Zone availability,
+//     you must specify the Availability Zone to create the file system in. For
+//     more information about EFS storage classes, see Amazon EFS storage classes
+//     (https://docs.aws.amazon.com/efs/latest/ug/storage-classes.html) in the
+//     Amazon EFS User Guide. Encryption - All destination file systems are created
+//     with encryption at rest enabled. You can specify the Key Management Service
+//     (KMS) key that is used to encrypt the destination file system. If you
+//     don't specify a KMS key, your service-managed KMS key for Amazon EFS is
+//     used. After the file system is created, you cannot change the KMS key.
 //
 // The following properties are set by default:
 //
@@ -622,12 +627,11 @@ func (c *EFS) CreateReplicationConfigurationRequest(input *CreateReplicationConf
 //
 // The following properties are turned off by default:
 //
-//   - Lifecycle management - EFS lifecycle management and EFS Intelligent-Tiering
-//     are not enabled on the destination file system. After the destination
-//     file system is created, you can enable EFS lifecycle management and EFS
-//     Intelligent-Tiering.
+//   - Lifecycle management – Lifecycle management is not enabled on the
+//     destination file system. After the destination file system is created,
+//     you can enable it.
 //
-//   - Automatic backups - Automatic daily backups are enabled on the destination
+//   - Automatic backups – Automatic daily backups are enabled on the destination
 //     file system. After the file system is created, you can change this setting.
 //
 // For more information, see Amazon EFS replication (https://docs.aws.amazon.com/efs/latest/ug/efs-replication.html)
@@ -2067,13 +2071,10 @@ func (c *EFS) DescribeLifecycleConfigurationRequest(input *DescribeLifecycleConf
 // DescribeLifecycleConfiguration API operation for Amazon Elastic File System.
 //
 // Returns the current LifecycleConfiguration object for the specified Amazon
-// EFS file system. EFS lifecycle management uses the LifecycleConfiguration
-// object to identify which files to move to the EFS Infrequent Access (IA)
-// storage class. For a file system without a LifecycleConfiguration object,
-// the call returns an empty array in the response.
-//
-// When EFS Intelligent-Tiering is enabled, TransitionToPrimaryStorageClass
-// has a value of AFTER_1_ACCESS.
+// EFS file system. Llifecycle management uses the LifecycleConfiguration object
+// to identify when to move files between storage classes. For a file system
+// without a LifecycleConfiguration object, the call returns an empty array
+// in the response.
 //
 // This operation requires permissions for the elasticfilesystem:DescribeLifecycleConfiguration
 // operation.
@@ -2250,6 +2251,12 @@ func (c *EFS) DescribeMountTargetsRequest(input *DescribeMountTargetsInput) (req
 		Name:       opDescribeMountTargets,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2015-02-01/mount-targets",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"NextMarker"},
+			LimitToken:      "MaxItems",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -2321,6 +2328,57 @@ func (c *EFS) DescribeMountTargetsWithContext(ctx aws.Context, input *DescribeMo
 	return out, req.Send()
 }
 
+// DescribeMountTargetsPages iterates over the pages of a DescribeMountTargets operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeMountTargets method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a DescribeMountTargets operation.
+//	pageNum := 0
+//	err := client.DescribeMountTargetsPages(params,
+//	    func(page *efs.DescribeMountTargetsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *EFS) DescribeMountTargetsPages(input *DescribeMountTargetsInput, fn func(*DescribeMountTargetsOutput, bool) bool) error {
+	return c.DescribeMountTargetsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeMountTargetsPagesWithContext same as DescribeMountTargetsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EFS) DescribeMountTargetsPagesWithContext(ctx aws.Context, input *DescribeMountTargetsInput, fn func(*DescribeMountTargetsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeMountTargetsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeMountTargetsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeMountTargetsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeReplicationConfigurations = "DescribeReplicationConfigurations"
 
 // DescribeReplicationConfigurationsRequest generates a "aws/request.Request" representing the
@@ -2351,6 +2409,12 @@ func (c *EFS) DescribeReplicationConfigurationsRequest(input *DescribeReplicatio
 		Name:       opDescribeReplicationConfigurations,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2015-02-01/file-systems/replication-configurations",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -2415,6 +2479,57 @@ func (c *EFS) DescribeReplicationConfigurationsWithContext(ctx aws.Context, inpu
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// DescribeReplicationConfigurationsPages iterates over the pages of a DescribeReplicationConfigurations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeReplicationConfigurations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a DescribeReplicationConfigurations operation.
+//	pageNum := 0
+//	err := client.DescribeReplicationConfigurationsPages(params,
+//	    func(page *efs.DescribeReplicationConfigurationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *EFS) DescribeReplicationConfigurationsPages(input *DescribeReplicationConfigurationsInput, fn func(*DescribeReplicationConfigurationsOutput, bool) bool) error {
+	return c.DescribeReplicationConfigurationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeReplicationConfigurationsPagesWithContext same as DescribeReplicationConfigurationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EFS) DescribeReplicationConfigurationsPagesWithContext(ctx aws.Context, input *DescribeReplicationConfigurationsInput, fn func(*DescribeReplicationConfigurationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeReplicationConfigurationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeReplicationConfigurationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeReplicationConfigurationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opDescribeTags = "DescribeTags"
@@ -3187,39 +3302,42 @@ func (c *EFS) PutLifecycleConfigurationRequest(input *PutLifecycleConfigurationI
 
 // PutLifecycleConfiguration API operation for Amazon Elastic File System.
 //
-// Use this action to manage EFS lifecycle management and EFS Intelligent-Tiering.
-// A LifecycleConfiguration consists of one or more LifecyclePolicy objects
-// that define the following:
+// Use this action to manage storage of your file system. A LifecycleConfiguration
+// consists of one or more LifecyclePolicy objects that define the following:
 //
-//   - EFS Lifecycle management - When Amazon EFS automatically transitions
-//     files in a file system into the lower-cost EFS Infrequent Access (IA)
-//     storage class. To enable EFS Lifecycle management, set the value of TransitionToIA
-//     to one of the available options.
+//   - TransitionToIA – When to move files in the file system from primary
+//     storage (Standard storage class) into the Infrequent Access (IA) storage.
 //
-//   - EFS Intelligent-Tiering - When Amazon EFS automatically transitions
-//     files from IA back into the file system's primary storage class (EFS Standard
-//     or EFS One Zone Standard). To enable EFS Intelligent-Tiering, set the
-//     value of TransitionToPrimaryStorageClass to AFTER_1_ACCESS.
+//   - TransitionToArchive – When to move files in the file system from their
+//     current storage class (either IA or Standard storage) into the Archive
+//     storage. File systems cannot transition into Archive storage before transitioning
+//     into IA storage. Therefore, TransitionToArchive must either not be set
+//     or must be later than TransitionToIA. The Archive storage class is available
+//     only for file systems that use the Elastic Throughput mode and the General
+//     Purpose Performance mode.
 //
-// For more information, see EFS Lifecycle Management (https://docs.aws.amazon.com/efs/latest/ug/lifecycle-management-efs.html).
+//   - TransitionToPrimaryStorageClass – Whether to move files in the file
+//     system back to primary storage (Standard storage class) after they are
+//     accessed in IA or Archive storage.
+//
+// For more information, see Managing file system storage (https://docs.aws.amazon.com/efs/latest/ug/lifecycle-management-efs.html).
 //
 // Each Amazon EFS file system supports one lifecycle configuration, which applies
 // to all files in the file system. If a LifecycleConfiguration object already
 // exists for the specified file system, a PutLifecycleConfiguration call modifies
 // the existing configuration. A PutLifecycleConfiguration call with an empty
 // LifecyclePolicies array in the request body deletes any existing LifecycleConfiguration
-// and turns off lifecycle management and EFS Intelligent-Tiering for the file
-// system.
+// for the file system.
 //
 // In the request, specify the following:
 //
 //   - The ID for the file system for which you are enabling, disabling, or
-//     modifying lifecycle management and EFS Intelligent-Tiering.
+//     modifying Lifecycle management.
 //
 //   - A LifecyclePolicies array of LifecyclePolicy objects that define when
-//     files are moved into IA storage, and when they are moved back to Standard
-//     storage. Amazon EFS requires that each LifecyclePolicy object have only
-//     have a single transition, so the LifecyclePolicies array needs to be structured
+//     to move files to IA storage, to Archive storage, and back to primary storage.
+//     Amazon EFS requires that each LifecyclePolicy object have only have a
+//     single transition, so the LifecyclePolicies array needs to be structured
 //     with separate LifecyclePolicy objects. See the example requests in the
 //     following section for more information.
 //
@@ -3685,8 +3803,8 @@ type AccessPointDescription struct {
 	// using the access point.
 	PosixUser *PosixUser `type:"structure"`
 
-	// The directory on the Amazon EFS file system that the access point exposes
-	// as the root directory to NFS clients using the access point.
+	// The directory on the EFS file system that the access point exposes as the
+	// root directory to NFS clients using the access point.
 	RootDirectory *RootDirectory `type:"structure"`
 
 	// The tags associated with the access point, presented as an array of Tag objects.
@@ -4014,13 +4132,13 @@ type BackupPolicy struct {
 
 	// Describes the status of the file system's backup policy.
 	//
-	//    * ENABLED - EFS is automatically backing up the file system.
+	//    * ENABLED – EFS is automatically backing up the file system.
 	//
-	//    * ENABLING - EFS is turning on automatic backups for the file system.
+	//    * ENABLING – EFS is turning on automatic backups for the file system.
 	//
-	//    * DISABLED - Automatic back ups are turned off for the file system.
+	//    * DISABLED – Automatic back ups are turned off for the file system.
 	//
-	//    * DISABLING - EFS is turning off automatic backups for the file system.
+	//    * DISABLING – EFS is turning off automatic backups for the file system.
 	//
 	// Status is a required field
 	Status *string `type:"string" required:"true" enum:"Status"`
@@ -4157,13 +4275,13 @@ type CreateAccessPointInput struct {
 	// using the access point.
 	PosixUser *PosixUser `type:"structure"`
 
-	// Specifies the directory on the Amazon EFS file system that the access point
-	// exposes as the root directory of your file system to NFS clients using the
-	// access point. The clients using the access point can only access the root
-	// directory and below. If the RootDirectory > Path specified does not exist,
-	// EFS creates it and applies the CreationInfo settings when a client connects
-	// to an access point. When specifying a RootDirectory, you must provide the
-	// Path, and the CreationInfo.
+	// Specifies the directory on the EFS file system that the access point exposes
+	// as the root directory of your file system to NFS clients using the access
+	// point. The clients using the access point can only access the root directory
+	// and below. If the RootDirectory > Path specified does not exist, Amazon EFS
+	// creates it and applies the CreationInfo settings when a client connects to
+	// an access point. When specifying a RootDirectory, you must provide the Path,
+	// and the CreationInfo.
 	//
 	// Amazon EFS creates a root directory only if you have provided the CreationInfo:
 	// OwnUid, OwnGID, and permissions for the directory. If you do not provide
@@ -4292,8 +4410,8 @@ type CreateAccessPointOutput struct {
 	// using the access point.
 	PosixUser *PosixUser `type:"structure"`
 
-	// The directory on the Amazon EFS file system that the access point exposes
-	// as the root directory to NFS clients using the access point.
+	// The directory on the EFS file system that the access point exposes as the
+	// root directory to NFS clients using the access point.
 	RootDirectory *RootDirectory `type:"structure"`
 
 	// The tags associated with the access point, presented as an array of Tag objects.
@@ -4381,20 +4499,20 @@ func (s *CreateAccessPointOutput) SetTags(v []*Tag) *CreateAccessPointOutput {
 type CreateFileSystemInput struct {
 	_ struct{} `type:"structure"`
 
-	// Used to create a file system that uses One Zone storage classes. It specifies
-	// the Amazon Web Services Availability Zone in which to create the file system.
-	// Use the format us-east-1a to specify the Availability Zone. For more information
-	// about One Zone storage classes, see Using EFS storage classes (https://docs.aws.amazon.com/efs/latest/ug/storage-classes.html)
+	// Used to create a One Zone file system. It specifies the Amazon Web Services
+	// Availability Zone in which to create the file system. Use the format us-east-1a
+	// to specify the Availability Zone. For more information about One Zone file
+	// systems, see Using EFS storage classes (https://docs.aws.amazon.com/efs/latest/ug/storage-classes.html)
 	// in the Amazon EFS User Guide.
 	//
-	// One Zone storage classes are not available in all Availability Zones in Amazon
+	// One Zone file systems are not available in all Availability Zones in Amazon
 	// Web Services Regions where Amazon EFS is available.
 	AvailabilityZoneName *string `min:"1" type:"string"`
 
 	// Specifies whether automatic backups are enabled on the file system that you
 	// are creating. Set the value to true to enable automatic backups. If you are
-	// creating a file system that uses One Zone storage classes, automatic backups
-	// are enabled by default. For more information, see Automatic backups (https://docs.aws.amazon.com/efs/latest/ug/awsbackup.html#automatic-backups)
+	// creating a One Zone file system, automatic backups are enabled by default.
+	// For more information, see Automatic backups (https://docs.aws.amazon.com/efs/latest/ug/awsbackup.html#automatic-backups)
 	// in the Amazon EFS User Guide.
 	//
 	// Default is false. However, if you specify an AvailabilityZoneName, the default
@@ -4436,13 +4554,15 @@ type CreateFileSystemInput struct {
 	// Amazon EFS file systems.
 	KmsKeyId *string `type:"string"`
 
-	// The performance mode of the file system. We recommend generalPurpose performance
-	// mode for most file systems. File systems using the maxIO performance mode
+	// The Performance mode of the file system. We recommend generalPurpose performance
+	// mode for all file systems. File systems using the maxIO performance mode
 	// can scale to higher levels of aggregate throughput and operations per second
 	// with a tradeoff of slightly higher latencies for most file operations. The
 	// performance mode can't be changed after the file system has been created.
+	// The maxIO mode is not supported on One Zone file systems.
 	//
-	// The maxIO mode is not supported on file systems using One Zone storage classes.
+	// Due to the higher per-operation latencies with Max I/O, we recommend using
+	// General Purpose performance mode for all file systems.
 	//
 	// Default is generalPurpose.
 	PerformanceMode *string `type:"string" enum:"PerformanceMode"`
@@ -4466,9 +4586,9 @@ type CreateFileSystemInput struct {
 	// Specifies the throughput mode for the file system. The mode can be bursting,
 	// provisioned, or elastic. If you set ThroughputMode to provisioned, you must
 	// also set a value for ProvisionedThroughputInMibps. After you create the file
-	// system, you can decrease your file system's throughput in Provisioned Throughput
-	// mode or change between the throughput modes, with certain time restrictions.
-	// For more information, see Specifying throughput with provisioned mode (https://docs.aws.amazon.com/efs/latest/ug/performance.html#provisioned-throughput)
+	// system, you can decrease your file system's Provisioned throughput or change
+	// between the throughput modes, with certain time restrictions. For more information,
+	// see Specifying throughput with provisioned mode (https://docs.aws.amazon.com/efs/latest/ug/performance.html#provisioned-throughput)
 	// in the Amazon EFS User Guide.
 	//
 	// Default is bursting.
@@ -4591,9 +4711,8 @@ type CreateMountTargetInput struct {
 	// for the same VPC as subnet specified.
 	SecurityGroups []*string `type:"list"`
 
-	// The ID of the subnet to add the mount target in. For file systems that use
-	// One Zone storage classes, use the subnet that is associated with the file
-	// system's Availability Zone.
+	// The ID of the subnet to add the mount target in. For One Zone file systems,
+	// use the subnet that is associated with the file system's Availability Zone.
 	//
 	// SubnetId is a required field
 	SubnetId *string `min:"15" type:"string" required:"true"`
@@ -4753,8 +4872,8 @@ type CreateReplicationConfigurationOutput struct {
 	// Destinations is a required field
 	Destinations []*Destination `type:"list" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the original source Amazon EFS file system
-	// in the replication configuration.
+	// The Amazon Resource Name (ARN) of the original source EFS file system in
+	// the replication configuration.
 	//
 	// OriginalSourceFileSystemArn is a required field
 	OriginalSourceFileSystemArn *string `type:"string" required:"true"`
@@ -4770,8 +4889,7 @@ type CreateReplicationConfigurationOutput struct {
 	// SourceFileSystemId is a required field
 	SourceFileSystemId *string `type:"string" required:"true"`
 
-	// The Amazon Web Services Region in which the source Amazon EFS file system
-	// is located.
+	// The Amazon Web Services Region in which the source EFS file system is located.
 	//
 	// SourceFileSystemRegion is a required field
 	SourceFileSystemRegion *string `min:"1" type:"string" required:"true"`
@@ -5768,7 +5886,7 @@ func (s *DescribeAccountPreferencesOutput) SetResourceIdPreference(v *ResourceId
 type DescribeBackupPolicyInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Specifies which EFS file system to retrieve the BackupPolicy for.
+	// Specifies which EFS file system for which to retrieve the BackupPolicy.
 	//
 	// FileSystemId is a required field
 	FileSystemId *string `location:"uri" locationName:"FileSystemId" type:"string" required:"true"`
@@ -6643,7 +6761,7 @@ type Destination struct {
 	// Region is a required field
 	Region *string `min:"1" type:"string" required:"true"`
 
-	// Describes the status of the destination Amazon EFS file system.
+	// Describes the status of the destination EFS file system.
 	//
 	//    * The Paused state occurs as a result of opting out of the source or destination
 	//    Region after the replication configuration was created. To resume replication
@@ -6709,8 +6827,8 @@ func (s *Destination) SetStatus(v string) *Destination {
 type DestinationToCreate struct {
 	_ struct{} `type:"structure"`
 
-	// To create a file system that uses EFS One Zone storage, specify the name
-	// of the Availability Zone in which to create the destination file system.
+	// To create a file system that uses One Zone storage, specify the name of the
+	// Availability Zone in which to create the destination file system.
 	AvailabilityZoneName *string `min:"1" type:"string"`
 
 	// Specifies the Key Management Service (KMS) key that you want to use to encrypt
@@ -6871,14 +6989,15 @@ type FileSystemDescription struct {
 	_ struct{} `type:"structure"`
 
 	// The unique and consistent identifier of the Availability Zone in which the
-	// file system's One Zone storage classes exist. For example, use1-az1 is an
-	// Availability Zone ID for the us-east-1 Amazon Web Services Region, and it
-	// has the same location in every Amazon Web Services account.
+	// file system is located, and is valid only for One Zone file systems. For
+	// example, use1-az1 is an Availability Zone ID for the us-east-1 Amazon Web
+	// Services Region, and it has the same location in every Amazon Web Services
+	// account.
 	AvailabilityZoneId *string `type:"string"`
 
 	// Describes the Amazon Web Services Availability Zone in which the file system
-	// is located, and is valid only for file systems using One Zone storage classes.
-	// For more information, see Using EFS storage classes (https://docs.aws.amazon.com/efs/latest/ug/storage-classes.html)
+	// is located, and is valid only for One Zone file systems. For more information,
+	// see Using EFS storage classes (https://docs.aws.amazon.com/efs/latest/ug/storage-classes.html)
 	// in the Amazon EFS User Guide.
 	AvailabilityZoneName *string `min:"1" type:"string"`
 
@@ -6928,7 +7047,7 @@ type FileSystemDescription struct {
 	// OwnerId is a required field
 	OwnerId *string `type:"string" required:"true"`
 
-	// The performance mode of the file system.
+	// The Performance mode of the file system.
 	//
 	// PerformanceMode is a required field
 	PerformanceMode *string `type:"string" required:"true" enum:"PerformanceMode"`
@@ -7334,6 +7453,10 @@ type FileSystemSize struct {
 	// Value is a required field
 	Value *int64 `type:"long" required:"true"`
 
+	// The latest known metered size (in bytes) of data stored in the Archive storage
+	// class.
+	ValueInArchive *int64 `type:"long"`
+
 	// The latest known metered size (in bytes) of data stored in the Infrequent
 	// Access storage class.
 	ValueInIA *int64 `type:"long"`
@@ -7370,6 +7493,12 @@ func (s *FileSystemSize) SetTimestamp(v time.Time) *FileSystemSize {
 // SetValue sets the Value field's value.
 func (s *FileSystemSize) SetValue(v int64) *FileSystemSize {
 	s.Value = &v
+	return s
+}
+
+// SetValueInArchive sets the ValueInArchive field's value.
+func (s *FileSystemSize) SetValueInArchive(v int64) *FileSystemSize {
+	s.ValueInArchive = &v
 	return s
 }
 
@@ -7853,28 +7982,33 @@ func (s *IpAddressInUse) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Describes a policy used by EFS lifecycle management and EFS Intelligent-Tiering
-// that specifies when to transition files into and out of the file system's
-// Infrequent Access (IA) storage class. For more information, see EFS Intelligent‐Tiering
-// and EFS Lifecycle Management (https://docs.aws.amazon.com/efs/latest/ug/lifecycle-management-efs.html).
+// Describes a policy used by Lifecycle management that specifies when to transition
+// files into and out of the Infrequent Access (IA) and Archive storage classes.
+// For more information, see Managing file system storage (https://docs.aws.amazon.com/efs/latest/ug/lifecycle-management-efs.html).
 //
 // When using the put-lifecycle-configuration CLI command or the PutLifecycleConfiguration
 // API action, Amazon EFS requires that each LifecyclePolicy object have only
 // a single transition. This means that in a request body, LifecyclePolicies
 // must be structured as an array of LifecyclePolicy objects, one object for
-// each transition, TransitionToIA, TransitionToPrimaryStorageClass. For more
-// information, see the request examples in PutLifecycleConfiguration.
+// each transition. For more information, see the request examples in PutLifecycleConfiguration.
 type LifecyclePolicy struct {
 	_ struct{} `type:"structure"`
 
-	// Describes the period of time that a file is not accessed, after which it
-	// transitions to IA storage. Metadata operations such as listing the contents
-	// of a directory don't count as file access events.
-	TransitionToIA *string `type:"string" enum:"TransitionToIARules"`
-
-	// Describes when to transition a file from IA storage to primary storage. Metadata
+	// The number of days after files were last accessed in primary storage (the
+	// Standard storage class) files at which to move them to Archive storage. Metadata
 	// operations such as listing the contents of a directory don't count as file
 	// access events.
+	TransitionToArchive *string `type:"string" enum:"TransitionToArchiveRules"`
+
+	// The number of days after files were last accessed in primary storage (the
+	// Standard storage class) at which to move them to Infrequent Access (IA) storage.
+	// Metadata operations such as listing the contents of a directory don't count
+	// as file access events.
+	TransitionToIA *string `type:"string" enum:"TransitionToIARules"`
+
+	// Whether to move files back to primary (Standard) storage after they are accessed
+	// in IA or Archive storage. Metadata operations such as listing the contents
+	// of a directory don't count as file access events.
 	TransitionToPrimaryStorageClass *string `type:"string" enum:"TransitionToPrimaryStorageClassRules"`
 }
 
@@ -7894,6 +8028,12 @@ func (s LifecyclePolicy) String() string {
 // value will be replaced with "sensitive".
 func (s LifecyclePolicy) GoString() string {
 	return s.String()
+}
+
+// SetTransitionToArchive sets the TransitionToArchive field's value.
+func (s *LifecyclePolicy) SetTransitionToArchive(v string) *LifecyclePolicy {
+	s.TransitionToArchive = &v
+	return s
 }
 
 // SetTransitionToIA sets the TransitionToIA field's value.
@@ -9018,20 +9158,30 @@ type PutLifecycleConfigurationInput struct {
 	FileSystemId *string `location:"uri" locationName:"FileSystemId" type:"string" required:"true"`
 
 	// An array of LifecyclePolicy objects that define the file system's LifecycleConfiguration
-	// object. A LifecycleConfiguration object informs EFS lifecycle management
-	// and EFS Intelligent-Tiering of the following:
+	// object. A LifecycleConfiguration object informs EFS Lifecycle management
+	// of the following:
 	//
-	//    * When to move files in the file system from primary storage to the IA
-	//    storage class.
+	//    * TransitionToIA – When to move files in the file system from primary
+	//    storage (Standard storage class) into the Infrequent Access (IA) storage.
 	//
-	//    * When to move files that are in IA storage to primary storage.
+	//    * TransitionToArchive – When to move files in the file system from their
+	//    current storage class (either IA or Standard storage) into the Archive
+	//    storage. File systems cannot transition into Archive storage before transitioning
+	//    into IA storage. Therefore, TransitionToArchive must either not be set
+	//    or must be later than TransitionToIA. The Archive storage class is available
+	//    only for file systems that use the Elastic Throughput mode and the General
+	//    Purpose Performance mode.
+	//
+	//    * TransitionToPrimaryStorageClass – Whether to move files in the file
+	//    system back to primary storage (Standard storage class) after they are
+	//    accessed in IA or Archive storage.
 	//
 	// When using the put-lifecycle-configuration CLI command or the PutLifecycleConfiguration
 	// API action, Amazon EFS requires that each LifecyclePolicy object have only
 	// a single transition. This means that in a request body, LifecyclePolicies
 	// must be structured as an array of LifecyclePolicy objects, one object for
-	// each transition, TransitionToIA, TransitionToPrimaryStorageClass. See the
-	// example requests in the following section for more information.
+	// each storage transition. See the example requests in the following section
+	// for more information.
 	//
 	// LifecyclePolicies is a required field
 	LifecyclePolicies []*LifecyclePolicy `type:"list" required:"true"`
@@ -9132,8 +9282,8 @@ type ReplicationConfigurationDescription struct {
 	// Destinations is a required field
 	Destinations []*Destination `type:"list" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the original source Amazon EFS file system
-	// in the replication configuration.
+	// The Amazon Resource Name (ARN) of the original source EFS file system in
+	// the replication configuration.
 	//
 	// OriginalSourceFileSystemArn is a required field
 	OriginalSourceFileSystemArn *string `type:"string" required:"true"`
@@ -9149,8 +9299,7 @@ type ReplicationConfigurationDescription struct {
 	// SourceFileSystemId is a required field
 	SourceFileSystemId *string `type:"string" required:"true"`
 
-	// The Amazon Web Services Region in which the source Amazon EFS file system
-	// is located.
+	// The Amazon Web Services Region in which the source EFS file system is located.
 	//
 	// SourceFileSystemRegion is a required field
 	SourceFileSystemRegion *string `min:"1" type:"string" required:"true"`
@@ -10279,14 +10428,15 @@ type UpdateFileSystemOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The unique and consistent identifier of the Availability Zone in which the
-	// file system's One Zone storage classes exist. For example, use1-az1 is an
-	// Availability Zone ID for the us-east-1 Amazon Web Services Region, and it
-	// has the same location in every Amazon Web Services account.
+	// file system is located, and is valid only for One Zone file systems. For
+	// example, use1-az1 is an Availability Zone ID for the us-east-1 Amazon Web
+	// Services Region, and it has the same location in every Amazon Web Services
+	// account.
 	AvailabilityZoneId *string `type:"string"`
 
 	// Describes the Amazon Web Services Availability Zone in which the file system
-	// is located, and is valid only for file systems using One Zone storage classes.
-	// For more information, see Using EFS storage classes (https://docs.aws.amazon.com/efs/latest/ug/storage-classes.html)
+	// is located, and is valid only for One Zone file systems. For more information,
+	// see Using EFS storage classes (https://docs.aws.amazon.com/efs/latest/ug/storage-classes.html)
 	// in the Amazon EFS User Guide.
 	AvailabilityZoneName *string `min:"1" type:"string"`
 
@@ -10336,7 +10486,7 @@ type UpdateFileSystemOutput struct {
 	// OwnerId is a required field
 	OwnerId *string `type:"string" required:"true"`
 
-	// The performance mode of the file system.
+	// The Performance mode of the file system.
 	//
 	// PerformanceMode is a required field
 	PerformanceMode *string `type:"string" required:"true" enum:"PerformanceMode"`
@@ -10727,6 +10877,50 @@ func ThroughputMode_Values() []string {
 }
 
 const (
+	// TransitionToArchiveRulesAfter1Day is a TransitionToArchiveRules enum value
+	TransitionToArchiveRulesAfter1Day = "AFTER_1_DAY"
+
+	// TransitionToArchiveRulesAfter7Days is a TransitionToArchiveRules enum value
+	TransitionToArchiveRulesAfter7Days = "AFTER_7_DAYS"
+
+	// TransitionToArchiveRulesAfter14Days is a TransitionToArchiveRules enum value
+	TransitionToArchiveRulesAfter14Days = "AFTER_14_DAYS"
+
+	// TransitionToArchiveRulesAfter30Days is a TransitionToArchiveRules enum value
+	TransitionToArchiveRulesAfter30Days = "AFTER_30_DAYS"
+
+	// TransitionToArchiveRulesAfter60Days is a TransitionToArchiveRules enum value
+	TransitionToArchiveRulesAfter60Days = "AFTER_60_DAYS"
+
+	// TransitionToArchiveRulesAfter90Days is a TransitionToArchiveRules enum value
+	TransitionToArchiveRulesAfter90Days = "AFTER_90_DAYS"
+
+	// TransitionToArchiveRulesAfter180Days is a TransitionToArchiveRules enum value
+	TransitionToArchiveRulesAfter180Days = "AFTER_180_DAYS"
+
+	// TransitionToArchiveRulesAfter270Days is a TransitionToArchiveRules enum value
+	TransitionToArchiveRulesAfter270Days = "AFTER_270_DAYS"
+
+	// TransitionToArchiveRulesAfter365Days is a TransitionToArchiveRules enum value
+	TransitionToArchiveRulesAfter365Days = "AFTER_365_DAYS"
+)
+
+// TransitionToArchiveRules_Values returns all elements of the TransitionToArchiveRules enum
+func TransitionToArchiveRules_Values() []string {
+	return []string{
+		TransitionToArchiveRulesAfter1Day,
+		TransitionToArchiveRulesAfter7Days,
+		TransitionToArchiveRulesAfter14Days,
+		TransitionToArchiveRulesAfter30Days,
+		TransitionToArchiveRulesAfter60Days,
+		TransitionToArchiveRulesAfter90Days,
+		TransitionToArchiveRulesAfter180Days,
+		TransitionToArchiveRulesAfter270Days,
+		TransitionToArchiveRulesAfter365Days,
+	}
+}
+
+const (
 	// TransitionToIARulesAfter7Days is a TransitionToIARules enum value
 	TransitionToIARulesAfter7Days = "AFTER_7_DAYS"
 
@@ -10744,6 +10938,15 @@ const (
 
 	// TransitionToIARulesAfter1Day is a TransitionToIARules enum value
 	TransitionToIARulesAfter1Day = "AFTER_1_DAY"
+
+	// TransitionToIARulesAfter180Days is a TransitionToIARules enum value
+	TransitionToIARulesAfter180Days = "AFTER_180_DAYS"
+
+	// TransitionToIARulesAfter270Days is a TransitionToIARules enum value
+	TransitionToIARulesAfter270Days = "AFTER_270_DAYS"
+
+	// TransitionToIARulesAfter365Days is a TransitionToIARules enum value
+	TransitionToIARulesAfter365Days = "AFTER_365_DAYS"
 )
 
 // TransitionToIARules_Values returns all elements of the TransitionToIARules enum
@@ -10755,6 +10958,9 @@ func TransitionToIARules_Values() []string {
 		TransitionToIARulesAfter60Days,
 		TransitionToIARulesAfter90Days,
 		TransitionToIARulesAfter1Day,
+		TransitionToIARulesAfter180Days,
+		TransitionToIARulesAfter270Days,
+		TransitionToIARulesAfter365Days,
 	}
 }
 

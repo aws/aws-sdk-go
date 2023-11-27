@@ -56,9 +56,9 @@ func (c *ManagedBlockchain) CreateAccessorRequest(input *CreateAccessorInput) (r
 
 // CreateAccessor API operation for Amazon Managed Blockchain.
 //
-// Creates a new accessor for use with Managed Blockchain Ethereum nodes. An
-// accessor contains information required for token based access to your Ethereum
-// nodes.
+// Creates a new accessor for use with Amazon Managed Blockchain service that
+// supports token based access. The accessor contains information required for
+// token based access.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3234,9 +3234,9 @@ type Accessor struct {
 	// in the Amazon Web Services General Reference.
 	Arn *string `min:"1" type:"string"`
 
-	// The billing token is a property of the accessor. Use this token to make Ethereum
-	// API calls to your Ethereum node. The billing token is used to track your
-	// accessor object for billing Ethereum API requests made to your Ethereum nodes.
+	// The billing token is a property of the Accessor. Use this token to when making
+	// calls to the blockchain network. The billing token is used to track your
+	// accessor token for billing requests.
 	BillingToken *string `min:"42" type:"string"`
 
 	// The creation date and time of the accessor.
@@ -3244,6 +3244,9 @@ type Accessor struct {
 
 	// The unique identifier of the accessor.
 	Id *string `min:"1" type:"string"`
+
+	// The blockchain network that the Accessor token is created for.
+	NetworkType *string `type:"string" enum:"AccessorNetworkType"`
 
 	// The current status of the accessor.
 	Status *string `type:"string" enum:"AccessorStatus"`
@@ -3304,6 +3307,12 @@ func (s *Accessor) SetId(v string) *Accessor {
 	return s
 }
 
+// SetNetworkType sets the NetworkType field's value.
+func (s *Accessor) SetNetworkType(v string) *Accessor {
+	s.NetworkType = &v
+	return s
+}
+
 // SetStatus sets the Status field's value.
 func (s *Accessor) SetStatus(v string) *Accessor {
 	s.Status = &v
@@ -3336,6 +3345,9 @@ type AccessorSummary struct {
 
 	// The unique identifier of the accessor.
 	Id *string `min:"1" type:"string"`
+
+	// The blockchain network that the Accessor token is created for.
+	NetworkType *string `type:"string" enum:"AccessorNetworkType"`
 
 	// The current status of the accessor.
 	Status *string `type:"string" enum:"AccessorStatus"`
@@ -3382,6 +3394,12 @@ func (s *AccessorSummary) SetId(v string) *AccessorSummary {
 	return s
 }
 
+// SetNetworkType sets the NetworkType field's value.
+func (s *AccessorSummary) SetNetworkType(v string) *AccessorSummary {
+	s.NetworkType = &v
+	return s
+}
+
 // SetStatus sets the Status field's value.
 func (s *AccessorSummary) SetStatus(v string) *AccessorSummary {
 	s.Status = &v
@@ -3410,7 +3428,7 @@ type ApprovalThresholdPolicy struct {
 	ProposalDurationInHours *int64 `min:"1" type:"integer"`
 
 	// Determines whether the vote percentage must be greater than the ThresholdPercentage
-	// or must be greater than or equal to the ThreholdPercentage to be approved.
+	// or must be greater than or equal to the ThresholdPercentage to be approved.
 	ThresholdComparator *string `type:"string" enum:"ThresholdComparator"`
 
 	// The percentage of votes among all members that must be YES for a proposal
@@ -3488,6 +3506,20 @@ type CreateAccessorInput struct {
 	// Web Services SDK or the Amazon Web Services CLI.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
+	// The blockchain network that the Accessor token is created for.
+	//
+	// We recommend using the appropriate networkType value for the blockchain network
+	// that you are creating the Accessor token for. You cannnot use the value ETHEREUM_MAINNET_AND_GOERLI
+	// to specify a networkType for your Accessor token.
+	//
+	// The default value of ETHEREUM_MAINNET_AND_GOERLI is only applied:
+	//
+	//    * when the CreateAccessor action does not set a networkType.
+	//
+	//    * to all existing Accessor tokens that were created before the networkType
+	//    property was introduced.
+	NetworkType *string `type:"string" enum:"AccessorNetworkType"`
+
 	// Tags to assign to the Accessor.
 	//
 	// Each tag consists of a key and an optional value. You can specify multiple
@@ -3547,6 +3579,12 @@ func (s *CreateAccessorInput) SetClientRequestToken(v string) *CreateAccessorInp
 	return s
 }
 
+// SetNetworkType sets the NetworkType field's value.
+func (s *CreateAccessorInput) SetNetworkType(v string) *CreateAccessorInput {
+	s.NetworkType = &v
+	return s
+}
+
 // SetTags sets the Tags field's value.
 func (s *CreateAccessorInput) SetTags(v map[string]*string) *CreateAccessorInput {
 	s.Tags = v
@@ -3559,10 +3597,13 @@ type CreateAccessorOutput struct {
 	// The unique identifier of the accessor.
 	AccessorId *string `min:"1" type:"string"`
 
-	// The billing token is a property of the Accessor. Use this token to make Ethereum
-	// API calls to your Ethereum node. The billing token is used to track your
-	// accessor object for billing Ethereum API requests made to your Ethereum nodes.
+	// The billing token is a property of the Accessor. Use this token to when making
+	// calls to the blockchain network. The billing token is used to track your
+	// accessor token for billing requests.
 	BillingToken *string `min:"42" type:"string"`
+
+	// The blockchain network that the accessor token is created for.
+	NetworkType *string `type:"string" enum:"AccessorNetworkType"`
 }
 
 // String returns the string representation.
@@ -3592,6 +3633,12 @@ func (s *CreateAccessorOutput) SetAccessorId(v string) *CreateAccessorOutput {
 // SetBillingToken sets the BillingToken field's value.
 func (s *CreateAccessorOutput) SetBillingToken(v string) *CreateAccessorOutput {
 	s.BillingToken = &v
+	return s
+}
+
+// SetNetworkType sets the NetworkType field's value.
+func (s *CreateAccessorOutput) SetNetworkType(v string) *CreateAccessorOutput {
+	s.NetworkType = &v
 	return s
 }
 
@@ -5342,6 +5389,12 @@ type ListAccessorsInput struct {
 	// The maximum number of accessors to list.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
+	// The blockchain network that the Accessor token is created for.
+	//
+	// Use the value ETHEREUM_MAINNET_AND_GOERLI for all existing Accessors tokens
+	// that were created before the networkType property was introduced.
+	NetworkType *string `location:"querystring" locationName:"networkType" type:"string" enum:"AccessorNetworkType"`
+
 	// The pagination token that indicates the next set of results to retrieve.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
@@ -5380,6 +5433,12 @@ func (s *ListAccessorsInput) Validate() error {
 // SetMaxResults sets the MaxResults field's value.
 func (s *ListAccessorsInput) SetMaxResults(v int64) *ListAccessorsInput {
 	s.MaxResults = &v
+	return s
+}
+
+// SetNetworkType sets the NetworkType field's value.
+func (s *ListAccessorsInput) SetNetworkType(v string) *ListAccessorsInput {
+	s.NetworkType = &v
 	return s
 }
 
@@ -9531,6 +9590,34 @@ func (s *VotingPolicy) Validate() error {
 func (s *VotingPolicy) SetApprovalThresholdPolicy(v *ApprovalThresholdPolicy) *VotingPolicy {
 	s.ApprovalThresholdPolicy = v
 	return s
+}
+
+const (
+	// AccessorNetworkTypeEthereumGoerli is a AccessorNetworkType enum value
+	AccessorNetworkTypeEthereumGoerli = "ETHEREUM_GOERLI"
+
+	// AccessorNetworkTypeEthereumMainnet is a AccessorNetworkType enum value
+	AccessorNetworkTypeEthereumMainnet = "ETHEREUM_MAINNET"
+
+	// AccessorNetworkTypeEthereumMainnetAndGoerli is a AccessorNetworkType enum value
+	AccessorNetworkTypeEthereumMainnetAndGoerli = "ETHEREUM_MAINNET_AND_GOERLI"
+
+	// AccessorNetworkTypePolygonMainnet is a AccessorNetworkType enum value
+	AccessorNetworkTypePolygonMainnet = "POLYGON_MAINNET"
+
+	// AccessorNetworkTypePolygonMumbai is a AccessorNetworkType enum value
+	AccessorNetworkTypePolygonMumbai = "POLYGON_MUMBAI"
+)
+
+// AccessorNetworkType_Values returns all elements of the AccessorNetworkType enum
+func AccessorNetworkType_Values() []string {
+	return []string{
+		AccessorNetworkTypeEthereumGoerli,
+		AccessorNetworkTypeEthereumMainnet,
+		AccessorNetworkTypeEthereumMainnetAndGoerli,
+		AccessorNetworkTypePolygonMainnet,
+		AccessorNetworkTypePolygonMumbai,
+	}
 }
 
 const (

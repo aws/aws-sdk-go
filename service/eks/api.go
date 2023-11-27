@@ -395,6 +395,23 @@ func (c *EKS) CreateClusterRequest(input *CreateClusterInput) (req *request.Requ
 // cluster's control plane over the Kubernetes API server endpoint and a certificate
 // file that is created for your cluster.
 //
+// You can use the endpointPublicAccess and endpointPrivateAccess parameters
+// to enable or disable public and private access to your cluster's Kubernetes
+// API server endpoint. By default, public access is enabled, and private access
+// is disabled. For more information, see Amazon EKS Cluster Endpoint Access
+// Control (https://docs.aws.amazon.com/eks/latest/userguide/cluster-endpoint.html)
+// in the Amazon EKS User Guide .
+//
+// You can use the logging parameter to enable or disable exporting the Kubernetes
+// control plane logs for your cluster to CloudWatch Logs. By default, cluster
+// control plane logs aren't exported to CloudWatch Logs. For more information,
+// see Amazon EKS Cluster Control Plane Logs (https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html)
+// in the Amazon EKS User Guide .
+//
+// CloudWatch Logs ingestion, archive storage, and data scanning rates apply
+// to exported control plane logs. For more information, see CloudWatch Pricing
+// (http://aws.amazon.com/cloudwatch/pricing/).
+//
 // In most cases, it takes several minutes to create a cluster. After you create
 // an Amazon EKS cluster, you must configure your Kubernetes tooling to communicate
 // with the API server and launch nodes into your cluster. For more information,
@@ -805,6 +822,119 @@ func (c *EKS) CreateNodegroupWithContext(ctx aws.Context, input *CreateNodegroup
 	return out, req.Send()
 }
 
+const opCreatePodIdentityAssociation = "CreatePodIdentityAssociation"
+
+// CreatePodIdentityAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the CreatePodIdentityAssociation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreatePodIdentityAssociation for more information on using the CreatePodIdentityAssociation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreatePodIdentityAssociationRequest method.
+//	req, resp := client.CreatePodIdentityAssociationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/eks-2017-11-01/CreatePodIdentityAssociation
+func (c *EKS) CreatePodIdentityAssociationRequest(input *CreatePodIdentityAssociationInput) (req *request.Request, output *CreatePodIdentityAssociationOutput) {
+	op := &request.Operation{
+		Name:       opCreatePodIdentityAssociation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/clusters/{name}/pod-identity-associations",
+	}
+
+	if input == nil {
+		input = &CreatePodIdentityAssociationInput{}
+	}
+
+	output = &CreatePodIdentityAssociationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreatePodIdentityAssociation API operation for Amazon Elastic Kubernetes Service.
+//
+// Creates an EKS Pod Identity association between a service account in an Amazon
+// EKS cluster and an IAM role with EKS Pod Identity. Use EKS Pod Identity to
+// give temporary IAM credentials to pods and the credentials are rotated automatically.
+//
+// Amazon EKS Pod Identity associations provide the ability to manage credentials
+// for your applications, similar to the way that 7EC2l instance profiles provide
+// credentials to Amazon EC2 instances.
+//
+// If a pod uses a service account that has an association, Amazon EKS sets
+// environment variables in the containers of the pod. The environment variables
+// configure the Amazon Web Services SDKs, including the Command Line Interface,
+// to use the EKS Pod Identity credentials.
+//
+// Pod Identity is a simpler method than IAM roles for service accounts, as
+// this method doesn't use OIDC identity providers. Additionally, you can configure
+// a role for Pod Identity once, and reuse it across clusters.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic Kubernetes Service's
+// API operation CreatePodIdentityAssociation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ServerException
+//     These errors are usually caused by a server-side issue.
+//
+//   - ResourceNotFoundException
+//     The specified resource could not be found. You can view your available clusters
+//     with ListClusters. You can view your available managed node groups with ListNodegroups.
+//     Amazon EKS clusters and node groups are Region-specific.
+//
+//   - InvalidRequestException
+//     The request is invalid given the state of the cluster. Check the state of
+//     the cluster and the associated operations.
+//
+//   - InvalidParameterException
+//     The specified parameter is invalid. Review the available parameters for the
+//     API request.
+//
+//   - ResourceLimitExceededException
+//     You have encountered a service limit on the specified resource.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/eks-2017-11-01/CreatePodIdentityAssociation
+func (c *EKS) CreatePodIdentityAssociation(input *CreatePodIdentityAssociationInput) (*CreatePodIdentityAssociationOutput, error) {
+	req, out := c.CreatePodIdentityAssociationRequest(input)
+	return out, req.Send()
+}
+
+// CreatePodIdentityAssociationWithContext is the same as CreatePodIdentityAssociation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreatePodIdentityAssociation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EKS) CreatePodIdentityAssociationWithContext(ctx aws.Context, input *CreatePodIdentityAssociationInput, opts ...request.Option) (*CreatePodIdentityAssociationOutput, error) {
+	req, out := c.CreatePodIdentityAssociationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteAddon = "DeleteAddon"
 
 // DeleteAddonRequest generates a "aws/request.Request" representing the
@@ -1056,10 +1186,10 @@ func (c *EKS) DeleteEksAnywhereSubscriptionRequest(input *DeleteEksAnywhereSubsc
 
 // DeleteEksAnywhereSubscription API operation for Amazon Elastic Kubernetes Service.
 //
-// Deletes an expired / inactive subscription. Deleting inactive subscriptions
+// Deletes an expired or inactive subscription. Deleting inactive subscriptions
 // removes them from the Amazon Web Services Management Console view and from
 // list/describe API responses. Subscriptions can only be cancelled within 7
-// days of creation, and are cancelled by creating a ticket in the Amazon Web
+// days of creation and are cancelled by creating a ticket in the Amazon Web
 // Services Support Center.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1310,6 +1440,103 @@ func (c *EKS) DeleteNodegroup(input *DeleteNodegroupInput) (*DeleteNodegroupOutp
 // for more information on using Contexts.
 func (c *EKS) DeleteNodegroupWithContext(ctx aws.Context, input *DeleteNodegroupInput, opts ...request.Option) (*DeleteNodegroupOutput, error) {
 	req, out := c.DeleteNodegroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeletePodIdentityAssociation = "DeletePodIdentityAssociation"
+
+// DeletePodIdentityAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the DeletePodIdentityAssociation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeletePodIdentityAssociation for more information on using the DeletePodIdentityAssociation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeletePodIdentityAssociationRequest method.
+//	req, resp := client.DeletePodIdentityAssociationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/eks-2017-11-01/DeletePodIdentityAssociation
+func (c *EKS) DeletePodIdentityAssociationRequest(input *DeletePodIdentityAssociationInput) (req *request.Request, output *DeletePodIdentityAssociationOutput) {
+	op := &request.Operation{
+		Name:       opDeletePodIdentityAssociation,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/clusters/{name}/pod-identity-associations/{associationId}",
+	}
+
+	if input == nil {
+		input = &DeletePodIdentityAssociationInput{}
+	}
+
+	output = &DeletePodIdentityAssociationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeletePodIdentityAssociation API operation for Amazon Elastic Kubernetes Service.
+//
+// Deletes a EKS Pod Identity association.
+//
+// The temporary Amazon Web Services credentials from the previous IAM role
+// session might still be valid until the session expiry. If you need to immediately
+// revoke the temporary session credentials, then go to the role in the IAM
+// console.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic Kubernetes Service's
+// API operation DeletePodIdentityAssociation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ServerException
+//     These errors are usually caused by a server-side issue.
+//
+//   - ResourceNotFoundException
+//     The specified resource could not be found. You can view your available clusters
+//     with ListClusters. You can view your available managed node groups with ListNodegroups.
+//     Amazon EKS clusters and node groups are Region-specific.
+//
+//   - InvalidRequestException
+//     The request is invalid given the state of the cluster. Check the state of
+//     the cluster and the associated operations.
+//
+//   - InvalidParameterException
+//     The specified parameter is invalid. Review the available parameters for the
+//     API request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/eks-2017-11-01/DeletePodIdentityAssociation
+func (c *EKS) DeletePodIdentityAssociation(input *DeletePodIdentityAssociationInput) (*DeletePodIdentityAssociationOutput, error) {
+	req, out := c.DeletePodIdentityAssociationRequest(input)
+	return out, req.Send()
+}
+
+// DeletePodIdentityAssociationWithContext is the same as DeletePodIdentityAssociation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeletePodIdentityAssociation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EKS) DeletePodIdentityAssociationWithContext(ctx aws.Context, input *DeletePodIdentityAssociationInput, opts ...request.Option) (*DeletePodIdentityAssociationOutput, error) {
+	req, out := c.DeletePodIdentityAssociationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2235,6 +2462,103 @@ func (c *EKS) DescribeNodegroupWithContext(ctx aws.Context, input *DescribeNodeg
 	return out, req.Send()
 }
 
+const opDescribePodIdentityAssociation = "DescribePodIdentityAssociation"
+
+// DescribePodIdentityAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the DescribePodIdentityAssociation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribePodIdentityAssociation for more information on using the DescribePodIdentityAssociation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribePodIdentityAssociationRequest method.
+//	req, resp := client.DescribePodIdentityAssociationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/eks-2017-11-01/DescribePodIdentityAssociation
+func (c *EKS) DescribePodIdentityAssociationRequest(input *DescribePodIdentityAssociationInput) (req *request.Request, output *DescribePodIdentityAssociationOutput) {
+	op := &request.Operation{
+		Name:       opDescribePodIdentityAssociation,
+		HTTPMethod: "GET",
+		HTTPPath:   "/clusters/{name}/pod-identity-associations/{associationId}",
+	}
+
+	if input == nil {
+		input = &DescribePodIdentityAssociationInput{}
+	}
+
+	output = &DescribePodIdentityAssociationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribePodIdentityAssociation API operation for Amazon Elastic Kubernetes Service.
+//
+// Returns descriptive information about an EKS Pod Identity association.
+//
+// This action requires the ID of the association. You can get the ID from the
+// response to the CreatePodIdentityAssocation for newly created associations.
+// Or, you can list the IDs for associations with ListPodIdentityAssociations
+// and filter the list by namespace or service account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic Kubernetes Service's
+// API operation DescribePodIdentityAssociation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ServerException
+//     These errors are usually caused by a server-side issue.
+//
+//   - ResourceNotFoundException
+//     The specified resource could not be found. You can view your available clusters
+//     with ListClusters. You can view your available managed node groups with ListNodegroups.
+//     Amazon EKS clusters and node groups are Region-specific.
+//
+//   - InvalidRequestException
+//     The request is invalid given the state of the cluster. Check the state of
+//     the cluster and the associated operations.
+//
+//   - InvalidParameterException
+//     The specified parameter is invalid. Review the available parameters for the
+//     API request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/eks-2017-11-01/DescribePodIdentityAssociation
+func (c *EKS) DescribePodIdentityAssociation(input *DescribePodIdentityAssociationInput) (*DescribePodIdentityAssociationOutput, error) {
+	req, out := c.DescribePodIdentityAssociationRequest(input)
+	return out, req.Send()
+}
+
+// DescribePodIdentityAssociationWithContext is the same as DescribePodIdentityAssociation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribePodIdentityAssociation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EKS) DescribePodIdentityAssociationWithContext(ctx aws.Context, input *DescribePodIdentityAssociationInput, opts ...request.Option) (*DescribePodIdentityAssociationOutput, error) {
+	req, out := c.DescribePodIdentityAssociationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeUpdate = "DescribeUpdate"
 
 // DescribeUpdateRequest generates a "aws/request.Request" representing the
@@ -2773,6 +3097,12 @@ func (c *EKS) ListEksAnywhereSubscriptionsRequest(input *ListEksAnywhereSubscrip
 		Name:       opListEksAnywhereSubscriptions,
 		HTTPMethod: "GET",
 		HTTPPath:   "/eks-anywhere-subscriptions",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -2833,6 +3163,57 @@ func (c *EKS) ListEksAnywhereSubscriptionsWithContext(ctx aws.Context, input *Li
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListEksAnywhereSubscriptionsPages iterates over the pages of a ListEksAnywhereSubscriptions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListEksAnywhereSubscriptions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListEksAnywhereSubscriptions operation.
+//	pageNum := 0
+//	err := client.ListEksAnywhereSubscriptionsPages(params,
+//	    func(page *eks.ListEksAnywhereSubscriptionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *EKS) ListEksAnywhereSubscriptionsPages(input *ListEksAnywhereSubscriptionsInput, fn func(*ListEksAnywhereSubscriptionsOutput, bool) bool) error {
+	return c.ListEksAnywhereSubscriptionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListEksAnywhereSubscriptionsPagesWithContext same as ListEksAnywhereSubscriptionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EKS) ListEksAnywhereSubscriptionsPagesWithContext(ctx aws.Context, input *ListEksAnywhereSubscriptionsInput, fn func(*ListEksAnywhereSubscriptionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListEksAnywhereSubscriptionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListEksAnywhereSubscriptionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListEksAnywhereSubscriptionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListFargateProfiles = "ListFargateProfiles"
@@ -3290,6 +3671,157 @@ func (c *EKS) ListNodegroupsPagesWithContext(ctx aws.Context, input *ListNodegro
 
 	for p.Next() {
 		if !fn(p.Page().(*ListNodegroupsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListPodIdentityAssociations = "ListPodIdentityAssociations"
+
+// ListPodIdentityAssociationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListPodIdentityAssociations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListPodIdentityAssociations for more information on using the ListPodIdentityAssociations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListPodIdentityAssociationsRequest method.
+//	req, resp := client.ListPodIdentityAssociationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/eks-2017-11-01/ListPodIdentityAssociations
+func (c *EKS) ListPodIdentityAssociationsRequest(input *ListPodIdentityAssociationsInput) (req *request.Request, output *ListPodIdentityAssociationsOutput) {
+	op := &request.Operation{
+		Name:       opListPodIdentityAssociations,
+		HTTPMethod: "GET",
+		HTTPPath:   "/clusters/{name}/pod-identity-associations",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListPodIdentityAssociationsInput{}
+	}
+
+	output = &ListPodIdentityAssociationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListPodIdentityAssociations API operation for Amazon Elastic Kubernetes Service.
+//
+// List the EKS Pod Identity associations in a cluster. You can filter the list
+// by the namespace that the association is in or the service account that the
+// association uses.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic Kubernetes Service's
+// API operation ListPodIdentityAssociations for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ServerException
+//     These errors are usually caused by a server-side issue.
+//
+//   - ResourceNotFoundException
+//     The specified resource could not be found. You can view your available clusters
+//     with ListClusters. You can view your available managed node groups with ListNodegroups.
+//     Amazon EKS clusters and node groups are Region-specific.
+//
+//   - InvalidRequestException
+//     The request is invalid given the state of the cluster. Check the state of
+//     the cluster and the associated operations.
+//
+//   - InvalidParameterException
+//     The specified parameter is invalid. Review the available parameters for the
+//     API request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/eks-2017-11-01/ListPodIdentityAssociations
+func (c *EKS) ListPodIdentityAssociations(input *ListPodIdentityAssociationsInput) (*ListPodIdentityAssociationsOutput, error) {
+	req, out := c.ListPodIdentityAssociationsRequest(input)
+	return out, req.Send()
+}
+
+// ListPodIdentityAssociationsWithContext is the same as ListPodIdentityAssociations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListPodIdentityAssociations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EKS) ListPodIdentityAssociationsWithContext(ctx aws.Context, input *ListPodIdentityAssociationsInput, opts ...request.Option) (*ListPodIdentityAssociationsOutput, error) {
+	req, out := c.ListPodIdentityAssociationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListPodIdentityAssociationsPages iterates over the pages of a ListPodIdentityAssociations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListPodIdentityAssociations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListPodIdentityAssociations operation.
+//	pageNum := 0
+//	err := client.ListPodIdentityAssociationsPages(params,
+//	    func(page *eks.ListPodIdentityAssociationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *EKS) ListPodIdentityAssociationsPages(input *ListPodIdentityAssociationsInput, fn func(*ListPodIdentityAssociationsOutput, bool) bool) error {
+	return c.ListPodIdentityAssociationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListPodIdentityAssociationsPagesWithContext same as ListPodIdentityAssociationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EKS) ListPodIdentityAssociationsPagesWithContext(ctx aws.Context, input *ListPodIdentityAssociationsInput, fn func(*ListPodIdentityAssociationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListPodIdentityAssociationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListPodIdentityAssociationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListPodIdentityAssociationsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -3999,7 +4531,13 @@ func (c *EKS) UpdateClusterConfigRequest(input *UpdateClusterConfigInput) (req *
 // see Amazon EKS cluster endpoint access control (https://docs.aws.amazon.com/eks/latest/userguide/cluster-endpoint.html)
 // in the Amazon EKS User Guide .
 //
-// You can't update the subnets or security group IDs for an existing cluster.
+// You can also use this API operation to choose different subnets and security
+// groups for the cluster. You must specify at least two subnets that are in
+// different Availability Zones. You can't change which VPC the subnets are
+// from, the subnets must be in the same VPC as the subnets that the cluster
+// was created with. For more information about the VPC requirements, see https://docs.aws.amazon.com/eks/latest/userguide/network_reqs.html
+// (https://docs.aws.amazon.com/eks/latest/userguide/network_reqs.html) in the
+// Amazon EKS User Guide .
 //
 // Cluster updates are asynchronous, and they should finish within a few minutes.
 // During an update, the cluster status moves to UPDATING (this status transition
@@ -4506,6 +5044,101 @@ func (c *EKS) UpdateNodegroupVersionWithContext(ctx aws.Context, input *UpdateNo
 	return out, req.Send()
 }
 
+const opUpdatePodIdentityAssociation = "UpdatePodIdentityAssociation"
+
+// UpdatePodIdentityAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdatePodIdentityAssociation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdatePodIdentityAssociation for more information on using the UpdatePodIdentityAssociation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdatePodIdentityAssociationRequest method.
+//	req, resp := client.UpdatePodIdentityAssociationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/eks-2017-11-01/UpdatePodIdentityAssociation
+func (c *EKS) UpdatePodIdentityAssociationRequest(input *UpdatePodIdentityAssociationInput) (req *request.Request, output *UpdatePodIdentityAssociationOutput) {
+	op := &request.Operation{
+		Name:       opUpdatePodIdentityAssociation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/clusters/{name}/pod-identity-associations/{associationId}",
+	}
+
+	if input == nil {
+		input = &UpdatePodIdentityAssociationInput{}
+	}
+
+	output = &UpdatePodIdentityAssociationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdatePodIdentityAssociation API operation for Amazon Elastic Kubernetes Service.
+//
+// Updates a EKS Pod Identity association. Only the IAM role can be changed;
+// an association can't be moved between clusters, namespaces, or service accounts.
+// If you need to edit the namespace or service account, you need to remove
+// the association and then create a new association with your desired settings.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic Kubernetes Service's
+// API operation UpdatePodIdentityAssociation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ServerException
+//     These errors are usually caused by a server-side issue.
+//
+//   - ResourceNotFoundException
+//     The specified resource could not be found. You can view your available clusters
+//     with ListClusters. You can view your available managed node groups with ListNodegroups.
+//     Amazon EKS clusters and node groups are Region-specific.
+//
+//   - InvalidRequestException
+//     The request is invalid given the state of the cluster. Check the state of
+//     the cluster and the associated operations.
+//
+//   - InvalidParameterException
+//     The specified parameter is invalid. Review the available parameters for the
+//     API request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/eks-2017-11-01/UpdatePodIdentityAssociation
+func (c *EKS) UpdatePodIdentityAssociation(input *UpdatePodIdentityAssociationInput) (*UpdatePodIdentityAssociationOutput, error) {
+	req, out := c.UpdatePodIdentityAssociationRequest(input)
+	return out, req.Send()
+}
+
+// UpdatePodIdentityAssociationWithContext is the same as UpdatePodIdentityAssociation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdatePodIdentityAssociation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EKS) UpdatePodIdentityAssociationWithContext(ctx aws.Context, input *UpdatePodIdentityAssociationInput, opts ...request.Option) (*UpdatePodIdentityAssociationOutput, error) {
+	req, out := c.UpdatePodIdentityAssociationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 // You don't have permissions to perform the requested operation. The IAM principal
 // (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html)
 // making the request must have at least one IAM permissions policy attached
@@ -4516,6 +5149,7 @@ type AccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// You do not have sufficient access to perform this action.
 	Message_ *string `locationName:"message" type:"string"`
 }
 
@@ -5223,6 +5857,8 @@ type BadRequestException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// This exception is thrown if the request contains a semantic error. The precise
+	// meaning will depend on the API, and will be documented in the error message.
 	Message_ *string `locationName:"message" type:"string"`
 }
 
@@ -5324,11 +5960,16 @@ type ClientException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The Amazon EKS add-on name associated with the exception.
 	AddonName *string `locationName:"addonName" type:"string"`
 
 	// The Amazon EKS cluster associated with the exception.
 	ClusterName *string `locationName:"clusterName" type:"string"`
 
+	// These errors are usually caused by a client action. Actions can include using
+	// an action or resource on behalf of an IAM principal (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html)
+	// that doesn't have permissions to use the action or resource or specifying
+	// an identifier that is not valid.
 	Message_ *string `locationName:"message" type:"string"`
 
 	// The Amazon EKS managed node group associated with the exception.
@@ -6366,7 +7007,7 @@ type CreateEksAnywhereSubscriptionInput struct {
 	ClientRequestToken *string `locationName:"clientRequestToken" type:"string" idempotencyToken:"true"`
 
 	// The number of licenses to purchase with the subscription. Valid values are
-	// between 1 and 1000. This value cannot be changed after creating the subscription.
+	// between 1 and 100. This value can't be changed after creating the subscription.
 	LicenseQuantity *int64 `locationName:"licenseQuantity" type:"integer"`
 
 	// The license type for all licenses in the subscription. Valid value is CLUSTER.
@@ -6384,7 +7025,7 @@ type CreateEksAnywhereSubscriptionInput struct {
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	// The metadata for a subscription to assist with categorization and organization.
-	// Each tag consists of a key and an optional value. Subscription tags do not
+	// Each tag consists of a key and an optional value. Subscription tags don't
 	// propagate to any other resources associated with the subscription.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 
@@ -7013,6 +7654,183 @@ func (s *CreateNodegroupOutput) SetNodegroup(v *Nodegroup) *CreateNodegroupOutpu
 	return s
 }
 
+type CreatePodIdentityAssociationInput struct {
+	_ struct{} `type:"structure"`
+
+	// Unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request.
+	ClientRequestToken *string `locationName:"clientRequestToken" type:"string" idempotencyToken:"true"`
+
+	// The name of the cluster to create the association in.
+	//
+	// ClusterName is a required field
+	ClusterName *string `location:"uri" locationName:"name" type:"string" required:"true"`
+
+	// The name of the Kubernetes namespace inside the cluster to create the association
+	// in. The service account and the pods that use the service account must be
+	// in this namespace.
+	//
+	// Namespace is a required field
+	Namespace *string `locationName:"namespace" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the IAM role to associate with the service
+	// account. The EKS Pod Identity agent manages credentials to assume this role
+	// for applications in the containers in the pods that use this service account.
+	//
+	// RoleArn is a required field
+	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
+
+	// The name of the Kubernetes service account inside the cluster to associate
+	// the IAM credentials with.
+	//
+	// ServiceAccount is a required field
+	ServiceAccount *string `locationName:"serviceAccount" type:"string" required:"true"`
+
+	// The metadata that you apply to a resource to assist with categorization and
+	// organization. Each tag consists of a key and an optional value. You define
+	// both.
+	//
+	// The following basic restrictions apply to tags:
+	//
+	//    * Maximum number of tags per resource – 50
+	//
+	//    * For each resource, each tag key must be unique, and each tag key can
+	//    have only one value.
+	//
+	//    * Maximum key length – 128 Unicode characters in UTF-8
+	//
+	//    * Maximum value length – 256 Unicode characters in UTF-8
+	//
+	//    * If your tagging schema is used across multiple services and resources,
+	//    remember that other services may have restrictions on allowed characters.
+	//    Generally allowed characters are: letters, numbers, and spaces representable
+	//    in UTF-8, and the following characters: + - = . _ : / @.
+	//
+	//    * Tag keys and values are case-sensitive.
+	//
+	//    * Do not use aws:, AWS:, or any upper or lowercase combination of such
+	//    as a prefix for either keys or values as it is reserved for Amazon Web
+	//    Services use. You cannot edit or delete tag keys or values with this prefix.
+	//    Tags with this prefix do not count against your tags per resource limit.
+	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePodIdentityAssociationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePodIdentityAssociationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreatePodIdentityAssociationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreatePodIdentityAssociationInput"}
+	if s.ClusterName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterName"))
+	}
+	if s.ClusterName != nil && len(*s.ClusterName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClusterName", 1))
+	}
+	if s.Namespace == nil {
+		invalidParams.Add(request.NewErrParamRequired("Namespace"))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.ServiceAccount == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceAccount"))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *CreatePodIdentityAssociationInput) SetClientRequestToken(v string) *CreatePodIdentityAssociationInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetClusterName sets the ClusterName field's value.
+func (s *CreatePodIdentityAssociationInput) SetClusterName(v string) *CreatePodIdentityAssociationInput {
+	s.ClusterName = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *CreatePodIdentityAssociationInput) SetNamespace(v string) *CreatePodIdentityAssociationInput {
+	s.Namespace = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *CreatePodIdentityAssociationInput) SetRoleArn(v string) *CreatePodIdentityAssociationInput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetServiceAccount sets the ServiceAccount field's value.
+func (s *CreatePodIdentityAssociationInput) SetServiceAccount(v string) *CreatePodIdentityAssociationInput {
+	s.ServiceAccount = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreatePodIdentityAssociationInput) SetTags(v map[string]*string) *CreatePodIdentityAssociationInput {
+	s.Tags = v
+	return s
+}
+
+type CreatePodIdentityAssociationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The full description of your new association.
+	//
+	// The description includes an ID for the association. Use the ID of the association
+	// in further actions to manage the association.
+	Association *PodIdentityAssociation `locationName:"association" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePodIdentityAssociationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePodIdentityAssociationOutput) GoString() string {
+	return s.String()
+}
+
+// SetAssociation sets the Association field's value.
+func (s *CreatePodIdentityAssociationOutput) SetAssociation(v *PodIdentityAssociation) *CreatePodIdentityAssociationOutput {
+	s.Association = v
+	return s
+}
+
 type DeleteAddonInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -7478,6 +8296,103 @@ func (s *DeleteNodegroupOutput) SetNodegroup(v *Nodegroup) *DeleteNodegroupOutpu
 	return s
 }
 
+type DeletePodIdentityAssociationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the association to be deleted.
+	//
+	// AssociationId is a required field
+	AssociationId *string `location:"uri" locationName:"associationId" type:"string" required:"true"`
+
+	// The cluster name that
+	//
+	// ClusterName is a required field
+	ClusterName *string `location:"uri" locationName:"name" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePodIdentityAssociationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePodIdentityAssociationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeletePodIdentityAssociationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeletePodIdentityAssociationInput"}
+	if s.AssociationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssociationId"))
+	}
+	if s.AssociationId != nil && len(*s.AssociationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AssociationId", 1))
+	}
+	if s.ClusterName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterName"))
+	}
+	if s.ClusterName != nil && len(*s.ClusterName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClusterName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssociationId sets the AssociationId field's value.
+func (s *DeletePodIdentityAssociationInput) SetAssociationId(v string) *DeletePodIdentityAssociationInput {
+	s.AssociationId = &v
+	return s
+}
+
+// SetClusterName sets the ClusterName field's value.
+func (s *DeletePodIdentityAssociationInput) SetClusterName(v string) *DeletePodIdentityAssociationInput {
+	s.ClusterName = &v
+	return s
+}
+
+type DeletePodIdentityAssociationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The full description of the EKS Pod Identity association that was deleted.
+	Association *PodIdentityAssociation `locationName:"association" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePodIdentityAssociationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePodIdentityAssociationOutput) GoString() string {
+	return s.String()
+}
+
+// SetAssociation sets the Association field's value.
+func (s *DeletePodIdentityAssociationOutput) SetAssociation(v *PodIdentityAssociation) *DeletePodIdentityAssociationOutput {
+	s.Association = v
+	return s
+}
+
 type DeregisterClusterInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -7885,10 +8800,10 @@ type DescribeAddonVersionsOutput struct {
 	// other properties.
 	Addons []*AddonInfo `locationName:"addons" type:"list"`
 
-	// The nextToken value returned from a previous paginated DescribeAddonVersionsResponse
-	// where maxResults was used and the results exceeded the value of that parameter.
-	// Pagination continues from the end of the previous results that returned the
-	// nextToken value.
+	// The nextToken value to include in a future DescribeAddonVersions request.
+	// When the results of a DescribeAddonVersions request exceed maxResults, you
+	// can use this value to retrieve the next page of results. This value is null
+	// when there are no more results to return.
 	//
 	// This token should be treated as an opaque identifier that is used only to
 	// retrieve the next items in a list and not for other programmatic purposes.
@@ -8378,6 +9293,103 @@ func (s *DescribeNodegroupOutput) SetNodegroup(v *Nodegroup) *DescribeNodegroupO
 	return s
 }
 
+type DescribePodIdentityAssociationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the association that you want the description of.
+	//
+	// AssociationId is a required field
+	AssociationId *string `location:"uri" locationName:"associationId" type:"string" required:"true"`
+
+	// The name of the cluster that the association is in.
+	//
+	// ClusterName is a required field
+	ClusterName *string `location:"uri" locationName:"name" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribePodIdentityAssociationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribePodIdentityAssociationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribePodIdentityAssociationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribePodIdentityAssociationInput"}
+	if s.AssociationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssociationId"))
+	}
+	if s.AssociationId != nil && len(*s.AssociationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AssociationId", 1))
+	}
+	if s.ClusterName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterName"))
+	}
+	if s.ClusterName != nil && len(*s.ClusterName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClusterName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssociationId sets the AssociationId field's value.
+func (s *DescribePodIdentityAssociationInput) SetAssociationId(v string) *DescribePodIdentityAssociationInput {
+	s.AssociationId = &v
+	return s
+}
+
+// SetClusterName sets the ClusterName field's value.
+func (s *DescribePodIdentityAssociationInput) SetClusterName(v string) *DescribePodIdentityAssociationInput {
+	s.ClusterName = &v
+	return s
+}
+
+type DescribePodIdentityAssociationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The full description of the EKS Pod Identity association.
+	Association *PodIdentityAssociation `locationName:"association" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribePodIdentityAssociationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribePodIdentityAssociationOutput) GoString() string {
+	return s.String()
+}
+
+// SetAssociation sets the Association field's value.
+func (s *DescribePodIdentityAssociationOutput) SetAssociation(v *PodIdentityAssociation) *DescribePodIdentityAssociationOutput {
+	s.Association = v
+	return s
+}
+
 type DescribeUpdateInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -8630,11 +9642,11 @@ type EksAnywhereSubscription struct {
 	// UUID identifying a subscription.
 	Id *string `locationName:"id" type:"string"`
 
-	// License Manager License ARNs associated with the subscription.
+	// Amazon Web Services License Manager ARN associated with the subscription.
 	LicenseArns []*string `locationName:"licenseArns" type:"list"`
 
 	// The number of licenses included in a subscription. Valid values are between
-	// 1 and 1000.
+	// 1 and 100.
 	LicenseQuantity *int64 `locationName:"licenseQuantity" type:"integer"`
 
 	// The type of licenses included in the subscription. Valid value is CLUSTER.
@@ -9185,6 +10197,8 @@ type InvalidParameterException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The specified parameter for the add-on name is invalid. Review the available
+	// parameters for the API request
 	AddonName *string `locationName:"addonName" type:"string"`
 
 	// The Amazon EKS cluster associated with the exception.
@@ -9193,6 +10207,8 @@ type InvalidParameterException struct {
 	// The Fargate profile associated with the exception.
 	FargateProfileName *string `locationName:"fargateProfileName" type:"string"`
 
+	// The specified parameter is invalid. Review the available parameters for the
+	// API request.
 	Message_ *string `locationName:"message" type:"string"`
 
 	// The Amazon EKS managed node group associated with the exception.
@@ -9264,11 +10280,14 @@ type InvalidRequestException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The request is invalid given the state of the add-on name. Check the state
+	// of the cluster and the associated operations.
 	AddonName *string `locationName:"addonName" type:"string"`
 
 	// The Amazon EKS cluster associated with the exception.
 	ClusterName *string `locationName:"clusterName" type:"string"`
 
+	// The Amazon EKS add-on name associated with the exception.
 	Message_ *string `locationName:"message" type:"string"`
 
 	// The Amazon EKS managed node group associated with the exception.
@@ -9739,10 +10758,10 @@ type ListAddonsOutput struct {
 	// A list of installed add-ons.
 	Addons []*string `locationName:"addons" type:"list"`
 
-	// The nextToken value returned from a previous paginated ListAddonsResponse
-	// where maxResults was used and the results exceeded the value of that parameter.
-	// Pagination continues from the end of the previous results that returned the
-	// nextToken value.
+	// The nextToken value to include in a future ListAddons request. When the results
+	// of a ListAddons request exceed maxResults, you can use this value to retrieve
+	// the next page of results. This value is null when there are no more results
+	// to return.
 	//
 	// This token should be treated as an opaque identifier that is used only to
 	// retrieve the next items in a list and not for other programmatic purposes.
@@ -9914,10 +10933,10 @@ type ListEksAnywhereSubscriptionsInput struct {
 	// if applicable.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// The nextToken value to include in a future ListEksAnywhereSubscriptions request.
-	// When the results of a ListEksAnywhereSubscriptions request exceed maxResults,
-	// you can use this value to retrieve the next page of results. This value is
-	// null when there are no more results to return.
+	// The nextToken value returned from a previous paginated ListEksAnywhereSubscriptions
+	// request where maxResults was used and the results exceeded the value of that
+	// parameter. Pagination continues from the end of the previous results that
+	// returned the nextToken value.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
@@ -10222,10 +11241,10 @@ type ListIdentityProviderConfigsOutput struct {
 	// The identity provider configurations for the cluster.
 	IdentityProviderConfigs []*IdentityProviderConfig `locationName:"identityProviderConfigs" type:"list"`
 
-	// The nextToken value returned from a previous paginated ListIdentityProviderConfigsResponse
-	// where maxResults was used and the results exceeded the value of that parameter.
-	// Pagination continues from the end of the previous results that returned the
-	// nextToken value.
+	// The nextToken value to include in a future ListIdentityProviderConfigsResponse
+	// request. When the results of a ListIdentityProviderConfigsResponse request
+	// exceed maxResults, you can use this value to retrieve the next page of results.
+	// This value is null when there are no more results to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -10379,6 +11398,165 @@ func (s *ListNodegroupsOutput) SetNextToken(v string) *ListNodegroupsOutput {
 // SetNodegroups sets the Nodegroups field's value.
 func (s *ListNodegroupsOutput) SetNodegroups(v []*string) *ListNodegroupsOutput {
 	s.Nodegroups = v
+	return s
+}
+
+type ListPodIdentityAssociationsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The name of the cluster that the associations are in.
+	//
+	// ClusterName is a required field
+	ClusterName *string `location:"uri" locationName:"name" type:"string" required:"true"`
+
+	// The maximum number of EKS Pod Identity association results returned by ListPodIdentityAssociations
+	// in paginated output. When you use this parameter, ListPodIdentityAssociations
+	// returns only maxResults results in a single page along with a nextToken response
+	// element. You can see the remaining results of the initial request by sending
+	// another ListPodIdentityAssociations request with the returned nextToken value.
+	// This value can be between 1 and 100. If you don't use this parameter, ListPodIdentityAssociations
+	// returns up to 100 results and a nextToken value if applicable.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The name of the Kubernetes namespace inside the cluster that the associations
+	// are in.
+	Namespace *string `location:"querystring" locationName:"namespace" type:"string"`
+
+	// The nextToken value returned from a previous paginated ListUpdates request
+	// where maxResults was used and the results exceeded the value of that parameter.
+	// Pagination continues from the end of the previous results that returned the
+	// nextToken value.
+	//
+	// This token should be treated as an opaque identifier that is used only to
+	// retrieve the next items in a list and not for other programmatic purposes.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// The name of the Kubernetes service account that the associations use.
+	ServiceAccount *string `location:"querystring" locationName:"serviceAccount" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPodIdentityAssociationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPodIdentityAssociationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListPodIdentityAssociationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListPodIdentityAssociationsInput"}
+	if s.ClusterName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterName"))
+	}
+	if s.ClusterName != nil && len(*s.ClusterName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClusterName", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClusterName sets the ClusterName field's value.
+func (s *ListPodIdentityAssociationsInput) SetClusterName(v string) *ListPodIdentityAssociationsInput {
+	s.ClusterName = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListPodIdentityAssociationsInput) SetMaxResults(v int64) *ListPodIdentityAssociationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *ListPodIdentityAssociationsInput) SetNamespace(v string) *ListPodIdentityAssociationsInput {
+	s.Namespace = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListPodIdentityAssociationsInput) SetNextToken(v string) *ListPodIdentityAssociationsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetServiceAccount sets the ServiceAccount field's value.
+func (s *ListPodIdentityAssociationsInput) SetServiceAccount(v string) *ListPodIdentityAssociationsInput {
+	s.ServiceAccount = &v
+	return s
+}
+
+type ListPodIdentityAssociationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of summarized descriptions of the associations that are in the cluster
+	// and match any filters that you provided.
+	//
+	// Each summary is simplified by removing these fields compared to the full
+	// PodIdentityAssociation :
+	//
+	//    * The IAM role: roleArn
+	//
+	//    * The timestamp that the association was created at: createdAt
+	//
+	//    * The most recent timestamp that the association was modified at:. modifiedAt
+	//
+	//    * The tags on the association: tags
+	Associations []*PodIdentityAssociationSummary `locationName:"associations" type:"list"`
+
+	// The nextToken value to include in a future ListPodIdentityAssociations request.
+	// When the results of a ListPodIdentityAssociations request exceed maxResults,
+	// you can use this value to retrieve the next page of results. This value is
+	// null when there are no more results to return.
+	//
+	// This token should be treated as an opaque identifier that is used only to
+	// retrieve the next items in a list and not for other programmatic purposes.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPodIdentityAssociationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPodIdentityAssociationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetAssociations sets the Associations field's value.
+func (s *ListPodIdentityAssociationsOutput) SetAssociations(v []*PodIdentityAssociationSummary) *ListPodIdentityAssociationsOutput {
+	s.Associations = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListPodIdentityAssociationsOutput) SetNextToken(v string) *ListPodIdentityAssociationsOutput {
+	s.NextToken = &v
 	return s
 }
 
@@ -11212,6 +12390,8 @@ type NotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// A service resource associated with the request could not be found. Clients
+	// should not retry such requests.
 	Message_ *string `locationName:"message" type:"string"`
 }
 
@@ -11735,6 +12915,224 @@ func (s *OutpostConfigResponse) SetOutpostArns(v []*string) *OutpostConfigRespon
 	return s
 }
 
+// Amazon EKS Pod Identity associations provide the ability to manage credentials
+// for your applications, similar to the way that 7EC2l instance profiles provide
+// credentials to Amazon EC2 instances.
+type PodIdentityAssociation struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the association.
+	AssociationArn *string `locationName:"associationArn" type:"string"`
+
+	// The ID of the association.
+	AssociationId *string `locationName:"associationId" type:"string"`
+
+	// The name of the cluster that the association is in.
+	ClusterName *string `locationName:"clusterName" type:"string"`
+
+	// The timestamp that the association was created at.
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
+
+	// The most recent timestamp that the association was modified at
+	ModifiedAt *time.Time `locationName:"modifiedAt" type:"timestamp"`
+
+	// The name of the Kubernetes namespace inside the cluster to create the association
+	// in. The service account and the pods that use the service account must be
+	// in this namespace.
+	Namespace *string `locationName:"namespace" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the IAM role to associate with the service
+	// account. The EKS Pod Identity agent manages credentials to assume this role
+	// for applications in the containers in the pods that use this service account.
+	RoleArn *string `locationName:"roleArn" type:"string"`
+
+	// The name of the Kubernetes service account inside the cluster to associate
+	// the IAM credentials with.
+	ServiceAccount *string `locationName:"serviceAccount" type:"string"`
+
+	// The metadata that you apply to a resource to assist with categorization and
+	// organization. Each tag consists of a key and an optional value. You define
+	// both.
+	//
+	// The following basic restrictions apply to tags:
+	//
+	//    * Maximum number of tags per resource – 50
+	//
+	//    * For each resource, each tag key must be unique, and each tag key can
+	//    have only one value.
+	//
+	//    * Maximum key length – 128 Unicode characters in UTF-8
+	//
+	//    * Maximum value length – 256 Unicode characters in UTF-8
+	//
+	//    * If your tagging schema is used across multiple services and resources,
+	//    remember that other services may have restrictions on allowed characters.
+	//    Generally allowed characters are: letters, numbers, and spaces representable
+	//    in UTF-8, and the following characters: + - = . _ : / @.
+	//
+	//    * Tag keys and values are case-sensitive.
+	//
+	//    * Do not use aws:, AWS:, or any upper or lowercase combination of such
+	//    as a prefix for either keys or values as it is reserved for Amazon Web
+	//    Services use. You cannot edit or delete tag keys or values with this prefix.
+	//    Tags with this prefix do not count against your tags per resource limit.
+	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PodIdentityAssociation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PodIdentityAssociation) GoString() string {
+	return s.String()
+}
+
+// SetAssociationArn sets the AssociationArn field's value.
+func (s *PodIdentityAssociation) SetAssociationArn(v string) *PodIdentityAssociation {
+	s.AssociationArn = &v
+	return s
+}
+
+// SetAssociationId sets the AssociationId field's value.
+func (s *PodIdentityAssociation) SetAssociationId(v string) *PodIdentityAssociation {
+	s.AssociationId = &v
+	return s
+}
+
+// SetClusterName sets the ClusterName field's value.
+func (s *PodIdentityAssociation) SetClusterName(v string) *PodIdentityAssociation {
+	s.ClusterName = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *PodIdentityAssociation) SetCreatedAt(v time.Time) *PodIdentityAssociation {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetModifiedAt sets the ModifiedAt field's value.
+func (s *PodIdentityAssociation) SetModifiedAt(v time.Time) *PodIdentityAssociation {
+	s.ModifiedAt = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *PodIdentityAssociation) SetNamespace(v string) *PodIdentityAssociation {
+	s.Namespace = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *PodIdentityAssociation) SetRoleArn(v string) *PodIdentityAssociation {
+	s.RoleArn = &v
+	return s
+}
+
+// SetServiceAccount sets the ServiceAccount field's value.
+func (s *PodIdentityAssociation) SetServiceAccount(v string) *PodIdentityAssociation {
+	s.ServiceAccount = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *PodIdentityAssociation) SetTags(v map[string]*string) *PodIdentityAssociation {
+	s.Tags = v
+	return s
+}
+
+// The summarized description of the association.
+//
+// Each summary is simplified by removing these fields compared to the full
+// PodIdentityAssociation :
+//
+//   - The IAM role: roleArn
+//
+//   - The timestamp that the association was created at: createdAt
+//
+//   - The most recent timestamp that the association was modified at:. modifiedAt
+//
+//   - The tags on the association: tags
+type PodIdentityAssociationSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the association.
+	AssociationArn *string `locationName:"associationArn" type:"string"`
+
+	// The ID of the association.
+	AssociationId *string `locationName:"associationId" type:"string"`
+
+	// The name of the cluster that the association is in.
+	ClusterName *string `locationName:"clusterName" type:"string"`
+
+	// The name of the Kubernetes namespace inside the cluster to create the association
+	// in. The service account and the pods that use the service account must be
+	// in this namespace.
+	Namespace *string `locationName:"namespace" type:"string"`
+
+	// The name of the Kubernetes service account inside the cluster to associate
+	// the IAM credentials with.
+	ServiceAccount *string `locationName:"serviceAccount" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PodIdentityAssociationSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PodIdentityAssociationSummary) GoString() string {
+	return s.String()
+}
+
+// SetAssociationArn sets the AssociationArn field's value.
+func (s *PodIdentityAssociationSummary) SetAssociationArn(v string) *PodIdentityAssociationSummary {
+	s.AssociationArn = &v
+	return s
+}
+
+// SetAssociationId sets the AssociationId field's value.
+func (s *PodIdentityAssociationSummary) SetAssociationId(v string) *PodIdentityAssociationSummary {
+	s.AssociationId = &v
+	return s
+}
+
+// SetClusterName sets the ClusterName field's value.
+func (s *PodIdentityAssociationSummary) SetClusterName(v string) *PodIdentityAssociationSummary {
+	s.ClusterName = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *PodIdentityAssociationSummary) SetNamespace(v string) *PodIdentityAssociationSummary {
+	s.Namespace = &v
+	return s
+}
+
+// SetServiceAccount sets the ServiceAccount field's value.
+func (s *PodIdentityAssociationSummary) SetServiceAccount(v string) *PodIdentityAssociationSummary {
+	s.ServiceAccount = &v
+	return s
+}
+
 // Identifies the Key Management Service (KMS) key used to encrypt the secrets.
 type Provider struct {
 	_ struct{} `type:"structure"`
@@ -11955,11 +13353,13 @@ type ResourceInUseException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The specified add-on name is in use.
 	AddonName *string `locationName:"addonName" type:"string"`
 
 	// The Amazon EKS cluster associated with the exception.
 	ClusterName *string `locationName:"clusterName" type:"string"`
 
+	// The Amazon EKS message associated with the exception.
 	Message_ *string `locationName:"message" type:"string"`
 
 	// The Amazon EKS managed node group associated with the exception.
@@ -12030,6 +13430,7 @@ type ResourceLimitExceededException struct {
 	// The Amazon EKS cluster associated with the exception.
 	ClusterName *string `locationName:"clusterName" type:"string"`
 
+	// The Amazon EKS message associated with the exception.
 	Message_ *string `locationName:"message" type:"string"`
 
 	// The Amazon EKS managed node group associated with the exception.
@@ -12102,6 +13503,7 @@ type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The Amazon EKS add-on name associated with the exception.
 	AddonName *string `locationName:"addonName" type:"string"`
 
 	// The Amazon EKS cluster associated with the exception.
@@ -12110,6 +13512,7 @@ type ResourceNotFoundException struct {
 	// The Fargate profile associated with the exception.
 	FargateProfileName *string `locationName:"fargateProfileName" type:"string"`
 
+	// The Amazon EKS message associated with the exception.
 	Message_ *string `locationName:"message" type:"string"`
 
 	// The Amazon EKS managed node group associated with the exception.
@@ -12181,6 +13584,8 @@ type ResourcePropagationDelayException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// Required resources (such as service-linked roles) were created and are still
+	// propagating. Retry later.
 	Message_ *string `locationName:"message" type:"string"`
 }
 
@@ -12245,11 +13650,13 @@ type ServerException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The Amazon EKS add-on name associated with the exception.
 	AddonName *string `locationName:"addonName" type:"string"`
 
 	// The Amazon EKS cluster associated with the exception.
 	ClusterName *string `locationName:"clusterName" type:"string"`
 
+	// These errors are usually caused by a server-side issue.
 	Message_ *string `locationName:"message" type:"string"`
 
 	// The Amazon EKS managed node group associated with the exception.
@@ -12320,6 +13727,7 @@ type ServiceUnavailableException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The request has failed due to a temporary failure of the server.
 	Message_ *string `locationName:"message" type:"string"`
 }
 
@@ -12543,6 +13951,10 @@ type UnsupportedAvailabilityZoneException struct {
 	// The Amazon EKS cluster associated with the exception.
 	ClusterName *string `locationName:"clusterName" type:"string"`
 
+	// At least one of your specified cluster subnets is in an Availability Zone
+	// that does not support Amazon EKS. The exception output specifies the supported
+	// Availability Zones for your account, from which you can choose subnets for
+	// your cluster.
 	Message_ *string `locationName:"message" type:"string"`
 
 	// The Amazon EKS managed node group associated with the exception.
@@ -13178,6 +14590,8 @@ type UpdateEksAnywhereSubscriptionInput struct {
 	// Unique, case-sensitive identifier to ensure the idempotency of the request.
 	ClientRequestToken *string `locationName:"clientRequestToken" type:"string" idempotencyToken:"true"`
 
+	// The ID of the subscription.
+	//
 	// Id is a required field
 	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
 }
@@ -13677,6 +15091,122 @@ func (s *UpdateParam) SetType(v string) *UpdateParam {
 // SetValue sets the Value field's value.
 func (s *UpdateParam) SetValue(v string) *UpdateParam {
 	s.Value = &v
+	return s
+}
+
+type UpdatePodIdentityAssociationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the association to be updated.
+	//
+	// AssociationId is a required field
+	AssociationId *string `location:"uri" locationName:"associationId" type:"string" required:"true"`
+
+	// Unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request.
+	ClientRequestToken *string `locationName:"clientRequestToken" type:"string" idempotencyToken:"true"`
+
+	// The name of the cluster that you want to update the association in.
+	//
+	// ClusterName is a required field
+	ClusterName *string `location:"uri" locationName:"name" type:"string" required:"true"`
+
+	// The new IAM role to change the
+	RoleArn *string `locationName:"roleArn" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePodIdentityAssociationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePodIdentityAssociationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdatePodIdentityAssociationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdatePodIdentityAssociationInput"}
+	if s.AssociationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssociationId"))
+	}
+	if s.AssociationId != nil && len(*s.AssociationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AssociationId", 1))
+	}
+	if s.ClusterName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterName"))
+	}
+	if s.ClusterName != nil && len(*s.ClusterName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClusterName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssociationId sets the AssociationId field's value.
+func (s *UpdatePodIdentityAssociationInput) SetAssociationId(v string) *UpdatePodIdentityAssociationInput {
+	s.AssociationId = &v
+	return s
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *UpdatePodIdentityAssociationInput) SetClientRequestToken(v string) *UpdatePodIdentityAssociationInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetClusterName sets the ClusterName field's value.
+func (s *UpdatePodIdentityAssociationInput) SetClusterName(v string) *UpdatePodIdentityAssociationInput {
+	s.ClusterName = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *UpdatePodIdentityAssociationInput) SetRoleArn(v string) *UpdatePodIdentityAssociationInput {
+	s.RoleArn = &v
+	return s
+}
+
+type UpdatePodIdentityAssociationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The full description of the EKS Pod Identity association that was updated.
+	Association *PodIdentityAssociation `locationName:"association" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePodIdentityAssociationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePodIdentityAssociationOutput) GoString() string {
+	return s.String()
+}
+
+// SetAssociation sets the Association field's value.
+func (s *UpdatePodIdentityAssociationOutput) SetAssociation(v *PodIdentityAssociation) *UpdatePodIdentityAssociationOutput {
+	s.Association = v
 	return s
 }
 

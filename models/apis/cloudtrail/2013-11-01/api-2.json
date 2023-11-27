@@ -194,7 +194,9 @@
         {"shape":"NotOrganizationMasterAccountException"},
         {"shape":"NoManagementAccountSLRExistsException"},
         {"shape":"ChannelExistsForEDSException"},
-        {"shape":"InsufficientDependencyServiceAccessPermissionException"}
+        {"shape":"InsufficientDependencyServiceAccessPermissionException"},
+        {"shape":"ConflictException"},
+        {"shape":"EventDataStoreFederationEnabledException"}
       ]
     },
     "DeleteResourcePolicy":{
@@ -296,6 +298,57 @@
         {"shape":"NoManagementAccountSLRExistsException"}
       ],
       "idempotent":true
+    },
+    "DisableFederation":{
+      "name":"DisableFederation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DisableFederationRequest"},
+      "output":{"shape":"DisableFederationResponse"},
+      "errors":[
+        {"shape":"EventDataStoreARNInvalidException"},
+        {"shape":"EventDataStoreNotFoundException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"InactiveEventDataStoreException"},
+        {"shape":"OperationNotPermittedException"},
+        {"shape":"UnsupportedOperationException"},
+        {"shape":"CloudTrailAccessNotEnabledException"},
+        {"shape":"InsufficientDependencyServiceAccessPermissionException"},
+        {"shape":"NotOrganizationMasterAccountException"},
+        {"shape":"NoManagementAccountSLRExistsException"},
+        {"shape":"OrganizationsNotInUseException"},
+        {"shape":"OrganizationNotInAllFeaturesModeException"},
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "EnableFederation":{
+      "name":"EnableFederation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"EnableFederationRequest"},
+      "output":{"shape":"EnableFederationResponse"},
+      "errors":[
+        {"shape":"EventDataStoreARNInvalidException"},
+        {"shape":"EventDataStoreNotFoundException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"InactiveEventDataStoreException"},
+        {"shape":"OperationNotPermittedException"},
+        {"shape":"UnsupportedOperationException"},
+        {"shape":"CloudTrailAccessNotEnabledException"},
+        {"shape":"InsufficientDependencyServiceAccessPermissionException"},
+        {"shape":"NotOrganizationMasterAccountException"},
+        {"shape":"NoManagementAccountSLRExistsException"},
+        {"shape":"OrganizationsNotInUseException"},
+        {"shape":"OrganizationNotInAllFeaturesModeException"},
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"EventDataStoreFederationEnabledException"}
+      ]
     },
     "GetChannel":{
       "name":"GetChannel",
@@ -1020,6 +1073,12 @@
     }
   },
   "shapes":{
+    "AccessDeniedException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
     "AccountHasOngoingImportException":{
       "type":"structure",
       "members":{
@@ -1206,6 +1265,12 @@
       "exception":true
     },
     "CloudWatchLogsDeliveryUnavailableException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "ConcurrentModificationException":{
       "type":"structure",
       "members":{
       },
@@ -1479,6 +1544,39 @@
       "max":200,
       "min":1
     },
+    "DisableFederationRequest":{
+      "type":"structure",
+      "required":["EventDataStore"],
+      "members":{
+        "EventDataStore":{"shape":"EventDataStoreArn"}
+      }
+    },
+    "DisableFederationResponse":{
+      "type":"structure",
+      "members":{
+        "EventDataStoreArn":{"shape":"EventDataStoreArn"},
+        "FederationStatus":{"shape":"FederationStatus"}
+      }
+    },
+    "EnableFederationRequest":{
+      "type":"structure",
+      "required":[
+        "EventDataStore",
+        "FederationRoleArn"
+      ],
+      "members":{
+        "EventDataStore":{"shape":"EventDataStoreArn"},
+        "FederationRoleArn":{"shape":"FederationRoleArn"}
+      }
+    },
+    "EnableFederationResponse":{
+      "type":"structure",
+      "members":{
+        "EventDataStoreArn":{"shape":"EventDataStoreArn"},
+        "FederationStatus":{"shape":"FederationStatus"},
+        "FederationRoleArn":{"shape":"FederationRoleArn"}
+      }
+    },
     "ErrorMessage":{
       "type":"string",
       "max":1000,
@@ -1568,6 +1666,12 @@
       "min":3,
       "pattern":"^[a-zA-Z0-9._/\\-:]+$"
     },
+    "EventDataStoreFederationEnabledException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
     "EventDataStoreHasOngoingImportException":{
       "type":"structure",
       "members":{
@@ -1640,6 +1744,21 @@
       "type":"list",
       "member":{"shape":"String"}
     },
+    "FederationRoleArn":{
+      "type":"string",
+      "max":125,
+      "min":3,
+      "pattern":"^[a-zA-Z0-9._/\\-:@=\\+,\\.]+$"
+    },
+    "FederationStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLING",
+        "ENABLED",
+        "DISABLING",
+        "DISABLED"
+      ]
+    },
     "GetChannelRequest":{
       "type":"structure",
       "required":["Channel"],
@@ -1679,7 +1798,9 @@
         "CreatedTimestamp":{"shape":"Date"},
         "UpdatedTimestamp":{"shape":"Date"},
         "KmsKeyId":{"shape":"EventDataStoreKmsKeyId"},
-        "BillingMode":{"shape":"BillingMode"}
+        "BillingMode":{"shape":"BillingMode"},
+        "FederationStatus":{"shape":"FederationStatus"},
+        "FederationRoleArn":{"shape":"FederationRoleArn"}
       }
     },
     "GetEventSelectorsRequest":{
@@ -3009,7 +3130,9 @@
         "CreatedTimestamp":{"shape":"Date"},
         "UpdatedTimestamp":{"shape":"Date"},
         "KmsKeyId":{"shape":"EventDataStoreKmsKeyId"},
-        "BillingMode":{"shape":"BillingMode"}
+        "BillingMode":{"shape":"BillingMode"},
+        "FederationStatus":{"shape":"FederationStatus"},
+        "FederationRoleArn":{"shape":"FederationRoleArn"}
       }
     },
     "UpdateTrailRequest":{

@@ -1,3 +1,58 @@
+Release v1.48.4 (2023-11-27)
+===
+
+### Service Client Updates
+* `service/accessanalyzer`: Updates service API, documentation, and paginators
+* `service/amp`: Updates service API, documentation, waiters, and paginators
+* `service/bcm-data-exports`: Adds new service
+* `service/cloudtrail`: Updates service API and documentation
+  * CloudTrail Lake now supports federating event data stores. giving users the ability to run queries against their event data using Amazon Athena.
+* `service/codestar-connections`: Updates service API, documentation, and paginators
+* `service/compute-optimizer`: Updates service API and documentation
+* `service/config`: Updates service API and documentation
+* `service/controltower`: Updates service API, documentation, and paginators
+* `service/cost-optimization-hub`: Adds new service
+* `service/detective`: Updates service API and documentation
+* `service/ecs`: Updates service API and documentation
+  * Adds a new 'type' property to the Setting structure. Adds a new AccountSetting - guardDutyActivate for ECS.
+* `service/eks`: Updates service API, documentation, and paginators
+* `service/eks-auth`: Updates service API, documentation, waiters, paginators, and examples
+* `service/elasticfilesystem`: Updates service API, documentation, and paginators
+  * Adding support for EFS Archive lifecycle configuration.
+* `service/elasticloadbalancingv2`: Updates service API, documentation, and paginators
+* `service/freetier`: Updates service API, documentation, paginators, and examples
+* `service/fsx`: Updates service API and documentation
+* `service/guardduty`: Updates service API and documentation
+  * Add support for Runtime Monitoring for ECS and ECS-EC2.
+* `service/iotfleetwise`: Updates service API and documentation
+* `service/lakeformation`: Updates service API and documentation
+* `service/logs`: Updates service API, documentation, and paginators
+  * Added APIs to Create, Update, Get, List and Delete LogAnomalyDetectors and List and Update Anomalies in Detector. Added LogGroupClass attribute for LogGroups to classify loggroup as Standard loggroup with all capabilities or InfrequentAccess loggroup with limited capabilities.
+* `service/managedblockchain`: Updates service API and documentation
+* `service/models.lex.v2`: Updates service API, documentation, and paginators
+* `service/personalize`: Updates service API and documentation
+* `service/personalize-events`: Updates service API and documentation
+* `service/personalize-runtime`: Updates service API and documentation
+* `service/quicksight`: Updates service API and documentation
+  * This release launches new APIs for trusted identity propagation setup and supports creating datasources using trusted identity propagation as authentication method for QuickSight accounts configured with IAM Identity Center.
+* `service/redshift`: Updates service API and documentation
+  * This release adds support for multi-data warehouse writes through data sharing.
+* `service/repostspace`: Adds new service
+* `service/runtime.lex.v2`: Updates service API and documentation
+* `service/s3`: Updates service API, documentation, and examples
+  * Adding new params - Key and Prefix, to S3 API operations for supporting S3 Access Grants. Note - These updates will not change any of the existing S3 API functionality.
+* `service/s3control`: Updates service API, documentation, and paginators
+  * Introduce Amazon S3 Access Grants, a new S3 access control feature that maps identities in directories such as Active Directory, or AWS Identity and Access Management (IAM) Principals, to datasets in S3.
+* `service/secretsmanager`: Updates service API, documentation, and paginators
+  * AWS Secrets Manager has released the BatchGetSecretValue API, which allows customers to fetch up to 20 Secrets with a single request using a list of secret names or filters.
+* `service/securityhub`: Updates service API, documentation, and examples
+* `service/states`: Updates service API and documentation
+  * Adds new TestState operation which accepts the definition of a single state and executes it. You can test a state without creating a state machine or updating an existing state machine.
+* `service/transcribe`: Updates service API and documentation
+* `service/workspaces`: Updates service API and documentation
+  * The release introduces Multi-Region Resilience one-way data replication that allows you to replicate data from your primary WorkSpace to a standby WorkSpace in another AWS Region. DescribeWorkspaces now returns the status of data replication.
+* `service/workspaces-thin-client`: Adds new service
+
 Release v1.48.3 (2023-11-22)
 ===
 

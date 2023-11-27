@@ -67,6 +67,22 @@
       ],
       "idempotent":true
     },
+    "CopySnapshotAndUpdateVolume":{
+      "name":"CopySnapshotAndUpdateVolume",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CopySnapshotAndUpdateVolumeRequest"},
+      "output":{"shape":"CopySnapshotAndUpdateVolumeResponse"},
+      "errors":[
+        {"shape":"BadRequest"},
+        {"shape":"IncompatibleParameterError"},
+        {"shape":"InternalServerError"},
+        {"shape":"ServiceLimitExceeded"}
+      ],
+      "idempotent":true
+    },
     "CreateBackup":{
       "name":"CreateBackup",
       "http":{
@@ -463,6 +479,19 @@
         {"shape":"InternalServerError"}
       ]
     },
+    "DescribeSharedVpcConfiguration":{
+      "name":"DescribeSharedVpcConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeSharedVpcConfigurationRequest"},
+      "output":{"shape":"DescribeSharedVpcConfigurationResponse"},
+      "errors":[
+        {"shape":"BadRequest"},
+        {"shape":"InternalServerError"}
+      ]
+    },
     "DescribeSnapshots":{
       "name":"DescribeSnapshots",
       "http":{
@@ -670,6 +699,20 @@
         {"shape":"ServiceLimitExceeded"}
       ]
     },
+    "UpdateSharedVpcConfiguration":{
+      "name":"UpdateSharedVpcConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateSharedVpcConfigurationRequest"},
+      "output":{"shape":"UpdateSharedVpcConfigurationResponse"},
+      "errors":[
+        {"shape":"BadRequest"},
+        {"shape":"IncompatibleParameterError"},
+        {"shape":"InternalServerError"}
+      ]
+    },
     "UpdateSnapshot":{
       "name":"UpdateSnapshot",
       "http":{
@@ -775,7 +818,9 @@
         "TargetFileSystemValues":{"shape":"FileSystem"},
         "FailureDetails":{"shape":"AdministrativeActionFailureDetails"},
         "TargetVolumeValues":{"shape":"Volume"},
-        "TargetSnapshotValues":{"shape":"Snapshot"}
+        "TargetSnapshotValues":{"shape":"Snapshot"},
+        "TotalTransferBytes":{"shape":"TotalTransferBytes"},
+        "RemainingTransferBytes":{"shape":"RemainingTransferBytes"}
       }
     },
     "AdministrativeActionFailureDetails":{
@@ -798,13 +843,38 @@
         "THROUGHPUT_OPTIMIZATION",
         "IOPS_OPTIMIZATION",
         "STORAGE_TYPE_OPTIMIZATION",
-        "MISCONFIGURED_STATE_RECOVERY"
+        "MISCONFIGURED_STATE_RECOVERY",
+        "VOLUME_UPDATE_WITH_SNAPSHOT",
+        "VOLUME_INITIALIZE_WITH_SNAPSHOT"
       ]
     },
     "AdministrativeActions":{
       "type":"list",
       "member":{"shape":"AdministrativeAction"},
       "max":50
+    },
+    "Aggregate":{
+      "type":"string",
+      "max":6,
+      "min":5,
+      "pattern":"^(aggr[0-9]{1,2})$"
+    },
+    "AggregateConfiguration":{
+      "type":"structure",
+      "members":{
+        "Aggregates":{"shape":"Aggregates"},
+        "TotalConstituents":{"shape":"TotalConstituents"}
+      }
+    },
+    "AggregateListMultiplier":{
+      "type":"integer",
+      "max":200,
+      "min":1
+    },
+    "Aggregates":{
+      "type":"list",
+      "member":{"shape":"Aggregate"},
+      "max":6
     },
     "Alias":{
       "type":"structure",
@@ -1085,7 +1155,39 @@
         "Backup":{"shape":"Backup"}
       }
     },
+    "CopySnapshotAndUpdateVolumeRequest":{
+      "type":"structure",
+      "required":[
+        "VolumeId",
+        "SourceSnapshotARN"
+      ],
+      "members":{
+        "ClientRequestToken":{
+          "shape":"ClientRequestToken",
+          "idempotencyToken":true
+        },
+        "VolumeId":{"shape":"VolumeId"},
+        "SourceSnapshotARN":{"shape":"ResourceARN"},
+        "CopyStrategy":{"shape":"OpenZFSCopyStrategy"},
+        "Options":{"shape":"UpdateOpenZFSVolumeOptions"}
+      }
+    },
+    "CopySnapshotAndUpdateVolumeResponse":{
+      "type":"structure",
+      "members":{
+        "VolumeId":{"shape":"VolumeId"},
+        "Lifecycle":{"shape":"VolumeLifecycle"},
+        "AdministrativeActions":{"shape":"AdministrativeActions"}
+      }
+    },
     "CopyTagsToDataRepositoryAssociations":{"type":"boolean"},
+    "CreateAggregateConfiguration":{
+      "type":"structure",
+      "members":{
+        "Aggregates":{"shape":"Aggregates"},
+        "ConstituentsPerAggregate":{"shape":"AggregateListMultiplier"}
+      }
+    },
     "CreateBackupRequest":{
       "type":"structure",
       "members":{
@@ -1258,10 +1360,7 @@
     },
     "CreateFileSystemOntapConfiguration":{
       "type":"structure",
-      "required":[
-        "DeploymentType",
-        "ThroughputCapacity"
-      ],
+      "required":["DeploymentType"],
       "members":{
         "AutomaticBackupRetentionDays":{"shape":"AutomaticBackupRetentionDays"},
         "DailyAutomaticBackupStartTime":{"shape":"DailyTime"},
@@ -1272,7 +1371,9 @@
         "PreferredSubnetId":{"shape":"SubnetId"},
         "RouteTableIds":{"shape":"RouteTableIds"},
         "ThroughputCapacity":{"shape":"MegabytesPerSecond"},
-        "WeeklyMaintenanceStartTime":{"shape":"WeeklyTime"}
+        "WeeklyMaintenanceStartTime":{"shape":"WeeklyTime"},
+        "HAPairs":{"shape":"HAPairs"},
+        "ThroughputCapacityPerHAPair":{"shape":"ThroughputCapacityPerHAPair"}
       }
     },
     "CreateFileSystemOpenZFSConfiguration":{
@@ -1348,21 +1449,25 @@
     },
     "CreateOntapVolumeConfiguration":{
       "type":"structure",
-      "required":[
-        "SizeInMegabytes",
-        "StorageVirtualMachineId"
-      ],
+      "required":["StorageVirtualMachineId"],
       "members":{
         "JunctionPath":{"shape":"JunctionPath"},
         "SecurityStyle":{"shape":"SecurityStyle"},
-        "SizeInMegabytes":{"shape":"VolumeCapacity"},
+        "SizeInMegabytes":{
+          "shape":"VolumeCapacity",
+          "deprecated":true,
+          "deprecatedMessage":"This property is deprecated, use SizeInBytes instead"
+        },
         "StorageEfficiencyEnabled":{"shape":"Flag"},
         "StorageVirtualMachineId":{"shape":"StorageVirtualMachineId"},
         "TieringPolicy":{"shape":"TieringPolicy"},
         "OntapVolumeType":{"shape":"InputOntapVolumeType"},
         "SnapshotPolicy":{"shape":"SnapshotPolicy"},
         "CopyTagsToBackups":{"shape":"Flag"},
-        "SnaplockConfiguration":{"shape":"CreateSnaplockConfiguration"}
+        "SnaplockConfiguration":{"shape":"CreateSnaplockConfiguration"},
+        "VolumeStyle":{"shape":"VolumeStyle"},
+        "AggregateConfiguration":{"shape":"CreateAggregateConfiguration"},
+        "SizeInBytes":{"shape":"VolumeCapacityBytes"}
       }
     },
     "CreateOpenZFSOriginSnapshotConfiguration":{
@@ -2048,6 +2153,17 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "DescribeSharedVpcConfigurationRequest":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DescribeSharedVpcConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "EnableFsxRouteTableUpdatesFromParticipantAccounts":{"shape":"VerboseFlag"}
+      }
+    },
     "DescribeSnapshotsRequest":{
       "type":"structure",
       "members":{
@@ -2484,6 +2600,11 @@
       "min":8,
       "pattern":"^arn:[^:]{1,63}:[^:]{0,63}:[^:]{0,63}:(?:|\\d{12}):[^/].{0,1023}$"
     },
+    "HAPairs":{
+      "type":"integer",
+      "max":6,
+      "min":1
+    },
     "IncompatibleParameterError":{
       "type":"structure",
       "required":["Parameter"],
@@ -2591,7 +2712,7 @@
     },
     "Iops":{
       "type":"long",
-      "max":1000000,
+      "max":2400000,
       "min":0
     },
     "IpAddress":{
@@ -2823,13 +2944,14 @@
       "type":"string",
       "enum":[
         "MULTI_AZ_1",
-        "SINGLE_AZ_1"
+        "SINGLE_AZ_1",
+        "SINGLE_AZ_2"
       ]
     },
     "OntapEndpointIpAddresses":{
       "type":"list",
       "member":{"shape":"IpAddress"},
-      "max":2,
+      "max":24,
       "min":1
     },
     "OntapFileSystemConfiguration":{
@@ -2845,7 +2967,9 @@
         "RouteTableIds":{"shape":"RouteTableIds"},
         "ThroughputCapacity":{"shape":"MegabytesPerSecond"},
         "WeeklyMaintenanceStartTime":{"shape":"WeeklyTime"},
-        "FsxAdminPassword":{"shape":"AdminPassword"}
+        "FsxAdminPassword":{"shape":"AdminPassword"},
+        "HAPairs":{"shape":"HAPairs"},
+        "ThroughputCapacityPerHAPair":{"shape":"ThroughputCapacityPerHAPair"}
       }
     },
     "OntapVolumeConfiguration":{
@@ -2863,7 +2987,10 @@
         "OntapVolumeType":{"shape":"OntapVolumeType"},
         "SnapshotPolicy":{"shape":"SnapshotPolicy"},
         "CopyTagsToBackups":{"shape":"Flag"},
-        "SnaplockConfiguration":{"shape":"SnaplockConfiguration"}
+        "SnaplockConfiguration":{"shape":"SnaplockConfiguration"},
+        "VolumeStyle":{"shape":"VolumeStyle"},
+        "AggregateConfiguration":{"shape":"AggregateConfiguration"},
+        "SizeInBytes":{"shape":"VolumeCapacityBytes"}
       }
     },
     "OntapVolumeType":{
@@ -2900,7 +3027,8 @@
       "type":"string",
       "enum":[
         "CLONE",
-        "FULL_COPY"
+        "FULL_COPY",
+        "INCREMENTAL_COPY"
       ]
     },
     "OpenZFSCreateRootVolumeConfiguration":{
@@ -3020,7 +3148,10 @@
         "UserAndGroupQuotas":{"shape":"OpenZFSUserAndGroupQuotas"},
         "RestoreToSnapshot":{"shape":"SnapshotId"},
         "DeleteIntermediateSnaphots":{"shape":"Flag"},
-        "DeleteClonedVolumes":{"shape":"Flag"}
+        "DeleteClonedVolumes":{"shape":"Flag"},
+        "DeleteIntermediateData":{"shape":"Flag"},
+        "SourceSnapshotARN":{"shape":"ResourceARN"},
+        "DestinationSnapshot":{"shape":"SnapshotId"}
       }
     },
     "OrganizationalUnitDistinguishedName":{
@@ -3082,6 +3213,10 @@
       }
     },
     "ReleasedCapacity":{"type":"long"},
+    "RemainingTransferBytes":{
+      "type":"long",
+      "min":0
+    },
     "ReportFormat":{
       "type":"string",
       "enum":["REPORT_CSV_20191124"]
@@ -3664,6 +3799,11 @@
       "member":{"shape":"TaskId"},
       "max":50
     },
+    "ThroughputCapacityPerHAPair":{
+      "type":"integer",
+      "max":6144,
+      "min":128
+    },
     "TieringPolicy":{
       "type":"structure",
       "members":{
@@ -3680,7 +3820,16 @@
         "NONE"
       ]
     },
+    "TotalConstituents":{
+      "type":"integer",
+      "max":200,
+      "min":1
+    },
     "TotalCount":{"type":"long"},
+    "TotalTransferBytes":{
+      "type":"long",
+      "min":0
+    },
     "UUID":{
       "type":"string",
       "max":36,
@@ -3779,7 +3928,8 @@
         "DiskIopsConfiguration":{"shape":"DiskIopsConfiguration"},
         "ThroughputCapacity":{"shape":"MegabytesPerSecond"},
         "AddRouteTableIds":{"shape":"RouteTableIds"},
-        "RemoveRouteTableIds":{"shape":"RouteTableIds"}
+        "RemoveRouteTableIds":{"shape":"RouteTableIds"},
+        "ThroughputCapacityPerHAPair":{"shape":"ThroughputCapacityPerHAPair"}
       }
     },
     "UpdateFileSystemOpenZFSConfiguration":{
@@ -3841,7 +3991,8 @@
         "TieringPolicy":{"shape":"TieringPolicy"},
         "SnapshotPolicy":{"shape":"SnapshotPolicy"},
         "CopyTagsToBackups":{"shape":"Flag"},
-        "SnaplockConfiguration":{"shape":"UpdateSnaplockConfiguration"}
+        "SnaplockConfiguration":{"shape":"UpdateSnaplockConfiguration"},
+        "SizeInBytes":{"shape":"VolumeCapacityBytes"}
       }
     },
     "UpdateOpenZFSVolumeConfiguration":{
@@ -3854,6 +4005,34 @@
         "NfsExports":{"shape":"OpenZFSNfsExports"},
         "UserAndGroupQuotas":{"shape":"OpenZFSUserAndGroupQuotas"},
         "ReadOnly":{"shape":"ReadOnly"}
+      }
+    },
+    "UpdateOpenZFSVolumeOption":{
+      "type":"string",
+      "enum":[
+        "DELETE_INTERMEDIATE_SNAPSHOTS",
+        "DELETE_CLONED_VOLUMES",
+        "DELETE_INTERMEDIATE_DATA"
+      ]
+    },
+    "UpdateOpenZFSVolumeOptions":{
+      "type":"list",
+      "member":{"shape":"UpdateOpenZFSVolumeOption"}
+    },
+    "UpdateSharedVpcConfigurationRequest":{
+      "type":"structure",
+      "members":{
+        "EnableFsxRouteTableUpdatesFromParticipantAccounts":{"shape":"VerboseFlag"},
+        "ClientRequestToken":{
+          "shape":"ClientRequestToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "UpdateSharedVpcConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "EnableFsxRouteTableUpdatesFromParticipantAccounts":{"shape":"VerboseFlag"}
       }
     },
     "UpdateSnaplockConfiguration":{
@@ -3937,6 +4116,12 @@
       "type":"long",
       "min":0
     },
+    "VerboseFlag":{
+      "type":"string",
+      "max":5,
+      "min":4,
+      "pattern":"^(?i)(true|false)$"
+    },
     "Volume":{
       "type":"structure",
       "members":{
@@ -3956,7 +4141,12 @@
     },
     "VolumeCapacity":{
       "type":"integer",
-      "max":314572800,
+      "max":2147483647,
+      "min":0
+    },
+    "VolumeCapacityBytes":{
+      "type":"long",
+      "max":22517998000000000,
       "min":0
     },
     "VolumeFilter":{
@@ -4030,6 +4220,13 @@
       "max":2048,
       "min":1,
       "pattern":"^[A-za-z0-9\\_\\.\\:\\-\\/]*$"
+    },
+    "VolumeStyle":{
+      "type":"string",
+      "enum":[
+        "FLEXVOL",
+        "FLEXGROUP"
+      ]
     },
     "VolumeType":{
       "type":"string",

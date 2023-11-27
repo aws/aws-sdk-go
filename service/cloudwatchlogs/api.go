@@ -283,8 +283,7 @@ func (c *CloudWatchLogs) CreateDeliveryRequest(input *CreateDeliveryInput) (req 
 //
 // Only some Amazon Web Services services support being configured as a delivery
 // source using this operation. These services are listed as Supported [V2 Permissions]
-// in the table at Enabling logging from Amazon Web Services services. (https://docs.aws.amazon.com/
-// AmazonCloudWatch/latest/logs/AWS-logs-and-resource-policy.html#AWS-vended-logs-permissions)
+// in the table at Enabling logging from Amazon Web Services services. (https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AWS-logs-and-resource-policy.html)
 //
 // A delivery destination can represent a log group in CloudWatch Logs, an Amazon
 // S3 bucket, or a delivery stream in Kinesis Data Firehose.
@@ -479,6 +478,125 @@ func (c *CloudWatchLogs) CreateExportTask(input *CreateExportTaskInput) (*Create
 // for more information on using Contexts.
 func (c *CloudWatchLogs) CreateExportTaskWithContext(ctx aws.Context, input *CreateExportTaskInput, opts ...request.Option) (*CreateExportTaskOutput, error) {
 	req, out := c.CreateExportTaskRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateLogAnomalyDetector = "CreateLogAnomalyDetector"
+
+// CreateLogAnomalyDetectorRequest generates a "aws/request.Request" representing the
+// client's request for the CreateLogAnomalyDetector operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateLogAnomalyDetector for more information on using the CreateLogAnomalyDetector
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateLogAnomalyDetectorRequest method.
+//	req, resp := client.CreateLogAnomalyDetectorRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/CreateLogAnomalyDetector
+func (c *CloudWatchLogs) CreateLogAnomalyDetectorRequest(input *CreateLogAnomalyDetectorInput) (req *request.Request, output *CreateLogAnomalyDetectorOutput) {
+	op := &request.Operation{
+		Name:       opCreateLogAnomalyDetector,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateLogAnomalyDetectorInput{}
+	}
+
+	output = &CreateLogAnomalyDetectorOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateLogAnomalyDetector API operation for Amazon CloudWatch Logs.
+//
+// Creates an anomaly detector that regularly scans one or more log groups and
+// look for patterns and anomalies in the logs.
+//
+// An anomaly detector can help surface issues by automatically discovering
+// anomalies in your log event traffic. An anomaly detector uses machine learning
+// algorithms to scan log events and find patterns. A pattern is a shared text
+// structure that recurs among your log fields. Patterns provide a useful tool
+// for analyzing large sets of logs because a large number of log events can
+// often be compressed into a few patterns.
+//
+// The anomaly detector uses pattern recognition to find anomalies, which are
+// unusual log events. It uses the evaluationFrequency to compare current log
+// events and patterns with trained baselines.
+//
+// Fields within a pattern are called tokens. Fields that vary within a pattern,
+// such as a request ID or timestamp, are referred to as dynamic tokens and
+// represented by <*>.
+//
+// The following is an example of a pattern:
+//
+// [INFO] Request time: <*> ms
+//
+// This pattern represents log events like [INFO] Request time: 327 ms and other
+// similar log events that differ only by the number, in this csse 327. When
+// the pattern is displayed, the different numbers are replaced by <*>
+//
+// Any parts of log events that are masked as sensitive data are not scanned
+// for anomalies. For more information about masking sensitive data, see Help
+// protect sensitive log data with masking (https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/mask-sensitive-log-data.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudWatch Logs's
+// API operation CreateLogAnomalyDetector for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParameterException
+//     A parameter is specified incorrectly.
+//
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
+//
+//   - ServiceUnavailableException
+//     The service cannot complete the request.
+//
+//   - OperationAbortedException
+//     Multiple concurrent requests to update the same resource were in conflict.
+//
+//   - LimitExceededException
+//     You have reached the maximum number of resources that can be created.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/CreateLogAnomalyDetector
+func (c *CloudWatchLogs) CreateLogAnomalyDetector(input *CreateLogAnomalyDetectorInput) (*CreateLogAnomalyDetectorOutput, error) {
+	req, out := c.CreateLogAnomalyDetectorRequest(input)
+	return out, req.Send()
+}
+
+// CreateLogAnomalyDetectorWithContext is the same as CreateLogAnomalyDetector with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateLogAnomalyDetector for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudWatchLogs) CreateLogAnomalyDetectorWithContext(ctx aws.Context, input *CreateLogAnomalyDetectorInput, opts ...request.Option) (*CreateLogAnomalyDetectorOutput, error) {
+	req, out := c.CreateLogAnomalyDetectorRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1368,6 +1486,95 @@ func (c *CloudWatchLogs) DeleteDestination(input *DeleteDestinationInput) (*Dele
 // for more information on using Contexts.
 func (c *CloudWatchLogs) DeleteDestinationWithContext(ctx aws.Context, input *DeleteDestinationInput, opts ...request.Option) (*DeleteDestinationOutput, error) {
 	req, out := c.DeleteDestinationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteLogAnomalyDetector = "DeleteLogAnomalyDetector"
+
+// DeleteLogAnomalyDetectorRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteLogAnomalyDetector operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteLogAnomalyDetector for more information on using the DeleteLogAnomalyDetector
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteLogAnomalyDetectorRequest method.
+//	req, resp := client.DeleteLogAnomalyDetectorRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/DeleteLogAnomalyDetector
+func (c *CloudWatchLogs) DeleteLogAnomalyDetectorRequest(input *DeleteLogAnomalyDetectorInput) (req *request.Request, output *DeleteLogAnomalyDetectorOutput) {
+	op := &request.Operation{
+		Name:       opDeleteLogAnomalyDetector,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteLogAnomalyDetectorInput{}
+	}
+
+	output = &DeleteLogAnomalyDetectorOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteLogAnomalyDetector API operation for Amazon CloudWatch Logs.
+//
+// Deletes the specified CloudWatch Logs anomaly detector.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudWatch Logs's
+// API operation DeleteLogAnomalyDetector for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParameterException
+//     A parameter is specified incorrectly.
+//
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
+//
+//   - ServiceUnavailableException
+//     The service cannot complete the request.
+//
+//   - OperationAbortedException
+//     Multiple concurrent requests to update the same resource were in conflict.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/DeleteLogAnomalyDetector
+func (c *CloudWatchLogs) DeleteLogAnomalyDetector(input *DeleteLogAnomalyDetectorInput) (*DeleteLogAnomalyDetectorOutput, error) {
+	req, out := c.DeleteLogAnomalyDetectorRequest(input)
+	return out, req.Send()
+}
+
+// DeleteLogAnomalyDetectorWithContext is the same as DeleteLogAnomalyDetector with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteLogAnomalyDetector for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudWatchLogs) DeleteLogAnomalyDetectorWithContext(ctx aws.Context, input *DeleteLogAnomalyDetectorInput, opts ...request.Option) (*DeleteLogAnomalyDetectorOutput, error) {
+	req, out := c.DeleteLogAnomalyDetectorRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4336,6 +4543,94 @@ func (c *CloudWatchLogs) GetDeliverySourceWithContext(ctx aws.Context, input *Ge
 	return out, req.Send()
 }
 
+const opGetLogAnomalyDetector = "GetLogAnomalyDetector"
+
+// GetLogAnomalyDetectorRequest generates a "aws/request.Request" representing the
+// client's request for the GetLogAnomalyDetector operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetLogAnomalyDetector for more information on using the GetLogAnomalyDetector
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetLogAnomalyDetectorRequest method.
+//	req, resp := client.GetLogAnomalyDetectorRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/GetLogAnomalyDetector
+func (c *CloudWatchLogs) GetLogAnomalyDetectorRequest(input *GetLogAnomalyDetectorInput) (req *request.Request, output *GetLogAnomalyDetectorOutput) {
+	op := &request.Operation{
+		Name:       opGetLogAnomalyDetector,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetLogAnomalyDetectorInput{}
+	}
+
+	output = &GetLogAnomalyDetectorOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetLogAnomalyDetector API operation for Amazon CloudWatch Logs.
+//
+// Retrieves information about the log anomaly detector that you specify.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudWatch Logs's
+// API operation GetLogAnomalyDetector for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParameterException
+//     A parameter is specified incorrectly.
+//
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
+//
+//   - ServiceUnavailableException
+//     The service cannot complete the request.
+//
+//   - OperationAbortedException
+//     Multiple concurrent requests to update the same resource were in conflict.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/GetLogAnomalyDetector
+func (c *CloudWatchLogs) GetLogAnomalyDetector(input *GetLogAnomalyDetectorInput) (*GetLogAnomalyDetectorOutput, error) {
+	req, out := c.GetLogAnomalyDetectorRequest(input)
+	return out, req.Send()
+}
+
+// GetLogAnomalyDetectorWithContext is the same as GetLogAnomalyDetector with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetLogAnomalyDetector for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudWatchLogs) GetLogAnomalyDetectorWithContext(ctx aws.Context, input *GetLogAnomalyDetectorInput, opts ...request.Option) (*GetLogAnomalyDetectorOutput, error) {
+	req, out := c.GetLogAnomalyDetectorRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetLogEvents = "GetLogEvents"
 
 // GetLogEventsRequest generates a "aws/request.Request" representing the
@@ -4794,6 +5089,300 @@ func (c *CloudWatchLogs) GetQueryResultsWithContext(ctx aws.Context, input *GetQ
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opListAnomalies = "ListAnomalies"
+
+// ListAnomaliesRequest generates a "aws/request.Request" representing the
+// client's request for the ListAnomalies operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAnomalies for more information on using the ListAnomalies
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListAnomaliesRequest method.
+//	req, resp := client.ListAnomaliesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/ListAnomalies
+func (c *CloudWatchLogs) ListAnomaliesRequest(input *ListAnomaliesInput) (req *request.Request, output *ListAnomaliesOutput) {
+	op := &request.Operation{
+		Name:       opListAnomalies,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "limit",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListAnomaliesInput{}
+	}
+
+	output = &ListAnomaliesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListAnomalies API operation for Amazon CloudWatch Logs.
+//
+// Returns a list of anomalies that log anomaly detectors have found. For details
+// about the structure format of each anomaly object that is returned, see the
+// example in this section.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudWatch Logs's
+// API operation ListAnomalies for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParameterException
+//     A parameter is specified incorrectly.
+//
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
+//
+//   - ServiceUnavailableException
+//     The service cannot complete the request.
+//
+//   - OperationAbortedException
+//     Multiple concurrent requests to update the same resource were in conflict.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/ListAnomalies
+func (c *CloudWatchLogs) ListAnomalies(input *ListAnomaliesInput) (*ListAnomaliesOutput, error) {
+	req, out := c.ListAnomaliesRequest(input)
+	return out, req.Send()
+}
+
+// ListAnomaliesWithContext is the same as ListAnomalies with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAnomalies for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudWatchLogs) ListAnomaliesWithContext(ctx aws.Context, input *ListAnomaliesInput, opts ...request.Option) (*ListAnomaliesOutput, error) {
+	req, out := c.ListAnomaliesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListAnomaliesPages iterates over the pages of a ListAnomalies operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListAnomalies method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListAnomalies operation.
+//	pageNum := 0
+//	err := client.ListAnomaliesPages(params,
+//	    func(page *cloudwatchlogs.ListAnomaliesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *CloudWatchLogs) ListAnomaliesPages(input *ListAnomaliesInput, fn func(*ListAnomaliesOutput, bool) bool) error {
+	return c.ListAnomaliesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListAnomaliesPagesWithContext same as ListAnomaliesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudWatchLogs) ListAnomaliesPagesWithContext(ctx aws.Context, input *ListAnomaliesInput, fn func(*ListAnomaliesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		EndPageOnSameToken: true,
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListAnomaliesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListAnomaliesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListAnomaliesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListLogAnomalyDetectors = "ListLogAnomalyDetectors"
+
+// ListLogAnomalyDetectorsRequest generates a "aws/request.Request" representing the
+// client's request for the ListLogAnomalyDetectors operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListLogAnomalyDetectors for more information on using the ListLogAnomalyDetectors
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListLogAnomalyDetectorsRequest method.
+//	req, resp := client.ListLogAnomalyDetectorsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/ListLogAnomalyDetectors
+func (c *CloudWatchLogs) ListLogAnomalyDetectorsRequest(input *ListLogAnomalyDetectorsInput) (req *request.Request, output *ListLogAnomalyDetectorsOutput) {
+	op := &request.Operation{
+		Name:       opListLogAnomalyDetectors,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "limit",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListLogAnomalyDetectorsInput{}
+	}
+
+	output = &ListLogAnomalyDetectorsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListLogAnomalyDetectors API operation for Amazon CloudWatch Logs.
+//
+// Retrieves a list of the log anomaly detectors in the account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudWatch Logs's
+// API operation ListLogAnomalyDetectors for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParameterException
+//     A parameter is specified incorrectly.
+//
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
+//
+//   - ServiceUnavailableException
+//     The service cannot complete the request.
+//
+//   - OperationAbortedException
+//     Multiple concurrent requests to update the same resource were in conflict.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/ListLogAnomalyDetectors
+func (c *CloudWatchLogs) ListLogAnomalyDetectors(input *ListLogAnomalyDetectorsInput) (*ListLogAnomalyDetectorsOutput, error) {
+	req, out := c.ListLogAnomalyDetectorsRequest(input)
+	return out, req.Send()
+}
+
+// ListLogAnomalyDetectorsWithContext is the same as ListLogAnomalyDetectors with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListLogAnomalyDetectors for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudWatchLogs) ListLogAnomalyDetectorsWithContext(ctx aws.Context, input *ListLogAnomalyDetectorsInput, opts ...request.Option) (*ListLogAnomalyDetectorsOutput, error) {
+	req, out := c.ListLogAnomalyDetectorsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListLogAnomalyDetectorsPages iterates over the pages of a ListLogAnomalyDetectors operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListLogAnomalyDetectors method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListLogAnomalyDetectors operation.
+//	pageNum := 0
+//	err := client.ListLogAnomalyDetectorsPages(params,
+//	    func(page *cloudwatchlogs.ListLogAnomalyDetectorsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *CloudWatchLogs) ListLogAnomalyDetectorsPages(input *ListLogAnomalyDetectorsInput, fn func(*ListLogAnomalyDetectorsOutput, bool) bool) error {
+	return c.ListLogAnomalyDetectorsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListLogAnomalyDetectorsPagesWithContext same as ListLogAnomalyDetectorsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudWatchLogs) ListLogAnomalyDetectorsPagesWithContext(ctx aws.Context, input *ListLogAnomalyDetectorsInput, fn func(*ListLogAnomalyDetectorsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		EndPageOnSameToken: true,
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListLogAnomalyDetectorsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListLogAnomalyDetectorsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListLogAnomalyDetectorsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListTagsForResource = "ListTagsForResource"
@@ -5292,8 +5881,7 @@ func (c *CloudWatchLogs) PutDeliveryDestinationRequest(input *PutDeliveryDestina
 //
 // Only some Amazon Web Services services support being configured as a delivery
 // source. These services are listed as Supported [V2 Permissions] in the table
-// at Enabling logging from Amazon Web Services services. (https://docs.aws.amazon.com/
-// AmazonCloudWatch/latest/logs/AWS-logs-and-resource-policy.html#AWS-vended-logs-permissions)
+// at Enabling logging from Amazon Web Services services. (https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AWS-logs-and-resource-policy.html)
 //
 // If you use this operation to update an existing delivery destination, all
 // the current delivery destination parameters are overwritten with the new
@@ -5413,8 +6001,7 @@ func (c *CloudWatchLogs) PutDeliveryDestinationPolicyRequest(input *PutDeliveryD
 //
 // Only some Amazon Web Services services support being configured as a delivery
 // source. These services are listed as Supported [V2 Permissions] in the table
-// at Enabling logging from Amazon Web Services services. (https://docs.aws.amazon.com/
-// AmazonCloudWatch/latest/logs/AWS-logs-and-resource-policy.html#AWS-vended-logs-permissions)
+// at Enabling logging from Amazon Web Services services. (https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AWS-logs-and-resource-policy.html)
 //
 // The contents of the policy must include two statements. One statement enables
 // general logs delivery, and the other allows delivery to the chosen destination.
@@ -5537,8 +6124,7 @@ func (c *CloudWatchLogs) PutDeliverySourceRequest(input *PutDeliverySourceInput)
 //
 // Only some Amazon Web Services services support being configured as a delivery
 // source. These services are listed as Supported [V2 Permissions] in the table
-// at Enabling logging from Amazon Web Services services. (https://docs.aws.amazon.com/
-// AmazonCloudWatch/latest/logs/AWS-logs-and-resource-policy.html#AWS-vended-logs-permissions)
+// at Enabling logging from Amazon Web Services services. (https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AWS-logs-and-resource-policy.html)
 //
 // If you use this operation to update an existing delivery source, all the
 // current delivery source parameters are overwritten with the new parameter
@@ -7141,6 +7727,196 @@ func (c *CloudWatchLogs) UntagResourceWithContext(ctx aws.Context, input *UntagR
 	return out, req.Send()
 }
 
+const opUpdateAnomaly = "UpdateAnomaly"
+
+// UpdateAnomalyRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateAnomaly operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateAnomaly for more information on using the UpdateAnomaly
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateAnomalyRequest method.
+//	req, resp := client.UpdateAnomalyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/UpdateAnomaly
+func (c *CloudWatchLogs) UpdateAnomalyRequest(input *UpdateAnomalyInput) (req *request.Request, output *UpdateAnomalyOutput) {
+	op := &request.Operation{
+		Name:       opUpdateAnomaly,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateAnomalyInput{}
+	}
+
+	output = &UpdateAnomalyOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateAnomaly API operation for Amazon CloudWatch Logs.
+//
+// Use this operation to suppress anomaly detection for a specified anomaly
+// or pattern. If you suppress an anomaly, CloudWatch Logs won’t report new
+// occurrences of that anomaly and won't update that anomaly with new data.
+// If you suppress a pattern, CloudWatch Logs won’t report any anomalies related
+// to that pattern.
+//
+// You must specify either anomalyId or patternId, but you can't specify both
+// parameters in the same operation.
+//
+// If you have previously used this operation to suppress detection of a pattern
+// or anomaly, you can use it again to cause CloudWatch Logs to end the suppression.
+// To do this, use this operation and specify the anomaly or pattern to stop
+// suppressing, and omit the suppressionType and suppressionPeriod parameters.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudWatch Logs's
+// API operation UpdateAnomaly for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParameterException
+//     A parameter is specified incorrectly.
+//
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
+//
+//   - ServiceUnavailableException
+//     The service cannot complete the request.
+//
+//   - OperationAbortedException
+//     Multiple concurrent requests to update the same resource were in conflict.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/UpdateAnomaly
+func (c *CloudWatchLogs) UpdateAnomaly(input *UpdateAnomalyInput) (*UpdateAnomalyOutput, error) {
+	req, out := c.UpdateAnomalyRequest(input)
+	return out, req.Send()
+}
+
+// UpdateAnomalyWithContext is the same as UpdateAnomaly with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateAnomaly for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudWatchLogs) UpdateAnomalyWithContext(ctx aws.Context, input *UpdateAnomalyInput, opts ...request.Option) (*UpdateAnomalyOutput, error) {
+	req, out := c.UpdateAnomalyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateLogAnomalyDetector = "UpdateLogAnomalyDetector"
+
+// UpdateLogAnomalyDetectorRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateLogAnomalyDetector operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateLogAnomalyDetector for more information on using the UpdateLogAnomalyDetector
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateLogAnomalyDetectorRequest method.
+//	req, resp := client.UpdateLogAnomalyDetectorRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/UpdateLogAnomalyDetector
+func (c *CloudWatchLogs) UpdateLogAnomalyDetectorRequest(input *UpdateLogAnomalyDetectorInput) (req *request.Request, output *UpdateLogAnomalyDetectorOutput) {
+	op := &request.Operation{
+		Name:       opUpdateLogAnomalyDetector,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateLogAnomalyDetectorInput{}
+	}
+
+	output = &UpdateLogAnomalyDetectorOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateLogAnomalyDetector API operation for Amazon CloudWatch Logs.
+//
+// Updates an existing log anomaly detector.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudWatch Logs's
+// API operation UpdateLogAnomalyDetector for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidParameterException
+//     A parameter is specified incorrectly.
+//
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
+//
+//   - ServiceUnavailableException
+//     The service cannot complete the request.
+//
+//   - OperationAbortedException
+//     Multiple concurrent requests to update the same resource were in conflict.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/UpdateLogAnomalyDetector
+func (c *CloudWatchLogs) UpdateLogAnomalyDetector(input *UpdateLogAnomalyDetectorInput) (*UpdateLogAnomalyDetectorOutput, error) {
+	req, out := c.UpdateLogAnomalyDetectorRequest(input)
+	return out, req.Send()
+}
+
+// UpdateLogAnomalyDetectorWithContext is the same as UpdateLogAnomalyDetector with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateLogAnomalyDetector for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudWatchLogs) UpdateLogAnomalyDetectorWithContext(ctx aws.Context, input *UpdateLogAnomalyDetectorInput, opts ...request.Option) (*UpdateLogAnomalyDetectorOutput, error) {
+	req, out := c.UpdateLogAnomalyDetectorRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 // You don't have sufficient permissions to perform this action.
 type AccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
@@ -7281,6 +8057,373 @@ func (s *AccountPolicy) SetPolicyType(v string) *AccountPolicy {
 // SetScope sets the Scope field's value.
 func (s *AccountPolicy) SetScope(v string) *AccountPolicy {
 	s.Scope = &v
+	return s
+}
+
+// This structure represents one anomaly that has been found by a logs anomaly
+// detector.
+//
+// For more information about patterns and anomalies, see CreateLogAnomalyDetector
+// (https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_CreateLogAnomalyDetector.html).
+type Anomaly struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether this anomaly is still ongoing.
+	//
+	// Active is a required field
+	Active *bool `locationName:"active" type:"boolean" required:"true"`
+
+	// The ARN of the anomaly detector that identified this anomaly.
+	//
+	// AnomalyDetectorArn is a required field
+	AnomalyDetectorArn *string `locationName:"anomalyDetectorArn" min:"1" type:"string" required:"true"`
+
+	// The unique ID that CloudWatch Logs assigned to this anomaly.
+	//
+	// AnomalyId is a required field
+	AnomalyId *string `locationName:"anomalyId" min:"36" type:"string" required:"true"`
+
+	// A human-readable description of the anomaly. This description is generated
+	// by CloudWatch Logs.
+	//
+	// Description is a required field
+	Description *string `locationName:"description" min:"1" type:"string" required:"true"`
+
+	// The date and time when the anomaly detector first saw this anomaly. It is
+	// specified as epoch time, which is the number of seconds since January 1,
+	// 1970, 00:00:00 UTC.
+	//
+	// FirstSeen is a required field
+	FirstSeen *int64 `locationName:"firstSeen" type:"long" required:"true"`
+
+	// A map showing times when the anomaly detector ran, and the number of occurrences
+	// of this anomaly that were detected at each of those runs. The times are specified
+	// in epoch time, which is the number of seconds since January 1, 1970, 00:00:00
+	// UTC.
+	//
+	// Histogram is a required field
+	Histogram map[string]*int64 `locationName:"histogram" type:"map" required:"true"`
+
+	// If this anomaly is suppressed, this field is true if the suppression is because
+	// the pattern is suppressed. If false, then only this particular anomaly is
+	// suppressed.
+	IsPatternLevelSuppression *bool `locationName:"isPatternLevelSuppression" type:"boolean"`
+
+	// The date and time when the anomaly detector most recently saw this anomaly.
+	// It is specified as epoch time, which is the number of seconds since January
+	// 1, 1970, 00:00:00 UTC.
+	//
+	// LastSeen is a required field
+	LastSeen *int64 `locationName:"lastSeen" type:"long" required:"true"`
+
+	// An array of ARNS of the log groups that contained log events considered to
+	// be part of this anomaly.
+	//
+	// LogGroupArnList is a required field
+	LogGroupArnList []*string `locationName:"logGroupArnList" type:"list" required:"true"`
+
+	// An array of sample log event messages that are considered to be part of this
+	// anomaly.
+	//
+	// LogSamples is a required field
+	LogSamples []*string `locationName:"logSamples" type:"list" required:"true"`
+
+	// The ID of the pattern used to help identify this anomaly.
+	//
+	// PatternId is a required field
+	PatternId *string `locationName:"patternId" min:"32" type:"string" required:"true"`
+
+	// The pattern used to help identify this anomaly, in regular expression format.
+	PatternRegex *string `locationName:"patternRegex" min:"1" type:"string"`
+
+	// The pattern used to help identify this anomaly, in string format.
+	//
+	// PatternString is a required field
+	PatternString *string `locationName:"patternString" min:"1" type:"string" required:"true"`
+
+	// An array of structures where each structure contains information about one
+	// token that makes up the pattern.
+	//
+	// PatternTokens is a required field
+	PatternTokens []*PatternToken `locationName:"patternTokens" type:"list" required:"true"`
+
+	// The priority level of this anomaly, as determined by CloudWatch Logs. Priority
+	// is computed based on log severity labels such as FATAL and ERROR and the
+	// amount of deviation from the baseline. Possible values are HIGH, MEDIUM,
+	// and LOW.
+	Priority *string `locationName:"priority" min:"1" type:"string"`
+
+	// Indicates the current state of this anomaly. If it is still being treated
+	// as an anomaly, the value is Active. If you have suppressed this anomaly by
+	// using the UpdateAnomaly (https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_UpdateAnomaly.html)
+	// operation, the value is Suppressed. If this behavior is now considered to
+	// be normal, the value is Baseline.
+	//
+	// State is a required field
+	State *string `locationName:"state" type:"string" required:"true" enum:"State"`
+
+	// Indicates whether this anomaly is currently suppressed. To suppress an anomaly,
+	// use UpdateAnomaly (https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_UpdateAnomaly.html).
+	Suppressed *bool `locationName:"suppressed" type:"boolean"`
+
+	// If the anomaly is suppressed, this indicates when it was suppressed.
+	SuppressedDate *int64 `locationName:"suppressedDate" type:"long"`
+
+	// If the anomaly is suppressed, this indicates when the suppression will end.
+	// If this value is 0, the anomaly was suppressed with no expiration, with the
+	// INFINITE value.
+	SuppressedUntil *int64 `locationName:"suppressedUntil" type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Anomaly) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Anomaly) GoString() string {
+	return s.String()
+}
+
+// SetActive sets the Active field's value.
+func (s *Anomaly) SetActive(v bool) *Anomaly {
+	s.Active = &v
+	return s
+}
+
+// SetAnomalyDetectorArn sets the AnomalyDetectorArn field's value.
+func (s *Anomaly) SetAnomalyDetectorArn(v string) *Anomaly {
+	s.AnomalyDetectorArn = &v
+	return s
+}
+
+// SetAnomalyId sets the AnomalyId field's value.
+func (s *Anomaly) SetAnomalyId(v string) *Anomaly {
+	s.AnomalyId = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *Anomaly) SetDescription(v string) *Anomaly {
+	s.Description = &v
+	return s
+}
+
+// SetFirstSeen sets the FirstSeen field's value.
+func (s *Anomaly) SetFirstSeen(v int64) *Anomaly {
+	s.FirstSeen = &v
+	return s
+}
+
+// SetHistogram sets the Histogram field's value.
+func (s *Anomaly) SetHistogram(v map[string]*int64) *Anomaly {
+	s.Histogram = v
+	return s
+}
+
+// SetIsPatternLevelSuppression sets the IsPatternLevelSuppression field's value.
+func (s *Anomaly) SetIsPatternLevelSuppression(v bool) *Anomaly {
+	s.IsPatternLevelSuppression = &v
+	return s
+}
+
+// SetLastSeen sets the LastSeen field's value.
+func (s *Anomaly) SetLastSeen(v int64) *Anomaly {
+	s.LastSeen = &v
+	return s
+}
+
+// SetLogGroupArnList sets the LogGroupArnList field's value.
+func (s *Anomaly) SetLogGroupArnList(v []*string) *Anomaly {
+	s.LogGroupArnList = v
+	return s
+}
+
+// SetLogSamples sets the LogSamples field's value.
+func (s *Anomaly) SetLogSamples(v []*string) *Anomaly {
+	s.LogSamples = v
+	return s
+}
+
+// SetPatternId sets the PatternId field's value.
+func (s *Anomaly) SetPatternId(v string) *Anomaly {
+	s.PatternId = &v
+	return s
+}
+
+// SetPatternRegex sets the PatternRegex field's value.
+func (s *Anomaly) SetPatternRegex(v string) *Anomaly {
+	s.PatternRegex = &v
+	return s
+}
+
+// SetPatternString sets the PatternString field's value.
+func (s *Anomaly) SetPatternString(v string) *Anomaly {
+	s.PatternString = &v
+	return s
+}
+
+// SetPatternTokens sets the PatternTokens field's value.
+func (s *Anomaly) SetPatternTokens(v []*PatternToken) *Anomaly {
+	s.PatternTokens = v
+	return s
+}
+
+// SetPriority sets the Priority field's value.
+func (s *Anomaly) SetPriority(v string) *Anomaly {
+	s.Priority = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *Anomaly) SetState(v string) *Anomaly {
+	s.State = &v
+	return s
+}
+
+// SetSuppressed sets the Suppressed field's value.
+func (s *Anomaly) SetSuppressed(v bool) *Anomaly {
+	s.Suppressed = &v
+	return s
+}
+
+// SetSuppressedDate sets the SuppressedDate field's value.
+func (s *Anomaly) SetSuppressedDate(v int64) *Anomaly {
+	s.SuppressedDate = &v
+	return s
+}
+
+// SetSuppressedUntil sets the SuppressedUntil field's value.
+func (s *Anomaly) SetSuppressedUntil(v int64) *Anomaly {
+	s.SuppressedUntil = &v
+	return s
+}
+
+// Contains information about one anomaly detector in the account.
+type AnomalyDetector struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the anomaly detector.
+	AnomalyDetectorArn *string `locationName:"anomalyDetectorArn" min:"1" type:"string"`
+
+	// Specifies the current status of the anomaly detector. To pause an anomaly
+	// detector, use the enabled parameter in the UpdateLogAnomalyDetector (https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_UpdateLogAnomalyDetector.html)
+	// operation.
+	AnomalyDetectorStatus *string `locationName:"anomalyDetectorStatus" type:"string" enum:"AnomalyDetectorStatus"`
+
+	// The number of days used as the life cycle of anomalies. After this time,
+	// anomalies are automatically baselined and the anomaly detector model will
+	// treat new occurrences of similar event as normal.
+	AnomalyVisibilityTime *int64 `locationName:"anomalyVisibilityTime" min:"7" type:"long"`
+
+	// The date and time when this anomaly detector was created.
+	CreationTimeStamp *int64 `locationName:"creationTimeStamp" type:"long"`
+
+	// The name of the anomaly detector.
+	DetectorName *string `locationName:"detectorName" min:"1" type:"string"`
+
+	// Specifies how often the anomaly detector runs and look for anomalies.
+	EvaluationFrequency *string `locationName:"evaluationFrequency" type:"string" enum:"EvaluationFrequency"`
+
+	// A symbolic description of how CloudWatch Logs should interpret the data in
+	// each log event. For example, a log event can contain timestamps, IP addresses,
+	// strings, and so on. You use the filter pattern to specify what to look for
+	// in the log event message.
+	FilterPattern *string `locationName:"filterPattern" type:"string"`
+
+	// The ID of the KMS key assigned to this anomaly detector, if any.
+	KmsKeyId *string `locationName:"kmsKeyId" type:"string"`
+
+	// The date and time when this anomaly detector was most recently modified.
+	LastModifiedTimeStamp *int64 `locationName:"lastModifiedTimeStamp" type:"long"`
+
+	// A list of the ARNs of the log groups that this anomaly detector watches.
+	LogGroupArnList []*string `locationName:"logGroupArnList" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnomalyDetector) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnomalyDetector) GoString() string {
+	return s.String()
+}
+
+// SetAnomalyDetectorArn sets the AnomalyDetectorArn field's value.
+func (s *AnomalyDetector) SetAnomalyDetectorArn(v string) *AnomalyDetector {
+	s.AnomalyDetectorArn = &v
+	return s
+}
+
+// SetAnomalyDetectorStatus sets the AnomalyDetectorStatus field's value.
+func (s *AnomalyDetector) SetAnomalyDetectorStatus(v string) *AnomalyDetector {
+	s.AnomalyDetectorStatus = &v
+	return s
+}
+
+// SetAnomalyVisibilityTime sets the AnomalyVisibilityTime field's value.
+func (s *AnomalyDetector) SetAnomalyVisibilityTime(v int64) *AnomalyDetector {
+	s.AnomalyVisibilityTime = &v
+	return s
+}
+
+// SetCreationTimeStamp sets the CreationTimeStamp field's value.
+func (s *AnomalyDetector) SetCreationTimeStamp(v int64) *AnomalyDetector {
+	s.CreationTimeStamp = &v
+	return s
+}
+
+// SetDetectorName sets the DetectorName field's value.
+func (s *AnomalyDetector) SetDetectorName(v string) *AnomalyDetector {
+	s.DetectorName = &v
+	return s
+}
+
+// SetEvaluationFrequency sets the EvaluationFrequency field's value.
+func (s *AnomalyDetector) SetEvaluationFrequency(v string) *AnomalyDetector {
+	s.EvaluationFrequency = &v
+	return s
+}
+
+// SetFilterPattern sets the FilterPattern field's value.
+func (s *AnomalyDetector) SetFilterPattern(v string) *AnomalyDetector {
+	s.FilterPattern = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *AnomalyDetector) SetKmsKeyId(v string) *AnomalyDetector {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetLastModifiedTimeStamp sets the LastModifiedTimeStamp field's value.
+func (s *AnomalyDetector) SetLastModifiedTimeStamp(v int64) *AnomalyDetector {
+	s.LastModifiedTimeStamp = &v
+	return s
+}
+
+// SetLogGroupArnList sets the LogGroupArnList field's value.
+func (s *AnomalyDetector) SetLogGroupArnList(v []*string) *AnomalyDetector {
+	s.LogGroupArnList = v
 	return s
 }
 
@@ -7806,6 +8949,167 @@ func (s *CreateExportTaskOutput) SetTaskId(v string) *CreateExportTaskOutput {
 	return s
 }
 
+type CreateLogAnomalyDetectorInput struct {
+	_ struct{} `type:"structure"`
+
+	// The number of days to have visibility on an anomaly. After this time period
+	// has elapsed for an anomaly, it will be automatically baselined and the anomaly
+	// detector will treat new occurrences of a similar anomaly as normal. Therefore,
+	// if you do not correct the cause of an anomaly during the time period specified
+	// in anomalyVisibilityTime, it will be considered normal going forward and
+	// will not be detected as an anomaly.
+	AnomalyVisibilityTime *int64 `locationName:"anomalyVisibilityTime" min:"7" type:"long"`
+
+	// A name for this anomaly detector.
+	DetectorName *string `locationName:"detectorName" min:"1" type:"string"`
+
+	// Specifies how often the anomaly detector is to run and look for anomalies.
+	// Set this value according to the frequency that the log group receives new
+	// logs. For example, if the log group receives new log events every 10 minutes,
+	// then 15 minutes might be a good setting for evaluationFrequency .
+	EvaluationFrequency *string `locationName:"evaluationFrequency" type:"string" enum:"EvaluationFrequency"`
+
+	// You can use this parameter to limit the anomaly detection model to examine
+	// only log events that match the pattern you specify here. For more information,
+	// see Filter and Pattern Syntax (https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/FilterAndPatternSyntax.html).
+	FilterPattern *string `locationName:"filterPattern" type:"string"`
+
+	// Optionally assigns a KMS key to secure this anomaly detector and its findings.
+	// If a key is assigned, the anomalies found and the model used by this detector
+	// are encrypted at rest with the key. If a key is assigned to an anomaly detector,
+	// a user must have permissions for both this key and for the anomaly detector
+	// to retrieve information about the anomalies that it finds.
+	//
+	// For more information about using a KMS key and to see the required IAM policy,
+	// see Use a KMS key with an anomaly detector (https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/LogsAnomalyDetection-KMS.html).
+	KmsKeyId *string `locationName:"kmsKeyId" type:"string"`
+
+	// An array containing the ARNs of the log groups that this anomaly detector
+	// will watch. You must specify at least one ARN.
+	//
+	// LogGroupArnList is a required field
+	LogGroupArnList []*string `locationName:"logGroupArnList" type:"list" required:"true"`
+
+	// An optional list of key-value pairs to associate with the resource.
+	//
+	// For more information about tagging, see Tagging Amazon Web Services resources
+	// (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLogAnomalyDetectorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLogAnomalyDetectorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateLogAnomalyDetectorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateLogAnomalyDetectorInput"}
+	if s.AnomalyVisibilityTime != nil && *s.AnomalyVisibilityTime < 7 {
+		invalidParams.Add(request.NewErrParamMinValue("AnomalyVisibilityTime", 7))
+	}
+	if s.DetectorName != nil && len(*s.DetectorName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DetectorName", 1))
+	}
+	if s.LogGroupArnList == nil {
+		invalidParams.Add(request.NewErrParamRequired("LogGroupArnList"))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnomalyVisibilityTime sets the AnomalyVisibilityTime field's value.
+func (s *CreateLogAnomalyDetectorInput) SetAnomalyVisibilityTime(v int64) *CreateLogAnomalyDetectorInput {
+	s.AnomalyVisibilityTime = &v
+	return s
+}
+
+// SetDetectorName sets the DetectorName field's value.
+func (s *CreateLogAnomalyDetectorInput) SetDetectorName(v string) *CreateLogAnomalyDetectorInput {
+	s.DetectorName = &v
+	return s
+}
+
+// SetEvaluationFrequency sets the EvaluationFrequency field's value.
+func (s *CreateLogAnomalyDetectorInput) SetEvaluationFrequency(v string) *CreateLogAnomalyDetectorInput {
+	s.EvaluationFrequency = &v
+	return s
+}
+
+// SetFilterPattern sets the FilterPattern field's value.
+func (s *CreateLogAnomalyDetectorInput) SetFilterPattern(v string) *CreateLogAnomalyDetectorInput {
+	s.FilterPattern = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *CreateLogAnomalyDetectorInput) SetKmsKeyId(v string) *CreateLogAnomalyDetectorInput {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetLogGroupArnList sets the LogGroupArnList field's value.
+func (s *CreateLogAnomalyDetectorInput) SetLogGroupArnList(v []*string) *CreateLogAnomalyDetectorInput {
+	s.LogGroupArnList = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateLogAnomalyDetectorInput) SetTags(v map[string]*string) *CreateLogAnomalyDetectorInput {
+	s.Tags = v
+	return s
+}
+
+type CreateLogAnomalyDetectorOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the log anomaly detector that you just created.
+	AnomalyDetectorArn *string `locationName:"anomalyDetectorArn" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLogAnomalyDetectorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLogAnomalyDetectorOutput) GoString() string {
+	return s.String()
+}
+
+// SetAnomalyDetectorArn sets the AnomalyDetectorArn field's value.
+func (s *CreateLogAnomalyDetectorOutput) SetAnomalyDetectorArn(v string) *CreateLogAnomalyDetectorOutput {
+	s.AnomalyDetectorArn = &v
+	return s
+}
+
 type CreateLogGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7813,7 +9117,20 @@ type CreateLogGroupInput struct {
 	// data. For more information, see Amazon Resource Names (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kms).
 	KmsKeyId *string `locationName:"kmsKeyId" type:"string"`
 
-	// The name of the log group.
+	// Use this parameter to specify the log group class for this log group. There
+	// are two classes:
+	//
+	//    * The Standard log class supports all CloudWatch Logs features.
+	//
+	//    * The Infrequent Access log class supports a subset of CloudWatch Logs
+	//    features and incurs lower costs.
+	//
+	// If you omit this parameter, the default of STANDARD is used.
+	//
+	// For details about the features supported by each class, see Log classes (https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatch_Logs_Log_Classes.html)
+	LogGroupClass *string `locationName:"logGroupClass" type:"string" enum:"LogGroupClass"`
+
+	// A name for the log group.
 	//
 	// LogGroupName is a required field
 	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string" required:"true"`
@@ -7871,6 +9188,12 @@ func (s *CreateLogGroupInput) Validate() error {
 // SetKmsKeyId sets the KmsKeyId field's value.
 func (s *CreateLogGroupInput) SetKmsKeyId(v string) *CreateLogGroupInput {
 	s.KmsKeyId = &v
+	return s
+}
+
+// SetLogGroupClass sets the LogGroupClass field's value.
+func (s *CreateLogGroupInput) SetLogGroupClass(v string) *CreateLogGroupInput {
+	s.LogGroupClass = &v
 	return s
 }
 
@@ -8579,6 +9902,79 @@ func (s DeleteDestinationOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteLogAnomalyDetectorInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the anomaly detector to delete. You can find the ARNs of log anomaly
+	// detectors in your account by using the ListLogAnomalyDetectors (https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_ListLogAnomalyDetectors.html)
+	// operation.
+	//
+	// AnomalyDetectorArn is a required field
+	AnomalyDetectorArn *string `locationName:"anomalyDetectorArn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteLogAnomalyDetectorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteLogAnomalyDetectorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteLogAnomalyDetectorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteLogAnomalyDetectorInput"}
+	if s.AnomalyDetectorArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AnomalyDetectorArn"))
+	}
+	if s.AnomalyDetectorArn != nil && len(*s.AnomalyDetectorArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AnomalyDetectorArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnomalyDetectorArn sets the AnomalyDetectorArn field's value.
+func (s *DeleteLogAnomalyDetectorInput) SetAnomalyDetectorArn(v string) *DeleteLogAnomalyDetectorInput {
+	s.AnomalyDetectorArn = &v
+	return s
+}
+
+type DeleteLogAnomalyDetectorOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteLogAnomalyDetectorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteLogAnomalyDetectorOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteLogGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9205,8 +10601,8 @@ func (s *Delivery) SetTags(v map[string]*string) *Delivery {
 
 // This structure contains information about one delivery destination in your
 // account. A delivery destination is an Amazon Web Services resource that represents
-// an shared id="AWS"/> service that logs can be sent to. CloudWatch Logs, Amazon
-// S3, are supported as Kinesis Data Firehose delivery destinations.
+// an Amazon Web Services service that logs can be sent to. CloudWatch Logs,
+// Amazon S3, are supported as Kinesis Data Firehose delivery destinations.
 //
 // To configure logs delivery between a supported Amazon Web Services service
 // and a destination, you must do the following:
@@ -9364,8 +10760,7 @@ func (s *DeliveryDestinationConfiguration) SetDestinationResourceArn(v string) *
 //
 // Only some Amazon Web Services services support being configured as a delivery
 // source. These services are listed as Supported [V2 Permissions] in the table
-// at Enabling logging from Amazon Web Services services. (https://docs.aws.amazon.com/
-// AmazonCloudWatch/latest/logs/AWS-logs-and-resource-policy.html#AWS-vended-logs-permissions)
+// at Enabling logging from Amazon Web Services services. (https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AWS-logs-and-resource-policy.html)
 //
 // To configure logs delivery between a supported Amazon Web Services service
 // and a destination, you must do the following:
@@ -10126,6 +11521,16 @@ type DescribeLogGroupsInput struct {
 	// is up to 50 items.
 	Limit *int64 `locationName:"limit" min:"1" type:"integer"`
 
+	// Specifies the log group class for this log group. There are two classes:
+	//
+	//    * The Standard log class supports all CloudWatch Logs features.
+	//
+	//    * The Infrequent Access log class supports a subset of CloudWatch Logs
+	//    features and incurs lower costs.
+	//
+	// For details about the features supported by each class, see Log classes (https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatch_Logs_Log_Classes.html)
+	LogGroupClass *string `locationName:"logGroupClass" type:"string" enum:"LogGroupClass"`
+
 	// If you specify a string for this parameter, the operation returns only log
 	// groups that have names that match the string based on a case-sensitive substring
 	// search. For example, if you specify Foo, log groups named FooBar, aws/Foo,
@@ -10201,6 +11606,12 @@ func (s *DescribeLogGroupsInput) SetIncludeLinkedAccounts(v bool) *DescribeLogGr
 // SetLimit sets the Limit field's value.
 func (s *DescribeLogGroupsInput) SetLimit(v int64) *DescribeLogGroupsInput {
 	s.Limit = &v
+	return s
+}
+
+// SetLogGroupClass sets the LogGroupClass field's value.
+func (s *DescribeLogGroupsInput) SetLogGroupClass(v string) *DescribeLogGroupsInput {
+	s.LogGroupClass = &v
 	return s
 }
 
@@ -12139,6 +13550,172 @@ func (s *GetDeliverySourceOutput) SetDeliverySource(v *DeliverySource) *GetDeliv
 	return s
 }
 
+type GetLogAnomalyDetectorInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the anomaly detector to retrieve information about. You can find
+	// the ARNs of log anomaly detectors in your account by using the ListLogAnomalyDetectors
+	// (https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_ListLogAnomalyDetectors.html)
+	// operation.
+	//
+	// AnomalyDetectorArn is a required field
+	AnomalyDetectorArn *string `locationName:"anomalyDetectorArn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetLogAnomalyDetectorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetLogAnomalyDetectorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetLogAnomalyDetectorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetLogAnomalyDetectorInput"}
+	if s.AnomalyDetectorArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AnomalyDetectorArn"))
+	}
+	if s.AnomalyDetectorArn != nil && len(*s.AnomalyDetectorArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AnomalyDetectorArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnomalyDetectorArn sets the AnomalyDetectorArn field's value.
+func (s *GetLogAnomalyDetectorInput) SetAnomalyDetectorArn(v string) *GetLogAnomalyDetectorInput {
+	s.AnomalyDetectorArn = &v
+	return s
+}
+
+type GetLogAnomalyDetectorOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether the anomaly detector is currently active. To change its
+	// status, use the enabled parameter in the UpdateLogAnomalyDetector (https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_UpdateLogAnomalyDetector.html)
+	// operation.
+	AnomalyDetectorStatus *string `locationName:"anomalyDetectorStatus" type:"string" enum:"AnomalyDetectorStatus"`
+
+	// The number of days used as the life cycle of anomalies. After this time,
+	// anomalies are automatically baselined and the anomaly detector model will
+	// treat new occurrences of similar event as normal.
+	AnomalyVisibilityTime *int64 `locationName:"anomalyVisibilityTime" min:"7" type:"long"`
+
+	// The date and time when this anomaly detector was created.
+	CreationTimeStamp *int64 `locationName:"creationTimeStamp" type:"long"`
+
+	// The name of the log anomaly detector
+	DetectorName *string `locationName:"detectorName" min:"1" type:"string"`
+
+	// Specifies how often the anomaly detector runs and look for anomalies. Set
+	// this value according to the frequency that the log group receives new logs.
+	// For example, if the log group receives new log events every 10 minutes, then
+	// setting evaluationFrequency to FIFTEEN_MIN might be appropriate.
+	EvaluationFrequency *string `locationName:"evaluationFrequency" type:"string" enum:"EvaluationFrequency"`
+
+	// A symbolic description of how CloudWatch Logs should interpret the data in
+	// each log event. For example, a log event can contain timestamps, IP addresses,
+	// strings, and so on. You use the filter pattern to specify what to look for
+	// in the log event message.
+	FilterPattern *string `locationName:"filterPattern" type:"string"`
+
+	// The ID of the KMS key assigned to this anomaly detector, if any.
+	KmsKeyId *string `locationName:"kmsKeyId" type:"string"`
+
+	// The date and time when this anomaly detector was most recently modified.
+	LastModifiedTimeStamp *int64 `locationName:"lastModifiedTimeStamp" type:"long"`
+
+	// An array of structures, where each structure contains the ARN of a log group
+	// associated with this anomaly detector.
+	LogGroupArnList []*string `locationName:"logGroupArnList" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetLogAnomalyDetectorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetLogAnomalyDetectorOutput) GoString() string {
+	return s.String()
+}
+
+// SetAnomalyDetectorStatus sets the AnomalyDetectorStatus field's value.
+func (s *GetLogAnomalyDetectorOutput) SetAnomalyDetectorStatus(v string) *GetLogAnomalyDetectorOutput {
+	s.AnomalyDetectorStatus = &v
+	return s
+}
+
+// SetAnomalyVisibilityTime sets the AnomalyVisibilityTime field's value.
+func (s *GetLogAnomalyDetectorOutput) SetAnomalyVisibilityTime(v int64) *GetLogAnomalyDetectorOutput {
+	s.AnomalyVisibilityTime = &v
+	return s
+}
+
+// SetCreationTimeStamp sets the CreationTimeStamp field's value.
+func (s *GetLogAnomalyDetectorOutput) SetCreationTimeStamp(v int64) *GetLogAnomalyDetectorOutput {
+	s.CreationTimeStamp = &v
+	return s
+}
+
+// SetDetectorName sets the DetectorName field's value.
+func (s *GetLogAnomalyDetectorOutput) SetDetectorName(v string) *GetLogAnomalyDetectorOutput {
+	s.DetectorName = &v
+	return s
+}
+
+// SetEvaluationFrequency sets the EvaluationFrequency field's value.
+func (s *GetLogAnomalyDetectorOutput) SetEvaluationFrequency(v string) *GetLogAnomalyDetectorOutput {
+	s.EvaluationFrequency = &v
+	return s
+}
+
+// SetFilterPattern sets the FilterPattern field's value.
+func (s *GetLogAnomalyDetectorOutput) SetFilterPattern(v string) *GetLogAnomalyDetectorOutput {
+	s.FilterPattern = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *GetLogAnomalyDetectorOutput) SetKmsKeyId(v string) *GetLogAnomalyDetectorOutput {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetLastModifiedTimeStamp sets the LastModifiedTimeStamp field's value.
+func (s *GetLogAnomalyDetectorOutput) SetLastModifiedTimeStamp(v int64) *GetLogAnomalyDetectorOutput {
+	s.LastModifiedTimeStamp = &v
+	return s
+}
+
+// SetLogGroupArnList sets the LogGroupArnList field's value.
+func (s *GetLogAnomalyDetectorOutput) SetLogGroupArnList(v []*string) *GetLogAnomalyDetectorOutput {
+	s.LogGroupArnList = v
+	return s
+}
+
 type GetLogEventsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12998,6 +14575,242 @@ func (s *LimitExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type ListAnomaliesInput struct {
+	_ struct{} `type:"structure"`
+
+	// Use this to optionally limit the results to only the anomalies found by a
+	// certain anomaly detector.
+	AnomalyDetectorArn *string `locationName:"anomalyDetectorArn" min:"1" type:"string"`
+
+	// The maximum number of items to return. If you don't specify a value, the
+	// default maximum value of 50 items is used.
+	Limit *int64 `locationName:"limit" min:"1" type:"integer"`
+
+	// The token for the next set of items to return. The token expires after 24
+	// hours.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+
+	// You can specify this parameter if you want to the operation to return only
+	// anomalies that are currently either suppressed or unsuppressed.
+	SuppressionState *string `locationName:"suppressionState" type:"string" enum:"SuppressionState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAnomaliesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAnomaliesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAnomaliesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAnomaliesInput"}
+	if s.AnomalyDetectorArn != nil && len(*s.AnomalyDetectorArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AnomalyDetectorArn", 1))
+	}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnomalyDetectorArn sets the AnomalyDetectorArn field's value.
+func (s *ListAnomaliesInput) SetAnomalyDetectorArn(v string) *ListAnomaliesInput {
+	s.AnomalyDetectorArn = &v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *ListAnomaliesInput) SetLimit(v int64) *ListAnomaliesInput {
+	s.Limit = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAnomaliesInput) SetNextToken(v string) *ListAnomaliesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSuppressionState sets the SuppressionState field's value.
+func (s *ListAnomaliesInput) SetSuppressionState(v string) *ListAnomaliesInput {
+	s.SuppressionState = &v
+	return s
+}
+
+type ListAnomaliesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of structures, where each structure contains information about one
+	// anomaly that a log anomaly detector has found.
+	Anomalies []*Anomaly `locationName:"anomalies" type:"list"`
+
+	// The token for the next set of items to return. The token expires after 24
+	// hours.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAnomaliesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAnomaliesOutput) GoString() string {
+	return s.String()
+}
+
+// SetAnomalies sets the Anomalies field's value.
+func (s *ListAnomaliesOutput) SetAnomalies(v []*Anomaly) *ListAnomaliesOutput {
+	s.Anomalies = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAnomaliesOutput) SetNextToken(v string) *ListAnomaliesOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListLogAnomalyDetectorsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Use this to optionally filter the results to only include anomaly detectors
+	// that are associated with the specified log group.
+	FilterLogGroupArn *string `locationName:"filterLogGroupArn" min:"1" type:"string"`
+
+	// The maximum number of items to return. If you don't specify a value, the
+	// default maximum value of 50 items is used.
+	Limit *int64 `locationName:"limit" min:"1" type:"integer"`
+
+	// The token for the next set of items to return. The token expires after 24
+	// hours.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListLogAnomalyDetectorsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListLogAnomalyDetectorsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListLogAnomalyDetectorsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListLogAnomalyDetectorsInput"}
+	if s.FilterLogGroupArn != nil && len(*s.FilterLogGroupArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FilterLogGroupArn", 1))
+	}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilterLogGroupArn sets the FilterLogGroupArn field's value.
+func (s *ListLogAnomalyDetectorsInput) SetFilterLogGroupArn(v string) *ListLogAnomalyDetectorsInput {
+	s.FilterLogGroupArn = &v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *ListLogAnomalyDetectorsInput) SetLimit(v int64) *ListLogAnomalyDetectorsInput {
+	s.Limit = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListLogAnomalyDetectorsInput) SetNextToken(v string) *ListLogAnomalyDetectorsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListLogAnomalyDetectorsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of structures, where each structure in the array contains information
+	// about one anomaly detector.
+	AnomalyDetectors []*AnomalyDetector `locationName:"anomalyDetectors" type:"list"`
+
+	// The token for the next set of items to return. The token expires after 24
+	// hours.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListLogAnomalyDetectorsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListLogAnomalyDetectorsOutput) GoString() string {
+	return s.String()
+}
+
+// SetAnomalyDetectors sets the AnomalyDetectors field's value.
+func (s *ListLogAnomalyDetectorsOutput) SetAnomalyDetectors(v []*AnomalyDetector) *ListLogAnomalyDetectorsOutput {
+	s.AnomalyDetectors = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListLogAnomalyDetectorsOutput) SetNextToken(v string) *ListLogAnomalyDetectorsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -13190,6 +15003,16 @@ type LogGroup struct {
 	// data.
 	KmsKeyId *string `locationName:"kmsKeyId" type:"string"`
 
+	// This specifies the log group class for this log group. There are two classes:
+	//
+	//    * The Standard log class supports all CloudWatch Logs features.
+	//
+	//    * The Infrequent Access log class supports a subset of CloudWatch Logs
+	//    features and incurs lower costs.
+	//
+	// For details about the features supported by each class, see Log classes (https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatch_Logs_Log_Classes.html)
+	LogGroupClass *string `locationName:"logGroupClass" type:"string" enum:"LogGroupClass"`
+
 	// The name of the log group.
 	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string"`
 
@@ -13253,6 +15076,12 @@ func (s *LogGroup) SetInheritedProperties(v []*string) *LogGroup {
 // SetKmsKeyId sets the KmsKeyId field's value.
 func (s *LogGroup) SetKmsKeyId(v string) *LogGroup {
 	s.KmsKeyId = &v
+	return s
+}
+
+// SetLogGroupClass sets the LogGroupClass field's value.
+func (s *LogGroup) SetLogGroupClass(v string) *LogGroup {
+	s.LogGroupClass = &v
 	return s
 }
 
@@ -13866,6 +15695,73 @@ func (s *OutputLogEvent) SetMessage(v string) *OutputLogEvent {
 // SetTimestamp sets the Timestamp field's value.
 func (s *OutputLogEvent) SetTimestamp(v int64) *OutputLogEvent {
 	s.Timestamp = &v
+	return s
+}
+
+// A tructures that contains information about one pattern token related to
+// an anomaly.
+//
+// For more information about patterns and tokens, see CreateLogAnomalyDetector
+// (https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_CreateLogAnomalyDetector.html).
+type PatternToken struct {
+	_ struct{} `type:"structure"`
+
+	// For a dynamic token, this indicates where in the pattern that this token
+	// appears, related to other dynamic tokens. The dynamic token that appears
+	// first has a value of 1, the one that appears second is 2, and so on.
+	DynamicTokenPosition *int64 `locationName:"dynamicTokenPosition" type:"integer"`
+
+	// Contains the values found for a dynamic token, and the number of times each
+	// value was found.
+	Enumerations map[string]*int64 `locationName:"enumerations" type:"map"`
+
+	// Specifies whether this is a dynamic token.
+	IsDynamic *bool `locationName:"isDynamic" type:"boolean"`
+
+	// The string represented by this token. If this is a dynamic token, the value
+	// will be <*>
+	TokenString *string `locationName:"tokenString" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PatternToken) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PatternToken) GoString() string {
+	return s.String()
+}
+
+// SetDynamicTokenPosition sets the DynamicTokenPosition field's value.
+func (s *PatternToken) SetDynamicTokenPosition(v int64) *PatternToken {
+	s.DynamicTokenPosition = &v
+	return s
+}
+
+// SetEnumerations sets the Enumerations field's value.
+func (s *PatternToken) SetEnumerations(v map[string]*int64) *PatternToken {
+	s.Enumerations = v
+	return s
+}
+
+// SetIsDynamic sets the IsDynamic field's value.
+func (s *PatternToken) SetIsDynamic(v bool) *PatternToken {
+	s.IsDynamic = &v
+	return s
+}
+
+// SetTokenString sets the TokenString field's value.
+func (s *PatternToken) SetTokenString(v string) *PatternToken {
+	s.TokenString = &v
 	return s
 }
 
@@ -16625,6 +18521,49 @@ func (s *SubscriptionFilter) SetRoleArn(v string) *SubscriptionFilter {
 	return s
 }
 
+// If you are suppressing an anomaly temporariliy, this structure defines how
+// long the suppression period is to be.
+type SuppressionPeriod struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether the value of value is in seconds, minutes, or hours.
+	SuppressionUnit *string `locationName:"suppressionUnit" type:"string" enum:"SuppressionUnit"`
+
+	// Specifies the number of seconds, minutes or hours to suppress this anomaly.
+	// There is no maximum.
+	Value *int64 `locationName:"value" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SuppressionPeriod) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SuppressionPeriod) GoString() string {
+	return s.String()
+}
+
+// SetSuppressionUnit sets the SuppressionUnit field's value.
+func (s *SuppressionPeriod) SetSuppressionUnit(v string) *SuppressionPeriod {
+	s.SuppressionUnit = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *SuppressionPeriod) SetValue(v int64) *SuppressionPeriod {
+	s.Value = &v
+	return s
+}
+
 // Deprecated: Please use the generic tagging API model TagResourceRequest
 type TagLogGroupInput struct {
 	_ struct{} `deprecated:"true" type:"structure"`
@@ -17283,6 +19222,251 @@ func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateAnomalyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the anomaly detector that this operation is to act on.
+	//
+	// AnomalyDetectorArn is a required field
+	AnomalyDetectorArn *string `locationName:"anomalyDetectorArn" min:"1" type:"string" required:"true"`
+
+	// If you are suppressing or unsuppressing an anomaly, specify its unique ID
+	// here. You can find anomaly IDs by using the ListAnomalies (https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_ListAnomalies.html)
+	// operation.
+	AnomalyId *string `locationName:"anomalyId" min:"36" type:"string"`
+
+	// If you are suppressing or unsuppressing an pattern, specify its unique ID
+	// here. You can find pattern IDs by using the ListAnomalies (https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_ListAnomalies.html)
+	// operation.
+	PatternId *string `locationName:"patternId" min:"32" type:"string"`
+
+	// If you are temporarily suppressing an anomaly or pattern, use this structure
+	// to specify how long the suppression is to last.
+	SuppressionPeriod *SuppressionPeriod `locationName:"suppressionPeriod" type:"structure"`
+
+	// Use this to specify whether the suppression to be temporary or infinite.
+	// If you specify LIMITED, you must also specify a suppressionPeriod. If you
+	// specify INFINITE, any value for suppressionPeriod is ignored.
+	SuppressionType *string `locationName:"suppressionType" type:"string" enum:"SuppressionType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAnomalyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAnomalyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateAnomalyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateAnomalyInput"}
+	if s.AnomalyDetectorArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AnomalyDetectorArn"))
+	}
+	if s.AnomalyDetectorArn != nil && len(*s.AnomalyDetectorArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AnomalyDetectorArn", 1))
+	}
+	if s.AnomalyId != nil && len(*s.AnomalyId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("AnomalyId", 36))
+	}
+	if s.PatternId != nil && len(*s.PatternId) < 32 {
+		invalidParams.Add(request.NewErrParamMinLen("PatternId", 32))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnomalyDetectorArn sets the AnomalyDetectorArn field's value.
+func (s *UpdateAnomalyInput) SetAnomalyDetectorArn(v string) *UpdateAnomalyInput {
+	s.AnomalyDetectorArn = &v
+	return s
+}
+
+// SetAnomalyId sets the AnomalyId field's value.
+func (s *UpdateAnomalyInput) SetAnomalyId(v string) *UpdateAnomalyInput {
+	s.AnomalyId = &v
+	return s
+}
+
+// SetPatternId sets the PatternId field's value.
+func (s *UpdateAnomalyInput) SetPatternId(v string) *UpdateAnomalyInput {
+	s.PatternId = &v
+	return s
+}
+
+// SetSuppressionPeriod sets the SuppressionPeriod field's value.
+func (s *UpdateAnomalyInput) SetSuppressionPeriod(v *SuppressionPeriod) *UpdateAnomalyInput {
+	s.SuppressionPeriod = v
+	return s
+}
+
+// SetSuppressionType sets the SuppressionType field's value.
+func (s *UpdateAnomalyInput) SetSuppressionType(v string) *UpdateAnomalyInput {
+	s.SuppressionType = &v
+	return s
+}
+
+type UpdateAnomalyOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAnomalyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAnomalyOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateLogAnomalyDetectorInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the anomaly detector that you want to update.
+	//
+	// AnomalyDetectorArn is a required field
+	AnomalyDetectorArn *string `locationName:"anomalyDetectorArn" min:"1" type:"string" required:"true"`
+
+	// The number of days to use as the life cycle of anomalies. After this time,
+	// anomalies are automatically baselined and the anomaly detector model will
+	// treat new occurrences of similar event as normal. Therefore, if you do not
+	// correct the cause of an anomaly during this time, it will be considered normal
+	// going forward and will not be detected.
+	AnomalyVisibilityTime *int64 `locationName:"anomalyVisibilityTime" min:"7" type:"long"`
+
+	// Use this parameter to pause or restart the anomaly detector.
+	//
+	// Enabled is a required field
+	Enabled *bool `locationName:"enabled" type:"boolean" required:"true"`
+
+	// Specifies how often the anomaly detector runs and look for anomalies. Set
+	// this value according to the frequency that the log group receives new logs.
+	// For example, if the log group receives new log events every 10 minutes, then
+	// setting evaluationFrequency to FIFTEEN_MIN might be appropriate.
+	EvaluationFrequency *string `locationName:"evaluationFrequency" type:"string" enum:"EvaluationFrequency"`
+
+	// A symbolic description of how CloudWatch Logs should interpret the data in
+	// each log event. For example, a log event can contain timestamps, IP addresses,
+	// strings, and so on. You use the filter pattern to specify what to look for
+	// in the log event message.
+	FilterPattern *string `locationName:"filterPattern" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateLogAnomalyDetectorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateLogAnomalyDetectorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateLogAnomalyDetectorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateLogAnomalyDetectorInput"}
+	if s.AnomalyDetectorArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AnomalyDetectorArn"))
+	}
+	if s.AnomalyDetectorArn != nil && len(*s.AnomalyDetectorArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AnomalyDetectorArn", 1))
+	}
+	if s.AnomalyVisibilityTime != nil && *s.AnomalyVisibilityTime < 7 {
+		invalidParams.Add(request.NewErrParamMinValue("AnomalyVisibilityTime", 7))
+	}
+	if s.Enabled == nil {
+		invalidParams.Add(request.NewErrParamRequired("Enabled"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnomalyDetectorArn sets the AnomalyDetectorArn field's value.
+func (s *UpdateLogAnomalyDetectorInput) SetAnomalyDetectorArn(v string) *UpdateLogAnomalyDetectorInput {
+	s.AnomalyDetectorArn = &v
+	return s
+}
+
+// SetAnomalyVisibilityTime sets the AnomalyVisibilityTime field's value.
+func (s *UpdateLogAnomalyDetectorInput) SetAnomalyVisibilityTime(v int64) *UpdateLogAnomalyDetectorInput {
+	s.AnomalyVisibilityTime = &v
+	return s
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *UpdateLogAnomalyDetectorInput) SetEnabled(v bool) *UpdateLogAnomalyDetectorInput {
+	s.Enabled = &v
+	return s
+}
+
+// SetEvaluationFrequency sets the EvaluationFrequency field's value.
+func (s *UpdateLogAnomalyDetectorInput) SetEvaluationFrequency(v string) *UpdateLogAnomalyDetectorInput {
+	s.EvaluationFrequency = &v
+	return s
+}
+
+// SetFilterPattern sets the FilterPattern field's value.
+func (s *UpdateLogAnomalyDetectorInput) SetFilterPattern(v string) *UpdateLogAnomalyDetectorInput {
+	s.FilterPattern = &v
+	return s
+}
+
+type UpdateLogAnomalyDetectorOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateLogAnomalyDetectorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateLogAnomalyDetectorOutput) GoString() string {
+	return s.String()
+}
+
 // One of the parameters for the request is not valid.
 type ValidationException struct {
 	_            struct{}                  `type:"structure"`
@@ -17348,6 +19532,38 @@ func (s *ValidationException) RequestID() string {
 }
 
 const (
+	// AnomalyDetectorStatusInitializing is a AnomalyDetectorStatus enum value
+	AnomalyDetectorStatusInitializing = "INITIALIZING"
+
+	// AnomalyDetectorStatusTraining is a AnomalyDetectorStatus enum value
+	AnomalyDetectorStatusTraining = "TRAINING"
+
+	// AnomalyDetectorStatusAnalyzing is a AnomalyDetectorStatus enum value
+	AnomalyDetectorStatusAnalyzing = "ANALYZING"
+
+	// AnomalyDetectorStatusFailed is a AnomalyDetectorStatus enum value
+	AnomalyDetectorStatusFailed = "FAILED"
+
+	// AnomalyDetectorStatusDeleted is a AnomalyDetectorStatus enum value
+	AnomalyDetectorStatusDeleted = "DELETED"
+
+	// AnomalyDetectorStatusPaused is a AnomalyDetectorStatus enum value
+	AnomalyDetectorStatusPaused = "PAUSED"
+)
+
+// AnomalyDetectorStatus_Values returns all elements of the AnomalyDetectorStatus enum
+func AnomalyDetectorStatus_Values() []string {
+	return []string{
+		AnomalyDetectorStatusInitializing,
+		AnomalyDetectorStatusTraining,
+		AnomalyDetectorStatusAnalyzing,
+		AnomalyDetectorStatusFailed,
+		AnomalyDetectorStatusDeleted,
+		AnomalyDetectorStatusPaused,
+	}
+}
+
+const (
 	// DataProtectionStatusActivated is a DataProtectionStatus enum value
 	DataProtectionStatusActivated = "ACTIVATED"
 
@@ -17410,6 +19626,38 @@ func Distribution_Values() []string {
 }
 
 const (
+	// EvaluationFrequencyOneMin is a EvaluationFrequency enum value
+	EvaluationFrequencyOneMin = "ONE_MIN"
+
+	// EvaluationFrequencyFiveMin is a EvaluationFrequency enum value
+	EvaluationFrequencyFiveMin = "FIVE_MIN"
+
+	// EvaluationFrequencyTenMin is a EvaluationFrequency enum value
+	EvaluationFrequencyTenMin = "TEN_MIN"
+
+	// EvaluationFrequencyFifteenMin is a EvaluationFrequency enum value
+	EvaluationFrequencyFifteenMin = "FIFTEEN_MIN"
+
+	// EvaluationFrequencyThirtyMin is a EvaluationFrequency enum value
+	EvaluationFrequencyThirtyMin = "THIRTY_MIN"
+
+	// EvaluationFrequencyOneHour is a EvaluationFrequency enum value
+	EvaluationFrequencyOneHour = "ONE_HOUR"
+)
+
+// EvaluationFrequency_Values returns all elements of the EvaluationFrequency enum
+func EvaluationFrequency_Values() []string {
+	return []string{
+		EvaluationFrequencyOneMin,
+		EvaluationFrequencyFiveMin,
+		EvaluationFrequencyTenMin,
+		EvaluationFrequencyFifteenMin,
+		EvaluationFrequencyThirtyMin,
+		EvaluationFrequencyOneHour,
+	}
+}
+
+const (
 	// ExportTaskStatusCodeCancelled is a ExportTaskStatusCode enum value
 	ExportTaskStatusCodeCancelled = "CANCELLED"
 
@@ -17450,6 +19698,22 @@ const (
 func InheritedProperty_Values() []string {
 	return []string{
 		InheritedPropertyAccountDataProtection,
+	}
+}
+
+const (
+	// LogGroupClassStandard is a LogGroupClass enum value
+	LogGroupClassStandard = "STANDARD"
+
+	// LogGroupClassInfrequentAccess is a LogGroupClass enum value
+	LogGroupClassInfrequentAccess = "INFREQUENT_ACCESS"
+)
+
+// LogGroupClass_Values returns all elements of the LogGroupClass enum
+func LogGroupClass_Values() []string {
+	return []string{
+		LogGroupClassStandard,
+		LogGroupClassInfrequentAccess,
 	}
 }
 
@@ -17670,5 +19934,77 @@ func StandardUnit_Values() []string {
 		StandardUnitTerabitsSecond,
 		StandardUnitCountSecond,
 		StandardUnitNone,
+	}
+}
+
+const (
+	// StateActive is a State enum value
+	StateActive = "Active"
+
+	// StateSuppressed is a State enum value
+	StateSuppressed = "Suppressed"
+
+	// StateBaseline is a State enum value
+	StateBaseline = "Baseline"
+)
+
+// State_Values returns all elements of the State enum
+func State_Values() []string {
+	return []string{
+		StateActive,
+		StateSuppressed,
+		StateBaseline,
+	}
+}
+
+const (
+	// SuppressionStateSuppressed is a SuppressionState enum value
+	SuppressionStateSuppressed = "SUPPRESSED"
+
+	// SuppressionStateUnsuppressed is a SuppressionState enum value
+	SuppressionStateUnsuppressed = "UNSUPPRESSED"
+)
+
+// SuppressionState_Values returns all elements of the SuppressionState enum
+func SuppressionState_Values() []string {
+	return []string{
+		SuppressionStateSuppressed,
+		SuppressionStateUnsuppressed,
+	}
+}
+
+const (
+	// SuppressionTypeLimited is a SuppressionType enum value
+	SuppressionTypeLimited = "LIMITED"
+
+	// SuppressionTypeInfinite is a SuppressionType enum value
+	SuppressionTypeInfinite = "INFINITE"
+)
+
+// SuppressionType_Values returns all elements of the SuppressionType enum
+func SuppressionType_Values() []string {
+	return []string{
+		SuppressionTypeLimited,
+		SuppressionTypeInfinite,
+	}
+}
+
+const (
+	// SuppressionUnitSeconds is a SuppressionUnit enum value
+	SuppressionUnitSeconds = "SECONDS"
+
+	// SuppressionUnitMinutes is a SuppressionUnit enum value
+	SuppressionUnitMinutes = "MINUTES"
+
+	// SuppressionUnitHours is a SuppressionUnit enum value
+	SuppressionUnitHours = "HOURS"
+)
+
+// SuppressionUnit_Values returns all elements of the SuppressionUnit enum
+func SuppressionUnit_Values() []string {
+	return []string{
+		SuppressionUnitSeconds,
+		SuppressionUnitMinutes,
+		SuppressionUnitHours,
 	}
 }

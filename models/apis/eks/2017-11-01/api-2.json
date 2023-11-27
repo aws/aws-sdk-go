@@ -133,6 +133,23 @@
         {"shape":"ServiceUnavailableException"}
       ]
     },
+    "CreatePodIdentityAssociation":{
+      "name":"CreatePodIdentityAssociation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/clusters/{name}/pod-identity-associations"
+      },
+      "input":{"shape":"CreatePodIdentityAssociationRequest"},
+      "output":{"shape":"CreatePodIdentityAssociationResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceLimitExceededException"},
+        {"shape":"ResourceInUseException"}
+      ]
+    },
     "DeleteAddon":{
       "name":"DeleteAddon",
       "http":{
@@ -210,6 +227,21 @@
         {"shape":"ClientException"},
         {"shape":"ServerException"},
         {"shape":"ServiceUnavailableException"}
+      ]
+    },
+    "DeletePodIdentityAssociation":{
+      "name":"DeletePodIdentityAssociation",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/clusters/{name}/pod-identity-associations/{associationId}"
+      },
+      "input":{"shape":"DeletePodIdentityAssociationRequest"},
+      "output":{"shape":"DeletePodIdentityAssociationResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"}
       ]
     },
     "DeregisterCluster":{
@@ -350,6 +382,21 @@
         {"shape":"ServiceUnavailableException"}
       ]
     },
+    "DescribePodIdentityAssociation":{
+      "name":"DescribePodIdentityAssociation",
+      "http":{
+        "method":"GET",
+        "requestUri":"/clusters/{name}/pod-identity-associations/{associationId}"
+      },
+      "input":{"shape":"DescribePodIdentityAssociationRequest"},
+      "output":{"shape":"DescribePodIdentityAssociationResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"}
+      ]
+    },
     "DescribeUpdate":{
       "name":"DescribeUpdate",
       "http":{
@@ -473,6 +520,21 @@
         {"shape":"ServerException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "ListPodIdentityAssociations":{
+      "name":"ListPodIdentityAssociations",
+      "http":{
+        "method":"GET",
+        "requestUri":"/clusters/{name}/pod-identity-associations"
+      },
+      "input":{"shape":"ListPodIdentityAssociationsRequest"},
+      "output":{"shape":"ListPodIdentityAssociationsResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"}
       ]
     },
     "ListTagsForResource":{
@@ -647,6 +709,21 @@
         {"shape":"ResourceInUseException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidRequestException"}
+      ]
+    },
+    "UpdatePodIdentityAssociation":{
+      "name":"UpdatePodIdentityAssociation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/clusters/{name}/pod-identity-associations/{associationId}"
+      },
+      "input":{"shape":"UpdatePodIdentityAssociationRequest"},
+      "output":{"shape":"UpdatePodIdentityAssociationResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"}
       ]
     }
   },
@@ -1175,6 +1252,36 @@
         "nodegroup":{"shape":"Nodegroup"}
       }
     },
+    "CreatePodIdentityAssociationRequest":{
+      "type":"structure",
+      "required":[
+        "clusterName",
+        "namespace",
+        "serviceAccount",
+        "roleArn"
+      ],
+      "members":{
+        "clusterName":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"name"
+        },
+        "namespace":{"shape":"String"},
+        "serviceAccount":{"shape":"String"},
+        "roleArn":{"shape":"String"},
+        "clientRequestToken":{
+          "shape":"String",
+          "idempotencyToken":true
+        },
+        "tags":{"shape":"TagMap"}
+      }
+    },
+    "CreatePodIdentityAssociationResponse":{
+      "type":"structure",
+      "members":{
+        "association":{"shape":"PodIdentityAssociation"}
+      }
+    },
     "DeleteAddonRequest":{
       "type":"structure",
       "required":[
@@ -1287,6 +1394,31 @@
       "type":"structure",
       "members":{
         "nodegroup":{"shape":"Nodegroup"}
+      }
+    },
+    "DeletePodIdentityAssociationRequest":{
+      "type":"structure",
+      "required":[
+        "clusterName",
+        "associationId"
+      ],
+      "members":{
+        "clusterName":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"name"
+        },
+        "associationId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"associationId"
+        }
+      }
+    },
+    "DeletePodIdentityAssociationResponse":{
+      "type":"structure",
+      "members":{
+        "association":{"shape":"PodIdentityAssociation"}
       }
     },
     "DeregisterClusterRequest":{
@@ -1514,6 +1646,31 @@
       "type":"structure",
       "members":{
         "nodegroup":{"shape":"Nodegroup"}
+      }
+    },
+    "DescribePodIdentityAssociationRequest":{
+      "type":"structure",
+      "required":[
+        "clusterName",
+        "associationId"
+      ],
+      "members":{
+        "clusterName":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"name"
+        },
+        "associationId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"associationId"
+        }
+      }
+    },
+    "DescribePodIdentityAssociationResponse":{
+      "type":"structure",
+      "members":{
+        "association":{"shape":"PodIdentityAssociation"}
       }
     },
     "DescribeUpdateRequest":{
@@ -2020,6 +2177,50 @@
         "nextToken":{"shape":"String"}
       }
     },
+    "ListPodIdentityAssociationsMaxResults":{
+      "type":"integer",
+      "box":true,
+      "max":100,
+      "min":1
+    },
+    "ListPodIdentityAssociationsRequest":{
+      "type":"structure",
+      "required":["clusterName"],
+      "members":{
+        "clusterName":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"name"
+        },
+        "namespace":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"namespace"
+        },
+        "serviceAccount":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"serviceAccount"
+        },
+        "maxResults":{
+          "shape":"ListPodIdentityAssociationsMaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListPodIdentityAssociationsResponse":{
+      "type":"structure",
+      "members":{
+        "associations":{"shape":"PodIdentityAssociationSummaries"},
+        "nextToken":{"shape":"String"}
+      }
+    },
     "ListTagsForResourceRequest":{
       "type":"structure",
       "required":["resourceArn"],
@@ -2308,6 +2509,34 @@
       "box":true,
       "max":100,
       "min":1
+    },
+    "PodIdentityAssociation":{
+      "type":"structure",
+      "members":{
+        "clusterName":{"shape":"String"},
+        "namespace":{"shape":"String"},
+        "serviceAccount":{"shape":"String"},
+        "roleArn":{"shape":"String"},
+        "associationArn":{"shape":"String"},
+        "associationId":{"shape":"String"},
+        "tags":{"shape":"TagMap"},
+        "createdAt":{"shape":"Timestamp"},
+        "modifiedAt":{"shape":"Timestamp"}
+      }
+    },
+    "PodIdentityAssociationSummaries":{
+      "type":"list",
+      "member":{"shape":"PodIdentityAssociationSummary"}
+    },
+    "PodIdentityAssociationSummary":{
+      "type":"structure",
+      "members":{
+        "clusterName":{"shape":"String"},
+        "namespace":{"shape":"String"},
+        "serviceAccount":{"shape":"String"},
+        "associationArn":{"shape":"String"},
+        "associationId":{"shape":"String"}
+      }
     },
     "Provider":{
       "type":"structure",
@@ -2752,6 +2981,36 @@
     "UpdateParams":{
       "type":"list",
       "member":{"shape":"UpdateParam"}
+    },
+    "UpdatePodIdentityAssociationRequest":{
+      "type":"structure",
+      "required":[
+        "clusterName",
+        "associationId"
+      ],
+      "members":{
+        "clusterName":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"name"
+        },
+        "associationId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"associationId"
+        },
+        "roleArn":{"shape":"String"},
+        "clientRequestToken":{
+          "shape":"String",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "UpdatePodIdentityAssociationResponse":{
+      "type":"structure",
+      "members":{
+        "association":{"shape":"PodIdentityAssociation"}
+      }
     },
     "UpdateStatus":{
       "type":"string",

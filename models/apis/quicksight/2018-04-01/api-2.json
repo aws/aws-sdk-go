@@ -661,6 +661,22 @@
         {"shape":"InternalFailureException"}
       ]
     },
+    "DeleteIdentityPropagationConfig":{
+      "name":"DeleteIdentityPropagationConfig",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/accounts/{AwsAccountId}/identity-propagation-config/{Service}"
+      },
+      "input":{"shape":"DeleteIdentityPropagationConfigRequest"},
+      "output":{"shape":"DeleteIdentityPropagationConfigResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
     "DeleteNamespace":{
       "name":"DeleteNamespace",
       "http":{
@@ -1907,6 +1923,22 @@
         {"shape":"InternalFailureException"}
       ]
     },
+    "ListIdentityPropagationConfigs":{
+      "name":"ListIdentityPropagationConfigs",
+      "http":{
+        "method":"GET",
+        "requestUri":"/accounts/{AwsAccountId}/identity-propagation-config"
+      },
+      "input":{"shape":"ListIdentityPropagationConfigsRequest"},
+      "output":{"shape":"ListIdentityPropagationConfigsResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
     "ListIngestions":{
       "name":"ListIngestions",
       "http":{
@@ -2705,6 +2737,22 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"ConcurrentUpdatingException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
+    "UpdateIdentityPropagationConfig":{
+      "name":"UpdateIdentityPropagationConfig",
+      "http":{
+        "method":"POST",
+        "requestUri":"/accounts/{AwsAccountId}/identity-propagation-config/{Service}"
+      },
+      "input":{"shape":"UpdateIdentityPropagationConfigRequest"},
+      "output":{"shape":"UpdateIdentityPropagationConfigResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
         {"shape":"InternalFailureException"}
       ]
     },
@@ -4188,6 +4236,21 @@
     "AuthorSpecifiedAggregations":{
       "type":"list",
       "member":{"shape":"AuthorSpecifiedAggregation"}
+    },
+    "AuthorizedTargetsByService":{
+      "type":"structure",
+      "members":{
+        "Service":{"shape":"ServiceType"},
+        "AuthorizedTargets":{"shape":"AuthorizedTargetsList"}
+      }
+    },
+    "AuthorizedTargetsByServices":{
+      "type":"list",
+      "member":{"shape":"AuthorizedTargetsByService"}
+    },
+    "AuthorizedTargetsList":{
+      "type":"list",
+      "member":{"shape":"String"}
     },
     "AwsAccountId":{
       "type":"string",
@@ -7920,6 +7983,35 @@
       "type":"structure",
       "members":{
         "AssignmentName":{"shape":"IAMPolicyAssignmentName"},
+        "RequestId":{"shape":"String"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        }
+      }
+    },
+    "DeleteIdentityPropagationConfigRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "Service"
+      ],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "Service":{
+          "shape":"ServiceType",
+          "location":"uri",
+          "locationName":"Service"
+        }
+      }
+    },
+    "DeleteIdentityPropagationConfigResponse":{
+      "type":"structure",
+      "members":{
         "RequestId":{"shape":"String"},
         "Status":{
           "shape":"StatusCode",
@@ -11727,6 +11819,15 @@
         "X"
       ]
     },
+    "IdentityCenterConfiguration":{
+      "type":"structure",
+      "members":{
+        "EnableIdentityPropagation":{
+          "shape":"Boolean",
+          "box":true
+        }
+      }
+    },
     "IdentityMap":{
       "type":"map",
       "key":{"shape":"String"},
@@ -13009,6 +13110,45 @@
           "location":"statusCode"
         }
       }
+    },
+    "ListIdentityPropagationConfigsRequest":{
+      "type":"structure",
+      "required":["AwsAccountId"],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "MaxResults":{
+          "shape":"ListIdentityPropagationMaxResults",
+          "box":true,
+          "location":"querystring",
+          "locationName":"max-results"
+        },
+        "NextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"next-token"
+        }
+      }
+    },
+    "ListIdentityPropagationConfigsResponse":{
+      "type":"structure",
+      "members":{
+        "Services":{"shape":"AuthorizedTargetsByServices"},
+        "NextToken":{"shape":"String"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        },
+        "RequestId":{"shape":"String"}
+      }
+    },
+    "ListIdentityPropagationMaxResults":{
+      "type":"integer",
+      "max":10,
+      "min":1
     },
     "ListIngestionsRequest":{
       "type":"structure",
@@ -15321,7 +15461,8 @@
         "Port":{"shape":"OptionalPort"},
         "Database":{"shape":"Database"},
         "ClusterId":{"shape":"ClusterId"},
-        "IAMParameters":{"shape":"RedshiftIAMParameters"}
+        "IAMParameters":{"shape":"RedshiftIAMParameters"},
+        "IdentityCenterConfiguration":{"shape":"IdentityCenterConfiguration"}
       }
     },
     "ReferenceLine":{
@@ -16491,6 +16632,10 @@
       "members":{
         "SiteBaseUrl":{"shape":"SiteBaseUrl"}
       }
+    },
+    "ServiceType":{
+      "type":"string",
+      "enum":["REDSHIFT"]
     },
     "SessionLifetimeInMinutes":{
       "type":"long",
@@ -19430,6 +19575,36 @@
         "PolicyArn":{"shape":"Arn"},
         "Identities":{"shape":"IdentityMap"},
         "AssignmentStatus":{"shape":"AssignmentStatus"},
+        "RequestId":{"shape":"String"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        }
+      }
+    },
+    "UpdateIdentityPropagationConfigRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "Service"
+      ],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "Service":{
+          "shape":"ServiceType",
+          "location":"uri",
+          "locationName":"Service"
+        },
+        "AuthorizedTargets":{"shape":"AuthorizedTargetsList"}
+      }
+    },
+    "UpdateIdentityPropagationConfigResponse":{
+      "type":"structure",
+      "members":{
         "RequestId":{"shape":"String"},
         "Status":{
           "shape":"StatusCode",

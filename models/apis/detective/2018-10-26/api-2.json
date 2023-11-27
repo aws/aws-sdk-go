@@ -175,6 +175,22 @@
         {"shape":"TooManyRequestsException"}
       ]
     },
+    "GetInvestigation":{
+      "name":"GetInvestigation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/investigations/getInvestigation"
+      },
+      "input":{"shape":"GetInvestigationRequest"},
+      "output":{"shape":"GetInvestigationResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
     "GetMembers":{
       "name":"GetMembers",
       "http":{
@@ -217,6 +233,38 @@
         {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"},
         {"shape":"ValidationException"}
+      ]
+    },
+    "ListIndicators":{
+      "name":"ListIndicators",
+      "http":{
+        "method":"POST",
+        "requestUri":"/investigations/listIndicators"
+      },
+      "input":{"shape":"ListIndicatorsRequest"},
+      "output":{"shape":"ListIndicatorsResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
+    "ListInvestigations":{
+      "name":"ListInvestigations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/investigations/listInvestigations"
+      },
+      "input":{"shape":"ListInvestigationsRequest"},
+      "output":{"shape":"ListInvestigationsResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "ListInvitations":{
@@ -294,6 +342,22 @@
         {"shape":"ValidationException"}
       ]
     },
+    "StartInvestigation":{
+      "name":"StartInvestigation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/investigations/startInvestigation"
+      },
+      "input":{"shape":"StartInvestigationRequest"},
+      "output":{"shape":"StartInvestigationResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "StartMonitoringMember":{
       "name":"StartMonitoringMember",
       "http":{
@@ -357,6 +421,21 @@
         {"shape":"ValidationException"}
       ]
     },
+    "UpdateInvestigationState":{
+      "name":"UpdateInvestigationState",
+      "http":{
+        "method":"POST",
+        "requestUri":"/investigations/updateInvestigationState"
+      },
+      "input":{"shape":"UpdateInvestigationStateRequest"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
     "UpdateOrganizationConfiguration":{
       "name":"UpdateOrganizationConfiguration",
       "http":{
@@ -373,6 +452,9 @@
     }
   },
   "shapes":{
+    "APIFailureCount":{"type":"long"},
+    "APIName":{"type":"string"},
+    "APISuccessCount":{"type":"long"},
     "AcceptInvitationRequest":{
       "type":"structure",
       "required":["GraphArn"],
@@ -439,6 +521,12 @@
       "type":"list",
       "member":{"shape":"Administrator"}
     },
+    "AiPaginationToken":{
+      "type":"string",
+      "max":2048,
+      "min":1
+    },
+    "Aso":{"type":"string"},
     "BatchGetGraphMemberDatasourcesRequest":{
       "type":"structure",
       "required":[
@@ -564,6 +652,17 @@
         "VolumeUsageUpdateTime":{"shape":"Timestamp"}
       }
     },
+    "DateFilter":{
+      "type":"structure",
+      "required":[
+        "StartInclusive",
+        "EndInclusive"
+      ],
+      "members":{
+        "StartInclusive":{"shape":"Timestamp"},
+        "EndInclusive":{"shape":"Timestamp"}
+      }
+    },
     "DeleteGraphRequest":{
       "type":"structure",
       "required":["GraphArn"],
@@ -629,6 +728,17 @@
         "AccountId":{"shape":"AccountId"}
       }
     },
+    "EntityArn":{
+      "type":"string",
+      "pattern":"^arn:.*"
+    },
+    "EntityType":{
+      "type":"string",
+      "enum":[
+        "IAM_ROLE",
+        "IAM_USER"
+      ]
+    },
     "ErrorCode":{
       "type":"string",
       "enum":[
@@ -639,6 +749,57 @@
     },
     "ErrorCodeReason":{"type":"string"},
     "ErrorMessage":{"type":"string"},
+    "Field":{
+      "type":"string",
+      "enum":[
+        "SEVERITY",
+        "STATUS",
+        "CREATED_TIME"
+      ]
+    },
+    "FilterCriteria":{
+      "type":"structure",
+      "members":{
+        "Severity":{"shape":"StringFilter"},
+        "Status":{"shape":"StringFilter"},
+        "State":{"shape":"StringFilter"},
+        "EntityArn":{"shape":"StringFilter"},
+        "CreatedTime":{"shape":"DateFilter"}
+      }
+    },
+    "FlaggedIpAddressDetail":{
+      "type":"structure",
+      "members":{
+        "IpAddress":{"shape":"IpAddress"},
+        "Reason":{"shape":"Reason"}
+      }
+    },
+    "GetInvestigationRequest":{
+      "type":"structure",
+      "required":[
+        "GraphArn",
+        "InvestigationId"
+      ],
+      "members":{
+        "GraphArn":{"shape":"GraphArn"},
+        "InvestigationId":{"shape":"InvestigationId"}
+      }
+    },
+    "GetInvestigationResponse":{
+      "type":"structure",
+      "members":{
+        "GraphArn":{"shape":"GraphArn"},
+        "InvestigationId":{"shape":"InvestigationId"},
+        "EntityArn":{"shape":"EntityArn"},
+        "EntityType":{"shape":"EntityType"},
+        "CreatedTime":{"shape":"Timestamp"},
+        "ScopeStartTime":{"shape":"Timestamp"},
+        "ScopeEndTime":{"shape":"Timestamp"},
+        "Status":{"shape":"Status"},
+        "Severity":{"shape":"Severity"},
+        "State":{"shape":"State"}
+      }
+    },
     "GetMembersRequest":{
       "type":"structure",
       "required":[
@@ -678,6 +839,58 @@
       "type":"list",
       "member":{"shape":"Graph"}
     },
+    "HourlyTimeDelta":{
+      "type":"integer",
+      "box":true
+    },
+    "Id":{"type":"string"},
+    "ImpossibleTravelDetail":{
+      "type":"structure",
+      "members":{
+        "StartingIpAddress":{"shape":"IpAddress"},
+        "EndingIpAddress":{"shape":"IpAddress"},
+        "StartingLocation":{"shape":"Location"},
+        "EndingLocation":{"shape":"Location"},
+        "HourlyTimeDelta":{"shape":"HourlyTimeDelta"}
+      }
+    },
+    "Indicator":{
+      "type":"structure",
+      "members":{
+        "IndicatorType":{"shape":"IndicatorType"},
+        "IndicatorDetail":{"shape":"IndicatorDetail"}
+      }
+    },
+    "IndicatorDetail":{
+      "type":"structure",
+      "members":{
+        "TTPsObservedDetail":{"shape":"TTPsObservedDetail"},
+        "ImpossibleTravelDetail":{"shape":"ImpossibleTravelDetail"},
+        "FlaggedIpAddressDetail":{"shape":"FlaggedIpAddressDetail"},
+        "NewGeolocationDetail":{"shape":"NewGeolocationDetail"},
+        "NewAsoDetail":{"shape":"NewAsoDetail"},
+        "NewUserAgentDetail":{"shape":"NewUserAgentDetail"},
+        "RelatedFindingDetail":{"shape":"RelatedFindingDetail"},
+        "RelatedFindingGroupDetail":{"shape":"RelatedFindingGroupDetail"}
+      }
+    },
+    "IndicatorType":{
+      "type":"string",
+      "enum":[
+        "TTP_OBSERVED",
+        "IMPOSSIBLE_TRAVEL",
+        "FLAGGED_IP_ADDRESS",
+        "NEW_GEOLOCATION",
+        "NEW_ASO",
+        "NEW_USER_AGENT",
+        "RELATED_FINDING",
+        "RELATED_FINDING_GROUP"
+      ]
+    },
+    "Indicators":{
+      "type":"list",
+      "member":{"shape":"Indicator"}
+    },
     "InternalServerException":{
       "type":"structure",
       "members":{
@@ -686,6 +899,28 @@
       "error":{"httpStatusCode":500},
       "exception":true
     },
+    "InvestigationDetail":{
+      "type":"structure",
+      "members":{
+        "InvestigationId":{"shape":"InvestigationId"},
+        "Severity":{"shape":"Severity"},
+        "Status":{"shape":"Status"},
+        "State":{"shape":"State"},
+        "CreatedTime":{"shape":"Timestamp"},
+        "EntityArn":{"shape":"EntityArn"},
+        "EntityType":{"shape":"EntityType"}
+      }
+    },
+    "InvestigationDetails":{
+      "type":"list",
+      "member":{"shape":"InvestigationDetail"}
+    },
+    "InvestigationId":{
+      "type":"string",
+      "max":21,
+      "min":21,
+      "pattern":"^[0-9]+$"
+    },
     "InvitationType":{
       "type":"string",
       "enum":[
@@ -693,6 +928,8 @@
         "ORGANIZATION"
       ]
     },
+    "IpAddress":{"type":"string"},
+    "IsNewForEntireAccount":{"type":"boolean"},
     "LastIngestStateChangeDates":{
       "type":"map",
       "key":{"shape":"DatasourcePackageIngestState"},
@@ -726,6 +963,47 @@
       "members":{
         "GraphList":{"shape":"GraphList"},
         "NextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListIndicatorsRequest":{
+      "type":"structure",
+      "required":[
+        "GraphArn",
+        "InvestigationId"
+      ],
+      "members":{
+        "GraphArn":{"shape":"GraphArn"},
+        "InvestigationId":{"shape":"InvestigationId"},
+        "IndicatorType":{"shape":"IndicatorType"},
+        "NextToken":{"shape":"AiPaginationToken"},
+        "MaxResults":{"shape":"MaxResults"}
+      }
+    },
+    "ListIndicatorsResponse":{
+      "type":"structure",
+      "members":{
+        "GraphArn":{"shape":"GraphArn"},
+        "InvestigationId":{"shape":"InvestigationId"},
+        "NextToken":{"shape":"AiPaginationToken"},
+        "Indicators":{"shape":"Indicators"}
+      }
+    },
+    "ListInvestigationsRequest":{
+      "type":"structure",
+      "required":["GraphArn"],
+      "members":{
+        "GraphArn":{"shape":"GraphArn"},
+        "NextToken":{"shape":"AiPaginationToken"},
+        "MaxResults":{"shape":"MaxResults"},
+        "FilterCriteria":{"shape":"FilterCriteria"},
+        "SortCriteria":{"shape":"SortCriteria"}
+      }
+    },
+    "ListInvestigationsResponse":{
+      "type":"structure",
+      "members":{
+        "InvestigationDetails":{"shape":"InvestigationDetails"},
+        "NextToken":{"shape":"AiPaginationToken"}
       }
     },
     "ListInvitationsRequest":{
@@ -788,6 +1066,13 @@
       "members":{
         "Tags":{"shape":"TagMap"}
       }
+    },
+    "Location":{"type":"string"},
+    "MaxResults":{
+      "type":"integer",
+      "box":true,
+      "max":100,
+      "min":1
     },
     "MemberDetail":{
       "type":"structure",
@@ -869,17 +1154,58 @@
       "type":"list",
       "member":{"shape":"MembershipDatasources"}
     },
+    "NewAsoDetail":{
+      "type":"structure",
+      "members":{
+        "Aso":{"shape":"Aso"},
+        "IsNewForEntireAccount":{"shape":"IsNewForEntireAccount"}
+      }
+    },
+    "NewGeolocationDetail":{
+      "type":"structure",
+      "members":{
+        "Location":{"shape":"Location"},
+        "IpAddress":{"shape":"IpAddress"},
+        "IsNewForEntireAccount":{"shape":"IsNewForEntireAccount"}
+      }
+    },
+    "NewUserAgentDetail":{
+      "type":"structure",
+      "members":{
+        "UserAgent":{"shape":"UserAgent"},
+        "IsNewForEntireAccount":{"shape":"IsNewForEntireAccount"}
+      }
+    },
     "PaginationToken":{
       "type":"string",
       "max":1024,
       "min":1
     },
     "Percentage":{"type":"double"},
+    "Procedure":{"type":"string"},
+    "Reason":{
+      "type":"string",
+      "enum":["AWS_THREAT_INTELLIGENCE"]
+    },
     "RejectInvitationRequest":{
       "type":"structure",
       "required":["GraphArn"],
       "members":{
         "GraphArn":{"shape":"GraphArn"}
+      }
+    },
+    "RelatedFindingDetail":{
+      "type":"structure",
+      "members":{
+        "Arn":{"shape":"EntityArn"},
+        "Type":{"shape":"Type"},
+        "IpAddress":{"shape":"IpAddress"}
+      }
+    },
+    "RelatedFindingGroupDetail":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"Id"}
       }
     },
     "Resource":{
@@ -910,6 +1236,51 @@
       "error":{"httpStatusCode":402},
       "exception":true
     },
+    "Severity":{
+      "type":"string",
+      "enum":[
+        "INFORMATIONAL",
+        "LOW",
+        "MEDIUM",
+        "HIGH",
+        "CRITICAL"
+      ]
+    },
+    "SortCriteria":{
+      "type":"structure",
+      "members":{
+        "Field":{"shape":"Field"},
+        "SortOrder":{"shape":"SortOrder"}
+      }
+    },
+    "SortOrder":{
+      "type":"string",
+      "enum":[
+        "ASC",
+        "DESC"
+      ]
+    },
+    "StartInvestigationRequest":{
+      "type":"structure",
+      "required":[
+        "GraphArn",
+        "EntityArn",
+        "ScopeStartTime",
+        "ScopeEndTime"
+      ],
+      "members":{
+        "GraphArn":{"shape":"GraphArn"},
+        "EntityArn":{"shape":"EntityArn"},
+        "ScopeStartTime":{"shape":"Timestamp"},
+        "ScopeEndTime":{"shape":"Timestamp"}
+      }
+    },
+    "StartInvestigationResponse":{
+      "type":"structure",
+      "members":{
+        "InvestigationId":{"shape":"InvestigationId"}
+      }
+    },
     "StartMonitoringMemberRequest":{
       "type":"structure",
       "required":[
@@ -921,6 +1292,41 @@
         "AccountId":{"shape":"AccountId"}
       }
     },
+    "State":{
+      "type":"string",
+      "enum":[
+        "ACTIVE",
+        "ARCHIVED"
+      ]
+    },
+    "Status":{
+      "type":"string",
+      "enum":[
+        "RUNNING",
+        "FAILED",
+        "SUCCESSFUL"
+      ]
+    },
+    "StringFilter":{
+      "type":"structure",
+      "required":["Value"],
+      "members":{
+        "Value":{"shape":"Value"}
+      }
+    },
+    "TTPsObservedDetail":{
+      "type":"structure",
+      "members":{
+        "Tactic":{"shape":"Tactic"},
+        "Technique":{"shape":"Technique"},
+        "Procedure":{"shape":"Procedure"},
+        "IpAddress":{"shape":"IpAddress"},
+        "APIName":{"shape":"APIName"},
+        "APISuccessCount":{"shape":"APISuccessCount"},
+        "APIFailureCount":{"shape":"APIFailureCount"}
+      }
+    },
+    "Tactic":{"type":"string"},
     "TagKey":{
       "type":"string",
       "max":128,
@@ -964,6 +1370,7 @@
       "type":"string",
       "max":256
     },
+    "Technique":{"type":"string"},
     "Timestamp":{
       "type":"timestamp",
       "timestampFormat":"iso8601"
@@ -982,6 +1389,7 @@
       "error":{"httpStatusCode":429},
       "exception":true
     },
+    "Type":{"type":"string"},
     "UnprocessedAccount":{
       "type":"structure",
       "members":{
@@ -1040,6 +1448,19 @@
         "DatasourcePackages":{"shape":"DatasourcePackageList"}
       }
     },
+    "UpdateInvestigationStateRequest":{
+      "type":"structure",
+      "required":[
+        "GraphArn",
+        "InvestigationId",
+        "State"
+      ],
+      "members":{
+        "GraphArn":{"shape":"GraphArn"},
+        "InvestigationId":{"shape":"InvestigationId"},
+        "State":{"shape":"State"}
+      }
+    },
     "UpdateOrganizationConfigurationRequest":{
       "type":"structure",
       "required":["GraphArn"],
@@ -1048,6 +1469,7 @@
         "AutoEnable":{"shape":"Boolean"}
       }
     },
+    "UserAgent":{"type":"string"},
     "ValidationException":{
       "type":"structure",
       "members":{
@@ -1057,6 +1479,11 @@
       },
       "error":{"httpStatusCode":400},
       "exception":true
+    },
+    "Value":{
+      "type":"string",
+      "max":500,
+      "min":1
     },
     "VolumeUsageByDatasourcePackage":{
       "type":"map",

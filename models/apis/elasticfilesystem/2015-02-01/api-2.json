@@ -1167,7 +1167,8 @@
         "Value":{"shape":"FileSystemSizeValue"},
         "Timestamp":{"shape":"Timestamp"},
         "ValueInIA":{"shape":"FileSystemNullableSizeValue"},
-        "ValueInStandard":{"shape":"FileSystemNullableSizeValue"}
+        "ValueInStandard":{"shape":"FileSystemNullableSizeValue"},
+        "ValueInArchive":{"shape":"FileSystemNullableSizeValue"}
       }
     },
     "FileSystemSizeValue":{
@@ -1269,13 +1270,14 @@
     "LifecyclePolicies":{
       "type":"list",
       "member":{"shape":"LifecyclePolicy"},
-      "max":2
+      "max":3
     },
     "LifecyclePolicy":{
       "type":"structure",
       "members":{
         "TransitionToIA":{"shape":"TransitionToIARules"},
-        "TransitionToPrimaryStorageClass":{"shape":"TransitionToPrimaryStorageClassRules"}
+        "TransitionToPrimaryStorageClass":{"shape":"TransitionToPrimaryStorageClassRules"},
+        "TransitionToArchive":{"shape":"TransitionToArchiveRules"}
       }
     },
     "ListTagsForResourceRequest":{
@@ -1767,6 +1769,20 @@
       "error":{"httpStatusCode":429},
       "exception":true
     },
+    "TransitionToArchiveRules":{
+      "type":"string",
+      "enum":[
+        "AFTER_1_DAY",
+        "AFTER_7_DAYS",
+        "AFTER_14_DAYS",
+        "AFTER_30_DAYS",
+        "AFTER_60_DAYS",
+        "AFTER_90_DAYS",
+        "AFTER_180_DAYS",
+        "AFTER_270_DAYS",
+        "AFTER_365_DAYS"
+      ]
+    },
     "TransitionToIARules":{
       "type":"string",
       "enum":[
@@ -1775,7 +1791,10 @@
         "AFTER_30_DAYS",
         "AFTER_60_DAYS",
         "AFTER_90_DAYS",
-        "AFTER_1_DAY"
+        "AFTER_1_DAY",
+        "AFTER_180_DAYS",
+        "AFTER_270_DAYS",
+        "AFTER_365_DAYS"
       ]
     },
     "TransitionToPrimaryStorageClassRules":{

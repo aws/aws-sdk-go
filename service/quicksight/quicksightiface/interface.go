@@ -200,6 +200,10 @@ type QuickSightAPI interface {
 	DeleteIAMPolicyAssignmentWithContext(aws.Context, *quicksight.DeleteIAMPolicyAssignmentInput, ...request.Option) (*quicksight.DeleteIAMPolicyAssignmentOutput, error)
 	DeleteIAMPolicyAssignmentRequest(*quicksight.DeleteIAMPolicyAssignmentInput) (*request.Request, *quicksight.DeleteIAMPolicyAssignmentOutput)
 
+	DeleteIdentityPropagationConfig(*quicksight.DeleteIdentityPropagationConfigInput) (*quicksight.DeleteIdentityPropagationConfigOutput, error)
+	DeleteIdentityPropagationConfigWithContext(aws.Context, *quicksight.DeleteIdentityPropagationConfigInput, ...request.Option) (*quicksight.DeleteIdentityPropagationConfigOutput, error)
+	DeleteIdentityPropagationConfigRequest(*quicksight.DeleteIdentityPropagationConfigInput) (*request.Request, *quicksight.DeleteIdentityPropagationConfigOutput)
+
 	DeleteNamespace(*quicksight.DeleteNamespaceInput) (*quicksight.DeleteNamespaceOutput, error)
 	DeleteNamespaceWithContext(aws.Context, *quicksight.DeleteNamespaceInput, ...request.Option) (*quicksight.DeleteNamespaceOutput, error)
 	DeleteNamespaceRequest(*quicksight.DeleteNamespaceInput) (*request.Request, *quicksight.DeleteNamespaceOutput)
@@ -533,6 +537,10 @@ type QuickSightAPI interface {
 	ListIAMPolicyAssignmentsForUserPages(*quicksight.ListIAMPolicyAssignmentsForUserInput, func(*quicksight.ListIAMPolicyAssignmentsForUserOutput, bool) bool) error
 	ListIAMPolicyAssignmentsForUserPagesWithContext(aws.Context, *quicksight.ListIAMPolicyAssignmentsForUserInput, func(*quicksight.ListIAMPolicyAssignmentsForUserOutput, bool) bool, ...request.Option) error
 
+	ListIdentityPropagationConfigs(*quicksight.ListIdentityPropagationConfigsInput) (*quicksight.ListIdentityPropagationConfigsOutput, error)
+	ListIdentityPropagationConfigsWithContext(aws.Context, *quicksight.ListIdentityPropagationConfigsInput, ...request.Option) (*quicksight.ListIdentityPropagationConfigsOutput, error)
+	ListIdentityPropagationConfigsRequest(*quicksight.ListIdentityPropagationConfigsInput) (*request.Request, *quicksight.ListIdentityPropagationConfigsOutput)
+
 	ListIngestions(*quicksight.ListIngestionsInput) (*quicksight.ListIngestionsOutput, error)
 	ListIngestionsWithContext(aws.Context, *quicksight.ListIngestionsInput, ...request.Option) (*quicksight.ListIngestionsOutput, error)
 	ListIngestionsRequest(*quicksight.ListIngestionsInput) (*request.Request, *quicksight.ListIngestionsOutput)
@@ -766,6 +774,10 @@ type QuickSightAPI interface {
 	UpdateIAMPolicyAssignment(*quicksight.UpdateIAMPolicyAssignmentInput) (*quicksight.UpdateIAMPolicyAssignmentOutput, error)
 	UpdateIAMPolicyAssignmentWithContext(aws.Context, *quicksight.UpdateIAMPolicyAssignmentInput, ...request.Option) (*quicksight.UpdateIAMPolicyAssignmentOutput, error)
 	UpdateIAMPolicyAssignmentRequest(*quicksight.UpdateIAMPolicyAssignmentInput) (*request.Request, *quicksight.UpdateIAMPolicyAssignmentOutput)
+
+	UpdateIdentityPropagationConfig(*quicksight.UpdateIdentityPropagationConfigInput) (*quicksight.UpdateIdentityPropagationConfigOutput, error)
+	UpdateIdentityPropagationConfigWithContext(aws.Context, *quicksight.UpdateIdentityPropagationConfigInput, ...request.Option) (*quicksight.UpdateIdentityPropagationConfigOutput, error)
+	UpdateIdentityPropagationConfigRequest(*quicksight.UpdateIdentityPropagationConfigInput) (*request.Request, *quicksight.UpdateIdentityPropagationConfigOutput)
 
 	UpdateIpRestriction(*quicksight.UpdateIpRestrictionInput) (*quicksight.UpdateIpRestrictionOutput, error)
 	UpdateIpRestrictionWithContext(aws.Context, *quicksight.UpdateIpRestrictionInput, ...request.Option) (*quicksight.UpdateIpRestrictionOutput, error)

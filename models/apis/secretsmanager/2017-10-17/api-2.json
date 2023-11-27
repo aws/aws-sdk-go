@@ -13,6 +13,23 @@
     "uid":"secretsmanager-2017-10-17"
   },
   "operations":{
+    "BatchGetSecretValue":{
+      "name":"BatchGetSecretValue",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"BatchGetSecretValueRequest"},
+      "output":{"shape":"BatchGetSecretValueResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"DecryptionFailure"},
+        {"shape":"InternalServiceError"},
+        {"shape":"InvalidNextTokenException"}
+      ]
+    },
     "CancelRotateSecret":{
       "name":"CancelRotateSecret",
       "http":{
@@ -362,6 +379,18 @@
     }
   },
   "shapes":{
+    "APIErrorListType":{
+      "type":"list",
+      "member":{"shape":"APIErrorType"}
+    },
+    "APIErrorType":{
+      "type":"structure",
+      "members":{
+        "SecretId":{"shape":"SecretIdType"},
+        "ErrorCode":{"shape":"ErrorCode"},
+        "Message":{"shape":"ErrorMessage"}
+      }
+    },
     "AddReplicaRegionListType":{
       "type":"list",
       "member":{"shape":"ReplicaRegionType"},
@@ -371,6 +400,26 @@
       "type":"long",
       "max":1000,
       "min":1
+    },
+    "BatchGetSecretValueRequest":{
+      "type":"structure",
+      "members":{
+        "SecretIdList":{"shape":"SecretIdListType"},
+        "Filters":{"shape":"FiltersListType"},
+        "MaxResults":{
+          "shape":"MaxResultsBatchType",
+          "box":true
+        },
+        "NextToken":{"shape":"NextTokenType"}
+      }
+    },
+    "BatchGetSecretValueResponse":{
+      "type":"structure",
+      "members":{
+        "SecretValues":{"shape":"SecretValuesType"},
+        "NextToken":{"shape":"NextTokenType"},
+        "Errors":{"shape":"APIErrorListType"}
+      }
     },
     "BooleanType":{"type":"boolean"},
     "CancelRotateSecretRequest":{
@@ -535,6 +584,7 @@
       },
       "exception":true
     },
+    "ErrorCode":{"type":"string"},
     "ErrorMessage":{"type":"string"},
     "ExcludeCharactersType":{
       "type":"string",
@@ -762,6 +812,12 @@
         "Message":{"shape":"ErrorMessage"}
       },
       "exception":true
+    },
+    "MaxResultsBatchType":{
+      "type":"integer",
+      "box":true,
+      "max":20,
+      "min":1
     },
     "MaxResultsType":{
       "type":"integer",
@@ -1020,6 +1076,12 @@
       "min":1,
       "sensitive":true
     },
+    "SecretIdListType":{
+      "type":"list",
+      "member":{"shape":"SecretIdType"},
+      "max":20,
+      "min":1
+    },
     "SecretIdType":{
       "type":"string",
       "max":2048,
@@ -1076,6 +1138,25 @@
       "max":65536,
       "min":1,
       "sensitive":true
+    },
+    "SecretValueEntry":{
+      "type":"structure",
+      "members":{
+        "ARN":{"shape":"SecretARNType"},
+        "Name":{"shape":"SecretNameType"},
+        "VersionId":{"shape":"SecretVersionIdType"},
+        "SecretBinary":{"shape":"SecretBinaryType"},
+        "SecretString":{"shape":"SecretStringType"},
+        "VersionStages":{"shape":"SecretVersionStagesType"},
+        "CreatedDate":{
+          "shape":"CreatedDateType",
+          "box":true
+        }
+      }
+    },
+    "SecretValuesType":{
+      "type":"list",
+      "member":{"shape":"SecretValueEntry"}
     },
     "SecretVersionIdType":{
       "type":"string",

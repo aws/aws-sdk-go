@@ -472,6 +472,22 @@
         {"shape":"TooManyTags"}
       ]
     },
+    "TestState":{
+      "name":"TestState",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"TestStateInput"},
+      "output":{"shape":"TestStateOutput"},
+      "errors":[
+        {"shape":"InvalidArn"},
+        {"shape":"InvalidDefinition"},
+        {"shape":"InvalidExecutionInput"},
+        {"shape":"ValidationException"}
+      ],
+      "endpoint":{"hostPrefix":"sync-"}
+    },
     "UntagResource":{
       "name":"UntagResource",
       "http":{
@@ -533,7 +549,8 @@
         {"shape":"ValidationException"},
         {"shape":"InvalidArn"},
         {"shape":"ResourceNotFound"},
-        {"shape":"ConflictException"}
+        {"shape":"ConflictException"},
+        {"shape":"StateMachineDeleting"}
       ]
     }
   },
@@ -1157,6 +1174,12 @@
         "nextToken":{"shape":"PageToken"}
       }
     },
+    "HTTPBody":{"type":"string"},
+    "HTTPHeaders":{"type":"string"},
+    "HTTPMethod":{"type":"string"},
+    "HTTPProtocol":{"type":"string"},
+    "HTTPStatusCode":{"type":"string"},
+    "HTTPStatusMessage":{"type":"string"},
     "HistoryEvent":{
       "type":"structure",
       "required":[
@@ -1291,6 +1314,48 @@
     "IncludeExecutionDataGetExecutionHistory":{
       "type":"boolean",
       "box":true
+    },
+    "InspectionData":{
+      "type":"structure",
+      "members":{
+        "input":{"shape":"SensitiveData"},
+        "afterInputPath":{"shape":"SensitiveData"},
+        "afterParameters":{"shape":"SensitiveData"},
+        "result":{"shape":"SensitiveData"},
+        "afterResultSelector":{"shape":"SensitiveData"},
+        "afterResultPath":{"shape":"SensitiveData"},
+        "request":{"shape":"InspectionDataRequest"},
+        "response":{"shape":"InspectionDataResponse"}
+      },
+      "sensitive":true
+    },
+    "InspectionDataRequest":{
+      "type":"structure",
+      "members":{
+        "protocol":{"shape":"HTTPProtocol"},
+        "method":{"shape":"HTTPMethod"},
+        "url":{"shape":"URL"},
+        "headers":{"shape":"HTTPHeaders"},
+        "body":{"shape":"HTTPBody"}
+      }
+    },
+    "InspectionDataResponse":{
+      "type":"structure",
+      "members":{
+        "protocol":{"shape":"HTTPProtocol"},
+        "statusCode":{"shape":"HTTPStatusCode"},
+        "statusMessage":{"shape":"HTTPStatusMessage"},
+        "headers":{"shape":"HTTPHeaders"},
+        "body":{"shape":"HTTPBody"}
+      }
+    },
+    "InspectionLevel":{
+      "type":"string",
+      "enum":[
+        "INFO",
+        "DEBUG",
+        "TRACE"
+      ]
     },
     "InvalidArn":{
       "type":"structure",
@@ -1738,6 +1803,7 @@
       },
       "exception":true
     },
+    "RevealSecrets":{"type":"boolean"},
     "ReverseOrder":{"type":"boolean"},
     "RevisionId":{"type":"string"},
     "RoutingConfigurationList":{
@@ -2000,6 +2066,11 @@
         "creationDate":{"shape":"Timestamp"}
       }
     },
+    "StateName":{
+      "type":"string",
+      "max":80,
+      "min":1
+    },
     "StopExecutionInput":{
       "type":"structure",
       "required":["executionArn"],
@@ -2203,6 +2274,40 @@
       "max":1024,
       "min":1
     },
+    "TestExecutionStatus":{
+      "type":"string",
+      "enum":[
+        "SUCCEEDED",
+        "FAILED",
+        "RETRIABLE",
+        "CAUGHT_ERROR"
+      ]
+    },
+    "TestStateInput":{
+      "type":"structure",
+      "required":[
+        "definition",
+        "roleArn"
+      ],
+      "members":{
+        "definition":{"shape":"Definition"},
+        "roleArn":{"shape":"Arn"},
+        "input":{"shape":"SensitiveData"},
+        "inspectionLevel":{"shape":"InspectionLevel"},
+        "revealSecrets":{"shape":"RevealSecrets"}
+      }
+    },
+    "TestStateOutput":{
+      "type":"structure",
+      "members":{
+        "output":{"shape":"SensitiveData"},
+        "error":{"shape":"SensitiveError"},
+        "cause":{"shape":"SensitiveCause"},
+        "inspectionData":{"shape":"InspectionData"},
+        "nextState":{"shape":"StateName"},
+        "status":{"shape":"TestExecutionStatus"}
+      }
+    },
     "TimeoutInSeconds":{"type":"long"},
     "Timestamp":{"type":"timestamp"},
     "ToleratedFailureCount":{
@@ -2234,6 +2339,7 @@
         "enabled":{"shape":"Enabled"}
       }
     },
+    "URL":{"type":"string"},
     "UnsignedInteger":{
       "type":"integer",
       "min":0

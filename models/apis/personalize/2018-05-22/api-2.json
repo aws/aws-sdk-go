@@ -1052,7 +1052,7 @@
     },
     "AvroSchema":{
       "type":"string",
-      "max":10000
+      "max":20000
     },
     "BatchInferenceJob":{
       "type":"structure",
@@ -1067,6 +1067,8 @@
         "jobOutput":{"shape":"BatchInferenceJobOutput"},
         "batchInferenceJobConfig":{"shape":"BatchInferenceJobConfig"},
         "roleArn":{"shape":"RoleArn"},
+        "batchInferenceJobMode":{"shape":"BatchInferenceJobMode"},
+        "themeGenerationConfig":{"shape":"ThemeGenerationConfig"},
         "status":{"shape":"Status"},
         "creationDateTime":{"shape":"Date"},
         "lastUpdatedDateTime":{"shape":"Date"}
@@ -1085,6 +1087,13 @@
         "s3DataSource":{"shape":"S3DataConfig"}
       }
     },
+    "BatchInferenceJobMode":{
+      "type":"string",
+      "enum":[
+        "BATCH_INFERENCE",
+        "THEME_GENERATION"
+      ]
+    },
     "BatchInferenceJobOutput":{
       "type":"structure",
       "required":["s3DataDestination"],
@@ -1101,7 +1110,8 @@
         "creationDateTime":{"shape":"Date"},
         "lastUpdatedDateTime":{"shape":"Date"},
         "failureReason":{"shape":"FailureReason"},
-        "solutionVersionArn":{"shape":"Arn"}
+        "solutionVersionArn":{"shape":"Arn"},
+        "batchInferenceJobMode":{"shape":"BatchInferenceJobMode"}
       }
     },
     "BatchInferenceJobs":{
@@ -1176,7 +1186,8 @@
     "CampaignConfig":{
       "type":"structure",
       "members":{
-        "itemExplorationConfig":{"shape":"HyperParameters"}
+        "itemExplorationConfig":{"shape":"HyperParameters"},
+        "enableMetadataWithRecommendations":{"shape":"Boolean"}
       }
     },
     "CampaignSummary":{
@@ -1276,7 +1287,9 @@
         "jobOutput":{"shape":"BatchInferenceJobOutput"},
         "roleArn":{"shape":"RoleArn"},
         "batchInferenceJobConfig":{"shape":"BatchInferenceJobConfig"},
-        "tags":{"shape":"Tags"}
+        "tags":{"shape":"Tags"},
+        "batchInferenceJobMode":{"shape":"BatchInferenceJobMode"},
+        "themeGenerationConfig":{"shape":"ThemeGenerationConfig"}
       }
     },
     "CreateBatchInferenceJobResponse":{
@@ -1573,7 +1586,8 @@
         "status":{"shape":"Status"},
         "creationDateTime":{"shape":"Date"},
         "lastUpdatedDateTime":{"shape":"Date"},
-        "latestDatasetUpdate":{"shape":"DatasetUpdateSummary"}
+        "latestDatasetUpdate":{"shape":"DatasetUpdateSummary"},
+        "trackingId":{"shape":"TrackingId"}
       }
     },
     "DatasetExportJob":{
@@ -2141,6 +2155,13 @@
       "key":{"shape":"ParameterName"},
       "value":{"shape":"ParameterValue"},
       "max":100
+    },
+    "FieldsForThemeGeneration":{
+      "type":"structure",
+      "required":["itemName"],
+      "members":{
+        "itemName":{"shape":"ColumnName"}
+      }
     },
     "Filter":{
       "type":"structure",
@@ -2736,7 +2757,8 @@
       "members":{
         "itemExplorationConfig":{"shape":"HyperParameters"},
         "minRecommendationRequestsPerSecond":{"shape":"TransactionsPerSecond"},
-        "trainingDataConfig":{"shape":"TrainingDataConfig"}
+        "trainingDataConfig":{"shape":"TrainingDataConfig"},
+        "enableMetadataWithRecommendations":{"shape":"Boolean"}
       }
     },
     "RecommenderSummary":{
@@ -2986,6 +3008,13 @@
       "member":{"shape":"Tag"},
       "max":200,
       "min":0
+    },
+    "ThemeGenerationConfig":{
+      "type":"structure",
+      "required":["fieldsForThemeGeneration"],
+      "members":{
+        "fieldsForThemeGeneration":{"shape":"FieldsForThemeGeneration"}
+      }
     },
     "TooManyTagKeysException":{
       "type":"structure",

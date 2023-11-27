@@ -72,6 +72,10 @@ type FSxAPI interface {
 	CopyBackupWithContext(aws.Context, *fsx.CopyBackupInput, ...request.Option) (*fsx.CopyBackupOutput, error)
 	CopyBackupRequest(*fsx.CopyBackupInput) (*request.Request, *fsx.CopyBackupOutput)
 
+	CopySnapshotAndUpdateVolume(*fsx.CopySnapshotAndUpdateVolumeInput) (*fsx.CopySnapshotAndUpdateVolumeOutput, error)
+	CopySnapshotAndUpdateVolumeWithContext(aws.Context, *fsx.CopySnapshotAndUpdateVolumeInput, ...request.Option) (*fsx.CopySnapshotAndUpdateVolumeOutput, error)
+	CopySnapshotAndUpdateVolumeRequest(*fsx.CopySnapshotAndUpdateVolumeInput) (*request.Request, *fsx.CopySnapshotAndUpdateVolumeOutput)
+
 	CreateBackup(*fsx.CreateBackupInput) (*fsx.CreateBackupOutput, error)
 	CreateBackupWithContext(aws.Context, *fsx.CreateBackupInput, ...request.Option) (*fsx.CreateBackupOutput, error)
 	CreateBackupRequest(*fsx.CreateBackupInput) (*request.Request, *fsx.CreateBackupOutput)
@@ -182,6 +186,10 @@ type FSxAPI interface {
 	DescribeFileSystemsPages(*fsx.DescribeFileSystemsInput, func(*fsx.DescribeFileSystemsOutput, bool) bool) error
 	DescribeFileSystemsPagesWithContext(aws.Context, *fsx.DescribeFileSystemsInput, func(*fsx.DescribeFileSystemsOutput, bool) bool, ...request.Option) error
 
+	DescribeSharedVpcConfiguration(*fsx.DescribeSharedVpcConfigurationInput) (*fsx.DescribeSharedVpcConfigurationOutput, error)
+	DescribeSharedVpcConfigurationWithContext(aws.Context, *fsx.DescribeSharedVpcConfigurationInput, ...request.Option) (*fsx.DescribeSharedVpcConfigurationOutput, error)
+	DescribeSharedVpcConfigurationRequest(*fsx.DescribeSharedVpcConfigurationInput) (*request.Request, *fsx.DescribeSharedVpcConfigurationOutput)
+
 	DescribeSnapshots(*fsx.DescribeSnapshotsInput) (*fsx.DescribeSnapshotsOutput, error)
 	DescribeSnapshotsWithContext(aws.Context, *fsx.DescribeSnapshotsInput, ...request.Option) (*fsx.DescribeSnapshotsOutput, error)
 	DescribeSnapshotsRequest(*fsx.DescribeSnapshotsInput) (*request.Request, *fsx.DescribeSnapshotsOutput)
@@ -245,6 +253,10 @@ type FSxAPI interface {
 	UpdateFileSystem(*fsx.UpdateFileSystemInput) (*fsx.UpdateFileSystemOutput, error)
 	UpdateFileSystemWithContext(aws.Context, *fsx.UpdateFileSystemInput, ...request.Option) (*fsx.UpdateFileSystemOutput, error)
 	UpdateFileSystemRequest(*fsx.UpdateFileSystemInput) (*request.Request, *fsx.UpdateFileSystemOutput)
+
+	UpdateSharedVpcConfiguration(*fsx.UpdateSharedVpcConfigurationInput) (*fsx.UpdateSharedVpcConfigurationOutput, error)
+	UpdateSharedVpcConfigurationWithContext(aws.Context, *fsx.UpdateSharedVpcConfigurationInput, ...request.Option) (*fsx.UpdateSharedVpcConfigurationOutput, error)
+	UpdateSharedVpcConfigurationRequest(*fsx.UpdateSharedVpcConfigurationInput) (*request.Request, *fsx.UpdateSharedVpcConfigurationOutput)
 
 	UpdateSnapshot(*fsx.UpdateSnapshotInput) (*fsx.UpdateSnapshotOutput, error)
 	UpdateSnapshotWithContext(aws.Context, *fsx.UpdateSnapshotInput, ...request.Option) (*fsx.UpdateSnapshotOutput, error)

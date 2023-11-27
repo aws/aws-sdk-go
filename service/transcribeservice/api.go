@@ -4852,6 +4852,10 @@ type CallAnalyticsJobSettings struct {
 	// be encoded at a sample rate of 16,000 Hz or higher.
 	LanguageOptions []*string `min:"1" type:"list" enum:"LanguageCode"`
 
+	// Contains GenerateAbstractiveSummary, which is a required parameter if you
+	// want to enable Generative call summarization in your Call Analytics request.
+	Summarization *Summarization `type:"structure"`
+
 	// Specify how you want your custom vocabulary filter applied to your transcript.
 	//
 	// To replace words with ***, choose mask.
@@ -4925,6 +4929,11 @@ func (s *CallAnalyticsJobSettings) Validate() error {
 			}
 		}
 	}
+	if s.Summarization != nil {
+		if err := s.Summarization.Validate(); err != nil {
+			invalidParams.AddNested("Summarization", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -4953,6 +4962,12 @@ func (s *CallAnalyticsJobSettings) SetLanguageModelName(v string) *CallAnalytics
 // SetLanguageOptions sets the LanguageOptions field's value.
 func (s *CallAnalyticsJobSettings) SetLanguageOptions(v []*string) *CallAnalyticsJobSettings {
 	s.LanguageOptions = v
+	return s
+}
+
+// SetSummarization sets the Summarization field's value.
+func (s *CallAnalyticsJobSettings) SetSummarization(v *Summarization) *CallAnalyticsJobSettings {
+	s.Summarization = v
 	return s
 }
 
@@ -12118,6 +12133,59 @@ func (s *SubtitlesOutput_) SetSubtitleFileUris(v []*string) *SubtitlesOutput_ {
 	return s
 }
 
+// Contains GenerateAbstractiveSummary, which is a required parameter if you
+// want to enable Generative call summarization in your Call Analytics request.
+type Summarization struct {
+	_ struct{} `type:"structure"`
+
+	// Enables Generative call summarization in your Call Analytics request
+	//
+	// Generative call summarization provides a summary of the transcript including
+	// important components discussed in the conversation.
+	//
+	// For more information, see Enabling generative call summarization (https://docs.aws.amazon.com/transcribe/latest/dg/tca-enable-summarization.html).
+	//
+	// GenerateAbstractiveSummary is a required field
+	GenerateAbstractiveSummary *bool `type:"boolean" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Summarization) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Summarization) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Summarization) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Summarization"}
+	if s.GenerateAbstractiveSummary == nil {
+		invalidParams.Add(request.NewErrParamRequired("GenerateAbstractiveSummary"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGenerateAbstractiveSummary sets the GenerateAbstractiveSummary field's value.
+func (s *Summarization) SetGenerateAbstractiveSummary(v bool) *Summarization {
+	s.GenerateAbstractiveSummary = &v
+	return s
+}
+
 // Adds metadata, in the form of a key:value pair, to the specified resource.
 //
 // For example, you could add the tag Department:Sales to a resource to indicate
@@ -14137,6 +14205,198 @@ const (
 
 	// LanguageCodeSvSe is a LanguageCode enum value
 	LanguageCodeSvSe = "sv-SE"
+
+	// LanguageCodeAbGe is a LanguageCode enum value
+	LanguageCodeAbGe = "ab-GE"
+
+	// LanguageCodeAstEs is a LanguageCode enum value
+	LanguageCodeAstEs = "ast-ES"
+
+	// LanguageCodeAzAz is a LanguageCode enum value
+	LanguageCodeAzAz = "az-AZ"
+
+	// LanguageCodeBaRu is a LanguageCode enum value
+	LanguageCodeBaRu = "ba-RU"
+
+	// LanguageCodeBeBy is a LanguageCode enum value
+	LanguageCodeBeBy = "be-BY"
+
+	// LanguageCodeBgBg is a LanguageCode enum value
+	LanguageCodeBgBg = "bg-BG"
+
+	// LanguageCodeBnIn is a LanguageCode enum value
+	LanguageCodeBnIn = "bn-IN"
+
+	// LanguageCodeBsBa is a LanguageCode enum value
+	LanguageCodeBsBa = "bs-BA"
+
+	// LanguageCodeCaEs is a LanguageCode enum value
+	LanguageCodeCaEs = "ca-ES"
+
+	// LanguageCodeCkbIq is a LanguageCode enum value
+	LanguageCodeCkbIq = "ckb-IQ"
+
+	// LanguageCodeCkbIr is a LanguageCode enum value
+	LanguageCodeCkbIr = "ckb-IR"
+
+	// LanguageCodeCsCz is a LanguageCode enum value
+	LanguageCodeCsCz = "cs-CZ"
+
+	// LanguageCodeCyWl is a LanguageCode enum value
+	LanguageCodeCyWl = "cy-WL"
+
+	// LanguageCodeElGr is a LanguageCode enum value
+	LanguageCodeElGr = "el-GR"
+
+	// LanguageCodeEtEt is a LanguageCode enum value
+	LanguageCodeEtEt = "et-ET"
+
+	// LanguageCodeEuEs is a LanguageCode enum value
+	LanguageCodeEuEs = "eu-ES"
+
+	// LanguageCodeFiFi is a LanguageCode enum value
+	LanguageCodeFiFi = "fi-FI"
+
+	// LanguageCodeGlEs is a LanguageCode enum value
+	LanguageCodeGlEs = "gl-ES"
+
+	// LanguageCodeGuIn is a LanguageCode enum value
+	LanguageCodeGuIn = "gu-IN"
+
+	// LanguageCodeHaNg is a LanguageCode enum value
+	LanguageCodeHaNg = "ha-NG"
+
+	// LanguageCodeHrHr is a LanguageCode enum value
+	LanguageCodeHrHr = "hr-HR"
+
+	// LanguageCodeHuHu is a LanguageCode enum value
+	LanguageCodeHuHu = "hu-HU"
+
+	// LanguageCodeHyAm is a LanguageCode enum value
+	LanguageCodeHyAm = "hy-AM"
+
+	// LanguageCodeIsIs is a LanguageCode enum value
+	LanguageCodeIsIs = "is-IS"
+
+	// LanguageCodeKaGe is a LanguageCode enum value
+	LanguageCodeKaGe = "ka-GE"
+
+	// LanguageCodeKabDz is a LanguageCode enum value
+	LanguageCodeKabDz = "kab-DZ"
+
+	// LanguageCodeKkKz is a LanguageCode enum value
+	LanguageCodeKkKz = "kk-KZ"
+
+	// LanguageCodeKnIn is a LanguageCode enum value
+	LanguageCodeKnIn = "kn-IN"
+
+	// LanguageCodeKyKg is a LanguageCode enum value
+	LanguageCodeKyKg = "ky-KG"
+
+	// LanguageCodeLgIn is a LanguageCode enum value
+	LanguageCodeLgIn = "lg-IN"
+
+	// LanguageCodeLtLt is a LanguageCode enum value
+	LanguageCodeLtLt = "lt-LT"
+
+	// LanguageCodeLvLv is a LanguageCode enum value
+	LanguageCodeLvLv = "lv-LV"
+
+	// LanguageCodeMhrRu is a LanguageCode enum value
+	LanguageCodeMhrRu = "mhr-RU"
+
+	// LanguageCodeMiNz is a LanguageCode enum value
+	LanguageCodeMiNz = "mi-NZ"
+
+	// LanguageCodeMkMk is a LanguageCode enum value
+	LanguageCodeMkMk = "mk-MK"
+
+	// LanguageCodeMlIn is a LanguageCode enum value
+	LanguageCodeMlIn = "ml-IN"
+
+	// LanguageCodeMnMn is a LanguageCode enum value
+	LanguageCodeMnMn = "mn-MN"
+
+	// LanguageCodeMrIn is a LanguageCode enum value
+	LanguageCodeMrIn = "mr-IN"
+
+	// LanguageCodeMtMt is a LanguageCode enum value
+	LanguageCodeMtMt = "mt-MT"
+
+	// LanguageCodeNoNo is a LanguageCode enum value
+	LanguageCodeNoNo = "no-NO"
+
+	// LanguageCodeOrIn is a LanguageCode enum value
+	LanguageCodeOrIn = "or-IN"
+
+	// LanguageCodePaIn is a LanguageCode enum value
+	LanguageCodePaIn = "pa-IN"
+
+	// LanguageCodePlPl is a LanguageCode enum value
+	LanguageCodePlPl = "pl-PL"
+
+	// LanguageCodePsAf is a LanguageCode enum value
+	LanguageCodePsAf = "ps-AF"
+
+	// LanguageCodeRoRo is a LanguageCode enum value
+	LanguageCodeRoRo = "ro-RO"
+
+	// LanguageCodeRwRw is a LanguageCode enum value
+	LanguageCodeRwRw = "rw-RW"
+
+	// LanguageCodeSiLk is a LanguageCode enum value
+	LanguageCodeSiLk = "si-LK"
+
+	// LanguageCodeSkSk is a LanguageCode enum value
+	LanguageCodeSkSk = "sk-SK"
+
+	// LanguageCodeSlSi is a LanguageCode enum value
+	LanguageCodeSlSi = "sl-SI"
+
+	// LanguageCodeSoSo is a LanguageCode enum value
+	LanguageCodeSoSo = "so-SO"
+
+	// LanguageCodeSrRs is a LanguageCode enum value
+	LanguageCodeSrRs = "sr-RS"
+
+	// LanguageCodeSuId is a LanguageCode enum value
+	LanguageCodeSuId = "su-ID"
+
+	// LanguageCodeSwBi is a LanguageCode enum value
+	LanguageCodeSwBi = "sw-BI"
+
+	// LanguageCodeSwKe is a LanguageCode enum value
+	LanguageCodeSwKe = "sw-KE"
+
+	// LanguageCodeSwRw is a LanguageCode enum value
+	LanguageCodeSwRw = "sw-RW"
+
+	// LanguageCodeSwTz is a LanguageCode enum value
+	LanguageCodeSwTz = "sw-TZ"
+
+	// LanguageCodeSwUg is a LanguageCode enum value
+	LanguageCodeSwUg = "sw-UG"
+
+	// LanguageCodeTlPh is a LanguageCode enum value
+	LanguageCodeTlPh = "tl-PH"
+
+	// LanguageCodeTtRu is a LanguageCode enum value
+	LanguageCodeTtRu = "tt-RU"
+
+	// LanguageCodeUgCn is a LanguageCode enum value
+	LanguageCodeUgCn = "ug-CN"
+
+	// LanguageCodeUkUa is a LanguageCode enum value
+	LanguageCodeUkUa = "uk-UA"
+
+	// LanguageCodeUzUz is a LanguageCode enum value
+	LanguageCodeUzUz = "uz-UZ"
+
+	// LanguageCodeWoSn is a LanguageCode enum value
+	LanguageCodeWoSn = "wo-SN"
+
+	// LanguageCodeZuZa is a LanguageCode enum value
+	LanguageCodeZuZa = "zu-ZA"
 )
 
 // LanguageCode_Values returns all elements of the LanguageCode enum
@@ -14181,6 +14441,70 @@ func LanguageCode_Values() []string {
 		LanguageCodeEnNz,
 		LanguageCodeViVn,
 		LanguageCodeSvSe,
+		LanguageCodeAbGe,
+		LanguageCodeAstEs,
+		LanguageCodeAzAz,
+		LanguageCodeBaRu,
+		LanguageCodeBeBy,
+		LanguageCodeBgBg,
+		LanguageCodeBnIn,
+		LanguageCodeBsBa,
+		LanguageCodeCaEs,
+		LanguageCodeCkbIq,
+		LanguageCodeCkbIr,
+		LanguageCodeCsCz,
+		LanguageCodeCyWl,
+		LanguageCodeElGr,
+		LanguageCodeEtEt,
+		LanguageCodeEuEs,
+		LanguageCodeFiFi,
+		LanguageCodeGlEs,
+		LanguageCodeGuIn,
+		LanguageCodeHaNg,
+		LanguageCodeHrHr,
+		LanguageCodeHuHu,
+		LanguageCodeHyAm,
+		LanguageCodeIsIs,
+		LanguageCodeKaGe,
+		LanguageCodeKabDz,
+		LanguageCodeKkKz,
+		LanguageCodeKnIn,
+		LanguageCodeKyKg,
+		LanguageCodeLgIn,
+		LanguageCodeLtLt,
+		LanguageCodeLvLv,
+		LanguageCodeMhrRu,
+		LanguageCodeMiNz,
+		LanguageCodeMkMk,
+		LanguageCodeMlIn,
+		LanguageCodeMnMn,
+		LanguageCodeMrIn,
+		LanguageCodeMtMt,
+		LanguageCodeNoNo,
+		LanguageCodeOrIn,
+		LanguageCodePaIn,
+		LanguageCodePlPl,
+		LanguageCodePsAf,
+		LanguageCodeRoRo,
+		LanguageCodeRwRw,
+		LanguageCodeSiLk,
+		LanguageCodeSkSk,
+		LanguageCodeSlSi,
+		LanguageCodeSoSo,
+		LanguageCodeSrRs,
+		LanguageCodeSuId,
+		LanguageCodeSwBi,
+		LanguageCodeSwKe,
+		LanguageCodeSwRw,
+		LanguageCodeSwTz,
+		LanguageCodeSwUg,
+		LanguageCodeTlPh,
+		LanguageCodeTtRu,
+		LanguageCodeUgCn,
+		LanguageCodeUkUa,
+		LanguageCodeUzUz,
+		LanguageCodeWoSn,
+		LanguageCodeZuZa,
 	}
 }
 

@@ -2413,7 +2413,8 @@
         "DataShareArn":{"shape":"String"},
         "AssociateEntireAccount":{"shape":"BooleanOptional"},
         "ConsumerArn":{"shape":"String"},
-        "ConsumerRegion":{"shape":"String"}
+        "ConsumerRegion":{"shape":"String"},
+        "AllowWrites":{"shape":"BooleanOptional"}
       }
     },
     "AssociatedClusterList":{
@@ -2579,7 +2580,8 @@
       ],
       "members":{
         "DataShareArn":{"shape":"String"},
-        "ConsumerIdentifier":{"shape":"String"}
+        "ConsumerIdentifier":{"shape":"String"},
+        "AllowWrites":{"shape":"BooleanOptional"}
       }
     },
     "AuthorizeEndpointAccessMessage":{
@@ -3692,7 +3694,9 @@
         "Status":{"shape":"DataShareStatus"},
         "ConsumerRegion":{"shape":"String"},
         "CreatedDate":{"shape":"TStamp"},
-        "StatusChangeDate":{"shape":"TStamp"}
+        "StatusChangeDate":{"shape":"TStamp"},
+        "ProducerAllowedWrites":{"shape":"BooleanOptional"},
+        "ConsumerAcceptedWrites":{"shape":"BooleanOptional"}
       }
     },
     "DataShareAssociationList":{

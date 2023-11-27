@@ -199,6 +199,10 @@ type SFNAPI interface {
 	TagResourceWithContext(aws.Context, *sfn.TagResourceInput, ...request.Option) (*sfn.TagResourceOutput, error)
 	TagResourceRequest(*sfn.TagResourceInput) (*request.Request, *sfn.TagResourceOutput)
 
+	TestState(*sfn.TestStateInput) (*sfn.TestStateOutput, error)
+	TestStateWithContext(aws.Context, *sfn.TestStateInput, ...request.Option) (*sfn.TestStateOutput, error)
+	TestStateRequest(*sfn.TestStateInput) (*request.Request, *sfn.TestStateOutput)
+
 	UntagResource(*sfn.UntagResourceInput) (*sfn.UntagResourceOutput, error)
 	UntagResourceWithContext(aws.Context, *sfn.UntagResourceInput, ...request.Option) (*sfn.UntagResourceOutput, error)
 	UntagResourceRequest(*sfn.UntagResourceInput) (*request.Request, *sfn.UntagResourceOutput)

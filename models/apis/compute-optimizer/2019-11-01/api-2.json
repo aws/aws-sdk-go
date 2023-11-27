@@ -492,6 +492,13 @@
         "instanceType":{"shape":"InstanceType"}
       }
     },
+    "AutoScalingGroupEstimatedMonthlySavings":{
+      "type":"structure",
+      "members":{
+        "currency":{"shape":"Currency"},
+        "value":{"shape":"Value"}
+      }
+    },
     "AutoScalingGroupName":{"type":"string"},
     "AutoScalingGroupRecommendation":{
       "type":"structure",
@@ -520,7 +527,8 @@
         "rank":{"shape":"Rank"},
         "savingsOpportunity":{"shape":"SavingsOpportunity"},
         "migrationEffort":{"shape":"MigrationEffort"},
-        "instanceGpuInfo":{"shape":"GpuInfo"}
+        "instanceGpuInfo":{"shape":"GpuInfo"},
+        "savingsOpportunityAfterDiscounts":{"shape":"AutoScalingGroupSavingsOpportunityAfterDiscounts"}
       }
     },
     "AutoScalingGroupRecommendationOptions":{
@@ -530,6 +538,13 @@
     "AutoScalingGroupRecommendations":{
       "type":"list",
       "member":{"shape":"AutoScalingGroupRecommendation"}
+    },
+    "AutoScalingGroupSavingsOpportunityAfterDiscounts":{
+      "type":"structure",
+      "members":{
+        "savingsOpportunityPercentage":{"shape":"SavingsOpportunityPercentage"},
+        "estimatedMonthlySavings":{"shape":"AutoScalingGroupEstimatedMonthlySavings"}
+      }
     },
     "Code":{"type":"string"},
     "ContainerConfiguration":{
@@ -596,6 +611,33 @@
         "veryLow":{"shape":"VeryLow"}
       }
     },
+    "CustomizableMetricHeadroom":{
+      "type":"string",
+      "enum":[
+        "PERCENT_30",
+        "PERCENT_20",
+        "PERCENT_0"
+      ]
+    },
+    "CustomizableMetricName":{
+      "type":"string",
+      "enum":["CpuUtilization"]
+    },
+    "CustomizableMetricParameters":{
+      "type":"structure",
+      "members":{
+        "threshold":{"shape":"CustomizableMetricThreshold"},
+        "headroom":{"shape":"CustomizableMetricHeadroom"}
+      }
+    },
+    "CustomizableMetricThreshold":{
+      "type":"string",
+      "enum":[
+        "P90",
+        "P95",
+        "P99_5"
+      ]
+    },
     "DeleteRecommendationPreferencesRequest":{
       "type":"structure",
       "required":[
@@ -633,6 +675,19 @@
     "DestinationBucket":{"type":"string"},
     "DestinationKey":{"type":"string"},
     "DestinationKeyPrefix":{"type":"string"},
+    "EBSEffectiveRecommendationPreferences":{
+      "type":"structure",
+      "members":{
+        "savingsEstimationMode":{"shape":"EBSSavingsEstimationMode"}
+      }
+    },
+    "EBSEstimatedMonthlySavings":{
+      "type":"structure",
+      "members":{
+        "currency":{"shape":"Currency"},
+        "value":{"shape":"Value"}
+      }
+    },
     "EBSFilter":{
       "type":"structure",
       "members":{
@@ -664,6 +719,27 @@
         "VolumeWriteBytesPerSecond"
       ]
     },
+    "EBSSavingsEstimationMode":{
+      "type":"structure",
+      "members":{
+        "source":{"shape":"EBSSavingsEstimationModeSource"}
+      }
+    },
+    "EBSSavingsEstimationModeSource":{
+      "type":"string",
+      "enum":[
+        "PublicPricing",
+        "CostExplorerRightsizing",
+        "CostOptimizationHub"
+      ]
+    },
+    "EBSSavingsOpportunityAfterDiscounts":{
+      "type":"structure",
+      "members":{
+        "savingsOpportunityPercentage":{"shape":"SavingsOpportunityPercentage"},
+        "estimatedMonthlySavings":{"shape":"EBSEstimatedMonthlySavings"}
+      }
+    },
     "EBSUtilizationMetric":{
       "type":"structure",
       "members":{
@@ -675,6 +751,40 @@
     "EBSUtilizationMetrics":{
       "type":"list",
       "member":{"shape":"EBSUtilizationMetric"}
+    },
+    "ECSEffectiveRecommendationPreferences":{
+      "type":"structure",
+      "members":{
+        "savingsEstimationMode":{"shape":"ECSSavingsEstimationMode"}
+      }
+    },
+    "ECSEstimatedMonthlySavings":{
+      "type":"structure",
+      "members":{
+        "currency":{"shape":"Currency"},
+        "value":{"shape":"Value"}
+      }
+    },
+    "ECSSavingsEstimationMode":{
+      "type":"structure",
+      "members":{
+        "source":{"shape":"ECSSavingsEstimationModeSource"}
+      }
+    },
+    "ECSSavingsEstimationModeSource":{
+      "type":"string",
+      "enum":[
+        "PublicPricing",
+        "CostExplorerRightsizing",
+        "CostOptimizationHub"
+      ]
+    },
+    "ECSSavingsOpportunityAfterDiscounts":{
+      "type":"structure",
+      "members":{
+        "savingsOpportunityPercentage":{"shape":"SavingsOpportunityPercentage"},
+        "estimatedMonthlySavings":{"shape":"ECSEstimatedMonthlySavings"}
+      }
     },
     "ECSServiceLaunchType":{
       "type":"string",
@@ -737,7 +847,8 @@
         "findingReasonCodes":{"shape":"ECSServiceRecommendationFindingReasonCodes"},
         "serviceRecommendationOptions":{"shape":"ECSServiceRecommendationOptions"},
         "currentPerformanceRisk":{"shape":"CurrentPerformanceRisk"},
-        "tags":{"shape":"Tags"}
+        "tags":{"shape":"Tags"},
+        "effectiveRecommendationPreferences":{"shape":"ECSEffectiveRecommendationPreferences"}
       }
     },
     "ECSServiceRecommendationFilter":{
@@ -786,7 +897,8 @@
         "cpu":{"shape":"NullableCpu"},
         "savingsOpportunity":{"shape":"SavingsOpportunity"},
         "projectedUtilizationMetrics":{"shape":"ECSServiceProjectedUtilizationMetrics"},
-        "containerRecommendations":{"shape":"ContainerRecommendations"}
+        "containerRecommendations":{"shape":"ContainerRecommendations"},
+        "savingsOpportunityAfterDiscounts":{"shape":"ECSSavingsOpportunityAfterDiscounts"}
       }
     },
     "ECSServiceRecommendationOptions":{
@@ -821,13 +933,30 @@
       "type":"list",
       "member":{"shape":"ECSServiceUtilizationMetric"}
     },
+    "EffectivePreferredResource":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"PreferredResourceName"},
+        "includeList":{"shape":"PreferredResourceValues"},
+        "effectiveIncludeList":{"shape":"PreferredResourceValues"},
+        "excludeList":{"shape":"PreferredResourceValues"}
+      }
+    },
+    "EffectivePreferredResources":{
+      "type":"list",
+      "member":{"shape":"EffectivePreferredResource"}
+    },
     "EffectiveRecommendationPreferences":{
       "type":"structure",
       "members":{
         "cpuVendorArchitectures":{"shape":"CpuVendorArchitectures"},
         "enhancedInfrastructureMetrics":{"shape":"EnhancedInfrastructureMetrics"},
         "inferredWorkloadTypes":{"shape":"InferredWorkloadTypesPreference"},
-        "externalMetricsPreference":{"shape":"ExternalMetricsPreference"}
+        "externalMetricsPreference":{"shape":"ExternalMetricsPreference"},
+        "lookBackPeriod":{"shape":"LookBackPeriodPreference"},
+        "utilizationPreferences":{"shape":"UtilizationPreferences"},
+        "preferredResources":{"shape":"EffectivePreferredResources"},
+        "savingsEstimationMode":{"shape":"InstanceSavingsEstimationMode"}
       }
     },
     "EnhancedInfrastructureMetrics":{
@@ -1044,7 +1173,13 @@
         "UtilizationMetricsGpuPercentageMaximum",
         "UtilizationMetricsGpuMemoryPercentageMaximum",
         "RecommendationOptionsProjectedUtilizationMetricsGpuPercentageMaximum",
-        "RecommendationOptionsProjectedUtilizationMetricsGpuMemoryPercentageMaximum"
+        "RecommendationOptionsProjectedUtilizationMetricsGpuMemoryPercentageMaximum",
+        "EffectiveRecommendationPreferencesSavingsEstimationMode",
+        "RecommendationOptionsSavingsOpportunityAfterDiscountsPercentage",
+        "RecommendationOptionsEstimatedMonthlySavingsCurrencyAfterDiscounts",
+        "RecommendationOptionsEstimatedMonthlySavingsValueAfterDiscounts",
+        "EffectiveRecommendationPreferencesPreferredResources",
+        "EffectiveRecommendationPreferencesLookBackPeriod"
       ]
     },
     "ExportableAutoScalingGroupFields":{
@@ -1077,7 +1212,11 @@
         "RecommendationOptionsContainerRecommendations",
         "RecommendationOptionsProjectedUtilizationMetricsCpuMaximum",
         "RecommendationOptionsProjectedUtilizationMetricsMemoryMaximum",
-        "Tags"
+        "Tags",
+        "EffectiveRecommendationPreferencesSavingsEstimationMode",
+        "RecommendationOptionsSavingsOpportunityAfterDiscountsPercentage",
+        "RecommendationOptionsEstimatedMonthlySavingsCurrencyAfterDiscounts",
+        "RecommendationOptionsEstimatedMonthlySavingsValueAfterDiscounts"
       ]
     },
     "ExportableECSServiceFields":{
@@ -1150,7 +1289,14 @@
         "UtilizationMetricsGpuMemoryPercentageMaximum",
         "RecommendationOptionsProjectedUtilizationMetricsGpuPercentageMaximum",
         "RecommendationOptionsProjectedUtilizationMetricsGpuMemoryPercentageMaximum",
-        "Idle"
+        "Idle",
+        "EffectiveRecommendationPreferencesPreferredResources",
+        "EffectiveRecommendationPreferencesLookBackPeriod",
+        "EffectiveRecommendationPreferencesUtilizationPreferences",
+        "EffectiveRecommendationPreferencesSavingsEstimationMode",
+        "RecommendationOptionsSavingsOpportunityAfterDiscountsPercentage",
+        "RecommendationOptionsEstimatedMonthlySavingsCurrencyAfterDiscounts",
+        "RecommendationOptionsEstimatedMonthlySavingsValueAfterDiscounts"
       ]
     },
     "ExportableInstanceFields":{
@@ -1186,7 +1332,11 @@
         "RecommendationOptionsSavingsOpportunityPercentage",
         "RecommendationOptionsEstimatedMonthlySavingsCurrency",
         "RecommendationOptionsEstimatedMonthlySavingsValue",
-        "Tags"
+        "Tags",
+        "EffectiveRecommendationPreferencesSavingsEstimationMode",
+        "RecommendationOptionsSavingsOpportunityAfterDiscountsPercentage",
+        "RecommendationOptionsEstimatedMonthlySavingsCurrencyAfterDiscounts",
+        "RecommendationOptionsEstimatedMonthlySavingsValueAfterDiscounts"
       ]
     },
     "ExportableLambdaFunctionFields":{
@@ -1256,7 +1406,11 @@
         "RecommendationOptionsEstimatedMonthlySavingsValue",
         "RootVolume",
         "Tags",
-        "CurrentConfigurationRootVolume"
+        "CurrentConfigurationRootVolume",
+        "EffectiveRecommendationPreferencesSavingsEstimationMode",
+        "RecommendationOptionsSavingsOpportunityAfterDiscountsPercentage",
+        "RecommendationOptionsEstimatedMonthlySavingsCurrencyAfterDiscounts",
+        "RecommendationOptionsEstimatedMonthlySavingsValueAfterDiscounts"
       ]
     },
     "ExportableVolumeFields":{
@@ -1485,7 +1639,10 @@
       "type":"structure",
       "members":{
         "enhancedInfrastructureMetrics":{"shape":"EnhancedInfrastructureMetrics"},
-        "externalMetricsPreference":{"shape":"ExternalMetricsPreference"}
+        "externalMetricsPreference":{"shape":"ExternalMetricsPreference"},
+        "lookBackPeriod":{"shape":"LookBackPeriodPreference"},
+        "utilizationPreferences":{"shape":"UtilizationPreferences"},
+        "preferredResources":{"shape":"EffectivePreferredResources"}
       }
     },
     "GetEnrollmentStatusRequest":{
@@ -1660,6 +1817,13 @@
       "type":"list",
       "member":{"shape":"InstanceArn"}
     },
+    "InstanceEstimatedMonthlySavings":{
+      "type":"structure",
+      "members":{
+        "currency":{"shape":"Currency"},
+        "value":{"shape":"Value"}
+      }
+    },
     "InstanceIdle":{
       "type":"string",
       "enum":[
@@ -1731,12 +1895,34 @@
         "rank":{"shape":"Rank"},
         "savingsOpportunity":{"shape":"SavingsOpportunity"},
         "migrationEffort":{"shape":"MigrationEffort"},
-        "instanceGpuInfo":{"shape":"GpuInfo"}
+        "instanceGpuInfo":{"shape":"GpuInfo"},
+        "savingsOpportunityAfterDiscounts":{"shape":"InstanceSavingsOpportunityAfterDiscounts"}
       }
     },
     "InstanceRecommendations":{
       "type":"list",
       "member":{"shape":"InstanceRecommendation"}
+    },
+    "InstanceSavingsEstimationMode":{
+      "type":"structure",
+      "members":{
+        "source":{"shape":"InstanceSavingsEstimationModeSource"}
+      }
+    },
+    "InstanceSavingsEstimationModeSource":{
+      "type":"string",
+      "enum":[
+        "PublicPricing",
+        "CostExplorerRightsizing",
+        "CostOptimizationHub"
+      ]
+    },
+    "InstanceSavingsOpportunityAfterDiscounts":{
+      "type":"structure",
+      "members":{
+        "savingsOpportunityPercentage":{"shape":"SavingsOpportunityPercentage"},
+        "estimatedMonthlySavings":{"shape":"InstanceEstimatedMonthlySavings"}
+      }
     },
     "InstanceState":{
       "type":"string",
@@ -1798,6 +1984,19 @@
         "Failed"
       ]
     },
+    "LambdaEffectiveRecommendationPreferences":{
+      "type":"structure",
+      "members":{
+        "savingsEstimationMode":{"shape":"LambdaSavingsEstimationMode"}
+      }
+    },
+    "LambdaEstimatedMonthlySavings":{
+      "type":"structure",
+      "members":{
+        "currency":{"shape":"Currency"},
+        "value":{"shape":"Value"}
+      }
+    },
     "LambdaFunctionMemoryMetricName":{
       "type":"string",
       "enum":["Duration"]
@@ -1828,7 +2027,8 @@
         "rank":{"shape":"Rank"},
         "memorySize":{"shape":"MemorySize"},
         "projectedUtilizationMetrics":{"shape":"LambdaFunctionMemoryProjectedMetrics"},
-        "savingsOpportunity":{"shape":"SavingsOpportunity"}
+        "savingsOpportunity":{"shape":"SavingsOpportunity"},
+        "savingsOpportunityAfterDiscounts":{"shape":"LambdaSavingsOpportunityAfterDiscounts"}
       }
     },
     "LambdaFunctionMemoryRecommendationOptions":{
@@ -1864,7 +2064,8 @@
         "findingReasonCodes":{"shape":"LambdaFunctionRecommendationFindingReasonCodes"},
         "memorySizeRecommendationOptions":{"shape":"LambdaFunctionMemoryRecommendationOptions"},
         "currentPerformanceRisk":{"shape":"CurrentPerformanceRisk"},
-        "tags":{"shape":"Tags"}
+        "tags":{"shape":"Tags"},
+        "effectiveRecommendationPreferences":{"shape":"LambdaEffectiveRecommendationPreferences"}
       }
     },
     "LambdaFunctionRecommendationFilter":{
@@ -1921,6 +2122,27 @@
     "LambdaFunctionUtilizationMetrics":{
       "type":"list",
       "member":{"shape":"LambdaFunctionUtilizationMetric"}
+    },
+    "LambdaSavingsEstimationMode":{
+      "type":"structure",
+      "members":{
+        "source":{"shape":"LambdaSavingsEstimationModeSource"}
+      }
+    },
+    "LambdaSavingsEstimationModeSource":{
+      "type":"string",
+      "enum":[
+        "PublicPricing",
+        "CostExplorerRightsizing",
+        "CostOptimizationHub"
+      ]
+    },
+    "LambdaSavingsOpportunityAfterDiscounts":{
+      "type":"structure",
+      "members":{
+        "savingsOpportunityPercentage":{"shape":"SavingsOpportunityPercentage"},
+        "estimatedMonthlySavings":{"shape":"LambdaEstimatedMonthlySavings"}
+      }
     },
     "LastRefreshTimestamp":{"type":"timestamp"},
     "LastUpdatedTimestamp":{"type":"timestamp"},
@@ -2039,6 +2261,14 @@
       "synthetic":true
     },
     "LookBackPeriodInDays":{"type":"double"},
+    "LookBackPeriodPreference":{
+      "type":"string",
+      "enum":[
+        "DAYS_14",
+        "DAYS_32",
+        "DAYS_93"
+      ]
+    },
     "Low":{"type":"long"},
     "LowerBoundValue":{"type":"double"},
     "MaxResults":{
@@ -2164,6 +2394,27 @@
       "type":"list",
       "member":{"shape":"PlatformDifference"}
     },
+    "PreferredResource":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"PreferredResourceName"},
+        "includeList":{"shape":"PreferredResourceValues"},
+        "excludeList":{"shape":"PreferredResourceValues"}
+      }
+    },
+    "PreferredResourceName":{
+      "type":"string",
+      "enum":["Ec2InstanceTypes"]
+    },
+    "PreferredResourceValue":{"type":"string"},
+    "PreferredResourceValues":{
+      "type":"list",
+      "member":{"shape":"PreferredResourceValue"}
+    },
+    "PreferredResources":{
+      "type":"list",
+      "member":{"shape":"PreferredResource"}
+    },
     "ProjectedMetric":{
       "type":"structure",
       "members":{
@@ -2188,7 +2439,11 @@
         "scope":{"shape":"Scope"},
         "enhancedInfrastructureMetrics":{"shape":"EnhancedInfrastructureMetrics"},
         "inferredWorkloadTypes":{"shape":"InferredWorkloadTypesPreference"},
-        "externalMetricsPreference":{"shape":"ExternalMetricsPreference"}
+        "externalMetricsPreference":{"shape":"ExternalMetricsPreference"},
+        "lookBackPeriod":{"shape":"LookBackPeriodPreference"},
+        "utilizationPreferences":{"shape":"UtilizationPreferences"},
+        "preferredResources":{"shape":"PreferredResources"},
+        "savingsEstimationMode":{"shape":"SavingsEstimationMode"}
       }
     },
     "PutRecommendationPreferencesResponse":{
@@ -2233,7 +2488,10 @@
       "enum":[
         "EnhancedInfrastructureMetrics",
         "InferredWorkloadTypes",
-        "ExternalMetricsPreference"
+        "ExternalMetricsPreference",
+        "LookBackPeriodPreference",
+        "PreferredResources",
+        "UtilizationPreferences"
       ]
     },
     "RecommendationPreferenceNames":{
@@ -2253,7 +2511,11 @@
         "resourceType":{"shape":"ResourceType"},
         "enhancedInfrastructureMetrics":{"shape":"EnhancedInfrastructureMetrics"},
         "inferredWorkloadTypes":{"shape":"InferredWorkloadTypesPreference"},
-        "externalMetricsPreference":{"shape":"ExternalMetricsPreference"}
+        "externalMetricsPreference":{"shape":"ExternalMetricsPreference"},
+        "lookBackPeriod":{"shape":"LookBackPeriodPreference"},
+        "utilizationPreferences":{"shape":"UtilizationPreferences"},
+        "preferredResources":{"shape":"EffectivePreferredResources"},
+        "savingsEstimationMode":{"shape":"SavingsEstimationMode"}
       }
     },
     "RecommendationPreferencesDetails":{
@@ -2351,6 +2613,13 @@
         "bucket":{"shape":"DestinationBucket"},
         "keyPrefix":{"shape":"DestinationKeyPrefix"}
       }
+    },
+    "SavingsEstimationMode":{
+      "type":"string",
+      "enum":[
+        "AfterDiscounts",
+        "BeforeDiscounts"
+      ]
     },
     "SavingsOpportunity":{
       "type":"structure",
@@ -2478,6 +2747,17 @@
       "type":"list",
       "member":{"shape":"UtilizationMetric"}
     },
+    "UtilizationPreference":{
+      "type":"structure",
+      "members":{
+        "metricName":{"shape":"CustomizableMetricName"},
+        "metricParameters":{"shape":"CustomizableMetricParameters"}
+      }
+    },
+    "UtilizationPreferences":{
+      "type":"list",
+      "member":{"shape":"UtilizationPreference"}
+    },
     "Value":{"type":"double"},
     "VeryLow":{"type":"long"},
     "VolumeArn":{"type":"string"},
@@ -2513,7 +2793,8 @@
         "volumeRecommendationOptions":{"shape":"VolumeRecommendationOptions"},
         "lastRefreshTimestamp":{"shape":"LastRefreshTimestamp"},
         "currentPerformanceRisk":{"shape":"CurrentPerformanceRisk"},
-        "tags":{"shape":"Tags"}
+        "tags":{"shape":"Tags"},
+        "effectiveRecommendationPreferences":{"shape":"EBSEffectiveRecommendationPreferences"}
       }
     },
     "VolumeRecommendationOption":{
@@ -2522,7 +2803,8 @@
         "configuration":{"shape":"VolumeConfiguration"},
         "performanceRisk":{"shape":"PerformanceRisk"},
         "rank":{"shape":"Rank"},
-        "savingsOpportunity":{"shape":"SavingsOpportunity"}
+        "savingsOpportunity":{"shape":"SavingsOpportunity"},
+        "savingsOpportunityAfterDiscounts":{"shape":"EBSSavingsOpportunityAfterDiscounts"}
       }
     },
     "VolumeRecommendationOptions":{
