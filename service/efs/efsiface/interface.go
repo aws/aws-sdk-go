@@ -197,6 +197,10 @@ type EFSAPI interface {
 	UpdateFileSystem(*efs.UpdateFileSystemInput) (*efs.UpdateFileSystemOutput, error)
 	UpdateFileSystemWithContext(aws.Context, *efs.UpdateFileSystemInput, ...request.Option) (*efs.UpdateFileSystemOutput, error)
 	UpdateFileSystemRequest(*efs.UpdateFileSystemInput) (*request.Request, *efs.UpdateFileSystemOutput)
+
+	UpdateFileSystemProtection(*efs.UpdateFileSystemProtectionInput) (*efs.UpdateFileSystemProtectionOutput, error)
+	UpdateFileSystemProtectionWithContext(aws.Context, *efs.UpdateFileSystemProtectionInput, ...request.Option) (*efs.UpdateFileSystemProtectionOutput, error)
+	UpdateFileSystemProtectionRequest(*efs.UpdateFileSystemProtectionInput) (*request.Request, *efs.UpdateFileSystemProtectionOutput)
 }
 
 var _ EFSAPI = (*efs.EFS)(nil)

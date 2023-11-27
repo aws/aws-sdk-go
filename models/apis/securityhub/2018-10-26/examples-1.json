@@ -208,6 +208,57 @@
         "title": "To update one ore more automation rules"
       }
     ],
+    "BatchGetConfigurationPolicyAssociations": [
+      {
+        "input": {
+          "ConfigurationPolicyAssociationIdentifiers": [
+            {
+              "Target": {
+                "AccountId": "111122223333"
+              }
+            },
+            {
+              "Target": {
+                "RootId": "r-f6g7h8i9j0example"
+              }
+            }
+          ]
+        },
+        "output": {
+          "ConfigurationPolicyAssociations": [
+            {
+              "AssociationStatus": "SUCCESS",
+              "AssociationStatusMessage": "This field is only populated for a failed association",
+              "AssociationType": "INHERITED",
+              "ConfigurationPolicyId": "a1b2c3d4-5678-90ab-cdef-EXAMPLE11111",
+              "TargetId": "111122223333",
+              "TargetType": "ACCOUNT",
+              "UpdatedAt": "2023-01-11T06:17:17.154Z"
+            }
+          ],
+          "UnprocessedConfigurationPolicyAssociations": [
+            {
+              "ConfigurationPolicyAssociationIdentifiers": {
+                "Target": {
+                  "RootId": "r-f6g7h8i9j0example"
+                }
+              },
+              "ErrorCode": "400",
+              "ErrorReason": "You do not have sufficient access to perform this action."
+            }
+          ]
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "This operation provides details about configuration associations for a batch of target accounts, organizational units, or the root.",
+        "id": "to-get-configuration-associations-for-a-batch-of-targets-1695178953302",
+        "title": "To get configuration associations for a batch of targets"
+      }
+    ],
     "BatchGetSecurityControls": [
       {
         "input": {
@@ -607,6 +658,85 @@
         "title": "To create an automation rule"
       }
     ],
+    "CreateConfigurationPolicy": [
+      {
+        "input": {
+          "ConfigurationPolicy": {
+            "SecurityHub": {
+              "EnabledStandardIdentifiers": [
+                "arn:aws:securityhub:us-east-1::standards/aws-foundational-security-best-practices/v/1.0.0",
+                "arn:aws:securityhub:::ruleset/cis-aws-foundations-benchmark/v/1.2.0"
+              ],
+              "SecurityControlsConfiguration": {
+                "DisabledSecurityControlIdentifiers": [
+                  "CloudWatch.1"
+                ],
+                "SecurityControlCustomParameters": [
+                  {
+                    "Parameters": {
+                      "daysToExpiration": {
+                        "Value": {
+                          "Integer": 14
+                        },
+                        "ValueType": "CUSTOM"
+                      }
+                    },
+                    "SecurityControlId": "ACM.1"
+                  }
+                ]
+              },
+              "ServiceEnabled": true
+            }
+          },
+          "Description": "Configuration policy for testing FSBP and CIS",
+          "Name": "TestConfigurationPolicy"
+        },
+        "output": {
+          "Arn": "arn:aws:securityhub:us-east-1:123456789012:configuration-policy/a1b2c3d4-5678-90ab-cdef-EXAMPLE11111",
+          "ConfigurationPolicy": {
+            "SecurityHub": {
+              "EnabledStandardIdentifiers": [
+                "arn:aws:securityhub:us-east-1::standards/aws-foundational-security-best-practices/v/1.0.0",
+                "arn:aws:securityhub:::ruleset/cis-aws-foundations-benchmark/v/1.2.0"
+              ],
+              "SecurityControlsConfiguration": {
+                "DisabledSecurityControlIdentifiers": [
+                  "CloudWatch.1"
+                ],
+                "SecurityControlCustomParameters": [
+                  {
+                    "Parameters": {
+                      "daysToExpiration": {
+                        "Value": {
+                          "Integer": 14
+                        },
+                        "ValueType": "CUSTOM"
+                      }
+                    },
+                    "SecurityControlId": "ACM.1"
+                  }
+                ]
+              },
+              "ServiceEnabled": true
+            }
+          },
+          "CreatedAt": "2023-01-11T06:17:17.154Z",
+          "Description": "Configuration policy for testing FSBP and CIS",
+          "Id": "a1b2c3d4-5678-90ab-cdef-EXAMPLE11111",
+          "Name": "TestConfigurationPolicy",
+          "UpdatedAt": "2023-01-11T06:17:17.154Z"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "This operation creates a configuration policy in Security Hub.",
+        "id": "to-create-a-configuration-policy-1695172470099",
+        "title": "To create a configuration policy"
+      }
+    ],
     "CreateFindingAggregator": [
       {
         "input": {
@@ -739,6 +869,22 @@
         "description": "The following example deletes a custom action target that triggers target actions in Amazon CloudWatch Events. Deleting a custom action target doesn't affect findings or insights that were already sent to CloudWatch Events based on the custom action.",
         "id": "to-delete-a-custom-action-target-1675449272793",
         "title": "To delete a custom action target"
+      }
+    ],
+    "DeleteConfigurationPolicy": [
+      {
+        "input": {
+          "Identifier": "arn:aws:securityhub:us-east-1:123456789012:configuration-policy/a1b2c3d4-5678-90ab-cdef-EXAMPLE11111"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "This operation deletes the specified configuration policy.",
+        "id": "to-delete-a-configuration-policy-1695174614062",
+        "title": "To delete a configuration policy"
       }
     ],
     "DeleteFindingAggregator": [
@@ -877,9 +1023,13 @@
         "input": {
         },
         "output": {
-          "AutoEnable": true,
-          "AutoEnableStandards": "DEFAULT",
-          "MemberAccountLimitReached": true
+          "AutoEnable": false,
+          "AutoEnableStandards": "NONE",
+          "MemberAccountLimitReached": false,
+          "OrganizationConfiguration": {
+            "ConfigurationType": "CENTRAL",
+            "Status": "ENABLED"
+          }
         },
         "comments": {
           "input": {
@@ -887,9 +1037,9 @@
           "output": {
           }
         },
-        "description": "The following example returns details about the way in which AWS Organizations is configured for a Security Hub account that belongs to an organization. Only a Security Hub administrator account can call this operation.",
-        "id": "to-get-information-about-organizations-configuration-1676059786304",
-        "title": "To get information about Organizations configuration"
+        "description": "This operation provides information about the way your organization is configured in Security Hub. Only a Security Hub administrator account can invoke this operation.",
+        "id": "to-get-information-about-organization-configuration-1676059786304",
+        "title": "To get information about organization configuration"
       }
     ],
     "DescribeProducts": [
@@ -1176,6 +1326,84 @@
         "description": "The following example provides details about the Security Hub administrator account for the requesting member account.",
         "id": "to-get-details-about-the-security-hub-administrator-account-1676998997182",
         "title": "To get details about the Security Hub administrator account"
+      }
+    ],
+    "GetConfigurationPolicy": [
+      {
+        "input": {
+          "Identifier": "arn:aws:securityhub:us-east-1:123456789012:configuration-policy/a1b2c3d4-5678-90ab-cdef-EXAMPLE11111"
+        },
+        "output": {
+          "Arn": "arn:aws:securityhub:us-east-1:123456789012:configuration-policy/a1b2c3d4-5678-90ab-cdef-EXAMPLE11111",
+          "ConfigurationPolicy": {
+            "SecurityHub": {
+              "EnabledStandardIdentifiers": [
+                "arn:aws:securityhub:us-east-1::standards/aws-foundational-security-best-practices/v/1.0.0",
+                "arn:aws:securityhub:::ruleset/cis-aws-foundations-benchmark/v/1.2.0"
+              ],
+              "SecurityControlsConfiguration": {
+                "DisabledSecurityControlIdentifiers": [
+                  "CloudWatch.1"
+                ],
+                "SecurityControlCustomParameters": [
+                  {
+                    "Parameters": {
+                      "daysToExpiration": {
+                        "Value": {
+                          "Integer": 14
+                        },
+                        "ValueType": "CUSTOM"
+                      }
+                    },
+                    "SecurityControlId": "ACM.1"
+                  }
+                ]
+              },
+              "ServiceEnabled": true
+            }
+          },
+          "CreatedAt": "2023-01-11T06:17:17.154Z",
+          "Description": "Configuration policy for testing FSBP and CIS",
+          "Id": "a1b2c3d4-5678-90ab-cdef-EXAMPLE11111",
+          "Name": "TestConfigurationPolicy",
+          "UpdatedAt": "2023-01-11T06:17:17.154Z"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "This operation provides details about the specified configuration policy.",
+        "id": "to-get-details-about-a-configuration-policy-1695173701103",
+        "title": "To get details about a configuration policy"
+      }
+    ],
+    "GetConfigurationPolicyAssociation": [
+      {
+        "input": {
+          "Target": {
+            "AccountId": "111122223333"
+          }
+        },
+        "output": {
+          "AssociationStatus": "FAILED",
+          "AssociationStatusMessage": "Configuration Policy a1b2c3d4-5678-90ab-cdef-EXAMPLE11111 couldn’t be applied to account 111122223333 in us-east-1 Region. Retry your request.",
+          "AssociationType": "INHERITED",
+          "ConfigurationPolicyId": "a1b2c3d4-5678-90ab-cdef-EXAMPLE11111",
+          "TargetId": "111122223333",
+          "TargetType": "ACCOUNT",
+          "UpdatedAt": "2023-01-11T06:17:17.154Z"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "This operation provides details about configuration associations for a specific target account, organizational unit, or the root.",
+        "id": "to-get-details-about-a-configuration-association-1695177816371",
+        "title": "To get details about a configuration association"
       }
     ],
     "GetEnabledStandards": [
@@ -1626,6 +1854,69 @@
         "title": "To list automation rules"
       }
     ],
+    "ListConfigurationPolicies": [
+      {
+        "input": {
+          "MaxResults": 1,
+          "NextToken": "U1FsdGVkX19nBV2zoh+Gou9NgnulLJHWpn9xnG4hqSOhvw3o2JqjI86QDxdf"
+        },
+        "output": {
+          "ConfigurationPolicySummaries": [
+            {
+              "Arn": "arn:aws:securityhub:us-east-1:123456789012:configuration-policy/a1b2c3d4-5678-90ab-cdef-EXAMPLE11111",
+              "Description": "Configuration policy for testing FSBP and CIS",
+              "Id": "a1b2c3d4-5678-90ab-cdef-EXAMPLE11111",
+              "Name": "TestConfigurationPolicy",
+              "ServiceEnabled": true,
+              "UpdatedAt": "2023-01-11T06:17:17.154Z"
+            }
+          ],
+          "NextToken": "U1FsdGVkX19nBV2zoh+Gou9NgnulLJHWpn9xnG4hqSOfvw3o2JqjI86QDxef"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "This operation provides a list of your configuration policies, including metadata for each policy.",
+        "id": "to-view-a-list-of-configuration-policies-1695173268602",
+        "title": "To view a list of configuration policies"
+      }
+    ],
+    "ListConfigurationPolicyAssociations": [
+      {
+        "input": {
+          "Filters": {
+            "AssociationType": "APPLIED"
+          },
+          "MaxResults": 1,
+          "NextToken": "U1FsdGVkX19nBV2zoh+Gou9NgnulLJHWpn9xnG4hqSOhvw3o2JqjI86QDxdf"
+        },
+        "output": {
+          "ConfigurationPolicyAssociationSummaries": [
+            {
+              "AssociationStatus": "PENDING",
+              "AssociationType": "APPLIED",
+              "ConfigurationPolicyId": "a1b2c3d4-5678-90ab-cdef-EXAMPLE11111",
+              "TargetId": "123456789012",
+              "TargetType": "ACCOUNT",
+              "UpdatedAt": "2023-01-11T06:17:17.154Z"
+            }
+          ],
+          "NextToken": "U1FsdGVkX19nBV2zoh+Gou9NgnulLJHWpn9xnG4hqSOfvw3o2JqjI86QDxef"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "This operation lists all of the associations between targets and configuration policies or self-managed behavior. Targets can include accounts, organizational units, or the root.",
+        "id": "to-list-configuration-associations-1695177309791",
+        "title": "To list configuration associations"
+      }
+    ],
     "ListEnabledProductsForImport": [
       {
         "output": {
@@ -1870,6 +2161,53 @@
         "title": "To get a list of tags for a resource"
       }
     ],
+    "StartConfigurationPolicyAssociation": [
+      {
+        "input": {
+          "ConfigurationPolicyIdentifier": "arn:aws:securityhub:us-east-1:123456789012:configuration-policy/a1b2c3d4-5678-90ab-cdef-EXAMPLE11111",
+          "Target": {
+            "AccountId": "111122223333"
+          }
+        },
+        "output": {
+          "AssociationStatus": "SUCCESS",
+          "AssociationStatusMessage": "This field is populated only if the association fails",
+          "AssociationType": "APPLIED",
+          "ConfigurationPolicyId": "a1b2c3d4-5678-90ab-cdef-EXAMPLE11111",
+          "TargetId": "111122223333",
+          "TargetType": "ACCOUNT",
+          "UpdatedAt": "2023-01-11T06:17:17.154Z"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "This operation associates a configuration policy or self-managed behavior with the target account, organizational unit, or the root.",
+        "id": "to-associate-a-configuration-with-a-target-1695176455638",
+        "title": "To associate a configuration with a target"
+      }
+    ],
+    "StartConfigurationPolicyDisassociation": [
+      {
+        "input": {
+          "ConfigurationPolicyIdentifier": "SELF_MANAGED_SECURITY_HUB",
+          "Target": {
+            "RootId": "r-f6g7h8i9j0example"
+          }
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "This operation disassociates a configuration policy or self-managed behavior from the target account, organizational unit, or the root.",
+        "id": "to-disassociate-a-configuration-from-a-target-1695177176748",
+        "title": "To disassociate a configuration from a target"
+      }
+    ],
     "TagResource": [
       {
         "input": {
@@ -1925,6 +2263,89 @@
         "description": "The following example updates the name and description of a custom action target in Security Hub. You can create custom actions to automatically respond to Security Hub findings using Amazon EventBridge. ",
         "id": "to-update-the-name-and-description-of-a-custom-action-target-1678814873015",
         "title": "To update the name and description of a custom action target"
+      }
+    ],
+    "UpdateConfigurationPolicy": [
+      {
+        "input": {
+          "ConfigurationPolicy": {
+            "SecurityHub": {
+              "EnabledStandardIdentifiers": [
+                "arn:aws:securityhub:us-east-1::standards/aws-foundational-security-best-practices/v/1.0.0",
+                "arn:aws:securityhub:::ruleset/cis-aws-foundations-benchmark/v/1.2.0"
+              ],
+              "SecurityControlsConfiguration": {
+                "DisabledSecurityControlIdentifiers": [
+                  "CloudWatch.1",
+                  "CloudWatch.2"
+                ],
+                "SecurityControlCustomParameters": [
+                  {
+                    "Parameters": {
+                      "daysToExpiration": {
+                        "Value": {
+                          "Integer": 21
+                        },
+                        "ValueType": "CUSTOM"
+                      }
+                    },
+                    "SecurityControlId": "ACM.1"
+                  }
+                ]
+              },
+              "ServiceEnabled": true
+            }
+          },
+          "Description": "Updated configuration policy for testing FSBP and CIS",
+          "Identifier": "arn:aws:securityhub:us-east-1:123456789012:configuration-policy/a1b2c3d4-5678-90ab-cdef-EXAMPLE11111",
+          "Name": "TestConfigurationPolicy",
+          "UpdatedReason": "Enabling ACM.2"
+        },
+        "output": {
+          "Arn": "arn:aws:securityhub:us-east-1:123456789012:configuration-policy/a1b2c3d4-5678-90ab-cdef-EXAMPLE11111",
+          "ConfigurationPolicy": {
+            "SecurityHub": {
+              "EnabledStandardIdentifiers": [
+                "arn:aws:securityhub:us-east-1::standards/aws-foundational-security-best-practices/v/1.0.0",
+                "arn:aws:securityhub:::ruleset/cis-aws-foundations-benchmark/v/1.2.0"
+              ],
+              "SecurityControlsConfiguration": {
+                "DisabledSecurityControlIdentifiers": [
+                  "CloudWatch.1",
+                  "CloudWatch.2"
+                ],
+                "SecurityControlCustomParameters": [
+                  {
+                    "Parameters": {
+                      "daysToExpiration": {
+                        "Value": {
+                          "Integer": 21
+                        },
+                        "ValueType": "CUSTOM"
+                      }
+                    },
+                    "SecurityControlId": "ACM.1"
+                  }
+                ]
+              },
+              "ServiceEnabled": true
+            }
+          },
+          "CreatedAt": "2023-01-11T06:17:17.154Z",
+          "Description": "Updated configuration policy for testing FSBP and CIS",
+          "Id": "a1b2c3d4-5678-90ab-cdef-EXAMPLE11111",
+          "Name": "TestConfigurationPolicy",
+          "UpdatedAt": "2023-01-12T06:17:17.154Z"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "This operation updates the specified configuration policy.",
+        "id": "to-update-a-configuration-policy-1695174120555",
+        "title": "To update a configuration policy"
       }
     ],
     "UpdateFindingAggregator": [
@@ -1991,7 +2412,11 @@
     "UpdateOrganizationConfiguration": [
       {
         "input": {
-          "AutoEnable": true
+          "AutoEnable": false,
+          "AutoEnableStandards": "NONE",
+          "OrganizationConfiguration": {
+            "ConfigurationType": "CENTRAL"
+          }
         },
         "comments": {
           "input": {
@@ -1999,7 +2424,7 @@
           "output": {
           }
         },
-        "description": "The following example updates the configuration for an organization so that Security Hub is automatically activated for new member accounts. Only the Security Hub administrator account can call this operation.",
+        "description": "This operation updates the way your organization is configured in Security Hub. Only a Security Hub administrator account can invoke this operation.",
         "id": "to-update-organization-configuration-1678911630846",
         "title": "To update organization configuration"
       }

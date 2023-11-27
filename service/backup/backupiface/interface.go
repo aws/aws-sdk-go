@@ -92,6 +92,14 @@ type BackupAPI interface {
 	CreateReportPlanWithContext(aws.Context, *backup.CreateReportPlanInput, ...request.Option) (*backup.CreateReportPlanOutput, error)
 	CreateReportPlanRequest(*backup.CreateReportPlanInput) (*request.Request, *backup.CreateReportPlanOutput)
 
+	CreateRestoreTestingPlan(*backup.CreateRestoreTestingPlanInput) (*backup.CreateRestoreTestingPlanOutput, error)
+	CreateRestoreTestingPlanWithContext(aws.Context, *backup.CreateRestoreTestingPlanInput, ...request.Option) (*backup.CreateRestoreTestingPlanOutput, error)
+	CreateRestoreTestingPlanRequest(*backup.CreateRestoreTestingPlanInput) (*request.Request, *backup.CreateRestoreTestingPlanOutput)
+
+	CreateRestoreTestingSelection(*backup.CreateRestoreTestingSelectionInput) (*backup.CreateRestoreTestingSelectionOutput, error)
+	CreateRestoreTestingSelectionWithContext(aws.Context, *backup.CreateRestoreTestingSelectionInput, ...request.Option) (*backup.CreateRestoreTestingSelectionOutput, error)
+	CreateRestoreTestingSelectionRequest(*backup.CreateRestoreTestingSelectionInput) (*request.Request, *backup.CreateRestoreTestingSelectionOutput)
+
 	DeleteBackupPlan(*backup.DeleteBackupPlanInput) (*backup.DeleteBackupPlanOutput, error)
 	DeleteBackupPlanWithContext(aws.Context, *backup.DeleteBackupPlanInput, ...request.Option) (*backup.DeleteBackupPlanOutput, error)
 	DeleteBackupPlanRequest(*backup.DeleteBackupPlanInput) (*request.Request, *backup.DeleteBackupPlanOutput)
@@ -127,6 +135,14 @@ type BackupAPI interface {
 	DeleteReportPlan(*backup.DeleteReportPlanInput) (*backup.DeleteReportPlanOutput, error)
 	DeleteReportPlanWithContext(aws.Context, *backup.DeleteReportPlanInput, ...request.Option) (*backup.DeleteReportPlanOutput, error)
 	DeleteReportPlanRequest(*backup.DeleteReportPlanInput) (*request.Request, *backup.DeleteReportPlanOutput)
+
+	DeleteRestoreTestingPlan(*backup.DeleteRestoreTestingPlanInput) (*backup.DeleteRestoreTestingPlanOutput, error)
+	DeleteRestoreTestingPlanWithContext(aws.Context, *backup.DeleteRestoreTestingPlanInput, ...request.Option) (*backup.DeleteRestoreTestingPlanOutput, error)
+	DeleteRestoreTestingPlanRequest(*backup.DeleteRestoreTestingPlanInput) (*request.Request, *backup.DeleteRestoreTestingPlanOutput)
+
+	DeleteRestoreTestingSelection(*backup.DeleteRestoreTestingSelectionInput) (*backup.DeleteRestoreTestingSelectionOutput, error)
+	DeleteRestoreTestingSelectionWithContext(aws.Context, *backup.DeleteRestoreTestingSelectionInput, ...request.Option) (*backup.DeleteRestoreTestingSelectionOutput, error)
+	DeleteRestoreTestingSelectionRequest(*backup.DeleteRestoreTestingSelectionInput) (*request.Request, *backup.DeleteRestoreTestingSelectionOutput)
 
 	DescribeBackupJob(*backup.DescribeBackupJobInput) (*backup.DescribeBackupJobOutput, error)
 	DescribeBackupJobWithContext(aws.Context, *backup.DescribeBackupJobInput, ...request.Option) (*backup.DescribeBackupJobOutput, error)
@@ -215,6 +231,22 @@ type BackupAPI interface {
 	GetRecoveryPointRestoreMetadata(*backup.GetRecoveryPointRestoreMetadataInput) (*backup.GetRecoveryPointRestoreMetadataOutput, error)
 	GetRecoveryPointRestoreMetadataWithContext(aws.Context, *backup.GetRecoveryPointRestoreMetadataInput, ...request.Option) (*backup.GetRecoveryPointRestoreMetadataOutput, error)
 	GetRecoveryPointRestoreMetadataRequest(*backup.GetRecoveryPointRestoreMetadataInput) (*request.Request, *backup.GetRecoveryPointRestoreMetadataOutput)
+
+	GetRestoreJobMetadata(*backup.GetRestoreJobMetadataInput) (*backup.GetRestoreJobMetadataOutput, error)
+	GetRestoreJobMetadataWithContext(aws.Context, *backup.GetRestoreJobMetadataInput, ...request.Option) (*backup.GetRestoreJobMetadataOutput, error)
+	GetRestoreJobMetadataRequest(*backup.GetRestoreJobMetadataInput) (*request.Request, *backup.GetRestoreJobMetadataOutput)
+
+	GetRestoreTestingInferredMetadata(*backup.GetRestoreTestingInferredMetadataInput) (*backup.GetRestoreTestingInferredMetadataOutput, error)
+	GetRestoreTestingInferredMetadataWithContext(aws.Context, *backup.GetRestoreTestingInferredMetadataInput, ...request.Option) (*backup.GetRestoreTestingInferredMetadataOutput, error)
+	GetRestoreTestingInferredMetadataRequest(*backup.GetRestoreTestingInferredMetadataInput) (*request.Request, *backup.GetRestoreTestingInferredMetadataOutput)
+
+	GetRestoreTestingPlan(*backup.GetRestoreTestingPlanInput) (*backup.GetRestoreTestingPlanOutput, error)
+	GetRestoreTestingPlanWithContext(aws.Context, *backup.GetRestoreTestingPlanInput, ...request.Option) (*backup.GetRestoreTestingPlanOutput, error)
+	GetRestoreTestingPlanRequest(*backup.GetRestoreTestingPlanInput) (*request.Request, *backup.GetRestoreTestingPlanOutput)
+
+	GetRestoreTestingSelection(*backup.GetRestoreTestingSelectionInput) (*backup.GetRestoreTestingSelectionOutput, error)
+	GetRestoreTestingSelectionWithContext(aws.Context, *backup.GetRestoreTestingSelectionInput, ...request.Option) (*backup.GetRestoreTestingSelectionOutput, error)
+	GetRestoreTestingSelectionRequest(*backup.GetRestoreTestingSelectionInput) (*request.Request, *backup.GetRestoreTestingSelectionOutput)
 
 	GetSupportedResourceTypes(*backup.GetSupportedResourceTypesInput) (*backup.GetSupportedResourceTypesOutput, error)
 	GetSupportedResourceTypesWithContext(aws.Context, *backup.GetSupportedResourceTypesInput, ...request.Option) (*backup.GetSupportedResourceTypesOutput, error)
@@ -360,6 +392,27 @@ type BackupAPI interface {
 	ListRestoreJobsPages(*backup.ListRestoreJobsInput, func(*backup.ListRestoreJobsOutput, bool) bool) error
 	ListRestoreJobsPagesWithContext(aws.Context, *backup.ListRestoreJobsInput, func(*backup.ListRestoreJobsOutput, bool) bool, ...request.Option) error
 
+	ListRestoreJobsByProtectedResource(*backup.ListRestoreJobsByProtectedResourceInput) (*backup.ListRestoreJobsByProtectedResourceOutput, error)
+	ListRestoreJobsByProtectedResourceWithContext(aws.Context, *backup.ListRestoreJobsByProtectedResourceInput, ...request.Option) (*backup.ListRestoreJobsByProtectedResourceOutput, error)
+	ListRestoreJobsByProtectedResourceRequest(*backup.ListRestoreJobsByProtectedResourceInput) (*request.Request, *backup.ListRestoreJobsByProtectedResourceOutput)
+
+	ListRestoreJobsByProtectedResourcePages(*backup.ListRestoreJobsByProtectedResourceInput, func(*backup.ListRestoreJobsByProtectedResourceOutput, bool) bool) error
+	ListRestoreJobsByProtectedResourcePagesWithContext(aws.Context, *backup.ListRestoreJobsByProtectedResourceInput, func(*backup.ListRestoreJobsByProtectedResourceOutput, bool) bool, ...request.Option) error
+
+	ListRestoreTestingPlans(*backup.ListRestoreTestingPlansInput) (*backup.ListRestoreTestingPlansOutput, error)
+	ListRestoreTestingPlansWithContext(aws.Context, *backup.ListRestoreTestingPlansInput, ...request.Option) (*backup.ListRestoreTestingPlansOutput, error)
+	ListRestoreTestingPlansRequest(*backup.ListRestoreTestingPlansInput) (*request.Request, *backup.ListRestoreTestingPlansOutput)
+
+	ListRestoreTestingPlansPages(*backup.ListRestoreTestingPlansInput, func(*backup.ListRestoreTestingPlansOutput, bool) bool) error
+	ListRestoreTestingPlansPagesWithContext(aws.Context, *backup.ListRestoreTestingPlansInput, func(*backup.ListRestoreTestingPlansOutput, bool) bool, ...request.Option) error
+
+	ListRestoreTestingSelections(*backup.ListRestoreTestingSelectionsInput) (*backup.ListRestoreTestingSelectionsOutput, error)
+	ListRestoreTestingSelectionsWithContext(aws.Context, *backup.ListRestoreTestingSelectionsInput, ...request.Option) (*backup.ListRestoreTestingSelectionsOutput, error)
+	ListRestoreTestingSelectionsRequest(*backup.ListRestoreTestingSelectionsInput) (*request.Request, *backup.ListRestoreTestingSelectionsOutput)
+
+	ListRestoreTestingSelectionsPages(*backup.ListRestoreTestingSelectionsInput, func(*backup.ListRestoreTestingSelectionsOutput, bool) bool) error
+	ListRestoreTestingSelectionsPagesWithContext(aws.Context, *backup.ListRestoreTestingSelectionsInput, func(*backup.ListRestoreTestingSelectionsOutput, bool) bool, ...request.Option) error
+
 	ListTags(*backup.ListTagsInput) (*backup.ListTagsOutput, error)
 	ListTagsWithContext(aws.Context, *backup.ListTagsInput, ...request.Option) (*backup.ListTagsOutput, error)
 	ListTagsRequest(*backup.ListTagsInput) (*request.Request, *backup.ListTagsOutput)
@@ -378,6 +431,10 @@ type BackupAPI interface {
 	PutBackupVaultNotifications(*backup.PutBackupVaultNotificationsInput) (*backup.PutBackupVaultNotificationsOutput, error)
 	PutBackupVaultNotificationsWithContext(aws.Context, *backup.PutBackupVaultNotificationsInput, ...request.Option) (*backup.PutBackupVaultNotificationsOutput, error)
 	PutBackupVaultNotificationsRequest(*backup.PutBackupVaultNotificationsInput) (*request.Request, *backup.PutBackupVaultNotificationsOutput)
+
+	PutRestoreValidationResult(*backup.PutRestoreValidationResultInput) (*backup.PutRestoreValidationResultOutput, error)
+	PutRestoreValidationResultWithContext(aws.Context, *backup.PutRestoreValidationResultInput, ...request.Option) (*backup.PutRestoreValidationResultOutput, error)
+	PutRestoreValidationResultRequest(*backup.PutRestoreValidationResultInput) (*request.Request, *backup.PutRestoreValidationResultOutput)
 
 	StartBackupJob(*backup.StartBackupJobInput) (*backup.StartBackupJobOutput, error)
 	StartBackupJobWithContext(aws.Context, *backup.StartBackupJobInput, ...request.Option) (*backup.StartBackupJobOutput, error)
@@ -430,6 +487,14 @@ type BackupAPI interface {
 	UpdateReportPlan(*backup.UpdateReportPlanInput) (*backup.UpdateReportPlanOutput, error)
 	UpdateReportPlanWithContext(aws.Context, *backup.UpdateReportPlanInput, ...request.Option) (*backup.UpdateReportPlanOutput, error)
 	UpdateReportPlanRequest(*backup.UpdateReportPlanInput) (*request.Request, *backup.UpdateReportPlanOutput)
+
+	UpdateRestoreTestingPlan(*backup.UpdateRestoreTestingPlanInput) (*backup.UpdateRestoreTestingPlanOutput, error)
+	UpdateRestoreTestingPlanWithContext(aws.Context, *backup.UpdateRestoreTestingPlanInput, ...request.Option) (*backup.UpdateRestoreTestingPlanOutput, error)
+	UpdateRestoreTestingPlanRequest(*backup.UpdateRestoreTestingPlanInput) (*request.Request, *backup.UpdateRestoreTestingPlanOutput)
+
+	UpdateRestoreTestingSelection(*backup.UpdateRestoreTestingSelectionInput) (*backup.UpdateRestoreTestingSelectionOutput, error)
+	UpdateRestoreTestingSelectionWithContext(aws.Context, *backup.UpdateRestoreTestingSelectionInput, ...request.Option) (*backup.UpdateRestoreTestingSelectionOutput, error)
+	UpdateRestoreTestingSelectionRequest(*backup.UpdateRestoreTestingSelectionInput) (*request.Request, *backup.UpdateRestoreTestingSelectionOutput)
 }
 
 var _ BackupAPI = (*backup.Backup)(nil)

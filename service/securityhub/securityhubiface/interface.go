@@ -84,6 +84,10 @@ type SecurityHubAPI interface {
 	BatchGetAutomationRulesWithContext(aws.Context, *securityhub.BatchGetAutomationRulesInput, ...request.Option) (*securityhub.BatchGetAutomationRulesOutput, error)
 	BatchGetAutomationRulesRequest(*securityhub.BatchGetAutomationRulesInput) (*request.Request, *securityhub.BatchGetAutomationRulesOutput)
 
+	BatchGetConfigurationPolicyAssociations(*securityhub.BatchGetConfigurationPolicyAssociationsInput) (*securityhub.BatchGetConfigurationPolicyAssociationsOutput, error)
+	BatchGetConfigurationPolicyAssociationsWithContext(aws.Context, *securityhub.BatchGetConfigurationPolicyAssociationsInput, ...request.Option) (*securityhub.BatchGetConfigurationPolicyAssociationsOutput, error)
+	BatchGetConfigurationPolicyAssociationsRequest(*securityhub.BatchGetConfigurationPolicyAssociationsInput) (*request.Request, *securityhub.BatchGetConfigurationPolicyAssociationsOutput)
+
 	BatchGetSecurityControls(*securityhub.BatchGetSecurityControlsInput) (*securityhub.BatchGetSecurityControlsOutput, error)
 	BatchGetSecurityControlsWithContext(aws.Context, *securityhub.BatchGetSecurityControlsInput, ...request.Option) (*securityhub.BatchGetSecurityControlsOutput, error)
 	BatchGetSecurityControlsRequest(*securityhub.BatchGetSecurityControlsInput) (*request.Request, *securityhub.BatchGetSecurityControlsOutput)
@@ -116,6 +120,10 @@ type SecurityHubAPI interface {
 	CreateAutomationRuleWithContext(aws.Context, *securityhub.CreateAutomationRuleInput, ...request.Option) (*securityhub.CreateAutomationRuleOutput, error)
 	CreateAutomationRuleRequest(*securityhub.CreateAutomationRuleInput) (*request.Request, *securityhub.CreateAutomationRuleOutput)
 
+	CreateConfigurationPolicy(*securityhub.CreateConfigurationPolicyInput) (*securityhub.CreateConfigurationPolicyOutput, error)
+	CreateConfigurationPolicyWithContext(aws.Context, *securityhub.CreateConfigurationPolicyInput, ...request.Option) (*securityhub.CreateConfigurationPolicyOutput, error)
+	CreateConfigurationPolicyRequest(*securityhub.CreateConfigurationPolicyInput) (*request.Request, *securityhub.CreateConfigurationPolicyOutput)
+
 	CreateFindingAggregator(*securityhub.CreateFindingAggregatorInput) (*securityhub.CreateFindingAggregatorOutput, error)
 	CreateFindingAggregatorWithContext(aws.Context, *securityhub.CreateFindingAggregatorInput, ...request.Option) (*securityhub.CreateFindingAggregatorOutput, error)
 	CreateFindingAggregatorRequest(*securityhub.CreateFindingAggregatorInput) (*request.Request, *securityhub.CreateFindingAggregatorOutput)
@@ -135,6 +143,10 @@ type SecurityHubAPI interface {
 	DeleteActionTarget(*securityhub.DeleteActionTargetInput) (*securityhub.DeleteActionTargetOutput, error)
 	DeleteActionTargetWithContext(aws.Context, *securityhub.DeleteActionTargetInput, ...request.Option) (*securityhub.DeleteActionTargetOutput, error)
 	DeleteActionTargetRequest(*securityhub.DeleteActionTargetInput) (*request.Request, *securityhub.DeleteActionTargetOutput)
+
+	DeleteConfigurationPolicy(*securityhub.DeleteConfigurationPolicyInput) (*securityhub.DeleteConfigurationPolicyOutput, error)
+	DeleteConfigurationPolicyWithContext(aws.Context, *securityhub.DeleteConfigurationPolicyInput, ...request.Option) (*securityhub.DeleteConfigurationPolicyOutput, error)
+	DeleteConfigurationPolicyRequest(*securityhub.DeleteConfigurationPolicyInput) (*request.Request, *securityhub.DeleteConfigurationPolicyOutput)
 
 	DeleteFindingAggregator(*securityhub.DeleteFindingAggregatorInput) (*securityhub.DeleteFindingAggregatorOutput, error)
 	DeleteFindingAggregatorWithContext(aws.Context, *securityhub.DeleteFindingAggregatorInput, ...request.Option) (*securityhub.DeleteFindingAggregatorOutput, error)
@@ -228,6 +240,14 @@ type SecurityHubAPI interface {
 	GetAdministratorAccountWithContext(aws.Context, *securityhub.GetAdministratorAccountInput, ...request.Option) (*securityhub.GetAdministratorAccountOutput, error)
 	GetAdministratorAccountRequest(*securityhub.GetAdministratorAccountInput) (*request.Request, *securityhub.GetAdministratorAccountOutput)
 
+	GetConfigurationPolicy(*securityhub.GetConfigurationPolicyInput) (*securityhub.GetConfigurationPolicyOutput, error)
+	GetConfigurationPolicyWithContext(aws.Context, *securityhub.GetConfigurationPolicyInput, ...request.Option) (*securityhub.GetConfigurationPolicyOutput, error)
+	GetConfigurationPolicyRequest(*securityhub.GetConfigurationPolicyInput) (*request.Request, *securityhub.GetConfigurationPolicyOutput)
+
+	GetConfigurationPolicyAssociation(*securityhub.GetConfigurationPolicyAssociationInput) (*securityhub.GetConfigurationPolicyAssociationOutput, error)
+	GetConfigurationPolicyAssociationWithContext(aws.Context, *securityhub.GetConfigurationPolicyAssociationInput, ...request.Option) (*securityhub.GetConfigurationPolicyAssociationOutput, error)
+	GetConfigurationPolicyAssociationRequest(*securityhub.GetConfigurationPolicyAssociationInput) (*request.Request, *securityhub.GetConfigurationPolicyAssociationOutput)
+
 	GetEnabledStandards(*securityhub.GetEnabledStandardsInput) (*securityhub.GetEnabledStandardsOutput, error)
 	GetEnabledStandardsWithContext(aws.Context, *securityhub.GetEnabledStandardsInput, ...request.Option) (*securityhub.GetEnabledStandardsOutput, error)
 	GetEnabledStandardsRequest(*securityhub.GetEnabledStandardsInput) (*request.Request, *securityhub.GetEnabledStandardsOutput)
@@ -288,6 +308,20 @@ type SecurityHubAPI interface {
 	ListAutomationRulesWithContext(aws.Context, *securityhub.ListAutomationRulesInput, ...request.Option) (*securityhub.ListAutomationRulesOutput, error)
 	ListAutomationRulesRequest(*securityhub.ListAutomationRulesInput) (*request.Request, *securityhub.ListAutomationRulesOutput)
 
+	ListConfigurationPolicies(*securityhub.ListConfigurationPoliciesInput) (*securityhub.ListConfigurationPoliciesOutput, error)
+	ListConfigurationPoliciesWithContext(aws.Context, *securityhub.ListConfigurationPoliciesInput, ...request.Option) (*securityhub.ListConfigurationPoliciesOutput, error)
+	ListConfigurationPoliciesRequest(*securityhub.ListConfigurationPoliciesInput) (*request.Request, *securityhub.ListConfigurationPoliciesOutput)
+
+	ListConfigurationPoliciesPages(*securityhub.ListConfigurationPoliciesInput, func(*securityhub.ListConfigurationPoliciesOutput, bool) bool) error
+	ListConfigurationPoliciesPagesWithContext(aws.Context, *securityhub.ListConfigurationPoliciesInput, func(*securityhub.ListConfigurationPoliciesOutput, bool) bool, ...request.Option) error
+
+	ListConfigurationPolicyAssociations(*securityhub.ListConfigurationPolicyAssociationsInput) (*securityhub.ListConfigurationPolicyAssociationsOutput, error)
+	ListConfigurationPolicyAssociationsWithContext(aws.Context, *securityhub.ListConfigurationPolicyAssociationsInput, ...request.Option) (*securityhub.ListConfigurationPolicyAssociationsOutput, error)
+	ListConfigurationPolicyAssociationsRequest(*securityhub.ListConfigurationPolicyAssociationsInput) (*request.Request, *securityhub.ListConfigurationPolicyAssociationsOutput)
+
+	ListConfigurationPolicyAssociationsPages(*securityhub.ListConfigurationPolicyAssociationsInput, func(*securityhub.ListConfigurationPolicyAssociationsOutput, bool) bool) error
+	ListConfigurationPolicyAssociationsPagesWithContext(aws.Context, *securityhub.ListConfigurationPolicyAssociationsInput, func(*securityhub.ListConfigurationPolicyAssociationsOutput, bool) bool, ...request.Option) error
+
 	ListEnabledProductsForImport(*securityhub.ListEnabledProductsForImportInput) (*securityhub.ListEnabledProductsForImportOutput, error)
 	ListEnabledProductsForImportWithContext(aws.Context, *securityhub.ListEnabledProductsForImportInput, ...request.Option) (*securityhub.ListEnabledProductsForImportOutput, error)
 	ListEnabledProductsForImportRequest(*securityhub.ListEnabledProductsForImportInput) (*request.Request, *securityhub.ListEnabledProductsForImportOutput)
@@ -341,6 +375,14 @@ type SecurityHubAPI interface {
 	ListTagsForResourceWithContext(aws.Context, *securityhub.ListTagsForResourceInput, ...request.Option) (*securityhub.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*securityhub.ListTagsForResourceInput) (*request.Request, *securityhub.ListTagsForResourceOutput)
 
+	StartConfigurationPolicyAssociation(*securityhub.StartConfigurationPolicyAssociationInput) (*securityhub.StartConfigurationPolicyAssociationOutput, error)
+	StartConfigurationPolicyAssociationWithContext(aws.Context, *securityhub.StartConfigurationPolicyAssociationInput, ...request.Option) (*securityhub.StartConfigurationPolicyAssociationOutput, error)
+	StartConfigurationPolicyAssociationRequest(*securityhub.StartConfigurationPolicyAssociationInput) (*request.Request, *securityhub.StartConfigurationPolicyAssociationOutput)
+
+	StartConfigurationPolicyDisassociation(*securityhub.StartConfigurationPolicyDisassociationInput) (*securityhub.StartConfigurationPolicyDisassociationOutput, error)
+	StartConfigurationPolicyDisassociationWithContext(aws.Context, *securityhub.StartConfigurationPolicyDisassociationInput, ...request.Option) (*securityhub.StartConfigurationPolicyDisassociationOutput, error)
+	StartConfigurationPolicyDisassociationRequest(*securityhub.StartConfigurationPolicyDisassociationInput) (*request.Request, *securityhub.StartConfigurationPolicyDisassociationOutput)
+
 	TagResource(*securityhub.TagResourceInput) (*securityhub.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *securityhub.TagResourceInput, ...request.Option) (*securityhub.TagResourceOutput, error)
 	TagResourceRequest(*securityhub.TagResourceInput) (*request.Request, *securityhub.TagResourceOutput)
@@ -352,6 +394,10 @@ type SecurityHubAPI interface {
 	UpdateActionTarget(*securityhub.UpdateActionTargetInput) (*securityhub.UpdateActionTargetOutput, error)
 	UpdateActionTargetWithContext(aws.Context, *securityhub.UpdateActionTargetInput, ...request.Option) (*securityhub.UpdateActionTargetOutput, error)
 	UpdateActionTargetRequest(*securityhub.UpdateActionTargetInput) (*request.Request, *securityhub.UpdateActionTargetOutput)
+
+	UpdateConfigurationPolicy(*securityhub.UpdateConfigurationPolicyInput) (*securityhub.UpdateConfigurationPolicyOutput, error)
+	UpdateConfigurationPolicyWithContext(aws.Context, *securityhub.UpdateConfigurationPolicyInput, ...request.Option) (*securityhub.UpdateConfigurationPolicyOutput, error)
+	UpdateConfigurationPolicyRequest(*securityhub.UpdateConfigurationPolicyInput) (*request.Request, *securityhub.UpdateConfigurationPolicyOutput)
 
 	UpdateFindingAggregator(*securityhub.UpdateFindingAggregatorInput) (*securityhub.UpdateFindingAggregatorOutput, error)
 	UpdateFindingAggregatorWithContext(aws.Context, *securityhub.UpdateFindingAggregatorInput, ...request.Option) (*securityhub.UpdateFindingAggregatorOutput, error)

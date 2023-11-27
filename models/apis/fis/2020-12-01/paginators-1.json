@@ -5,12 +5,22 @@
       "output_token": "nextToken",
       "limit_key": "maxResults"
     },
+    "ListExperimentResolvedTargets": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults"
+    },
     "ListExperimentTemplates": {
       "input_token": "nextToken",
       "output_token": "nextToken",
       "limit_key": "maxResults"
     },
     "ListExperiments": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults"
+    },
+    "ListTargetAccountConfigurations": {
       "input_token": "nextToken",
       "output_token": "nextToken",
       "limit_key": "maxResults"

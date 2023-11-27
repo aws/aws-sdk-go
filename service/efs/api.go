@@ -589,32 +589,39 @@ func (c *EFS) CreateReplicationConfigurationRequest(input *CreateReplicationConf
 // in the Amazon EFS User Guide. The replication configuration specifies the
 // following:
 //
-//   - Source file system - An existing EFS file system that you want replicated.
+//   - Source file system – The EFS file system that you want replicated.
 //     The source file system cannot be a destination file system in an existing
 //     replication configuration.
 //
-//   - Destination file system configuration - The configuration of the destination
+//   - Amazon Web Services Region – The Amazon Web Services Region in which
+//     the destination file system is created. Amazon EFS replication is available
+//     in all Amazon Web Services Regions in which EFS is available. The Region
+//     must be enabled. For more information, see Managing Amazon Web Services
+//     Regions (https://docs.aws.amazon.com/general/latest/gr/rande-manage.html#rande-manage-enable)
+//     in the Amazon Web Services General Reference Reference Guide.
+//
+//   - Destination file system configuration – The configuration of the destination
 //     file system to which the source file system will be replicated. There
 //     can only be one destination file system in a replication configuration.
-//     The destination file system configuration consists of the following properties:
-//     Amazon Web Services Region - The Amazon Web Services Region in which the
-//     destination file system is created. Amazon EFS replication is available
-//     in all Amazon Web Services Regions in which EFS is available. To use EFS
-//     replication in a Region that is disabled by default, you must first opt
-//     in to the Region. For more information, see Managing Amazon Web Services
-//     Regions (https://docs.aws.amazon.com/general/latest/gr/rande-manage.html#rande-manage-enable)
-//     in the Amazon Web Services General Reference Reference Guide Availability
-//     Zone - If you want the destination file system to use EFS One Zone availability,
-//     you must specify the Availability Zone to create the file system in. For
-//     more information about EFS storage classes, see Amazon EFS storage classes
-//     (https://docs.aws.amazon.com/efs/latest/ug/storage-classes.html) in the
-//     Amazon EFS User Guide. Encryption - All destination file systems are created
-//     with encryption at rest enabled. You can specify the Key Management Service
-//     (KMS) key that is used to encrypt the destination file system. If you
-//     don't specify a KMS key, your service-managed KMS key for Amazon EFS is
-//     used. After the file system is created, you cannot change the KMS key.
+//     Parameters for the replication configuration include: File system ID –
+//     The ID of the destination file system for the replication. If no ID is
+//     provided, then EFS creates a new file system with the default settings.
+//     For existing file systems, the file system's replication overwrite protection
+//     must be disabled. For more information, see Replicating to an existing
+//     file system (https://docs.aws.amazon.com/efs/latest/ug/efs-replication#replicate-existing-destination).
+//     Availability Zone – If you want the destination file system to use One
+//     Zone storage, you must specify the Availability Zone to create the file
+//     system in. For more information, see EFS file system types (https://docs.aws.amazon.com/efs/latest/ug/storage-classes.html)
+//     in the Amazon EFS User Guide. Encryption – All destination file systems
+//     are created with encryption at rest enabled. You can specify the Key Management
+//     Service (KMS) key that is used to encrypt the destination file system.
+//     If you don't specify a KMS key, your service-managed KMS key for Amazon
+//     EFS is used. After the file system is created, you cannot change the KMS
+//     key.
 //
-// The following properties are set by default:
+// After the file system is created, you cannot change the KMS key.
+//
+// For new destination file systems, the following properties are set by default:
 //
 //   - Performance mode - The destination file system's performance mode matches
 //     that of the source file system, unless the destination file system uses
@@ -625,11 +632,9 @@ func (c *EFS) CreateReplicationConfigurationRequest(input *CreateReplicationConf
 //     that of the source file system. After the file system is created, you
 //     can modify the throughput mode.
 //
-// The following properties are turned off by default:
-//
 //   - Lifecycle management – Lifecycle management is not enabled on the
 //     destination file system. After the destination file system is created,
-//     you can enable it.
+//     you can enable lifecycle management.
 //
 //   - Automatic backups – Automatic daily backups are enabled on the destination
 //     file system. After the file system is created, you can change this setting.
@@ -683,6 +688,10 @@ func (c *EFS) CreateReplicationConfigurationRequest(input *CreateReplicationConf
 //   - ThroughputLimitExceeded
 //     Returned if the throughput mode or amount of provisioned throughput can't
 //     be changed because the throughput limit of 1024 MiB/s has been reached.
+//
+//   - ConflictException
+//     Returned if the source file system in a replication is encrypted but the
+//     destination file system is unencrypted.
 //
 //   - InternalServerError
 //     Returned if an error occurred on the server side.
@@ -1279,10 +1288,14 @@ func (c *EFS) DeleteReplicationConfigurationRequest(input *DeleteReplicationConf
 
 // DeleteReplicationConfiguration API operation for Amazon Elastic File System.
 //
-// Deletes an existing replication configuration. Deleting a replication configuration
+// Deletes a replication configuration. Deleting a replication configuration
 // ends the replication process. After a replication configuration is deleted,
-// the destination file system is no longer read-only. You can write to the
-// destination file system after its status becomes Writeable.
+// the destination file system becomes Writeable and its replication overwrite
+// protection is re-enabled. For more information, see Delete a replication
+// configuration (https://docs.aws.amazon.com/efs/latest/ug/delete-replications.html).
+//
+// This operation requires permissions for the elasticfilesystem:DeleteReplicationConfiguration
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2071,7 +2084,7 @@ func (c *EFS) DescribeLifecycleConfigurationRequest(input *DescribeLifecycleConf
 // DescribeLifecycleConfiguration API operation for Amazon Elastic File System.
 //
 // Returns the current LifecycleConfiguration object for the specified Amazon
-// EFS file system. Llifecycle management uses the LifecycleConfiguration object
+// EFS file system. Lifecycle management uses the LifecycleConfiguration object
 // to identify when to move files between storage classes. For a file system
 // without a LifecycleConfiguration object, the call returns an empty array
 // in the response.
@@ -3302,7 +3315,7 @@ func (c *EFS) PutLifecycleConfigurationRequest(input *PutLifecycleConfigurationI
 
 // PutLifecycleConfiguration API operation for Amazon Elastic File System.
 //
-// Use this action to manage storage of your file system. A LifecycleConfiguration
+// Use this action to manage storage for your file system. A LifecycleConfiguration
 // consists of one or more LifecyclePolicy objects that define the following:
 //
 //   - TransitionToIA – When to move files in the file system from primary
@@ -3326,9 +3339,7 @@ func (c *EFS) PutLifecycleConfigurationRequest(input *PutLifecycleConfigurationI
 // to all files in the file system. If a LifecycleConfiguration object already
 // exists for the specified file system, a PutLifecycleConfiguration call modifies
 // the existing configuration. A PutLifecycleConfiguration call with an empty
-// LifecyclePolicies array in the request body deletes any existing LifecycleConfiguration
-// for the file system.
-//
+// LifecyclePolicies array in the request body deletes any existing LifecycleConfiguration.
 // In the request, specify the following:
 //
 //   - The ID for the file system for which you are enabling, disabling, or
@@ -3687,6 +3698,118 @@ func (c *EFS) UpdateFileSystem(input *UpdateFileSystemInput) (*UpdateFileSystemO
 // for more information on using Contexts.
 func (c *EFS) UpdateFileSystemWithContext(ctx aws.Context, input *UpdateFileSystemInput, opts ...request.Option) (*UpdateFileSystemOutput, error) {
 	req, out := c.UpdateFileSystemRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateFileSystemProtection = "UpdateFileSystemProtection"
+
+// UpdateFileSystemProtectionRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateFileSystemProtection operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateFileSystemProtection for more information on using the UpdateFileSystemProtection
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateFileSystemProtectionRequest method.
+//	req, resp := client.UpdateFileSystemProtectionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/UpdateFileSystemProtection
+func (c *EFS) UpdateFileSystemProtectionRequest(input *UpdateFileSystemProtectionInput) (req *request.Request, output *UpdateFileSystemProtectionOutput) {
+	op := &request.Operation{
+		Name:       opUpdateFileSystemProtection,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/2015-02-01/file-systems/{FileSystemId}/protection",
+	}
+
+	if input == nil {
+		input = &UpdateFileSystemProtectionInput{}
+	}
+
+	output = &UpdateFileSystemProtectionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateFileSystemProtection API operation for Amazon Elastic File System.
+//
+// Updates protection on the file system.
+//
+// This operation requires permissions for the elasticfilesystem:UpdateFileSystemProtection
+// action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic File System's
+// API operation UpdateFileSystemProtection for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequest
+//     Returned if the request is malformed or contains an error such as an invalid
+//     parameter value or a missing required parameter.
+//
+//   - FileSystemNotFound
+//     Returned if the specified FileSystemId value doesn't exist in the requester's
+//     Amazon Web Services account.
+//
+//   - IncorrectFileSystemLifeCycleState
+//     Returned if the file system's lifecycle state is not "available".
+//
+//   - InsufficientThroughputCapacity
+//     Returned if there's not enough capacity to provision additional throughput.
+//     This value might be returned when you try to create a file system in provisioned
+//     throughput mode, when you attempt to increase the provisioned throughput
+//     of an existing file system, or when you attempt to change an existing file
+//     system from Bursting Throughput to Provisioned Throughput mode. Try again
+//     later.
+//
+//   - InternalServerError
+//     Returned if an error occurred on the server side.
+//
+//   - ThroughputLimitExceeded
+//     Returned if the throughput mode or amount of provisioned throughput can't
+//     be changed because the throughput limit of 1024 MiB/s has been reached.
+//
+//   - ReplicationAlreadyExists
+//     Returned if the file system is already included in a replication configuration.>
+//
+//   - TooManyRequests
+//     Returned if you don’t wait at least 24 hours before either changing the
+//     throughput mode, or decreasing the Provisioned Throughput value.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/UpdateFileSystemProtection
+func (c *EFS) UpdateFileSystemProtection(input *UpdateFileSystemProtectionInput) (*UpdateFileSystemProtectionOutput, error) {
+	req, out := c.UpdateFileSystemProtectionRequest(input)
+	return out, req.Send()
+}
+
+// UpdateFileSystemProtectionWithContext is the same as UpdateFileSystemProtection with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateFileSystemProtection for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EFS) UpdateFileSystemProtectionWithContext(ctx aws.Context, input *UpdateFileSystemProtectionInput, opts ...request.Option) (*UpdateFileSystemProtectionOutput, error) {
+	req, out := c.UpdateFileSystemProtectionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4256,6 +4379,82 @@ func (s *BadRequest) StatusCode() int {
 
 // RequestID returns the service's response RequestID for request.
 func (s *BadRequest) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// Returned if the source file system in a replication is encrypted but the
+// destination file system is unencrypted.
+type ConflictException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	ErrorCode *string `min:"1" type:"string"`
+
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConflictException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConflictException) GoString() string {
+	return s.String()
+}
+
+func newErrorConflictException(v protocol.ResponseMetadata) error {
+	return &ConflictException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ConflictException) Code() string {
+	return "ConflictException"
+}
+
+// Message returns the exception's message.
+func (s *ConflictException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ConflictException) OrigErr() error {
+	return nil
+}
+
+func (s *ConflictException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ConflictException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -6823,7 +7022,8 @@ func (s *Destination) SetStatus(v string) *Destination {
 	return s
 }
 
-// Describes the destination file system to create in the replication configuration.
+// Describes the new or existing destination file system for the replication
+// configuration.
 type DestinationToCreate struct {
 	_ struct{} `type:"structure"`
 
@@ -6831,7 +7031,12 @@ type DestinationToCreate struct {
 	// Availability Zone in which to create the destination file system.
 	AvailabilityZoneName *string `min:"1" type:"string"`
 
-	// Specifies the Key Management Service (KMS) key that you want to use to encrypt
+	// The ID of the file system to use for the destination. The file system's replication
+	// overwrite replication must be disabled. If you do not provide an ID, then
+	// EFS creates a new file system for the replication destination.
+	FileSystemId *string `type:"string"`
+
+	// Specify the Key Management Service (KMS) key that you want to use to encrypt
 	// the destination file system. If you do not specify a KMS key, Amazon EFS
 	// uses your default KMS key for Amazon EFS, /aws/elasticfilesystem. This ID
 	// can be in one of the following formats:
@@ -6888,6 +7093,12 @@ func (s *DestinationToCreate) Validate() error {
 // SetAvailabilityZoneName sets the AvailabilityZoneName field's value.
 func (s *DestinationToCreate) SetAvailabilityZoneName(v string) *DestinationToCreate {
 	s.AvailabilityZoneName = &v
+	return s
+}
+
+// SetFileSystemId sets the FileSystemId field's value.
+func (s *DestinationToCreate) SetFileSystemId(v string) *DestinationToCreate {
+	s.FileSystemId = &v
 	return s
 }
 
@@ -7023,6 +7234,9 @@ type FileSystemDescription struct {
 	// FileSystemId is a required field
 	FileSystemId *string `type:"string" required:"true"`
 
+	// Describes the protection on the file system.
+	FileSystemProtection *FileSystemProtectionDescription `type:"structure"`
+
 	// The ID of an KMS key used to protect the encrypted file system.
 	KmsKeyId *string `type:"string"`
 
@@ -7137,6 +7351,12 @@ func (s *FileSystemDescription) SetFileSystemArn(v string) *FileSystemDescriptio
 // SetFileSystemId sets the FileSystemId field's value.
 func (s *FileSystemDescription) SetFileSystemId(v string) *FileSystemDescription {
 	s.FileSystemId = &v
+	return s
+}
+
+// SetFileSystemProtection sets the FileSystemProtection field's value.
+func (s *FileSystemDescription) SetFileSystemProtection(v *FileSystemProtectionDescription) *FileSystemDescription {
+	s.FileSystemProtection = v
 	return s
 }
 
@@ -7431,6 +7651,53 @@ func (s *FileSystemNotFound) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *FileSystemNotFound) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Describes the protection on a file system.
+type FileSystemProtectionDescription struct {
+	_ struct{} `type:"structure"`
+
+	// The status of the file system's replication overwrite protection.
+	//
+	//    * ENABLED – The file system cannot be used as the destination file system
+	//    in a replication configuration. The file system is writeable. Replication
+	//    overwrite protection is ENABLED by default.
+	//
+	//    * DISABLED – The file system can be used as the destination file system
+	//    in a replication configuration. The file system is read-only and can only
+	//    be modified by EFS replication.
+	//
+	//    * REPLICATING – The file system is being used as the destination file
+	//    system in a replication configuration. The file system is read-only and
+	//    is only modified only by EFS replication.
+	//
+	// If the replication configuration is deleted, the file system's replication
+	// overwrite protection is re-enabled, the file system becomes writeable.
+	ReplicationOverwriteProtection *string `type:"string" enum:"ReplicationOverwriteProtection"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FileSystemProtectionDescription) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FileSystemProtectionDescription) GoString() string {
+	return s.String()
+}
+
+// SetReplicationOverwriteProtection sets the ReplicationOverwriteProtection field's value.
+func (s *FileSystemProtectionDescription) SetReplicationOverwriteProtection(v string) *FileSystemProtectionDescription {
+	s.ReplicationOverwriteProtection = &v
+	return s
 }
 
 // The latest known metered size (in bytes) of data stored in the file system,
@@ -7983,8 +8250,8 @@ func (s *IpAddressInUse) RequestID() string {
 }
 
 // Describes a policy used by Lifecycle management that specifies when to transition
-// files into and out of the Infrequent Access (IA) and Archive storage classes.
-// For more information, see Managing file system storage (https://docs.aws.amazon.com/efs/latest/ug/lifecycle-management-efs.html).
+// files into and out of storage classes. For more information, see Managing
+// file system storage (https://docs.aws.amazon.com/efs/latest/ug/lifecycle-management-efs.html).
 //
 // When using the put-lifecycle-configuration CLI command or the PutLifecycleConfiguration
 // API action, Amazon EFS requires that each LifecyclePolicy object have only
@@ -9268,6 +9535,81 @@ func (s *PutLifecycleConfigurationOutput) SetLifecyclePolicies(v []*LifecyclePol
 	return s
 }
 
+// Returned if the file system is already included in a replication configuration.>
+type ReplicationAlreadyExists struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// The error code is a string that uniquely identifies an error condition. It
+	// is meant to be read and understood by programs that detect and handle errors
+	// by type.
+	ErrorCode *string `min:"1" type:"string"`
+
+	// The error message contains a generic description of the error condition in
+	// English. It is intended for a human audience. Simple programs display the
+	// message directly to the end user if they encounter an error condition they
+	// don't know how or don't care to handle. Sophisticated programs with more
+	// exhaustive error handling and proper internationalization are more likely
+	// to ignore the error message.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicationAlreadyExists) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicationAlreadyExists) GoString() string {
+	return s.String()
+}
+
+func newErrorReplicationAlreadyExists(v protocol.ResponseMetadata) error {
+	return &ReplicationAlreadyExists{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ReplicationAlreadyExists) Code() string {
+	return "ReplicationAlreadyExists"
+}
+
+// Message returns the exception's message.
+func (s *ReplicationAlreadyExists) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ReplicationAlreadyExists) OrigErr() error {
+	return nil
+}
+
+func (s *ReplicationAlreadyExists) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ReplicationAlreadyExists) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ReplicationAlreadyExists) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // Describes the replication configuration for a specific file system.
 type ReplicationConfigurationDescription struct {
 	_ struct{} `type:"structure"`
@@ -10462,6 +10804,9 @@ type UpdateFileSystemOutput struct {
 	// FileSystemId is a required field
 	FileSystemId *string `type:"string" required:"true"`
 
+	// Describes the protection on the file system.
+	FileSystemProtection *FileSystemProtectionDescription `type:"structure"`
+
 	// The ID of an KMS key used to protect the encrypted file system.
 	KmsKeyId *string `type:"string"`
 
@@ -10579,6 +10924,12 @@ func (s *UpdateFileSystemOutput) SetFileSystemId(v string) *UpdateFileSystemOutp
 	return s
 }
 
+// SetFileSystemProtection sets the FileSystemProtection field's value.
+func (s *UpdateFileSystemOutput) SetFileSystemProtection(v *FileSystemProtectionDescription) *UpdateFileSystemOutput {
+	s.FileSystemProtection = v
+	return s
+}
+
 // SetKmsKeyId sets the KmsKeyId field's value.
 func (s *UpdateFileSystemOutput) SetKmsKeyId(v string) *UpdateFileSystemOutput {
 	s.KmsKeyId = &v
@@ -10636,6 +10987,126 @@ func (s *UpdateFileSystemOutput) SetTags(v []*Tag) *UpdateFileSystemOutput {
 // SetThroughputMode sets the ThroughputMode field's value.
 func (s *UpdateFileSystemOutput) SetThroughputMode(v string) *UpdateFileSystemOutput {
 	s.ThroughputMode = &v
+	return s
+}
+
+type UpdateFileSystemProtectionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the file system to update.
+	//
+	// FileSystemId is a required field
+	FileSystemId *string `location:"uri" locationName:"FileSystemId" type:"string" required:"true"`
+
+	// The status of the file system's replication overwrite protection.
+	//
+	//    * ENABLED – The file system cannot be used as the destination file system
+	//    in a replication configuration. The file system is writeable. Replication
+	//    overwrite protection is ENABLED by default.
+	//
+	//    * DISABLED – The file system can be used as the destination file system
+	//    in a replication configuration. The file system is read-only and can only
+	//    be modified by EFS replication.
+	//
+	//    * REPLICATING – The file system is being used as the destination file
+	//    system in a replication configuration. The file system is read-only and
+	//    is only modified only by EFS replication.
+	//
+	// If the replication configuration is deleted, the file system's replication
+	// overwrite protection is re-enabled, the file system becomes writeable.
+	ReplicationOverwriteProtection *string `type:"string" enum:"ReplicationOverwriteProtection"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFileSystemProtectionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFileSystemProtectionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateFileSystemProtectionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateFileSystemProtectionInput"}
+	if s.FileSystemId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FileSystemId"))
+	}
+	if s.FileSystemId != nil && len(*s.FileSystemId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FileSystemId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFileSystemId sets the FileSystemId field's value.
+func (s *UpdateFileSystemProtectionInput) SetFileSystemId(v string) *UpdateFileSystemProtectionInput {
+	s.FileSystemId = &v
+	return s
+}
+
+// SetReplicationOverwriteProtection sets the ReplicationOverwriteProtection field's value.
+func (s *UpdateFileSystemProtectionInput) SetReplicationOverwriteProtection(v string) *UpdateFileSystemProtectionInput {
+	s.ReplicationOverwriteProtection = &v
+	return s
+}
+
+// Describes the protection on a file system.
+type UpdateFileSystemProtectionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The status of the file system's replication overwrite protection.
+	//
+	//    * ENABLED – The file system cannot be used as the destination file system
+	//    in a replication configuration. The file system is writeable. Replication
+	//    overwrite protection is ENABLED by default.
+	//
+	//    * DISABLED – The file system can be used as the destination file system
+	//    in a replication configuration. The file system is read-only and can only
+	//    be modified by EFS replication.
+	//
+	//    * REPLICATING – The file system is being used as the destination file
+	//    system in a replication configuration. The file system is read-only and
+	//    is only modified only by EFS replication.
+	//
+	// If the replication configuration is deleted, the file system's replication
+	// overwrite protection is re-enabled, the file system becomes writeable.
+	ReplicationOverwriteProtection *string `type:"string" enum:"ReplicationOverwriteProtection"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFileSystemProtectionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFileSystemProtectionOutput) GoString() string {
+	return s.String()
+}
+
+// SetReplicationOverwriteProtection sets the ReplicationOverwriteProtection field's value.
+func (s *UpdateFileSystemProtectionOutput) SetReplicationOverwriteProtection(v string) *UpdateFileSystemProtectionOutput {
+	s.ReplicationOverwriteProtection = &v
 	return s
 }
 
@@ -10762,6 +11233,26 @@ func PerformanceMode_Values() []string {
 	return []string{
 		PerformanceModeGeneralPurpose,
 		PerformanceModeMaxIo,
+	}
+}
+
+const (
+	// ReplicationOverwriteProtectionEnabled is a ReplicationOverwriteProtection enum value
+	ReplicationOverwriteProtectionEnabled = "ENABLED"
+
+	// ReplicationOverwriteProtectionDisabled is a ReplicationOverwriteProtection enum value
+	ReplicationOverwriteProtectionDisabled = "DISABLED"
+
+	// ReplicationOverwriteProtectionReplicating is a ReplicationOverwriteProtection enum value
+	ReplicationOverwriteProtectionReplicating = "REPLICATING"
+)
+
+// ReplicationOverwriteProtection_Values returns all elements of the ReplicationOverwriteProtection enum
+func ReplicationOverwriteProtection_Values() []string {
+	return []string{
+		ReplicationOverwriteProtectionEnabled,
+		ReplicationOverwriteProtectionDisabled,
+		ReplicationOverwriteProtectionReplicating,
 	}
 }
 

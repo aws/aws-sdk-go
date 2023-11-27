@@ -30238,7 +30238,19 @@ type ConnectorDataSource struct {
 	// The connectionType, as provided to the underlying Glue library. This node
 	// type supports the following connection types:
 	//
+	//    * opensearch
+	//
+	//    * azuresql
+	//
+	//    * azurecosmos
+	//
 	//    * bigquery
+	//
+	//    * saphana
+	//
+	//    * teradata
+	//
+	//    * vertica
 	//
 	// ConnectionType is a required field
 	ConnectionType *string `type:"string" required:"true"`
@@ -30338,7 +30350,19 @@ type ConnectorDataTarget struct {
 	// The connectionType, as provided to the underlying Glue library. This node
 	// type supports the following connection types:
 	//
+	//    * opensearch
+	//
+	//    * azuresql
+	//
+	//    * azurecosmos
+	//
 	//    * bigquery
+	//
+	//    * saphana
+	//
+	//    * teradata
+	//
+	//    * vertica
 	//
 	// ConnectionType is a required field
 	ConnectionType *string `type:"string" required:"true"`
@@ -77395,12 +77419,16 @@ func (s *XMLClassifier) SetVersion(v int64) *XMLClassifier {
 const (
 	// AdditionalOptionKeysPerformanceTuningCaching is a AdditionalOptionKeys enum value
 	AdditionalOptionKeysPerformanceTuningCaching = "performanceTuning.caching"
+
+	// AdditionalOptionKeysObservationsScope is a AdditionalOptionKeys enum value
+	AdditionalOptionKeysObservationsScope = "observations.scope"
 )
 
 // AdditionalOptionKeys_Values returns all elements of the AdditionalOptionKeys enum
 func AdditionalOptionKeys_Values() []string {
 	return []string{
 		AdditionalOptionKeysPerformanceTuningCaching,
+		AdditionalOptionKeysObservationsScope,
 	}
 }
 

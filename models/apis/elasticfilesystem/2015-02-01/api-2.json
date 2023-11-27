@@ -93,6 +93,7 @@
         {"shape":"FileSystemLimitExceeded"},
         {"shape":"InsufficientThroughputCapacity"},
         {"shape":"ThroughputLimitExceeded"},
+        {"shape":"ConflictException"},
         {"shape":"InternalServerError"}
       ]
     },
@@ -506,6 +507,27 @@
         {"shape":"ThroughputLimitExceeded"},
         {"shape":"TooManyRequests"}
       ]
+    },
+    "UpdateFileSystemProtection":{
+      "name":"UpdateFileSystemProtection",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/2015-02-01/file-systems/{FileSystemId}/protection",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateFileSystemProtectionRequest"},
+      "output":{"shape":"FileSystemProtectionDescription"},
+      "errors":[
+        {"shape":"BadRequest"},
+        {"shape":"FileSystemNotFound"},
+        {"shape":"IncorrectFileSystemLifeCycleState"},
+        {"shape":"InsufficientThroughputCapacity"},
+        {"shape":"InternalServerError"},
+        {"shape":"ThroughputLimitExceeded"},
+        {"shape":"ReplicationAlreadyExists"},
+        {"shape":"TooManyRequests"}
+      ],
+      "idempotent":true
     }
   },
   "shapes":{
@@ -623,6 +645,15 @@
       "max":64,
       "min":1,
       "pattern":".+"
+    },
+    "ConflictException":{
+      "type":"structure",
+      "members":{
+        "ErrorCode":{"shape":"ErrorCode"},
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":409},
+      "exception":true
     },
     "CreateAccessPointRequest":{
       "type":"structure",
@@ -1045,7 +1076,8 @@
       "members":{
         "Region":{"shape":"RegionName"},
         "AvailabilityZoneName":{"shape":"AvailabilityZoneName"},
-        "KmsKeyId":{"shape":"KmsKeyId"}
+        "KmsKeyId":{"shape":"KmsKeyId"},
+        "FileSystemId":{"shape":"FileSystemId"}
       }
     },
     "Destinations":{
@@ -1107,7 +1139,8 @@
         "ProvisionedThroughputInMibps":{"shape":"ProvisionedThroughputInMibps"},
         "AvailabilityZoneName":{"shape":"AvailabilityZoneName"},
         "AvailabilityZoneId":{"shape":"AvailabilityZoneId"},
-        "Tags":{"shape":"Tags"}
+        "Tags":{"shape":"Tags"},
+        "FileSystemProtection":{"shape":"FileSystemProtectionDescription"}
       }
     },
     "FileSystemDescriptions":{
@@ -1158,6 +1191,12 @@
       "members":{
         "FileSystemId":{"shape":"FileSystemId"},
         "Policy":{"shape":"Policy"}
+      }
+    },
+    "FileSystemProtectionDescription":{
+      "type":"structure",
+      "members":{
+        "ReplicationOverwriteProtection":{"shape":"ReplicationOverwriteProtection"}
       }
     },
     "FileSystemSize":{
@@ -1536,6 +1575,15 @@
       "min":1,
       "pattern":"^[a-z]{2}-((iso[a-z]{0,1}-)|(gov-)){0,1}[a-z]+-{0,1}[0-9]{0,1}$"
     },
+    "ReplicationAlreadyExists":{
+      "type":"structure",
+      "members":{
+        "ErrorCode":{"shape":"ErrorCode"},
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":409},
+      "exception":true
+    },
     "ReplicationConfigurationDescription":{
       "type":"structure",
       "required":[
@@ -1567,6 +1615,14 @@
       },
       "error":{"httpStatusCode":404},
       "exception":true
+    },
+    "ReplicationOverwriteProtection":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED",
+        "REPLICATING"
+      ]
     },
     "ReplicationStatus":{
       "type":"string",
@@ -1833,6 +1889,18 @@
           "location":"querystring",
           "locationName":"tagKeys"
         }
+      }
+    },
+    "UpdateFileSystemProtectionRequest":{
+      "type":"structure",
+      "required":["FileSystemId"],
+      "members":{
+        "FileSystemId":{
+          "shape":"FileSystemId",
+          "location":"uri",
+          "locationName":"FileSystemId"
+        },
+        "ReplicationOverwriteProtection":{"shape":"ReplicationOverwriteProtection"}
       }
     },
     "UpdateFileSystemRequest":{

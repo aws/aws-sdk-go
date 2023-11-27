@@ -56,9 +56,9 @@ func (c *ControlTower) DeleteLandingZoneRequest(input *DeleteLandingZoneInput) (
 
 // DeleteLandingZone API operation for AWS Control Tower.
 //
-// This decommissions a landing zone. This starts an asynchronous operation
-// that deletes Amazon Web Services Control Tower resources deployed in Amazon
-// Web Services Control Tower managed accounts.
+// Decommissions a landing zone. This API call starts an asynchronous operation
+// that deletes Amazon Web Services Control Tower resources deployed in accounts
+// managed by Amazon Web Services Control Tower.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -70,23 +70,23 @@ func (c *ControlTower) DeleteLandingZoneRequest(input *DeleteLandingZoneInput) (
 // Returned Error Types:
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     The input does not satisfy the constraints specified by an Amazon Web Services
 //     service.
 //
 //   - ConflictException
-//     Updating or deleting a resource can cause an inconsistent state.
+//     Updating or deleting the resource can cause an inconsistent state.
 //
 //   - InternalServerException
-//     Unexpected error during processing of request.
+//     An unexpected error occurred during processing of a request.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action.
 //
 //   - ThrottlingException
-//     Request was denied due to request throttling.
+//     The request was denied due to request throttling.
 //
 //   - ResourceNotFoundException
-//     Request references a resource which does not exist.
+//     The request references a resource that does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/controltower-2018-05-10/DeleteLandingZone
 func (c *ControlTower) DeleteLandingZone(input *DeleteLandingZoneInput) (*DeleteLandingZoneOutput, error) {
@@ -169,27 +169,27 @@ func (c *ControlTower) DisableControlRequest(input *DisableControlInput) (req *r
 // Returned Error Types:
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     The input does not satisfy the constraints specified by an Amazon Web Services
 //     service.
 //
 //   - ConflictException
-//     Updating or deleting a resource can cause an inconsistent state.
+//     Updating or deleting the resource can cause an inconsistent state.
 //
 //   - ServiceQuotaExceededException
-//     Request would cause a service quota to be exceeded. The limit is 10 concurrent
+//     The request would cause a service quota to be exceeded. The limit is 10 concurrent
 //     operations.
 //
 //   - InternalServerException
-//     Unexpected error during processing of request.
+//     An unexpected error occurred during processing of a request.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action.
 //
 //   - ThrottlingException
-//     Request was denied due to request throttling.
+//     The request was denied due to request throttling.
 //
 //   - ResourceNotFoundException
-//     Request references a resource which does not exist.
+//     The request references a resource that does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/controltower-2018-05-10/DisableControl
 func (c *ControlTower) DisableControl(input *DisableControlInput) (*DisableControlOutput, error) {
@@ -272,27 +272,27 @@ func (c *ControlTower) EnableControlRequest(input *EnableControlInput) (req *req
 // Returned Error Types:
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     The input does not satisfy the constraints specified by an Amazon Web Services
 //     service.
 //
 //   - ConflictException
-//     Updating or deleting a resource can cause an inconsistent state.
+//     Updating or deleting the resource can cause an inconsistent state.
 //
 //   - ServiceQuotaExceededException
-//     Request would cause a service quota to be exceeded. The limit is 10 concurrent
+//     The request would cause a service quota to be exceeded. The limit is 10 concurrent
 //     operations.
 //
 //   - InternalServerException
-//     Unexpected error during processing of request.
+//     An unexpected error occurred during processing of a request.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action.
 //
 //   - ThrottlingException
-//     Request was denied due to request throttling.
+//     The request was denied due to request throttling.
 //
 //   - ResourceNotFoundException
-//     Request references a resource which does not exist.
+//     The request references a resource that does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/controltower-2018-05-10/EnableControl
 func (c *ControlTower) EnableControl(input *EnableControlInput) (*EnableControlOutput, error) {
@@ -374,20 +374,20 @@ func (c *ControlTower) GetControlOperationRequest(input *GetControlOperationInpu
 // Returned Error Types:
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     The input does not satisfy the constraints specified by an Amazon Web Services
 //     service.
 //
 //   - InternalServerException
-//     Unexpected error during processing of request.
+//     An unexpected error occurred during processing of a request.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action.
 //
 //   - ThrottlingException
-//     Request was denied due to request throttling.
+//     The request was denied due to request throttling.
 //
 //   - ResourceNotFoundException
-//     Request references a resource which does not exist.
+//     The request references a resource that does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/controltower-2018-05-10/GetControlOperation
 func (c *ControlTower) GetControlOperation(input *GetControlOperationInput) (*GetControlOperationOutput, error) {
@@ -467,20 +467,20 @@ func (c *ControlTower) GetEnabledControlRequest(input *GetEnabledControlInput) (
 // Returned Error Types:
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     The input does not satisfy the constraints specified by an Amazon Web Services
 //     service.
 //
 //   - InternalServerException
-//     Unexpected error during processing of request.
+//     An unexpected error occurred during processing of a request.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action.
 //
 //   - ThrottlingException
-//     Request was denied due to request throttling.
+//     The request was denied due to request throttling.
 //
 //   - ResourceNotFoundException
-//     Request references a resource which does not exist.
+//     The request references a resource that does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/controltower-2018-05-10/GetEnabledControl
 func (c *ControlTower) GetEnabledControl(input *GetEnabledControlInput) (*GetEnabledControlOutput, error) {
@@ -548,7 +548,7 @@ func (c *ControlTower) GetLandingZoneOperationRequest(input *GetLandingZoneOpera
 // GetLandingZoneOperation API operation for AWS Control Tower.
 //
 // Returns the status of the specified landing zone operation. Details for an
-// operation are available for X days.
+// operation are available for 60 days.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -560,20 +560,20 @@ func (c *ControlTower) GetLandingZoneOperationRequest(input *GetLandingZoneOpera
 // Returned Error Types:
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     The input does not satisfy the constraints specified by an Amazon Web Services
 //     service.
 //
 //   - InternalServerException
-//     Unexpected error during processing of request.
+//     An unexpected error occurred during processing of a request.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action.
 //
 //   - ThrottlingException
-//     Request was denied due to request throttling.
+//     The request was denied due to request throttling.
 //
 //   - ResourceNotFoundException
-//     Request references a resource which does not exist.
+//     The request references a resource that does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/controltower-2018-05-10/GetLandingZoneOperation
 func (c *ControlTower) GetLandingZoneOperation(input *GetLandingZoneOperationInput) (*GetLandingZoneOperationOutput, error) {
@@ -660,20 +660,20 @@ func (c *ControlTower) ListEnabledControlsRequest(input *ListEnabledControlsInpu
 // Returned Error Types:
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     The input does not satisfy the constraints specified by an Amazon Web Services
 //     service.
 //
 //   - InternalServerException
-//     Unexpected error during processing of request.
+//     An unexpected error occurred during processing of a request.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action.
 //
 //   - ThrottlingException
-//     Request was denied due to request throttling.
+//     The request was denied due to request throttling.
 //
 //   - ResourceNotFoundException
-//     Request references a resource which does not exist.
+//     The request references a resource that does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/controltower-2018-05-10/ListEnabledControls
 func (c *ControlTower) ListEnabledControls(input *ListEnabledControlsInput) (*ListEnabledControlsOutput, error) {
@@ -801,7 +801,7 @@ func (c *ControlTower) ListLandingZonesRequest(input *ListLandingZonesInput) (re
 // account. This API also creates an ARN for existing accounts that do not yet
 // have a landing zone ARN.
 //
-// The return limit is one landing zone ARN.
+// Returns one landing zone ARN.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -813,17 +813,17 @@ func (c *ControlTower) ListLandingZonesRequest(input *ListLandingZonesInput) (re
 // Returned Error Types:
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     The input does not satisfy the constraints specified by an Amazon Web Services
 //     service.
 //
 //   - InternalServerException
-//     Unexpected error during processing of request.
+//     An unexpected error occurred during processing of a request.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action.
 //
 //   - ThrottlingException
-//     Request was denied due to request throttling.
+//     The request was denied due to request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/controltower-2018-05-10/ListLandingZones
 func (c *ControlTower) ListLandingZones(input *ListLandingZonesInput) (*ListLandingZonesOutput, error) {
@@ -954,14 +954,14 @@ func (c *ControlTower) ListTagsForResourceRequest(input *ListTagsForResourceInpu
 // Returned Error Types:
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     The input does not satisfy the constraints specified by an Amazon Web Services
 //     service.
 //
 //   - InternalServerException
-//     Unexpected error during processing of request.
+//     An unexpected error occurred during processing of a request.
 //
 //   - ResourceNotFoundException
-//     Request references a resource which does not exist.
+//     The request references a resource that does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/controltower-2018-05-10/ListTagsForResource
 func (c *ControlTower) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -1042,23 +1042,23 @@ func (c *ControlTower) ResetLandingZoneRequest(input *ResetLandingZoneInput) (re
 // Returned Error Types:
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     The input does not satisfy the constraints specified by an Amazon Web Services
 //     service.
 //
 //   - ConflictException
-//     Updating or deleting a resource can cause an inconsistent state.
+//     Updating or deleting the resource can cause an inconsistent state.
 //
 //   - InternalServerException
-//     Unexpected error during processing of request.
+//     An unexpected error occurred during processing of a request.
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action.
 //
 //   - ThrottlingException
-//     Request was denied due to request throttling.
+//     The request was denied due to request throttling.
 //
 //   - ResourceNotFoundException
-//     Request references a resource which does not exist.
+//     The request references a resource that does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/controltower-2018-05-10/ResetLandingZone
 func (c *ControlTower) ResetLandingZone(input *ResetLandingZoneInput) (*ResetLandingZoneOutput, error) {
@@ -1139,14 +1139,14 @@ func (c *ControlTower) TagResourceRequest(input *TagResourceInput) (req *request
 // Returned Error Types:
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     The input does not satisfy the constraints specified by an Amazon Web Services
 //     service.
 //
 //   - InternalServerException
-//     Unexpected error during processing of request.
+//     An unexpected error occurred during processing of a request.
 //
 //   - ResourceNotFoundException
-//     Request references a resource which does not exist.
+//     The request references a resource that does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/controltower-2018-05-10/TagResource
 func (c *ControlTower) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -1227,14 +1227,14 @@ func (c *ControlTower) UntagResourceRequest(input *UntagResourceInput) (req *req
 // Returned Error Types:
 //
 //   - ValidationException
-//     The input fails to satisfy the constraints specified by an Amazon Web Services
+//     The input does not satisfy the constraints specified by an Amazon Web Services
 //     service.
 //
 //   - InternalServerException
-//     Unexpected error during processing of request.
+//     An unexpected error occurred during processing of a request.
 //
 //   - ResourceNotFoundException
-//     Request references a resource which does not exist.
+//     The request references a resource that does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/controltower-2018-05-10/UntagResource
 func (c *ControlTower) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -1322,7 +1322,7 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Updating or deleting a resource can cause an inconsistent state.
+// Updating or deleting the resource can cause an inconsistent state.
 type ConflictException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -1504,9 +1504,9 @@ func (s *DeleteLandingZoneInput) SetLandingZoneIdentifier(v string) *DeleteLandi
 type DeleteLandingZoneOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A unique identifier assigned to a DeleteLandingZone operation. You can use
-	// this identifier as an input of GetLandingZoneOperation to check the operation's
-	// status.
+	// >A unique identifier assigned to a DeleteLandingZone operation. You can use
+	// this identifier as an input parameter of GetLandingZoneOperation to check
+	// the operation's status.
 	//
 	// OperationIdentifier is a required field
 	OperationIdentifier *string `locationName:"operationIdentifier" min:"36" type:"string" required:"true"`
@@ -1540,8 +1540,8 @@ type DisableControlInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the control. Only Strongly recommended and Elective controls are
-	// permitted, with the exception of the Region deny control. For information
-	// on how to find the controlIdentifier, see the overview page (https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html).
+	// permitted, with the exception of the landing zone Region deny control. For
+	// information on how to find the controlIdentifier, see the overview page (https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html).
 	//
 	// ControlIdentifier is a required field
 	ControlIdentifier *string `locationName:"controlIdentifier" min:"20" type:"string" required:"true"`
@@ -1694,8 +1694,8 @@ type EnableControlInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the control. Only Strongly recommended and Elective controls are
-	// permitted, with the exception of the Region deny control. For information
-	// on how to find the controlIdentifier, see the overview page (https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html).
+	// permitted, with the exception of the landing zone Region deny control. For
+	// information on how to find the controlIdentifier, see the overview page (https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html).
 	//
 	// ControlIdentifier is a required field
 	ControlIdentifier *string `locationName:"controlIdentifier" min:"20" type:"string" required:"true"`
@@ -2224,7 +2224,7 @@ func (s *GetLandingZoneOperationInput) SetOperationIdentifier(v string) *GetLand
 type GetLandingZoneOperationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The landing zone operation details.
+	// Details about a landing zone operation.
 	//
 	// OperationDetails is a required field
 	OperationDetails *LandingZoneOperationDetail `locationName:"operationDetails" type:"structure" required:"true"`
@@ -2254,7 +2254,7 @@ func (s *GetLandingZoneOperationOutput) SetOperationDetails(v *LandingZoneOperat
 	return s
 }
 
-// Unexpected error during processing of request.
+// An unexpected error occurred during processing of a request.
 type InternalServerException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -2341,8 +2341,6 @@ type LandingZoneOperationDetail struct {
 	// The landing zone operation start time.
 	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"iso8601"`
 
-	// The landing zone operation status.
-	//
 	// Valid values:
 	//
 	//    * SUCCEEDED: The landing zone operation succeeded.
@@ -2517,7 +2515,7 @@ type ListEnabledControlsOutput struct {
 	// EnabledControls is a required field
 	EnabledControls []*EnabledControlSummary `locationName:"enabledControls" type:"list" required:"true"`
 
-	// Retrieves the next page of results. If the string is empty, the current response
+	// Retrieves the next page of results. If the string is empty, the response
 	// is the end of the results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
@@ -2555,7 +2553,7 @@ func (s *ListEnabledControlsOutput) SetNextToken(v string) *ListEnabledControlsO
 type ListLandingZonesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of returned landing zone ARNs.
+	// The maximum number of returned landing zone ARNs, which is one.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token to continue the list from a previous API call with the same parameters.
@@ -2613,7 +2611,7 @@ type ListLandingZonesOutput struct {
 	// LandingZones is a required field
 	LandingZones []*LandingZoneSummary `locationName:"landingZones" type:"list" required:"true"`
 
-	// Retrieves the next page of results. If the string is empty, the current response
+	// Retrieves the next page of results. If the string is empty, the response
 	// is the end of the results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
@@ -2817,8 +2815,8 @@ type ResetLandingZoneOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A unique identifier assigned to a ResetLandingZone operation. You can use
-	// this identifier as an input of GetLandingZoneOperation to check the operation's
-	// status.
+	// this identifier as an input parameter of GetLandingZoneOperation to check
+	// the operation's status.
 	//
 	// OperationIdentifier is a required field
 	OperationIdentifier *string `locationName:"operationIdentifier" min:"36" type:"string" required:"true"`
@@ -2848,7 +2846,7 @@ func (s *ResetLandingZoneOutput) SetOperationIdentifier(v string) *ResetLandingZ
 	return s
 }
 
-// Request references a resource which does not exist.
+// The request references a resource that does not exist.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -2912,7 +2910,7 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Request would cause a service quota to be exceeded. The limit is 10 concurrent
+// The request would cause a service quota to be exceeded. The limit is 10 concurrent
 // operations.
 type ServiceQuotaExceededException struct {
 	_            struct{}                  `type:"structure"`
@@ -3062,7 +3060,7 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
-// Request was denied due to request throttling.
+// The request was denied due to request throttling.
 type ThrottlingException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -3072,7 +3070,7 @@ type ThrottlingException struct {
 	// The ID of the service quota that was exceeded.
 	QuotaCode *string `locationName:"quotaCode" type:"string"`
 
-	// The number of seconds the caller should wait before retrying.
+	// The number of seconds to wait before retrying.
 	RetryAfterSeconds *int64 `location:"header" locationName:"Retry-After" type:"integer"`
 
 	// The ID of the service that is associated with the error.
@@ -3220,7 +3218,7 @@ func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
 
-// The input fails to satisfy the constraints specified by an Amazon Web Services
+// The input does not satisfy the constraints specified by an Amazon Web Services
 // service.
 type ValidationException struct {
 	_            struct{}                  `type:"structure"`
@@ -3311,6 +3309,9 @@ const (
 
 	// ControlOperationTypeDisableControl is a ControlOperationType enum value
 	ControlOperationTypeDisableControl = "DISABLE_CONTROL"
+
+	// ControlOperationTypeUpdateEnabledControl is a ControlOperationType enum value
+	ControlOperationTypeUpdateEnabledControl = "UPDATE_ENABLED_CONTROL"
 )
 
 // ControlOperationType_Values returns all elements of the ControlOperationType enum
@@ -3318,6 +3319,7 @@ func ControlOperationType_Values() []string {
 	return []string{
 		ControlOperationTypeEnableControl,
 		ControlOperationTypeDisableControl,
+		ControlOperationTypeUpdateEnabledControl,
 	}
 }
 

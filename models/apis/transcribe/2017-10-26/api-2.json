@@ -130,6 +130,19 @@
         {"shape":"InternalFailureException"}
       ]
     },
+    "DeleteMedicalScribeJob":{
+      "name":"DeleteMedicalScribeJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteMedicalScribeJobRequest"},
+      "errors":[
+        {"shape":"LimitExceededException"},
+        {"shape":"BadRequestException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
     "DeleteMedicalTranscriptionJob":{
       "name":"DeleteMedicalTranscriptionJob",
       "http":{
@@ -236,6 +249,21 @@
       },
       "input":{"shape":"GetCallAnalyticsJobRequest"},
       "output":{"shape":"GetCallAnalyticsJobResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"NotFoundException"}
+      ]
+    },
+    "GetMedicalScribeJob":{
+      "name":"GetMedicalScribeJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetMedicalScribeJobRequest"},
+      "output":{"shape":"GetMedicalScribeJobResponse"},
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"LimitExceededException"},
@@ -360,6 +388,20 @@
         {"shape":"InternalFailureException"}
       ]
     },
+    "ListMedicalScribeJobs":{
+      "name":"ListMedicalScribeJobs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListMedicalScribeJobsRequest"},
+      "output":{"shape":"ListMedicalScribeJobsResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
     "ListMedicalTranscriptionJobs":{
       "name":"ListMedicalTranscriptionJobs",
       "http":{
@@ -453,6 +495,21 @@
       },
       "input":{"shape":"StartCallAnalyticsJobRequest"},
       "output":{"shape":"StartCallAnalyticsJobResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ConflictException"}
+      ]
+    },
+    "StartMedicalScribeJob":{
+      "name":"StartMedicalScribeJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartMedicalScribeJobRequest"},
+      "output":{"shape":"StartMedicalScribeJobResponse"},
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"LimitExceededException"},
@@ -898,6 +955,13 @@
         "ModelName":{"shape":"ModelName"}
       }
     },
+    "DeleteMedicalScribeJobRequest":{
+      "type":"structure",
+      "required":["MedicalScribeJobName"],
+      "members":{
+        "MedicalScribeJobName":{"shape":"TranscriptionJobName"}
+      }
+    },
     "DeleteMedicalTranscriptionJobRequest":{
       "type":"structure",
       "required":["MedicalTranscriptionJobName"],
@@ -972,6 +1036,19 @@
       "type":"structure",
       "members":{
         "CallAnalyticsJob":{"shape":"CallAnalyticsJob"}
+      }
+    },
+    "GetMedicalScribeJobRequest":{
+      "type":"structure",
+      "required":["MedicalScribeJobName"],
+      "members":{
+        "MedicalScribeJobName":{"shape":"TranscriptionJobName"}
+      }
+    },
+    "GetMedicalScribeJobResponse":{
+      "type":"structure",
+      "members":{
+        "MedicalScribeJob":{"shape":"MedicalScribeJob"}
       }
     },
     "GetMedicalTranscriptionJobRequest":{
@@ -1317,6 +1394,23 @@
         "Models":{"shape":"Models"}
       }
     },
+    "ListMedicalScribeJobsRequest":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"MedicalScribeJobStatus"},
+        "JobNameContains":{"shape":"TranscriptionJobName"},
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"MaxResults"}
+      }
+    },
+    "ListMedicalScribeJobsResponse":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"MedicalScribeJobStatus"},
+        "NextToken":{"shape":"NextToken"},
+        "MedicalScribeJobSummaries":{"shape":"MedicalScribeJobSummaries"}
+      }
+    },
     "ListMedicalTranscriptionJobsRequest":{
       "type":"structure",
       "members":{
@@ -1462,6 +1556,104 @@
       "type":"integer",
       "max":48000,
       "min":16000
+    },
+    "MedicalScribeChannelDefinition":{
+      "type":"structure",
+      "required":[
+        "ChannelId",
+        "ParticipantRole"
+      ],
+      "members":{
+        "ChannelId":{"shape":"MedicalScribeChannelId"},
+        "ParticipantRole":{"shape":"MedicalScribeParticipantRole"}
+      }
+    },
+    "MedicalScribeChannelDefinitions":{
+      "type":"list",
+      "member":{"shape":"MedicalScribeChannelDefinition"},
+      "max":2,
+      "min":2
+    },
+    "MedicalScribeChannelId":{
+      "type":"integer",
+      "max":1,
+      "min":0
+    },
+    "MedicalScribeJob":{
+      "type":"structure",
+      "members":{
+        "MedicalScribeJobName":{"shape":"TranscriptionJobName"},
+        "MedicalScribeJobStatus":{"shape":"MedicalScribeJobStatus"},
+        "LanguageCode":{"shape":"MedicalScribeLanguageCode"},
+        "Media":{"shape":"Media"},
+        "MedicalScribeOutput":{"shape":"MedicalScribeOutput"},
+        "StartTime":{"shape":"DateTime"},
+        "CreationTime":{"shape":"DateTime"},
+        "CompletionTime":{"shape":"DateTime"},
+        "FailureReason":{"shape":"FailureReason"},
+        "Settings":{"shape":"MedicalScribeSettings"},
+        "DataAccessRoleArn":{"shape":"DataAccessRoleArn"},
+        "ChannelDefinitions":{"shape":"MedicalScribeChannelDefinitions"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "MedicalScribeJobStatus":{
+      "type":"string",
+      "enum":[
+        "QUEUED",
+        "IN_PROGRESS",
+        "FAILED",
+        "COMPLETED"
+      ]
+    },
+    "MedicalScribeJobSummaries":{
+      "type":"list",
+      "member":{"shape":"MedicalScribeJobSummary"}
+    },
+    "MedicalScribeJobSummary":{
+      "type":"structure",
+      "members":{
+        "MedicalScribeJobName":{"shape":"TranscriptionJobName"},
+        "CreationTime":{"shape":"DateTime"},
+        "StartTime":{"shape":"DateTime"},
+        "CompletionTime":{"shape":"DateTime"},
+        "LanguageCode":{"shape":"MedicalScribeLanguageCode"},
+        "MedicalScribeJobStatus":{"shape":"MedicalScribeJobStatus"},
+        "FailureReason":{"shape":"FailureReason"}
+      }
+    },
+    "MedicalScribeLanguageCode":{
+      "type":"string",
+      "enum":["en-US"]
+    },
+    "MedicalScribeOutput":{
+      "type":"structure",
+      "required":[
+        "TranscriptFileUri",
+        "ClinicalDocumentUri"
+      ],
+      "members":{
+        "TranscriptFileUri":{"shape":"Uri"},
+        "ClinicalDocumentUri":{"shape":"Uri"}
+      }
+    },
+    "MedicalScribeParticipantRole":{
+      "type":"string",
+      "enum":[
+        "PATIENT",
+        "CLINICIAN"
+      ]
+    },
+    "MedicalScribeSettings":{
+      "type":"structure",
+      "members":{
+        "ShowSpeakerLabels":{"shape":"Boolean"},
+        "MaxSpeakerLabels":{"shape":"MaxSpeakers"},
+        "ChannelIdentification":{"shape":"Boolean"},
+        "VocabularyName":{"shape":"VocabularyName"},
+        "VocabularyFilterName":{"shape":"VocabularyFilterName"},
+        "VocabularyFilterMethod":{"shape":"VocabularyFilterMethod"}
+      }
     },
     "MedicalTranscript":{
       "type":"structure",
@@ -1734,6 +1926,33 @@
       "type":"structure",
       "members":{
         "CallAnalyticsJob":{"shape":"CallAnalyticsJob"}
+      }
+    },
+    "StartMedicalScribeJobRequest":{
+      "type":"structure",
+      "required":[
+        "MedicalScribeJobName",
+        "Media",
+        "OutputBucketName",
+        "DataAccessRoleArn",
+        "Settings"
+      ],
+      "members":{
+        "MedicalScribeJobName":{"shape":"TranscriptionJobName"},
+        "Media":{"shape":"Media"},
+        "OutputBucketName":{"shape":"OutputBucketName"},
+        "OutputEncryptionKMSKeyId":{"shape":"KMSKeyId"},
+        "KMSEncryptionContext":{"shape":"KMSEncryptionContextMap"},
+        "DataAccessRoleArn":{"shape":"DataAccessRoleArn"},
+        "Settings":{"shape":"MedicalScribeSettings"},
+        "ChannelDefinitions":{"shape":"MedicalScribeChannelDefinitions"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "StartMedicalScribeJobResponse":{
+      "type":"structure",
+      "members":{
+        "MedicalScribeJob":{"shape":"MedicalScribeJob"}
       }
     },
     "StartMedicalTranscriptionJobRequest":{

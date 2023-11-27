@@ -458,7 +458,8 @@
     "ControlOperationType": {
       "enum": [
         "ENABLE_CONTROL",
-        "DISABLE_CONTROL"
+        "DISABLE_CONTROL",
+        "UPDATE_ENABLED_CONTROL"
       ],
       "type": "string"
     },
@@ -1113,6 +1114,17 @@
     },
     "UntagResourceOutput": {
       "members": {},
+      "type": "structure"
+    },
+    "UpdateEnabledControlOutput": {
+      "members": {
+        "operationIdentifier": {
+          "shape": "OperationIdentifier"
+        }
+      },
+      "required": [
+        "operationIdentifier"
+      ],
       "type": "structure"
     },
     "UpdateLandingZoneOutput": {

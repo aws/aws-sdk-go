@@ -1,3 +1,21 @@
+Release v1.48.5 (2023-11-27)
+===
+
+### Service Client Updates
+* `service/appsync`: Updates service API and documentation
+* `service/b2bi`: Updates service API, documentation, paginators, and examples
+* `service/backup`: Updates service API, documentation, and paginators
+* `service/controltower`: Updates service API and documentation
+* `service/elasticfilesystem`: Updates service API and documentation
+  * Adding support for EFS Replication to existing file system.
+* `service/fis`: Updates service API, documentation, and paginators
+* `service/glue`: Updates service API and documentation
+  * add observations support to DQ CodeGen config model + update document for connectiontypes supported by ConnectorData entities
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Updates Amazon RDS documentation for support for RDS for Db2.
+* `service/securityhub`: Updates service API, documentation, paginators, and examples
+* `service/transcribe`: Updates service API, documentation, and paginators
+
 Release v1.48.4 (2023-11-27)
 ===
 
