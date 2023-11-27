@@ -4,7 +4,7 @@
             "documentation": "For region us-east-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://fis-fips.us-east-1.api.aws"
+                    "url": "https://b2bi-fips.us-east-1.api.aws"
                 }
             },
             "params": {
@@ -17,7 +17,7 @@
             "documentation": "For region us-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://fis-fips.us-east-1.amazonaws.com"
+                    "url": "https://b2bi-fips.us-east-1.amazonaws.com"
                 }
             },
             "params": {
@@ -30,7 +30,7 @@
             "documentation": "For region us-east-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://fis.us-east-1.api.aws"
+                    "url": "https://b2bi.us-east-1.api.aws"
                 }
             },
             "params": {
@@ -43,7 +43,7 @@
             "documentation": "For region us-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://fis.us-east-1.amazonaws.com"
+                    "url": "https://b2bi.us-east-1.amazonaws.com"
                 }
             },
             "params": {
@@ -56,7 +56,7 @@
             "documentation": "For region cn-north-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://fis-fips.cn-north-1.api.amazonwebservices.com.cn"
+                    "url": "https://b2bi-fips.cn-north-1.api.amazonwebservices.com.cn"
                 }
             },
             "params": {
@@ -69,7 +69,7 @@
             "documentation": "For region cn-north-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://fis-fips.cn-north-1.amazonaws.com.cn"
+                    "url": "https://b2bi-fips.cn-north-1.amazonaws.com.cn"
                 }
             },
             "params": {
@@ -82,7 +82,7 @@
             "documentation": "For region cn-north-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://fis.cn-north-1.api.amazonwebservices.com.cn"
+                    "url": "https://b2bi.cn-north-1.api.amazonwebservices.com.cn"
                 }
             },
             "params": {
@@ -95,7 +95,7 @@
             "documentation": "For region cn-north-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://fis.cn-north-1.amazonaws.com.cn"
+                    "url": "https://b2bi.cn-north-1.amazonaws.com.cn"
                 }
             },
             "params": {
@@ -105,81 +105,55 @@
             }
         },
         {
-            "documentation": "For region us-gov-east-1 with FIPS disabled and DualStack disabled",
+            "documentation": "For region us-gov-east-1 with FIPS enabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://fis.us-gov-east-1.amazonaws.com"
+                    "url": "https://b2bi-fips.us-gov-east-1.api.aws"
                 }
             },
             "params": {
                 "Region": "us-gov-east-1",
-                "UseFIPS": false,
-                "UseDualStack": false
+                "UseFIPS": true,
+                "UseDualStack": true
             }
         },
         {
             "documentation": "For region us-gov-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://fis.us-gov-east-1.amazonaws.com"
+                    "url": "https://b2bi-fips.us-gov-east-1.amazonaws.com"
                 }
             },
             "params": {
                 "Region": "us-gov-east-1",
                 "UseFIPS": true,
                 "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region us-gov-west-1 with FIPS disabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://fis.us-gov-west-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "us-gov-west-1",
-                "UseFIPS": false,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region us-gov-west-1 with FIPS enabled and DualStack disabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://fis.us-gov-west-1.amazonaws.com"
-                }
-            },
-            "params": {
-                "Region": "us-gov-west-1",
-                "UseFIPS": true,
-                "UseDualStack": false
-            }
-        },
-        {
-            "documentation": "For region us-gov-east-1 with FIPS enabled and DualStack enabled",
-            "expect": {
-                "endpoint": {
-                    "url": "https://fis-fips.us-gov-east-1.api.aws"
-                }
-            },
-            "params": {
-                "Region": "us-gov-east-1",
-                "UseFIPS": true,
-                "UseDualStack": true
             }
         },
         {
             "documentation": "For region us-gov-east-1 with FIPS disabled and DualStack enabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://fis.us-gov-east-1.api.aws"
+                    "url": "https://b2bi.us-gov-east-1.api.aws"
                 }
             },
             "params": {
                 "Region": "us-gov-east-1",
                 "UseFIPS": false,
                 "UseDualStack": true
+            }
+        },
+        {
+            "documentation": "For region us-gov-east-1 with FIPS disabled and DualStack disabled",
+            "expect": {
+                "endpoint": {
+                    "url": "https://b2bi.us-gov-east-1.amazonaws.com"
+                }
+            },
+            "params": {
+                "Region": "us-gov-east-1",
+                "UseFIPS": false,
+                "UseDualStack": false
             }
         },
         {
@@ -197,7 +171,7 @@
             "documentation": "For region us-iso-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://fis-fips.us-iso-east-1.c2s.ic.gov"
+                    "url": "https://b2bi-fips.us-iso-east-1.c2s.ic.gov"
                 }
             },
             "params": {
@@ -221,7 +195,7 @@
             "documentation": "For region us-iso-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://fis.us-iso-east-1.c2s.ic.gov"
+                    "url": "https://b2bi.us-iso-east-1.c2s.ic.gov"
                 }
             },
             "params": {
@@ -245,7 +219,7 @@
             "documentation": "For region us-isob-east-1 with FIPS enabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://fis-fips.us-isob-east-1.sc2s.sgov.gov"
+                    "url": "https://b2bi-fips.us-isob-east-1.sc2s.sgov.gov"
                 }
             },
             "params": {
@@ -269,7 +243,7 @@
             "documentation": "For region us-isob-east-1 with FIPS disabled and DualStack disabled",
             "expect": {
                 "endpoint": {
-                    "url": "https://fis.us-isob-east-1.sc2s.sgov.gov"
+                    "url": "https://b2bi.us-isob-east-1.sc2s.sgov.gov"
                 }
             },
             "params": {

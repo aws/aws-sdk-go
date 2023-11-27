@@ -2174,9 +2174,9 @@ func (c *RDS) CreateDBInstanceReadReplicaRequest(input *CreateDBInstanceReadRepl
 //
 // Creates a new DB instance that acts as a read replica for an existing source
 // DB instance or Multi-AZ DB cluster. You can create a read replica for a DB
-// instance running MySQL, MariaDB, Oracle, PostgreSQL, or SQL Server. You can
-// create a read replica for a Multi-AZ DB cluster running MySQL or PostgreSQL.
-// For more information, see Working with read replicas (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html)
+// instance running Db2, MariaDB, MySQL, Oracle, PostgreSQL, or SQL Server.
+// You can create a read replica for a Multi-AZ DB cluster running MySQL or
+// PostgreSQL. For more information, see Working with read replicas (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html)
 // and Migrating from a Multi-AZ DB cluster to a DB instance using a read replica
 // (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html#multi-az-db-clusters-migrating-to-instance-with-read-replica)
 // in the Amazon RDS User Guide.
@@ -9794,7 +9794,7 @@ func (c *RDS) DescribeOptionGroupOptionsRequest(input *DescribeOptionGroupOption
 
 // DescribeOptionGroupOptions API operation for Amazon Relational Database Service.
 //
-// Describes all available options.
+// Describes all available options for the specified engine.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10059,8 +10059,7 @@ func (c *RDS) DescribeOrderableDBInstanceOptionsRequest(input *DescribeOrderable
 
 // DescribeOrderableDBInstanceOptions API operation for Amazon Relational Database Service.
 //
-// Returns a list of orderable DB instance options for the specified DB engine,
-// DB engine version, and DB instance class.
+// Describes the orderable DB instance options for a specified DB engine.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -11662,7 +11661,7 @@ func (c *RDS) ModifyCurrentDBClusterCapacityRequest(input *ModifyCurrentDBCluste
 // for Aurora Serverless v1 (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.how-it-works.html#aurora-serverless.how-it-works.auto-scaling)
 // in the Amazon Aurora User Guide.
 //
-// This action only applies to Aurora Serverless v1 DB clusters.
+// This operation only applies to Aurora Serverless v1 DB clusters.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -11979,7 +11978,7 @@ func (c *RDS) ModifyDBClusterEndpointRequest(input *ModifyDBClusterEndpointInput
 //
 // Modifies the properties of an endpoint in an Amazon Aurora DB cluster.
 //
-// This action only applies to Aurora DB clusters.
+// This operation only applies to Aurora DB clusters.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -12078,8 +12077,8 @@ func (c *RDS) ModifyDBClusterParameterGroupRequest(input *ModifyDBClusterParamet
 // After you create a DB cluster parameter group, you should wait at least 5
 // minutes before creating your first DB cluster that uses that DB cluster parameter
 // group as the default parameter group. This allows Amazon RDS to fully complete
-// the create action before the parameter group is used as the default for a
-// new DB cluster. This is especially important for parameters that are critical
+// the create operation before the parameter group is used as the default for
+// a new DB cluster. This is especially important for parameters that are critical
 // when creating the default database for a DB cluster, such as the character
 // set for the default database defined by the character_set_database parameter.
 // You can use the Parameter Groups option of the Amazon RDS console (https://console.aws.amazon.com/rds/)
@@ -12447,8 +12446,8 @@ func (c *RDS) ModifyDBParameterGroupRequest(input *ModifyDBParameterGroupInput) 
 // After you modify a DB parameter group, you should wait at least 5 minutes
 // before creating your first DB instance that uses that DB parameter group
 // as the default parameter group. This allows Amazon RDS to fully complete
-// the modify action before the parameter group is used as the default for a
-// new DB instance. This is especially important for parameters that are critical
+// the modify operation before the parameter group is used as the default for
+// a new DB instance. This is especially important for parameters that are critical
 // when creating the default database for a DB instance, such as the character
 // set for the default database defined by the character_set_database parameter.
 // You can use the Parameter Groups option of the Amazon RDS console (https://console.aws.amazon.com/rds/)
@@ -12806,7 +12805,7 @@ func (c *RDS) ModifyDBSnapshotRequest(input *ModifyDBSnapshotInput) (req *reques
 // be encrypted or unencrypted, but not shared or public.
 //
 // Amazon RDS supports upgrading DB snapshots for MySQL, PostgreSQL, and Oracle.
-// This command doesn't apply to RDS Custom.
+// This operation doesn't apply to RDS Custom or RDS for Db2.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -14024,7 +14023,7 @@ func (c *RDS) RemoveFromGlobalClusterRequest(input *RemoveFromGlobalClusterInput
 // of being read-only and receiving data from a primary cluster in a different
 // Region.
 //
-// This action only applies to Aurora DB clusters.
+// This operation only applies to Aurora DB clusters.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -14684,16 +14683,16 @@ func (c *RDS) RestoreDBClusterFromS3Request(input *RestoreDBClusterFromS3Input) 
 // in Migrating Data from MySQL by Using an Amazon S3 Bucket (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Migrating.ExtMySQL.html#AuroraMySQL.Migrating.ExtMySQL.S3)
 // in the Amazon Aurora User Guide.
 //
-// This action only restores the DB cluster, not the DB instances for that DB
-// cluster. You must invoke the CreateDBInstance action to create DB instances
+// This operation only restores the DB cluster, not the DB instances for that
+// DB cluster. You must invoke the CreateDBInstance operation to create DB instances
 // for the restored DB cluster, specifying the identifier of the restored DB
 // cluster in DBClusterIdentifier. You can create DB instances only after the
-// RestoreDBClusterFromS3 action has completed and the DB cluster is available.
+// RestoreDBClusterFromS3 operation has completed and the DB cluster is available.
 //
 // For more information on Amazon Aurora, see What is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
 //
-// This action only applies to Aurora DB clusters. The source DB engine must
+// This operation only applies to Aurora DB clusters. The source DB engine must
 // be MySQL.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -14830,11 +14829,12 @@ func (c *RDS) RestoreDBClusterFromSnapshotRequest(input *RestoreDBClusterFromSna
 // configuration. If you don't specify a security group, the new DB cluster
 // is associated with the default security group.
 //
-// This action only restores the DB cluster, not the DB instances for that DB
-// cluster. You must invoke the CreateDBInstance action to create DB instances
+// This operation only restores the DB cluster, not the DB instances for that
+// DB cluster. You must invoke the CreateDBInstance operation to create DB instances
 // for the restored DB cluster, specifying the identifier of the restored DB
 // cluster in DBClusterIdentifier. You can create DB instances only after the
-// RestoreDBClusterFromSnapshot action has completed and the DB cluster is available.
+// RestoreDBClusterFromSnapshot operation has completed and the DB cluster is
+// available.
 //
 // For more information on Amazon Aurora DB clusters, see What is Amazon Aurora?
 // (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
@@ -14996,12 +14996,12 @@ func (c *RDS) RestoreDBClusterToPointInTimeRequest(input *RestoreDBClusterToPoin
 // same configuration as the original DB cluster, except that the new DB cluster
 // is created with the default DB security group.
 //
-// For Aurora, this action only restores the DB cluster, not the DB instances
-// for that DB cluster. You must invoke the CreateDBInstance action to create
+// For Aurora, this operation only restores the DB cluster, not the DB instances
+// for that DB cluster. You must invoke the CreateDBInstance operation to create
 // DB instances for the restored DB cluster, specifying the identifier of the
 // restored DB cluster in DBClusterIdentifier. You can create DB instances only
-// after the RestoreDBClusterToPointInTime action has completed and the DB cluster
-// is available.
+// after the RestoreDBClusterToPointInTime operation has completed and the DB
+// cluster is available.
 //
 // For more information on Amazon Aurora DB clusters, see What is Amazon Aurora?
 // (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
@@ -15159,12 +15159,12 @@ func (c *RDS) RestoreDBInstanceFromDBSnapshotRequest(input *RestoreDBInstanceFro
 //
 // If you want to replace your original DB instance with the new, restored DB
 // instance, then rename your original DB instance before you call the RestoreDBInstanceFromDBSnapshot
-// action. RDS doesn't allow two DB instances with the same name. After you
+// operation. RDS doesn't allow two DB instances with the same name. After you
 // have renamed your original DB instance with a different identifier, then
 // you can pass the original name of the DB instance as the DBInstanceIdentifier
-// in the call to the RestoreDBInstanceFromDBSnapshot action. The result is
-// that you replace the original DB instance with the DB instance created from
-// the snapshot.
+// in the call to the RestoreDBInstanceFromDBSnapshot operation. The result
+// is that you replace the original DB instance with the DB instance created
+// from the snapshot.
 //
 // If you are restoring from a shared manual DB snapshot, the DBSnapshotIdentifier
 // must be the ARN of the shared DB snapshot.
@@ -15333,7 +15333,7 @@ func (c *RDS) RestoreDBInstanceFromS3Request(input *RestoreDBInstanceFromS3Input
 // (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/MySQL.Procedural.Importing.html)
 // in the Amazon RDS User Guide.
 //
-// This command doesn't apply to RDS Custom.
+// This operation doesn't apply to RDS Custom.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -15487,7 +15487,7 @@ func (c *RDS) RestoreDBInstanceToPointInTimeRequest(input *RestoreDBInstanceToPo
 // with mirroring; in this case, the instance becomes a mirrored deployment
 // and not a single-AZ deployment.
 //
-// This command doesn't apply to Aurora MySQL and Aurora PostgreSQL. For Aurora,
+// This operation doesn't apply to Aurora MySQL and Aurora PostgreSQL. For Aurora,
 // use RestoreDBClusterToPointInTime.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -15847,12 +15847,12 @@ func (c *RDS) StartDBClusterRequest(input *StartDBClusterInput) (req *request.Re
 // StartDBCluster API operation for Amazon Relational Database Service.
 //
 // Starts an Amazon Aurora DB cluster that was stopped using the Amazon Web
-// Services console, the stop-db-cluster CLI command, or the StopDBCluster action.
+// Services console, the stop-db-cluster CLI command, or the StopDBCluster operation.
 //
 // For more information, see Stopping and Starting an Aurora Cluster (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-cluster-stop-start.html)
 // in the Amazon Aurora User Guide.
 //
-// This action only applies to Aurora DB clusters.
+// This operation only applies to Aurora DB clusters.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -15938,7 +15938,7 @@ func (c *RDS) StartDBInstanceRequest(input *StartDBInstanceInput) (req *request.
 // StartDBInstance API operation for Amazon Relational Database Service.
 //
 // Starts an Amazon RDS DB instance that was stopped using the Amazon Web Services
-// console, the stop-db-instance CLI command, or the StopDBInstance action.
+// console, the stop-db-instance CLI command, or the StopDBInstance operation.
 //
 // For more information, see Starting an Amazon RDS DB instance That Was Previously
 // Stopped (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_StartInstance.html)
@@ -16165,7 +16165,7 @@ func (c *RDS) StartExportTaskRequest(input *StartExportTaskInput) (req *request.
 // Starts an export of DB snapshot or DB cluster data to Amazon S3. The provided
 // IAM role must have access to the S3 bucket.
 //
-// You can't export snapshot data from RDS Custom DB instances.
+// You can't export snapshot data from Db2 or RDS Custom DB instances.
 //
 // You can't export cluster data from Multi-AZ DB clusters.
 //
@@ -16288,7 +16288,7 @@ func (c *RDS) StopActivityStreamRequest(input *StopActivityStreamInput) (req *re
 //
 // Stops a database activity stream that was started using the Amazon Web Services
 // console, the start-activity-stream CLI command, or the StartActivityStream
-// action.
+// operation.
 //
 // For more information, see Monitoring Amazon Aurora with Database Activity
 // Streams (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/DBActivityStreams.html)
@@ -16393,7 +16393,7 @@ func (c *RDS) StopDBClusterRequest(input *StopDBClusterInput) (req *request.Requ
 // For more information, see Stopping and Starting an Aurora Cluster (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-cluster-stop-start.html)
 // in the Amazon Aurora User Guide.
 //
-// This action only applies to Aurora DB clusters.
+// This operation only applies to Aurora DB clusters.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -22360,6 +22360,15 @@ type CreateDBInstanceInput struct {
 	//    * Provisioned IOPS storage (io1): Must be an integer from 40 to 65536
 	//    for RDS Custom for Oracle, 16384 for RDS Custom for SQL Server.
 	//
+	// RDS for Db2
+	//
+	// Constraints to the amount of storage for each storage type are the following:
+	//
+	//    * General Purpose (SSD) storage (gp2, gp3): Must be an integer from 20
+	//    to 64000.
+	//
+	//    * Provisioned IOPS storage (io1): Must be an integer from 100 to 64000.
+	//
 	// RDS for MariaDB
 	//
 	// Constraints to the amount of storage for each storage type are the following:
@@ -22472,7 +22481,7 @@ type CreateDBInstanceInput struct {
 
 	// The location for storing automated backups and manual snapshots.
 	//
-	// Valie Values:
+	// Valid Values:
 	//
 	//    * outposts (Amazon Web Services Outposts)
 	//
@@ -22570,85 +22579,6 @@ type CreateDBInstanceInput struct {
 	// The meaning of this parameter differs according to the database engine you
 	// use.
 	//
-	// MySQL
-	//
-	// The name of the database to create when the DB instance is created. If this
-	// parameter isn't specified, no database is created in the DB instance.
-	//
-	// Constraints:
-	//
-	//    * Must contain 1 to 64 letters or numbers.
-	//
-	//    * Must begin with a letter. Subsequent characters can be letters, underscores,
-	//    or digits (0-9).
-	//
-	//    * Can't be a word reserved by the specified database engine
-	//
-	// MariaDB
-	//
-	// The name of the database to create when the DB instance is created. If this
-	// parameter isn't specified, no database is created in the DB instance.
-	//
-	// Constraints:
-	//
-	//    * Must contain 1 to 64 letters or numbers.
-	//
-	//    * Must begin with a letter. Subsequent characters can be letters, underscores,
-	//    or digits (0-9).
-	//
-	//    * Can't be a word reserved by the specified database engine
-	//
-	// PostgreSQL
-	//
-	// The name of the database to create when the DB instance is created. If this
-	// parameter isn't specified, a database named postgres is created in the DB
-	// instance.
-	//
-	// Constraints:
-	//
-	//    * Must contain 1 to 63 letters, numbers, or underscores.
-	//
-	//    * Must begin with a letter. Subsequent characters can be letters, underscores,
-	//    or digits (0-9).
-	//
-	//    * Can't be a word reserved by the specified database engine
-	//
-	// Oracle
-	//
-	// The Oracle System ID (SID) of the created DB instance. If you don't specify
-	// a value, the default value is ORCL. You can't specify the string null, or
-	// any other reserved word, for DBName.
-	//
-	// Default: ORCL
-	//
-	// Constraints:
-	//
-	//    * Can't be longer than 8 characters
-	//
-	// Amazon RDS Custom for Oracle
-	//
-	// The Oracle System ID (SID) of the created RDS Custom DB instance. If you
-	// don't specify a value, the default value is ORCL for non-CDBs and RDSCDB
-	// for CDBs.
-	//
-	// Default: ORCL
-	//
-	// Constraints:
-	//
-	//    * It must contain 1 to 8 alphanumeric characters.
-	//
-	//    * It must contain a letter.
-	//
-	//    * It can't be a word reserved by the database engine.
-	//
-	// Amazon RDS Custom for SQL Server
-	//
-	// Not applicable. Must be null.
-	//
-	// SQL Server
-	//
-	// Not applicable. Must be null.
-	//
 	// Amazon Aurora MySQL
 	//
 	// The name of the database to create when the primary DB instance of the Aurora
@@ -22657,9 +22587,9 @@ type CreateDBInstanceInput struct {
 	//
 	// Constraints:
 	//
-	//    * It must contain 1 to 64 alphanumeric characters.
+	//    * Must contain 1 to 64 alphanumeric characters.
 	//
-	//    * It can't be a word reserved by the database engine.
+	//    * Can't be a word reserved by the database engine.
 	//
 	// Amazon Aurora PostgreSQL
 	//
@@ -22672,10 +22602,103 @@ type CreateDBInstanceInput struct {
 	//
 	//    * It must contain 1 to 63 alphanumeric characters.
 	//
-	//    * It must begin with a letter. Subsequent characters can be letters, underscores,
+	//    * Must begin with a letter. Subsequent characters can be letters, underscores,
 	//    or digits (0 to 9).
 	//
-	//    * It can't be a word reserved by the database engine.
+	//    * Can't be a word reserved by the database engine.
+	//
+	// Amazon RDS Custom for Oracle
+	//
+	// The Oracle System ID (SID) of the created RDS Custom DB instance. If you
+	// don't specify a value, the default value is ORCL for non-CDBs and RDSCDB
+	// for CDBs.
+	//
+	// Default: ORCL
+	//
+	// Constraints:
+	//
+	//    * Must contain 1 to 8 alphanumeric characters.
+	//
+	//    * Must contain a letter.
+	//
+	//    * Can't be a word reserved by the database engine.
+	//
+	// Amazon RDS Custom for SQL Server
+	//
+	// Not applicable. Must be null.
+	//
+	// RDS for Db2
+	//
+	// The name of the database to create when the DB instance is created. If this
+	// parameter isn't specified, no database is created in the DB instance.
+	//
+	// Constraints:
+	//
+	//    * Must contain 1 to 64 letters or numbers.
+	//
+	//    * Must begin with a letter. Subsequent characters can be letters, underscores,
+	//    or digits (0-9).
+	//
+	//    * Can't be a word reserved by the specified database engine.
+	//
+	// RDS for MariaDB
+	//
+	// The name of the database to create when the DB instance is created. If this
+	// parameter isn't specified, no database is created in the DB instance.
+	//
+	// Constraints:
+	//
+	//    * Must contain 1 to 64 letters or numbers.
+	//
+	//    * Must begin with a letter. Subsequent characters can be letters, underscores,
+	//    or digits (0-9).
+	//
+	//    * Can't be a word reserved by the specified database engine.
+	//
+	// RDS for MySQL
+	//
+	// The name of the database to create when the DB instance is created. If this
+	// parameter isn't specified, no database is created in the DB instance.
+	//
+	// Constraints:
+	//
+	//    * Must contain 1 to 64 letters or numbers.
+	//
+	//    * Must begin with a letter. Subsequent characters can be letters, underscores,
+	//    or digits (0-9).
+	//
+	//    * Can't be a word reserved by the specified database engine.
+	//
+	// RDS for Oracle
+	//
+	// The Oracle System ID (SID) of the created DB instance. If you don't specify
+	// a value, the default value is ORCL. You can't specify the string null, or
+	// any other reserved word, for DBName.
+	//
+	// Default: ORCL
+	//
+	// Constraints:
+	//
+	//    * Can't be longer than 8 characters.
+	//
+	// RDS for PostgreSQL
+	//
+	// The name of the database to create when the DB instance is created. If this
+	// parameter isn't specified, a database named postgres is created in the DB
+	// instance.
+	//
+	// Constraints:
+	//
+	//    * Must contain 1 to 63 letters, numbers, or underscores.
+	//
+	//    * Must begin with a letter. Subsequent characters can be letters, underscores,
+	//    or digits (0-9).
+	//
+	//    * Can't be a word reserved by the specified database engine.
+	//
+	// RDS for SQL Server
+	//
+	// Not applicable. Must be null.
 	DBName *string `type:"string"`
 
 	// The name of the DB parameter group to associate with this DB instance. If
@@ -22732,8 +22755,8 @@ type CreateDBInstanceInput struct {
 	DeletionProtection *bool `type:"boolean"`
 
 	// The Active Directory directory ID to create the DB instance in. Currently,
-	// only Microsoft SQL Server, MySQL, Oracle, and PostgreSQL DB instances can
-	// be created in an Active Directory Domain.
+	// you can create only Db2, MySQL, Microsoft SQL Server, Oracle, and PostgreSQL
+	// DB instances in an Active Directory Domain.
 	//
 	// For more information, see Kerberos Authentication (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/kerberos-authentication.html)
 	// in the Amazon RDS User Guide.
@@ -22792,9 +22815,8 @@ type CreateDBInstanceInput struct {
 	// Example: OU=mymanagedADtestOU,DC=mymanagedADtest,DC=mymanagedAD,DC=mydomain
 	DomainOu *string `type:"string"`
 
-	// The list of log types that need to be enabled for exporting to CloudWatch
-	// Logs. For more information, see Publishing Database Logs to Amazon CloudWatch
-	// Logs (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch)
+	// The list of log types to enable for exporting to CloudWatch Logs. For more
+	// information, see Publishing Database Logs to Amazon CloudWatch Logs (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch)
 	// in the Amazon RDS User Guide.
 	//
 	// This setting doesn't apply to the following DB instances:
@@ -22804,6 +22826,8 @@ type CreateDBInstanceInput struct {
 	//    * RDS Custom
 	//
 	// The following values are valid for each DB engine:
+	//
+	//    * RDS for Db2 - diag.log | notify.log
 	//
 	//    * RDS for MariaDB - audit | error | general | slowquery
 	//
@@ -22875,6 +22899,10 @@ type CreateDBInstanceInput struct {
 	//
 	//    * custom-sqlserver-web (for RDS Custom for SQL Server DB instances)
 	//
+	//    * db2-ae
+	//
+	//    * db2-se
+	//
 	//    * mariadb
 	//
 	//    * mysql
@@ -22924,6 +22952,11 @@ type CreateDBInstanceInput struct {
 	// See RDS Custom for SQL Server general requirements (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-reqs-limits-MS.html)
 	// in the Amazon RDS User Guide.
 	//
+	// RDS for Db2
+	//
+	// For information, see Db2 on Amazon RDS versions (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Db2.html#Db2.Concepts.VersionMgmt)
+	// in the Amazon RDS User Guide.
+	//
 	// RDS for MariaDB
 	//
 	// For information, see MariaDB on Amazon RDS versions (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_MariaDB.html#MariaDB.Concepts.VersionMgmt)
@@ -22960,8 +22993,8 @@ type CreateDBInstanceInput struct {
 	//
 	// Constraints:
 	//
-	//    * For RDS for MariaDB, MySQL, Oracle, and PostgreSQL - Must be a multiple
-	//    between .5 and 50 of the storage amount for the DB instance.
+	//    * For RDS for Db2, MariaDB, MySQL, Oracle, and PostgreSQL - Must be a
+	//    multiple between .5 and 50 of the storage amount for the DB instance.
 	//
 	//    * For RDS for SQL Server - Must be a multiple between 1 and 50 of the
 	//    storage amount for the DB instance.
@@ -22993,6 +23026,8 @@ type CreateDBInstanceInput struct {
 	// This setting doesn't apply to Amazon Aurora or RDS Custom DB instances.
 	//
 	// Valid Values:
+	//
+	//    * RDS for Db2 - bring-your-own-license
 	//
 	//    * RDS for MariaDB - general-public-license
 	//
@@ -23032,6 +23067,8 @@ type CreateDBInstanceInput struct {
 	//    character.
 	//
 	// Length Constraints:
+	//
+	//    * RDS for Db2 - Must contain from 8 to 255 characters.
 	//
 	//    * RDS for MariaDB - Must contain from 8 to 41 characters.
 	//
@@ -23214,6 +23251,8 @@ type CreateDBInstanceInput struct {
 	// Valid Values: 1150-65535
 	//
 	// Default:
+	//
+	//    * RDS for Db2 - 50000
 	//
 	//    * RDS for MariaDB - 3306
 	//
@@ -24305,7 +24344,7 @@ type CreateDBInstanceReadReplicaInput struct {
 	//
 	// Constraints:
 	//
-	//    * Must be the identifier of an existing MySQL, MariaDB, Oracle, PostgreSQL,
+	//    * Must be the identifier of an existing Db2, MariaDB, MySQL, Oracle, PostgreSQL,
 	//    or SQL Server DB instance.
 	//
 	//    * Can't be specified if the SourceDBClusterIdentifier parameter is also
@@ -24745,7 +24784,9 @@ type CreateDBParameterGroupInput struct {
 	//
 	//    * aurora-postgresql
 	//
-	//    * mariadb
+	//    * db2-ae
+	//
+	//    * db2-se
 	//
 	//    * mysql
 	//
@@ -26173,10 +26214,13 @@ func (s *CreateIntegrationOutput) SetTargetArn(v string) *CreateIntegrationOutpu
 type CreateOptionGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the name of the engine that this option group should be associated
-	// with.
+	// The name of the engine to associate this option group with.
 	//
 	// Valid Values:
+	//
+	//    * db2-ae
+	//
+	//    * db2-se
 	//
 	//    * mariadb
 	//
@@ -30404,7 +30448,7 @@ func (s *DBParameterGroup) SetDescription(v string) *DBParameterGroup {
 }
 
 // Contains the result of a successful invocation of the ModifyDBParameterGroup
-// or ResetDBParameterGroup action.
+// or ResetDBParameterGroup operation.
 type DBParameterGroupNameMessage struct {
 	_ struct{} `type:"structure"`
 
@@ -35934,6 +35978,10 @@ type DescribeDBEngineVersionsInput struct {
 	//
 	//    * custom-oracle-ee
 	//
+	//    * db2-ae
+	//
+	//    * db2-se
+	//
 	//    * mariadb
 	//
 	//    * mysql
@@ -38498,6 +38546,10 @@ type DescribeEngineDefaultParametersInput struct {
 	//
 	//    * custom-oracle-ee-19
 	//
+	//    * db2-ae
+	//
+	//    * db2-se
+	//
 	//    * mariadb10.2
 	//
 	//    * mariadb10.3
@@ -39565,9 +39617,13 @@ func (s *DescribeIntegrationsOutput) SetMarker(v string) *DescribeIntegrationsOu
 type DescribeOptionGroupOptionsInput struct {
 	_ struct{} `type:"structure"`
 
-	// A required parameter. Options available for the given engine name are described.
+	// The name of the engine to describe options for.
 	//
 	// Valid Values:
+	//
+	//    * db2-ae
+	//
+	//    * db2-se
 	//
 	//    * mariadb
 	//
@@ -39732,10 +39788,13 @@ func (s *DescribeOptionGroupOptionsOutput) SetOptionGroupOptions(v []*OptionGrou
 type DescribeOptionGroupsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Filters the list of option groups to only include groups associated with
-	// a specific database engine.
+	// A filter to only include option groups associated with this database engine.
 	//
 	// Valid Values:
+	//
+	//    * db2-ae
+	//
+	//    * db2-se
 	//
 	//    * mariadb
 	//
@@ -39908,19 +39967,19 @@ type DescribeOrderableDBInstanceOptionsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Availability Zone group associated with a Local Zone. Specify this parameter
-	// to retrieve available offerings for the Local Zones in the group.
+	// to retrieve available options for the Local Zones in the group.
 	//
-	// Omit this parameter to show the available offerings in the specified Amazon
+	// Omit this parameter to show the available options in the specified Amazon
 	// Web Services Region.
 	//
-	// This setting doesn't apply to RDS Custom.
+	// This setting doesn't apply to RDS Custom DB instances.
 	AvailabilityZoneGroup *string `type:"string"`
 
-	// The DB instance class filter value. Specify this parameter to show only the
-	// available offerings matching the specified DB instance class.
+	// A filter to include only the available options for the specified DB instance
+	// class.
 	DBInstanceClass *string `type:"string"`
 
-	// The name of the engine to retrieve DB instance options for.
+	// The name of the engine to describe DB instance options for.
 	//
 	// Valid Values:
 	//
@@ -39929,6 +39988,10 @@ type DescribeOrderableDBInstanceOptionsInput struct {
 	//    * aurora-postgresql
 	//
 	//    * custom-oracle-ee
+	//
+	//    * db2-ae
+	//
+	//    * db2-se
 	//
 	//    * mariadb
 	//
@@ -39955,15 +40018,14 @@ type DescribeOrderableDBInstanceOptionsInput struct {
 	// Engine is a required field
 	Engine *string `type:"string" required:"true"`
 
-	// The engine version filter value. Specify this parameter to show only the
-	// available offerings matching the specified engine version.
+	// A filter to include only the available options for the specified engine version.
 	EngineVersion *string `type:"string"`
 
 	// This parameter isn't currently supported.
 	Filters []*Filter `locationNameList:"Filter" type:"list"`
 
-	// The license model filter value. Specify this parameter to show only the available
-	// offerings matching the specified license model.
+	// A filter to include only the available options for the specified license
+	// model.
 	//
 	// RDS Custom supports only the BYOL licensing model.
 	LicenseModel *string `type:"string"`
@@ -45146,7 +45208,7 @@ type ModifyDBInstanceInput struct {
 
 	// The new amount of storage in gibibytes (GiB) to allocate for the DB instance.
 	//
-	// For RDS for MariaDB, RDS for MySQL, RDS for Oracle, and RDS for PostgreSQL,
+	// For RDS for Db2, MariaDB, RDS for MySQL, RDS for Oracle, and RDS for PostgreSQL,
 	// the value supplied must be at least 10% greater than the current value. Values
 	// that are not at least 10% greater than the existing value are rounded up
 	// so that they are 10% greater than the current value.
@@ -45357,6 +45419,8 @@ type ModifyDBInstanceInput struct {
 	//
 	//    * Amazon Aurora - 3306
 	//
+	//    * RDS for Db2 - 50000
+	//
 	//    * RDS for MariaDB - 3306
 	//
 	//    * RDS for Microsoft SQL Server - 1433
@@ -45416,8 +45480,8 @@ type ModifyDBInstanceInput struct {
 
 	// The Active Directory directory ID to move the DB instance to. Specify none
 	// to remove the instance from its current domain. You must create the domain
-	// before this operation. Currently, you can create only MySQL, Microsoft SQL
-	// Server, Oracle, and PostgreSQL DB instances in an Active Directory Domain.
+	// before this operation. Currently, you can create only Db2, MySQL, Microsoft
+	// SQL Server, Oracle, and PostgreSQL DB instances in an Active Directory Domain.
 	//
 	// For more information, see Kerberos Authentication (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/kerberos-authentication.html)
 	// in the Amazon RDS User Guide.
@@ -45599,6 +45663,8 @@ type ModifyDBInstanceInput struct {
 	//
 	// Valid Values:
 	//
+	//    * RDS for Db2 - bring-your-own-license
+	//
 	//    * RDS for MariaDB - general-public-license
 	//
 	//    * RDS for Microsoft SQL Server - license-included
@@ -45640,7 +45706,7 @@ type ModifyDBInstanceInput struct {
 	// of the request, the MasterUserPassword element exists in the PendingModifiedValues
 	// element of the operation response.
 	//
-	// Amazon RDS API operations never return the password, so this action provides
+	// Amazon RDS API operations never return the password, so this operation provides
 	// a way to regain access to a primary instance user if the password is lost.
 	// This includes restoring privileges that might have been accidentally revoked.
 	//
@@ -45657,9 +45723,13 @@ type ModifyDBInstanceInput struct {
 	//
 	//    * Can't be specified if ManageMasterUserPassword is turned on.
 	//
-	//    * Can include any printable ASCII character except "/", """, or "@".
+	//    * Can include any printable ASCII character except "/", """, or "@". For
+	//    RDS for Oracle, can't include the "&" (ampersand) or the "'" (single quotes)
+	//    character.
 	//
 	// Length Constraints:
+	//
+	//    * RDS for Db2 - Must contain from 8 to 255 characters.
 	//
 	//    * RDS for MariaDB - Must contain from 8 to 41 characters.
 	//
@@ -53319,26 +53389,26 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	// Default: The same DBInstanceClass as the original DB instance.
 	DBInstanceClass *string `type:"string"`
 
-	// Name of the DB instance to create from the DB snapshot. This parameter isn't
-	// case-sensitive.
+	// The name of the DB instance to create from the DB snapshot. This parameter
+	// isn't case-sensitive.
 	//
 	// Constraints:
 	//
-	//    * Must contain from 1 to 63 numbers, letters, or hyphens
+	//    * Must contain from 1 to 63 numbers, letters, or hyphens.
 	//
-	//    * First character must be a letter
+	//    * First character must be a letter.
 	//
-	//    * Can't end with a hyphen or contain two consecutive hyphens
+	//    * Can't end with a hyphen or contain two consecutive hyphens.
 	//
 	// Example: my-snapshot-id
 	//
 	// DBInstanceIdentifier is a required field
 	DBInstanceIdentifier *string `type:"string" required:"true"`
 
-	// The database name for the restored DB instance.
+	// The name of the database for the restored DB instance.
 	//
-	// This parameter doesn't apply to the MySQL, PostgreSQL, or MariaDB engines.
-	// It also doesn't apply to RDS Custom DB instances.
+	// This parameter only applies to RDS for Oracle and RDS for SQL Server DB instances.
+	// It doesn't apply to the other engines or to RDS Custom DB instances.
 	DBName *string `type:"string"`
 
 	// The name of the DB parameter group to associate with this DB instance.
@@ -53350,7 +53420,7 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	//
 	// Constraints:
 	//
-	//    * If supplied, must match the name of an existing DBParameterGroup.
+	//    * If supplied, must match the name of an existing DB parameter group.
 	//
 	//    * Must be 1 to 255 letters, numbers, or hyphens.
 	//
@@ -53363,7 +53433,7 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	//
 	// Constraints:
 	//
-	//    * Must match the identifier of an existing DBSnapshot.
+	//    * Must match the identifier of an existing DB snapshot.
 	//
 	//    * Can't be specified when DBClusterSnapshotIdentifier is specified.
 	//
@@ -53373,9 +53443,11 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	//    must be the ARN of the shared DB snapshot.
 	DBSnapshotIdentifier *string `type:"string"`
 
-	// The DB subnet group name to use for the new instance.
+	// The name of the DB subnet group to use for the new instance.
 	//
-	// Constraints: If supplied, must match the name of an existing DBSubnetGroup.
+	// Constraints:
+	//
+	//    * If supplied, must match the name of an existing DB subnet group.
 	//
 	// Example: mydbsubnetgroup
 	DBSubnetGroupName *string `type:"string"`
@@ -53389,10 +53461,10 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	// Instance (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_DeleteInstance.html).
 	DeletionProtection *bool `type:"boolean"`
 
-	// Specify the Active Directory directory ID to restore the DB instance in.
-	// The domain/ must be created prior to this operation. Currently, you can create
-	// only MySQL, Microsoft SQL Server, Oracle, and PostgreSQL DB instances in
-	// an Active Directory Domain.
+	// The Active Directory directory ID to restore the DB instance in. The domain/
+	// must be created prior to this operation. Currently, you can create only Db2,
+	// MySQL, Microsoft SQL Server, Oracle, and PostgreSQL DB instances in an Active
+	// Directory Domain.
 	//
 	// For more information, see Kerberos Authentication (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/kerberos-authentication.html)
 	// in the Amazon RDS User Guide.
@@ -53447,9 +53519,9 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	// Example: OU=mymanagedADtestOU,DC=mymanagedADtest,DC=mymanagedAD,DC=mydomain
 	DomainOu *string `type:"string"`
 
-	// The list of logs that the restored DB instance is to export to CloudWatch
-	// Logs. The values in the list depend on the DB engine being used. For more
-	// information, see Publishing Database Logs to Amazon CloudWatch Logs (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch)
+	// The list of logs for the restored DB instance to export to CloudWatch Logs.
+	// The values in the list depend on the DB engine. For more information, see
+	// Publishing Database Logs to Amazon CloudWatch Logs (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch)
 	// in the Amazon RDS User Guide.
 	//
 	// This setting doesn't apply to RDS Custom.
@@ -53493,6 +53565,10 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	// you can restore a MariaDB 10.1 DB instance from a MySQL 5.6 snapshot.
 	//
 	// Valid Values:
+	//
+	//    * db2-ae
+	//
+	//    * db2-se
 	//
 	//    * mariadb
 	//
@@ -54114,30 +54190,29 @@ type RestoreDBInstanceFromS3Input struct {
 	//    Manager if MasterUserPassword is specified.
 	ManageMasterUserPassword *bool `type:"boolean"`
 
-	// The password for the master user. The password can include any printable
-	// ASCII character except "/", """, or "@".
+	// The password for the master user.
 	//
-	// Constraints: Can't be specified if ManageMasterUserPassword is turned on.
+	// Constraints:
 	//
-	// MariaDB
+	//    * Can't be specified if ManageMasterUserPassword is turned on.
 	//
-	// Constraints: Must contain from 8 to 41 characters.
+	//    * Can include any printable ASCII character except "/", """, or "@". For
+	//    RDS for Oracle, can't include the "&" (ampersand) or the "'" (single quotes)
+	//    character.
 	//
-	// Microsoft SQL Server
+	// Length Constraints:
 	//
-	// Constraints: Must contain from 8 to 128 characters.
+	//    * RDS for Db2 - Must contain from 8 to 128 characters.
 	//
-	// MySQL
+	//    * RDS for MariaDB - Must contain from 8 to 41 characters.
 	//
-	// Constraints: Must contain from 8 to 41 characters.
+	//    * RDS for Microsoft SQL Server - Must contain from 8 to 128 characters.
 	//
-	// Oracle
+	//    * RDS for MySQL - Must contain from 8 to 41 characters.
 	//
-	// Constraints: Must contain from 8 to 30 characters.
+	//    * RDS for Oracle - Must contain from 8 to 30 characters.
 	//
-	// PostgreSQL
-	//
-	// Constraints: Must contain from 8 to 128 characters.
+	//    * RDS for PostgreSQL - Must contain from 8 to 128 characters.
 	MasterUserPassword *string `type:"string"`
 
 	// The Amazon Web Services KMS key identifier to encrypt a secret that is automatically
@@ -54791,11 +54866,16 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	// Example: us-east-1a
 	AvailabilityZone *string `type:"string"`
 
-	// Specifies where automated backups and manual snapshots are stored for the
-	// restored DB instance.
+	// The location for storing automated backups and manual snapshots for the restored
+	// DB instance.
 	//
-	// Possible values are outposts (Amazon Web Services Outposts) and region (Amazon
-	// Web Services Region). The default is region.
+	// Valid Values:
+	//
+	//    * outposts (Amazon Web Services Outposts)
+	//
+	//    * region (Amazon Web Services Region)
+	//
+	// Default: region
 	//
 	// For more information, see Working with Amazon RDS on Amazon Web Services
 	// Outposts (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-on-outposts.html)
@@ -54835,8 +54915,15 @@ type RestoreDBInstanceToPointInTimeInput struct {
 
 	// The database name for the restored DB instance.
 	//
-	// This parameter isn't supported for the MySQL or MariaDB engines. It also
-	// doesn't apply to RDS Custom.
+	// This parameter doesn't apply to the following DB instances:
+	//
+	//    * RDS Custom
+	//
+	//    * RDS for Db2
+	//
+	//    * RDS for MariaDB
+	//
+	//    * RDS for MySQL
 	DBName *string `type:"string"`
 
 	// The name of the DB parameter group to associate with this DB instance.
@@ -54975,6 +55062,10 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	// This setting doesn't apply to RDS Custom.
 	//
 	// Valid Values:
+	//
+	//    * db2-ae
+	//
+	//    * db2-se
 	//
 	//    * mariadb
 	//

@@ -2655,6 +2655,95 @@ func (c *AppSync) GetDataSourceWithContext(ctx aws.Context, input *GetDataSource
 	return out, req.Send()
 }
 
+const opGetDataSourceIntrospection = "GetDataSourceIntrospection"
+
+// GetDataSourceIntrospectionRequest generates a "aws/request.Request" representing the
+// client's request for the GetDataSourceIntrospection operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetDataSourceIntrospection for more information on using the GetDataSourceIntrospection
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetDataSourceIntrospectionRequest method.
+//	req, resp := client.GetDataSourceIntrospectionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/GetDataSourceIntrospection
+func (c *AppSync) GetDataSourceIntrospectionRequest(input *GetDataSourceIntrospectionInput) (req *request.Request, output *GetDataSourceIntrospectionOutput) {
+	op := &request.Operation{
+		Name:       opGetDataSourceIntrospection,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v1/datasources/introspections/{introspectionId}",
+	}
+
+	if input == nil {
+		input = &GetDataSourceIntrospectionInput{}
+	}
+
+	output = &GetDataSourceIntrospectionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetDataSourceIntrospection API operation for AWS AppSync.
+//
+// Retrieves the record of an existing introspection. If the retrieval is successful,
+// the result of the instrospection will also be returned. If the retrieval
+// fails the operation, an error message will be returned instead.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS AppSync's
+// API operation GetDataSourceIntrospection for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The request is not well formed. For example, a value is invalid or a required
+//     field is missing. Check the field values, and then try again.
+//
+//   - NotFoundException
+//     The resource specified in the request was not found. Check the resource,
+//     and then try again.
+//
+//   - InternalFailureException
+//     An internal AppSync error occurred. Try your request again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/GetDataSourceIntrospection
+func (c *AppSync) GetDataSourceIntrospection(input *GetDataSourceIntrospectionInput) (*GetDataSourceIntrospectionOutput, error) {
+	req, out := c.GetDataSourceIntrospectionRequest(input)
+	return out, req.Send()
+}
+
+// GetDataSourceIntrospectionWithContext is the same as GetDataSourceIntrospection with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetDataSourceIntrospection for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppSync) GetDataSourceIntrospectionWithContext(ctx aws.Context, input *GetDataSourceIntrospectionInput, opts ...request.Option) (*GetDataSourceIntrospectionOutput, error) {
+	req, out := c.GetDataSourceIntrospectionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetDomainName = "GetDomainName"
 
 // GetDomainNameRequest generates a "aws/request.Request" representing the
@@ -4371,6 +4460,97 @@ func (c *AppSync) ListTypesByAssociation(input *ListTypesByAssociationInput) (*L
 // for more information on using Contexts.
 func (c *AppSync) ListTypesByAssociationWithContext(ctx aws.Context, input *ListTypesByAssociationInput, opts ...request.Option) (*ListTypesByAssociationOutput, error) {
 	req, out := c.ListTypesByAssociationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartDataSourceIntrospection = "StartDataSourceIntrospection"
+
+// StartDataSourceIntrospectionRequest generates a "aws/request.Request" representing the
+// client's request for the StartDataSourceIntrospection operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartDataSourceIntrospection for more information on using the StartDataSourceIntrospection
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartDataSourceIntrospectionRequest method.
+//	req, resp := client.StartDataSourceIntrospectionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/StartDataSourceIntrospection
+func (c *AppSync) StartDataSourceIntrospectionRequest(input *StartDataSourceIntrospectionInput) (req *request.Request, output *StartDataSourceIntrospectionOutput) {
+	op := &request.Operation{
+		Name:       opStartDataSourceIntrospection,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v1/datasources/introspections",
+	}
+
+	if input == nil {
+		input = &StartDataSourceIntrospectionInput{}
+	}
+
+	output = &StartDataSourceIntrospectionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartDataSourceIntrospection API operation for AWS AppSync.
+//
+// Creates a new introspection. Returns the introspectionId of the new introspection
+// after its creation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS AppSync's
+// API operation StartDataSourceIntrospection for usage and error information.
+//
+// Returned Error Types:
+//
+//   - NotFoundException
+//     The resource specified in the request was not found. Check the resource,
+//     and then try again.
+//
+//   - UnauthorizedException
+//     You aren't authorized to perform this operation.
+//
+//   - InternalFailureException
+//     An internal AppSync error occurred. Try your request again.
+//
+//   - BadRequestException
+//     The request is not well formed. For example, a value is invalid or a required
+//     field is missing. Check the field values, and then try again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/StartDataSourceIntrospection
+func (c *AppSync) StartDataSourceIntrospection(input *StartDataSourceIntrospectionInput) (*StartDataSourceIntrospectionOutput, error) {
+	req, out := c.StartDataSourceIntrospectionRequest(input)
+	return out, req.Send()
+}
+
+// StartDataSourceIntrospectionWithContext is the same as StartDataSourceIntrospection with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartDataSourceIntrospection for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppSync) StartDataSourceIntrospectionWithContext(ctx aws.Context, input *StartDataSourceIntrospectionInput, opts ...request.Option) (*StartDataSourceIntrospectionOutput, error) {
+	req, out := c.StartDataSourceIntrospectionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -8733,6 +8913,288 @@ func (s *DataSource) SetType(v string) *DataSource {
 	return s
 }
 
+// Contains the introspected data that was retrieved from the data source.
+type DataSourceIntrospectionModel struct {
+	_ struct{} `type:"structure"`
+
+	// The DataSourceIntrospectionModelField object data.
+	Fields []*DataSourceIntrospectionModelField `locationName:"fields" type:"list"`
+
+	// The array of DataSourceIntrospectionModelIndex objects.
+	Indexes []*DataSourceIntrospectionModelIndex `locationName:"indexes" type:"list"`
+
+	// The name of the model. For example, this could be the name of a single table
+	// in a database.
+	Name *string `locationName:"name" type:"string"`
+
+	// The primary key stored as a DataSourceIntrospectionModelIndex object.
+	PrimaryKey *DataSourceIntrospectionModelIndex `locationName:"primaryKey" type:"structure"`
+
+	// Contains the output of the SDL that was generated from the introspected types.
+	// This is controlled by the includeModelsSDL parameter of the GetDataSourceIntrospection
+	// operation.
+	Sdl *string `locationName:"sdl" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataSourceIntrospectionModel) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataSourceIntrospectionModel) GoString() string {
+	return s.String()
+}
+
+// SetFields sets the Fields field's value.
+func (s *DataSourceIntrospectionModel) SetFields(v []*DataSourceIntrospectionModelField) *DataSourceIntrospectionModel {
+	s.Fields = v
+	return s
+}
+
+// SetIndexes sets the Indexes field's value.
+func (s *DataSourceIntrospectionModel) SetIndexes(v []*DataSourceIntrospectionModelIndex) *DataSourceIntrospectionModel {
+	s.Indexes = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DataSourceIntrospectionModel) SetName(v string) *DataSourceIntrospectionModel {
+	s.Name = &v
+	return s
+}
+
+// SetPrimaryKey sets the PrimaryKey field's value.
+func (s *DataSourceIntrospectionModel) SetPrimaryKey(v *DataSourceIntrospectionModelIndex) *DataSourceIntrospectionModel {
+	s.PrimaryKey = v
+	return s
+}
+
+// SetSdl sets the Sdl field's value.
+func (s *DataSourceIntrospectionModel) SetSdl(v string) *DataSourceIntrospectionModel {
+	s.Sdl = &v
+	return s
+}
+
+// Represents the fields that were retrieved from the introspected data.
+type DataSourceIntrospectionModelField struct {
+	_ struct{} `type:"structure"`
+
+	// The length value of the introspected field.
+	Length *int64 `locationName:"length" type:"long"`
+
+	// The name of the field that was retrieved from the introspected data.
+	Name *string `locationName:"name" type:"string"`
+
+	// The DataSourceIntrospectionModelFieldType object data.
+	Type *DataSourceIntrospectionModelFieldType `locationName:"type" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataSourceIntrospectionModelField) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataSourceIntrospectionModelField) GoString() string {
+	return s.String()
+}
+
+// SetLength sets the Length field's value.
+func (s *DataSourceIntrospectionModelField) SetLength(v int64) *DataSourceIntrospectionModelField {
+	s.Length = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DataSourceIntrospectionModelField) SetName(v string) *DataSourceIntrospectionModelField {
+	s.Name = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *DataSourceIntrospectionModelField) SetType(v *DataSourceIntrospectionModelFieldType) *DataSourceIntrospectionModelField {
+	s.Type = v
+	return s
+}
+
+// Represents the type data for each field retrieved from the introspection.
+type DataSourceIntrospectionModelFieldType struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the classification of data. For example, this could be set to values
+	// like Scalar or NonNull to indicate a fundamental property of the field.
+	//
+	// Valid values include:
+	//
+	//    * Scalar: Indicates the value is a primitive type (scalar).
+	//
+	//    * NonNull: Indicates the field cannot be null.
+	//
+	//    * List: Indicates the field contains a list.
+	Kind *string `locationName:"kind" type:"string"`
+
+	// The name of the data type that represents the field. For example, String
+	// is a valid name value.
+	Name *string `locationName:"name" type:"string"`
+
+	// The DataSourceIntrospectionModelFieldType object data. The type is only present
+	// if DataSourceIntrospectionModelFieldType.kind is set to NonNull or List.
+	//
+	// The type typically contains its own kind and name fields to represent the
+	// actual type data. For instance, type could contain a kind value of Scalar
+	// with a name value of String. The values Scalar and String will be collectively
+	// stored in the values field.
+	Type *DataSourceIntrospectionModelFieldType `locationName:"type" type:"structure"`
+
+	// The values of the type field. This field represents the AppSync data type
+	// equivalent of the introspected field.
+	Values []*string `locationName:"values" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataSourceIntrospectionModelFieldType) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataSourceIntrospectionModelFieldType) GoString() string {
+	return s.String()
+}
+
+// SetKind sets the Kind field's value.
+func (s *DataSourceIntrospectionModelFieldType) SetKind(v string) *DataSourceIntrospectionModelFieldType {
+	s.Kind = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DataSourceIntrospectionModelFieldType) SetName(v string) *DataSourceIntrospectionModelFieldType {
+	s.Name = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *DataSourceIntrospectionModelFieldType) SetType(v *DataSourceIntrospectionModelFieldType) *DataSourceIntrospectionModelFieldType {
+	s.Type = v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *DataSourceIntrospectionModelFieldType) SetValues(v []*string) *DataSourceIntrospectionModelFieldType {
+	s.Values = v
+	return s
+}
+
+// The index that was retrieved from the introspected data.
+type DataSourceIntrospectionModelIndex struct {
+	_ struct{} `type:"structure"`
+
+	// The fields of the index.
+	Fields []*string `locationName:"fields" type:"list"`
+
+	// The name of the index.
+	Name *string `locationName:"name" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataSourceIntrospectionModelIndex) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataSourceIntrospectionModelIndex) GoString() string {
+	return s.String()
+}
+
+// SetFields sets the Fields field's value.
+func (s *DataSourceIntrospectionModelIndex) SetFields(v []*string) *DataSourceIntrospectionModelIndex {
+	s.Fields = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DataSourceIntrospectionModelIndex) SetName(v string) *DataSourceIntrospectionModelIndex {
+	s.Name = &v
+	return s
+}
+
+// Represents the output of a DataSourceIntrospectionResult. This is the populated
+// result of a GetDataSourceIntrospection operation.
+type DataSourceIntrospectionResult struct {
+	_ struct{} `type:"structure"`
+
+	// The array of DataSourceIntrospectionModel objects.
+	Models []*DataSourceIntrospectionModel `locationName:"models" type:"list"`
+
+	// Determines the number of types to be returned in a single response before
+	// paginating. This value is typically taken from nextToken value from the previous
+	// response.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataSourceIntrospectionResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataSourceIntrospectionResult) GoString() string {
+	return s.String()
+}
+
+// SetModels sets the Models field's value.
+func (s *DataSourceIntrospectionResult) SetModels(v []*DataSourceIntrospectionModel) *DataSourceIntrospectionResult {
+	s.Models = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DataSourceIntrospectionResult) SetNextToken(v string) *DataSourceIntrospectionResult {
+	s.NextToken = &v
+	return s
+}
+
 // Represents the input of a DeleteApiCache operation.
 type DeleteApiCacheInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
@@ -10779,6 +11241,157 @@ func (s *GetDataSourceInput) SetApiId(v string) *GetDataSourceInput {
 // SetName sets the Name field's value.
 func (s *GetDataSourceInput) SetName(v string) *GetDataSourceInput {
 	s.Name = &v
+	return s
+}
+
+type GetDataSourceIntrospectionInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// A boolean flag that determines whether SDL should be generated for introspected
+	// types or not. If set to true, each model will contain an sdl property that
+	// contains the SDL for that type. The SDL only contains the type data and no
+	// additional metadata or directives.
+	IncludeModelsSDL *bool `location:"querystring" locationName:"includeModelsSDL" type:"boolean"`
+
+	// The introspection ID. Each introspection contains a unique ID that can be
+	// used to reference the instrospection record.
+	//
+	// IntrospectionId is a required field
+	IntrospectionId *string `location:"uri" locationName:"introspectionId" type:"string" required:"true"`
+
+	// The maximum number of introspected types that will be returned in a single
+	// response.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
+
+	// Determines the number of types to be returned in a single response before
+	// paginating. This value is typically taken from nextToken value from the previous
+	// response.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataSourceIntrospectionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataSourceIntrospectionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetDataSourceIntrospectionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetDataSourceIntrospectionInput"}
+	if s.IntrospectionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IntrospectionId"))
+	}
+	if s.IntrospectionId != nil && len(*s.IntrospectionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IntrospectionId", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIncludeModelsSDL sets the IncludeModelsSDL field's value.
+func (s *GetDataSourceIntrospectionInput) SetIncludeModelsSDL(v bool) *GetDataSourceIntrospectionInput {
+	s.IncludeModelsSDL = &v
+	return s
+}
+
+// SetIntrospectionId sets the IntrospectionId field's value.
+func (s *GetDataSourceIntrospectionInput) SetIntrospectionId(v string) *GetDataSourceIntrospectionInput {
+	s.IntrospectionId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetDataSourceIntrospectionInput) SetMaxResults(v int64) *GetDataSourceIntrospectionInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetDataSourceIntrospectionInput) SetNextToken(v string) *GetDataSourceIntrospectionInput {
+	s.NextToken = &v
+	return s
+}
+
+type GetDataSourceIntrospectionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The introspection ID. Each introspection contains a unique ID that can be
+	// used to reference the instrospection record.
+	IntrospectionId *string `locationName:"introspectionId" type:"string"`
+
+	// The DataSourceIntrospectionResult object data.
+	IntrospectionResult *DataSourceIntrospectionResult `locationName:"introspectionResult" type:"structure"`
+
+	// The status of the introspection during retrieval. By default, when a new
+	// instrospection is being retrieved, the status will be set to PROCESSING.
+	// Once the operation has been completed, the status will change to SUCCESS
+	// or FAILED depending on how the data was parsed. A FAILED operation will return
+	// an error and its details as an introspectionStatusDetail.
+	IntrospectionStatus *string `locationName:"introspectionStatus" type:"string" enum:"DataSourceIntrospectionStatus"`
+
+	// The error detail field. When a FAILED introspectionStatus is returned, the
+	// introspectionStatusDetail will also return the exact error that was generated
+	// during the operation.
+	IntrospectionStatusDetail *string `locationName:"introspectionStatusDetail" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataSourceIntrospectionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataSourceIntrospectionOutput) GoString() string {
+	return s.String()
+}
+
+// SetIntrospectionId sets the IntrospectionId field's value.
+func (s *GetDataSourceIntrospectionOutput) SetIntrospectionId(v string) *GetDataSourceIntrospectionOutput {
+	s.IntrospectionId = &v
+	return s
+}
+
+// SetIntrospectionResult sets the IntrospectionResult field's value.
+func (s *GetDataSourceIntrospectionOutput) SetIntrospectionResult(v *DataSourceIntrospectionResult) *GetDataSourceIntrospectionOutput {
+	s.IntrospectionResult = v
+	return s
+}
+
+// SetIntrospectionStatus sets the IntrospectionStatus field's value.
+func (s *GetDataSourceIntrospectionOutput) SetIntrospectionStatus(v string) *GetDataSourceIntrospectionOutput {
+	s.IntrospectionStatus = &v
+	return s
+}
+
+// SetIntrospectionStatusDetail sets the IntrospectionStatusDetail field's value.
+func (s *GetDataSourceIntrospectionOutput) SetIntrospectionStatusDetail(v string) *GetDataSourceIntrospectionOutput {
+	s.IntrospectionStatusDetail = &v
 	return s
 }
 
@@ -13791,6 +14404,94 @@ func (s *PipelineConfig) SetFunctions(v []*string) *PipelineConfig {
 	return s
 }
 
+// Contains the metadata required to introspect the RDS cluster.
+type RdsDataApiConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the database in the cluster.
+	//
+	// DatabaseName is a required field
+	DatabaseName *string `locationName:"databaseName" min:"1" type:"string" required:"true"`
+
+	// The resource ARN of the RDS cluster.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `locationName:"resourceArn" min:"20" type:"string" required:"true"`
+
+	// The secret's ARN that was obtained from Secrets Manager. A secret consists
+	// of secret information, the secret value, plus metadata about the secret.
+	// A secret value can be a string or binary. It typically includes the ARN,
+	// secret name and description, policies, tags, encryption key from the Key
+	// Management Service, and key rotation data.
+	//
+	// SecretArn is a required field
+	SecretArn *string `locationName:"secretArn" min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RdsDataApiConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RdsDataApiConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RdsDataApiConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RdsDataApiConfig"}
+	if s.DatabaseName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
+	}
+	if s.DatabaseName != nil && len(*s.DatabaseName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 1))
+	}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 20))
+	}
+	if s.SecretArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecretArn"))
+	}
+	if s.SecretArn != nil && len(*s.SecretArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("SecretArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *RdsDataApiConfig) SetDatabaseName(v string) *RdsDataApiConfig {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *RdsDataApiConfig) SetResourceArn(v string) *RdsDataApiConfig {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetSecretArn sets the SecretArn field's value.
+func (s *RdsDataApiConfig) SetSecretArn(v string) *RdsDataApiConfig {
+	s.SecretArn = &v
+	return s
+}
+
 // The Amazon Relational Database Service (Amazon RDS) HTTP endpoint configuration.
 type RdsHttpEndpointConfig struct {
 	_ struct{} `type:"structure"`
@@ -14312,6 +15013,108 @@ func (s *SourceApiAssociationSummary) SetSourceApiArn(v string) *SourceApiAssoci
 // SetSourceApiId sets the SourceApiId field's value.
 func (s *SourceApiAssociationSummary) SetSourceApiId(v string) *SourceApiAssociationSummary {
 	s.SourceApiId = &v
+	return s
+}
+
+type StartDataSourceIntrospectionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The rdsDataApiConfig object data.
+	RdsDataApiConfig *RdsDataApiConfig `locationName:"rdsDataApiConfig" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartDataSourceIntrospectionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartDataSourceIntrospectionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartDataSourceIntrospectionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartDataSourceIntrospectionInput"}
+	if s.RdsDataApiConfig != nil {
+		if err := s.RdsDataApiConfig.Validate(); err != nil {
+			invalidParams.AddNested("RdsDataApiConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRdsDataApiConfig sets the RdsDataApiConfig field's value.
+func (s *StartDataSourceIntrospectionInput) SetRdsDataApiConfig(v *RdsDataApiConfig) *StartDataSourceIntrospectionInput {
+	s.RdsDataApiConfig = v
+	return s
+}
+
+type StartDataSourceIntrospectionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The introspection ID. Each introspection contains a unique ID that can be
+	// used to reference the instrospection record.
+	IntrospectionId *string `locationName:"introspectionId" type:"string"`
+
+	// The status of the introspection during creation. By default, when a new instrospection
+	// has been created, the status will be set to PROCESSING. Once the operation
+	// has been completed, the status will change to SUCCESS or FAILED depending
+	// on how the data was parsed. A FAILED operation will return an error and its
+	// details as an introspectionStatusDetail.
+	IntrospectionStatus *string `locationName:"introspectionStatus" type:"string" enum:"DataSourceIntrospectionStatus"`
+
+	// The error detail field. When a FAILED introspectionStatus is returned, the
+	// introspectionStatusDetail will also return the exact error that was generated
+	// during the operation.
+	IntrospectionStatusDetail *string `locationName:"introspectionStatusDetail" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartDataSourceIntrospectionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartDataSourceIntrospectionOutput) GoString() string {
+	return s.String()
+}
+
+// SetIntrospectionId sets the IntrospectionId field's value.
+func (s *StartDataSourceIntrospectionOutput) SetIntrospectionId(v string) *StartDataSourceIntrospectionOutput {
+	s.IntrospectionId = &v
+	return s
+}
+
+// SetIntrospectionStatus sets the IntrospectionStatus field's value.
+func (s *StartDataSourceIntrospectionOutput) SetIntrospectionStatus(v string) *StartDataSourceIntrospectionOutput {
+	s.IntrospectionStatus = &v
+	return s
+}
+
+// SetIntrospectionStatusDetail sets the IntrospectionStatusDetail field's value.
+func (s *StartDataSourceIntrospectionOutput) SetIntrospectionStatusDetail(v string) *StartDataSourceIntrospectionOutput {
+	s.IntrospectionStatusDetail = &v
 	return s
 }
 
@@ -16714,6 +17517,26 @@ func ConflictHandlerType_Values() []string {
 		ConflictHandlerTypeLambda,
 		ConflictHandlerTypeAutomerge,
 		ConflictHandlerTypeNone,
+	}
+}
+
+const (
+	// DataSourceIntrospectionStatusProcessing is a DataSourceIntrospectionStatus enum value
+	DataSourceIntrospectionStatusProcessing = "PROCESSING"
+
+	// DataSourceIntrospectionStatusFailed is a DataSourceIntrospectionStatus enum value
+	DataSourceIntrospectionStatusFailed = "FAILED"
+
+	// DataSourceIntrospectionStatusSuccess is a DataSourceIntrospectionStatus enum value
+	DataSourceIntrospectionStatusSuccess = "SUCCESS"
+)
+
+// DataSourceIntrospectionStatus_Values returns all elements of the DataSourceIntrospectionStatus enum
+func DataSourceIntrospectionStatus_Values() []string {
+	return []string{
+		DataSourceIntrospectionStatusProcessing,
+		DataSourceIntrospectionStatusFailed,
+		DataSourceIntrospectionStatusSuccess,
 	}
 }
 

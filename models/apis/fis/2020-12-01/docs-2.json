@@ -2,24 +2,40 @@
   "version": "2.0",
   "service": "<p>Fault Injection Simulator is a managed service that enables you to perform fault injection experiments on your Amazon Web Services workloads. For more information, see the <a href=\"https://docs.aws.amazon.com/fis/latest/userguide/\">Fault Injection Simulator User Guide</a>.</p>",
   "operations": {
-    "CreateExperimentTemplate": "<p>Creates an experiment template. </p> <p>An experiment template includes the following components:</p> <ul> <li> <p> <b>Targets</b>: A target can be a specific resource in your Amazon Web Services environment, or one or more resources that match criteria that you specify, for example, resources that have specific tags.</p> </li> <li> <p> <b>Actions</b>: The actions to carry out on the target. You can specify multiple actions, the duration of each action, and when to start each action during an experiment.</p> </li> <li> <p> <b>Stop conditions</b>: If a stop condition is triggered while an experiment is running, the experiment is automatically stopped. You can define a stop condition as a CloudWatch alarm.</p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/fis/latest/userguide/experiment-templates.html\">Experiment templates</a> in the <i>Fault Injection Simulator User Guide</i>.</p>",
+    "CreateExperimentTemplate": "<p>Creates an experiment template. </p> <p>An experiment template includes the following components:</p> <ul> <li> <p> <b>Targets</b>: A target can be a specific resource in your Amazon Web Services environment, or one or more resources that match criteria that you specify, for example, resources that have specific tags.</p> </li> <li> <p> <b>Actions</b>: The actions to carry out on the target. You can specify multiple actions, the duration of each action, and when to start each action during an experiment.</p> </li> <li> <p> <b>Stop conditions</b>: If a stop condition is triggered while an experiment is running, the experiment is automatically stopped. You can define a stop condition as a CloudWatch alarm.</p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/fis/latest/userguide/experiment-templates.html\">experiment templates</a> in the <i>Fault Injection Simulator User Guide</i>.</p>",
+    "CreateTargetAccountConfiguration": "<p>Creates a target account configuration for the experiment template. A target account configuration is required when <code>accountTargeting</code> of <code>experimentOptions</code> is set to <code>multi-account</code>. For more information, see <a href=\"https://docs.aws.amazon.com/fis/latest/userguide/experiment-options.html\">experiment options</a> in the <i>Fault Injection Simulator User Guide</i>. </p>",
     "DeleteExperimentTemplate": "<p>Deletes the specified experiment template.</p>",
+    "DeleteTargetAccountConfiguration": "<p>Deletes the specified target account configuration of the experiment template.</p>",
     "GetAction": "<p>Gets information about the specified FIS action.</p>",
     "GetExperiment": "<p>Gets information about the specified experiment.</p>",
+    "GetExperimentTargetAccountConfiguration": "<p>Gets information about the specified target account configuration of the experiment.</p>",
     "GetExperimentTemplate": "<p>Gets information about the specified experiment template.</p>",
+    "GetTargetAccountConfiguration": "<p>Gets information about the specified target account configuration of the experiment template.</p>",
     "GetTargetResourceType": "<p>Gets information about the specified resource type.</p>",
     "ListActions": "<p>Lists the available FIS actions.</p>",
+    "ListExperimentResolvedTargets": "<p>Lists the resolved targets information of the specified experiment.</p>",
+    "ListExperimentTargetAccountConfigurations": "<p>Lists the target account configurations of the specified experiment.</p>",
     "ListExperimentTemplates": "<p>Lists your experiment templates.</p>",
     "ListExperiments": "<p>Lists your experiments.</p>",
     "ListTagsForResource": "<p>Lists the tags for the specified resource.</p>",
+    "ListTargetAccountConfigurations": "<p>Lists the target account configurations of the specified experiment template.</p>",
     "ListTargetResourceTypes": "<p>Lists the target resource types.</p>",
     "StartExperiment": "<p>Starts running an experiment from the specified experiment template.</p>",
     "StopExperiment": "<p>Stops the specified experiment.</p>",
     "TagResource": "<p>Applies the specified tags to the specified resource.</p>",
     "UntagResource": "<p>Removes the specified tags from the specified resource.</p>",
-    "UpdateExperimentTemplate": "<p>Updates the specified experiment template.</p>"
+    "UpdateExperimentTemplate": "<p>Updates the specified experiment template.</p>",
+    "UpdateTargetAccountConfiguration": "<p>Updates the target account configuration for the specified experiment template.</p>"
   },
   "shapes": {
+    "AccountTargeting": {
+      "base": null,
+      "refs": {
+        "CreateExperimentTemplateExperimentOptionsInput$accountTargeting": "<p>Specifies the account targeting setting for experiment options.</p>",
+        "ExperimentOptions$accountTargeting": "<p>The account targeting setting for an experiment.</p>",
+        "ExperimentTemplateExperimentOptions$accountTargeting": "<p>The account targeting setting for an experiment template. </p>"
+      }
+    },
     "Action": {
       "base": "<p>Describes an action. For more information, see <a href=\"https://docs.aws.amazon.com/fis/latest/userguide/fis-actions-reference.html\">FIS actions</a> in the <i>Fault Injection Simulator User Guide</i>.</p>",
       "refs": {
@@ -110,6 +126,7 @@
       "base": null,
       "refs": {
         "CreateExperimentTemplateRequest$clientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
+        "CreateTargetAccountConfigurationRequest$clientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
         "StartExperimentRequest$clientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>"
       }
     },
@@ -136,6 +153,12 @@
       "base": null,
       "refs": {
         "CreateExperimentTemplateRequest$actions": "<p>The actions for the experiment.</p>"
+      }
+    },
+    "CreateExperimentTemplateExperimentOptionsInput": {
+      "base": "<p>Specifies experiment options for an experiment template.</p>",
+      "refs": {
+        "CreateExperimentTemplateRequest$experimentOptions": "<p>The experiment options for the experiment template.</p>"
       }
     },
     "CreateExperimentTemplateLogConfigurationInput": {
@@ -178,6 +201,16 @@
         "CreateExperimentTemplateRequest$targets": "<p>The targets for the experiment.</p>"
       }
     },
+    "CreateTargetAccountConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateTargetAccountConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreationTime": {
       "base": null,
       "refs": {
@@ -195,6 +228,25 @@
     "DeleteExperimentTemplateResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "DeleteTargetAccountConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteTargetAccountConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "EmptyTargetResolutionMode": {
+      "base": null,
+      "refs": {
+        "CreateExperimentTemplateExperimentOptionsInput$emptyTargetResolutionMode": "<p>Specifies the empty target resolution mode for experiment options.</p>",
+        "ExperimentOptions$emptyTargetResolutionMode": "<p>The empty target resolution mode for an experiment.</p>",
+        "ExperimentTemplateExperimentOptions$emptyTargetResolutionMode": "<p>The empty target resolution mode for an experiment template.</p>",
+        "UpdateExperimentTemplateExperimentOptionsInput$emptyTargetResolutionMode": "<p>The empty target resolution mode of the experiment template.</p>"
       }
     },
     "ExceptionMessage": {
@@ -328,6 +380,9 @@
         "Experiment$id": "<p>The ID of the experiment.</p>",
         "ExperimentSummary$id": "<p>The ID of the experiment.</p>",
         "GetExperimentRequest$id": "<p>The ID of the experiment.</p>",
+        "GetExperimentTargetAccountConfigurationRequest$experimentId": "<p>The ID of the experiment.</p>",
+        "ListExperimentResolvedTargetsRequest$experimentId": "<p>The ID of the experiment.</p>",
+        "ListExperimentTargetAccountConfigurationsRequest$experimentId": "<p>The ID of the experiment.</p>",
         "StopExperimentRequest$id": "<p>The ID of the experiment.</p>"
       }
     },
@@ -335,6 +390,12 @@
       "base": "<p>Describes the configuration for experiment logging.</p>",
       "refs": {
         "Experiment$logConfiguration": "<p>The configuration for experiment logging.</p>"
+      }
+    },
+    "ExperimentOptions": {
+      "base": "<p>Describes the options for an experiment.</p>",
+      "refs": {
+        "Experiment$experimentOptions": "<p>The experiment options for the experiment.</p>"
       }
     },
     "ExperimentS3LogConfiguration": {
@@ -396,6 +457,24 @@
       "base": "<p>Describes a target for an experiment.</p>",
       "refs": {
         "ExperimentTargetMap$value": null
+      }
+    },
+    "ExperimentTargetAccountConfiguration": {
+      "base": "<p>Describes a target account configuration for an experiment.</p>",
+      "refs": {
+        "GetExperimentTargetAccountConfigurationResponse$targetAccountConfiguration": "<p>Information about the target account configuration.</p>"
+      }
+    },
+    "ExperimentTargetAccountConfigurationList": {
+      "base": null,
+      "refs": {
+        "ListExperimentTargetAccountConfigurationsResponse$targetAccountConfigurations": "<p>The target account configurations.</p>"
+      }
+    },
+    "ExperimentTargetAccountConfigurationSummary": {
+      "base": "<p>Provides a summary of a target account configuration.</p>",
+      "refs": {
+        "ExperimentTargetAccountConfigurationList$member": null
       }
     },
     "ExperimentTargetFilter": {
@@ -572,17 +651,28 @@
         "UpdateExperimentTemplateRequest$description": "<p>A description for the template.</p>"
       }
     },
+    "ExperimentTemplateExperimentOptions": {
+      "base": "<p>Describes the experiment options for an experiment template.</p>",
+      "refs": {
+        "ExperimentTemplate$experimentOptions": "<p>The experiment options for an experiment template.</p>"
+      }
+    },
     "ExperimentTemplateId": {
       "base": null,
       "refs": {
+        "CreateTargetAccountConfigurationRequest$experimentTemplateId": "<p>The experiment template ID.</p>",
         "DeleteExperimentTemplateRequest$id": "<p>The ID of the experiment template.</p>",
+        "DeleteTargetAccountConfigurationRequest$experimentTemplateId": "<p>The ID of the experiment template.</p>",
         "Experiment$experimentTemplateId": "<p>The ID of the experiment template.</p>",
         "ExperimentSummary$experimentTemplateId": "<p>The ID of the experiment template.</p>",
         "ExperimentTemplate$id": "<p>The ID of the experiment template.</p>",
         "ExperimentTemplateSummary$id": "<p>The ID of the experiment template.</p>",
         "GetExperimentTemplateRequest$id": "<p>The ID of the experiment template.</p>",
+        "GetTargetAccountConfigurationRequest$experimentTemplateId": "<p>The ID of the experiment template.</p>",
+        "ListTargetAccountConfigurationsRequest$experimentTemplateId": "<p>The ID of the experiment template.</p>",
         "StartExperimentRequest$experimentTemplateId": "<p>The ID of the experiment template.</p>",
-        "UpdateExperimentTemplateRequest$id": "<p>The ID of the experiment template.</p>"
+        "UpdateExperimentTemplateRequest$id": "<p>The ID of the experiment template.</p>",
+        "UpdateTargetAccountConfigurationRequest$experimentTemplateId": "<p>The ID of the experiment template.</p>"
       }
     },
     "ExperimentTemplateLogConfiguration": {
@@ -742,12 +832,32 @@
       "refs": {
       }
     },
+    "GetExperimentTargetAccountConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetExperimentTargetAccountConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetExperimentTemplateRequest": {
       "base": null,
       "refs": {
       }
     },
     "GetExperimentTemplateResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetTargetAccountConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetTargetAccountConfigurationResponse": {
       "base": null,
       "refs": {
       }
@@ -781,6 +891,32 @@
       }
     },
     "ListActionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListExperimentResolvedTargetsMaxResults": {
+      "base": null,
+      "refs": {
+        "ListExperimentResolvedTargetsRequest$maxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned nextToken value.</p>"
+      }
+    },
+    "ListExperimentResolvedTargetsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListExperimentResolvedTargetsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListExperimentTargetAccountConfigurationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListExperimentTargetAccountConfigurationsResponse": {
       "base": null,
       "refs": {
       }
@@ -827,6 +963,22 @@
       "refs": {
       }
     },
+    "ListTargetAccountConfigurationsMaxResults": {
+      "base": null,
+      "refs": {
+        "ListTargetAccountConfigurationsRequest$maxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned nextToken value.</p>"
+      }
+    },
+    "ListTargetAccountConfigurationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTargetAccountConfigurationsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListTargetResourceTypesMaxResults": {
       "base": null,
       "refs": {
@@ -857,12 +1009,30 @@
       "refs": {
         "ListActionsRequest$nextToken": "<p>The token for the next page of results.</p>",
         "ListActionsResponse$nextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
+        "ListExperimentResolvedTargetsRequest$nextToken": "<p>The token for the next page of results.</p>",
+        "ListExperimentResolvedTargetsResponse$nextToken": "<p>The token to use to retrieve the next page of results. This value is null when there are no more results to return.</p>",
+        "ListExperimentTargetAccountConfigurationsRequest$nextToken": "<p>The token for the next page of results.</p>",
+        "ListExperimentTargetAccountConfigurationsResponse$nextToken": "<p>The token to use to retrieve the next page of results. This value is null when there are no more results to return.</p>",
         "ListExperimentTemplatesRequest$nextToken": "<p>The token for the next page of results.</p>",
         "ListExperimentTemplatesResponse$nextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "ListExperimentsRequest$nextToken": "<p>The token for the next page of results.</p>",
         "ListExperimentsResponse$nextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
+        "ListTargetAccountConfigurationsRequest$nextToken": "<p>The token for the next page of results.</p>",
+        "ListTargetAccountConfigurationsResponse$nextToken": "<p>The token to use to retrieve the next page of results. This value is null when there are no more results to return.</p>",
         "ListTargetResourceTypesRequest$nextToken": "<p>The token for the next page of results.</p>",
         "ListTargetResourceTypesResponse$nextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>"
+      }
+    },
+    "ResolvedTarget": {
+      "base": "<p>Describes a resolved target.</p>",
+      "refs": {
+        "ResolvedTargetList$member": null
+      }
+    },
+    "ResolvedTargetList": {
+      "base": null,
+      "refs": {
+        "ListExperimentResolvedTargetsResponse$resolvedTargets": "<p>The resolved targets.</p>"
       }
     },
     "ResourceArn": {
@@ -892,9 +1062,15 @@
       "base": null,
       "refs": {
         "CreateExperimentTemplateRequest$roleArn": "<p>The Amazon Resource Name (ARN) of an IAM role that grants the FIS service permission to perform service actions on your behalf.</p>",
+        "CreateTargetAccountConfigurationRequest$roleArn": "<p>The Amazon Resource Name (ARN) of an IAM role for the target account.</p>",
         "Experiment$roleArn": "<p>The Amazon Resource Name (ARN) of an IAM role that grants the FIS service permission to perform service actions on your behalf.</p>",
+        "ExperimentTargetAccountConfiguration$roleArn": "<p>The Amazon Resource Name (ARN) of an IAM role for the target account.</p>",
+        "ExperimentTargetAccountConfigurationSummary$roleArn": "<p>The Amazon Resource Name (ARN) of an IAM role for the target account.</p>",
         "ExperimentTemplate$roleArn": "<p>The Amazon Resource Name (ARN) of an IAM role.</p>",
-        "UpdateExperimentTemplateRequest$roleArn": "<p>The Amazon Resource Name (ARN) of an IAM role that grants the FIS service permission to perform service actions on your behalf.</p>"
+        "TargetAccountConfiguration$roleArn": "<p>The Amazon Resource Name (ARN) of an IAM role for the target account.</p>",
+        "TargetAccountConfigurationSummary$roleArn": "<p>The Amazon Resource Name (ARN) of an IAM role for the target account.</p>",
+        "UpdateExperimentTemplateRequest$roleArn": "<p>The Amazon Resource Name (ARN) of an IAM role that grants the FIS service permission to perform service actions on your behalf.</p>",
+        "UpdateTargetAccountConfigurationRequest$roleArn": "<p>The Amazon Resource Name (ARN) of an IAM role for the target account.</p>"
       }
     },
     "S3BucketName": {
@@ -1004,6 +1180,84 @@
         "TagMap$value": null
       }
     },
+    "TargetAccountConfiguration": {
+      "base": "<p>Describes a target account configuration.</p>",
+      "refs": {
+        "CreateTargetAccountConfigurationResponse$targetAccountConfiguration": "<p>Information about the target account configuration.</p>",
+        "DeleteTargetAccountConfigurationResponse$targetAccountConfiguration": "<p>Information about the target account configuration.</p>",
+        "GetTargetAccountConfigurationResponse$targetAccountConfiguration": "<p>Information about the target account configuration.</p>",
+        "UpdateTargetAccountConfigurationResponse$targetAccountConfiguration": "<p>Information about the target account configuration.</p>"
+      }
+    },
+    "TargetAccountConfigurationDescription": {
+      "base": null,
+      "refs": {
+        "CreateTargetAccountConfigurationRequest$description": "<p>The description of the target account.</p>",
+        "ExperimentTargetAccountConfiguration$description": "<p>The description of the target account.</p>",
+        "ExperimentTargetAccountConfigurationSummary$description": "<p>The description of the target account.</p>",
+        "TargetAccountConfiguration$description": "<p>The description of the target account.</p>",
+        "TargetAccountConfigurationSummary$description": "<p>The description of the target account.</p>",
+        "UpdateTargetAccountConfigurationRequest$description": "<p>The description of the target account.</p>"
+      }
+    },
+    "TargetAccountConfigurationList": {
+      "base": null,
+      "refs": {
+        "ListTargetAccountConfigurationsResponse$targetAccountConfigurations": "<p>The target account configurations.</p>"
+      }
+    },
+    "TargetAccountConfigurationSummary": {
+      "base": "<p>Provides a summary of a target account configuration.</p>",
+      "refs": {
+        "TargetAccountConfigurationList$member": null
+      }
+    },
+    "TargetAccountConfigurationsCount": {
+      "base": null,
+      "refs": {
+        "Experiment$targetAccountConfigurationsCount": "<p>The count of target account configurations for the experiment.</p>",
+        "ExperimentTemplate$targetAccountConfigurationsCount": "<p>The count of target account configurations for the experiment template.</p>"
+      }
+    },
+    "TargetAccountId": {
+      "base": null,
+      "refs": {
+        "CreateTargetAccountConfigurationRequest$accountId": "<p>The AWS account ID of the target account.</p>",
+        "DeleteTargetAccountConfigurationRequest$accountId": "<p>The AWS account ID of the target account.</p>",
+        "ExperimentTargetAccountConfiguration$accountId": "<p>The AWS account ID of the target account.</p>",
+        "ExperimentTargetAccountConfigurationSummary$accountId": "<p>The AWS account ID of the target account.</p>",
+        "GetExperimentTargetAccountConfigurationRequest$accountId": "<p>The AWS account ID of the target account.</p>",
+        "GetTargetAccountConfigurationRequest$accountId": "<p>The AWS account ID of the target account.</p>",
+        "TargetAccountConfiguration$accountId": "<p>The AWS account ID of the target account.</p>",
+        "TargetAccountConfigurationSummary$accountId": "<p>The AWS account ID of the target account.</p>",
+        "UpdateTargetAccountConfigurationRequest$accountId": "<p>The AWS account ID of the target account.</p>"
+      }
+    },
+    "TargetInformationKey": {
+      "base": null,
+      "refs": {
+        "TargetInformationMap$key": null
+      }
+    },
+    "TargetInformationMap": {
+      "base": null,
+      "refs": {
+        "ResolvedTarget$targetInformation": "<p>Information about the target.</p>"
+      }
+    },
+    "TargetInformationValue": {
+      "base": null,
+      "refs": {
+        "TargetInformationMap$value": null
+      }
+    },
+    "TargetName": {
+      "base": null,
+      "refs": {
+        "ListExperimentResolvedTargetsRequest$targetName": "<p>The name of the target.</p>",
+        "ResolvedTarget$targetName": "<p>The name of the target.</p>"
+      }
+    },
     "TargetResourceType": {
       "base": "<p>Describes a resource type.</p>",
       "refs": {
@@ -1025,6 +1279,7 @@
         "ExperimentTarget$resourceType": "<p>The resource type.</p>",
         "ExperimentTemplateTarget$resourceType": "<p>The resource type.</p>",
         "GetTargetResourceTypeRequest$resourceType": "<p>The resource type.</p>",
+        "ResolvedTarget$resourceType": "<p>The resource type of the target.</p>",
         "TargetResourceType$resourceType": "<p>The resource type.</p>",
         "TargetResourceTypeSummary$resourceType": "<p>The resource type.</p>",
         "UpdateExperimentTemplateTargetInput$resourceType": "<p>The resource type. The resource type must be supported for the specified action.</p>"
@@ -1094,6 +1349,12 @@
         "UpdateExperimentTemplateRequest$actions": "<p>The actions for the experiment.</p>"
       }
     },
+    "UpdateExperimentTemplateExperimentOptionsInput": {
+      "base": "<p>Specifies an experiment option for an experiment template.</p>",
+      "refs": {
+        "UpdateExperimentTemplateRequest$experimentOptions": "<p>The experiment options for the experiment template.</p>"
+      }
+    },
     "UpdateExperimentTemplateLogConfigurationInput": {
       "base": "<p>Specifies the configuration for experiment logging.</p>",
       "refs": {
@@ -1132,6 +1393,16 @@
       "base": null,
       "refs": {
         "UpdateExperimentTemplateRequest$targets": "<p>The targets for the experiment.</p>"
+      }
+    },
+    "UpdateTargetAccountConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateTargetAccountConfigurationResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "ValidationException": {

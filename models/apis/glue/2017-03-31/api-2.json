@@ -3355,7 +3355,10 @@
     },
     "AdditionalOptionKeys":{
       "type":"string",
-      "enum":["performanceTuning.caching"]
+      "enum":[
+        "performanceTuning.caching",
+        "observations.scope"
+      ]
     },
     "AdditionalOptions":{
       "type":"map",

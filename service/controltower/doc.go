@@ -16,7 +16,7 @@
 //
 //   - the ARN associated with a resource that you wish to tag or untag.
 //
-// To get the controlIdentifier for your AWS Control Tower control:
+// To get the controlIdentifier for your Amazon Web Services Control Tower control:
 //
 // The controlIdentifier is an ARN that is specified for each control. You can
 // view the controlIdentifier in the console on the Control details page, as

@@ -30,6 +30,7 @@
     "GetApiAssociation": "<p>Retrieves an <code>ApiAssociation</code> object.</p>",
     "GetApiCache": "<p>Retrieves an <code>ApiCache</code> object.</p>",
     "GetDataSource": "<p>Retrieves a <code>DataSource</code> object.</p>",
+    "GetDataSourceIntrospection": "<p>Retrieves the record of an existing introspection. If the retrieval is successful, the result of the instrospection will also be returned. If the retrieval fails the operation, an error message will be returned instead.</p>",
     "GetDomainName": "<p>Retrieves a custom <code>DomainName</code> object.</p>",
     "GetFunction": "<p>Get a <code>Function</code>.</p>",
     "GetGraphqlApi": "<p>Retrieves a <code>GraphqlApi</code> object.</p>",
@@ -49,6 +50,7 @@
     "ListTagsForResource": "<p>Lists the tags for a resource.</p>",
     "ListTypes": "<p>Lists the types for a given API.</p>",
     "ListTypesByAssociation": "<p>Lists <code>Type</code> objects by the source API association ID.</p>",
+    "StartDataSourceIntrospection": "<p>Creates a new introspection. Returns the <code>introspectionId</code> of the new introspection after its creation. </p>",
     "StartSchemaCreation": "<p>Adds a new schema to your GraphQL API.</p> <p>This operation is asynchronous. Use to determine when it has completed.</p>",
     "StartSchemaMerge": "<p>Initiates a merge operation. Returns a status that shows the result of the merge operation.</p>",
     "TagResource": "<p>Tags a resource with user-supplied tags.</p>",
@@ -258,6 +260,7 @@
         "CreateGraphqlApiRequest$xrayEnabled": "<p>A flag indicating whether to use X-Ray tracing for the <code>GraphqlApi</code>.</p>",
         "DynamodbDataSourceConfig$useCallerCredentials": "<p>Set to TRUE to use Amazon Cognito credentials with this data source.</p>",
         "DynamodbDataSourceConfig$versioned": "<p>Set to TRUE to use Conflict Detection and Resolution with this data source.</p>",
+        "GetDataSourceIntrospectionRequest$includeModelsSDL": "<p>A boolean flag that determines whether SDL should be generated for introspected types or not. If set to <code>true</code>, each model will contain an <code>sdl</code> property that contains the SDL for that type. The SDL only contains the type data and no additional metadata or directives. </p>",
         "GraphqlApi$xrayEnabled": "<p>A flag indicating whether to use X-Ray tracing for this <code>GraphqlApi</code>.</p>",
         "LogConfig$excludeVerboseContent": "<p>Set to TRUE to exclude sections that contain information such as headers, context, and evaluated mapping templates, regardless of logging level.</p>",
         "UpdateGraphqlApiRequest$xrayEnabled": "<p>A flag indicating whether to use X-Ray tracing for the <code>GraphqlApi</code>.</p>"
@@ -456,6 +459,75 @@
         "DataSources$member": null,
         "GetDataSourceResponse$dataSource": "<p>The <code>DataSource</code> object.</p>",
         "UpdateDataSourceResponse$dataSource": "<p>The updated <code>DataSource</code> object.</p>"
+      }
+    },
+    "DataSourceIntrospectionModel": {
+      "base": "<p>Contains the introspected data that was retrieved from the data source.</p>",
+      "refs": {
+        "DataSourceIntrospectionModels$member": null
+      }
+    },
+    "DataSourceIntrospectionModelField": {
+      "base": "<p>Represents the fields that were retrieved from the introspected data.</p>",
+      "refs": {
+        "DataSourceIntrospectionModelFields$member": null
+      }
+    },
+    "DataSourceIntrospectionModelFieldType": {
+      "base": "<p>Represents the type data for each field retrieved from the introspection.</p>",
+      "refs": {
+        "DataSourceIntrospectionModelField$type": "<p>The <code>DataSourceIntrospectionModelFieldType</code> object data.</p>",
+        "DataSourceIntrospectionModelFieldType$type": "<p>The <code>DataSourceIntrospectionModelFieldType</code> object data. The <code>type</code> is only present if <code>DataSourceIntrospectionModelFieldType.kind</code> is set to <code>NonNull</code> or <code>List</code>. </p> <p>The <code>type</code> typically contains its own <code>kind</code> and <code>name</code> fields to represent the actual type data. For instance, <code>type</code> could contain a <code>kind</code> value of <code>Scalar</code> with a <code>name</code> value of <code>String</code>. The values <code>Scalar</code> and <code>String</code> will be collectively stored in the <code>values</code> field.</p>"
+      }
+    },
+    "DataSourceIntrospectionModelFieldTypeValues": {
+      "base": null,
+      "refs": {
+        "DataSourceIntrospectionModelFieldType$values": "<p>The values of the <code>type</code> field. This field represents the AppSync data type equivalent of the introspected field.</p>"
+      }
+    },
+    "DataSourceIntrospectionModelFields": {
+      "base": null,
+      "refs": {
+        "DataSourceIntrospectionModel$fields": "<p>The <code>DataSourceIntrospectionModelField</code> object data.</p>"
+      }
+    },
+    "DataSourceIntrospectionModelIndex": {
+      "base": "<p>The index that was retrieved from the introspected data.</p>",
+      "refs": {
+        "DataSourceIntrospectionModel$primaryKey": "<p>The primary key stored as a <code>DataSourceIntrospectionModelIndex</code> object.</p>",
+        "DataSourceIntrospectionModelIndexes$member": null
+      }
+    },
+    "DataSourceIntrospectionModelIndexFields": {
+      "base": null,
+      "refs": {
+        "DataSourceIntrospectionModelIndex$fields": "<p>The fields of the index.</p>"
+      }
+    },
+    "DataSourceIntrospectionModelIndexes": {
+      "base": null,
+      "refs": {
+        "DataSourceIntrospectionModel$indexes": "<p>The array of <code>DataSourceIntrospectionModelIndex</code> objects.</p>"
+      }
+    },
+    "DataSourceIntrospectionModels": {
+      "base": null,
+      "refs": {
+        "DataSourceIntrospectionResult$models": "<p>The array of <code>DataSourceIntrospectionModel</code> objects.</p>"
+      }
+    },
+    "DataSourceIntrospectionResult": {
+      "base": "<p>Represents the output of a <code>DataSourceIntrospectionResult</code>. This is the populated result of a <code>GetDataSourceIntrospection</code> operation.</p>",
+      "refs": {
+        "GetDataSourceIntrospectionResponse$introspectionResult": "<p>The <code>DataSourceIntrospectionResult</code> object data.</p>"
+      }
+    },
+    "DataSourceIntrospectionStatus": {
+      "base": null,
+      "refs": {
+        "GetDataSourceIntrospectionResponse$introspectionStatus": "<p>The status of the introspection during retrieval. By default, when a new instrospection is being retrieved, the status will be set to <code>PROCESSING</code>. Once the operation has been completed, the status will change to <code>SUCCESS</code> or <code>FAILED</code> depending on how the data was parsed. A <code>FAILED</code> operation will return an error and its details as an <code>introspectionStatusDetail</code>.</p>",
+        "StartDataSourceIntrospectionResponse$introspectionStatus": "<p>The status of the introspection during creation. By default, when a new instrospection has been created, the status will be set to <code>PROCESSING</code>. Once the operation has been completed, the status will change to <code>SUCCESS</code> or <code>FAILED</code> depending on how the data was parsed. A <code>FAILED</code> operation will return an error and its details as an <code>introspectionStatusDetail</code>.</p>"
       }
     },
     "DataSourceType": {
@@ -767,6 +839,16 @@
       "refs": {
       }
     },
+    "GetDataSourceIntrospectionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetDataSourceIntrospectionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetDataSourceRequest": {
       "base": null,
       "refs": {
@@ -1067,6 +1149,7 @@
         "CachingConfig$ttl": "<p>The TTL in seconds for a resolver that has caching activated.</p> <p>Valid values are 1–3,600 seconds.</p>",
         "CreateApiCacheRequest$ttl": "<p>TTL in seconds for cache entries.</p> <p>Valid values are 1–3,600 seconds.</p>",
         "CreateApiKeyRequest$expires": "<p>From the creation time, the time after which the API key expires. The date is represented as seconds since the epoch, rounded down to the nearest hour. The default value for this parameter is 7 days from creation time. For more information, see .</p>",
+        "DataSourceIntrospectionModelField$length": "<p>The length value of the introspected field.</p>",
         "DeltaSyncConfig$baseTableTTL": "<p>The number of minutes that an Item is stored in the data source.</p>",
         "DeltaSyncConfig$deltaSyncTableTTL": "<p>The number of minutes that a Delta Sync log entry is stored in the Delta Sync table.</p>",
         "OpenIDConnectConfig$iatTTL": "<p>The number of milliseconds that a token is valid after it's issued to a user.</p>",
@@ -1113,6 +1196,7 @@
     "MaxResults": {
       "base": null,
       "refs": {
+        "GetDataSourceIntrospectionRequest$maxResults": "<p>The maximum number of introspected types that will be returned in a single response.</p>",
         "ListApiKeysRequest$maxResults": "<p>The maximum number of results that you want the request to return.</p>",
         "ListDataSourcesRequest$maxResults": "<p>The maximum number of results that you want the request to return.</p>",
         "ListDomainNamesRequest$maxResults": "<p>The maximum number of results that you want the request to return.</p>",
@@ -1168,6 +1252,8 @@
     "PaginationToken": {
       "base": null,
       "refs": {
+        "DataSourceIntrospectionResult$nextToken": "<p>Determines the number of types to be returned in a single response before paginating. This value is typically taken from <code>nextToken</code> value from the previous response.</p>",
+        "GetDataSourceIntrospectionRequest$nextToken": "<p>Determines the number of types to be returned in a single response before paginating. This value is typically taken from <code>nextToken</code> value from the previous response.</p>",
         "ListApiKeysRequest$nextToken": "<p>An identifier that was returned from the previous call to this operation, which you can use to return the next set of items in the list.</p>",
         "ListApiKeysResponse$nextToken": "<p>An identifier to pass in the next request to this operation to return the next set of items in the list.</p>",
         "ListDataSourcesRequest$nextToken": "<p>An identifier that was returned from the previous call to this operation, which you can use to return the next set of items in the list.</p>",
@@ -1196,6 +1282,30 @@
         "CreateResolverRequest$pipelineConfig": "<p>The <code>PipelineConfig</code>.</p>",
         "Resolver$pipelineConfig": "<p>The <code>PipelineConfig</code>.</p>",
         "UpdateResolverRequest$pipelineConfig": "<p>The <code>PipelineConfig</code>.</p>"
+      }
+    },
+    "RdsDataApiConfig": {
+      "base": "<p>Contains the metadata required to introspect the RDS cluster.</p>",
+      "refs": {
+        "StartDataSourceIntrospectionRequest$rdsDataApiConfig": "<p>The <code>rdsDataApiConfig</code> object data.</p>"
+      }
+    },
+    "RdsDataApiConfigDatabaseName": {
+      "base": null,
+      "refs": {
+        "RdsDataApiConfig$databaseName": "<p>The name of the database in the cluster.</p>"
+      }
+    },
+    "RdsDataApiConfigResourceArn": {
+      "base": null,
+      "refs": {
+        "RdsDataApiConfig$resourceArn": "<p>The resource ARN of the RDS cluster.</p>"
+      }
+    },
+    "RdsDataApiConfigSecretArn": {
+      "base": null,
+      "refs": {
+        "RdsDataApiConfig$secretArn": "<p>The secret's ARN that was obtained from Secrets Manager. A secret consists of secret information, the secret value, plus metadata about the secret. A secret value can be a string or binary. It typically includes the ARN, secret name and description, policies, tags, encryption key from the Key Management Service, and key rotation data.</p>"
       }
     },
     "RdsHttpEndpointConfig": {
@@ -1339,6 +1449,16 @@
         "ListSourceApiAssociationsResponse$sourceApiAssociationSummaries": "<p>The <code>SourceApiAssociationSummary</code> object data.</p>"
       }
     },
+    "StartDataSourceIntrospectionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartDataSourceIntrospectionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "StartSchemaCreationRequest": {
       "base": null,
       "refs": {
@@ -1404,6 +1524,14 @@
         "DataSource$dataSourceArn": "<p>The data source Amazon Resource Name (ARN).</p>",
         "DataSource$description": "<p>The description of the data source.</p>",
         "DataSource$serviceRoleArn": "<p>The Identity and Access Management (IAM) service role Amazon Resource Name (ARN) for the data source. The system assumes this role when accessing the data source.</p>",
+        "DataSourceIntrospectionModel$name": "<p>The name of the model. For example, this could be the name of a single table in a database.</p>",
+        "DataSourceIntrospectionModel$sdl": "<p>Contains the output of the SDL that was generated from the introspected types. This is controlled by the <code>includeModelsSDL</code> parameter of the <code>GetDataSourceIntrospection</code> operation.</p>",
+        "DataSourceIntrospectionModelField$name": "<p>The name of the field that was retrieved from the introspected data.</p>",
+        "DataSourceIntrospectionModelFieldType$kind": "<p>Specifies the classification of data. For example, this could be set to values like <code>Scalar</code> or <code>NonNull</code> to indicate a fundamental property of the field.</p> <p>Valid values include:</p> <ul> <li> <p> <code>Scalar</code>: Indicates the value is a primitive type (scalar).</p> </li> <li> <p> <code>NonNull</code>: Indicates the field cannot be <code>null</code>.</p> </li> <li> <p> <code>List</code>: Indicates the field contains a list.</p> </li> </ul>",
+        "DataSourceIntrospectionModelFieldType$name": "<p>The name of the data type that represents the field. For example, <code>String</code> is a valid <code>name</code> value.</p>",
+        "DataSourceIntrospectionModelFieldTypeValues$member": null,
+        "DataSourceIntrospectionModelIndex$name": "<p>The name of the index.</p>",
+        "DataSourceIntrospectionModelIndexFields$member": null,
         "DeleteApiCacheRequest$apiId": "<p>The API ID.</p>",
         "DeleteApiKeyRequest$apiId": "<p>The API ID.</p>",
         "DeleteApiKeyRequest$id": "<p>The ID for the API key.</p>",
@@ -1432,6 +1560,9 @@
         "FunctionConfiguration$functionVersion": "<p>The version of the request mapping template. Currently, only the 2018-05-29 version of the template is supported.</p>",
         "FunctionsIds$member": null,
         "GetApiCacheRequest$apiId": "<p>The API ID.</p>",
+        "GetDataSourceIntrospectionRequest$introspectionId": "<p>The introspection ID. Each introspection contains a unique ID that can be used to reference the instrospection record.</p>",
+        "GetDataSourceIntrospectionResponse$introspectionId": "<p>The introspection ID. Each introspection contains a unique ID that can be used to reference the instrospection record.</p>",
+        "GetDataSourceIntrospectionResponse$introspectionStatusDetail": "<p>The error detail field. When a <code>FAILED</code> <code>introspectionStatus</code> is returned, the <code>introspectionStatusDetail</code> will also return the exact error that was generated during the operation.</p>",
         "GetDataSourceRequest$apiId": "<p>The API ID.</p>",
         "GetFunctionRequest$apiId": "<p>The GraphQL API ID.</p>",
         "GetGraphqlApiRequest$apiId": "<p>The API ID for the GraphQL API.</p>",
@@ -1496,6 +1627,8 @@
         "SourceApiAssociationSummary$mergedApiId": "<p>The ID of the AppSync Merged API.</p>",
         "SourceApiAssociationSummary$mergedApiArn": "<p>The Amazon Resource Name (ARN) of the AppSync Merged API.</p>",
         "SourceApiAssociationSummary$description": "<p>The description field.</p>",
+        "StartDataSourceIntrospectionResponse$introspectionId": "<p>The introspection ID. Each introspection contains a unique ID that can be used to reference the instrospection record.</p>",
+        "StartDataSourceIntrospectionResponse$introspectionStatusDetail": "<p>The error detail field. When a <code>FAILED</code> <code>introspectionStatus</code> is returned, the <code>introspectionStatusDetail</code> will also return the exact error that was generated during the operation.</p>",
         "StartSchemaCreationRequest$apiId": "<p>The API ID.</p>",
         "StartSchemaMergeRequest$associationId": "<p>The ID generated by the AppSync service for the source API association.</p>",
         "StartSchemaMergeRequest$mergedApiIdentifier": "<p>The identifier of the AppSync Merged API. This is generated by the AppSync service. In most cases, Merged APIs (especially in your account) only require the API ID value or ARN of the merged API. However, Merged APIs in other accounts (cross-account use cases) strictly require the full resource ARN of the merged API.</p>",

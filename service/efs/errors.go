@@ -46,6 +46,13 @@ const (
 	// parameter value or a missing required parameter.
 	ErrCodeBadRequest = "BadRequest"
 
+	// ErrCodeConflictException for service response error code
+	// "ConflictException".
+	//
+	// Returned if the source file system in a replication is encrypted but the
+	// destination file system is unencrypted.
+	ErrCodeConflictException = "ConflictException"
+
 	// ErrCodeDependencyTimeout for service response error code
 	// "DependencyTimeout".
 	//
@@ -163,6 +170,12 @@ const (
 	// system specified.
 	ErrCodePolicyNotFound = "PolicyNotFound"
 
+	// ErrCodeReplicationAlreadyExists for service response error code
+	// "ReplicationAlreadyExists".
+	//
+	// Returned if the file system is already included in a replication configuration.>
+	ErrCodeReplicationAlreadyExists = "ReplicationAlreadyExists"
+
 	// ErrCodeReplicationNotFound for service response error code
 	// "ReplicationNotFound".
 	//
@@ -232,6 +245,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"AccessPointNotFound":               newErrorAccessPointNotFound,
 	"AvailabilityZonesMismatch":         newErrorAvailabilityZonesMismatch,
 	"BadRequest":                        newErrorBadRequest,
+	"ConflictException":                 newErrorConflictException,
 	"DependencyTimeout":                 newErrorDependencyTimeout,
 	"FileSystemAlreadyExists":           newErrorFileSystemAlreadyExists,
 	"FileSystemInUse":                   newErrorFileSystemInUse,
@@ -248,6 +262,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"NetworkInterfaceLimitExceeded":     newErrorNetworkInterfaceLimitExceeded,
 	"NoFreeAddressesInSubnet":           newErrorNoFreeAddressesInSubnet,
 	"PolicyNotFound":                    newErrorPolicyNotFound,
+	"ReplicationAlreadyExists":          newErrorReplicationAlreadyExists,
 	"ReplicationNotFound":               newErrorReplicationNotFound,
 	"SecurityGroupLimitExceeded":        newErrorSecurityGroupLimitExceeded,
 	"SecurityGroupNotFound":             newErrorSecurityGroupNotFound,

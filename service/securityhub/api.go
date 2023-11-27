@@ -401,6 +401,9 @@ func (c *SecurityHub) BatchDisableStandardsRequest(input *BatchDisableStandardsI
 //     the current Amazon Web Services account or throttling limits. The error code
 //     describes the limit exceeded.
 //
+//   - AccessDeniedException
+//     You don't have permission to perform the action specified in the request.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/BatchDisableStandards
 func (c *SecurityHub) BatchDisableStandards(input *BatchDisableStandardsInput) (*BatchDisableStandardsOutput, error) {
 	req, out := c.BatchDisableStandardsRequest(input)
@@ -495,6 +498,9 @@ func (c *SecurityHub) BatchEnableStandardsRequest(input *BatchEnableStandardsInp
 //     The request was rejected because it attempted to create resources beyond
 //     the current Amazon Web Services account or throttling limits. The error code
 //     describes the limit exceeded.
+//
+//   - AccessDeniedException
+//     You don't have permission to perform the action specified in the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/BatchEnableStandards
 func (c *SecurityHub) BatchEnableStandards(input *BatchEnableStandardsInput) (*BatchEnableStandardsOutput, error) {
@@ -611,6 +617,106 @@ func (c *SecurityHub) BatchGetAutomationRules(input *BatchGetAutomationRulesInpu
 // for more information on using Contexts.
 func (c *SecurityHub) BatchGetAutomationRulesWithContext(ctx aws.Context, input *BatchGetAutomationRulesInput, opts ...request.Option) (*BatchGetAutomationRulesOutput, error) {
 	req, out := c.BatchGetAutomationRulesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opBatchGetConfigurationPolicyAssociations = "BatchGetConfigurationPolicyAssociations"
+
+// BatchGetConfigurationPolicyAssociationsRequest generates a "aws/request.Request" representing the
+// client's request for the BatchGetConfigurationPolicyAssociations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchGetConfigurationPolicyAssociations for more information on using the BatchGetConfigurationPolicyAssociations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the BatchGetConfigurationPolicyAssociationsRequest method.
+//	req, resp := client.BatchGetConfigurationPolicyAssociationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/BatchGetConfigurationPolicyAssociations
+func (c *SecurityHub) BatchGetConfigurationPolicyAssociationsRequest(input *BatchGetConfigurationPolicyAssociationsInput) (req *request.Request, output *BatchGetConfigurationPolicyAssociationsOutput) {
+	op := &request.Operation{
+		Name:       opBatchGetConfigurationPolicyAssociations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/configurationPolicyAssociation/batchget",
+	}
+
+	if input == nil {
+		input = &BatchGetConfigurationPolicyAssociationsInput{}
+	}
+
+	output = &BatchGetConfigurationPolicyAssociationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchGetConfigurationPolicyAssociations API operation for AWS SecurityHub.
+//
+// Returns associations between an Security Hub configuration and a batch of
+// target accounts, organizational units, or the root. Only the Security Hub
+// delegated administrator can invoke this operation from the home Region. A
+// configuration can refer to a configuration policy or to a self-managed configuration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS SecurityHub's
+// API operation BatchGetConfigurationPolicyAssociations for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalException
+//     Internal server error.
+//
+//   - InvalidAccessException
+//     The account doesn't have permission to perform this action.
+//
+//   - InvalidInputException
+//     The request was rejected because you supplied an invalid or out-of-range
+//     value for an input parameter.
+//
+//   - LimitExceededException
+//     The request was rejected because it attempted to create resources beyond
+//     the current Amazon Web Services account or throttling limits. The error code
+//     describes the limit exceeded.
+//
+//   - ResourceNotFoundException
+//     The request was rejected because we can't find the specified resource.
+//
+//   - AccessDeniedException
+//     You don't have permission to perform the action specified in the request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/BatchGetConfigurationPolicyAssociations
+func (c *SecurityHub) BatchGetConfigurationPolicyAssociations(input *BatchGetConfigurationPolicyAssociationsInput) (*BatchGetConfigurationPolicyAssociationsOutput, error) {
+	req, out := c.BatchGetConfigurationPolicyAssociationsRequest(input)
+	return out, req.Send()
+}
+
+// BatchGetConfigurationPolicyAssociationsWithContext is the same as BatchGetConfigurationPolicyAssociations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchGetConfigurationPolicyAssociations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecurityHub) BatchGetConfigurationPolicyAssociationsWithContext(ctx aws.Context, input *BatchGetConfigurationPolicyAssociationsInput, opts ...request.Option) (*BatchGetConfigurationPolicyAssociationsOutput, error) {
+	req, out := c.BatchGetConfigurationPolicyAssociationsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1227,6 +1333,9 @@ func (c *SecurityHub) BatchUpdateStandardsControlAssociationsRequest(input *Batc
 //     The request was rejected because you supplied an invalid or out-of-range
 //     value for an input parameter.
 //
+//   - AccessDeniedException
+//     You don't have permission to perform the action specified in the request.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/BatchUpdateStandardsControlAssociations
 func (c *SecurityHub) BatchUpdateStandardsControlAssociations(input *BatchUpdateStandardsControlAssociationsInput) (*BatchUpdateStandardsControlAssociationsOutput, error) {
 	req, out := c.BatchUpdateStandardsControlAssociationsRequest(input)
@@ -1435,6 +1544,104 @@ func (c *SecurityHub) CreateAutomationRule(input *CreateAutomationRuleInput) (*C
 // for more information on using Contexts.
 func (c *SecurityHub) CreateAutomationRuleWithContext(ctx aws.Context, input *CreateAutomationRuleInput, opts ...request.Option) (*CreateAutomationRuleOutput, error) {
 	req, out := c.CreateAutomationRuleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateConfigurationPolicy = "CreateConfigurationPolicy"
+
+// CreateConfigurationPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the CreateConfigurationPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateConfigurationPolicy for more information on using the CreateConfigurationPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateConfigurationPolicyRequest method.
+//	req, resp := client.CreateConfigurationPolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/CreateConfigurationPolicy
+func (c *SecurityHub) CreateConfigurationPolicyRequest(input *CreateConfigurationPolicyInput) (req *request.Request, output *CreateConfigurationPolicyOutput) {
+	op := &request.Operation{
+		Name:       opCreateConfigurationPolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/configurationPolicy/create",
+	}
+
+	if input == nil {
+		input = &CreateConfigurationPolicyInput{}
+	}
+
+	output = &CreateConfigurationPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateConfigurationPolicy API operation for AWS SecurityHub.
+//
+// Creates a configuration policy with the defined configuration. Only the Security
+// Hub delegated administrator can invoke this operation from the home Region.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS SecurityHub's
+// API operation CreateConfigurationPolicy for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalException
+//     Internal server error.
+//
+//   - InvalidAccessException
+//     The account doesn't have permission to perform this action.
+//
+//   - InvalidInputException
+//     The request was rejected because you supplied an invalid or out-of-range
+//     value for an input parameter.
+//
+//   - LimitExceededException
+//     The request was rejected because it attempted to create resources beyond
+//     the current Amazon Web Services account or throttling limits. The error code
+//     describes the limit exceeded.
+//
+//   - AccessDeniedException
+//     You don't have permission to perform the action specified in the request.
+//
+//   - ResourceConflictException
+//     The resource specified in the request conflicts with an existing resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/CreateConfigurationPolicy
+func (c *SecurityHub) CreateConfigurationPolicy(input *CreateConfigurationPolicyInput) (*CreateConfigurationPolicyOutput, error) {
+	req, out := c.CreateConfigurationPolicyRequest(input)
+	return out, req.Send()
+}
+
+// CreateConfigurationPolicyWithContext is the same as CreateConfigurationPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateConfigurationPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecurityHub) CreateConfigurationPolicyWithContext(ctx aws.Context, input *CreateConfigurationPolicyInput, opts ...request.Option) (*CreateConfigurationPolicyOutput, error) {
+	req, out := c.CreateConfigurationPolicyRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1747,6 +1954,9 @@ func (c *SecurityHub) CreateMembersRequest(input *CreateMembersInput) (req *requ
 //   - ResourceConflictException
 //     The resource specified in the request conflicts with an existing resource.
 //
+//   - AccessDeniedException
+//     You don't have permission to perform the action specified in the request.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/CreateMembers
 func (c *SecurityHub) CreateMembers(input *CreateMembersInput) (*CreateMembersOutput, error) {
 	req, out := c.CreateMembersRequest(input)
@@ -1951,6 +2161,111 @@ func (c *SecurityHub) DeleteActionTarget(input *DeleteActionTargetInput) (*Delet
 // for more information on using Contexts.
 func (c *SecurityHub) DeleteActionTargetWithContext(ctx aws.Context, input *DeleteActionTargetInput, opts ...request.Option) (*DeleteActionTargetOutput, error) {
 	req, out := c.DeleteActionTargetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteConfigurationPolicy = "DeleteConfigurationPolicy"
+
+// DeleteConfigurationPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteConfigurationPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteConfigurationPolicy for more information on using the DeleteConfigurationPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteConfigurationPolicyRequest method.
+//	req, resp := client.DeleteConfigurationPolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/DeleteConfigurationPolicy
+func (c *SecurityHub) DeleteConfigurationPolicyRequest(input *DeleteConfigurationPolicyInput) (req *request.Request, output *DeleteConfigurationPolicyOutput) {
+	op := &request.Operation{
+		Name:       opDeleteConfigurationPolicy,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/configurationPolicy/{Identifier}",
+	}
+
+	if input == nil {
+		input = &DeleteConfigurationPolicyInput{}
+	}
+
+	output = &DeleteConfigurationPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteConfigurationPolicy API operation for AWS SecurityHub.
+//
+// Deletes a configuration policy. Only the Security Hub delegated administrator
+// can invoke this operation from the home Region. For the deletion to succeed,
+// you must first disassociate a configuration policy from target accounts,
+// organizational units, or the root by invoking the StartConfigurationPolicyDisassociation
+// operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS SecurityHub's
+// API operation DeleteConfigurationPolicy for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have permission to perform the action specified in the request.
+//
+//   - InternalException
+//     Internal server error.
+//
+//   - InvalidAccessException
+//     The account doesn't have permission to perform this action.
+//
+//   - InvalidInputException
+//     The request was rejected because you supplied an invalid or out-of-range
+//     value for an input parameter.
+//
+//   - LimitExceededException
+//     The request was rejected because it attempted to create resources beyond
+//     the current Amazon Web Services account or throttling limits. The error code
+//     describes the limit exceeded.
+//
+//   - ResourceNotFoundException
+//     The request was rejected because we can't find the specified resource.
+//
+//   - ResourceConflictException
+//     The resource specified in the request conflicts with an existing resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/DeleteConfigurationPolicy
+func (c *SecurityHub) DeleteConfigurationPolicy(input *DeleteConfigurationPolicyInput) (*DeleteConfigurationPolicyOutput, error) {
+	req, out := c.DeleteConfigurationPolicyRequest(input)
+	return out, req.Send()
+}
+
+// DeleteConfigurationPolicyWithContext is the same as DeleteConfigurationPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteConfigurationPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecurityHub) DeleteConfigurationPolicyWithContext(ctx aws.Context, input *DeleteConfigurationPolicyInput, opts ...request.Option) (*DeleteConfigurationPolicyOutput, error) {
+	req, out := c.DeleteConfigurationPolicyRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2637,8 +2952,8 @@ func (c *SecurityHub) DescribeOrganizationConfigurationRequest(input *DescribeOr
 
 // DescribeOrganizationConfiguration API operation for AWS SecurityHub.
 //
-// Returns information about the Organizations configuration for Security Hub.
-// Can only be called from a Security Hub administrator account.
+// Returns information about the way your organization is configured in Security
+// Hub. Only the Security Hub administrator account can invoke this operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3303,6 +3618,9 @@ func (c *SecurityHub) DisableOrganizationAdminAccountRequest(input *DisableOrgan
 //     the current Amazon Web Services account or throttling limits. The error code
 //     describes the limit exceeded.
 //
+//   - AccessDeniedException
+//     You don't have permission to perform the action specified in the request.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/DisableOrganizationAdminAccount
 func (c *SecurityHub) DisableOrganizationAdminAccount(input *DisableOrganizationAdminAccountInput) (*DisableOrganizationAdminAccountOutput, error) {
 	req, out := c.DisableOrganizationAdminAccountRequest(input)
@@ -3406,6 +3724,9 @@ func (c *SecurityHub) DisableSecurityHubRequest(input *DisableSecurityHubInput) 
 //
 //   - ResourceNotFoundException
 //     The request was rejected because we can't find the specified resource.
+//
+//   - AccessDeniedException
+//     You don't have permission to perform the action specified in the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/DisableSecurityHub
 func (c *SecurityHub) DisableSecurityHub(input *DisableSecurityHubInput) (*DisableSecurityHubOutput, error) {
@@ -3724,6 +4045,9 @@ func (c *SecurityHub) DisassociateMembersRequest(input *DisassociateMembersInput
 //   - ResourceNotFoundException
 //     The request was rejected because we can't find the specified resource.
 //
+//   - AccessDeniedException
+//     You don't have permission to perform the action specified in the request.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/DisassociateMembers
 func (c *SecurityHub) DisassociateMembers(input *DisassociateMembersInput) (*DisassociateMembersOutput, error) {
 	req, out := c.DisassociateMembersRequest(input)
@@ -3914,6 +4238,9 @@ func (c *SecurityHub) EnableOrganizationAdminAccountRequest(input *EnableOrganiz
 //     The request was rejected because it attempted to create resources beyond
 //     the current Amazon Web Services account or throttling limits. The error code
 //     describes the limit exceeded.
+//
+//   - AccessDeniedException
+//     You don't have permission to perform the action specified in the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/EnableOrganizationAdminAccount
 func (c *SecurityHub) EnableOrganizationAdminAccount(input *EnableOrganizationAdminAccountInput) (*EnableOrganizationAdminAccountOutput, error) {
@@ -4148,6 +4475,204 @@ func (c *SecurityHub) GetAdministratorAccount(input *GetAdministratorAccountInpu
 // for more information on using Contexts.
 func (c *SecurityHub) GetAdministratorAccountWithContext(ctx aws.Context, input *GetAdministratorAccountInput, opts ...request.Option) (*GetAdministratorAccountOutput, error) {
 	req, out := c.GetAdministratorAccountRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetConfigurationPolicy = "GetConfigurationPolicy"
+
+// GetConfigurationPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the GetConfigurationPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetConfigurationPolicy for more information on using the GetConfigurationPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetConfigurationPolicyRequest method.
+//	req, resp := client.GetConfigurationPolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/GetConfigurationPolicy
+func (c *SecurityHub) GetConfigurationPolicyRequest(input *GetConfigurationPolicyInput) (req *request.Request, output *GetConfigurationPolicyOutput) {
+	op := &request.Operation{
+		Name:       opGetConfigurationPolicy,
+		HTTPMethod: "GET",
+		HTTPPath:   "/configurationPolicy/get/{Identifier}",
+	}
+
+	if input == nil {
+		input = &GetConfigurationPolicyInput{}
+	}
+
+	output = &GetConfigurationPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetConfigurationPolicy API operation for AWS SecurityHub.
+//
+// Provides information about a configuration policy. Only the Security Hub
+// delegated administrator can invoke this operation from the home Region.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS SecurityHub's
+// API operation GetConfigurationPolicy for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalException
+//     Internal server error.
+//
+//   - InvalidAccessException
+//     The account doesn't have permission to perform this action.
+//
+//   - InvalidInputException
+//     The request was rejected because you supplied an invalid or out-of-range
+//     value for an input parameter.
+//
+//   - LimitExceededException
+//     The request was rejected because it attempted to create resources beyond
+//     the current Amazon Web Services account or throttling limits. The error code
+//     describes the limit exceeded.
+//
+//   - ResourceNotFoundException
+//     The request was rejected because we can't find the specified resource.
+//
+//   - AccessDeniedException
+//     You don't have permission to perform the action specified in the request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/GetConfigurationPolicy
+func (c *SecurityHub) GetConfigurationPolicy(input *GetConfigurationPolicyInput) (*GetConfigurationPolicyOutput, error) {
+	req, out := c.GetConfigurationPolicyRequest(input)
+	return out, req.Send()
+}
+
+// GetConfigurationPolicyWithContext is the same as GetConfigurationPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetConfigurationPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecurityHub) GetConfigurationPolicyWithContext(ctx aws.Context, input *GetConfigurationPolicyInput, opts ...request.Option) (*GetConfigurationPolicyOutput, error) {
+	req, out := c.GetConfigurationPolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetConfigurationPolicyAssociation = "GetConfigurationPolicyAssociation"
+
+// GetConfigurationPolicyAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the GetConfigurationPolicyAssociation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetConfigurationPolicyAssociation for more information on using the GetConfigurationPolicyAssociation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetConfigurationPolicyAssociationRequest method.
+//	req, resp := client.GetConfigurationPolicyAssociationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/GetConfigurationPolicyAssociation
+func (c *SecurityHub) GetConfigurationPolicyAssociationRequest(input *GetConfigurationPolicyAssociationInput) (req *request.Request, output *GetConfigurationPolicyAssociationOutput) {
+	op := &request.Operation{
+		Name:       opGetConfigurationPolicyAssociation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/configurationPolicyAssociation/get",
+	}
+
+	if input == nil {
+		input = &GetConfigurationPolicyAssociationInput{}
+	}
+
+	output = &GetConfigurationPolicyAssociationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetConfigurationPolicyAssociation API operation for AWS SecurityHub.
+//
+// Returns the association between a configuration and a target account, organizational
+// unit, or the root. The configuration can be a configuration policy or self-managed
+// behavior. Only the Security Hub delegated administrator can invoke this operation
+// from the home Region.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS SecurityHub's
+// API operation GetConfigurationPolicyAssociation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalException
+//     Internal server error.
+//
+//   - InvalidAccessException
+//     The account doesn't have permission to perform this action.
+//
+//   - InvalidInputException
+//     The request was rejected because you supplied an invalid or out-of-range
+//     value for an input parameter.
+//
+//   - LimitExceededException
+//     The request was rejected because it attempted to create resources beyond
+//     the current Amazon Web Services account or throttling limits. The error code
+//     describes the limit exceeded.
+//
+//   - ResourceNotFoundException
+//     The request was rejected because we can't find the specified resource.
+//
+//   - AccessDeniedException
+//     You don't have permission to perform the action specified in the request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/GetConfigurationPolicyAssociation
+func (c *SecurityHub) GetConfigurationPolicyAssociation(input *GetConfigurationPolicyAssociationInput) (*GetConfigurationPolicyAssociationOutput, error) {
+	req, out := c.GetConfigurationPolicyAssociationRequest(input)
+	return out, req.Send()
+}
+
+// GetConfigurationPolicyAssociationWithContext is the same as GetConfigurationPolicyAssociation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetConfigurationPolicyAssociation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecurityHub) GetConfigurationPolicyAssociationWithContext(ctx aws.Context, input *GetConfigurationPolicyAssociationInput, opts ...request.Option) (*GetConfigurationPolicyAssociationOutput, error) {
+	req, out := c.GetConfigurationPolicyAssociationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5549,6 +6074,315 @@ func (c *SecurityHub) ListAutomationRulesWithContext(ctx aws.Context, input *Lis
 	return out, req.Send()
 }
 
+const opListConfigurationPolicies = "ListConfigurationPolicies"
+
+// ListConfigurationPoliciesRequest generates a "aws/request.Request" representing the
+// client's request for the ListConfigurationPolicies operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListConfigurationPolicies for more information on using the ListConfigurationPolicies
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListConfigurationPoliciesRequest method.
+//	req, resp := client.ListConfigurationPoliciesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/ListConfigurationPolicies
+func (c *SecurityHub) ListConfigurationPoliciesRequest(input *ListConfigurationPoliciesInput) (req *request.Request, output *ListConfigurationPoliciesOutput) {
+	op := &request.Operation{
+		Name:       opListConfigurationPolicies,
+		HTTPMethod: "GET",
+		HTTPPath:   "/configurationPolicy/list",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListConfigurationPoliciesInput{}
+	}
+
+	output = &ListConfigurationPoliciesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListConfigurationPolicies API operation for AWS SecurityHub.
+//
+// Lists the configuration policies that the Security Hub delegated administrator
+// has created for your organization. Only the delegated administrator can invoke
+// this operation from the home Region.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS SecurityHub's
+// API operation ListConfigurationPolicies for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalException
+//     Internal server error.
+//
+//   - InvalidAccessException
+//     The account doesn't have permission to perform this action.
+//
+//   - InvalidInputException
+//     The request was rejected because you supplied an invalid or out-of-range
+//     value for an input parameter.
+//
+//   - LimitExceededException
+//     The request was rejected because it attempted to create resources beyond
+//     the current Amazon Web Services account or throttling limits. The error code
+//     describes the limit exceeded.
+//
+//   - AccessDeniedException
+//     You don't have permission to perform the action specified in the request.
+//
+//   - AccessDeniedException
+//     You don't have permission to perform the action specified in the request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/ListConfigurationPolicies
+func (c *SecurityHub) ListConfigurationPolicies(input *ListConfigurationPoliciesInput) (*ListConfigurationPoliciesOutput, error) {
+	req, out := c.ListConfigurationPoliciesRequest(input)
+	return out, req.Send()
+}
+
+// ListConfigurationPoliciesWithContext is the same as ListConfigurationPolicies with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListConfigurationPolicies for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecurityHub) ListConfigurationPoliciesWithContext(ctx aws.Context, input *ListConfigurationPoliciesInput, opts ...request.Option) (*ListConfigurationPoliciesOutput, error) {
+	req, out := c.ListConfigurationPoliciesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListConfigurationPoliciesPages iterates over the pages of a ListConfigurationPolicies operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListConfigurationPolicies method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListConfigurationPolicies operation.
+//	pageNum := 0
+//	err := client.ListConfigurationPoliciesPages(params,
+//	    func(page *securityhub.ListConfigurationPoliciesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *SecurityHub) ListConfigurationPoliciesPages(input *ListConfigurationPoliciesInput, fn func(*ListConfigurationPoliciesOutput, bool) bool) error {
+	return c.ListConfigurationPoliciesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListConfigurationPoliciesPagesWithContext same as ListConfigurationPoliciesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecurityHub) ListConfigurationPoliciesPagesWithContext(ctx aws.Context, input *ListConfigurationPoliciesInput, fn func(*ListConfigurationPoliciesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListConfigurationPoliciesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListConfigurationPoliciesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListConfigurationPoliciesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListConfigurationPolicyAssociations = "ListConfigurationPolicyAssociations"
+
+// ListConfigurationPolicyAssociationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListConfigurationPolicyAssociations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListConfigurationPolicyAssociations for more information on using the ListConfigurationPolicyAssociations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListConfigurationPolicyAssociationsRequest method.
+//	req, resp := client.ListConfigurationPolicyAssociationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/ListConfigurationPolicyAssociations
+func (c *SecurityHub) ListConfigurationPolicyAssociationsRequest(input *ListConfigurationPolicyAssociationsInput) (req *request.Request, output *ListConfigurationPolicyAssociationsOutput) {
+	op := &request.Operation{
+		Name:       opListConfigurationPolicyAssociations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/configurationPolicyAssociation/list",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListConfigurationPolicyAssociationsInput{}
+	}
+
+	output = &ListConfigurationPolicyAssociationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListConfigurationPolicyAssociations API operation for AWS SecurityHub.
+//
+// Provides information about the associations for your configuration policies
+// and self-managed behavior. Only the Security Hub delegated administrator
+// can invoke this operation from the home Region.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS SecurityHub's
+// API operation ListConfigurationPolicyAssociations for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalException
+//     Internal server error.
+//
+//   - InvalidAccessException
+//     The account doesn't have permission to perform this action.
+//
+//   - InvalidInputException
+//     The request was rejected because you supplied an invalid or out-of-range
+//     value for an input parameter.
+//
+//   - LimitExceededException
+//     The request was rejected because it attempted to create resources beyond
+//     the current Amazon Web Services account or throttling limits. The error code
+//     describes the limit exceeded.
+//
+//   - AccessDeniedException
+//     You don't have permission to perform the action specified in the request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/ListConfigurationPolicyAssociations
+func (c *SecurityHub) ListConfigurationPolicyAssociations(input *ListConfigurationPolicyAssociationsInput) (*ListConfigurationPolicyAssociationsOutput, error) {
+	req, out := c.ListConfigurationPolicyAssociationsRequest(input)
+	return out, req.Send()
+}
+
+// ListConfigurationPolicyAssociationsWithContext is the same as ListConfigurationPolicyAssociations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListConfigurationPolicyAssociations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecurityHub) ListConfigurationPolicyAssociationsWithContext(ctx aws.Context, input *ListConfigurationPolicyAssociationsInput, opts ...request.Option) (*ListConfigurationPolicyAssociationsOutput, error) {
+	req, out := c.ListConfigurationPolicyAssociationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListConfigurationPolicyAssociationsPages iterates over the pages of a ListConfigurationPolicyAssociations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListConfigurationPolicyAssociations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListConfigurationPolicyAssociations operation.
+//	pageNum := 0
+//	err := client.ListConfigurationPolicyAssociationsPages(params,
+//	    func(page *securityhub.ListConfigurationPolicyAssociationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *SecurityHub) ListConfigurationPolicyAssociationsPages(input *ListConfigurationPolicyAssociationsInput, fn func(*ListConfigurationPolicyAssociationsOutput, bool) bool) error {
+	return c.ListConfigurationPolicyAssociationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListConfigurationPolicyAssociationsPagesWithContext same as ListConfigurationPolicyAssociationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecurityHub) ListConfigurationPolicyAssociationsPagesWithContext(ctx aws.Context, input *ListConfigurationPolicyAssociationsInput, fn func(*ListConfigurationPolicyAssociationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListConfigurationPolicyAssociationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListConfigurationPolicyAssociationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListConfigurationPolicyAssociationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListEnabledProductsForImport = "ListEnabledProductsForImport"
 
 // ListEnabledProductsForImportRequest generates a "aws/request.Request" representing the
@@ -6683,6 +7517,210 @@ func (c *SecurityHub) ListTagsForResourceWithContext(ctx aws.Context, input *Lis
 	return out, req.Send()
 }
 
+const opStartConfigurationPolicyAssociation = "StartConfigurationPolicyAssociation"
+
+// StartConfigurationPolicyAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the StartConfigurationPolicyAssociation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartConfigurationPolicyAssociation for more information on using the StartConfigurationPolicyAssociation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartConfigurationPolicyAssociationRequest method.
+//	req, resp := client.StartConfigurationPolicyAssociationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/StartConfigurationPolicyAssociation
+func (c *SecurityHub) StartConfigurationPolicyAssociationRequest(input *StartConfigurationPolicyAssociationInput) (req *request.Request, output *StartConfigurationPolicyAssociationOutput) {
+	op := &request.Operation{
+		Name:       opStartConfigurationPolicyAssociation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/configurationPolicyAssociation/associate",
+	}
+
+	if input == nil {
+		input = &StartConfigurationPolicyAssociationInput{}
+	}
+
+	output = &StartConfigurationPolicyAssociationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartConfigurationPolicyAssociation API operation for AWS SecurityHub.
+//
+// Associates a target account, organizational unit, or the root with a specified
+// configuration. The target can be associated with a configuration policy or
+// self-managed behavior. Only the Security Hub delegated administrator can
+// invoke this operation from the home Region.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS SecurityHub's
+// API operation StartConfigurationPolicyAssociation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalException
+//     Internal server error.
+//
+//   - InvalidAccessException
+//     The account doesn't have permission to perform this action.
+//
+//   - InvalidInputException
+//     The request was rejected because you supplied an invalid or out-of-range
+//     value for an input parameter.
+//
+//   - LimitExceededException
+//     The request was rejected because it attempted to create resources beyond
+//     the current Amazon Web Services account or throttling limits. The error code
+//     describes the limit exceeded.
+//
+//   - ResourceNotFoundException
+//     The request was rejected because we can't find the specified resource.
+//
+//   - AccessDeniedException
+//     You don't have permission to perform the action specified in the request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/StartConfigurationPolicyAssociation
+func (c *SecurityHub) StartConfigurationPolicyAssociation(input *StartConfigurationPolicyAssociationInput) (*StartConfigurationPolicyAssociationOutput, error) {
+	req, out := c.StartConfigurationPolicyAssociationRequest(input)
+	return out, req.Send()
+}
+
+// StartConfigurationPolicyAssociationWithContext is the same as StartConfigurationPolicyAssociation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartConfigurationPolicyAssociation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecurityHub) StartConfigurationPolicyAssociationWithContext(ctx aws.Context, input *StartConfigurationPolicyAssociationInput, opts ...request.Option) (*StartConfigurationPolicyAssociationOutput, error) {
+	req, out := c.StartConfigurationPolicyAssociationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartConfigurationPolicyDisassociation = "StartConfigurationPolicyDisassociation"
+
+// StartConfigurationPolicyDisassociationRequest generates a "aws/request.Request" representing the
+// client's request for the StartConfigurationPolicyDisassociation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartConfigurationPolicyDisassociation for more information on using the StartConfigurationPolicyDisassociation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartConfigurationPolicyDisassociationRequest method.
+//	req, resp := client.StartConfigurationPolicyDisassociationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/StartConfigurationPolicyDisassociation
+func (c *SecurityHub) StartConfigurationPolicyDisassociationRequest(input *StartConfigurationPolicyDisassociationInput) (req *request.Request, output *StartConfigurationPolicyDisassociationOutput) {
+	op := &request.Operation{
+		Name:       opStartConfigurationPolicyDisassociation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/configurationPolicyAssociation/disassociate",
+	}
+
+	if input == nil {
+		input = &StartConfigurationPolicyDisassociationInput{}
+	}
+
+	output = &StartConfigurationPolicyDisassociationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// StartConfigurationPolicyDisassociation API operation for AWS SecurityHub.
+//
+// Disassociates a target account, organizational unit, or the root from a specified
+// configuration. When you disassociate a configuration from its target, the
+// target inherits the configuration of the closest parent. If there’s no
+// configuration to inherit, the target retains its settings but becomes a self-managed
+// account. A target can be disassociated from a configuration policy or self-managed
+// behavior. Only the Security Hub delegated administrator can invoke this operation
+// from the home Region.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS SecurityHub's
+// API operation StartConfigurationPolicyDisassociation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalException
+//     Internal server error.
+//
+//   - InvalidAccessException
+//     The account doesn't have permission to perform this action.
+//
+//   - InvalidInputException
+//     The request was rejected because you supplied an invalid or out-of-range
+//     value for an input parameter.
+//
+//   - LimitExceededException
+//     The request was rejected because it attempted to create resources beyond
+//     the current Amazon Web Services account or throttling limits. The error code
+//     describes the limit exceeded.
+//
+//   - ResourceNotFoundException
+//     The request was rejected because we can't find the specified resource.
+//
+//   - AccessDeniedException
+//     You don't have permission to perform the action specified in the request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/StartConfigurationPolicyDisassociation
+func (c *SecurityHub) StartConfigurationPolicyDisassociation(input *StartConfigurationPolicyDisassociationInput) (*StartConfigurationPolicyDisassociationOutput, error) {
+	req, out := c.StartConfigurationPolicyDisassociationRequest(input)
+	return out, req.Send()
+}
+
+// StartConfigurationPolicyDisassociationWithContext is the same as StartConfigurationPolicyDisassociation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartConfigurationPolicyDisassociation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecurityHub) StartConfigurationPolicyDisassociationWithContext(ctx aws.Context, input *StartConfigurationPolicyDisassociationInput, opts ...request.Option) (*StartConfigurationPolicyDisassociationOutput, error) {
+	req, out := c.StartConfigurationPolicyDisassociationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opTagResource = "TagResource"
 
 // TagResourceRequest generates a "aws/request.Request" representing the
@@ -6945,6 +7983,107 @@ func (c *SecurityHub) UpdateActionTarget(input *UpdateActionTargetInput) (*Updat
 // for more information on using Contexts.
 func (c *SecurityHub) UpdateActionTargetWithContext(ctx aws.Context, input *UpdateActionTargetInput, opts ...request.Option) (*UpdateActionTargetOutput, error) {
 	req, out := c.UpdateActionTargetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateConfigurationPolicy = "UpdateConfigurationPolicy"
+
+// UpdateConfigurationPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateConfigurationPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateConfigurationPolicy for more information on using the UpdateConfigurationPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateConfigurationPolicyRequest method.
+//	req, resp := client.UpdateConfigurationPolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/UpdateConfigurationPolicy
+func (c *SecurityHub) UpdateConfigurationPolicyRequest(input *UpdateConfigurationPolicyInput) (req *request.Request, output *UpdateConfigurationPolicyOutput) {
+	op := &request.Operation{
+		Name:       opUpdateConfigurationPolicy,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/configurationPolicy/{Identifier}",
+	}
+
+	if input == nil {
+		input = &UpdateConfigurationPolicyInput{}
+	}
+
+	output = &UpdateConfigurationPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateConfigurationPolicy API operation for AWS SecurityHub.
+//
+// Updates a configuration policy. Only the Security Hub delegated administrator
+// can invoke this operation from the home Region.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS SecurityHub's
+// API operation UpdateConfigurationPolicy for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalException
+//     Internal server error.
+//
+//   - InvalidAccessException
+//     The account doesn't have permission to perform this action.
+//
+//   - InvalidInputException
+//     The request was rejected because you supplied an invalid or out-of-range
+//     value for an input parameter.
+//
+//   - LimitExceededException
+//     The request was rejected because it attempted to create resources beyond
+//     the current Amazon Web Services account or throttling limits. The error code
+//     describes the limit exceeded.
+//
+//   - ResourceNotFoundException
+//     The request was rejected because we can't find the specified resource.
+//
+//   - AccessDeniedException
+//     You don't have permission to perform the action specified in the request.
+//
+//   - ResourceConflictException
+//     The resource specified in the request conflicts with an existing resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/UpdateConfigurationPolicy
+func (c *SecurityHub) UpdateConfigurationPolicy(input *UpdateConfigurationPolicyInput) (*UpdateConfigurationPolicyOutput, error) {
+	req, out := c.UpdateConfigurationPolicyRequest(input)
+	return out, req.Send()
+}
+
+// UpdateConfigurationPolicyWithContext is the same as UpdateConfigurationPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateConfigurationPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecurityHub) UpdateConfigurationPolicyWithContext(ctx aws.Context, input *UpdateConfigurationPolicyInput, opts ...request.Option) (*UpdateConfigurationPolicyOutput, error) {
+	req, out := c.UpdateConfigurationPolicyRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -7289,8 +8428,8 @@ func (c *SecurityHub) UpdateOrganizationConfigurationRequest(input *UpdateOrgani
 
 // UpdateOrganizationConfiguration API operation for AWS SecurityHub.
 //
-// Used to update the configuration related to Organizations. Can only be called
-// from a Security Hub administrator account.
+// Updates the configuration of your organization in Security Hub. Only the
+// Security Hub administrator account can invoke this operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7315,6 +8454,15 @@ func (c *SecurityHub) UpdateOrganizationConfigurationRequest(input *UpdateOrgani
 //     The request was rejected because it attempted to create resources beyond
 //     the current Amazon Web Services account or throttling limits. The error code
 //     describes the limit exceeded.
+//
+//   - AccessDeniedException
+//     You don't have permission to perform the action specified in the request.
+//
+//   - ResourceNotFoundException
+//     The request was rejected because we can't find the specified resource.
+//
+//   - ResourceConflictException
+//     The resource specified in the request conflicts with an existing resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/UpdateOrganizationConfiguration
 func (c *SecurityHub) UpdateOrganizationConfiguration(input *UpdateOrganizationConfigurationInput) (*UpdateOrganizationConfigurationOutput, error) {
@@ -7416,6 +8564,9 @@ func (c *SecurityHub) UpdateSecurityControlRequest(input *UpdateSecurityControlI
 //     For example, you tried to update a security control that's currently in the
 //     UPDATING state.
 //
+//   - AccessDeniedException
+//     You don't have permission to perform the action specified in the request.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/UpdateSecurityControl
 func (c *SecurityHub) UpdateSecurityControl(input *UpdateSecurityControlInput) (*UpdateSecurityControlOutput, error) {
 	req, out := c.UpdateSecurityControlRequest(input)
@@ -7511,6 +8662,9 @@ func (c *SecurityHub) UpdateSecurityHubConfigurationRequest(input *UpdateSecurit
 //   - ResourceNotFoundException
 //     The request was rejected because we can't find the specified resource.
 //
+//   - AccessDeniedException
+//     You don't have permission to perform the action specified in the request.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/UpdateSecurityHubConfiguration
 func (c *SecurityHub) UpdateSecurityHubConfiguration(input *UpdateSecurityHubConfigurationInput) (*UpdateSecurityHubConfigurationOutput, error) {
 	req, out := c.UpdateSecurityHubConfigurationRequest(input)
@@ -7601,6 +8755,9 @@ func (c *SecurityHub) UpdateStandardsControlRequest(input *UpdateStandardsContro
 //
 //   - ResourceNotFoundException
 //     The request was rejected because we can't find the specified resource.
+//
+//   - AccessDeniedException
+//     You don't have permission to perform the action specified in the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/UpdateStandardsControl
 func (c *SecurityHub) UpdateStandardsControl(input *UpdateStandardsControlInput) (*UpdateStandardsControlOutput, error) {
@@ -8365,6 +9522,61 @@ func (s *AssociatedStandard) SetStandardsId(v string) *AssociatedStandard {
 	return s
 }
 
+// Options for filtering the ListConfigurationPolicyAssociations response. You
+// can filter by the Amazon Resource Name (ARN) or universally unique identifier
+// (UUID) of a configuration policy, AssociationType, or AssociationStatus.
+type AssociationFilters struct {
+	_ struct{} `type:"structure"`
+
+	// The current status of the association between a target and a configuration
+	// policy.
+	AssociationStatus *string `type:"string" enum:"ConfigurationPolicyAssociationStatus"`
+
+	// Indicates whether the association between a target and a configuration was
+	// directly applied by the Security Hub delegated administrator or inherited
+	// from a parent.
+	AssociationType *string `type:"string" enum:"AssociationType"`
+
+	// The ARN or UUID of the configuration policy.
+	ConfigurationPolicyId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociationFilters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociationFilters) GoString() string {
+	return s.String()
+}
+
+// SetAssociationStatus sets the AssociationStatus field's value.
+func (s *AssociationFilters) SetAssociationStatus(v string) *AssociationFilters {
+	s.AssociationStatus = &v
+	return s
+}
+
+// SetAssociationType sets the AssociationType field's value.
+func (s *AssociationFilters) SetAssociationType(v string) *AssociationFilters {
+	s.AssociationType = &v
+	return s
+}
+
+// SetConfigurationPolicyId sets the ConfigurationPolicyId field's value.
+func (s *AssociationFilters) SetConfigurationPolicyId(v string) *AssociationFilters {
+	s.ConfigurationPolicyId = &v
+	return s
+}
+
 // The associations between a route table and one or more subnets or a gateway.
 type AssociationSetDetails struct {
 	_ struct{} `type:"structure"`
@@ -8827,6 +10039,11 @@ type AutomationRulesFindingFilters struct {
 	// Array Members: Minimum number of 1 item. Maximum number of 100 items.
 	AwsAccountId []*StringFilter `type:"list"`
 
+	// The name of the Amazon Web Services account in which a finding was generated.
+	//
+	// Array Members: Minimum number of 1 item. Maximum number of 20 items.
+	AwsAccountName []*StringFilter `type:"list"`
+
 	// The name of the company for the product that generated the finding. For control-based
 	// findings, the company is Amazon Web Services.
 	//
@@ -8963,6 +10180,16 @@ type AutomationRulesFindingFilters struct {
 	// Array Members: Minimum number of 1 item. Maximum number of 20 items.
 	RelatedFindingsProductArn []*StringFilter `type:"list"`
 
+	// The Amazon Resource Name (ARN) of the application that is related to a finding.
+	//
+	// Array Members: Minimum number of 1 item. Maximum number of 20 items.
+	ResourceApplicationArn []*StringFilter `type:"list"`
+
+	// The name of the application that is related to a finding.
+	//
+	// Array Members: Minimum number of 1 item. Maximum number of 20 items.
+	ResourceApplicationName []*StringFilter `type:"list"`
+
 	// Custom fields and values about the resource that a finding pertains to.
 	//
 	// Array Members: Minimum number of 1 item. Maximum number of 20 items.
@@ -9071,6 +10298,12 @@ func (s AutomationRulesFindingFilters) GoString() string {
 // SetAwsAccountId sets the AwsAccountId field's value.
 func (s *AutomationRulesFindingFilters) SetAwsAccountId(v []*StringFilter) *AutomationRulesFindingFilters {
 	s.AwsAccountId = v
+	return s
+}
+
+// SetAwsAccountName sets the AwsAccountName field's value.
+func (s *AutomationRulesFindingFilters) SetAwsAccountName(v []*StringFilter) *AutomationRulesFindingFilters {
+	s.AwsAccountName = v
 	return s
 }
 
@@ -9191,6 +10424,18 @@ func (s *AutomationRulesFindingFilters) SetRelatedFindingsId(v []*StringFilter) 
 // SetRelatedFindingsProductArn sets the RelatedFindingsProductArn field's value.
 func (s *AutomationRulesFindingFilters) SetRelatedFindingsProductArn(v []*StringFilter) *AutomationRulesFindingFilters {
 	s.RelatedFindingsProductArn = v
+	return s
+}
+
+// SetResourceApplicationArn sets the ResourceApplicationArn field's value.
+func (s *AutomationRulesFindingFilters) SetResourceApplicationArn(v []*StringFilter) *AutomationRulesFindingFilters {
+	s.ResourceApplicationArn = v
+	return s
+}
+
+// SetResourceApplicationName sets the ResourceApplicationName field's value.
+func (s *AutomationRulesFindingFilters) SetResourceApplicationName(v []*StringFilter) *AutomationRulesFindingFilters {
+	s.ResourceApplicationName = v
 	return s
 }
 
@@ -40317,6 +41562,9 @@ type AwsSecurityFinding struct {
 	// AwsAccountId is a required field
 	AwsAccountId *string `type:"string" required:"true"`
 
+	// The name of the Amazon Web Services account from which a finding was generated.
+	AwsAccountName *string `type:"string"`
+
 	// The name of the company for the product that generated the finding.
 	//
 	// Security Hub populates this attribute automatically for each finding. You
@@ -40425,6 +41673,14 @@ type AwsSecurityFinding struct {
 
 	// The details of process-related information about a finding.
 	Process *ProcessDetails `type:"structure"`
+
+	// An ISO8601-formatted timestamp that indicates when Security Hub received
+	// a finding and begins to process it.
+	//
+	// A correctly formatted example is 2020-05-21T20:16:34.724Z. The value cannot
+	// contain spaces, and date and time should be separated by T. For more information,
+	// see RFC 3339 section 5.6, Internet Date/Time Format (https://www.rfc-editor.org/rfc/rfc3339#section-5.6).
+	ProcessedAt *string `type:"string"`
 
 	// The ARN generated by Security Hub that uniquely identifies a product that
 	// generates findings. This can be the ARN for a third-party product that is
@@ -40664,6 +41920,12 @@ func (s *AwsSecurityFinding) SetAwsAccountId(v string) *AwsSecurityFinding {
 	return s
 }
 
+// SetAwsAccountName sets the AwsAccountName field's value.
+func (s *AwsSecurityFinding) SetAwsAccountName(v string) *AwsSecurityFinding {
+	s.AwsAccountName = &v
+	return s
+}
+
 // SetCompanyName sets the CompanyName field's value.
 func (s *AwsSecurityFinding) SetCompanyName(v string) *AwsSecurityFinding {
 	s.CompanyName = &v
@@ -40769,6 +42031,12 @@ func (s *AwsSecurityFinding) SetPatchSummary(v *PatchSummary) *AwsSecurityFindin
 // SetProcess sets the Process field's value.
 func (s *AwsSecurityFinding) SetProcess(v *ProcessDetails) *AwsSecurityFinding {
 	s.Process = v
+	return s
+}
+
+// SetProcessedAt sets the ProcessedAt field's value.
+func (s *AwsSecurityFinding) SetProcessedAt(v string) *AwsSecurityFinding {
+	s.ProcessedAt = &v
 	return s
 }
 
@@ -40912,8 +42180,11 @@ func (s *AwsSecurityFinding) SetWorkflowState(v string) *AwsSecurityFinding {
 type AwsSecurityFindingFilters struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Web Services account ID that a finding is generated in.
+	// The Amazon Web Services account ID in which a finding is generated.
 	AwsAccountId []*StringFilter `type:"list"`
+
+	// The name of the Amazon Web Services account in which a finding is generated.
+	AwsAccountName []*StringFilter `type:"list"`
 
 	// The name of the findings provider (company) that owns the solution (product)
 	// that generates findings.
@@ -41139,6 +42410,12 @@ type AwsSecurityFindingFilters struct {
 	// The ARN of the solution that generated a related finding.
 	RelatedFindingsProductArn []*StringFilter `type:"list"`
 
+	// The ARN of the application that is related to a finding.
+	ResourceApplicationArn []*StringFilter `type:"list"`
+
+	// The name of the application that is related to a finding.
+	ResourceApplicationName []*StringFilter `type:"list"`
+
 	// The IAM profile ARN of the instance.
 	ResourceAwsEc2InstanceIamInstanceProfileArn []*StringFilter `type:"list"`
 
@@ -41354,6 +42631,12 @@ func (s AwsSecurityFindingFilters) GoString() string {
 // SetAwsAccountId sets the AwsAccountId field's value.
 func (s *AwsSecurityFindingFilters) SetAwsAccountId(v []*StringFilter) *AwsSecurityFindingFilters {
 	s.AwsAccountId = v
+	return s
+}
+
+// SetAwsAccountName sets the AwsAccountName field's value.
+func (s *AwsSecurityFindingFilters) SetAwsAccountName(v []*StringFilter) *AwsSecurityFindingFilters {
+	s.AwsAccountName = v
 	return s
 }
 
@@ -41678,6 +42961,18 @@ func (s *AwsSecurityFindingFilters) SetRelatedFindingsId(v []*StringFilter) *Aws
 // SetRelatedFindingsProductArn sets the RelatedFindingsProductArn field's value.
 func (s *AwsSecurityFindingFilters) SetRelatedFindingsProductArn(v []*StringFilter) *AwsSecurityFindingFilters {
 	s.RelatedFindingsProductArn = v
+	return s
+}
+
+// SetResourceApplicationArn sets the ResourceApplicationArn field's value.
+func (s *AwsSecurityFindingFilters) SetResourceApplicationArn(v []*StringFilter) *AwsSecurityFindingFilters {
+	s.ResourceApplicationArn = v
+	return s
+}
+
+// SetResourceApplicationName sets the ResourceApplicationName field's value.
+func (s *AwsSecurityFindingFilters) SetResourceApplicationName(v []*StringFilter) *AwsSecurityFindingFilters {
+	s.ResourceApplicationName = v
 	return s
 }
 
@@ -45207,6 +46502,95 @@ func (s *BatchGetAutomationRulesOutput) SetUnprocessedAutomationRules(v []*Unpro
 	return s
 }
 
+type BatchGetConfigurationPolicyAssociationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies one or more target account IDs, organizational unit (OU) IDs, or
+	// the root ID to retrieve associations for.
+	//
+	// ConfigurationPolicyAssociationIdentifiers is a required field
+	ConfigurationPolicyAssociationIdentifiers []*ConfigurationPolicyAssociation `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetConfigurationPolicyAssociationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetConfigurationPolicyAssociationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchGetConfigurationPolicyAssociationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchGetConfigurationPolicyAssociationsInput"}
+	if s.ConfigurationPolicyAssociationIdentifiers == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfigurationPolicyAssociationIdentifiers"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfigurationPolicyAssociationIdentifiers sets the ConfigurationPolicyAssociationIdentifiers field's value.
+func (s *BatchGetConfigurationPolicyAssociationsInput) SetConfigurationPolicyAssociationIdentifiers(v []*ConfigurationPolicyAssociation) *BatchGetConfigurationPolicyAssociationsInput {
+	s.ConfigurationPolicyAssociationIdentifiers = v
+	return s
+}
+
+type BatchGetConfigurationPolicyAssociationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Describes associations for the target accounts, OUs, or the root.
+	ConfigurationPolicyAssociations []*ConfigurationPolicyAssociationSummary `type:"list"`
+
+	// An array of configuration policy associations, one for each configuration
+	// policy association identifier, that was specified in the request but couldn’t
+	// be processed due to an error.
+	UnprocessedConfigurationPolicyAssociations []*UnprocessedConfigurationPolicyAssociation `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetConfigurationPolicyAssociationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetConfigurationPolicyAssociationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetConfigurationPolicyAssociations sets the ConfigurationPolicyAssociations field's value.
+func (s *BatchGetConfigurationPolicyAssociationsOutput) SetConfigurationPolicyAssociations(v []*ConfigurationPolicyAssociationSummary) *BatchGetConfigurationPolicyAssociationsOutput {
+	s.ConfigurationPolicyAssociations = v
+	return s
+}
+
+// SetUnprocessedConfigurationPolicyAssociations sets the UnprocessedConfigurationPolicyAssociations field's value.
+func (s *BatchGetConfigurationPolicyAssociationsOutput) SetUnprocessedConfigurationPolicyAssociations(v []*UnprocessedConfigurationPolicyAssociation) *BatchGetConfigurationPolicyAssociationsOutput {
+	s.UnprocessedConfigurationPolicyAssociations = v
+	return s
+}
+
 type BatchGetSecurityControlsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -46697,6 +48081,213 @@ func (s *ConfigurationOptions) SetString_(v *StringConfigurationOptions) *Config
 	return s
 }
 
+// Provides details about the association between an Security Hub configuration
+// and a target account, organizational unit, or the root. An association can
+// exist between a target and a configuration policy, or between a target and
+// self-managed behavior.
+type ConfigurationPolicyAssociation struct {
+	_ struct{} `type:"structure"`
+
+	// The target account, organizational unit, or the root.
+	Target *Target `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfigurationPolicyAssociation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfigurationPolicyAssociation) GoString() string {
+	return s.String()
+}
+
+// SetTarget sets the Target field's value.
+func (s *ConfigurationPolicyAssociation) SetTarget(v *Target) *ConfigurationPolicyAssociation {
+	s.Target = v
+	return s
+}
+
+// An object that contains the details of a configuration policy association
+// that’s returned in a ListConfigurationPolicyAssociations request.
+type ConfigurationPolicyAssociationSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The current status of the association between the specified target and the
+	// configuration.
+	AssociationStatus *string `type:"string" enum:"ConfigurationPolicyAssociationStatus"`
+
+	// The explanation for a FAILED value for AssociationStatus.
+	AssociationStatusMessage *string `type:"string"`
+
+	// Indicates whether the association between the specified target and the configuration
+	// was directly applied by the Security Hub delegated administrator or inherited
+	// from a parent.
+	AssociationType *string `type:"string" enum:"AssociationType"`
+
+	// The universally unique identifier (UUID) of the configuration policy.
+	ConfigurationPolicyId *string `type:"string"`
+
+	// The identifier of the target account, organizational unit, or the root.
+	TargetId *string `type:"string"`
+
+	// Specifies whether the target is an Amazon Web Services account, organizational
+	// unit, or the root.
+	TargetType *string `type:"string" enum:"TargetType"`
+
+	// The date and time, in UTC and ISO 8601 format, that the configuration policy
+	// association was last updated.
+	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfigurationPolicyAssociationSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfigurationPolicyAssociationSummary) GoString() string {
+	return s.String()
+}
+
+// SetAssociationStatus sets the AssociationStatus field's value.
+func (s *ConfigurationPolicyAssociationSummary) SetAssociationStatus(v string) *ConfigurationPolicyAssociationSummary {
+	s.AssociationStatus = &v
+	return s
+}
+
+// SetAssociationStatusMessage sets the AssociationStatusMessage field's value.
+func (s *ConfigurationPolicyAssociationSummary) SetAssociationStatusMessage(v string) *ConfigurationPolicyAssociationSummary {
+	s.AssociationStatusMessage = &v
+	return s
+}
+
+// SetAssociationType sets the AssociationType field's value.
+func (s *ConfigurationPolicyAssociationSummary) SetAssociationType(v string) *ConfigurationPolicyAssociationSummary {
+	s.AssociationType = &v
+	return s
+}
+
+// SetConfigurationPolicyId sets the ConfigurationPolicyId field's value.
+func (s *ConfigurationPolicyAssociationSummary) SetConfigurationPolicyId(v string) *ConfigurationPolicyAssociationSummary {
+	s.ConfigurationPolicyId = &v
+	return s
+}
+
+// SetTargetId sets the TargetId field's value.
+func (s *ConfigurationPolicyAssociationSummary) SetTargetId(v string) *ConfigurationPolicyAssociationSummary {
+	s.TargetId = &v
+	return s
+}
+
+// SetTargetType sets the TargetType field's value.
+func (s *ConfigurationPolicyAssociationSummary) SetTargetType(v string) *ConfigurationPolicyAssociationSummary {
+	s.TargetType = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *ConfigurationPolicyAssociationSummary) SetUpdatedAt(v time.Time) *ConfigurationPolicyAssociationSummary {
+	s.UpdatedAt = &v
+	return s
+}
+
+// An object that contains the details of an Security Hub configuration policy
+// that’s returned in a ListConfigurationPolicies request.
+type ConfigurationPolicySummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the configuration policy.
+	Arn *string `type:"string"`
+
+	// The description of the configuration policy.
+	Description *string `type:"string"`
+
+	// The universally unique identifier (UUID) of the configuration policy.
+	Id *string `type:"string"`
+
+	// The name of the configuration policy.
+	Name *string `type:"string"`
+
+	// Indicates whether the service that the configuration policy applies to is
+	// enabled in the policy.
+	ServiceEnabled *bool `type:"boolean"`
+
+	// The date and time, in UTC and ISO 8601 format, that the configuration policy
+	// was last updated.
+	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfigurationPolicySummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfigurationPolicySummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *ConfigurationPolicySummary) SetArn(v string) *ConfigurationPolicySummary {
+	s.Arn = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ConfigurationPolicySummary) SetDescription(v string) *ConfigurationPolicySummary {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ConfigurationPolicySummary) SetId(v string) *ConfigurationPolicySummary {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ConfigurationPolicySummary) SetName(v string) *ConfigurationPolicySummary {
+	s.Name = &v
+	return s
+}
+
+// SetServiceEnabled sets the ServiceEnabled field's value.
+func (s *ConfigurationPolicySummary) SetServiceEnabled(v bool) *ConfigurationPolicySummary {
+	s.ServiceEnabled = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *ConfigurationPolicySummary) SetUpdatedAt(v time.Time) *ConfigurationPolicySummary {
+	s.UpdatedAt = &v
+	return s
+}
+
 // Container details related to a finding.
 type ContainerDetails struct {
 	_ struct{} `type:"structure"`
@@ -46985,7 +48576,7 @@ type CreateAutomationRuleInput struct {
 	// after creating a rule, use BatchUpdateAutomationRules (https://docs.aws.amazon.com/securityhub/1.0/APIReference/API_BatchUpdateAutomationRules.html).
 	RuleStatus *string `type:"string" enum:"RuleStatus"`
 
-	// User-defined tags that help you label the purpose of a rule.
+	// User-defined tags associated with an automation rule.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -47127,6 +48718,195 @@ func (s CreateAutomationRuleOutput) GoString() string {
 // SetRuleArn sets the RuleArn field's value.
 func (s *CreateAutomationRuleOutput) SetRuleArn(v string) *CreateAutomationRuleOutput {
 	s.RuleArn = &v
+	return s
+}
+
+type CreateConfigurationPolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// An object that defines how Security Hub is configured. It includes whether
+	// Security Hub is enabled or disabled, a list of enabled security standards,
+	// a list of enabled or disabled security controls, and a list of custom parameter
+	// values for specified controls. If you provide a list of security controls
+	// that are enabled in the configuration policy, Security Hub disables all other
+	// controls (including newly released controls). If you provide a list of security
+	// controls that are disabled in the configuration policy, Security Hub enables
+	// all other controls (including newly released controls).
+	//
+	// ConfigurationPolicy is a required field
+	ConfigurationPolicy *Policy `type:"structure" required:"true"`
+
+	// The description of the configuration policy.
+	Description *string `type:"string"`
+
+	// The name of the configuration policy.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// User-defined tags associated with a configuration policy. For more information,
+	// see Tagging Security Hub resources (https://docs.aws.amazon.com/securityhub/latest/userguide/tagging-resources.html)
+	// in the Security Hub user guide.
+	Tags map[string]*string `min:"1" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateConfigurationPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateConfigurationPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateConfigurationPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateConfigurationPolicyInput"}
+	if s.ConfigurationPolicy == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfigurationPolicy"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.ConfigurationPolicy != nil {
+		if err := s.ConfigurationPolicy.Validate(); err != nil {
+			invalidParams.AddNested("ConfigurationPolicy", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfigurationPolicy sets the ConfigurationPolicy field's value.
+func (s *CreateConfigurationPolicyInput) SetConfigurationPolicy(v *Policy) *CreateConfigurationPolicyInput {
+	s.ConfigurationPolicy = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateConfigurationPolicyInput) SetDescription(v string) *CreateConfigurationPolicyInput {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateConfigurationPolicyInput) SetName(v string) *CreateConfigurationPolicyInput {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateConfigurationPolicyInput) SetTags(v map[string]*string) *CreateConfigurationPolicyInput {
+	s.Tags = v
+	return s
+}
+
+type CreateConfigurationPolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the configuration policy.
+	Arn *string `type:"string"`
+
+	// An object that defines how Security Hub is configured. It includes whether
+	// Security Hub is enabled or disabled, a list of enabled security standards,
+	// a list of enabled or disabled security controls, and a list of custom parameter
+	// values for specified controls. If the request included a list of security
+	// controls that are enabled in the configuration policy, Security Hub disables
+	// all other controls (including newly released controls). If the request included
+	// a list of security controls that are disabled in the configuration policy,
+	// Security Hub enables all other controls (including newly released controls).
+	ConfigurationPolicy *Policy `type:"structure"`
+
+	// The date and time, in UTC and ISO 8601 format, that the configuration policy
+	// was created.
+	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The description of the configuration policy.
+	Description *string `type:"string"`
+
+	// The universally unique identifier (UUID) of the configuration policy.
+	Id *string `type:"string"`
+
+	// The name of the configuration policy.
+	Name *string `type:"string"`
+
+	// The date and time, in UTC and ISO 8601 format, that the configuration policy
+	// was last updated.
+	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateConfigurationPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateConfigurationPolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CreateConfigurationPolicyOutput) SetArn(v string) *CreateConfigurationPolicyOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetConfigurationPolicy sets the ConfigurationPolicy field's value.
+func (s *CreateConfigurationPolicyOutput) SetConfigurationPolicy(v *Policy) *CreateConfigurationPolicyOutput {
+	s.ConfigurationPolicy = v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *CreateConfigurationPolicyOutput) SetCreatedAt(v time.Time) *CreateConfigurationPolicyOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateConfigurationPolicyOutput) SetDescription(v string) *CreateConfigurationPolicyOutput {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *CreateConfigurationPolicyOutput) SetId(v string) *CreateConfigurationPolicyOutput {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateConfigurationPolicyOutput) SetName(v string) *CreateConfigurationPolicyOutput {
+	s.Name = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *CreateConfigurationPolicyOutput) SetUpdatedAt(v time.Time) *CreateConfigurationPolicyOutput {
+	s.UpdatedAt = &v
 	return s
 }
 
@@ -47943,6 +49723,78 @@ func (s *DeleteActionTargetOutput) SetActionTargetArn(v string) *DeleteActionTar
 	return s
 }
 
+type DeleteConfigurationPolicyInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The Amazon Resource Name (ARN) or universally unique identifier (UUID) of
+	// the configuration policy.
+	//
+	// Identifier is a required field
+	Identifier *string `location:"uri" locationName:"Identifier" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteConfigurationPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteConfigurationPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteConfigurationPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteConfigurationPolicyInput"}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *DeleteConfigurationPolicyInput) SetIdentifier(v string) *DeleteConfigurationPolicyInput {
+	s.Identifier = &v
+	return s
+}
+
+type DeleteConfigurationPolicyOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteConfigurationPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteConfigurationPolicyOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteFindingAggregatorInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -48493,25 +50345,42 @@ func (s DescribeOrganizationConfigurationInput) GoString() string {
 type DescribeOrganizationConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Whether to automatically enable Security Hub for new accounts in the organization.
+	// Whether to automatically enable Security Hub in new member accounts when
+	// they join the organization.
 	//
-	// If set to true, then Security Hub is enabled for new accounts. If set to
-	// false, then new accounts are not added automatically.
+	// If set to true, then Security Hub is automatically enabled in new accounts.
+	// If set to false, then Security Hub isn't enabled in new accounts automatically.
+	// The default value is false.
+	//
+	// If the ConfigurationType of your organization is set to CENTRAL, then this
+	// field is set to false and can't be changed in the home Region and linked
+	// Regions. However, in that case, the delegated administrator can create a
+	// configuration policy in which Security Hub is enabled and associate the policy
+	// with new organization accounts.
 	AutoEnable *bool `type:"boolean"`
 
 	// Whether to automatically enable Security Hub default standards (https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards-enable-disable.html)
-	// for new member accounts in the organization.
-	//
-	// The default value of this parameter is equal to DEFAULT.
+	// in new member accounts when they join the organization.
 	//
 	// If equal to DEFAULT, then Security Hub default standards are automatically
 	// enabled for new member accounts. If equal to NONE, then default standards
-	// are not automatically enabled for new member accounts.
+	// are not automatically enabled for new member accounts. The default value
+	// of this parameter is equal to DEFAULT.
+	//
+	// If the ConfigurationType of your organization is set to CENTRAL, then this
+	// field is set to NONE and can't be changed in the home Region and linked Regions.
+	// However, in that case, the delegated administrator can create a configuration
+	// policy in which specific security standards are enabled and associate the
+	// policy with new organization accounts.
 	AutoEnableStandards *string `type:"string" enum:"AutoEnableStandards"`
 
 	// Whether the maximum number of allowed member accounts are already associated
 	// with the Security Hub administrator account.
 	MemberAccountLimitReached *bool `type:"boolean"`
+
+	// Provides information about the way an organization is configured in Security
+	// Hub.
+	OrganizationConfiguration *OrganizationConfiguration `type:"structure"`
 }
 
 // String returns the string representation.
@@ -48547,6 +50416,12 @@ func (s *DescribeOrganizationConfigurationOutput) SetAutoEnableStandards(v strin
 // SetMemberAccountLimitReached sets the MemberAccountLimitReached field's value.
 func (s *DescribeOrganizationConfigurationOutput) SetMemberAccountLimitReached(v bool) *DescribeOrganizationConfigurationOutput {
 	s.MemberAccountLimitReached = &v
+	return s
+}
+
+// SetOrganizationConfiguration sets the OrganizationConfiguration field's value.
+func (s *DescribeOrganizationConfigurationOutput) SetOrganizationConfiguration(v *OrganizationConfiguration) *DescribeOrganizationConfigurationOutput {
+	s.OrganizationConfiguration = v
 	return s
 }
 
@@ -50419,6 +52294,289 @@ func (s GetAdministratorAccountOutput) GoString() string {
 // SetAdministrator sets the Administrator field's value.
 func (s *GetAdministratorAccountOutput) SetAdministrator(v *Invitation) *GetAdministratorAccountOutput {
 	s.Administrator = v
+	return s
+}
+
+type GetConfigurationPolicyAssociationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The target account ID, organizational unit ID, or the root ID to retrieve
+	// the association for.
+	//
+	// Target is a required field
+	Target *Target `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetConfigurationPolicyAssociationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetConfigurationPolicyAssociationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetConfigurationPolicyAssociationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetConfigurationPolicyAssociationInput"}
+	if s.Target == nil {
+		invalidParams.Add(request.NewErrParamRequired("Target"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTarget sets the Target field's value.
+func (s *GetConfigurationPolicyAssociationInput) SetTarget(v *Target) *GetConfigurationPolicyAssociationInput {
+	s.Target = v
+	return s
+}
+
+type GetConfigurationPolicyAssociationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The current status of the association between the specified target and the
+	// configuration.
+	AssociationStatus *string `type:"string" enum:"ConfigurationPolicyAssociationStatus"`
+
+	// The explanation for a FAILED value for AssociationStatus.
+	AssociationStatusMessage *string `type:"string"`
+
+	// Indicates whether the association between the specified target and the configuration
+	// was directly applied by the Security Hub delegated administrator or inherited
+	// from a parent.
+	AssociationType *string `type:"string" enum:"AssociationType"`
+
+	// The universally unique identifier (UUID) of a configuration policy. For self-managed
+	// behavior, the value is SELF_MANAGED_SECURITY_HUB.
+	ConfigurationPolicyId *string `type:"string"`
+
+	// The target account ID, organizational unit ID, or the root ID for which the
+	// association is retrieved.
+	TargetId *string `type:"string"`
+
+	// Specifies whether the target is an Amazon Web Services account, organizational
+	// unit, or the organization root.
+	TargetType *string `type:"string" enum:"TargetType"`
+
+	// The date and time, in UTC and ISO 8601 format, that the configuration policy
+	// association was last updated.
+	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetConfigurationPolicyAssociationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetConfigurationPolicyAssociationOutput) GoString() string {
+	return s.String()
+}
+
+// SetAssociationStatus sets the AssociationStatus field's value.
+func (s *GetConfigurationPolicyAssociationOutput) SetAssociationStatus(v string) *GetConfigurationPolicyAssociationOutput {
+	s.AssociationStatus = &v
+	return s
+}
+
+// SetAssociationStatusMessage sets the AssociationStatusMessage field's value.
+func (s *GetConfigurationPolicyAssociationOutput) SetAssociationStatusMessage(v string) *GetConfigurationPolicyAssociationOutput {
+	s.AssociationStatusMessage = &v
+	return s
+}
+
+// SetAssociationType sets the AssociationType field's value.
+func (s *GetConfigurationPolicyAssociationOutput) SetAssociationType(v string) *GetConfigurationPolicyAssociationOutput {
+	s.AssociationType = &v
+	return s
+}
+
+// SetConfigurationPolicyId sets the ConfigurationPolicyId field's value.
+func (s *GetConfigurationPolicyAssociationOutput) SetConfigurationPolicyId(v string) *GetConfigurationPolicyAssociationOutput {
+	s.ConfigurationPolicyId = &v
+	return s
+}
+
+// SetTargetId sets the TargetId field's value.
+func (s *GetConfigurationPolicyAssociationOutput) SetTargetId(v string) *GetConfigurationPolicyAssociationOutput {
+	s.TargetId = &v
+	return s
+}
+
+// SetTargetType sets the TargetType field's value.
+func (s *GetConfigurationPolicyAssociationOutput) SetTargetType(v string) *GetConfigurationPolicyAssociationOutput {
+	s.TargetType = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *GetConfigurationPolicyAssociationOutput) SetUpdatedAt(v time.Time) *GetConfigurationPolicyAssociationOutput {
+	s.UpdatedAt = &v
+	return s
+}
+
+type GetConfigurationPolicyInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The Amazon Resource Name (ARN) or universally unique identifier (UUID) of
+	// the configuration policy.
+	//
+	// Identifier is a required field
+	Identifier *string `location:"uri" locationName:"Identifier" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetConfigurationPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetConfigurationPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetConfigurationPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetConfigurationPolicyInput"}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *GetConfigurationPolicyInput) SetIdentifier(v string) *GetConfigurationPolicyInput {
+	s.Identifier = &v
+	return s
+}
+
+type GetConfigurationPolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the configuration policy.
+	Arn *string `type:"string"`
+
+	// An object that defines how Security Hub is configured. It includes whether
+	// Security Hub is enabled or disabled, a list of enabled security standards,
+	// a list of enabled or disabled security controls, and a list of custom parameter
+	// values for specified controls. If the policy includes a list of security
+	// controls that are enabled, Security Hub disables all other controls (including
+	// newly released controls). If the policy includes a list of security controls
+	// that are disabled, Security Hub enables all other controls (including newly
+	// released controls).
+	ConfigurationPolicy *Policy `type:"structure"`
+
+	// The date and time, in UTC and ISO 8601 format, that the configuration policy
+	// was created.
+	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The description of the configuration policy.
+	Description *string `type:"string"`
+
+	// The UUID of the configuration policy.
+	Id *string `type:"string"`
+
+	// The name of the configuration policy.
+	Name *string `type:"string"`
+
+	// The date and time, in UTC and ISO 8601 format, that the configuration policy
+	// was last updated.
+	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetConfigurationPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetConfigurationPolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *GetConfigurationPolicyOutput) SetArn(v string) *GetConfigurationPolicyOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetConfigurationPolicy sets the ConfigurationPolicy field's value.
+func (s *GetConfigurationPolicyOutput) SetConfigurationPolicy(v *Policy) *GetConfigurationPolicyOutput {
+	s.ConfigurationPolicy = v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *GetConfigurationPolicyOutput) SetCreatedAt(v time.Time) *GetConfigurationPolicyOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *GetConfigurationPolicyOutput) SetDescription(v string) *GetConfigurationPolicyOutput {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *GetConfigurationPolicyOutput) SetId(v string) *GetConfigurationPolicyOutput {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetConfigurationPolicyOutput) SetName(v string) *GetConfigurationPolicyOutput {
+	s.Name = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *GetConfigurationPolicyOutput) SetUpdatedAt(v time.Time) *GetConfigurationPolicyOutput {
+	s.UpdatedAt = &v
 	return s
 }
 
@@ -52481,6 +54639,229 @@ func (s *ListAutomationRulesOutput) SetNextToken(v string) *ListAutomationRulesO
 	return s
 }
 
+type ListConfigurationPoliciesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The maximum number of results that's returned by ListConfigurationPolicies
+	// in each page of the response. When this parameter is used, ListConfigurationPolicies
+	// returns the specified number of results in a single page and a NextToken
+	// response element. You can see the remaining results of the initial request
+	// by sending another ListConfigurationPolicies request with the returned NextToken
+	// value. A valid range for MaxResults is between 1 and 100.
+	MaxResults *int64 `location:"querystring" locationName:"MaxResults" min:"1" type:"integer"`
+
+	// The NextToken value that's returned from a previous paginated ListConfigurationPolicies
+	// request where MaxResults was used but the results exceeded the value of that
+	// parameter. Pagination continues from the MaxResults was used but the results
+	// exceeded the value of that parameter. Pagination continues from the end of
+	// the previous response that returned the NextToken value. This value is null
+	// when there are no more results to return.
+	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListConfigurationPoliciesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListConfigurationPoliciesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListConfigurationPoliciesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListConfigurationPoliciesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListConfigurationPoliciesInput) SetMaxResults(v int64) *ListConfigurationPoliciesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListConfigurationPoliciesInput) SetNextToken(v string) *ListConfigurationPoliciesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListConfigurationPoliciesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Provides metadata for each of your configuration policies.
+	ConfigurationPolicySummaries []*ConfigurationPolicySummary `type:"list"`
+
+	// The NextToken value to include in the next ListConfigurationPolicies request.
+	// When the results of a ListConfigurationPolicies request exceed MaxResults,
+	// this value can be used to retrieve the next page of results. This value is
+	// null when there are no more results to return.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListConfigurationPoliciesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListConfigurationPoliciesOutput) GoString() string {
+	return s.String()
+}
+
+// SetConfigurationPolicySummaries sets the ConfigurationPolicySummaries field's value.
+func (s *ListConfigurationPoliciesOutput) SetConfigurationPolicySummaries(v []*ConfigurationPolicySummary) *ListConfigurationPoliciesOutput {
+	s.ConfigurationPolicySummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListConfigurationPoliciesOutput) SetNextToken(v string) *ListConfigurationPoliciesOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListConfigurationPolicyAssociationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Options for filtering the ListConfigurationPolicyAssociations response. You
+	// can filter by the Amazon Resource Name (ARN) or universally unique identifier
+	// (UUID) of a configuration, AssociationType, or AssociationStatus.
+	Filters *AssociationFilters `type:"structure"`
+
+	// The maximum number of results that's returned by ListConfigurationPolicies
+	// in each page of the response. When this parameter is used, ListConfigurationPolicyAssociations
+	// returns the specified number of results in a single page and a NextToken
+	// response element. You can see the remaining results of the initial request
+	// by sending another ListConfigurationPolicyAssociations request with the returned
+	// NextToken value. A valid range for MaxResults is between 1 and 100.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The NextToken value that's returned from a previous paginated ListConfigurationPolicyAssociations
+	// request where MaxResults was used but the results exceeded the value of that
+	// parameter. Pagination continues from the end of the previous response that
+	// returned the NextToken value. This value is null when there are no more results
+	// to return.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListConfigurationPolicyAssociationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListConfigurationPolicyAssociationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListConfigurationPolicyAssociationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListConfigurationPolicyAssociationsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ListConfigurationPolicyAssociationsInput) SetFilters(v *AssociationFilters) *ListConfigurationPolicyAssociationsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListConfigurationPolicyAssociationsInput) SetMaxResults(v int64) *ListConfigurationPolicyAssociationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListConfigurationPolicyAssociationsInput) SetNextToken(v string) *ListConfigurationPolicyAssociationsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListConfigurationPolicyAssociationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An object that contains the details of each configuration policy association
+	// that’s returned in a ListConfigurationPolicyAssociations request.
+	ConfigurationPolicyAssociationSummaries []*ConfigurationPolicyAssociationSummary `type:"list"`
+
+	// The NextToken value to include in the next ListConfigurationPolicyAssociations
+	// request. When the results of a ListConfigurationPolicyAssociations request
+	// exceed MaxResults, this value can be used to retrieve the next page of results.
+	// This value is null when there are no more results to return.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListConfigurationPolicyAssociationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListConfigurationPolicyAssociationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetConfigurationPolicyAssociationSummaries sets the ConfigurationPolicyAssociationSummaries field's value.
+func (s *ListConfigurationPolicyAssociationsOutput) SetConfigurationPolicyAssociationSummaries(v []*ConfigurationPolicyAssociationSummary) *ListConfigurationPolicyAssociationsOutput {
+	s.ConfigurationPolicyAssociationSummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListConfigurationPolicyAssociationsOutput) SetNextToken(v string) *ListConfigurationPolicyAssociationsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListEnabledProductsForImportInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -54288,6 +56669,74 @@ func (s *Occurrences) SetRecords(v []*Record) *Occurrences {
 	return s
 }
 
+// Provides information about the way an organization is configured in Security
+// Hub.
+type OrganizationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether the organization uses local or central configuration.
+	//
+	// If you use local configuration, the Security Hub delegated administrator
+	// can set AutoEnable to true and AutoEnableStandards to DEFAULT. This automatically
+	// enables Security Hub and default security standards in new organization accounts.
+	// These new account settings must be set separately in each Amazon Web Services
+	// Region, and settings may be different in each Region.
+	//
+	// If you use central configuration, the delegated administrator can create
+	// configuration policies. Configuration policies can be used to configure Security
+	// Hub, security standards, and security controls in multiple accounts and Regions.
+	// If you want new organization accounts to use a specific configuration, you
+	// can create a configuration policy and associate it with the root or specific
+	// organizational units (OUs). New accounts will inherit the policy from the
+	// root or their assigned OU.
+	ConfigurationType *string `type:"string" enum:"OrganizationConfigurationConfigurationType"`
+
+	// Describes whether central configuration could be enabled as the ConfigurationType
+	// for the organization. If your ConfigurationType is local configuration, then
+	// the value of Status is always ENABLED.
+	Status *string `type:"string" enum:"OrganizationConfigurationStatus"`
+
+	// Provides an explanation if the value of Status is equal to FAILED when ConfigurationType
+	// is equal to CENTRAL.
+	StatusMessage *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OrganizationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OrganizationConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetConfigurationType sets the ConfigurationType field's value.
+func (s *OrganizationConfiguration) SetConfigurationType(v string) *OrganizationConfiguration {
+	s.ConfigurationType = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *OrganizationConfiguration) SetStatus(v string) *OrganizationConfiguration {
+	s.Status = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *OrganizationConfiguration) SetStatusMessage(v string) *OrganizationConfiguration {
+	s.StatusMessage = &v
+	return s
+}
+
 // An occurrence of sensitive data in an Adobe Portable Document Format (PDF)
 // file.
 type Page struct {
@@ -54692,6 +57141,60 @@ func (s *PatchSummary) SetOperationStartTime(v string) *PatchSummary {
 // SetRebootOption sets the RebootOption field's value.
 func (s *PatchSummary) SetRebootOption(v string) *PatchSummary {
 	s.RebootOption = &v
+	return s
+}
+
+// An object that defines how Security Hub is configured. It includes whether
+// Security Hub is enabled or disabled, a list of enabled security standards,
+// a list of enabled or disabled security controls, and a list of custom parameter
+// values for specified controls. If you provide a list of security controls
+// that are enabled in the configuration policy, Security Hub disables all other
+// controls (including newly released controls). If you provide a list of security
+// controls that are disabled in the configuration policy, Security Hub enables
+// all other controls (including newly released controls).
+type Policy struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Service that the configuration policy applies to.
+	SecurityHub *SecurityHubPolicy `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Policy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Policy) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Policy) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Policy"}
+	if s.SecurityHub != nil {
+		if err := s.SecurityHub.Validate(); err != nil {
+			invalidParams.AddNested("SecurityHub", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSecurityHub sets the SecurityHub field's value.
+func (s *Policy) SetSecurityHub(v *SecurityHubPolicy) *Policy {
+	s.SecurityHub = v
 	return s
 }
 
@@ -55351,6 +57854,12 @@ func (s *Remediation) SetRecommendation(v *Recommendation) *Remediation {
 type Resource struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the application that is related to a finding.
+	ApplicationArn *string `type:"string"`
+
+	// The name of the application that is related to a finding.
+	ApplicationName *string `type:"string"`
+
 	// Contains information about sensitive data that was detected on the resource.
 	DataClassification *DataClassificationDetails `type:"structure"`
 
@@ -55426,6 +57935,18 @@ func (s *Resource) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetApplicationArn sets the ApplicationArn field's value.
+func (s *Resource) SetApplicationArn(v string) *Resource {
+	s.ApplicationArn = &v
+	return s
+}
+
+// SetApplicationName sets the ApplicationName field's value.
+func (s *Resource) SetApplicationName(v string) *Resource {
+	s.ApplicationName = &v
+	return s
 }
 
 // SetDataClassification sets the DataClassification field's value.
@@ -57876,6 +60397,69 @@ func (s *SecurityControl) SetUpdateStatus(v string) *SecurityControl {
 	return s
 }
 
+// A list of security controls and control parameter values that are included
+// in a configuration policy.
+type SecurityControlCustomParameter struct {
+	_ struct{} `type:"structure"`
+
+	// An object that specifies parameter values for a control in a configuration
+	// policy.
+	Parameters map[string]*ParameterConfiguration `type:"map"`
+
+	// The ID of the security control.
+	SecurityControlId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SecurityControlCustomParameter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SecurityControlCustomParameter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SecurityControlCustomParameter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SecurityControlCustomParameter"}
+	if s.Parameters != nil {
+		for i, v := range s.Parameters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Parameters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *SecurityControlCustomParameter) SetParameters(v map[string]*ParameterConfiguration) *SecurityControlCustomParameter {
+	s.Parameters = v
+	return s
+}
+
+// SetSecurityControlId sets the SecurityControlId field's value.
+func (s *SecurityControlCustomParameter) SetSecurityControlId(v string) *SecurityControlCustomParameter {
+	s.SecurityControlId = &v
+	return s
+}
+
 // Provides metadata for a security control, including its unique standard-agnostic
 // identifier, title, description, severity, availability in Amazon Web Services
 // Regions, and a link to remediation steps.
@@ -58038,6 +60622,159 @@ func (s *SecurityControlParameter) SetName(v string) *SecurityControlParameter {
 // SetValue sets the Value field's value.
 func (s *SecurityControlParameter) SetValue(v []*string) *SecurityControlParameter {
 	s.Value = v
+	return s
+}
+
+// An object that defines which security controls are enabled in an Security
+// Hub configuration policy. The enablement status of a control is aligned across
+// all of the enabled standards in an account.
+type SecurityControlsConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// A list of security controls that are disabled in the configuration policy.
+	// Security Hub enables all other controls (including newly released controls)
+	// other than the listed controls.
+	DisabledSecurityControlIdentifiers []*string `type:"list"`
+
+	// A list of security controls that are enabled in the configuration policy.
+	// Security Hub disables all other controls (including newly released controls)
+	// other than the listed controls.
+	EnabledSecurityControlIdentifiers []*string `type:"list"`
+
+	// A list of security controls and control parameter values that are included
+	// in a configuration policy.
+	SecurityControlCustomParameters []*SecurityControlCustomParameter `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SecurityControlsConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SecurityControlsConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SecurityControlsConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SecurityControlsConfiguration"}
+	if s.SecurityControlCustomParameters != nil {
+		for i, v := range s.SecurityControlCustomParameters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "SecurityControlCustomParameters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDisabledSecurityControlIdentifiers sets the DisabledSecurityControlIdentifiers field's value.
+func (s *SecurityControlsConfiguration) SetDisabledSecurityControlIdentifiers(v []*string) *SecurityControlsConfiguration {
+	s.DisabledSecurityControlIdentifiers = v
+	return s
+}
+
+// SetEnabledSecurityControlIdentifiers sets the EnabledSecurityControlIdentifiers field's value.
+func (s *SecurityControlsConfiguration) SetEnabledSecurityControlIdentifiers(v []*string) *SecurityControlsConfiguration {
+	s.EnabledSecurityControlIdentifiers = v
+	return s
+}
+
+// SetSecurityControlCustomParameters sets the SecurityControlCustomParameters field's value.
+func (s *SecurityControlsConfiguration) SetSecurityControlCustomParameters(v []*SecurityControlCustomParameter) *SecurityControlsConfiguration {
+	s.SecurityControlCustomParameters = v
+	return s
+}
+
+// An object that defines how Security Hub is configured. The configuration
+// policy includes whether Security Hub is enabled or disabled, a list of enabled
+// security standards, a list of enabled or disabled security controls, and
+// a list of custom parameter values for specified controls. If you provide
+// a list of security controls that are enabled in the configuration policy,
+// Security Hub disables all other controls (including newly released controls).
+// If you provide a list of security controls that are disabled in the configuration
+// policy, Security Hub enables all other controls (including newly released
+// controls).
+type SecurityHubPolicy struct {
+	_ struct{} `type:"structure"`
+
+	// A list that defines which security standards are enabled in the configuration
+	// policy.
+	EnabledStandardIdentifiers []*string `type:"list"`
+
+	// An object that defines which security controls are enabled in the configuration
+	// policy. The enablement status of a control is aligned across all of the enabled
+	// standards in an account.
+	SecurityControlsConfiguration *SecurityControlsConfiguration `type:"structure"`
+
+	// Indicates whether Security Hub is enabled in the policy.
+	ServiceEnabled *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SecurityHubPolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SecurityHubPolicy) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SecurityHubPolicy) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SecurityHubPolicy"}
+	if s.SecurityControlsConfiguration != nil {
+		if err := s.SecurityControlsConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("SecurityControlsConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnabledStandardIdentifiers sets the EnabledStandardIdentifiers field's value.
+func (s *SecurityHubPolicy) SetEnabledStandardIdentifiers(v []*string) *SecurityHubPolicy {
+	s.EnabledStandardIdentifiers = v
+	return s
+}
+
+// SetSecurityControlsConfiguration sets the SecurityControlsConfiguration field's value.
+func (s *SecurityHubPolicy) SetSecurityControlsConfiguration(v *SecurityControlsConfiguration) *SecurityHubPolicy {
+	s.SecurityControlsConfiguration = v
+	return s
+}
+
+// SetServiceEnabled sets the ServiceEnabled field's value.
+func (s *SecurityHubPolicy) SetServiceEnabled(v bool) *SecurityHubPolicy {
+	s.ServiceEnabled = &v
 	return s
 }
 
@@ -58926,7 +61663,7 @@ type StandardsControlAssociationSummary struct {
 	// was updated.
 	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	// The reason for updating the control's enablement status in a specified standard.
+	// The reason for updating a control's enablement status in a specified standard.
 	UpdatedReason *string `type:"string"`
 }
 
@@ -59314,6 +62051,238 @@ func (s *StandardsSubscriptionRequest) SetStandardsArn(v string) *StandardsSubsc
 func (s *StandardsSubscriptionRequest) SetStandardsInput(v map[string]*string) *StandardsSubscriptionRequest {
 	s.StandardsInput = v
 	return s
+}
+
+type StartConfigurationPolicyAssociationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) or universally unique identifier (UUID) of
+	// the configuration policy.
+	//
+	// ConfigurationPolicyIdentifier is a required field
+	ConfigurationPolicyIdentifier *string `type:"string" required:"true"`
+
+	// The identifier of the target account, organizational unit, or the root to
+	// associate with the specified configuration.
+	//
+	// Target is a required field
+	Target *Target `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartConfigurationPolicyAssociationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartConfigurationPolicyAssociationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartConfigurationPolicyAssociationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartConfigurationPolicyAssociationInput"}
+	if s.ConfigurationPolicyIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfigurationPolicyIdentifier"))
+	}
+	if s.Target == nil {
+		invalidParams.Add(request.NewErrParamRequired("Target"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfigurationPolicyIdentifier sets the ConfigurationPolicyIdentifier field's value.
+func (s *StartConfigurationPolicyAssociationInput) SetConfigurationPolicyIdentifier(v string) *StartConfigurationPolicyAssociationInput {
+	s.ConfigurationPolicyIdentifier = &v
+	return s
+}
+
+// SetTarget sets the Target field's value.
+func (s *StartConfigurationPolicyAssociationInput) SetTarget(v *Target) *StartConfigurationPolicyAssociationInput {
+	s.Target = v
+	return s
+}
+
+type StartConfigurationPolicyAssociationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The current status of the association between the specified target and the
+	// configuration.
+	AssociationStatus *string `type:"string" enum:"ConfigurationPolicyAssociationStatus"`
+
+	// An explanation for a FAILED value for AssociationStatus.
+	AssociationStatusMessage *string `type:"string"`
+
+	// Indicates whether the association between the specified target and the configuration
+	// was directly applied by the Security Hub delegated administrator or inherited
+	// from a parent.
+	AssociationType *string `type:"string" enum:"AssociationType"`
+
+	// The UUID of the configuration policy.
+	ConfigurationPolicyId *string `type:"string"`
+
+	// The identifier of the target account, organizational unit, or the organization
+	// root with which the configuration is associated.
+	TargetId *string `type:"string"`
+
+	// Indicates whether the target is an Amazon Web Services account, organizational
+	// unit, or the organization root.
+	TargetType *string `type:"string" enum:"TargetType"`
+
+	// The date and time, in UTC and ISO 8601 format, that the configuration policy
+	// association was last updated.
+	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartConfigurationPolicyAssociationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartConfigurationPolicyAssociationOutput) GoString() string {
+	return s.String()
+}
+
+// SetAssociationStatus sets the AssociationStatus field's value.
+func (s *StartConfigurationPolicyAssociationOutput) SetAssociationStatus(v string) *StartConfigurationPolicyAssociationOutput {
+	s.AssociationStatus = &v
+	return s
+}
+
+// SetAssociationStatusMessage sets the AssociationStatusMessage field's value.
+func (s *StartConfigurationPolicyAssociationOutput) SetAssociationStatusMessage(v string) *StartConfigurationPolicyAssociationOutput {
+	s.AssociationStatusMessage = &v
+	return s
+}
+
+// SetAssociationType sets the AssociationType field's value.
+func (s *StartConfigurationPolicyAssociationOutput) SetAssociationType(v string) *StartConfigurationPolicyAssociationOutput {
+	s.AssociationType = &v
+	return s
+}
+
+// SetConfigurationPolicyId sets the ConfigurationPolicyId field's value.
+func (s *StartConfigurationPolicyAssociationOutput) SetConfigurationPolicyId(v string) *StartConfigurationPolicyAssociationOutput {
+	s.ConfigurationPolicyId = &v
+	return s
+}
+
+// SetTargetId sets the TargetId field's value.
+func (s *StartConfigurationPolicyAssociationOutput) SetTargetId(v string) *StartConfigurationPolicyAssociationOutput {
+	s.TargetId = &v
+	return s
+}
+
+// SetTargetType sets the TargetType field's value.
+func (s *StartConfigurationPolicyAssociationOutput) SetTargetType(v string) *StartConfigurationPolicyAssociationOutput {
+	s.TargetType = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *StartConfigurationPolicyAssociationOutput) SetUpdatedAt(v time.Time) *StartConfigurationPolicyAssociationOutput {
+	s.UpdatedAt = &v
+	return s
+}
+
+type StartConfigurationPolicyDisassociationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) or universally unique identifier (UUID) of
+	// the configuration policy.
+	//
+	// ConfigurationPolicyIdentifier is a required field
+	ConfigurationPolicyIdentifier *string `type:"string" required:"true"`
+
+	// The identifier of the target account, organizational unit, or the root to
+	// disassociate from the specified configuration.
+	Target *Target `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartConfigurationPolicyDisassociationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartConfigurationPolicyDisassociationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartConfigurationPolicyDisassociationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartConfigurationPolicyDisassociationInput"}
+	if s.ConfigurationPolicyIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfigurationPolicyIdentifier"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfigurationPolicyIdentifier sets the ConfigurationPolicyIdentifier field's value.
+func (s *StartConfigurationPolicyDisassociationInput) SetConfigurationPolicyIdentifier(v string) *StartConfigurationPolicyDisassociationInput {
+	s.ConfigurationPolicyIdentifier = &v
+	return s
+}
+
+// SetTarget sets the Target field's value.
+func (s *StartConfigurationPolicyDisassociationInput) SetTarget(v *Target) *StartConfigurationPolicyDisassociationInput {
+	s.Target = v
+	return s
+}
+
+type StartConfigurationPolicyDisassociationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartConfigurationPolicyDisassociationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartConfigurationPolicyDisassociationOutput) GoString() string {
+	return s.String()
 }
 
 // The definition of a custom action that can be used for stateless packet handling.
@@ -59787,6 +62756,58 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
+// The target account, organizational unit, or the root that is associated with
+// an Security Hub configuration. The configuration can be a configuration policy
+// or self-managed behavior.
+type Target struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services account ID of the target account.
+	AccountId *string `type:"string"`
+
+	// The organizational unit ID of the target organizational unit.
+	OrganizationalUnitId *string `type:"string"`
+
+	// The ID of the organization root.
+	RootId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Target) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Target) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *Target) SetAccountId(v string) *Target {
+	s.AccountId = &v
+	return s
+}
+
+// SetOrganizationalUnitId sets the OrganizationalUnitId field's value.
+func (s *Target) SetOrganizationalUnitId(v string) *Target {
+	s.OrganizationalUnitId = &v
+	return s
+}
+
+// SetRootId sets the RootId field's value.
+func (s *Target) SetRootId(v string) *Target {
+	s.RootId = &v
+	return s
+}
+
 // Provides information about the threat detected in a security finding and
 // the file paths that were affected by the threat.
 type Threat struct {
@@ -59979,6 +63000,60 @@ func (s *UnprocessedAutomationRule) SetErrorMessage(v string) *UnprocessedAutoma
 // SetRuleArn sets the RuleArn field's value.
 func (s *UnprocessedAutomationRule) SetRuleArn(v string) *UnprocessedAutomationRule {
 	s.RuleArn = &v
+	return s
+}
+
+// An array of configuration policy associations, one for each configuration
+// policy association identifier, that was specified in a BatchGetConfigurationPolicyAssociations
+// request but couldn’t be processed due to an error.
+type UnprocessedConfigurationPolicyAssociation struct {
+	_ struct{} `type:"structure"`
+
+	// Configuration policy association identifiers that were specified in a BatchGetConfigurationPolicyAssociations
+	// request but couldn’t be processed due to an error.
+	ConfigurationPolicyAssociationIdentifiers *ConfigurationPolicyAssociation `type:"structure"`
+
+	// An HTTP status code that identifies why the configuration policy association
+	// failed.
+	ErrorCode *string `type:"string"`
+
+	// A string that identifies why the configuration policy association failed.
+	ErrorReason *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UnprocessedConfigurationPolicyAssociation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UnprocessedConfigurationPolicyAssociation) GoString() string {
+	return s.String()
+}
+
+// SetConfigurationPolicyAssociationIdentifiers sets the ConfigurationPolicyAssociationIdentifiers field's value.
+func (s *UnprocessedConfigurationPolicyAssociation) SetConfigurationPolicyAssociationIdentifiers(v *ConfigurationPolicyAssociation) *UnprocessedConfigurationPolicyAssociation {
+	s.ConfigurationPolicyAssociationIdentifiers = v
+	return s
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *UnprocessedConfigurationPolicyAssociation) SetErrorCode(v string) *UnprocessedConfigurationPolicyAssociation {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetErrorReason sets the ErrorReason field's value.
+func (s *UnprocessedConfigurationPolicyAssociation) SetErrorReason(v string) *UnprocessedConfigurationPolicyAssociation {
+	s.ErrorReason = &v
 	return s
 }
 
@@ -60478,6 +63553,202 @@ func (s *UpdateAutomationRulesRequestItem) SetRuleStatus(v string) *UpdateAutoma
 	return s
 }
 
+type UpdateConfigurationPolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// An object that defines how Security Hub is configured. It includes whether
+	// Security Hub is enabled or disabled, a list of enabled security standards,
+	// a list of enabled or disabled security controls, and a list of custom parameter
+	// values for specified controls. If you provide a list of security controls
+	// that are enabled in the configuration policy, Security Hub disables all other
+	// controls (including newly released controls). If you provide a list of security
+	// controls that are disabled in the configuration policy, Security Hub enables
+	// all other controls (including newly released controls).
+	//
+	// When updating a configuration policy, provide a complete list of standards
+	// that you want to enable and a complete list of controls that you want to
+	// enable or disable. The updated configuration replaces the current configuration.
+	ConfigurationPolicy *Policy `type:"structure"`
+
+	// The description of the configuration policy.
+	Description *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) or universally unique identifier (UUID) of
+	// the configuration policy.
+	//
+	// Identifier is a required field
+	Identifier *string `location:"uri" locationName:"Identifier" type:"string" required:"true"`
+
+	// The name of the configuration policy.
+	Name *string `type:"string"`
+
+	// The reason for updating the configuration policy.
+	UpdatedReason *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateConfigurationPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateConfigurationPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateConfigurationPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateConfigurationPolicyInput"}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+	if s.ConfigurationPolicy != nil {
+		if err := s.ConfigurationPolicy.Validate(); err != nil {
+			invalidParams.AddNested("ConfigurationPolicy", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfigurationPolicy sets the ConfigurationPolicy field's value.
+func (s *UpdateConfigurationPolicyInput) SetConfigurationPolicy(v *Policy) *UpdateConfigurationPolicyInput {
+	s.ConfigurationPolicy = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateConfigurationPolicyInput) SetDescription(v string) *UpdateConfigurationPolicyInput {
+	s.Description = &v
+	return s
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *UpdateConfigurationPolicyInput) SetIdentifier(v string) *UpdateConfigurationPolicyInput {
+	s.Identifier = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateConfigurationPolicyInput) SetName(v string) *UpdateConfigurationPolicyInput {
+	s.Name = &v
+	return s
+}
+
+// SetUpdatedReason sets the UpdatedReason field's value.
+func (s *UpdateConfigurationPolicyInput) SetUpdatedReason(v string) *UpdateConfigurationPolicyInput {
+	s.UpdatedReason = &v
+	return s
+}
+
+type UpdateConfigurationPolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the configuration policy.
+	Arn *string `type:"string"`
+
+	// An object that defines how Security Hub is configured. It includes whether
+	// Security Hub is enabled or disabled, a list of enabled security standards,
+	// a list of enabled or disabled security controls, and a list of custom parameter
+	// values for specified controls. If the request included a list of security
+	// controls that are enabled in the configuration policy, Security Hub disables
+	// all other controls (including newly released controls). If the request included
+	// a list of security controls that are disabled in the configuration policy,
+	// Security Hub enables all other controls (including newly released controls).
+	ConfigurationPolicy *Policy `type:"structure"`
+
+	// The date and time, in UTC and ISO 8601 format, that the configuration policy
+	// was created.
+	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The description of the configuration policy.
+	Description *string `type:"string"`
+
+	// The UUID of the configuration policy.
+	Id *string `type:"string"`
+
+	// The name of the configuration policy.
+	Name *string `type:"string"`
+
+	// The date and time, in UTC and ISO 8601 format, that the configuration policy
+	// was last updated.
+	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateConfigurationPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateConfigurationPolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *UpdateConfigurationPolicyOutput) SetArn(v string) *UpdateConfigurationPolicyOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetConfigurationPolicy sets the ConfigurationPolicy field's value.
+func (s *UpdateConfigurationPolicyOutput) SetConfigurationPolicy(v *Policy) *UpdateConfigurationPolicyOutput {
+	s.ConfigurationPolicy = v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *UpdateConfigurationPolicyOutput) SetCreatedAt(v time.Time) *UpdateConfigurationPolicyOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateConfigurationPolicyOutput) SetDescription(v string) *UpdateConfigurationPolicyOutput {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *UpdateConfigurationPolicyOutput) SetId(v string) *UpdateConfigurationPolicyOutput {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateConfigurationPolicyOutput) SetName(v string) *UpdateConfigurationPolicyOutput {
+	s.Name = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *UpdateConfigurationPolicyOutput) SetUpdatedAt(v time.Time) *UpdateConfigurationPolicyOutput {
+	s.UpdatedAt = &v
+	return s
+}
+
 type UpdateFindingAggregatorInput struct {
 	_ struct{} `type:"structure"`
 
@@ -60825,24 +64096,41 @@ func (s UpdateInsightOutput) GoString() string {
 type UpdateOrganizationConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
-	// Whether to automatically enable Security Hub for new accounts in the organization.
+	// Whether to automatically enable Security Hub in new member accounts when
+	// they join the organization.
 	//
-	// By default, this is false, and new accounts are not added automatically.
+	// If set to true, then Security Hub is automatically enabled in new accounts.
+	// If set to false, then Security Hub isn't enabled in new accounts automatically.
+	// The default value is false.
 	//
-	// To automatically enable Security Hub for new accounts, set this to true.
+	// If the ConfigurationType of your organization is set to CENTRAL, then this
+	// field is set to false and can't be changed in the home Region and linked
+	// Regions. However, in that case, the delegated administrator can create a
+	// configuration policy in which Security Hub is enabled and associate the policy
+	// with new organization accounts.
 	//
 	// AutoEnable is a required field
 	AutoEnable *bool `type:"boolean" required:"true"`
 
 	// Whether to automatically enable Security Hub default standards (https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards-enable-disable.html)
-	// for new member accounts in the organization.
+	// in new member accounts when they join the organization.
 	//
-	// By default, this parameter is equal to DEFAULT, and new member accounts are
-	// automatically enabled with default Security Hub standards.
+	// The default value of this parameter is equal to DEFAULT.
 	//
-	// To opt out of enabling default standards for new member accounts, set this
-	// parameter equal to NONE.
+	// If equal to DEFAULT, then Security Hub default standards are automatically
+	// enabled for new member accounts. If equal to NONE, then default standards
+	// are not automatically enabled for new member accounts.
+	//
+	// If the ConfigurationType of your organization is set to CENTRAL, then this
+	// field is set to NONE and can't be changed in the home Region and linked Regions.
+	// However, in that case, the delegated administrator can create a configuration
+	// policy in which specific security standards are enabled and associate the
+	// policy with new organization accounts.
 	AutoEnableStandards *string `type:"string" enum:"AutoEnableStandards"`
+
+	// Provides information about the way an organization is configured in Security
+	// Hub.
+	OrganizationConfiguration *OrganizationConfiguration `type:"structure"`
 }
 
 // String returns the string representation.
@@ -60885,6 +64173,12 @@ func (s *UpdateOrganizationConfigurationInput) SetAutoEnable(v bool) *UpdateOrga
 // SetAutoEnableStandards sets the AutoEnableStandards field's value.
 func (s *UpdateOrganizationConfigurationInput) SetAutoEnableStandards(v string) *UpdateOrganizationConfigurationInput {
 	s.AutoEnableStandards = &v
+	return s
+}
+
+// SetOrganizationConfiguration sets the OrganizationConfiguration field's value.
+func (s *UpdateOrganizationConfigurationInput) SetOrganizationConfiguration(v *OrganizationConfiguration) *UpdateOrganizationConfigurationInput {
+	s.OrganizationConfiguration = v
 	return s
 }
 
@@ -61878,6 +65172,22 @@ func AssociationStatus_Values() []string {
 }
 
 const (
+	// AssociationTypeInherited is a AssociationType enum value
+	AssociationTypeInherited = "INHERITED"
+
+	// AssociationTypeApplied is a AssociationType enum value
+	AssociationTypeApplied = "APPLIED"
+)
+
+// AssociationType_Values returns all elements of the AssociationType enum
+func AssociationType_Values() []string {
+	return []string{
+		AssociationTypeInherited,
+		AssociationTypeApplied,
+	}
+}
+
+const (
 	// AutoEnableStandardsNone is a AutoEnableStandards enum value
 	AutoEnableStandardsNone = "NONE"
 
@@ -61958,6 +65268,26 @@ func ComplianceStatus_Values() []string {
 		ComplianceStatusWarning,
 		ComplianceStatusFailed,
 		ComplianceStatusNotAvailable,
+	}
+}
+
+const (
+	// ConfigurationPolicyAssociationStatusPending is a ConfigurationPolicyAssociationStatus enum value
+	ConfigurationPolicyAssociationStatusPending = "PENDING"
+
+	// ConfigurationPolicyAssociationStatusSuccess is a ConfigurationPolicyAssociationStatus enum value
+	ConfigurationPolicyAssociationStatusSuccess = "SUCCESS"
+
+	// ConfigurationPolicyAssociationStatusFailed is a ConfigurationPolicyAssociationStatus enum value
+	ConfigurationPolicyAssociationStatusFailed = "FAILED"
+)
+
+// ConfigurationPolicyAssociationStatus_Values returns all elements of the ConfigurationPolicyAssociationStatus enum
+func ConfigurationPolicyAssociationStatus_Values() []string {
+	return []string{
+		ConfigurationPolicyAssociationStatusPending,
+		ConfigurationPolicyAssociationStatusSuccess,
+		ConfigurationPolicyAssociationStatusFailed,
 	}
 }
 
@@ -62166,6 +65496,42 @@ func NetworkDirection_Values() []string {
 	return []string{
 		NetworkDirectionIn,
 		NetworkDirectionOut,
+	}
+}
+
+const (
+	// OrganizationConfigurationConfigurationTypeCentral is a OrganizationConfigurationConfigurationType enum value
+	OrganizationConfigurationConfigurationTypeCentral = "CENTRAL"
+
+	// OrganizationConfigurationConfigurationTypeLocal is a OrganizationConfigurationConfigurationType enum value
+	OrganizationConfigurationConfigurationTypeLocal = "LOCAL"
+)
+
+// OrganizationConfigurationConfigurationType_Values returns all elements of the OrganizationConfigurationConfigurationType enum
+func OrganizationConfigurationConfigurationType_Values() []string {
+	return []string{
+		OrganizationConfigurationConfigurationTypeCentral,
+		OrganizationConfigurationConfigurationTypeLocal,
+	}
+}
+
+const (
+	// OrganizationConfigurationStatusPending is a OrganizationConfigurationStatus enum value
+	OrganizationConfigurationStatusPending = "PENDING"
+
+	// OrganizationConfigurationStatusEnabled is a OrganizationConfigurationStatus enum value
+	OrganizationConfigurationStatusEnabled = "ENABLED"
+
+	// OrganizationConfigurationStatusFailed is a OrganizationConfigurationStatus enum value
+	OrganizationConfigurationStatusFailed = "FAILED"
+)
+
+// OrganizationConfigurationStatus_Values returns all elements of the OrganizationConfigurationStatus enum
+func OrganizationConfigurationStatus_Values() []string {
+	return []string{
+		OrganizationConfigurationStatusPending,
+		OrganizationConfigurationStatusEnabled,
+		OrganizationConfigurationStatusFailed,
 	}
 }
 
@@ -62406,6 +65772,22 @@ func StringFilterComparison_Values() []string {
 		StringFilterComparisonPrefixNotEquals,
 		StringFilterComparisonContains,
 		StringFilterComparisonNotContains,
+	}
+}
+
+const (
+	// TargetTypeAccount is a TargetType enum value
+	TargetTypeAccount = "ACCOUNT"
+
+	// TargetTypeOrganizationalUnit is a TargetType enum value
+	TargetTypeOrganizationalUnit = "ORGANIZATIONAL_UNIT"
+)
+
+// TargetType_Values returns all elements of the TargetType enum
+func TargetType_Values() []string {
+	return []string{
+		TargetTypeAccount,
+		TargetTypeOrganizationalUnit,
 	}
 }
 

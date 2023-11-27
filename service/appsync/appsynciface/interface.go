@@ -172,6 +172,10 @@ type AppSyncAPI interface {
 	GetDataSourceWithContext(aws.Context, *appsync.GetDataSourceInput, ...request.Option) (*appsync.GetDataSourceOutput, error)
 	GetDataSourceRequest(*appsync.GetDataSourceInput) (*request.Request, *appsync.GetDataSourceOutput)
 
+	GetDataSourceIntrospection(*appsync.GetDataSourceIntrospectionInput) (*appsync.GetDataSourceIntrospectionOutput, error)
+	GetDataSourceIntrospectionWithContext(aws.Context, *appsync.GetDataSourceIntrospectionInput, ...request.Option) (*appsync.GetDataSourceIntrospectionOutput, error)
+	GetDataSourceIntrospectionRequest(*appsync.GetDataSourceIntrospectionInput) (*request.Request, *appsync.GetDataSourceIntrospectionOutput)
+
 	GetDomainName(*appsync.GetDomainNameInput) (*appsync.GetDomainNameOutput, error)
 	GetDomainNameWithContext(aws.Context, *appsync.GetDomainNameInput, ...request.Option) (*appsync.GetDomainNameOutput, error)
 	GetDomainNameRequest(*appsync.GetDomainNameInput) (*request.Request, *appsync.GetDomainNameOutput)
@@ -247,6 +251,10 @@ type AppSyncAPI interface {
 	ListTypesByAssociation(*appsync.ListTypesByAssociationInput) (*appsync.ListTypesByAssociationOutput, error)
 	ListTypesByAssociationWithContext(aws.Context, *appsync.ListTypesByAssociationInput, ...request.Option) (*appsync.ListTypesByAssociationOutput, error)
 	ListTypesByAssociationRequest(*appsync.ListTypesByAssociationInput) (*request.Request, *appsync.ListTypesByAssociationOutput)
+
+	StartDataSourceIntrospection(*appsync.StartDataSourceIntrospectionInput) (*appsync.StartDataSourceIntrospectionOutput, error)
+	StartDataSourceIntrospectionWithContext(aws.Context, *appsync.StartDataSourceIntrospectionInput, ...request.Option) (*appsync.StartDataSourceIntrospectionOutput, error)
+	StartDataSourceIntrospectionRequest(*appsync.StartDataSourceIntrospectionInput) (*request.Request, *appsync.StartDataSourceIntrospectionOutput)
 
 	StartSchemaCreation(*appsync.StartSchemaCreationInput) (*appsync.StartSchemaCreationOutput, error)
 	StartSchemaCreationWithContext(aws.Context, *appsync.StartSchemaCreationInput, ...request.Option) (*appsync.StartSchemaCreationOutput, error)
