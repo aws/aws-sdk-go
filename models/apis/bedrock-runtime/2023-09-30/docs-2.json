@@ -55,11 +55,11 @@
     "MimeType": {
       "base": null,
       "refs": {
-        "InvokeModelRequest$accept": "<p>The desired MIME type of the inference body in the response. The default value is <code>application/json</code>.</p>",
         "InvokeModelRequest$contentType": "<p>The MIME type of the input data in the request. The default value is <code>application/json</code>.</p>",
+        "InvokeModelRequest$accept": "<p>The desired MIME type of the inference body in the response. The default value is <code>application/json</code>.</p>",
         "InvokeModelResponse$contentType": "<p>The MIME type of the inference result.</p>",
-        "InvokeModelWithResponseStreamRequest$accept": "<p>The desired MIME type of the inference body in the response. The default value is <code>application/json</code>.</p>",
         "InvokeModelWithResponseStreamRequest$contentType": "<p>The MIME type of the input data in the request. The default value is <code>application/json</code>.</p>",
+        "InvokeModelWithResponseStreamRequest$accept": "<p>The desired MIME type of the inference body in the response. The default value is <code>application/json</code>.</p>",
         "InvokeModelWithResponseStreamResponse$contentType": "<p>The MIME type of the inference result.</p>"
       }
     },

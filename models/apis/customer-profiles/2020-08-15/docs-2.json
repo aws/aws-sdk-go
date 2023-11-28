@@ -17,6 +17,7 @@
     "DeleteProfileObject": "<p>Removes an object associated with a profile of a given ProfileObjectType.</p>",
     "DeleteProfileObjectType": "<p>Removes a ProfileObjectType from a specific domain as well as removes all the ProfileObjects of that type. It also disables integrations from this specific ProfileObjectType. In addition, it scrubs all of the fields of the standard profile that were populated from this ProfileObjectType.</p>",
     "DeleteWorkflow": "<p>Deletes the specified workflow and all its corresponding resources. This is an async process.</p>",
+    "DetectProfileObjectType": "<p>The process of detecting profile object type mapping by using given objects.</p>",
     "GetAutoMergingPreview": "<p>Tests the auto-merging settings of your Identity Resolution Job without merging your data. It randomly selects a sample of matching groups from the existing matching results, and applies the automerging settings that you provided. You can then view the number of profiles in the sample, the number of matches, and the number of profiles identified to be merged. This enables you to evaluate the accuracy of the attributes in your matching list. </p> <p>You can't view which profiles are matched and would be merged.</p> <important> <p>We strongly recommend you use this API to do a dry run of the automerging process before running the Identity Resolution Job. Include <b>at least</b> two matching attributes. If your matching list includes too few attributes (such as only <code>FirstName</code> or only <code>LastName</code>), there may be a large number of matches. This increases the chances of erroneous merges.</p> </important>",
     "GetCalculatedAttributeDefinition": "<p>Provides more information on a calculated attribute definition for Customer Profiles.</p>",
     "GetCalculatedAttributeForProfile": "<p>Retrieve a calculated attribute for a customer profile.</p>",
@@ -80,6 +81,7 @@
         "DeleteProfileObjectTypeRequest$DomainName": "<p>The unique name of the domain.</p>",
         "DeleteProfileRequest$DomainName": "<p>The unique name of the domain.</p>",
         "DeleteWorkflowRequest$DomainName": "<p>The unique name of the domain.</p>",
+        "DetectProfileObjectTypeRequest$DomainName": "<p>The unique name of the domain.</p>",
         "EventStreamSummary$DomainName": "<p>The unique name of the domain.</p>",
         "EventStreamSummary$EventStreamName": "<p>The name of the event stream.</p>",
         "FieldMap$key": null,
@@ -517,6 +519,28 @@
         "EventStreamSummary$DestinationSummary": "<p>Summary information about the Kinesis data stream.</p>"
       }
     },
+    "DetectProfileObjectTypeRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DetectProfileObjectTypeResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DetectedProfileObjectType": {
+      "base": "<p>Contains <code>ProfileObjectType</code> mapping information from the model.</p>",
+      "refs": {
+        "DetectedProfileObjectTypes$member": null
+      }
+    },
+    "DetectedProfileObjectTypes": {
+      "base": null,
+      "refs": {
+        "DetectProfileObjectTypeResponse$DetectedProfileObjectTypes": "<p>Detected <code>ProfileObjectType</code> mappings from given objects. A maximum of one mapping is supported.</p>"
+      }
+    },
     "DomainList": {
       "base": null,
       "refs": {
@@ -606,6 +630,7 @@
     "FieldMap": {
       "base": null,
       "refs": {
+        "DetectedProfileObjectType$Fields": "<p>A map of the name and the <code>ObjectType</code> field.</p>",
         "GetProfileObjectTypeResponse$Fields": "<p>A map of the name and ObjectType field.</p>",
         "GetProfileObjectTypeTemplateResponse$Fields": "<p>A map of the name and ObjectType field.</p>",
         "PutProfileObjectTypeRequest$Fields": "<p>A map of the name and ObjectType field.</p>",
@@ -860,6 +885,7 @@
     "KeyMap": {
       "base": null,
       "refs": {
+        "DetectedProfileObjectType$Keys": "<p>A list of unique keys that can be used to map data to a profile.</p>",
         "GetProfileObjectTypeResponse$Keys": "<p>A list of unique keys that can be used to map data to the profile.</p>",
         "GetProfileObjectTypeTemplateResponse$Keys": "<p>A list of unique keys that can be used to map data to the profile.</p>",
         "PutProfileObjectTypeRequest$Keys": "<p>A list of unique keys that can be used to map data to the profile.</p>",
@@ -1203,6 +1229,12 @@
         "ListIntegrationItem$ObjectTypeNames": "<p>A map in which each key is an event type from an external application such as Segment or Shopify, and each value is an <code>ObjectTypeName</code> (template) used to ingest the event. It supports the following event types: <code>SegmentIdentify</code>, <code>ShopifyCreateCustomers</code>, <code>ShopifyUpdateCustomers</code>, <code>ShopifyCreateDraftOrders</code>, <code>ShopifyUpdateDraftOrders</code>, <code>ShopifyCreateOrders</code>, and <code>ShopifyUpdatedOrders</code>.</p>",
         "PutIntegrationRequest$ObjectTypeNames": "<p>A map in which each key is an event type from an external application such as Segment or Shopify, and each value is an <code>ObjectTypeName</code> (template) used to ingest the event. It supports the following event types: <code>SegmentIdentify</code>, <code>ShopifyCreateCustomers</code>, <code>ShopifyUpdateCustomers</code>, <code>ShopifyCreateDraftOrders</code>, <code>ShopifyUpdateDraftOrders</code>, <code>ShopifyCreateOrders</code>, and <code>ShopifyUpdatedOrders</code>.</p>",
         "PutIntegrationResponse$ObjectTypeNames": "<p>A map in which each key is an event type from an external application such as Segment or Shopify, and each value is an <code>ObjectTypeName</code> (template) used to ingest the event. It supports the following event types: <code>SegmentIdentify</code>, <code>ShopifyCreateCustomers</code>, <code>ShopifyUpdateCustomers</code>, <code>ShopifyCreateDraftOrders</code>, <code>ShopifyUpdateDraftOrders</code>, <code>ShopifyCreateOrders</code>, and <code>ShopifyUpdatedOrders</code>.</p>"
+      }
+    },
+    "Objects": {
+      "base": null,
+      "refs": {
+        "DetectProfileObjectTypeRequest$Objects": "<p>A string that is serialized from a JSON object.</p>"
       }
     },
     "Operator": {
@@ -2058,6 +2090,7 @@
         "DeleteProfileObjectRequest$ProfileObjectUniqueKey": "<p>The unique identifier of the profile object generated by the service.</p>",
         "DeleteWorkflowRequest$WorkflowId": "<p>Unique identifier for the workflow.</p>",
         "DestinationSummary$Uri": "<p>The StreamARN of the destination to deliver profile events to. For example, arn:aws:kinesis:region:account-id:stream/stream-name.</p>",
+        "DetectedProfileObjectType$SourceLastUpdatedTimestampFormat": "<p>The format of <code>sourceLastUpdatedTimestamp</code> that was detected in fields.</p>",
         "EmailList$member": null,
         "EventStreamDestinationDetails$Uri": "<p>The StreamARN of the destination to deliver profile events to. For example, arn:aws:kinesis:region:account-id:stream/stream-name.</p>",
         "EventStreamSummary$EventStreamArn": "<p>A unique identifier for the event stream.</p>",
@@ -2110,6 +2143,7 @@
       "base": null,
       "refs": {
         "ListProfileObjectsItem$Object": "<p>A JSON representation of a ProfileObject that belongs to a profile.</p>",
+        "Objects$member": null,
         "PutProfileObjectRequest$Object": "<p>A string that is serialized from a JSON object.</p>"
       }
     },

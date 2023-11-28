@@ -62,7 +62,7 @@ func (c *Bedrock) CreateModelCustomizationJobRequest(input *CreateModelCustomiza
 // After the model-customization job completes successfully, your custom model
 // resource will be ready to use. Training data contains input and output text
 // for each record in a JSONL format. Optionally, you can specify validation
-// data in the same format as the training data. Bedrock returns validation
+// data in the same format as the training data. Amazon Bedrock returns validation
 // loss metrics and output generations after the job completes.
 //
 // Model-customization jobs are asynchronous and the completion time depends
@@ -559,8 +559,8 @@ func (c *Bedrock) GetCustomModelRequest(input *GetCustomModelInput) (req *reques
 
 // GetCustomModel API operation for Amazon Bedrock.
 //
-// Get the properties associated with a Bedrock custom model that you have created.For
-// more information, see Custom models (https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models.html)
+// Get the properties associated with a Amazon Bedrock custom model that you
+// have created.For more information, see Custom models (https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models.html)
 // in the Bedrock User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -653,7 +653,7 @@ func (c *Bedrock) GetFoundationModelRequest(input *GetFoundationModelInput) (req
 
 // GetFoundationModel API operation for Amazon Bedrock.
 //
-// Get details about a Bedrock foundation model.
+// Get details about a Amazon Bedrock foundation model.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1167,7 +1167,7 @@ func (c *Bedrock) ListFoundationModelsRequest(input *ListFoundationModelsInput) 
 
 // ListFoundationModels API operation for Amazon Bedrock.
 //
-// List of Bedrock foundation models that you can use. For more information,
+// List of Amazon Bedrock foundation models that you can use. For more information,
 // see Foundation models (https://docs.aws.amazon.com/bedrock/latest/userguide/foundation-models.html)
 // in the Bedrock User Guide.
 //
@@ -2311,6 +2311,9 @@ type CreateModelCustomizationJobInput struct {
 	// Assign tags to the custom model.
 	CustomModelTags []*Tag `locationName:"customModelTags" type:"list"`
 
+	// The customization type.
+	CustomizationType *string `locationName:"customizationType" type:"string" enum:"CustomizationType"`
+
 	// Parameters related to tuning the model.
 	//
 	// HyperParameters is a required field
@@ -2329,11 +2332,11 @@ type CreateModelCustomizationJobInput struct {
 	// OutputDataConfig is a required field
 	OutputDataConfig *OutputDataConfig `locationName:"outputDataConfig" type:"structure" required:"true"`
 
-	// The Amazon Resource Name (ARN) of an IAM role that Bedrock can assume to
-	// perform tasks on your behalf. For example, during model training, Bedrock
-	// needs your permission to read input data from an S3 bucket, write model artifacts
-	// to an S3 bucket. To pass this role to Bedrock, the caller of this API must
-	// have the iam:PassRole permission.
+	// The Amazon Resource Name (ARN) of an IAM role that Amazon Bedrock can assume
+	// to perform tasks on your behalf. For example, during model training, Amazon
+	// Bedrock needs your permission to read input data from an S3 bucket, write
+	// model artifacts to an S3 bucket. To pass this role to Amazon Bedrock, the
+	// caller of this API must have the iam:PassRole permission.
 	//
 	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
@@ -2485,6 +2488,12 @@ func (s *CreateModelCustomizationJobInput) SetCustomModelTags(v []*Tag) *CreateM
 	return s
 }
 
+// SetCustomizationType sets the CustomizationType field's value.
+func (s *CreateModelCustomizationJobInput) SetCustomizationType(v string) *CreateModelCustomizationJobInput {
+	s.CustomizationType = &v
+	return s
+}
+
 // SetHyperParameters sets the HyperParameters field's value.
 func (s *CreateModelCustomizationJobInput) SetHyperParameters(v map[string]*string) *CreateModelCustomizationJobInput {
 	s.HyperParameters = v
@@ -2570,7 +2579,7 @@ type CreateProvisionedModelThroughputInput struct {
 	_ struct{} `type:"structure"`
 
 	// Unique token value that you can provide. If this token matches a previous
-	// request, Bedrock ignores the request, but does not return an error.
+	// request, Amazon Bedrock ignores the request, but does not return an error.
 	ClientRequestToken *string `locationName:"clientRequestToken" min:"1" type:"string" idempotencyToken:"true"`
 
 	// Commitment duration requested for the provisioned throughput.
@@ -2742,6 +2751,10 @@ type CustomModelSummary struct {
 	// CreationTime is a required field
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
+	// Specifies whether to carry out continued pre-training of a model or whether
+	// to fine-tune it. For more information, see Custom models (https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models.html).
+	CustomizationType *string `locationName:"customizationType" type:"string" enum:"CustomizationType"`
+
 	// The ARN of the custom model.
 	//
 	// ModelArn is a required field
@@ -2786,6 +2799,12 @@ func (s *CustomModelSummary) SetBaseModelName(v string) *CustomModelSummary {
 // SetCreationTime sets the CreationTime field's value.
 func (s *CustomModelSummary) SetCreationTime(v time.Time) *CustomModelSummary {
 	s.CreationTime = &v
+	return s
+}
+
+// SetCustomizationType sets the CustomizationType field's value.
+func (s *CustomModelSummary) SetCustomizationType(v string) *CustomModelSummary {
+	s.CustomizationType = &v
 	return s
 }
 
@@ -3010,6 +3029,9 @@ type FoundationModelDetails struct {
 	// ModelId is a required field
 	ModelId *string `locationName:"modelId" type:"string" required:"true"`
 
+	// Contains details about whether a model version is available or deprecated
+	ModelLifecycle *FoundationModelLifecycle `locationName:"modelLifecycle" type:"structure"`
+
 	// The model name.
 	ModelName *string `locationName:"modelName" min:"1" type:"string"`
 
@@ -3071,6 +3093,12 @@ func (s *FoundationModelDetails) SetModelId(v string) *FoundationModelDetails {
 	return s
 }
 
+// SetModelLifecycle sets the ModelLifecycle field's value.
+func (s *FoundationModelDetails) SetModelLifecycle(v *FoundationModelLifecycle) *FoundationModelDetails {
+	s.ModelLifecycle = v
+	return s
+}
+
 // SetModelName sets the ModelName field's value.
 func (s *FoundationModelDetails) SetModelName(v string) *FoundationModelDetails {
 	s.ModelName = &v
@@ -3092,6 +3120,40 @@ func (s *FoundationModelDetails) SetProviderName(v string) *FoundationModelDetai
 // SetResponseStreamingSupported sets the ResponseStreamingSupported field's value.
 func (s *FoundationModelDetails) SetResponseStreamingSupported(v bool) *FoundationModelDetails {
 	s.ResponseStreamingSupported = &v
+	return s
+}
+
+// Details about whether a model version is available or deprecated.
+type FoundationModelLifecycle struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether a model version is available (ACTIVE) or deprecated (LEGACY.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" type:"string" required:"true" enum:"FoundationModelLifecycleStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FoundationModelLifecycle) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FoundationModelLifecycle) GoString() string {
+	return s.String()
+}
+
+// SetStatus sets the Status field's value.
+func (s *FoundationModelLifecycle) SetStatus(v string) *FoundationModelLifecycle {
+	s.Status = &v
 	return s
 }
 
@@ -3117,6 +3179,9 @@ type FoundationModelSummary struct {
 	//
 	// ModelId is a required field
 	ModelId *string `locationName:"modelId" type:"string" required:"true"`
+
+	// Contains details about whether a model version is available or deprecated.
+	ModelLifecycle *FoundationModelLifecycle `locationName:"modelLifecycle" type:"structure"`
 
 	// The name of the model.
 	ModelName *string `locationName:"modelName" min:"1" type:"string"`
@@ -3176,6 +3241,12 @@ func (s *FoundationModelSummary) SetModelArn(v string) *FoundationModelSummary {
 // SetModelId sets the ModelId field's value.
 func (s *FoundationModelSummary) SetModelId(v string) *FoundationModelSummary {
 	s.ModelId = &v
+	return s
+}
+
+// SetModelLifecycle sets the ModelLifecycle field's value.
+func (s *FoundationModelSummary) SetModelLifecycle(v *FoundationModelLifecycle) *FoundationModelSummary {
+	s.ModelLifecycle = v
 	return s
 }
 
@@ -3265,6 +3336,9 @@ type GetCustomModelOutput struct {
 	// CreationTime is a required field
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
+	// The type of model customization.
+	CustomizationType *string `locationName:"customizationType" type:"string" enum:"CustomizationType"`
+
 	// Hyperparameter values associated with this model.
 	HyperParameters map[string]*string `locationName:"hyperParameters" type:"map"`
 
@@ -3336,6 +3410,12 @@ func (s *GetCustomModelOutput) SetBaseModelArn(v string) *GetCustomModelOutput {
 // SetCreationTime sets the CreationTime field's value.
 func (s *GetCustomModelOutput) SetCreationTime(v time.Time) *GetCustomModelOutput {
 	s.CreationTime = &v
+	return s
+}
+
+// SetCustomizationType sets the CustomizationType field's value.
+func (s *GetCustomModelOutput) SetCustomizationType(v string) *GetCustomModelOutput {
+	s.CustomizationType = &v
 	return s
 }
 
@@ -3550,13 +3630,17 @@ type GetModelCustomizationJobOutput struct {
 	// CreationTime is a required field
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
+	// The type of model customization.
+	CustomizationType *string `locationName:"customizationType" type:"string" enum:"CustomizationType"`
+
 	// Time that the resource transitioned to terminal state.
 	EndTime *time.Time `locationName:"endTime" type:"timestamp" timestampFormat:"iso8601"`
 
 	// Information about why the job failed.
 	FailureMessage *string `locationName:"failureMessage" type:"string"`
 
-	// The hyperparameter values for the job.
+	// The hyperparameter values for the job. For information about hyperparameters
+	// for specific models, see Guidelines for model customization (https://docs.aws.amazon.com/bedrock/latest/userguide/model-customization-guidelines.html).
 	//
 	// HyperParameters is a required field
 	HyperParameters map[string]*string `locationName:"hyperParameters" type:"map" required:"true"`
@@ -3653,6 +3737,12 @@ func (s *GetModelCustomizationJobOutput) SetClientRequestToken(v string) *GetMod
 // SetCreationTime sets the CreationTime field's value.
 func (s *GetModelCustomizationJobOutput) SetCreationTime(v time.Time) *GetModelCustomizationJobOutput {
 	s.CreationTime = &v
+	return s
+}
+
+// SetCustomizationType sets the CustomizationType field's value.
+func (s *GetModelCustomizationJobOutput) SetCustomizationType(v string) *GetModelCustomizationJobOutput {
+	s.CustomizationType = &v
 	return s
 }
 
@@ -4106,8 +4196,8 @@ type ListCustomModelsInput struct {
 	// Return custom models only if the job name contains these characters.
 	NameContains *string `location:"querystring" locationName:"nameContains" min:"1" type:"string"`
 
-	// Continuation token from the previous response, for Bedrock to list the next
-	// set of results.
+	// Continuation token from the previous response, for Amazon Bedrock to list
+	// the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
 
 	// The field to sort by in the returned list of models.
@@ -4263,7 +4353,7 @@ type ListFoundationModelsInput struct {
 	// List by output modality type.
 	ByOutputModality *string `location:"querystring" locationName:"byOutputModality" type:"string" enum:"ModelModality"`
 
-	// A Bedrock model provider.
+	// A Amazon Bedrock model provider.
 	ByProvider *string `location:"querystring" locationName:"byProvider" type:"string"`
 }
 
@@ -4312,7 +4402,7 @@ func (s *ListFoundationModelsInput) SetByProvider(v string) *ListFoundationModel
 type ListFoundationModelsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of bedrock foundation models.
+	// A list of Amazon Bedrock foundation models.
 	ModelSummaries []*FoundationModelSummary `locationName:"modelSummaries" type:"list"`
 }
 
@@ -4355,8 +4445,8 @@ type ListModelCustomizationJobsInput struct {
 	// Return customization jobs only if the job name contains these characters.
 	NameContains *string `location:"querystring" locationName:"nameContains" min:"1" type:"string"`
 
-	// Continuation token from the previous response, for Bedrock to list the next
-	// set of results.
+	// Continuation token from the previous response, for Amazon Bedrock to list
+	// the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
 
 	// The field to sort by in the returned list of jobs.
@@ -4513,8 +4603,8 @@ type ListProvisionedModelThroughputsInput struct {
 	// Return the list of provisioned capacities if their name contains these characters.
 	NameContains *string `location:"querystring" locationName:"nameContains" min:"1" type:"string"`
 
-	// Continuation token from the previous response, for Bedrock to list the next
-	// set of results.
+	// Continuation token from the previous response, for Amazon Bedrock to list
+	// the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
 
 	// The field to sort by in the returned list of provisioned capacities.
@@ -4849,6 +4939,10 @@ type ModelCustomizationJobSummary struct {
 	// Name of the custom model.
 	CustomModelName *string `locationName:"customModelName" min:"1" type:"string"`
 
+	// Specifies whether to carry out continued pre-training of a model or whether
+	// to fine-tune it. For more information, see Custom models (https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models.html).
+	CustomizationType *string `locationName:"customizationType" type:"string" enum:"CustomizationType"`
+
 	// Time that the customization job ended.
 	EndTime *time.Time `locationName:"endTime" type:"timestamp" timestampFormat:"iso8601"`
 
@@ -4910,6 +5004,12 @@ func (s *ModelCustomizationJobSummary) SetCustomModelArn(v string) *ModelCustomi
 // SetCustomModelName sets the CustomModelName field's value.
 func (s *ModelCustomizationJobSummary) SetCustomModelName(v string) *ModelCustomizationJobSummary {
 	s.CustomModelName = &v
+	return s
+}
+
+// SetCustomizationType sets the CustomizationType field's value.
+func (s *ModelCustomizationJobSummary) SetCustomizationType(v string) *ModelCustomizationJobSummary {
+	s.CustomizationType = &v
 	return s
 }
 
@@ -6317,6 +6417,22 @@ func CommitmentDuration_Values() []string {
 }
 
 const (
+	// CustomizationTypeFineTuning is a CustomizationType enum value
+	CustomizationTypeFineTuning = "FINE_TUNING"
+
+	// CustomizationTypeContinuedPreTraining is a CustomizationType enum value
+	CustomizationTypeContinuedPreTraining = "CONTINUED_PRE_TRAINING"
+)
+
+// CustomizationType_Values returns all elements of the CustomizationType enum
+func CustomizationType_Values() []string {
+	return []string{
+		CustomizationTypeFineTuning,
+		CustomizationTypeContinuedPreTraining,
+	}
+}
+
+const (
 	// FineTuningJobStatusInProgress is a FineTuningJobStatus enum value
 	FineTuningJobStatusInProgress = "InProgress"
 
@@ -6345,6 +6461,22 @@ func FineTuningJobStatus_Values() []string {
 }
 
 const (
+	// FoundationModelLifecycleStatusActive is a FoundationModelLifecycleStatus enum value
+	FoundationModelLifecycleStatusActive = "ACTIVE"
+
+	// FoundationModelLifecycleStatusLegacy is a FoundationModelLifecycleStatus enum value
+	FoundationModelLifecycleStatusLegacy = "LEGACY"
+)
+
+// FoundationModelLifecycleStatus_Values returns all elements of the FoundationModelLifecycleStatus enum
+func FoundationModelLifecycleStatus_Values() []string {
+	return []string{
+		FoundationModelLifecycleStatusActive,
+		FoundationModelLifecycleStatusLegacy,
+	}
+}
+
+const (
 	// InferenceTypeOnDemand is a InferenceType enum value
 	InferenceTypeOnDemand = "ON_DEMAND"
 
@@ -6363,12 +6495,16 @@ func InferenceType_Values() []string {
 const (
 	// ModelCustomizationFineTuning is a ModelCustomization enum value
 	ModelCustomizationFineTuning = "FINE_TUNING"
+
+	// ModelCustomizationContinuedPreTraining is a ModelCustomization enum value
+	ModelCustomizationContinuedPreTraining = "CONTINUED_PRE_TRAINING"
 )
 
 // ModelCustomization_Values returns all elements of the ModelCustomization enum
 func ModelCustomization_Values() []string {
 	return []string{
 		ModelCustomizationFineTuning,
+		ModelCustomizationContinuedPreTraining,
 	}
 }
 

@@ -982,7 +982,8 @@
         "secretsManagerSecret":{"shape":"SecretsManagerSecretConfiguration"},
         "s3Bucket":{"shape":"S3BucketConfiguration"},
         "snsTopic":{"shape":"SnsTopicConfiguration"},
-        "sqsQueue":{"shape":"SqsQueueConfiguration"}
+        "sqsQueue":{"shape":"SqsQueueConfiguration"},
+        "s3ExpressDirectoryBucket":{"shape":"S3ExpressDirectoryBucketConfiguration"}
       },
       "union":true
     },
@@ -2217,7 +2218,8 @@
         "AWS::ECR::Repository",
         "AWS::RDS::DBSnapshot",
         "AWS::RDS::DBClusterSnapshot",
-        "AWS::SNS::Topic"
+        "AWS::SNS::Topic",
+        "AWS::S3Express::DirectoryBucket"
       ]
     },
     "RetiringPrincipal":{"type":"string"},
@@ -2263,6 +2265,13 @@
       }
     },
     "S3BucketPolicy":{"type":"string"},
+    "S3ExpressDirectoryBucketConfiguration":{
+      "type":"structure",
+      "members":{
+        "bucketPolicy":{"shape":"S3ExpressDirectoryBucketPolicy"}
+      }
+    },
+    "S3ExpressDirectoryBucketPolicy":{"type":"string"},
     "S3PublicAccessBlockConfiguration":{
       "type":"structure",
       "required":[

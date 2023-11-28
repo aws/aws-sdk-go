@@ -447,6 +447,8 @@ func (c *S3Control) CreateAccessPointRequest(input *CreateAccessPointInput) (req
 
 // CreateAccessPoint API operation for AWS S3 Control.
 //
+// This operation is not supported by directory buckets.
+//
 // Creates an access point and associates it with the specified bucket. For
 // more information, see Managing Data Access with Amazon S3 Access Points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-points.html)
 // in the Amazon S3 User Guide.
@@ -545,6 +547,8 @@ func (c *S3Control) CreateAccessPointForObjectLambdaRequest(input *CreateAccessP
 }
 
 // CreateAccessPointForObjectLambda API operation for AWS S3 Control.
+//
+// This operation is not supported by directory buckets.
 //
 // Creates an Object Lambda Access Point. For more information, see Transforming
 // objects with Object Lambda Access Points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/transforming-objects.html)
@@ -755,12 +759,18 @@ func (c *S3Control) CreateJobRequest(input *CreateJobInput) (req *request.Reques
 
 // CreateJob API operation for AWS S3 Control.
 //
+// This operation creates an S3 Batch Operations job.
+//
 // You can use S3 Batch Operations to perform large-scale batch actions on Amazon
 // S3 objects. Batch Operations can run a single action on lists of Amazon S3
 // objects that you specify. For more information, see S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html)
 // in the Amazon S3 User Guide.
 //
-// This action creates a S3 Batch Operations job.
+// # Permissions
+//
+// For information about permissions required to use the Batch Operations, see
+// Granting permissions for S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuAndPermissions.html)
+// in the Amazon S3 User Guide.
 //
 // Related actions include:
 //
@@ -861,6 +871,8 @@ func (c *S3Control) CreateMultiRegionAccessPointRequest(input *CreateMultiRegion
 }
 
 // CreateMultiRegionAccessPoint API operation for AWS S3 Control.
+//
+// This operation is not supported by directory buckets.
 //
 // Creates a Multi-Region Access Point and associates it with the specified
 // buckets. For more information about creating Multi-Region Access Points,
@@ -1408,6 +1420,8 @@ func (c *S3Control) DeleteAccessPointRequest(input *DeleteAccessPointInput) (req
 
 // DeleteAccessPoint API operation for AWS S3 Control.
 //
+// This operation is not supported by directory buckets.
+//
 // Deletes the specified access point.
 //
 // All Amazon S3 on Outposts REST API requests for this action require an additional
@@ -1500,6 +1514,8 @@ func (c *S3Control) DeleteAccessPointForObjectLambdaRequest(input *DeleteAccessP
 
 // DeleteAccessPointForObjectLambda API operation for AWS S3 Control.
 //
+// This operation is not supported by directory buckets.
+//
 // Deletes the specified Object Lambda Access Point.
 //
 // The following actions are related to DeleteAccessPointForObjectLambda:
@@ -1586,6 +1602,8 @@ func (c *S3Control) DeleteAccessPointPolicyRequest(input *DeleteAccessPointPolic
 }
 
 // DeleteAccessPointPolicy API operation for AWS S3 Control.
+//
+// This operation is not supported by directory buckets.
 //
 // Deletes the access point policy for the specified access point.
 //
@@ -1676,6 +1694,8 @@ func (c *S3Control) DeleteAccessPointPolicyForObjectLambdaRequest(input *DeleteA
 }
 
 // DeleteAccessPointPolicyForObjectLambda API operation for AWS S3 Control.
+//
+// This operation is not supported by directory buckets.
 //
 // Removes the resource policy for an Object Lambda Access Point.
 //
@@ -2308,9 +2328,12 @@ func (c *S3Control) DeleteJobTaggingRequest(input *DeleteJobTaggingInput) (req *
 
 // DeleteJobTagging API operation for AWS S3 Control.
 //
-// Removes the entire tag set from the specified S3 Batch Operations job. To
-// use the DeleteJobTagging operation, you must have permission to perform the
-// s3:DeleteJobTagging action. For more information, see Controlling access
+// Removes the entire tag set from the specified S3 Batch Operations job.
+//
+// # Permissions
+//
+// To use the DeleteJobTagging operation, you must have permission to perform
+// the s3:DeleteJobTagging action. For more information, see Controlling access
 // and labeling jobs using tags (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-managing-jobs.html#batch-ops-job-tags)
 // in the Amazon S3 User Guide.
 //
@@ -2407,6 +2430,8 @@ func (c *S3Control) DeleteMultiRegionAccessPointRequest(input *DeleteMultiRegion
 }
 
 // DeleteMultiRegionAccessPoint API operation for AWS S3 Control.
+//
+// This operation is not supported by directory buckets.
 //
 // Deletes a Multi-Region Access Point. This action does not delete the buckets
 // associated with the Multi-Region Access Point, only the Multi-Region Access
@@ -2505,6 +2530,8 @@ func (c *S3Control) DeletePublicAccessBlockRequest(input *DeletePublicAccessBloc
 
 // DeletePublicAccessBlock API operation for AWS S3 Control.
 //
+// This operation is not supported by directory buckets.
+//
 // Removes the PublicAccessBlock configuration for an Amazon Web Services account.
 // For more information, see Using Amazon S3 block public access (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html).
 //
@@ -2587,6 +2614,8 @@ func (c *S3Control) DeleteStorageLensConfigurationRequest(input *DeleteStorageLe
 }
 
 // DeleteStorageLensConfiguration API operation for AWS S3 Control.
+//
+// This operation is not supported by directory buckets.
 //
 // Deletes the Amazon S3 Storage Lens configuration. For more information about
 // S3 Storage Lens, see Assessing your storage activity and usage with Amazon
@@ -2671,6 +2700,8 @@ func (c *S3Control) DeleteStorageLensConfigurationTaggingRequest(input *DeleteSt
 }
 
 // DeleteStorageLensConfigurationTagging API operation for AWS S3 Control.
+//
+// This operation is not supported by directory buckets.
 //
 // Deletes the Amazon S3 Storage Lens configuration tags. For more information
 // about S3 Storage Lens, see Assessing your storage activity and usage with
@@ -2842,6 +2873,11 @@ func (c *S3Control) DescribeJobRequest(input *DescribeJobInput) (req *request.Re
 // job. For more information, see S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html)
 // in the Amazon S3 User Guide.
 //
+// # Permissions
+//
+// To use the DescribeJob operation, you must have permission to perform the
+// s3:DescribeJob action.
+//
 // Related actions include:
 //
 //   - CreateJob (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateJob.html)
@@ -2939,6 +2975,8 @@ func (c *S3Control) DescribeMultiRegionAccessPointOperationRequest(input *Descri
 }
 
 // DescribeMultiRegionAccessPointOperation API operation for AWS S3 Control.
+//
+// This operation is not supported by directory buckets.
 //
 // Retrieves the status of an asynchronous request to manage a Multi-Region
 // Access Point. For more information about managing Multi-Region Access Points
@@ -3545,6 +3583,8 @@ func (c *S3Control) GetAccessPointRequest(input *GetAccessPointInput) (req *requ
 
 // GetAccessPoint API operation for AWS S3 Control.
 //
+// This operation is not supported by directory buckets.
+//
 // Returns configuration information about the specified access point.
 //
 // All Amazon S3 on Outposts REST API requests for this action require an additional
@@ -3636,6 +3676,8 @@ func (c *S3Control) GetAccessPointConfigurationForObjectLambdaRequest(input *Get
 
 // GetAccessPointConfigurationForObjectLambda API operation for AWS S3 Control.
 //
+// This operation is not supported by directory buckets.
+//
 // Returns configuration for an Object Lambda Access Point.
 //
 // The following actions are related to GetAccessPointConfigurationForObjectLambda:
@@ -3714,6 +3756,8 @@ func (c *S3Control) GetAccessPointForObjectLambdaRequest(input *GetAccessPointFo
 }
 
 // GetAccessPointForObjectLambda API operation for AWS S3 Control.
+//
+// This operation is not supported by directory buckets.
 //
 // Returns configuration information about the specified Object Lambda Access
 // Point
@@ -3802,6 +3846,8 @@ func (c *S3Control) GetAccessPointPolicyRequest(input *GetAccessPointPolicyInput
 
 // GetAccessPointPolicy API operation for AWS S3 Control.
 //
+// This operation is not supported by directory buckets.
+//
 // Returns the access point policy associated with the specified access point.
 //
 // The following actions are related to GetAccessPointPolicy:
@@ -3882,6 +3928,8 @@ func (c *S3Control) GetAccessPointPolicyForObjectLambdaRequest(input *GetAccessP
 }
 
 // GetAccessPointPolicyForObjectLambda API operation for AWS S3 Control.
+//
+// This operation is not supported by directory buckets.
 //
 // Returns the resource policy for an Object Lambda Access Point.
 //
@@ -3964,6 +4012,8 @@ func (c *S3Control) GetAccessPointPolicyStatusRequest(input *GetAccessPointPolic
 
 // GetAccessPointPolicyStatus API operation for AWS S3 Control.
 //
+// This operation is not supported by directory buckets.
+//
 // Indicates whether the specified access point currently has a policy that
 // allows public access. For more information about public access through access
 // points, see Managing Data Access with Amazon S3 access points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-points.html)
@@ -4041,6 +4091,8 @@ func (c *S3Control) GetAccessPointPolicyStatusForObjectLambdaRequest(input *GetA
 }
 
 // GetAccessPointPolicyStatusForObjectLambda API operation for AWS S3 Control.
+//
+// This operation is not supported by directory buckets.
 //
 // Returns the status of the resource policy associated with an Object Lambda
 // Access Point.
@@ -4885,10 +4937,13 @@ func (c *S3Control) GetJobTaggingRequest(input *GetJobTaggingInput) (req *reques
 
 // GetJobTagging API operation for AWS S3 Control.
 //
-// Returns the tags on an S3 Batch Operations job. To use the GetJobTagging
-// operation, you must have permission to perform the s3:GetJobTagging action.
-// For more information, see Controlling access and labeling jobs using tags
-// (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-managing-jobs.html#batch-ops-job-tags)
+// Returns the tags on an S3 Batch Operations job.
+//
+// # Permissions
+//
+// To use the GetJobTagging operation, you must have permission to perform the
+// s3:GetJobTagging action. For more information, see Controlling access and
+// labeling jobs using tags (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-managing-jobs.html#batch-ops-job-tags)
 // in the Amazon S3 User Guide.
 //
 // Related actions include:
@@ -4985,6 +5040,8 @@ func (c *S3Control) GetMultiRegionAccessPointRequest(input *GetMultiRegionAccess
 
 // GetMultiRegionAccessPoint API operation for AWS S3 Control.
 //
+// This operation is not supported by directory buckets.
+//
 // Returns configuration information about the specified Multi-Region Access
 // Point.
 //
@@ -5080,6 +5137,8 @@ func (c *S3Control) GetMultiRegionAccessPointPolicyRequest(input *GetMultiRegion
 
 // GetMultiRegionAccessPointPolicy API operation for AWS S3 Control.
 //
+// This operation is not supported by directory buckets.
+//
 // Returns the access control policy of the specified Multi-Region Access Point.
 //
 // This action will always be routed to the US West (Oregon) Region. For more
@@ -5169,6 +5228,8 @@ func (c *S3Control) GetMultiRegionAccessPointPolicyStatusRequest(input *GetMulti
 }
 
 // GetMultiRegionAccessPointPolicyStatus API operation for AWS S3 Control.
+//
+// This operation is not supported by directory buckets.
 //
 // Indicates whether the specified Multi-Region Access Point has an access control
 // policy that allows public access.
@@ -5260,6 +5321,8 @@ func (c *S3Control) GetMultiRegionAccessPointRoutesRequest(input *GetMultiRegion
 }
 
 // GetMultiRegionAccessPointRoutes API operation for AWS S3 Control.
+//
+// This operation is not supported by directory buckets.
 //
 // Returns the routing configuration for a Multi-Region Access Point, indicating
 // which Regions are active or passive.
@@ -5353,6 +5416,8 @@ func (c *S3Control) GetPublicAccessBlockRequest(input *GetPublicAccessBlockInput
 
 // GetPublicAccessBlock API operation for AWS S3 Control.
 //
+// This operation is not supported by directory buckets.
+//
 // Retrieves the PublicAccessBlock configuration for an Amazon Web Services
 // account. For more information, see Using Amazon S3 block public access (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html).
 //
@@ -5441,6 +5506,8 @@ func (c *S3Control) GetStorageLensConfigurationRequest(input *GetStorageLensConf
 
 // GetStorageLensConfiguration API operation for AWS S3 Control.
 //
+// This operation is not supported by directory buckets.
+//
 // Gets the Amazon S3 Storage Lens configuration. For more information, see
 // Assessing your storage activity and usage with Amazon S3 Storage Lens (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html)
 // in the Amazon S3 User Guide. For a complete list of S3 Storage Lens metrics,
@@ -5524,6 +5591,8 @@ func (c *S3Control) GetStorageLensConfigurationTaggingRequest(input *GetStorageL
 }
 
 // GetStorageLensConfigurationTagging API operation for AWS S3 Control.
+//
+// This operation is not supported by directory buckets.
 //
 // Gets the tags of Amazon S3 Storage Lens configuration. For more information
 // about S3 Storage Lens, see Assessing your storage activity and usage with
@@ -6121,6 +6190,8 @@ func (c *S3Control) ListAccessPointsRequest(input *ListAccessPointsInput) (req *
 
 // ListAccessPoints API operation for AWS S3 Control.
 //
+// This operation is not supported by directory buckets.
+//
 // Returns a list of the access points that are owned by the current account
 // that's associated with the specified bucket. You can retrieve up to 1000
 // access points per call. If the specified bucket has more than 1,000 access
@@ -6274,6 +6345,8 @@ func (c *S3Control) ListAccessPointsForObjectLambdaRequest(input *ListAccessPoin
 
 // ListAccessPointsForObjectLambda API operation for AWS S3 Control.
 //
+// This operation is not supported by directory buckets.
+//
 // Returns some or all (up to 1,000) access points associated with the Object
 // Lambda Access Point per call. If there are more access points than what can
 // be returned in one call, the response will include a continuation token that
@@ -6417,10 +6490,15 @@ func (c *S3Control) ListJobsRequest(input *ListJobsInput) (req *request.Request,
 
 // ListJobs API operation for AWS S3 Control.
 //
-// Lists current S3 Batch Operations jobs and jobs that have ended within the
-// last 30 days for the Amazon Web Services account making the request. For
-// more information, see S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html)
+// Lists current S3 Batch Operations jobs as well as the jobs that have ended
+// within the last 30 days for the Amazon Web Services account making the request.
+// For more information, see S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html)
 // in the Amazon S3 User Guide.
+//
+// # Permissions
+//
+// To use the ListJobs operation, you must have permission to perform the s3:ListJobs
+// action.
 //
 // Related actions include:
 //
@@ -6575,6 +6653,8 @@ func (c *S3Control) ListMultiRegionAccessPointsRequest(input *ListMultiRegionAcc
 
 // ListMultiRegionAccessPoints API operation for AWS S3 Control.
 //
+// This operation is not supported by directory buckets.
+//
 // Returns a list of the Multi-Region Access Points currently associated with
 // the specified Amazon Web Services account. Each call can return up to 100
 // Multi-Region Access Points, the maximum number of Multi-Region Access Points
@@ -6725,6 +6805,8 @@ func (c *S3Control) ListRegionalBucketsRequest(input *ListRegionalBucketsInput) 
 
 // ListRegionalBuckets API operation for AWS S3 Control.
 //
+// This operation is not supported by directory buckets.
+//
 // Returns a list of all Outposts buckets in an Outpost that are owned by the
 // authenticated sender of the request. For more information, see Using Amazon
 // S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
@@ -6864,6 +6946,8 @@ func (c *S3Control) ListStorageLensConfigurationsRequest(input *ListStorageLensC
 }
 
 // ListStorageLensConfigurations API operation for AWS S3 Control.
+//
+// This operation is not supported by directory buckets.
 //
 // Gets a list of Amazon S3 Storage Lens configurations. For more information
 // about S3 Storage Lens, see Assessing your storage activity and usage with
@@ -7316,6 +7400,8 @@ func (c *S3Control) PutAccessPointConfigurationForObjectLambdaRequest(input *Put
 
 // PutAccessPointConfigurationForObjectLambda API operation for AWS S3 Control.
 //
+// This operation is not supported by directory buckets.
+//
 // Replaces configuration for an Object Lambda Access Point.
 //
 // The following actions are related to PutAccessPointConfigurationForObjectLambda:
@@ -7398,6 +7484,8 @@ func (c *S3Control) PutAccessPointPolicyRequest(input *PutAccessPointPolicyInput
 }
 
 // PutAccessPointPolicy API operation for AWS S3 Control.
+//
+// This operation is not supported by directory buckets.
 //
 // Associates an access policy with the specified access point. Each access
 // point can have only one policy, so a request made to this API replaces any
@@ -7490,6 +7578,8 @@ func (c *S3Control) PutAccessPointPolicyForObjectLambdaRequest(input *PutAccessP
 }
 
 // PutAccessPointPolicyForObjectLambda API operation for AWS S3 Control.
+//
+// This operation is not supported by directory buckets.
 //
 // Creates or replaces resource policy for an Object Lambda Access Point. For
 // an example policy, see Creating Object Lambda Access Points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/olap-create.html#olap-create-cli)
@@ -8241,7 +8331,7 @@ func (c *S3Control) PutJobTaggingRequest(input *PutJobTaggingInput) (req *reques
 // associated with the job. To modify the existing tag set, you can either replace
 // the existing tag set entirely, or make changes within the existing tag set
 // by retrieving the existing tag set using GetJobTagging (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetJobTagging.html),
-// modify that tag set, and use this action to replace the tag set with the
+// modify that tag set, and use this operation to replace the tag set with the
 // one you modified. For more information, see Controlling access and labeling
 // jobs using tags (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-managing-jobs.html#batch-ops-job-tags)
 // in the Amazon S3 User Guide.
@@ -8264,6 +8354,8 @@ func (c *S3Control) PutJobTaggingRequest(input *PutJobTaggingInput) (req *reques
 //     restrictions related to characters and encodings, see User-Defined Tag
 //     Restrictions (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/allocation-tag-restrictions.html)
 //     in the Billing and Cost Management User Guide.
+//
+// # Permissions
 //
 // To use the PutJobTagging operation, you must have permission to perform the
 // s3:PutJobTagging action.
@@ -8365,6 +8457,8 @@ func (c *S3Control) PutMultiRegionAccessPointPolicyRequest(input *PutMultiRegion
 
 // PutMultiRegionAccessPointPolicy API operation for AWS S3 Control.
 //
+// This operation is not supported by directory buckets.
+//
 // Associates an access control policy with the specified Multi-Region Access
 // Point. Each Multi-Region Access Point can have only one policy, so a request
 // made to this action replaces any existing policy that is associated with
@@ -8455,6 +8549,8 @@ func (c *S3Control) PutPublicAccessBlockRequest(input *PutPublicAccessBlockInput
 
 // PutPublicAccessBlock API operation for AWS S3 Control.
 //
+// This operation is not supported by directory buckets.
+//
 // Creates or modifies the PublicAccessBlock configuration for an Amazon Web
 // Services account. For this operation, users must have the s3:PutAccountPublicAccessBlock
 // permission. For more information, see Using Amazon S3 block public access
@@ -8540,6 +8636,8 @@ func (c *S3Control) PutStorageLensConfigurationRequest(input *PutStorageLensConf
 
 // PutStorageLensConfiguration API operation for AWS S3 Control.
 //
+// This operation is not supported by directory buckets.
+//
 // Puts an Amazon S3 Storage Lens configuration. For more information about
 // S3 Storage Lens, see Working with Amazon S3 Storage Lens (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html)
 // in the Amazon S3 User Guide. For a complete list of S3 Storage Lens metrics,
@@ -8624,6 +8722,8 @@ func (c *S3Control) PutStorageLensConfigurationTaggingRequest(input *PutStorageL
 }
 
 // PutStorageLensConfigurationTagging API operation for AWS S3 Control.
+//
+// This operation is not supported by directory buckets.
 //
 // Put or replace tags on an existing Amazon S3 Storage Lens configuration.
 // For more information about S3 Storage Lens, see Assessing your storage activity
@@ -8712,6 +8812,8 @@ func (c *S3Control) SubmitMultiRegionAccessPointRoutesRequest(input *SubmitMulti
 }
 
 // SubmitMultiRegionAccessPointRoutes API operation for AWS S3 Control.
+//
+// This operation is not supported by directory buckets.
 //
 // Submits an updated route configuration for a Multi-Region Access Point. This
 // API operation updates the routing status for the specified Regions from active
@@ -9096,6 +9198,11 @@ func (c *S3Control) UpdateJobPriorityRequest(input *UpdateJobPriorityInput) (req
 // see S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html)
 // in the Amazon S3 User Guide.
 //
+// # Permissions
+//
+// To use the UpdateJobPriority operation, you must have permission to perform
+// the s3:UpdateJobPriority action.
+//
 // Related actions include:
 //
 //   - CreateJob (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateJob.html)
@@ -9190,10 +9297,15 @@ func (c *S3Control) UpdateJobStatusRequest(input *UpdateJobStatusInput) (req *re
 
 // UpdateJobStatus API operation for AWS S3 Control.
 //
-// Updates the status for the specified job. Use this action to confirm that
+// Updates the status for the specified job. Use this operation to confirm that
 // you want to run a job or to cancel an existing job. For more information,
 // see S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html)
 // in the Amazon S3 User Guide.
+//
+// # Permissions
+//
+// To use the UpdateJobStatus operation, you must have permission to perform
+// the s3:UpdateJobStatus action.
 //
 // Related actions include:
 //
@@ -14752,7 +14864,7 @@ type Destination struct {
 	// S3 on Outposts are stored in the OUTPOSTS storage class. S3 on Outposts uses
 	// the OUTPOSTS storage class to create the object replicas.
 	//
-	// Values other than OUTPOSTS are not supported by Amazon S3 on Outposts.
+	// Values other than OUTPOSTS aren't supported by Amazon S3 on Outposts.
 	StorageClass *string `type:"string" enum:"ReplicationStorageClass"`
 }
 
@@ -19368,6 +19480,8 @@ type JobManifest struct {
 	_ struct{} `type:"structure"`
 
 	// Contains the information required to locate the specified job's manifest.
+	// Manifests can't be imported from directory buckets. For more information,
+	// see Directory buckets (https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-buckets-overview.html).
 	//
 	// Location is a required field
 	Location *JobManifestLocation `type:"structure" required:"true"`
@@ -19586,7 +19700,9 @@ func (s *JobManifestGeneratorFilter) SetObjectSizeLessThanBytes(v int64) *JobMan
 	return s
 }
 
-// Contains the information required to locate a manifest object.
+// Contains the information required to locate a manifest object. Manifests
+// can't be imported from directory buckets. For more information, see Directory
+// buckets (https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-buckets-overview.html).
 type JobManifestLocation struct {
 	_ struct{} `type:"structure"`
 
@@ -19741,14 +19857,20 @@ type JobOperation struct {
 
 	// Directs the specified job to execute a DELETE Object tagging call on every
 	// object in the manifest.
+	//
+	// This functionality is not supported by directory buckets.
 	S3DeleteObjectTagging *S3DeleteObjectTaggingOperation `type:"structure"`
 
 	// Directs the specified job to initiate restore requests for every archived
 	// object in the manifest.
+	//
+	// This functionality is not supported by directory buckets.
 	S3InitiateRestoreObject *S3InitiateRestoreObjectOperation `type:"structure"`
 
 	// Directs the specified job to run a PutObjectAcl call on every object in the
 	// manifest.
+	//
+	// This functionality is not supported by directory buckets.
 	S3PutObjectAcl *S3SetObjectAclOperation `type:"structure"`
 
 	// Directs the specified job to run a PUT Copy object call on every object in
@@ -19760,6 +19882,8 @@ type JobOperation struct {
 	// API operation. For more information, see Using S3 Object Lock legal hold
 	// with S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-legal-hold.html)
 	// in the Amazon S3 User Guide.
+	//
+	// This functionality is not supported by directory buckets.
 	S3PutObjectLegalHold *S3SetObjectLegalHoldOperation `type:"structure"`
 
 	// Contains the configuration parameters for the Object Lock retention action
@@ -19767,14 +19891,20 @@ type JobOperation struct {
 	// underlying PutObjectRetention API operation. For more information, see Using
 	// S3 Object Lock retention with S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-retention-date.html)
 	// in the Amazon S3 User Guide.
+	//
+	// This functionality is not supported by directory buckets.
 	S3PutObjectRetention *S3SetObjectRetentionOperation `type:"structure"`
 
 	// Directs the specified job to run a PUT Object tagging call on every object
 	// in the manifest.
+	//
+	// This functionality is not supported by directory buckets.
 	S3PutObjectTagging *S3SetObjectTaggingOperation `type:"structure"`
 
 	// Directs the specified job to invoke ReplicateObject on every object in the
 	// job's manifest.
+	//
+	// This functionality is not supported by directory buckets.
 	S3ReplicateObject *S3ReplicateObjectOperation `type:"structure"`
 }
 
@@ -19953,6 +20083,9 @@ type JobReport struct {
 
 	// The Amazon Resource Name (ARN) for the bucket where specified job-completion
 	// report will be stored.
+	//
+	// Directory buckets - Directory buckets aren't supported as a location for
+	// Batch Operations to store job completion reports.
 	Bucket *string `min:"1" type:"string"`
 
 	// Indicates whether the specified job will generate a job-completion report.
@@ -20134,6 +20267,31 @@ type LambdaInvokeOperation struct {
 	// The Amazon Resource Name (ARN) for the Lambda function that the specified
 	// job will invoke on every object in the manifest.
 	FunctionArn *string `min:"1" type:"string"`
+
+	// Specifies the schema version for the payload that Batch Operations sends
+	// when invoking an Lambda function. Version 1.0 is the default. Version 2.0
+	// is required when you use Batch Operations to invoke Lambda functions that
+	// act on directory buckets, or if you need to specify UserArguments. For more
+	// information, see Using Lambda with Amazon S3 Batch Operations and Amazon
+	// S3 Express One Zone (https://aws.amazon.com/blogs/storage/using-lambda-with-s3-batch-operations-and-s3-express-one-zone/)
+	// in the Amazon Web Services Storage Blog.
+	//
+	// Ensure that your Lambda function code expects InvocationSchemaVersion 2.0
+	// and uses bucket name rather than bucket ARN. If the InvocationSchemaVersion
+	// does not match what your Lambda function expects, your function might not
+	// work as expected.
+	//
+	// Directory buckets - To initiate Amazon Web Services Lambda function to perform
+	// custom actions on objects in directory buckets, you must specify 2.0.
+	InvocationSchemaVersion *string `min:"1" type:"string"`
+
+	// Key-value pairs that are passed in the payload that Batch Operations sends
+	// when invoking an Lambda function. You must specify InvocationSchemaVersion
+	// 2.0 for LambdaInvoke operations that include UserArguments. For more information,
+	// see Using Lambda with Amazon S3 Batch Operations and Amazon S3 Express One
+	// Zone (https://aws.amazon.com/blogs/storage/using-lambda-with-s3-batch-operations-and-s3-express-one-zone/)
+	// in the Amazon Web Services Storage Blog.
+	UserArguments map[string]*string `min:"1" type:"map"`
 }
 
 // String returns the string representation.
@@ -20160,6 +20318,12 @@ func (s *LambdaInvokeOperation) Validate() error {
 	if s.FunctionArn != nil && len(*s.FunctionArn) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("FunctionArn", 1))
 	}
+	if s.InvocationSchemaVersion != nil && len(*s.InvocationSchemaVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InvocationSchemaVersion", 1))
+	}
+	if s.UserArguments != nil && len(s.UserArguments) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserArguments", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -20170,6 +20334,18 @@ func (s *LambdaInvokeOperation) Validate() error {
 // SetFunctionArn sets the FunctionArn field's value.
 func (s *LambdaInvokeOperation) SetFunctionArn(v string) *LambdaInvokeOperation {
 	s.FunctionArn = &v
+	return s
+}
+
+// SetInvocationSchemaVersion sets the InvocationSchemaVersion field's value.
+func (s *LambdaInvokeOperation) SetInvocationSchemaVersion(v string) *LambdaInvokeOperation {
+	s.InvocationSchemaVersion = &v
+	return s
+}
+
+// SetUserArguments sets the UserArguments field's value.
+func (s *LambdaInvokeOperation) SetUserArguments(v map[string]*string) *LambdaInvokeOperation {
+	s.UserArguments = v
 	return s
 }
 
@@ -26597,6 +26773,8 @@ func (s *S3BucketDestination) SetPrefix(v string) *S3BucketDestination {
 type S3CopyObjectOperation struct {
 	_ struct{} `type:"structure"`
 
+	//
+	// This functionality is not supported by directory buckets.
 	AccessControlGrants []*S3Grant `type:"list"`
 
 	// Specifies whether Amazon S3 should use an S3 Bucket Key for object encryption
@@ -26606,8 +26784,12 @@ type S3CopyObjectOperation struct {
 	//
 	// Specifying this header with an object action doesn’t affect bucket-level
 	// settings for S3 Bucket Key.
+	//
+	// This functionality is not supported by directory buckets.
 	BucketKeyEnabled *bool `type:"boolean"`
 
+	//
+	// This functionality is not supported by directory buckets.
 	CannedAccessControlList *string `type:"string" enum:"S3CannedAccessControlList"`
 
 	// Indicates the algorithm that you want Amazon S3 to use to create the checksum.
@@ -26624,27 +26806,52 @@ type S3CopyObjectOperation struct {
 	// no tags. Otherwise, Amazon S3 assigns the supplied tags to the new objects.
 	NewObjectMetadata *S3ObjectMetadata `type:"structure"`
 
+	// Specifies a list of tags to add to the destination objects after they are
+	// copied. If NewObjectTagging is not specified, the tags of the source objects
+	// are copied to destination objects by default.
+	//
+	// Directory buckets - Tags aren't supported by directory buckets. If your source
+	// objects have tags and your destination bucket is a directory bucket, specify
+	// an empty tag set in the NewObjectTagging field to prevent copying the source
+	// object tags to the directory bucket.
 	NewObjectTagging []*S3Tag `type:"list"`
 
 	// The legal hold status to be applied to all objects in the Batch Operations
 	// job.
+	//
+	// This functionality is not supported by directory buckets.
 	ObjectLockLegalHoldStatus *string `type:"string" enum:"S3ObjectLockLegalHoldStatus"`
 
 	// The retention mode to be applied to all objects in the Batch Operations job.
+	//
+	// This functionality is not supported by directory buckets.
 	ObjectLockMode *string `type:"string" enum:"S3ObjectLockMode"`
 
 	// The date when the applied object retention configuration expires on all objects
 	// in the Batch Operations job.
+	//
+	// This functionality is not supported by directory buckets.
 	ObjectLockRetainUntilDate *time.Time `type:"timestamp"`
 
-	// Specifies an optional metadata property for website redirects, x-amz-website-redirect-location.
-	// Allows webpage redirects if the object is accessed through a website endpoint.
+	// If the destination bucket is configured as a website, specifies an optional
+	// metadata property for website redirects, x-amz-website-redirect-location.
+	// Allows webpage redirects if the object copy is accessed through a website
+	// endpoint.
+	//
+	// This functionality is not supported by directory buckets.
 	RedirectLocation *string `min:"1" type:"string"`
 
+	//
+	// This functionality is not supported by directory buckets.
 	RequesterPays *bool `type:"boolean"`
 
+	//
+	// This functionality is not supported by directory buckets.
 	SSEAwsKmsKeyId *string `min:"1" type:"string"`
 
+	// Specify the storage class for the destination objects in a Copy operation.
+	//
+	// Directory buckets - This functionality is not supported by directory buckets.
 	StorageClass *string `type:"string" enum:"S3StorageClass"`
 
 	// Specifies the folder prefix that you want the objects to be copied into.
@@ -26653,8 +26860,15 @@ type S3CopyObjectOperation struct {
 	TargetKeyPrefix *string `min:"1" type:"string"`
 
 	// Specifies the destination bucket Amazon Resource Name (ARN) for the batch
-	// copy operation. For example, to copy objects to a bucket named destinationBucket,
-	// set the TargetResource property to arn:aws:s3:::destinationBucket.
+	// copy operation.
+	//
+	//    * General purpose buckets - For example, to copy objects to a general
+	//    purpose bucket named destinationBucket, set the TargetResource property
+	//    to arn:aws:s3:::destinationBucket.
+	//
+	//    * Directory buckets - For example, to copy objects to a directory bucket
+	//    named destinationBucket in the Availability Zone; identified by the AZ
+	//    ID usw2-az2, set the TargetResource property to arn:aws:s3express:region:account_id:/bucket/destination_bucket_base_name--usw2-az2--x-s3.
 	TargetResource *string `min:"1" type:"string"`
 
 	UnModifiedSinceConstraint *time.Time `type:"timestamp"`
@@ -26867,7 +27081,9 @@ type S3GeneratedManifestDescriptor struct {
 	// The format of the generated manifest.
 	Format *string `type:"string" enum:"GeneratedManifestFormat"`
 
-	// Contains the information required to locate a manifest object.
+	// Contains the information required to locate a manifest object. Manifests
+	// can't be imported from directory buckets. For more information, see Directory
+	// buckets (https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-buckets-overview.html).
 	Location *JobManifestLocation `type:"structure"`
 }
 
@@ -27090,15 +27306,20 @@ type S3JobManifestGenerator struct {
 	// Services account ID must match this value, else the job fails.
 	ExpectedBucketOwner *string `type:"string"`
 
-	// Specifies rules the S3JobManifestGenerator should use to use to decide whether
-	// an object in the source bucket should or should not be included in the generated
+	// Specifies rules the S3JobManifestGenerator should use to decide whether an
+	// object in the source bucket should or should not be included in the generated
 	// job manifest.
 	Filter *JobManifestGeneratorFilter `type:"structure"`
 
-	// Specifies the location the generated manifest will be written to.
+	// Specifies the location the generated manifest will be written to. Manifests
+	// can't be written to directory buckets. For more information, see Directory
+	// buckets (https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-buckets-overview.html).
 	ManifestOutputLocation *S3ManifestOutputLocation `type:"structure"`
 
 	// The source bucket used by the ManifestGenerator.
+	//
+	// Directory buckets - Directory buckets aren't supported as the source buckets
+	// used by S3JobManifestGenerator to generate the job manifest.
 	//
 	// SourceBucket is a required field
 	SourceBucket *string `min:"1" type:"string" required:"true"`
@@ -27181,6 +27402,9 @@ type S3ManifestOutputLocation struct {
 	_ struct{} `type:"structure"`
 
 	// The bucket ARN the generated manifest should be written to.
+	//
+	// Directory buckets - Directory buckets aren't supported as the buckets to
+	// store the generated manifest.
 	//
 	// Bucket is a required field
 	Bucket *string `min:"1" type:"string" required:"true"`
@@ -27336,16 +27560,22 @@ type S3ObjectMetadata struct {
 
 	ContentLanguage *string `min:"1" type:"string"`
 
+	// This member has been deprecated.
 	ContentLength *int64 `type:"long"`
 
+	// This member has been deprecated.
 	ContentMD5 *string `min:"1" type:"string"`
 
 	ContentType *string `min:"1" type:"string"`
 
 	HttpExpiresDate *time.Time `type:"timestamp"`
 
+	// This member has been deprecated.
 	RequesterCharged *bool `type:"boolean"`
 
+	//
+	// For directory buckets, only the server-side encryption with Amazon S3 managed
+	// keys (SSE-S3) (AES256) is supported.
 	SSEAlgorithm *string `type:"string" enum:"S3SSEAlgorithm"`
 
 	UserMetadata map[string]*string `type:"map"`
@@ -27643,6 +27873,8 @@ func (s *S3SetObjectAclOperation) SetAccessControlPolicy(v *S3AccessControlPolic
 // API operation. For more information, see Using S3 Object Lock legal hold
 // with S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-legal-hold.html)
 // in the Amazon S3 User Guide.
+//
+// This functionality is not supported by directory buckets.
 type S3SetObjectLegalHoldOperation struct {
 	_ struct{} `type:"structure"`
 
@@ -27700,6 +27932,8 @@ func (s *S3SetObjectLegalHoldOperation) SetLegalHold(v *S3ObjectLockLegalHold) *
 // underlying PutObjectRetention API operation. For more information, see Using
 // S3 Object Lock retention with S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-retention-date.html)
 // in the Amazon S3 User Guide.
+//
+// This functionality is not supported by directory buckets.
 type S3SetObjectRetentionOperation struct {
 	_ struct{} `type:"structure"`
 

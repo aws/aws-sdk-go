@@ -1,3 +1,21 @@
+Release v1.48.7 (2023-11-28)
+===
+
+### Service Client Updates
+* `service/accessanalyzer`: Updates service API and documentation
+* `service/bedrock`: Updates service API and documentation
+* `service/bedrock-agent`: Adds new service
+* `service/bedrock-agent-runtime`: Adds new service
+* `service/bedrock-runtime`: Updates service API, documentation, and waiters
+* `service/connect`: Updates service API, documentation, and paginators
+* `service/customer-profiles`: Updates service API and documentation
+* `service/qbusiness`: Updates service API, documentation, paginators, and examples
+* `service/qconnect`: Updates service API, documentation, paginators, and examples
+* `service/s3`: Updates service API, documentation, paginators, and examples
+  * Adds support for S3 Express One Zone.
+* `service/s3control`: Updates service API and documentation
+  * Adds support for S3 Express One Zone, and InvocationSchemaVersion 2.0 for S3 Batch Operations.
+
 Release v1.48.6 (2023-11-28)
 ===
 

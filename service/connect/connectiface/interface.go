@@ -64,6 +64,10 @@ type ConnectAPI interface {
 	ActivateEvaluationFormWithContext(aws.Context, *connect.ActivateEvaluationFormInput, ...request.Option) (*connect.ActivateEvaluationFormOutput, error)
 	ActivateEvaluationFormRequest(*connect.ActivateEvaluationFormInput) (*request.Request, *connect.ActivateEvaluationFormOutput)
 
+	AssociateAnalyticsDataSet(*connect.AssociateAnalyticsDataSetInput) (*connect.AssociateAnalyticsDataSetOutput, error)
+	AssociateAnalyticsDataSetWithContext(aws.Context, *connect.AssociateAnalyticsDataSetInput, ...request.Option) (*connect.AssociateAnalyticsDataSetOutput, error)
+	AssociateAnalyticsDataSetRequest(*connect.AssociateAnalyticsDataSetInput) (*request.Request, *connect.AssociateAnalyticsDataSetOutput)
+
 	AssociateApprovedOrigin(*connect.AssociateApprovedOriginInput) (*connect.AssociateApprovedOriginOutput, error)
 	AssociateApprovedOriginWithContext(aws.Context, *connect.AssociateApprovedOriginInput, ...request.Option) (*connect.AssociateApprovedOriginOutput, error)
 	AssociateApprovedOriginRequest(*connect.AssociateApprovedOriginInput) (*request.Request, *connect.AssociateApprovedOriginOutput)
@@ -75,6 +79,10 @@ type ConnectAPI interface {
 	AssociateDefaultVocabulary(*connect.AssociateDefaultVocabularyInput) (*connect.AssociateDefaultVocabularyOutput, error)
 	AssociateDefaultVocabularyWithContext(aws.Context, *connect.AssociateDefaultVocabularyInput, ...request.Option) (*connect.AssociateDefaultVocabularyOutput, error)
 	AssociateDefaultVocabularyRequest(*connect.AssociateDefaultVocabularyInput) (*request.Request, *connect.AssociateDefaultVocabularyOutput)
+
+	AssociateFlow(*connect.AssociateFlowInput) (*connect.AssociateFlowOutput, error)
+	AssociateFlowWithContext(aws.Context, *connect.AssociateFlowInput, ...request.Option) (*connect.AssociateFlowOutput, error)
+	AssociateFlowRequest(*connect.AssociateFlowInput) (*request.Request, *connect.AssociateFlowOutput)
 
 	AssociateInstanceStorageConfig(*connect.AssociateInstanceStorageConfigInput) (*connect.AssociateInstanceStorageConfigOutput, error)
 	AssociateInstanceStorageConfigWithContext(aws.Context, *connect.AssociateInstanceStorageConfigInput, ...request.Option) (*connect.AssociateInstanceStorageConfigOutput, error)
@@ -107,6 +115,14 @@ type ConnectAPI interface {
 	AssociateTrafficDistributionGroupUser(*connect.AssociateTrafficDistributionGroupUserInput) (*connect.AssociateTrafficDistributionGroupUserOutput, error)
 	AssociateTrafficDistributionGroupUserWithContext(aws.Context, *connect.AssociateTrafficDistributionGroupUserInput, ...request.Option) (*connect.AssociateTrafficDistributionGroupUserOutput, error)
 	AssociateTrafficDistributionGroupUserRequest(*connect.AssociateTrafficDistributionGroupUserInput) (*request.Request, *connect.AssociateTrafficDistributionGroupUserOutput)
+
+	BatchAssociateAnalyticsDataSet(*connect.BatchAssociateAnalyticsDataSetInput) (*connect.BatchAssociateAnalyticsDataSetOutput, error)
+	BatchAssociateAnalyticsDataSetWithContext(aws.Context, *connect.BatchAssociateAnalyticsDataSetInput, ...request.Option) (*connect.BatchAssociateAnalyticsDataSetOutput, error)
+	BatchAssociateAnalyticsDataSetRequest(*connect.BatchAssociateAnalyticsDataSetInput) (*request.Request, *connect.BatchAssociateAnalyticsDataSetOutput)
+
+	BatchDisassociateAnalyticsDataSet(*connect.BatchDisassociateAnalyticsDataSetInput) (*connect.BatchDisassociateAnalyticsDataSetOutput, error)
+	BatchDisassociateAnalyticsDataSetWithContext(aws.Context, *connect.BatchDisassociateAnalyticsDataSetInput, ...request.Option) (*connect.BatchDisassociateAnalyticsDataSetOutput, error)
+	BatchDisassociateAnalyticsDataSetRequest(*connect.BatchDisassociateAnalyticsDataSetInput) (*request.Request, *connect.BatchDisassociateAnalyticsDataSetOutput)
 
 	BatchGetFlowAssociation(*connect.BatchGetFlowAssociationInput) (*connect.BatchGetFlowAssociationOutput, error)
 	BatchGetFlowAssociationWithContext(aws.Context, *connect.BatchGetFlowAssociationInput, ...request.Option) (*connect.BatchGetFlowAssociationOutput, error)
@@ -392,6 +408,10 @@ type ConnectAPI interface {
 	DescribeVocabularyWithContext(aws.Context, *connect.DescribeVocabularyInput, ...request.Option) (*connect.DescribeVocabularyOutput, error)
 	DescribeVocabularyRequest(*connect.DescribeVocabularyInput) (*request.Request, *connect.DescribeVocabularyOutput)
 
+	DisassociateAnalyticsDataSet(*connect.DisassociateAnalyticsDataSetInput) (*connect.DisassociateAnalyticsDataSetOutput, error)
+	DisassociateAnalyticsDataSetWithContext(aws.Context, *connect.DisassociateAnalyticsDataSetInput, ...request.Option) (*connect.DisassociateAnalyticsDataSetOutput, error)
+	DisassociateAnalyticsDataSetRequest(*connect.DisassociateAnalyticsDataSetInput) (*request.Request, *connect.DisassociateAnalyticsDataSetOutput)
+
 	DisassociateApprovedOrigin(*connect.DisassociateApprovedOriginInput) (*connect.DisassociateApprovedOriginOutput, error)
 	DisassociateApprovedOriginWithContext(aws.Context, *connect.DisassociateApprovedOriginInput, ...request.Option) (*connect.DisassociateApprovedOriginOutput, error)
 	DisassociateApprovedOriginRequest(*connect.DisassociateApprovedOriginInput) (*request.Request, *connect.DisassociateApprovedOriginOutput)
@@ -399,6 +419,10 @@ type ConnectAPI interface {
 	DisassociateBot(*connect.DisassociateBotInput) (*connect.DisassociateBotOutput, error)
 	DisassociateBotWithContext(aws.Context, *connect.DisassociateBotInput, ...request.Option) (*connect.DisassociateBotOutput, error)
 	DisassociateBotRequest(*connect.DisassociateBotInput) (*request.Request, *connect.DisassociateBotOutput)
+
+	DisassociateFlow(*connect.DisassociateFlowInput) (*connect.DisassociateFlowOutput, error)
+	DisassociateFlowWithContext(aws.Context, *connect.DisassociateFlowInput, ...request.Option) (*connect.DisassociateFlowOutput, error)
+	DisassociateFlowRequest(*connect.DisassociateFlowInput) (*request.Request, *connect.DisassociateFlowOutput)
 
 	DisassociateInstanceStorageConfig(*connect.DisassociateInstanceStorageConfigInput) (*connect.DisassociateInstanceStorageConfigOutput, error)
 	DisassociateInstanceStorageConfigWithContext(aws.Context, *connect.DisassociateInstanceStorageConfigInput, ...request.Option) (*connect.DisassociateInstanceStorageConfigOutput, error)
@@ -458,6 +482,10 @@ type ConnectAPI interface {
 	GetFederationTokenWithContext(aws.Context, *connect.GetFederationTokenInput, ...request.Option) (*connect.GetFederationTokenOutput, error)
 	GetFederationTokenRequest(*connect.GetFederationTokenInput) (*request.Request, *connect.GetFederationTokenOutput)
 
+	GetFlowAssociation(*connect.GetFlowAssociationInput) (*connect.GetFlowAssociationOutput, error)
+	GetFlowAssociationWithContext(aws.Context, *connect.GetFlowAssociationInput, ...request.Option) (*connect.GetFlowAssociationOutput, error)
+	GetFlowAssociationRequest(*connect.GetFlowAssociationInput) (*request.Request, *connect.GetFlowAssociationOutput)
+
 	GetMetricData(*connect.GetMetricDataInput) (*connect.GetMetricDataOutput, error)
 	GetMetricDataWithContext(aws.Context, *connect.GetMetricDataInput, ...request.Option) (*connect.GetMetricDataOutput, error)
 	GetMetricDataRequest(*connect.GetMetricDataInput) (*request.Request, *connect.GetMetricDataOutput)
@@ -484,12 +512,20 @@ type ConnectAPI interface {
 	GetTrafficDistributionWithContext(aws.Context, *connect.GetTrafficDistributionInput, ...request.Option) (*connect.GetTrafficDistributionOutput, error)
 	GetTrafficDistributionRequest(*connect.GetTrafficDistributionInput) (*request.Request, *connect.GetTrafficDistributionOutput)
 
+	ImportPhoneNumber(*connect.ImportPhoneNumberInput) (*connect.ImportPhoneNumberOutput, error)
+	ImportPhoneNumberWithContext(aws.Context, *connect.ImportPhoneNumberInput, ...request.Option) (*connect.ImportPhoneNumberOutput, error)
+	ImportPhoneNumberRequest(*connect.ImportPhoneNumberInput) (*request.Request, *connect.ImportPhoneNumberOutput)
+
 	ListAgentStatuses(*connect.ListAgentStatusesInput) (*connect.ListAgentStatusesOutput, error)
 	ListAgentStatusesWithContext(aws.Context, *connect.ListAgentStatusesInput, ...request.Option) (*connect.ListAgentStatusesOutput, error)
 	ListAgentStatusesRequest(*connect.ListAgentStatusesInput) (*request.Request, *connect.ListAgentStatusesOutput)
 
 	ListAgentStatusesPages(*connect.ListAgentStatusesInput, func(*connect.ListAgentStatusesOutput, bool) bool) error
 	ListAgentStatusesPagesWithContext(aws.Context, *connect.ListAgentStatusesInput, func(*connect.ListAgentStatusesOutput, bool) bool, ...request.Option) error
+
+	ListAnalyticsDataAssociations(*connect.ListAnalyticsDataAssociationsInput) (*connect.ListAnalyticsDataAssociationsOutput, error)
+	ListAnalyticsDataAssociationsWithContext(aws.Context, *connect.ListAnalyticsDataAssociationsInput, ...request.Option) (*connect.ListAnalyticsDataAssociationsOutput, error)
+	ListAnalyticsDataAssociationsRequest(*connect.ListAnalyticsDataAssociationsInput) (*request.Request, *connect.ListAnalyticsDataAssociationsOutput)
 
 	ListApprovedOrigins(*connect.ListApprovedOriginsInput) (*connect.ListApprovedOriginsOutput, error)
 	ListApprovedOriginsWithContext(aws.Context, *connect.ListApprovedOriginsInput, ...request.Option) (*connect.ListApprovedOriginsOutput, error)
@@ -553,6 +589,13 @@ type ConnectAPI interface {
 
 	ListEvaluationFormsPages(*connect.ListEvaluationFormsInput, func(*connect.ListEvaluationFormsOutput, bool) bool) error
 	ListEvaluationFormsPagesWithContext(aws.Context, *connect.ListEvaluationFormsInput, func(*connect.ListEvaluationFormsOutput, bool) bool, ...request.Option) error
+
+	ListFlowAssociations(*connect.ListFlowAssociationsInput) (*connect.ListFlowAssociationsOutput, error)
+	ListFlowAssociationsWithContext(aws.Context, *connect.ListFlowAssociationsInput, ...request.Option) (*connect.ListFlowAssociationsOutput, error)
+	ListFlowAssociationsRequest(*connect.ListFlowAssociationsInput) (*request.Request, *connect.ListFlowAssociationsOutput)
+
+	ListFlowAssociationsPages(*connect.ListFlowAssociationsInput, func(*connect.ListFlowAssociationsOutput, bool) bool) error
+	ListFlowAssociationsPagesWithContext(aws.Context, *connect.ListFlowAssociationsInput, func(*connect.ListFlowAssociationsOutput, bool) bool, ...request.Option) error
 
 	ListHoursOfOperations(*connect.ListHoursOfOperationsInput) (*connect.ListHoursOfOperationsOutput, error)
 	ListHoursOfOperationsWithContext(aws.Context, *connect.ListHoursOfOperationsInput, ...request.Option) (*connect.ListHoursOfOperationsOutput, error)
@@ -644,6 +687,13 @@ type ConnectAPI interface {
 
 	ListQuickConnectsPages(*connect.ListQuickConnectsInput, func(*connect.ListQuickConnectsOutput, bool) bool) error
 	ListQuickConnectsPagesWithContext(aws.Context, *connect.ListQuickConnectsInput, func(*connect.ListQuickConnectsOutput, bool) bool, ...request.Option) error
+
+	ListRealtimeContactAnalysisSegmentsV2(*connect.ListRealtimeContactAnalysisSegmentsV2Input) (*connect.ListRealtimeContactAnalysisSegmentsV2Output, error)
+	ListRealtimeContactAnalysisSegmentsV2WithContext(aws.Context, *connect.ListRealtimeContactAnalysisSegmentsV2Input, ...request.Option) (*connect.ListRealtimeContactAnalysisSegmentsV2Output, error)
+	ListRealtimeContactAnalysisSegmentsV2Request(*connect.ListRealtimeContactAnalysisSegmentsV2Input) (*request.Request, *connect.ListRealtimeContactAnalysisSegmentsV2Output)
+
+	ListRealtimeContactAnalysisSegmentsV2Pages(*connect.ListRealtimeContactAnalysisSegmentsV2Input, func(*connect.ListRealtimeContactAnalysisSegmentsV2Output, bool) bool) error
+	ListRealtimeContactAnalysisSegmentsV2PagesWithContext(aws.Context, *connect.ListRealtimeContactAnalysisSegmentsV2Input, func(*connect.ListRealtimeContactAnalysisSegmentsV2Output, bool) bool, ...request.Option) error
 
 	ListRoutingProfileQueues(*connect.ListRoutingProfileQueuesInput) (*connect.ListRoutingProfileQueuesOutput, error)
 	ListRoutingProfileQueuesWithContext(aws.Context, *connect.ListRoutingProfileQueuesInput, ...request.Option) (*connect.ListRoutingProfileQueuesOutput, error)
@@ -844,6 +894,10 @@ type ConnectAPI interface {
 	SearchVocabulariesPages(*connect.SearchVocabulariesInput, func(*connect.SearchVocabulariesOutput, bool) bool) error
 	SearchVocabulariesPagesWithContext(aws.Context, *connect.SearchVocabulariesInput, func(*connect.SearchVocabulariesOutput, bool) bool, ...request.Option) error
 
+	SendChatIntegrationEvent(*connect.SendChatIntegrationEventInput) (*connect.SendChatIntegrationEventOutput, error)
+	SendChatIntegrationEventWithContext(aws.Context, *connect.SendChatIntegrationEventInput, ...request.Option) (*connect.SendChatIntegrationEventOutput, error)
+	SendChatIntegrationEventRequest(*connect.SendChatIntegrationEventInput) (*request.Request, *connect.SendChatIntegrationEventOutput)
+
 	StartChatContact(*connect.StartChatContactInput) (*connect.StartChatContactOutput, error)
 	StartChatContactWithContext(aws.Context, *connect.StartChatContactInput, ...request.Option) (*connect.StartChatContactOutput, error)
 	StartChatContactRequest(*connect.StartChatContactInput) (*request.Request, *connect.StartChatContactOutput)
@@ -867,6 +921,10 @@ type ConnectAPI interface {
 	StartTaskContact(*connect.StartTaskContactInput) (*connect.StartTaskContactOutput, error)
 	StartTaskContactWithContext(aws.Context, *connect.StartTaskContactInput, ...request.Option) (*connect.StartTaskContactOutput, error)
 	StartTaskContactRequest(*connect.StartTaskContactInput) (*request.Request, *connect.StartTaskContactOutput)
+
+	StartWebRTCContact(*connect.StartWebRTCContactInput) (*connect.StartWebRTCContactOutput, error)
+	StartWebRTCContactWithContext(aws.Context, *connect.StartWebRTCContactInput, ...request.Option) (*connect.StartWebRTCContactOutput, error)
+	StartWebRTCContactRequest(*connect.StartWebRTCContactInput) (*request.Request, *connect.StartWebRTCContactOutput)
 
 	StopContact(*connect.StopContactInput) (*connect.StopContactOutput, error)
 	StopContactWithContext(aws.Context, *connect.StopContactInput, ...request.Option) (*connect.StopContactOutput, error)

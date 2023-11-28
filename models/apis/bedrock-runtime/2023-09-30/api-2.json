@@ -87,7 +87,7 @@
       "type":"string",
       "max":2048,
       "min":1,
-      "pattern":"^(arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:(([0-9]{12}:custom-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}/[a-z0-9]{12})|(:foundation-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([.]?[a-z0-9-]{1,63}))|([0-9]{12}:provisioned-model/[a-z0-9]{12})))|([a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([.]?[a-z0-9-]{1,63}))|(([0-9a-zA-Z][_-]?)+)$"
+      "pattern":"(arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:(([0-9]{12}:custom-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}/[a-z0-9]{12})|(:foundation-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([.:]?[a-z0-9-]{1,63}))|([0-9]{12}:provisioned-model/[a-z0-9]{12})))|([a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([.:]?[a-z0-9-]{1,63}))|(([0-9a-zA-Z][_-]?)+)"
     },
     "InvokeModelRequest":{
       "type":"structure",
@@ -96,16 +96,16 @@
         "modelId"
       ],
       "members":{
-        "accept":{
-          "shape":"MimeType",
-          "location":"header",
-          "locationName":"Accept"
-        },
         "body":{"shape":"Body"},
         "contentType":{
           "shape":"MimeType",
           "location":"header",
           "locationName":"Content-Type"
+        },
+        "accept":{
+          "shape":"MimeType",
+          "location":"header",
+          "locationName":"Accept"
         },
         "modelId":{
           "shape":"InvokeModelIdentifier",
@@ -138,16 +138,16 @@
         "modelId"
       ],
       "members":{
-        "accept":{
-          "shape":"MimeType",
-          "location":"header",
-          "locationName":"X-Amzn-Bedrock-Accept"
-        },
         "body":{"shape":"Body"},
         "contentType":{
           "shape":"MimeType",
           "location":"header",
           "locationName":"Content-Type"
+        },
+        "accept":{
+          "shape":"MimeType",
+          "location":"header",
+          "locationName":"X-Amzn-Bedrock-Accept"
         },
         "modelId":{
           "shape":"InvokeModelIdentifier",
@@ -202,8 +202,8 @@
       "type":"structure",
       "members":{
         "message":{"shape":"NonBlankString"},
-        "originalMessage":{"shape":"NonBlankString"},
-        "originalStatusCode":{"shape":"StatusCode"}
+        "originalStatusCode":{"shape":"StatusCode"},
+        "originalMessage":{"shape":"NonBlankString"}
       },
       "error":{
         "httpStatusCode":424,
@@ -224,7 +224,7 @@
     },
     "NonBlankString":{
       "type":"string",
-      "pattern":"^[\\s\\S]*$"
+      "pattern":"[\\s\\S]*"
     },
     "PartBody":{
       "type":"blob",
@@ -257,9 +257,9 @@
         "chunk":{"shape":"PayloadPart"},
         "internalServerException":{"shape":"InternalServerException"},
         "modelStreamErrorException":{"shape":"ModelStreamErrorException"},
-        "modelTimeoutException":{"shape":"ModelTimeoutException"},
+        "validationException":{"shape":"ValidationException"},
         "throttlingException":{"shape":"ThrottlingException"},
-        "validationException":{"shape":"ValidationException"}
+        "modelTimeoutException":{"shape":"ModelTimeoutException"}
       },
       "eventstream":true
     },

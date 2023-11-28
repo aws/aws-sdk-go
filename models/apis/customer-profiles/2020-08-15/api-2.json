@@ -254,6 +254,22 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "DetectProfileObjectType":{
+      "name":"DetectProfileObjectType",
+      "http":{
+        "method":"POST",
+        "requestUri":"/domains/{DomainName}/detect/object-types"
+      },
+      "input":{"shape":"DetectProfileObjectTypeRequest"},
+      "output":{"shape":"DetectProfileObjectTypeResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "GetAutoMergingPreview":{
       "name":"GetAutoMergingPreview",
       "http":{
@@ -1529,6 +1545,39 @@
         "Status":{"shape":"EventStreamDestinationStatus"},
         "UnhealthySince":{"shape":"timestamp"}
       }
+    },
+    "DetectProfileObjectTypeRequest":{
+      "type":"structure",
+      "required":[
+        "Objects",
+        "DomainName"
+      ],
+      "members":{
+        "Objects":{"shape":"Objects"},
+        "DomainName":{
+          "shape":"name",
+          "location":"uri",
+          "locationName":"DomainName"
+        }
+      }
+    },
+    "DetectProfileObjectTypeResponse":{
+      "type":"structure",
+      "members":{
+        "DetectedProfileObjectTypes":{"shape":"DetectedProfileObjectTypes"}
+      }
+    },
+    "DetectedProfileObjectType":{
+      "type":"structure",
+      "members":{
+        "SourceLastUpdatedTimestampFormat":{"shape":"string1To255"},
+        "Fields":{"shape":"FieldMap"},
+        "Keys":{"shape":"KeyMap"}
+      }
+    },
+    "DetectedProfileObjectTypes":{
+      "type":"list",
+      "member":{"shape":"DetectedProfileObjectType"}
     },
     "DomainList":{
       "type":"list",
@@ -2896,6 +2945,13 @@
       "type":"map",
       "key":{"shape":"string1To255"},
       "value":{"shape":"typeName"}
+    },
+    "Objects":{
+      "type":"list",
+      "member":{"shape":"stringifiedJson"},
+      "max":5,
+      "min":1,
+      "sensitive":true
     },
     "Operator":{
       "type":"string",
