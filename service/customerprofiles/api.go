@@ -1424,6 +1424,97 @@ func (c *CustomerProfiles) DeleteWorkflowWithContext(ctx aws.Context, input *Del
 	return out, req.Send()
 }
 
+const opDetectProfileObjectType = "DetectProfileObjectType"
+
+// DetectProfileObjectTypeRequest generates a "aws/request.Request" representing the
+// client's request for the DetectProfileObjectType operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DetectProfileObjectType for more information on using the DetectProfileObjectType
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DetectProfileObjectTypeRequest method.
+//	req, resp := client.DetectProfileObjectTypeRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/DetectProfileObjectType
+func (c *CustomerProfiles) DetectProfileObjectTypeRequest(input *DetectProfileObjectTypeInput) (req *request.Request, output *DetectProfileObjectTypeOutput) {
+	op := &request.Operation{
+		Name:       opDetectProfileObjectType,
+		HTTPMethod: "POST",
+		HTTPPath:   "/domains/{DomainName}/detect/object-types",
+	}
+
+	if input == nil {
+		input = &DetectProfileObjectTypeInput{}
+	}
+
+	output = &DetectProfileObjectTypeOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DetectProfileObjectType API operation for Amazon Connect Customer Profiles.
+//
+// The process of detecting profile object type mapping by using given objects.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Customer Profiles's
+// API operation DetectProfileObjectType for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The input you provided is invalid.
+//
+//   - ResourceNotFoundException
+//     The requested resource does not exist, or access was denied.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     You exceeded the maximum number of requests.
+//
+//   - InternalServerException
+//     An internal service error occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/DetectProfileObjectType
+func (c *CustomerProfiles) DetectProfileObjectType(input *DetectProfileObjectTypeInput) (*DetectProfileObjectTypeOutput, error) {
+	req, out := c.DetectProfileObjectTypeRequest(input)
+	return out, req.Send()
+}
+
+// DetectProfileObjectTypeWithContext is the same as DetectProfileObjectType with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DetectProfileObjectType for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CustomerProfiles) DetectProfileObjectTypeWithContext(ctx aws.Context, input *DetectProfileObjectTypeInput, opts ...request.Option) (*DetectProfileObjectTypeOutput, error) {
+	req, out := c.DetectProfileObjectTypeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetAutoMergingPreview = "GetAutoMergingPreview"
 
 // GetAutoMergingPreviewRequest generates a "aws/request.Request" representing the
@@ -8613,6 +8704,166 @@ func (s *DestinationSummary) SetUnhealthySince(v time.Time) *DestinationSummary 
 // SetUri sets the Uri field's value.
 func (s *DestinationSummary) SetUri(v string) *DestinationSummary {
 	s.Uri = &v
+	return s
+}
+
+type DetectProfileObjectTypeInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique name of the domain.
+	//
+	// DomainName is a required field
+	DomainName *string `location:"uri" locationName:"DomainName" min:"1" type:"string" required:"true"`
+
+	// A string that is serialized from a JSON object.
+	//
+	// Objects is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by DetectProfileObjectTypeInput's
+	// String and GoString methods.
+	//
+	// Objects is a required field
+	Objects []*string `min:"1" type:"list" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DetectProfileObjectTypeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DetectProfileObjectTypeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DetectProfileObjectTypeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DetectProfileObjectTypeInput"}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+	if s.DomainName != nil && len(*s.DomainName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainName", 1))
+	}
+	if s.Objects == nil {
+		invalidParams.Add(request.NewErrParamRequired("Objects"))
+	}
+	if s.Objects != nil && len(s.Objects) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Objects", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *DetectProfileObjectTypeInput) SetDomainName(v string) *DetectProfileObjectTypeInput {
+	s.DomainName = &v
+	return s
+}
+
+// SetObjects sets the Objects field's value.
+func (s *DetectProfileObjectTypeInput) SetObjects(v []*string) *DetectProfileObjectTypeInput {
+	s.Objects = v
+	return s
+}
+
+type DetectProfileObjectTypeOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Detected ProfileObjectType mappings from given objects. A maximum of one
+	// mapping is supported.
+	DetectedProfileObjectTypes []*DetectedProfileObjectType `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DetectProfileObjectTypeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DetectProfileObjectTypeOutput) GoString() string {
+	return s.String()
+}
+
+// SetDetectedProfileObjectTypes sets the DetectedProfileObjectTypes field's value.
+func (s *DetectProfileObjectTypeOutput) SetDetectedProfileObjectTypes(v []*DetectedProfileObjectType) *DetectProfileObjectTypeOutput {
+	s.DetectedProfileObjectTypes = v
+	return s
+}
+
+// Contains ProfileObjectType mapping information from the model.
+type DetectedProfileObjectType struct {
+	_ struct{} `type:"structure"`
+
+	// A map of the name and the ObjectType field.
+	//
+	// Fields is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by DetectedProfileObjectType's
+	// String and GoString methods.
+	Fields map[string]*ObjectTypeField `type:"map" sensitive:"true"`
+
+	// A list of unique keys that can be used to map data to a profile.
+	//
+	// Keys is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by DetectedProfileObjectType's
+	// String and GoString methods.
+	Keys map[string][]*ObjectTypeKey `type:"map" sensitive:"true"`
+
+	// The format of sourceLastUpdatedTimestamp that was detected in fields.
+	SourceLastUpdatedTimestampFormat *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DetectedProfileObjectType) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DetectedProfileObjectType) GoString() string {
+	return s.String()
+}
+
+// SetFields sets the Fields field's value.
+func (s *DetectedProfileObjectType) SetFields(v map[string]*ObjectTypeField) *DetectedProfileObjectType {
+	s.Fields = v
+	return s
+}
+
+// SetKeys sets the Keys field's value.
+func (s *DetectedProfileObjectType) SetKeys(v map[string][]*ObjectTypeKey) *DetectedProfileObjectType {
+	s.Keys = v
+	return s
+}
+
+// SetSourceLastUpdatedTimestampFormat sets the SourceLastUpdatedTimestampFormat field's value.
+func (s *DetectedProfileObjectType) SetSourceLastUpdatedTimestampFormat(v string) *DetectedProfileObjectType {
+	s.SourceLastUpdatedTimestampFormat = &v
 	return s
 }
 

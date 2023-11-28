@@ -29,6 +29,22 @@
         {"shape":"ResourceConflictException"}
       ]
     },
+    "AssociateAnalyticsDataSet":{
+      "name":"AssociateAnalyticsDataSet",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/analytics-data/instance/{InstanceId}/association"
+      },
+      "input":{"shape":"AssociateAnalyticsDataSetRequest"},
+      "output":{"shape":"AssociateAnalyticsDataSetResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "AssociateApprovedOrigin":{
       "name":"AssociateApprovedOrigin",
       "http":{
@@ -77,6 +93,23 @@
         {"shape":"InternalServiceException"},
         {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"}
+      ]
+    },
+    "AssociateFlow":{
+      "name":"AssociateFlow",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/flow-associations/{InstanceId}"
+      },
+      "input":{"shape":"AssociateFlowRequest"},
+      "output":{"shape":"AssociateFlowResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "AssociateInstanceStorageConfig":{
@@ -211,6 +244,38 @@
         {"shape":"InternalServiceException"}
       ],
       "idempotent":true
+    },
+    "BatchAssociateAnalyticsDataSet":{
+      "name":"BatchAssociateAnalyticsDataSet",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/analytics-data/instance/{InstanceId}/associations"
+      },
+      "input":{"shape":"BatchAssociateAnalyticsDataSetRequest"},
+      "output":{"shape":"BatchAssociateAnalyticsDataSetResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
+    "BatchDisassociateAnalyticsDataSet":{
+      "name":"BatchDisassociateAnalyticsDataSet",
+      "http":{
+        "method":"POST",
+        "requestUri":"/analytics-data/instance/{InstanceId}/associations"
+      },
+      "input":{"shape":"BatchDisassociateAnalyticsDataSetRequest"},
+      "output":{"shape":"BatchDisassociateAnalyticsDataSetResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
     },
     "BatchGetFlowAssociation":{
       "name":"BatchGetFlowAssociation",
@@ -1392,6 +1457,21 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "DisassociateAnalyticsDataSet":{
+      "name":"DisassociateAnalyticsDataSet",
+      "http":{
+        "method":"POST",
+        "requestUri":"/analytics-data/instance/{InstanceId}/association"
+      },
+      "input":{"shape":"DisassociateAnalyticsDataSetRequest"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "DisassociateApprovedOrigin":{
       "name":"DisassociateApprovedOrigin",
       "http":{
@@ -1418,6 +1498,23 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServiceException"},
         {"shape":"InvalidRequestException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "DisassociateFlow":{
+      "name":"DisassociateFlow",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/flow-associations/{InstanceId}/{ResourceId}/{ResourceType}"
+      },
+      "input":{"shape":"DisassociateFlowRequest"},
+      "output":{"shape":"DisassociateFlowResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
         {"shape":"ThrottlingException"}
       ]
     },
@@ -1624,6 +1721,23 @@
         {"shape":"DuplicateResourceException"}
       ]
     },
+    "GetFlowAssociation":{
+      "name":"GetFlowAssociation",
+      "http":{
+        "method":"GET",
+        "requestUri":"/flow-associations/{InstanceId}/{ResourceId}/{ResourceType}"
+      },
+      "input":{"shape":"GetFlowAssociationRequest"},
+      "output":{"shape":"GetFlowAssociationResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "GetMetricData":{
       "name":"GetMetricData",
       "http":{
@@ -1704,6 +1818,23 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "ImportPhoneNumber":{
+      "name":"ImportPhoneNumber",
+      "http":{
+        "method":"POST",
+        "requestUri":"/phone-number/import"
+      },
+      "input":{"shape":"ImportPhoneNumberRequest"},
+      "output":{"shape":"ImportPhoneNumberResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"IdempotencyException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "ListAgentStatuses":{
       "name":"ListAgentStatuses",
       "http":{
@@ -1712,6 +1843,22 @@
       },
       "input":{"shape":"ListAgentStatusRequest"},
       "output":{"shape":"ListAgentStatusResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
+    "ListAnalyticsDataAssociations":{
+      "name":"ListAnalyticsDataAssociations",
+      "http":{
+        "method":"GET",
+        "requestUri":"/analytics-data/instance/{InstanceId}/association"
+      },
+      "input":{"shape":"ListAnalyticsDataAssociationsRequest"},
+      "output":{"shape":"ListAnalyticsDataAssociationsResponse"},
       "errors":[
         {"shape":"InvalidRequestException"},
         {"shape":"InvalidParameterException"},
@@ -1858,6 +2005,23 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"InternalServiceException"}
+      ]
+    },
+    "ListFlowAssociations":{
+      "name":"ListFlowAssociations",
+      "http":{
+        "method":"GET",
+        "requestUri":"/flow-associations-summary/{InstanceId}"
+      },
+      "input":{"shape":"ListFlowAssociationsRequest"},
+      "output":{"shape":"ListFlowAssociationsResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "ListHoursOfOperations":{
@@ -2062,6 +2226,23 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"InternalServiceException"}
+      ]
+    },
+    "ListRealtimeContactAnalysisSegmentsV2":{
+      "name":"ListRealtimeContactAnalysisSegmentsV2",
+      "http":{
+        "method":"POST",
+        "requestUri":"/contact/list-real-time-analysis-segments-v2/{InstanceId}/{ContactId}"
+      },
+      "input":{"shape":"ListRealtimeContactAnalysisSegmentsV2Request"},
+      "output":{"shape":"ListRealtimeContactAnalysisSegmentsV2Response"},
+      "errors":[
+        {"shape":"OutputTypeNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "ListRoutingProfileQueues":{
@@ -2564,6 +2745,22 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "SendChatIntegrationEvent":{
+      "name":"SendChatIntegrationEvent",
+      "http":{
+        "method":"POST",
+        "requestUri":"/chat-integration-event"
+      },
+      "input":{"shape":"SendChatIntegrationEventRequest"},
+      "output":{"shape":"SendChatIntegrationEventResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "StartChatContact":{
       "name":"StartChatContact",
       "http":{
@@ -2662,6 +2859,22 @@
         {"shape":"ThrottlingException"},
         {"shape":"ServiceQuotaExceededException"},
         {"shape":"InternalServiceException"}
+      ]
+    },
+    "StartWebRTCContact":{
+      "name":"StartWebRTCContact",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/contact/webrtc"
+      },
+      "input":{"shape":"StartWebRTCContactRequest"},
+      "output":{"shape":"StartWebRTCContactResponse"},
+      "errors":[
+        {"shape":"InternalServiceException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "StopContact":{
@@ -3481,6 +3694,7 @@
   },
   "shapes":{
     "ARN":{"type":"string"},
+    "AWSAccountId":{"type":"string"},
     "AccessDeniedException":{
       "type":"structure",
       "members":{
@@ -3695,10 +3909,30 @@
       "value":{"shape":"SecurityProfilePolicyValue"},
       "max":2
     },
+    "AllowedCapabilities":{
+      "type":"structure",
+      "members":{
+        "Customer":{"shape":"ParticipantCapabilities"},
+        "Agent":{"shape":"ParticipantCapabilities"}
+      }
+    },
     "AllowedMonitorCapabilities":{
       "type":"list",
       "member":{"shape":"MonitorCapability"},
       "max":2
+    },
+    "AnalyticsDataAssociationResult":{
+      "type":"structure",
+      "members":{
+        "DataSetId":{"shape":"DataSetId"},
+        "TargetAccountId":{"shape":"AWSAccountId"},
+        "ResourceShareId":{"shape":"String"},
+        "ResourceShareArn":{"shape":"ARN"}
+      }
+    },
+    "AnalyticsDataAssociationResults":{
+      "type":"list",
+      "member":{"shape":"AnalyticsDataAssociationResult"}
     },
     "AnswerMachineDetectionConfig":{
       "type":"structure",
@@ -3726,9 +3960,47 @@
       "max":10
     },
     "ApproximateTotalCount":{"type":"long"},
+    "ArtifactId":{
+      "type":"string",
+      "max":256,
+      "min":1
+    },
+    "ArtifactStatus":{
+      "type":"string",
+      "enum":[
+        "APPROVED",
+        "REJECTED",
+        "IN_PROGRESS"
+      ]
+    },
     "AssignContactCategoryActionDefinition":{
       "type":"structure",
       "members":{
+      }
+    },
+    "AssociateAnalyticsDataSetRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "DataSetId"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "DataSetId":{"shape":"DataSetId"},
+        "TargetAccountId":{"shape":"AWSAccountId"}
+      }
+    },
+    "AssociateAnalyticsDataSetResponse":{
+      "type":"structure",
+      "members":{
+        "DataSetId":{"shape":"DataSetId"},
+        "TargetAccountId":{"shape":"AWSAccountId"},
+        "ResourceShareId":{"shape":"String"},
+        "ResourceShareArn":{"shape":"ARN"}
       }
     },
     "AssociateApprovedOriginRequest":{
@@ -3780,6 +4052,30 @@
       }
     },
     "AssociateDefaultVocabularyResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "AssociateFlowRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "ResourceId",
+        "FlowId",
+        "ResourceType"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "ResourceId":{"shape":"ARN"},
+        "FlowId":{"shape":"ARN"},
+        "ResourceType":{"shape":"FlowAssociationResourceType"}
+      }
+    },
+    "AssociateFlowResponse":{
       "type":"structure",
       "members":{
       }
@@ -3944,6 +4240,11 @@
       "max":100,
       "min":1
     },
+    "AttachmentName":{
+      "type":"string",
+      "max":256,
+      "min":1
+    },
     "AttachmentReference":{
       "type":"structure",
       "members":{
@@ -3952,6 +4253,14 @@
         "Status":{"shape":"ReferenceStatus"}
       }
     },
+    "Attendee":{
+      "type":"structure",
+      "members":{
+        "AttendeeId":{"shape":"AttendeeId"},
+        "JoinToken":{"shape":"JoinToken"}
+      }
+    },
+    "AttendeeId":{"type":"string"},
     "Attribute":{
       "type":"structure",
       "members":{
@@ -3978,6 +4287,12 @@
       "type":"list",
       "member":{"shape":"Attribute"}
     },
+    "AudioFeatures":{
+      "type":"structure",
+      "members":{
+        "EchoReduction":{"shape":"MeetingFeatureStatus"}
+      }
+    },
     "AutoAccept":{"type":"boolean"},
     "AvailableNumberSummary":{
       "type":"structure",
@@ -3996,6 +4311,52 @@
       "max":31,
       "min":8,
       "pattern":"[a-z]{2}(-[a-z]+){1,2}(-[0-9])?"
+    },
+    "BatchAssociateAnalyticsDataSetRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "DataSetIds"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "DataSetIds":{"shape":"DataSetIds"},
+        "TargetAccountId":{"shape":"AWSAccountId"}
+      }
+    },
+    "BatchAssociateAnalyticsDataSetResponse":{
+      "type":"structure",
+      "members":{
+        "Created":{"shape":"AnalyticsDataAssociationResults"},
+        "Errors":{"shape":"ErrorResults"}
+      }
+    },
+    "BatchDisassociateAnalyticsDataSetRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "DataSetIds"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "DataSetIds":{"shape":"DataSetIds"},
+        "TargetAccountId":{"shape":"AWSAccountId"}
+      }
+    },
+    "BatchDisassociateAnalyticsDataSetResponse":{
+      "type":"structure",
+      "members":{
+        "Deleted":{"shape":"DataSetIds"},
+        "Errors":{"shape":"ErrorResults"}
+      }
     },
     "BatchGetFlowAssociationRequest":{
       "type":"structure",
@@ -4107,6 +4468,23 @@
       "max":10080,
       "min":60
     },
+    "ChatEvent":{
+      "type":"structure",
+      "required":["Type"],
+      "members":{
+        "Type":{"shape":"ChatEventType"},
+        "ContentType":{"shape":"ChatContentType"},
+        "Content":{"shape":"ChatContent"}
+      }
+    },
+    "ChatEventType":{
+      "type":"string",
+      "enum":[
+        "DISCONNECT",
+        "MESSAGE",
+        "EVENT"
+      ]
+    },
     "ChatMessage":{
       "type":"structure",
       "required":[
@@ -4171,7 +4549,8 @@
         "TargetArn":{"shape":"ARN"},
         "InstanceId":{"shape":"InstanceId"},
         "Tags":{"shape":"TagMap"},
-        "PhoneNumberStatus":{"shape":"PhoneNumberStatus"}
+        "PhoneNumberStatus":{"shape":"PhoneNumberStatus"},
+        "SourcePhoneNumberArn":{"shape":"ARN"}
       }
     },
     "ClientToken":{
@@ -4191,6 +4570,13 @@
       "type":"integer",
       "max":10,
       "min":1
+    },
+    "ConnectionData":{
+      "type":"structure",
+      "members":{
+        "Attendee":{"shape":"Attendee"},
+        "Meeting":{"shape":"Meeting"}
+      }
     },
     "Contact":{
       "type":"structure",
@@ -4423,6 +4809,11 @@
     "Content":{
       "type":"string",
       "max":1024,
+      "min":1
+    },
+    "ContentType":{
+      "type":"string",
+      "max":255,
       "min":1
     },
     "ControlPlaneTagFilter":{
@@ -5196,6 +5587,15 @@
     "CurrentMetrics":{
       "type":"list",
       "member":{"shape":"CurrentMetric"}
+    },
+    "DataSetId":{
+      "type":"string",
+      "max":255,
+      "min":1
+    },
+    "DataSetIds":{
+      "type":"list",
+      "member":{"shape":"DataSetId"}
     },
     "DateReference":{
       "type":"structure",
@@ -6280,6 +6680,11 @@
       "min":1,
       "pattern":"(^[\\S].*[\\S]$)|(^[\\S]$)"
     },
+    "DestinationId":{
+      "type":"string",
+      "max":255,
+      "min":1
+    },
     "DestinationNotAllowedException":{
       "type":"structure",
       "members":{
@@ -6325,6 +6730,22 @@
       ]
     },
     "DirectoryUserId":{"type":"string"},
+    "DisassociateAnalyticsDataSetRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "DataSetId"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "DataSetId":{"shape":"DataSetId"},
+        "TargetAccountId":{"shape":"AWSAccountId"}
+      }
+    },
     "DisassociateApprovedOriginRequest":{
       "type":"structure",
       "required":[
@@ -6355,6 +6776,36 @@
         },
         "LexBot":{"shape":"LexBot"},
         "LexV2Bot":{"shape":"LexV2Bot"}
+      }
+    },
+    "DisassociateFlowRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "ResourceId",
+        "ResourceType"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "ResourceId":{
+          "shape":"ARN",
+          "location":"uri",
+          "locationName":"ResourceId"
+        },
+        "ResourceType":{
+          "shape":"FlowAssociationResourceType",
+          "location":"uri",
+          "locationName":"ResourceType"
+        }
+      }
+    },
+    "DisassociateFlowResponse":{
+      "type":"structure",
+      "members":{
       }
     },
     "DisassociateInstanceStorageConfigRequest":{
@@ -6639,6 +7090,17 @@
         "VOIP",
         "CONTACT_FLOW"
       ]
+    },
+    "ErrorResult":{
+      "type":"structure",
+      "members":{
+        "ErrorCode":{"shape":"String"},
+        "ErrorMessage":{"shape":"String"}
+      }
+    },
+    "ErrorResults":{
+      "type":"list",
+      "member":{"shape":"ErrorResult"}
     },
     "Evaluation":{
       "type":"structure",
@@ -7149,6 +7611,7 @@
       "enum":[
         "OnPostCallAnalysisAvailable",
         "OnRealTimeCallAnalysisAvailable",
+        "OnRealTimeChatAnalysisAvailable",
         "OnPostChatAnalysisAvailable",
         "OnZendeskTicketCreate",
         "OnZendeskTicketStatusUpdate",
@@ -7210,6 +7673,10 @@
       "member":{"shape":"FilterV2"},
       "max":5,
       "min":1
+    },
+    "FlowAssociationResourceType":{
+      "type":"string",
+      "enum":["SMS_PHONE_NUMBER"]
     },
     "FlowAssociationSummary":{
       "type":"structure",
@@ -7336,6 +7803,39 @@
         "SignInUrl":{"shape":"Url"},
         "UserArn":{"shape":"ARN"},
         "UserId":{"shape":"AgentResourceId"}
+      }
+    },
+    "GetFlowAssociationRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "ResourceId",
+        "ResourceType"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "ResourceId":{
+          "shape":"ARN",
+          "location":"uri",
+          "locationName":"ResourceId"
+        },
+        "ResourceType":{
+          "shape":"FlowAssociationResourceType",
+          "location":"uri",
+          "locationName":"ResourceType"
+        }
+      }
+    },
+    "GetFlowAssociationResponse":{
+      "type":"structure",
+      "members":{
+        "ResourceId":{"shape":"ARN"},
+        "FlowId":{"shape":"ARN"},
+        "ResourceType":{"shape":"FlowAssociationResourceType"}
       }
     },
     "GetMetricDataRequest":{
@@ -7821,6 +8321,30 @@
       "error":{"httpStatusCode":409},
       "exception":true
     },
+    "ImportPhoneNumberRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "SourcePhoneNumberArn"
+      ],
+      "members":{
+        "InstanceId":{"shape":"InstanceId"},
+        "SourcePhoneNumberArn":{"shape":"ARN"},
+        "PhoneNumberDescription":{"shape":"PhoneNumberDescription"},
+        "Tags":{"shape":"TagMap"},
+        "ClientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "ImportPhoneNumberResponse":{
+      "type":"structure",
+      "members":{
+        "PhoneNumberId":{"shape":"PhoneNumberId"},
+        "PhoneNumberArn":{"shape":"ARN"}
+      }
+    },
     "InboundCallsEnabled":{"type":"boolean"},
     "Instance":{
       "type":"structure",
@@ -8046,6 +8570,10 @@
       "type":"list",
       "member":{"shape":"InvisibleFieldInfo"}
     },
+    "JoinToken":{
+      "type":"string",
+      "sensitive":true
+    },
     "KeyId":{
       "type":"string",
       "max":128,
@@ -8166,6 +8694,39 @@
       "members":{
         "NextToken":{"shape":"NextToken"},
         "AgentStatusSummaryList":{"shape":"AgentStatusSummaryList"}
+      }
+    },
+    "ListAnalyticsDataAssociationsRequest":{
+      "type":"structure",
+      "required":["InstanceId"],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "DataSetId":{
+          "shape":"DataSetId",
+          "location":"querystring",
+          "locationName":"DataSetId"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "MaxResults":{
+          "shape":"MaxResult1000",
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListAnalyticsDataAssociationsResponse":{
+      "type":"structure",
+      "members":{
+        "Results":{"shape":"AnalyticsDataAssociationResults"},
+        "NextToken":{"shape":"NextToken"}
       }
     },
     "ListApprovedOriginsRequest":{
@@ -8464,6 +9025,40 @@
       "type":"string",
       "enum":["VOICE_PHONE_NUMBER"]
     },
+    "ListFlowAssociationsRequest":{
+      "type":"structure",
+      "required":["InstanceId"],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "ResourceType":{
+          "shape":"ListFlowAssociationResourceType",
+          "location":"querystring",
+          "locationName":"ResourceType"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "MaxResults":{
+          "shape":"MaxResult1000",
+          "box":true,
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListFlowAssociationsResponse":{
+      "type":"structure",
+      "members":{
+        "FlowAssociationSummaryList":{"shape":"FlowAssociationSummaryList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "ListHoursOfOperationsRequest":{
       "type":"structure",
       "required":["InstanceId"],
@@ -8725,7 +9320,9 @@
         "PhoneNumberCountryCode":{"shape":"PhoneNumberCountryCode"},
         "PhoneNumberType":{"shape":"PhoneNumberType"},
         "TargetArn":{"shape":"ARN"},
-        "InstanceId":{"shape":"InstanceId"}
+        "InstanceId":{"shape":"InstanceId"},
+        "PhoneNumberDescription":{"shape":"PhoneNumberDescription"},
+        "SourcePhoneNumberArn":{"shape":"ARN"}
       }
     },
     "ListPhoneNumbersSummaryList":{
@@ -8887,6 +9484,45 @@
       "members":{
         "QuickConnectSummaryList":{"shape":"QuickConnectSummaryList"},
         "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListRealtimeContactAnalysisSegmentsV2Request":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "ContactId",
+        "OutputType",
+        "SegmentTypes"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "ContactId":{
+          "shape":"ContactId",
+          "location":"uri",
+          "locationName":"ContactId"
+        },
+        "MaxResults":{"shape":"MaxResult100"},
+        "NextToken":{"shape":"LargeNextToken"},
+        "OutputType":{"shape":"RealTimeContactAnalysisOutputType"},
+        "SegmentTypes":{"shape":"RealTimeContactAnalysisSegmentTypes"}
+      }
+    },
+    "ListRealtimeContactAnalysisSegmentsV2Response":{
+      "type":"structure",
+      "required":[
+        "Channel",
+        "Status",
+        "Segments"
+      ],
+      "members":{
+        "Channel":{"shape":"RealTimeContactAnalysisSupportedChannel"},
+        "Status":{"shape":"RealTimeContactAnalysisStatus"},
+        "Segments":{"shape":"RealtimeContactAnalysisSegments"},
+        "NextToken":{"shape":"LargeNextToken"}
       }
     },
     "ListRoutingProfileQueuesRequest":{
@@ -9475,6 +10111,40 @@
         "CrossChannelBehavior":{"shape":"CrossChannelBehavior"}
       }
     },
+    "MediaPlacement":{
+      "type":"structure",
+      "members":{
+        "AudioHostUrl":{"shape":"URI"},
+        "AudioFallbackUrl":{"shape":"URI"},
+        "SignalingUrl":{"shape":"URI"},
+        "TurnControlUrl":{"shape":"URI"},
+        "EventIngestionUrl":{"shape":"URI"}
+      }
+    },
+    "MediaRegion":{"type":"string"},
+    "Meeting":{
+      "type":"structure",
+      "members":{
+        "MediaRegion":{"shape":"MediaRegion"},
+        "MediaPlacement":{"shape":"MediaPlacement"},
+        "MeetingFeatures":{"shape":"MeetingFeaturesConfiguration"},
+        "MeetingId":{"shape":"MeetingId"}
+      }
+    },
+    "MeetingFeatureStatus":{
+      "type":"string",
+      "enum":[
+        "AVAILABLE",
+        "UNAVAILABLE"
+      ]
+    },
+    "MeetingFeaturesConfiguration":{
+      "type":"structure",
+      "members":{
+        "Audio":{"shape":"AudioFeatures"}
+      }
+    },
+    "MeetingId":{"type":"string"},
     "Message":{"type":"string"},
     "MetricDataCollectionsV2":{
       "type":"list",
@@ -9595,6 +10265,16 @@
       "max":128,
       "min":1
     },
+    "NewChatCreated":{"type":"boolean"},
+    "NewSessionDetails":{
+      "type":"structure",
+      "members":{
+        "SupportedMessagingContentTypes":{"shape":"SupportedMessagingContentTypes"},
+        "ParticipantDetails":{"shape":"ParticipantDetails"},
+        "Attributes":{"shape":"Attributes"},
+        "StreamingConfiguration":{"shape":"ChatStreamingConfiguration"}
+      }
+    },
     "NextToken":{"type":"string"},
     "NextToken2500":{
       "type":"string",
@@ -9673,10 +10353,24 @@
       "error":{"httpStatusCode":403},
       "exception":true
     },
+    "OutputTypeNotFoundException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"Message"}
+      },
+      "error":{"httpStatusCode":404},
+      "exception":true
+    },
     "PEM":{
       "type":"string",
       "max":1024,
       "min":1
+    },
+    "ParticipantCapabilities":{
+      "type":"structure",
+      "members":{
+        "Video":{"shape":"VideoCapability"}
+      }
     },
     "ParticipantDetails":{
       "type":"structure",
@@ -10085,7 +10779,8 @@
         "UIFN",
         "SHARED",
         "THIRD_PARTY_TF",
-        "THIRD_PARTY_DID"
+        "THIRD_PARTY_DID",
+        "SHORT_CODE"
       ]
     },
     "PhoneNumberTypes":{
@@ -10495,6 +11190,278 @@
       "type":"list",
       "member":{"shape":"ReadOnlyFieldInfo"}
     },
+    "RealTimeContactAnalysisAttachment":{
+      "type":"structure",
+      "required":[
+        "AttachmentName",
+        "AttachmentId"
+      ],
+      "members":{
+        "AttachmentName":{"shape":"AttachmentName"},
+        "ContentType":{"shape":"ContentType"},
+        "AttachmentId":{"shape":"ArtifactId"},
+        "Status":{"shape":"ArtifactStatus"}
+      }
+    },
+    "RealTimeContactAnalysisAttachments":{
+      "type":"list",
+      "member":{"shape":"RealTimeContactAnalysisAttachment"},
+      "max":10
+    },
+    "RealTimeContactAnalysisCategoryDetails":{
+      "type":"structure",
+      "required":["PointsOfInterest"],
+      "members":{
+        "PointsOfInterest":{"shape":"RealTimeContactAnalysisPointsOfInterest"}
+      }
+    },
+    "RealTimeContactAnalysisCategoryName":{
+      "type":"string",
+      "max":256,
+      "min":1
+    },
+    "RealTimeContactAnalysisCharacterInterval":{
+      "type":"structure",
+      "required":[
+        "BeginOffsetChar",
+        "EndOffsetChar"
+      ],
+      "members":{
+        "BeginOffsetChar":{"shape":"RealTimeContactAnalysisOffset"},
+        "EndOffsetChar":{"shape":"RealTimeContactAnalysisOffset"}
+      }
+    },
+    "RealTimeContactAnalysisCharacterIntervals":{
+      "type":"list",
+      "member":{"shape":"RealTimeContactAnalysisCharacterInterval"}
+    },
+    "RealTimeContactAnalysisContentType":{
+      "type":"string",
+      "max":256,
+      "min":1
+    },
+    "RealTimeContactAnalysisEventType":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "RealTimeContactAnalysisId256":{
+      "type":"string",
+      "max":256,
+      "min":1
+    },
+    "RealTimeContactAnalysisIssueDetected":{
+      "type":"structure",
+      "required":["TranscriptItems"],
+      "members":{
+        "TranscriptItems":{"shape":"RealTimeContactAnalysisTranscriptItemsWithContent"}
+      }
+    },
+    "RealTimeContactAnalysisIssuesDetected":{
+      "type":"list",
+      "member":{"shape":"RealTimeContactAnalysisIssueDetected"}
+    },
+    "RealTimeContactAnalysisMatchedDetails":{
+      "type":"map",
+      "key":{"shape":"RealTimeContactAnalysisCategoryName"},
+      "value":{"shape":"RealTimeContactAnalysisCategoryDetails"},
+      "max":150,
+      "min":0
+    },
+    "RealTimeContactAnalysisOffset":{
+      "type":"integer",
+      "min":0
+    },
+    "RealTimeContactAnalysisOutputType":{
+      "type":"string",
+      "enum":[
+        "Raw",
+        "Redacted"
+      ]
+    },
+    "RealTimeContactAnalysisPointOfInterest":{
+      "type":"structure",
+      "members":{
+        "TranscriptItems":{"shape":"RealTimeContactAnalysisTranscriptItemsWithCharacterOffsets"}
+      }
+    },
+    "RealTimeContactAnalysisPointsOfInterest":{
+      "type":"list",
+      "member":{"shape":"RealTimeContactAnalysisPointOfInterest"},
+      "max":5,
+      "min":0
+    },
+    "RealTimeContactAnalysisSegmentAttachments":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "ParticipantId",
+        "ParticipantRole",
+        "Attachments",
+        "Time"
+      ],
+      "members":{
+        "Id":{"shape":"RealTimeContactAnalysisId256"},
+        "ParticipantId":{"shape":"ParticipantId"},
+        "ParticipantRole":{"shape":"ParticipantRole"},
+        "DisplayName":{"shape":"DisplayName"},
+        "Attachments":{"shape":"RealTimeContactAnalysisAttachments"},
+        "Time":{"shape":"RealTimeContactAnalysisTimeData"}
+      }
+    },
+    "RealTimeContactAnalysisSegmentCategories":{
+      "type":"structure",
+      "required":["MatchedDetails"],
+      "members":{
+        "MatchedDetails":{"shape":"RealTimeContactAnalysisMatchedDetails"}
+      }
+    },
+    "RealTimeContactAnalysisSegmentEvent":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "EventType",
+        "Time"
+      ],
+      "members":{
+        "Id":{"shape":"RealTimeContactAnalysisId256"},
+        "ParticipantId":{"shape":"ParticipantId"},
+        "ParticipantRole":{"shape":"ParticipantRole"},
+        "DisplayName":{"shape":"DisplayName"},
+        "EventType":{"shape":"RealTimeContactAnalysisEventType"},
+        "Time":{"shape":"RealTimeContactAnalysisTimeData"}
+      }
+    },
+    "RealTimeContactAnalysisSegmentIssues":{
+      "type":"structure",
+      "required":["IssuesDetected"],
+      "members":{
+        "IssuesDetected":{"shape":"RealTimeContactAnalysisIssuesDetected"}
+      }
+    },
+    "RealTimeContactAnalysisSegmentTranscript":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "ParticipantId",
+        "ParticipantRole",
+        "Content",
+        "Time"
+      ],
+      "members":{
+        "Id":{"shape":"RealTimeContactAnalysisId256"},
+        "ParticipantId":{"shape":"ParticipantId"},
+        "ParticipantRole":{"shape":"ParticipantRole"},
+        "DisplayName":{"shape":"DisplayName"},
+        "Content":{"shape":"RealTimeContactAnalysisTranscriptContent"},
+        "ContentType":{"shape":"RealTimeContactAnalysisContentType"},
+        "Time":{"shape":"RealTimeContactAnalysisTimeData"},
+        "Redaction":{"shape":"RealTimeContactAnalysisTranscriptItemRedaction"},
+        "Sentiment":{"shape":"RealTimeContactAnalysisSentimentLabel"}
+      }
+    },
+    "RealTimeContactAnalysisSegmentType":{
+      "type":"string",
+      "enum":[
+        "Transcript",
+        "Categories",
+        "Issues",
+        "Event",
+        "Attachments"
+      ]
+    },
+    "RealTimeContactAnalysisSegmentTypes":{
+      "type":"list",
+      "member":{"shape":"RealTimeContactAnalysisSegmentType"},
+      "max":5
+    },
+    "RealTimeContactAnalysisSentimentLabel":{
+      "type":"string",
+      "enum":[
+        "POSITIVE",
+        "NEGATIVE",
+        "NEUTRAL"
+      ]
+    },
+    "RealTimeContactAnalysisStatus":{
+      "type":"string",
+      "enum":[
+        "IN_PROGRESS",
+        "FAILED",
+        "COMPLETED"
+      ]
+    },
+    "RealTimeContactAnalysisSupportedChannel":{
+      "type":"string",
+      "enum":[
+        "VOICE",
+        "CHAT"
+      ]
+    },
+    "RealTimeContactAnalysisTimeData":{
+      "type":"structure",
+      "members":{
+        "AbsoluteTime":{"shape":"RealTimeContactAnalysisTimeInstant"}
+      },
+      "union":true
+    },
+    "RealTimeContactAnalysisTimeInstant":{
+      "type":"timestamp",
+      "timestampFormat":"iso8601"
+    },
+    "RealTimeContactAnalysisTranscriptContent":{
+      "type":"string",
+      "max":16384,
+      "min":1
+    },
+    "RealTimeContactAnalysisTranscriptItemRedaction":{
+      "type":"structure",
+      "members":{
+        "CharacterOffsets":{"shape":"RealTimeContactAnalysisCharacterIntervals"}
+      }
+    },
+    "RealTimeContactAnalysisTranscriptItemWithCharacterOffsets":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{"shape":"RealTimeContactAnalysisId256"},
+        "CharacterOffsets":{"shape":"RealTimeContactAnalysisCharacterInterval"}
+      }
+    },
+    "RealTimeContactAnalysisTranscriptItemWithContent":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Content":{"shape":"RealTimeContactAnalysisTranscriptContent"},
+        "Id":{"shape":"RealTimeContactAnalysisId256"},
+        "CharacterOffsets":{"shape":"RealTimeContactAnalysisCharacterInterval"}
+      }
+    },
+    "RealTimeContactAnalysisTranscriptItemsWithCharacterOffsets":{
+      "type":"list",
+      "member":{"shape":"RealTimeContactAnalysisTranscriptItemWithCharacterOffsets"},
+      "max":10,
+      "min":0
+    },
+    "RealTimeContactAnalysisTranscriptItemsWithContent":{
+      "type":"list",
+      "member":{"shape":"RealTimeContactAnalysisTranscriptItemWithContent"}
+    },
+    "RealtimeContactAnalysisSegment":{
+      "type":"structure",
+      "members":{
+        "Transcript":{"shape":"RealTimeContactAnalysisSegmentTranscript"},
+        "Categories":{"shape":"RealTimeContactAnalysisSegmentCategories"},
+        "Issues":{"shape":"RealTimeContactAnalysisSegmentIssues"},
+        "Event":{"shape":"RealTimeContactAnalysisSegmentEvent"},
+        "Attachments":{"shape":"RealTimeContactAnalysisSegmentAttachments"}
+      },
+      "union":true
+    },
+    "RealtimeContactAnalysisSegments":{
+      "type":"list",
+      "member":{"shape":"RealtimeContactAnalysisSegment"}
+    },
     "Reference":{
       "type":"structure",
       "required":[
@@ -10689,7 +11656,8 @@
         "PARTICIPANT",
         "HIERARCHY_LEVEL",
         "HIERARCHY_GROUP",
-        "USER"
+        "USER",
+        "PHONE_NUMBER"
       ]
     },
     "ResourceTypeList":{
@@ -11324,6 +12292,28 @@
       "key":{"shape":"SegmentAttributeName"},
       "value":{"shape":"SegmentAttributeValue"}
     },
+    "SendChatIntegrationEventRequest":{
+      "type":"structure",
+      "required":[
+        "SourceId",
+        "DestinationId",
+        "Event"
+      ],
+      "members":{
+        "SourceId":{"shape":"SourceId"},
+        "DestinationId":{"shape":"DestinationId"},
+        "Subtype":{"shape":"Subtype"},
+        "Event":{"shape":"ChatEvent"},
+        "NewSessionDetails":{"shape":"NewSessionDetails"}
+      }
+    },
+    "SendChatIntegrationEventResponse":{
+      "type":"structure",
+      "members":{
+        "InitialContactId":{"shape":"ContactId"},
+        "NewChatCreated":{"shape":"NewChatCreated"}
+      }
+    },
     "SendNotificationActionDefinition":{
       "type":"structure",
       "required":[
@@ -11412,6 +12402,11 @@
       "max":100,
       "min":1,
       "pattern":"^[a-zA-Z0-9_ -]+$"
+    },
+    "SourceId":{
+      "type":"string",
+      "max":255,
+      "min":1
     },
     "SourceType":{
       "type":"string",
@@ -11589,6 +12584,37 @@
         "ContactId":{"shape":"ContactId"}
       }
     },
+    "StartWebRTCContactRequest":{
+      "type":"structure",
+      "required":[
+        "ContactFlowId",
+        "InstanceId",
+        "ParticipantDetails"
+      ],
+      "members":{
+        "Attributes":{"shape":"Attributes"},
+        "ClientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        },
+        "ContactFlowId":{"shape":"ContactFlowId"},
+        "InstanceId":{"shape":"InstanceId"},
+        "AllowedCapabilities":{"shape":"AllowedCapabilities"},
+        "ParticipantDetails":{"shape":"ParticipantDetails"},
+        "RelatedContactId":{"shape":"ContactId"},
+        "References":{"shape":"ContactReferences"},
+        "Description":{"shape":"Description"}
+      }
+    },
+    "StartWebRTCContactResponse":{
+      "type":"structure",
+      "members":{
+        "ConnectionData":{"shape":"ConnectionData"},
+        "ContactId":{"shape":"ContactId"},
+        "ParticipantId":{"shape":"ParticipantId"},
+        "ParticipantToken":{"shape":"ParticipantToken"}
+      }
+    },
     "Statistic":{
       "type":"string",
       "enum":[
@@ -11724,6 +12750,11 @@
         "EvaluationId":{"shape":"ResourceId"},
         "EvaluationArn":{"shape":"ARN"}
       }
+    },
+    "Subtype":{
+      "type":"string",
+      "max":100,
+      "min":1
     },
     "SuccessfulRequest":{
       "type":"structure",
@@ -13444,6 +14475,10 @@
     "VersionNumber":{
       "type":"integer",
       "min":1
+    },
+    "VideoCapability":{
+      "type":"string",
+      "enum":["SEND"]
     },
     "View":{
       "type":"structure",

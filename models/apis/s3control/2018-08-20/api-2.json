@@ -4073,7 +4073,9 @@
     "LambdaInvokeOperation":{
       "type":"structure",
       "members":{
-        "FunctionArn":{"shape":"FunctionArnString"}
+        "FunctionArn":{"shape":"FunctionArnString"},
+        "InvocationSchemaVersion":{"shape":"NonEmptyMaxLength64String"},
+        "UserArguments":{"shape":"UserArguments"}
       }
     },
     "LifecycleConfiguration":{
@@ -5734,7 +5736,7 @@
     "S3CopyObjectOperation":{
       "type":"structure",
       "members":{
-        "TargetResource":{"shape":"S3BucketArnString"},
+        "TargetResource":{"shape":"S3RegionalOrS3ExpressBucketArnString"},
         "CannedAccessControlList":{
           "shape":"S3CannedAccessControlList",
           "box":true
@@ -5947,6 +5949,12 @@
       "type":"string",
       "max":128,
       "min":4
+    },
+    "S3RegionalOrS3ExpressBucketArnString":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"arn:[^:]+:(s3|s3express):.*"
     },
     "S3ReplicateObjectOperation":{
       "type":"structure",
@@ -6607,6 +6615,13 @@
         },
         "StorageLensGroup":{"shape":"StorageLensGroup"}
       }
+    },
+    "UserArguments":{
+      "type":"map",
+      "key":{"shape":"NonEmptyMaxLength64String"},
+      "value":{"shape":"MaxLength1024String"},
+      "max":10,
+      "min":1
     },
     "VersioningConfiguration":{
       "type":"structure",

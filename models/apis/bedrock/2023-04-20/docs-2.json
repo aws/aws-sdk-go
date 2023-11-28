@@ -1,19 +1,19 @@
 {
   "version": "2.0",
-  "service": "<p>Describes the API operations for creating and managing Bedrock models.</p>",
+  "service": "<p>Describes the API operations for creating and managing Amazon Bedrock models.</p>",
   "operations": {
-    "CreateModelCustomizationJob": "<p>Creates a fine-tuning job to customize a base model.</p> <p>You specify the base foundation model and the location of the training data. After the model-customization job completes successfully, your custom model resource will be ready to use. Training data contains input and output text for each record in a JSONL format. Optionally, you can specify validation data in the same format as the training data. Bedrock returns validation loss metrics and output generations after the job completes. </p> <p> Model-customization jobs are asynchronous and the completion time depends on the base model and the training/validation data size. To monitor a job, use the <code>GetModelCustomizationJob</code> operation to retrieve the job status.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models.html\">Custom models</a> in the Bedrock User Guide.</p>",
+    "CreateModelCustomizationJob": "<p>Creates a fine-tuning job to customize a base model.</p> <p>You specify the base foundation model and the location of the training data. After the model-customization job completes successfully, your custom model resource will be ready to use. Training data contains input and output text for each record in a JSONL format. Optionally, you can specify validation data in the same format as the training data. Amazon Bedrock returns validation loss metrics and output generations after the job completes. </p> <p> Model-customization jobs are asynchronous and the completion time depends on the base model and the training/validation data size. To monitor a job, use the <code>GetModelCustomizationJob</code> operation to retrieve the job status.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models.html\">Custom models</a> in the Bedrock User Guide.</p>",
     "CreateProvisionedModelThroughput": "<p>Creates a provisioned throughput with dedicated capacity for a foundation model or a fine-tuned model.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-service.html\">Provisioned throughput</a> in the Bedrock User Guide.</p>",
     "DeleteCustomModel": "<p>Deletes a custom model that you created earlier. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models.html\">Custom models</a> in the Bedrock User Guide.</p>",
     "DeleteModelInvocationLoggingConfiguration": "<p>Delete the invocation logging. </p>",
     "DeleteProvisionedModelThroughput": "<p>Deletes a provisioned throughput. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-service.html\">Provisioned throughput</a> in the Bedrock User Guide.</p>",
-    "GetCustomModel": "<p>Get the properties associated with a Bedrock custom model that you have created.For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models.html\">Custom models</a> in the Bedrock User Guide.</p>",
-    "GetFoundationModel": "<p>Get details about a Bedrock foundation model.</p>",
+    "GetCustomModel": "<p>Get the properties associated with a Amazon Bedrock custom model that you have created.For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models.html\">Custom models</a> in the Bedrock User Guide.</p>",
+    "GetFoundationModel": "<p>Get details about a Amazon Bedrock foundation model.</p>",
     "GetModelCustomizationJob": "<p>Retrieves the properties associated with a model-customization job, including the status of the job. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models.html\">Custom models</a> in the Bedrock User Guide.</p>",
     "GetModelInvocationLoggingConfiguration": "<p>Get the current configuration values for model invocation logging.</p>",
     "GetProvisionedModelThroughput": "<p>Get details for a provisioned throughput. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-service.html\">Provisioned throughput</a> in the Bedrock User Guide.</p>",
     "ListCustomModels": "<p>Returns a list of the custom models that you have created with the <code>CreateModelCustomizationJob</code> operation.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models.html\">Custom models</a> in the Bedrock User Guide.</p>",
-    "ListFoundationModels": "<p>List of Bedrock foundation models that you can use. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/foundation-models.html\">Foundation models</a> in the Bedrock User Guide.</p>",
+    "ListFoundationModels": "<p>List of Amazon Bedrock foundation models that you can use. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/foundation-models.html\">Foundation models</a> in the Bedrock User Guide.</p>",
     "ListModelCustomizationJobs": "<p>Returns a list of model customization jobs that you have submitted. You can filter the jobs to return based on one or more criteria.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models.html\">Custom models</a> in the Bedrock User Guide.</p>",
     "ListProvisionedModelThroughputs": "<p>List the provisioned capacities. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-service.html\">Provisioned throughput</a> in the Bedrock User Guide.</p>",
     "ListTagsForResource": "<p>List the tags associated with the specified resource.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-service.html\">Tagging resources</a> in the Bedrock User Guide.</p>",
@@ -137,6 +137,16 @@
         "ListCustomModelsResponse$modelSummaries": "<p>Model summaries.</p>"
       }
     },
+    "CustomizationType": {
+      "base": null,
+      "refs": {
+        "CreateModelCustomizationJobRequest$customizationType": "<p>The customization type.</p>",
+        "CustomModelSummary$customizationType": "<p>Specifies whether to carry out continued pre-training of a model or whether to fine-tune it. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models.html\">Custom models</a>.</p>",
+        "GetCustomModelResponse$customizationType": "<p>The type of model customization.</p>",
+        "GetModelCustomizationJobResponse$customizationType": "<p>The type of model customization.</p>",
+        "ModelCustomizationJobSummary$customizationType": "<p>Specifies whether to carry out continued pre-training of a model or whether to fine-tune it. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models.html\">Custom models</a>.</p>"
+      }
+    },
     "DeleteCustomModelRequest": {
       "base": null,
       "refs": {
@@ -197,6 +207,19 @@
         "GetFoundationModelResponse$modelDetails": "<p>Information about the foundation model.</p>"
       }
     },
+    "FoundationModelLifecycle": {
+      "base": "<p>Details about whether a model version is available or deprecated.</p>",
+      "refs": {
+        "FoundationModelDetails$modelLifecycle": "<p>Contains details about whether a model version is available or deprecated</p>",
+        "FoundationModelSummary$modelLifecycle": "<p>Contains details about whether a model version is available or deprecated.</p>"
+      }
+    },
+    "FoundationModelLifecycleStatus": {
+      "base": null,
+      "refs": {
+        "FoundationModelLifecycle$status": "<p>Specifies whether a model version is available (<code>ACTIVE</code>) or deprecated (<code>LEGACY</code>.</p>"
+      }
+    },
     "FoundationModelSummary": {
       "base": "<p>Summary information for a foundation model.</p>",
       "refs": {
@@ -206,7 +229,7 @@
     "FoundationModelSummaryList": {
       "base": null,
       "refs": {
-        "ListFoundationModelsResponse$modelSummaries": "<p>A list of bedrock foundation models.</p>"
+        "ListFoundationModelsResponse$modelSummaries": "<p>A list of Amazon Bedrock foundation models.</p>"
       }
     },
     "GetCustomModelRequest": {
@@ -263,7 +286,7 @@
       "base": null,
       "refs": {
         "CreateModelCustomizationJobRequest$clientRequestToken": "<p>Unique token value that you can provide. The GetModelCustomizationJob response includes the same token value.</p>",
-        "CreateProvisionedModelThroughputRequest$clientRequestToken": "<p>Unique token value that you can provide. If this token matches a previous request, Bedrock ignores the request, but does not return an error.</p>",
+        "CreateProvisionedModelThroughputRequest$clientRequestToken": "<p>Unique token value that you can provide. If this token matches a previous request, Amazon Bedrock ignores the request, but does not return an error.</p>",
         "GetModelCustomizationJobResponse$clientRequestToken": "<p>The token that you specified in the CreateCustomizationJob request.</p>"
       }
     },
@@ -420,7 +443,7 @@
       "refs": {
         "CreateModelCustomizationJobRequest$hyperParameters": "<p>Parameters related to tuning the model.</p>",
         "GetCustomModelResponse$hyperParameters": "<p>Hyperparameter values associated with this model.</p>",
-        "GetModelCustomizationJobResponse$hyperParameters": "<p>The hyperparameter values for the job.</p>"
+        "GetModelCustomizationJobResponse$hyperParameters": "<p>The hyperparameter values for the job. For information about hyperparameters for specific models, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/model-customization-guidelines.html\">Guidelines for model customization</a>.</p>"
       }
     },
     "ModelCustomizationJobArn": {
@@ -521,11 +544,11 @@
     "PaginationToken": {
       "base": null,
       "refs": {
-        "ListCustomModelsRequest$nextToken": "<p>Continuation token from the previous response, for Bedrock to list the next set of results.</p>",
+        "ListCustomModelsRequest$nextToken": "<p>Continuation token from the previous response, for Amazon Bedrock to list the next set of results.</p>",
         "ListCustomModelsResponse$nextToken": "<p>Continuation token for the next request to list the next set of results.</p>",
-        "ListModelCustomizationJobsRequest$nextToken": "<p>Continuation token from the previous response, for Bedrock to list the next set of results.</p>",
+        "ListModelCustomizationJobsRequest$nextToken": "<p>Continuation token from the previous response, for Amazon Bedrock to list the next set of results.</p>",
         "ListModelCustomizationJobsResponse$nextToken": "<p>Page continuation token to use in the next request.</p>",
-        "ListProvisionedModelThroughputsRequest$nextToken": "<p>Continuation token from the previous response, for Bedrock to list the next set of results.</p>",
+        "ListProvisionedModelThroughputsRequest$nextToken": "<p>Continuation token from the previous response, for Amazon Bedrock to list the next set of results.</p>",
         "ListProvisionedModelThroughputsResponse$nextToken": "<p>Continuation token for the next request to list the next set of results.</p>"
       }
     },
@@ -542,7 +565,7 @@
     "Provider": {
       "base": null,
       "refs": {
-        "ListFoundationModelsRequest$byProvider": "<p>A Bedrock model provider.</p>"
+        "ListFoundationModelsRequest$byProvider": "<p>A Amazon Bedrock model provider.</p>"
       }
     },
     "ProvisionedModelArn": {
@@ -610,7 +633,7 @@
       "base": null,
       "refs": {
         "CloudWatchConfig$roleArn": "<p>The role ARN.</p>",
-        "CreateModelCustomizationJobRequest$roleArn": "<p>The Amazon Resource Name (ARN) of an IAM role that Bedrock can assume to perform tasks on your behalf. For example, during model training, Bedrock needs your permission to read input data from an S3 bucket, write model artifacts to an S3 bucket. To pass this role to Bedrock, the caller of this API must have the <code>iam:PassRole</code> permission. </p>",
+        "CreateModelCustomizationJobRequest$roleArn": "<p>The Amazon Resource Name (ARN) of an IAM role that Amazon Bedrock can assume to perform tasks on your behalf. For example, during model training, Amazon Bedrock needs your permission to read input data from an S3 bucket, write model artifacts to an S3 bucket. To pass this role to Amazon Bedrock, the caller of this API must have the <code>iam:PassRole</code> permission. </p>",
         "GetModelCustomizationJobResponse$roleArn": "<p>The ARN of the IAM role.</p>"
       }
     },

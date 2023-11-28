@@ -78,6 +78,12 @@
       "output_token": "NextToken",
       "result_key": "EvaluationFormSummaryList"
     },
+    "ListFlowAssociations": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "FlowAssociationSummaryList"
+    },
     "ListHoursOfOperations": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
@@ -159,6 +165,11 @@
       "limit_key": "MaxResults",
       "output_token": "NextToken",
       "result_key": "QuickConnectSummaryList"
+    },
+    "ListRealtimeContactAnalysisSegmentsV2": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken"
     },
     "ListRoutingProfileQueues": {
       "input_token": "NextToken",

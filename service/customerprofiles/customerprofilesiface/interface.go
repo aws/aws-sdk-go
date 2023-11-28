@@ -120,6 +120,10 @@ type CustomerProfilesAPI interface {
 	DeleteWorkflowWithContext(aws.Context, *customerprofiles.DeleteWorkflowInput, ...request.Option) (*customerprofiles.DeleteWorkflowOutput, error)
 	DeleteWorkflowRequest(*customerprofiles.DeleteWorkflowInput) (*request.Request, *customerprofiles.DeleteWorkflowOutput)
 
+	DetectProfileObjectType(*customerprofiles.DetectProfileObjectTypeInput) (*customerprofiles.DetectProfileObjectTypeOutput, error)
+	DetectProfileObjectTypeWithContext(aws.Context, *customerprofiles.DetectProfileObjectTypeInput, ...request.Option) (*customerprofiles.DetectProfileObjectTypeOutput, error)
+	DetectProfileObjectTypeRequest(*customerprofiles.DetectProfileObjectTypeInput) (*request.Request, *customerprofiles.DetectProfileObjectTypeOutput)
+
 	GetAutoMergingPreview(*customerprofiles.GetAutoMergingPreviewInput) (*customerprofiles.GetAutoMergingPreviewOutput, error)
 	GetAutoMergingPreviewWithContext(aws.Context, *customerprofiles.GetAutoMergingPreviewInput, ...request.Option) (*customerprofiles.GetAutoMergingPreviewOutput, error)
 	GetAutoMergingPreviewRequest(*customerprofiles.GetAutoMergingPreviewInput) (*request.Request, *customerprofiles.GetAutoMergingPreviewOutput)

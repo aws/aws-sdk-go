@@ -94,6 +94,14 @@ const (
 	// The contact is not permitted.
 	ErrCodeOutboundContactNotPermittedException = "OutboundContactNotPermittedException"
 
+	// ErrCodeOutputTypeNotFoundException for service response error code
+	// "OutputTypeNotFoundException".
+	//
+	// Thrown for analyzed content when requested OutputType was not enabled for
+	// a given contact. For example, if an OutputType.Raw was requested for a contact
+	// that had `RedactedOnly` Redaction policy set in Contact flow.
+	ErrCodeOutputTypeNotFoundException = "OutputTypeNotFoundException"
+
 	// ErrCodePropertyValidationException for service response error code
 	// "PropertyValidationException".
 	//
@@ -164,6 +172,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"LimitExceededException":               newErrorLimitExceededException,
 	"MaximumResultReturnedException":       newErrorMaximumResultReturnedException,
 	"OutboundContactNotPermittedException": newErrorOutboundContactNotPermittedException,
+	"OutputTypeNotFoundException":          newErrorOutputTypeNotFoundException,
 	"PropertyValidationException":          newErrorPropertyValidationException,
 	"ResourceConflictException":            newErrorResourceConflictException,
 	"ResourceInUseException":               newErrorResourceInUseException,

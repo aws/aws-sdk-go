@@ -1,0 +1,713 @@
+{
+  "version": "2.0",
+  "service": "<p>Amazon Bedrock Agent</p>",
+  "operations": {
+    "InvokeAgent": "<p>Invokes the specified Bedrock model to run inference using the input provided in the request body.</p>",
+    "Retrieve": "<p>Retrieve from knowledge base.</p>",
+    "RetrieveAndGenerate": "<p>RetrieveAndGenerate API</p>"
+  },
+  "shapes": {
+    "AccessDeniedException": {
+      "base": "<p>This exception is thrown when a request is denied per access permissions</p>",
+      "refs": {
+        "ResponseStream$accessDeniedException": null
+      }
+    },
+    "ActionGroupInvocationInput": {
+      "base": "<p>input to lambda used in action group</p>",
+      "refs": {
+        "InvocationInput$actionGroupInvocationInput": null
+      }
+    },
+    "ActionGroupInvocationOutput": {
+      "base": "<p>output from lambda used in action group</p>",
+      "refs": {
+        "Observation$actionGroupInvocationOutput": null
+      }
+    },
+    "ActionGroupName": {
+      "base": "<p>Agent Trace Action Group Name</p>",
+      "refs": {
+        "ActionGroupInvocationInput$actionGroupName": null
+      }
+    },
+    "ActionGroupOutputString": {
+      "base": "<p>Agent Trace Action Group Lambda Invocation Output String</p>",
+      "refs": {
+        "ActionGroupInvocationOutput$text": null
+      }
+    },
+    "AgentAliasId": {
+      "base": "<p>Identifier of the agent alias.</p>",
+      "refs": {
+        "InvokeAgentRequest$agentAliasId": "<p>Identifier for Agent Alias</p>",
+        "TracePart$agentAliasId": null
+      }
+    },
+    "AgentId": {
+      "base": "<p>Identifier of the agent.</p>",
+      "refs": {
+        "InvokeAgentRequest$agentId": "<p>Identifier for Agent</p>",
+        "TracePart$agentId": null
+      }
+    },
+    "ApiPath": {
+      "base": "<p>Agent Trace Action Group API path</p>",
+      "refs": {
+        "ActionGroupInvocationInput$apiPath": null
+      }
+    },
+    "Attribution": {
+      "base": "<p>Citations associated with final agent response</p>",
+      "refs": {
+        "PayloadPart$attribution": null
+      }
+    },
+    "BadGatewayException": {
+      "base": "<p>This exception is thrown when a request fails due to dependency like Lambda, Bedrock, STS resource</p>",
+      "refs": {
+        "ResponseStream$badGatewayException": null
+      }
+    },
+    "BedrockModelArn": {
+      "base": "<p>Arn of a Bedrock model.</p>",
+      "refs": {
+        "KnowledgeBaseRetrieveAndGenerateConfiguration$modelArn": null
+      }
+    },
+    "Boolean": {
+      "base": null,
+      "refs": {
+        "InvokeAgentRequest$endSession": "<p>End current session</p>",
+        "InvokeAgentRequest$enableTrace": "<p>Enable agent trace events for improved debugging</p>",
+        "PreProcessingParsedResponse$isValid": "<p>Boolean value</p>"
+      }
+    },
+    "Citation": {
+      "base": "<p>Citation associated with the agent response</p>",
+      "refs": {
+        "Citations$member": null
+      }
+    },
+    "Citations": {
+      "base": "<p>List of citations</p>",
+      "refs": {
+        "Attribution$citations": null,
+        "RetrieveAndGenerateResponse$citations": null
+      }
+    },
+    "ConflictException": {
+      "base": "<p>This exception is thrown when there is a conflict performing an operation</p>",
+      "refs": {
+        "ResponseStream$conflictException": null
+      }
+    },
+    "ContentMap": {
+      "base": "<p>Content type paramter map</p>",
+      "refs": {
+        "RequestBody$content": null
+      }
+    },
+    "CreationMode": {
+      "base": "<p>indicates if agent uses default prompt or overriden prompt</p>",
+      "refs": {
+        "ModelInvocationInput$promptCreationMode": null,
+        "ModelInvocationInput$parserMode": null
+      }
+    },
+    "DependencyFailedException": {
+      "base": "<p>This exception is thrown when a request fails due to dependency like Lambda, Bedrock, STS resource due to a customer fault (i.e. bad configuration)</p>",
+      "refs": {
+        "ResponseStream$dependencyFailedException": null
+      }
+    },
+    "Double": {
+      "base": null,
+      "refs": {
+        "KnowledgeBaseRetrievalResult$score": "<p>The relevance score of a result.</p>"
+      }
+    },
+    "FailureReasonString": {
+      "base": "<p>Agent Trace Failed Reason String</p>",
+      "refs": {
+        "FailureTrace$failureReason": null
+      }
+    },
+    "FailureTrace": {
+      "base": "<p>Trace Part which is emitted when agent trace could not be generated</p>",
+      "refs": {
+        "Trace$failureTrace": null
+      }
+    },
+    "FinalResponse": {
+      "base": "<p>Agent finish output</p>",
+      "refs": {
+        "Observation$finalResponse": null
+      }
+    },
+    "FinalResponseString": {
+      "base": "<p>Agent Trace Action Group Lambda Invocation Output String</p>",
+      "refs": {
+        "FinalResponse$text": null
+      }
+    },
+    "GeneratedResponsePart": {
+      "base": "<p>Generate response part</p>",
+      "refs": {
+        "Citation$generatedResponsePart": null
+      }
+    },
+    "InferenceConfiguration": {
+      "base": "<p>Configurations for controlling the inference response of an InvokeAgent API call</p>",
+      "refs": {
+        "ModelInvocationInput$inferenceConfiguration": null
+      }
+    },
+    "InputText": {
+      "base": "<p>Model text input</p>",
+      "refs": {
+        "InvokeAgentRequest$inputText": "<p>Input data in the format specified in the Content-Type request header.</p>"
+      }
+    },
+    "InternalServerException": {
+      "base": "<p>This exception is thrown if there was an unexpected error during processing of request</p>",
+      "refs": {
+        "ResponseStream$internalServerException": null
+      }
+    },
+    "InvocationInput": {
+      "base": "<p>Trace Part which contains input details for action group or knowledge base</p>",
+      "refs": {
+        "OrchestrationTrace$invocationInput": null
+      }
+    },
+    "InvocationType": {
+      "base": "<p>types of invocations</p>",
+      "refs": {
+        "InvocationInput$invocationType": null
+      }
+    },
+    "InvokeAgentRequest": {
+      "base": "<p>InvokeAgent Request</p>",
+      "refs": {
+      }
+    },
+    "InvokeAgentResponse": {
+      "base": "<p>InvokeAgent Response</p>",
+      "refs": {
+      }
+    },
+    "KmsKeyArn": {
+      "base": "<p>A KMS key ARN</p>",
+      "refs": {
+        "RetrieveAndGenerateSessionConfiguration$kmsKeyArn": "<p>The KMS key arn to encrypt the customer data of the session.</p>"
+      }
+    },
+    "KnowledgeBaseId": {
+      "base": "<p>Identifier of the KnowledgeBase</p>",
+      "refs": {
+        "KnowledgeBaseRetrieveAndGenerateConfiguration$knowledgeBaseId": null,
+        "RetrieveRequest$knowledgeBaseId": null
+      }
+    },
+    "KnowledgeBaseLookupInput": {
+      "base": "<p>Input to lambda used in action group</p>",
+      "refs": {
+        "InvocationInput$knowledgeBaseLookupInput": null
+      }
+    },
+    "KnowledgeBaseLookupInputString": {
+      "base": "<p>Agent Trace Action Group Lambda Invocation Output String</p>",
+      "refs": {
+        "KnowledgeBaseLookupInput$text": null
+      }
+    },
+    "KnowledgeBaseLookupOutput": {
+      "base": "<p>Input to lambda used in action group</p>",
+      "refs": {
+        "Observation$knowledgeBaseLookupOutput": null
+      }
+    },
+    "KnowledgeBaseQuery": {
+      "base": "<p>Knowledge base input query.</p>",
+      "refs": {
+        "RetrieveRequest$retrievalQuery": null
+      }
+    },
+    "KnowledgeBaseQueryTextString": {
+      "base": null,
+      "refs": {
+        "KnowledgeBaseQuery$text": "<p>Knowledge base input query in text</p>"
+      }
+    },
+    "KnowledgeBaseRetrievalConfiguration": {
+      "base": "<p>Search parameters for retrieving from knowledge base.</p>",
+      "refs": {
+        "RetrieveRequest$retrievalConfiguration": null
+      }
+    },
+    "KnowledgeBaseRetrievalResult": {
+      "base": "<p>Result item returned from a knowledge base retrieval.</p>",
+      "refs": {
+        "KnowledgeBaseRetrievalResults$member": null
+      }
+    },
+    "KnowledgeBaseRetrievalResults": {
+      "base": "<p>List of knowledge base retrieval results</p>",
+      "refs": {
+        "RetrieveResponse$retrievalResults": null
+      }
+    },
+    "KnowledgeBaseRetrieveAndGenerateConfiguration": {
+      "base": "<p>Configurations for retrieval and generation for knowledge base.</p>",
+      "refs": {
+        "RetrieveAndGenerateConfiguration$knowledgeBaseConfiguration": null
+      }
+    },
+    "KnowledgeBaseVectorSearchConfiguration": {
+      "base": "<p>Knowledge base vector search configuration</p>",
+      "refs": {
+        "KnowledgeBaseRetrievalConfiguration$vectorSearchConfiguration": null
+      }
+    },
+    "KnowledgeBaseVectorSearchConfigurationNumberOfResultsInteger": {
+      "base": null,
+      "refs": {
+        "KnowledgeBaseVectorSearchConfiguration$numberOfResults": "<p>Top-K results to retrieve from knowledge base.</p>"
+      }
+    },
+    "LambdaArn": {
+      "base": "<p>ARN of a Lambda.</p>",
+      "refs": {
+        "ModelInvocationInput$overrideLambda": null
+      }
+    },
+    "MaximumLength": {
+      "base": "<p>Maximum length of output</p>",
+      "refs": {
+        "InferenceConfiguration$maximumLength": null
+      }
+    },
+    "MimeType": {
+      "base": "<p>Content type of the request</p>",
+      "refs": {
+        "InvokeAgentResponse$contentType": "<p>streaming response mimetype of the model</p>"
+      }
+    },
+    "ModelInvocationInput": {
+      "base": "<p>Trace Part which contains information used to call Invoke Model</p>",
+      "refs": {
+        "OrchestrationTrace$modelInvocationInput": null,
+        "PostProcessingTrace$modelInvocationInput": null,
+        "PreProcessingTrace$modelInvocationInput": null
+      }
+    },
+    "NextToken": {
+      "base": "<p>Opaque continuation token of previous paginated response.</p>",
+      "refs": {
+        "RetrieveRequest$nextToken": null,
+        "RetrieveResponse$nextToken": null
+      }
+    },
+    "NonBlankString": {
+      "base": "<p>Non Blank String</p>",
+      "refs": {
+        "AccessDeniedException$message": null,
+        "BadGatewayException$message": null,
+        "BadGatewayException$resourceName": null,
+        "ConflictException$message": null,
+        "DependencyFailedException$message": null,
+        "DependencyFailedException$resourceName": null,
+        "InternalServerException$message": null,
+        "ResourceNotFoundException$message": null,
+        "ServiceQuotaExceededException$message": null,
+        "ThrottlingException$message": null,
+        "ValidationException$message": null
+      }
+    },
+    "Observation": {
+      "base": "<p>Trace Part which contains output details for action group or knowledge base or final response</p>",
+      "refs": {
+        "OrchestrationTrace$observation": null
+      }
+    },
+    "OrchestrationTrace": {
+      "base": "<p>Trace contains intermidate response during orchestration</p>",
+      "refs": {
+        "Trace$orchestrationTrace": null
+      }
+    },
+    "OutputString": {
+      "base": "<p>Agent Trace Output String</p>",
+      "refs": {
+        "PostProcessingParsedResponse$text": null
+      }
+    },
+    "Parameter": {
+      "base": "<p>parameters included in action group invocation</p>",
+      "refs": {
+        "Parameters$member": null
+      }
+    },
+    "Parameters": {
+      "base": "<p>list of parameters included in action group invocation</p>",
+      "refs": {
+        "ActionGroupInvocationInput$parameters": null,
+        "ContentMap$value": null
+      }
+    },
+    "PartBody": {
+      "base": "<p>PartBody of the payload in bytes</p>",
+      "refs": {
+        "PayloadPart$bytes": null
+      }
+    },
+    "PayloadPart": {
+      "base": "<p>Base 64 endoded byte response</p>",
+      "refs": {
+        "ResponseStream$chunk": null
+      }
+    },
+    "PostProcessingModelInvocationOutput": {
+      "base": "<p>Trace Part which contains information related to postprocessing</p>",
+      "refs": {
+        "PostProcessingTrace$modelInvocationOutput": null
+      }
+    },
+    "PostProcessingParsedResponse": {
+      "base": "<p>Trace Part which contains information if preprocessing was successful</p>",
+      "refs": {
+        "PostProcessingModelInvocationOutput$parsedResponse": null
+      }
+    },
+    "PostProcessingTrace": {
+      "base": "<p>Trace Part which contains information related to post processing step</p>",
+      "refs": {
+        "Trace$postProcessingTrace": null
+      }
+    },
+    "PreProcessingModelInvocationOutput": {
+      "base": "<p>Trace Part which contains information related to preprocessing</p>",
+      "refs": {
+        "PreProcessingTrace$modelInvocationOutput": null
+      }
+    },
+    "PreProcessingParsedResponse": {
+      "base": "<p>Trace Part which contains information if preprocessing was successful</p>",
+      "refs": {
+        "PreProcessingModelInvocationOutput$parsedResponse": null
+      }
+    },
+    "PreProcessingTrace": {
+      "base": "<p>Trace Part which contains information related to preprocessing step</p>",
+      "refs": {
+        "Trace$preProcessingTrace": null
+      }
+    },
+    "PromptSessionAttributesMap": {
+      "base": "<p>Session attributes that go to the prompt</p>",
+      "refs": {
+        "SessionState$promptSessionAttributes": "<p>Prompt Session Attributes</p>"
+      }
+    },
+    "PromptText": {
+      "base": "<p>Prompt Message</p>",
+      "refs": {
+        "ModelInvocationInput$text": null
+      }
+    },
+    "PromptType": {
+      "base": "<p>types of prompts</p>",
+      "refs": {
+        "ModelInvocationInput$type": null
+      }
+    },
+    "Rationale": {
+      "base": "<p>Trace Part which contains information related to reasoning</p>",
+      "refs": {
+        "OrchestrationTrace$rationale": null
+      }
+    },
+    "RationaleString": {
+      "base": "<p>Agent Trace Rationale String</p>",
+      "refs": {
+        "PreProcessingParsedResponse$rationale": null,
+        "Rationale$text": null
+      }
+    },
+    "RepromptResponse": {
+      "base": "<p>Observation information if there were reprompts</p>",
+      "refs": {
+        "Observation$repromptResponse": null
+      }
+    },
+    "RequestBody": {
+      "base": "<p>Request Body Content Map</p>",
+      "refs": {
+        "ActionGroupInvocationInput$requestBody": null
+      }
+    },
+    "ResourceNotFoundException": {
+      "base": "<p>This exception is thrown when a resource referenced by the operation does not exist</p>",
+      "refs": {
+        "ResponseStream$resourceNotFoundException": null
+      }
+    },
+    "ResponseStream": {
+      "base": "<p>Response body of is a stream</p>",
+      "refs": {
+        "InvokeAgentResponse$completion": "<p>Inference response from the model in the format specified in the Content-Type response header.</p>"
+      }
+    },
+    "RetrievalResultContent": {
+      "base": "<p>Content of a retrieval result.</p>",
+      "refs": {
+        "KnowledgeBaseRetrievalResult$content": null,
+        "RetrievedReference$content": null
+      }
+    },
+    "RetrievalResultLocation": {
+      "base": "<p>The source location of a retrieval result.</p>",
+      "refs": {
+        "KnowledgeBaseRetrievalResult$location": null,
+        "RetrievedReference$location": null
+      }
+    },
+    "RetrievalResultLocationType": {
+      "base": "<p>The location type of a retrieval result.</p>",
+      "refs": {
+        "RetrievalResultLocation$type": null
+      }
+    },
+    "RetrievalResultS3Location": {
+      "base": "<p>The S3 location of a retrieval result.</p>",
+      "refs": {
+        "RetrievalResultLocation$s3Location": null
+      }
+    },
+    "RetrieveAndGenerateConfiguration": {
+      "base": "<p>Configures the retrieval and generation for the session.</p>",
+      "refs": {
+        "RetrieveAndGenerateRequest$retrieveAndGenerateConfiguration": null
+      }
+    },
+    "RetrieveAndGenerateInput": {
+      "base": "<p>Customer input of the turn</p>",
+      "refs": {
+        "RetrieveAndGenerateRequest$input": null
+      }
+    },
+    "RetrieveAndGenerateInputTextString": {
+      "base": null,
+      "refs": {
+        "RetrieveAndGenerateInput$text": "<p>Customer input of the turn in text</p>"
+      }
+    },
+    "RetrieveAndGenerateOutput": {
+      "base": "<p>Service response of the turn</p>",
+      "refs": {
+        "RetrieveAndGenerateResponse$output": null
+      }
+    },
+    "RetrieveAndGenerateRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RetrieveAndGenerateResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RetrieveAndGenerateSessionConfiguration": {
+      "base": "<p>Configures common parameters of the session.</p>",
+      "refs": {
+        "RetrieveAndGenerateRequest$sessionConfiguration": null
+      }
+    },
+    "RetrieveAndGenerateType": {
+      "base": "<p>The type of RetrieveAndGenerate.</p>",
+      "refs": {
+        "RetrieveAndGenerateConfiguration$type": null
+      }
+    },
+    "RetrieveRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RetrieveResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RetrievedReference": {
+      "base": "<p>Retrieved reference</p>",
+      "refs": {
+        "RetrievedReferences$member": null
+      }
+    },
+    "RetrievedReferences": {
+      "base": "<p>list of retrieved references</p>",
+      "refs": {
+        "Citation$retrievedReferences": null,
+        "KnowledgeBaseLookupOutput$retrievedReferences": null
+      }
+    },
+    "ServiceQuotaExceededException": {
+      "base": "<p>This exception is thrown when a request is made beyond the service quota</p>",
+      "refs": {
+        "ResponseStream$serviceQuotaExceededException": null
+      }
+    },
+    "SessionAttributesMap": {
+      "base": "<p>Session attributes are pass through attributes passed to the action group</p>",
+      "refs": {
+        "SessionState$sessionAttributes": "<p>Session Attributes</p>"
+      }
+    },
+    "SessionId": {
+      "base": "<p>Identifier of the session.</p>",
+      "refs": {
+        "InvokeAgentRequest$sessionId": "<p>Identifier used for the current session</p>",
+        "InvokeAgentResponse$sessionId": "<p>streaming response mimetype of the model</p>",
+        "RetrieveAndGenerateRequest$sessionId": null,
+        "RetrieveAndGenerateResponse$sessionId": null,
+        "TracePart$sessionId": null
+      }
+    },
+    "SessionState": {
+      "base": "<p>Session state provided</p>",
+      "refs": {
+        "InvokeAgentRequest$sessionState": "<p>Session state passed by customer. Base64 encoded json string representation of SessionState.</p>"
+      }
+    },
+    "Source": {
+      "base": "<p>Parsing error source</p>",
+      "refs": {
+        "RepromptResponse$source": null
+      }
+    },
+    "Span": {
+      "base": "<p>Span of text</p>",
+      "refs": {
+        "TextResponsePart$span": null
+      }
+    },
+    "SpanEndInteger": {
+      "base": null,
+      "refs": {
+        "Span$end": "<p>End of span</p>"
+      }
+    },
+    "SpanStartInteger": {
+      "base": null,
+      "refs": {
+        "Span$start": "<p>Start of span</p>"
+      }
+    },
+    "StopSequences": {
+      "base": "<p>List of stop sequences</p>",
+      "refs": {
+        "InferenceConfiguration$stopSequences": null
+      }
+    },
+    "String": {
+      "base": null,
+      "refs": {
+        "ContentMap$key": null,
+        "Parameter$name": "<p>Name of parameter</p>",
+        "Parameter$type": "<p>Type of parameter</p>",
+        "Parameter$value": "<p>Value of parameter</p>",
+        "PromptSessionAttributesMap$key": null,
+        "PromptSessionAttributesMap$value": null,
+        "RepromptResponse$text": "<p>Reprompt response text</p>",
+        "RetrievalResultContent$text": "<p>Content of a retrieval result in text</p>",
+        "RetrievalResultS3Location$uri": "<p>URI of S3 location</p>",
+        "RetrieveAndGenerateOutput$text": "<p>Service response of the turn in text</p>",
+        "SessionAttributesMap$key": null,
+        "SessionAttributesMap$value": null,
+        "StopSequences$member": null,
+        "TextResponsePart$text": "<p>Response part in text</p>"
+      }
+    },
+    "Temperature": {
+      "base": "<p>Controls randomness, higher values increase diversity</p>",
+      "refs": {
+        "InferenceConfiguration$temperature": null
+      }
+    },
+    "TextResponsePart": {
+      "base": "<p>Text response part</p>",
+      "refs": {
+        "GeneratedResponsePart$textResponsePart": null
+      }
+    },
+    "ThrottlingException": {
+      "base": "<p>This exception is thrown when the number of requests exceeds the limit</p>",
+      "refs": {
+        "ResponseStream$throttlingException": null
+      }
+    },
+    "TopK": {
+      "base": "<p>Sample from the k most likely next tokens</p>",
+      "refs": {
+        "InferenceConfiguration$topK": null
+      }
+    },
+    "TopP": {
+      "base": "<p>Cumulative probability cutoff for token selection</p>",
+      "refs": {
+        "InferenceConfiguration$topP": null
+      }
+    },
+    "Trace": {
+      "base": "<p>Trace contains intermidate response for customer</p>",
+      "refs": {
+        "TracePart$trace": null
+      }
+    },
+    "TraceId": {
+      "base": "<p>Identifier for trace</p>",
+      "refs": {
+        "FailureTrace$traceId": null,
+        "InvocationInput$traceId": null,
+        "ModelInvocationInput$traceId": null,
+        "Observation$traceId": null,
+        "PostProcessingModelInvocationOutput$traceId": null,
+        "PreProcessingModelInvocationOutput$traceId": null,
+        "Rationale$traceId": null
+      }
+    },
+    "TraceKnowledgeBaseId": {
+      "base": "<p>Agent Trace Action Group Knowledge Base Id</p>",
+      "refs": {
+        "KnowledgeBaseLookupInput$knowledgeBaseId": null
+      }
+    },
+    "TracePart": {
+      "base": "<p>Trace Part which contains intermidate response for customer</p>",
+      "refs": {
+        "ResponseStream$trace": null
+      }
+    },
+    "Type": {
+      "base": "<p>types of observations</p>",
+      "refs": {
+        "Observation$type": null
+      }
+    },
+    "ValidationException": {
+      "base": "<p>This exception is thrown when the request's input validation fails</p>",
+      "refs": {
+        "ResponseStream$validationException": null
+      }
+    },
+    "Verb": {
+      "base": "<p>Agent Trace Action Group Action verb</p>",
+      "refs": {
+        "ActionGroupInvocationInput$verb": null
+      }
+    }
+  }
+}

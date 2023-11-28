@@ -5195,8 +5195,11 @@ type Configuration struct {
 	// The access control configuration is for an Amazon RDS DB snapshot.
 	RdsDbSnapshot *RdsDbSnapshotConfiguration `locationName:"rdsDbSnapshot" type:"structure"`
 
-	// The access control configuration is for an Amazon S3 Bucket.
+	// The access control configuration is for an Amazon S3 bucket.
 	S3Bucket *S3BucketConfiguration `locationName:"s3Bucket" type:"structure"`
+
+	// The access control configuration is for an Amazon S3 directory bucket.
+	S3ExpressDirectoryBucket *S3ExpressDirectoryBucketConfiguration `locationName:"s3ExpressDirectoryBucket" type:"structure"`
 
 	// The access control configuration is for a Secrets Manager secret.
 	SecretsManagerSecret *SecretsManagerSecretConfiguration `locationName:"secretsManagerSecret" type:"structure"`
@@ -5291,6 +5294,12 @@ func (s *Configuration) SetRdsDbSnapshot(v *RdsDbSnapshotConfiguration) *Configu
 // SetS3Bucket sets the S3Bucket field's value.
 func (s *Configuration) SetS3Bucket(v *S3BucketConfiguration) *Configuration {
 	s.S3Bucket = v
+	return s
+}
+
+// SetS3ExpressDirectoryBucket sets the S3ExpressDirectoryBucket field's value.
+func (s *Configuration) SetS3ExpressDirectoryBucket(v *S3ExpressDirectoryBucketConfiguration) *Configuration {
+	s.S3ExpressDirectoryBucket = v
 	return s
 }
 
@@ -10470,6 +10479,48 @@ func (s *S3BucketConfiguration) SetBucketPublicAccessBlock(v *S3PublicAccessBloc
 	return s
 }
 
+// Proposed access control configuration for an Amazon S3 directory bucket.
+// You can propose a configuration for a new Amazon S3 directory bucket or an
+// existing Amazon S3 directory bucket that you own by specifying the Amazon
+// S3 bucket policy. If the configuration is for an existing Amazon S3 directory
+// bucket and you do not specify the Amazon S3 bucket policy, the access preview
+// uses the existing policy attached to the directory bucket. If the access
+// preview is for a new resource and you do not specify the Amazon S3 bucket
+// policy, the access preview assumes an directory bucket without a policy.
+// To propose deletion of an existing bucket policy, you can specify an empty
+// string. For more information about bucket policy limits, see Example bucket
+// policies (https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-express-security-iam-example-bucket-policies.html).
+type S3ExpressDirectoryBucketConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The proposed bucket policy for the Amazon S3 directory bucket.
+	BucketPolicy *string `locationName:"bucketPolicy" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3ExpressDirectoryBucketConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3ExpressDirectoryBucketConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetBucketPolicy sets the BucketPolicy field's value.
+func (s *S3ExpressDirectoryBucketConfiguration) SetBucketPolicy(v string) *S3ExpressDirectoryBucketConfiguration {
+	s.BucketPolicy = &v
+	return s
+}
+
 // The PublicAccessBlock configuration to apply to this Amazon S3 bucket. If
 // the proposed configuration is for an existing Amazon S3 bucket and the configuration
 // is not specified, the access preview uses the existing setting. If the proposed
@@ -12972,6 +13023,9 @@ const (
 
 	// ResourceTypeAwsSnsTopic is a ResourceType enum value
 	ResourceTypeAwsSnsTopic = "AWS::SNS::Topic"
+
+	// ResourceTypeAwsS3expressDirectoryBucket is a ResourceType enum value
+	ResourceTypeAwsS3expressDirectoryBucket = "AWS::S3Express::DirectoryBucket"
 )
 
 // ResourceType_Values returns all elements of the ResourceType enum
@@ -12990,6 +13044,7 @@ func ResourceType_Values() []string {
 		ResourceTypeAwsRdsDbsnapshot,
 		ResourceTypeAwsRdsDbclusterSnapshot,
 		ResourceTypeAwsSnsTopic,
+		ResourceTypeAwsS3expressDirectoryBucket,
 	}
 }
 

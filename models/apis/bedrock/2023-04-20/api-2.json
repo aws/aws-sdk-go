@@ -377,7 +377,7 @@
       "type":"string",
       "max":2048,
       "min":1,
-      "pattern":"(arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:(([0-9]{12}:custom-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}/[a-z0-9]{12})|(:foundation-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([a-z0-9-]{1,63}[.]){0,2}[a-z0-9-]{1,63}([:][a-z0-9-]{1,63}){0,2})))|([a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([.]?[a-z0-9-]{1,63})([:][a-z0-9-]{1,63}){0,2})|(([0-9a-zA-Z][_-]?)+)"
+      "pattern":"(arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:(([0-9]{12}:custom-model/([a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([.]?[a-z0-9-]{1,63})([:][a-z0-9-]{1,63}){0,2})/[a-z0-9]{12})|(:foundation-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([:][a-z0-9-]{1,63}){0,2})))|([a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([.]?[a-z0-9-]{1,63})([:][a-z0-9-]{1,63}){0,2})|(([0-9a-zA-Z][_-]?)+)"
     },
     "BedrockModelId":{
       "type":"string",
@@ -450,6 +450,7 @@
           "idempotencyToken":true
         },
         "baseModelIdentifier":{"shape":"BaseModelIdentifier"},
+        "customizationType":{"shape":"CustomizationType"},
         "customModelKmsKeyId":{"shape":"KmsKeyId"},
         "jobTags":{"shape":"TagList"},
         "customModelTags":{"shape":"TagList"},
@@ -519,12 +520,20 @@
         "modelName":{"shape":"CustomModelName"},
         "creationTime":{"shape":"Timestamp"},
         "baseModelArn":{"shape":"ModelArn"},
-        "baseModelName":{"shape":"ModelName"}
+        "baseModelName":{"shape":"ModelName"},
+        "customizationType":{"shape":"CustomizationType"}
       }
     },
     "CustomModelSummaryList":{
       "type":"list",
       "member":{"shape":"CustomModelSummary"}
+    },
+    "CustomizationType":{
+      "type":"string",
+      "enum":[
+        "FINE_TUNING",
+        "CONTINUED_PRE_TRAINING"
+      ]
     },
     "DeleteCustomModelRequest":{
       "type":"structure",
@@ -602,8 +611,23 @@
         "outputModalities":{"shape":"ModelModalityList"},
         "responseStreamingSupported":{"shape":"Boolean"},
         "customizationsSupported":{"shape":"ModelCustomizationList"},
-        "inferenceTypesSupported":{"shape":"InferenceTypeList"}
+        "inferenceTypesSupported":{"shape":"InferenceTypeList"},
+        "modelLifecycle":{"shape":"FoundationModelLifecycle"}
       }
+    },
+    "FoundationModelLifecycle":{
+      "type":"structure",
+      "required":["status"],
+      "members":{
+        "status":{"shape":"FoundationModelLifecycleStatus"}
+      }
+    },
+    "FoundationModelLifecycleStatus":{
+      "type":"string",
+      "enum":[
+        "ACTIVE",
+        "LEGACY"
+      ]
     },
     "FoundationModelSummary":{
       "type":"structure",
@@ -620,7 +644,8 @@
         "outputModalities":{"shape":"ModelModalityList"},
         "responseStreamingSupported":{"shape":"Boolean"},
         "customizationsSupported":{"shape":"ModelCustomizationList"},
-        "inferenceTypesSupported":{"shape":"InferenceTypeList"}
+        "inferenceTypesSupported":{"shape":"InferenceTypeList"},
+        "modelLifecycle":{"shape":"FoundationModelLifecycle"}
       }
     },
     "FoundationModelSummaryList":{
@@ -655,6 +680,7 @@
         "jobName":{"shape":"JobName"},
         "jobArn":{"shape":"ModelCustomizationJobArn"},
         "baseModelArn":{"shape":"ModelArn"},
+        "customizationType":{"shape":"CustomizationType"},
         "modelKmsKeyArn":{"shape":"KmsKeyArn"},
         "hyperParameters":{"shape":"ModelCustomizationHyperParameters"},
         "trainingDataConfig":{"shape":"TrainingDataConfig"},
@@ -724,6 +750,7 @@
         "trainingDataConfig":{"shape":"TrainingDataConfig"},
         "validationDataConfig":{"shape":"ValidationDataConfig"},
         "outputDataConfig":{"shape":"OutputDataConfig"},
+        "customizationType":{"shape":"CustomizationType"},
         "outputModelKmsKeyArn":{"shape":"KmsKeyArn"},
         "trainingMetrics":{"shape":"TrainingMetrics"},
         "validationMetrics":{"shape":"ValidationMetrics"},
@@ -1074,7 +1101,10 @@
     },
     "ModelCustomization":{
       "type":"string",
-      "enum":["FINE_TUNING"]
+      "enum":[
+        "FINE_TUNING",
+        "CONTINUED_PRE_TRAINING"
+      ]
     },
     "ModelCustomizationHyperParameters":{
       "type":"map",
@@ -1125,7 +1155,8 @@
         "creationTime":{"shape":"Timestamp"},
         "endTime":{"shape":"Timestamp"},
         "customModelArn":{"shape":"CustomModelArn"},
-        "customModelName":{"shape":"CustomModelName"}
+        "customModelName":{"shape":"CustomModelName"},
+        "customizationType":{"shape":"CustomizationType"}
       }
     },
     "ModelCustomizationList":{
@@ -1180,7 +1211,7 @@
     },
     "Provider":{
       "type":"string",
-      "pattern":"[a-z0-9-]{1,63}"
+      "pattern":"[A-Za-z0-9- ]{1,63}"
     },
     "ProvisionedModelArn":{
       "type":"string",
