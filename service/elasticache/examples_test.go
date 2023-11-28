@@ -67,6 +67,14 @@ func ExampleElastiCache_AddTagsToResource_shared00() {
 				fmt.Println(elasticache.ErrCodeUserNotFoundFault, aerr.Error())
 			case elasticache.ErrCodeUserGroupNotFoundFault:
 				fmt.Println(elasticache.ErrCodeUserGroupNotFoundFault, aerr.Error())
+			case elasticache.ErrCodeServerlessCacheNotFoundFault:
+				fmt.Println(elasticache.ErrCodeServerlessCacheNotFoundFault, aerr.Error())
+			case elasticache.ErrCodeInvalidServerlessCacheStateFault:
+				fmt.Println(elasticache.ErrCodeInvalidServerlessCacheStateFault, aerr.Error())
+			case elasticache.ErrCodeServerlessCacheSnapshotNotFoundFault:
+				fmt.Println(elasticache.ErrCodeServerlessCacheSnapshotNotFoundFault, aerr.Error())
+			case elasticache.ErrCodeInvalidServerlessCacheSnapshotStateFault:
+				fmt.Println(elasticache.ErrCodeInvalidServerlessCacheSnapshotStateFault, aerr.Error())
 			case elasticache.ErrCodeTagQuotaPerResourceExceeded:
 				fmt.Println(elasticache.ErrCodeTagQuotaPerResourceExceeded, aerr.Error())
 			case elasticache.ErrCodeInvalidARNFault:
@@ -1579,6 +1587,14 @@ func ExampleElastiCache_ListTagsForResource_shared00() {
 				fmt.Println(elasticache.ErrCodeUserNotFoundFault, aerr.Error())
 			case elasticache.ErrCodeUserGroupNotFoundFault:
 				fmt.Println(elasticache.ErrCodeUserGroupNotFoundFault, aerr.Error())
+			case elasticache.ErrCodeServerlessCacheNotFoundFault:
+				fmt.Println(elasticache.ErrCodeServerlessCacheNotFoundFault, aerr.Error())
+			case elasticache.ErrCodeInvalidServerlessCacheStateFault:
+				fmt.Println(elasticache.ErrCodeInvalidServerlessCacheStateFault, aerr.Error())
+			case elasticache.ErrCodeServerlessCacheSnapshotNotFoundFault:
+				fmt.Println(elasticache.ErrCodeServerlessCacheSnapshotNotFoundFault, aerr.Error())
+			case elasticache.ErrCodeInvalidServerlessCacheSnapshotStateFault:
+				fmt.Println(elasticache.ErrCodeInvalidServerlessCacheSnapshotStateFault, aerr.Error())
 			case elasticache.ErrCodeInvalidARNFault:
 				fmt.Println(elasticache.ErrCodeInvalidARNFault, aerr.Error())
 			default:
@@ -1904,6 +1920,14 @@ func ExampleElastiCache_RemoveTagsFromResource_shared00() {
 				fmt.Println(elasticache.ErrCodeUserNotFoundFault, aerr.Error())
 			case elasticache.ErrCodeUserGroupNotFoundFault:
 				fmt.Println(elasticache.ErrCodeUserGroupNotFoundFault, aerr.Error())
+			case elasticache.ErrCodeServerlessCacheNotFoundFault:
+				fmt.Println(elasticache.ErrCodeServerlessCacheNotFoundFault, aerr.Error())
+			case elasticache.ErrCodeInvalidServerlessCacheStateFault:
+				fmt.Println(elasticache.ErrCodeInvalidServerlessCacheStateFault, aerr.Error())
+			case elasticache.ErrCodeServerlessCacheSnapshotNotFoundFault:
+				fmt.Println(elasticache.ErrCodeServerlessCacheSnapshotNotFoundFault, aerr.Error())
+			case elasticache.ErrCodeInvalidServerlessCacheSnapshotStateFault:
+				fmt.Println(elasticache.ErrCodeInvalidServerlessCacheSnapshotStateFault, aerr.Error())
 			case elasticache.ErrCodeInvalidARNFault:
 				fmt.Println(elasticache.ErrCodeInvalidARNFault, aerr.Error())
 			case elasticache.ErrCodeTagNotFoundFault:

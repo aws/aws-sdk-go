@@ -1,3 +1,10 @@
+Release v1.48.6 (2023-11-28)
+===
+
+### Service Client Updates
+* `service/elasticache`: Updates service API, documentation, and paginators
+  * Launching Amazon ElastiCache Serverless that enables you to create a cache in under a minute without any capacity management. ElastiCache Serverless monitors the cache's memory, CPU, and network usage and scales both vertically and horizontally to support your application's requirements.
+
 Release v1.48.5 (2023-11-27)
 ===
 
