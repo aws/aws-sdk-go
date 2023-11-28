@@ -33,6 +33,10 @@
         {"shape":"SnapshotNotFoundFault"},
         {"shape":"UserNotFoundFault"},
         {"shape":"UserGroupNotFoundFault"},
+        {"shape":"ServerlessCacheNotFoundFault"},
+        {"shape":"InvalidServerlessCacheStateFault"},
+        {"shape":"ServerlessCacheSnapshotNotFoundFault"},
+        {"shape":"InvalidServerlessCacheSnapshotStateFault"},
         {"shape":"TagQuotaPerResourceExceeded"},
         {"shape":"InvalidARNFault"}
       ]
@@ -103,6 +107,28 @@
         {"shape":"ReplicationGroupNotFoundFault"},
         {"shape":"InvalidReplicationGroupStateFault"},
         {"shape":"ReplicationGroupNotUnderMigrationFault"}
+      ]
+    },
+    "CopyServerlessCacheSnapshot":{
+      "name":"CopyServerlessCacheSnapshot",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CopyServerlessCacheSnapshotRequest"},
+      "output":{
+        "shape":"CopyServerlessCacheSnapshotResponse",
+        "resultWrapper":"CopyServerlessCacheSnapshotResult"
+      },
+      "errors":[
+        {"shape":"ServerlessCacheSnapshotAlreadyExistsFault"},
+        {"shape":"ServerlessCacheSnapshotNotFoundFault"},
+        {"shape":"ServerlessCacheSnapshotQuotaExceededFault"},
+        {"shape":"InvalidServerlessCacheSnapshotStateFault"},
+        {"shape":"ServiceLinkedRoleNotFoundFault"},
+        {"shape":"TagQuotaPerResourceExceeded"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidParameterCombinationException"}
       ]
     },
     "CopySnapshot":{
@@ -261,6 +287,53 @@
         {"shape":"NodeGroupsPerReplicationGroupQuotaExceededFault"},
         {"shape":"GlobalReplicationGroupNotFoundFault"},
         {"shape":"InvalidGlobalReplicationGroupStateFault"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidParameterCombinationException"}
+      ]
+    },
+    "CreateServerlessCache":{
+      "name":"CreateServerlessCache",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateServerlessCacheRequest"},
+      "output":{
+        "shape":"CreateServerlessCacheResponse",
+        "resultWrapper":"CreateServerlessCacheResult"
+      },
+      "errors":[
+        {"shape":"ServerlessCacheNotFoundFault"},
+        {"shape":"InvalidServerlessCacheStateFault"},
+        {"shape":"ServerlessCacheAlreadyExistsFault"},
+        {"shape":"ServerlessCacheQuotaForCustomerExceededFault"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidParameterCombinationException"},
+        {"shape":"InvalidCredentialsException"},
+        {"shape":"InvalidUserGroupStateFault"},
+        {"shape":"UserGroupNotFoundFault"},
+        {"shape":"TagQuotaPerResourceExceeded"},
+        {"shape":"ServiceLinkedRoleNotFoundFault"}
+      ]
+    },
+    "CreateServerlessCacheSnapshot":{
+      "name":"CreateServerlessCacheSnapshot",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateServerlessCacheSnapshotRequest"},
+      "output":{
+        "shape":"CreateServerlessCacheSnapshotResponse",
+        "resultWrapper":"CreateServerlessCacheSnapshotResult"
+      },
+      "errors":[
+        {"shape":"ServerlessCacheSnapshotAlreadyExistsFault"},
+        {"shape":"ServerlessCacheNotFoundFault"},
+        {"shape":"InvalidServerlessCacheStateFault"},
+        {"shape":"ServerlessCacheSnapshotQuotaExceededFault"},
+        {"shape":"ServiceLinkedRoleNotFoundFault"},
+        {"shape":"TagQuotaPerResourceExceeded"},
         {"shape":"InvalidParameterValueException"},
         {"shape":"InvalidParameterCombinationException"}
       ]
@@ -473,6 +546,45 @@
         {"shape":"SnapshotQuotaExceededFault"},
         {"shape":"InvalidParameterValueException"},
         {"shape":"InvalidParameterCombinationException"}
+      ]
+    },
+    "DeleteServerlessCache":{
+      "name":"DeleteServerlessCache",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteServerlessCacheRequest"},
+      "output":{
+        "shape":"DeleteServerlessCacheResponse",
+        "resultWrapper":"DeleteServerlessCacheResult"
+      },
+      "errors":[
+        {"shape":"ServerlessCacheNotFoundFault"},
+        {"shape":"InvalidServerlessCacheStateFault"},
+        {"shape":"ServerlessCacheSnapshotAlreadyExistsFault"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidParameterCombinationException"},
+        {"shape":"InvalidCredentialsException"},
+        {"shape":"ServiceLinkedRoleNotFoundFault"}
+      ]
+    },
+    "DeleteServerlessCacheSnapshot":{
+      "name":"DeleteServerlessCacheSnapshot",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteServerlessCacheSnapshotRequest"},
+      "output":{
+        "shape":"DeleteServerlessCacheSnapshotResponse",
+        "resultWrapper":"DeleteServerlessCacheSnapshotResult"
+      },
+      "errors":[
+        {"shape":"ServiceLinkedRoleNotFoundFault"},
+        {"shape":"ServerlessCacheSnapshotNotFoundFault"},
+        {"shape":"InvalidServerlessCacheSnapshotStateFault"},
+        {"shape":"InvalidParameterValueException"}
       ]
     },
     "DeleteSnapshot":{
@@ -725,6 +837,41 @@
         {"shape":"InvalidParameterCombinationException"}
       ]
     },
+    "DescribeServerlessCacheSnapshots":{
+      "name":"DescribeServerlessCacheSnapshots",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeServerlessCacheSnapshotsRequest"},
+      "output":{
+        "shape":"DescribeServerlessCacheSnapshotsResponse",
+        "resultWrapper":"DescribeServerlessCacheSnapshotsResult"
+      },
+      "errors":[
+        {"shape":"ServerlessCacheNotFoundFault"},
+        {"shape":"ServerlessCacheSnapshotNotFoundFault"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidParameterCombinationException"}
+      ]
+    },
+    "DescribeServerlessCaches":{
+      "name":"DescribeServerlessCaches",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeServerlessCachesRequest"},
+      "output":{
+        "shape":"DescribeServerlessCachesResponse",
+        "resultWrapper":"DescribeServerlessCachesResult"
+      },
+      "errors":[
+        {"shape":"ServerlessCacheNotFoundFault"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidParameterCombinationException"}
+      ]
+    },
     "DescribeServiceUpdates":{
       "name":"DescribeServiceUpdates",
       "http":{
@@ -828,6 +975,24 @@
         {"shape":"InvalidParameterCombinationException"}
       ]
     },
+    "ExportServerlessCacheSnapshot":{
+      "name":"ExportServerlessCacheSnapshot",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ExportServerlessCacheSnapshotRequest"},
+      "output":{
+        "shape":"ExportServerlessCacheSnapshotResponse",
+        "resultWrapper":"ExportServerlessCacheSnapshotResult"
+      },
+      "errors":[
+        {"shape":"ServerlessCacheSnapshotNotFoundFault"},
+        {"shape":"InvalidServerlessCacheSnapshotStateFault"},
+        {"shape":"ServiceLinkedRoleNotFoundFault"},
+        {"shape":"InvalidParameterValueException"}
+      ]
+    },
     "FailoverGlobalReplicationGroup":{
       "name":"FailoverGlobalReplicationGroup",
       "http":{
@@ -929,6 +1094,10 @@
         {"shape":"SnapshotNotFoundFault"},
         {"shape":"UserNotFoundFault"},
         {"shape":"UserGroupNotFoundFault"},
+        {"shape":"ServerlessCacheNotFoundFault"},
+        {"shape":"InvalidServerlessCacheStateFault"},
+        {"shape":"ServerlessCacheSnapshotNotFoundFault"},
+        {"shape":"InvalidServerlessCacheSnapshotStateFault"},
         {"shape":"InvalidARNFault"}
       ]
     },
@@ -1066,6 +1235,28 @@
         {"shape":"InvalidParameterCombinationException"}
       ]
     },
+    "ModifyServerlessCache":{
+      "name":"ModifyServerlessCache",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyServerlessCacheRequest"},
+      "output":{
+        "shape":"ModifyServerlessCacheResponse",
+        "resultWrapper":"ModifyServerlessCacheResult"
+      },
+      "errors":[
+        {"shape":"ServerlessCacheNotFoundFault"},
+        {"shape":"InvalidServerlessCacheStateFault"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidParameterCombinationException"},
+        {"shape":"InvalidCredentialsException"},
+        {"shape":"InvalidUserGroupStateFault"},
+        {"shape":"UserGroupNotFoundFault"},
+        {"shape":"ServiceLinkedRoleNotFoundFault"}
+      ]
+    },
     "ModifyUser":{
       "name":"ModifyUser",
       "http":{
@@ -1182,6 +1373,10 @@
         {"shape":"SnapshotNotFoundFault"},
         {"shape":"UserNotFoundFault"},
         {"shape":"UserGroupNotFoundFault"},
+        {"shape":"ServerlessCacheNotFoundFault"},
+        {"shape":"InvalidServerlessCacheStateFault"},
+        {"shape":"ServerlessCacheSnapshotNotFoundFault"},
+        {"shape":"InvalidServerlessCacheSnapshotStateFault"},
         {"shape":"InvalidARNFault"},
         {"shape":"TagNotFoundFault"}
       ]
@@ -1879,6 +2074,13 @@
       },
       "exception":true
     },
+    "CacheUsageLimits":{
+      "type":"structure",
+      "members":{
+        "DataStorage":{"shape":"DataStorage"},
+        "ECPUPerSecond":{"shape":"ECPUPerSecond"}
+      }
+    },
     "ChangeType":{
       "type":"string",
       "enum":[
@@ -1943,6 +2145,25 @@
         "NewReplicaCount":{"shape":"Integer"},
         "PreferredAvailabilityZones":{"shape":"PreferredAvailabilityZoneList"},
         "PreferredOutpostArns":{"shape":"PreferredOutpostArnList"}
+      }
+    },
+    "CopyServerlessCacheSnapshotRequest":{
+      "type":"structure",
+      "required":[
+        "SourceServerlessCacheSnapshotName",
+        "TargetServerlessCacheSnapshotName"
+      ],
+      "members":{
+        "SourceServerlessCacheSnapshotName":{"shape":"String"},
+        "TargetServerlessCacheSnapshotName":{"shape":"String"},
+        "KmsKeyId":{"shape":"String"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "CopyServerlessCacheSnapshotResponse":{
+      "type":"structure",
+      "members":{
+        "ServerlessCacheSnapshot":{"shape":"ServerlessCacheSnapshot"}
       }
     },
     "CopySnapshotMessage":{
@@ -2127,13 +2348,61 @@
         "NetworkType":{"shape":"NetworkType"},
         "IpDiscovery":{"shape":"IpDiscovery"},
         "TransitEncryptionMode":{"shape":"TransitEncryptionMode"},
-        "ClusterMode":{"shape":"ClusterMode"}
+        "ClusterMode":{"shape":"ClusterMode"},
+        "ServerlessCacheSnapshotName":{"shape":"String"}
       }
     },
     "CreateReplicationGroupResult":{
       "type":"structure",
       "members":{
         "ReplicationGroup":{"shape":"ReplicationGroup"}
+      }
+    },
+    "CreateServerlessCacheRequest":{
+      "type":"structure",
+      "required":[
+        "ServerlessCacheName",
+        "Engine"
+      ],
+      "members":{
+        "ServerlessCacheName":{"shape":"String"},
+        "Description":{"shape":"String"},
+        "Engine":{"shape":"String"},
+        "MajorEngineVersion":{"shape":"String"},
+        "CacheUsageLimits":{"shape":"CacheUsageLimits"},
+        "KmsKeyId":{"shape":"String"},
+        "SecurityGroupIds":{"shape":"SecurityGroupIdsList"},
+        "SnapshotArnsToRestore":{"shape":"SnapshotArnsList"},
+        "Tags":{"shape":"TagList"},
+        "UserGroupId":{"shape":"String"},
+        "SubnetIds":{"shape":"SubnetIdsList"},
+        "SnapshotRetentionLimit":{"shape":"IntegerOptional"},
+        "DailySnapshotTime":{"shape":"String"}
+      }
+    },
+    "CreateServerlessCacheResponse":{
+      "type":"structure",
+      "members":{
+        "ServerlessCache":{"shape":"ServerlessCache"}
+      }
+    },
+    "CreateServerlessCacheSnapshotRequest":{
+      "type":"structure",
+      "required":[
+        "ServerlessCacheSnapshotName",
+        "ServerlessCacheName"
+      ],
+      "members":{
+        "ServerlessCacheSnapshotName":{"shape":"String"},
+        "ServerlessCacheName":{"shape":"String"},
+        "KmsKeyId":{"shape":"String"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "CreateServerlessCacheSnapshotResponse":{
+      "type":"structure",
+      "members":{
+        "ServerlessCacheSnapshot":{"shape":"ServerlessCacheSnapshot"}
       }
     },
     "CreateSnapshotMessage":{
@@ -2195,6 +2464,21 @@
     "CustomerNodeEndpointList":{
       "type":"list",
       "member":{"shape":"CustomerNodeEndpoint"}
+    },
+    "DataStorage":{
+      "type":"structure",
+      "required":[
+        "Maximum",
+        "Unit"
+      ],
+      "members":{
+        "Maximum":{"shape":"IntegerOptional"},
+        "Unit":{"shape":"DataStorageUnit"}
+      }
+    },
+    "DataStorageUnit":{
+      "type":"string",
+      "enum":["GB"]
     },
     "DataTieringStatus":{
       "type":"string",
@@ -2331,6 +2615,33 @@
       "type":"structure",
       "members":{
         "ReplicationGroup":{"shape":"ReplicationGroup"}
+      }
+    },
+    "DeleteServerlessCacheRequest":{
+      "type":"structure",
+      "required":["ServerlessCacheName"],
+      "members":{
+        "ServerlessCacheName":{"shape":"String"},
+        "FinalSnapshotName":{"shape":"String"}
+      }
+    },
+    "DeleteServerlessCacheResponse":{
+      "type":"structure",
+      "members":{
+        "ServerlessCache":{"shape":"ServerlessCache"}
+      }
+    },
+    "DeleteServerlessCacheSnapshotRequest":{
+      "type":"structure",
+      "required":["ServerlessCacheSnapshotName"],
+      "members":{
+        "ServerlessCacheSnapshotName":{"shape":"String"}
+      }
+    },
+    "DeleteServerlessCacheSnapshotResponse":{
+      "type":"structure",
+      "members":{
+        "ServerlessCacheSnapshot":{"shape":"ServerlessCacheSnapshot"}
       }
     },
     "DeleteSnapshotMessage":{
@@ -2491,6 +2802,38 @@
         "Marker":{"shape":"String"}
       }
     },
+    "DescribeServerlessCacheSnapshotsRequest":{
+      "type":"structure",
+      "members":{
+        "ServerlessCacheName":{"shape":"String"},
+        "ServerlessCacheSnapshotName":{"shape":"String"},
+        "SnapshotType":{"shape":"String"},
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"IntegerOptional"}
+      }
+    },
+    "DescribeServerlessCacheSnapshotsResponse":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"String"},
+        "ServerlessCacheSnapshots":{"shape":"ServerlessCacheSnapshotList"}
+      }
+    },
+    "DescribeServerlessCachesRequest":{
+      "type":"structure",
+      "members":{
+        "ServerlessCacheName":{"shape":"String"},
+        "MaxResults":{"shape":"IntegerOptional"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "DescribeServerlessCachesResponse":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"String"},
+        "ServerlessCaches":{"shape":"ServerlessCacheList"}
+      }
+    },
     "DescribeServiceUpdatesMessage":{
       "type":"structure",
       "members":{
@@ -2626,6 +2969,13 @@
         "locationName":"EC2SecurityGroup"
       }
     },
+    "ECPUPerSecond":{
+      "type":"structure",
+      "required":["Maximum"],
+      "members":{
+        "Maximum":{"shape":"IntegerOptional"}
+      }
+    },
     "Endpoint":{
       "type":"structure",
       "members":{
@@ -2668,6 +3018,23 @@
       "members":{
         "Marker":{"shape":"String"},
         "Events":{"shape":"EventList"}
+      }
+    },
+    "ExportServerlessCacheSnapshotRequest":{
+      "type":"structure",
+      "required":[
+        "ServerlessCacheSnapshotName",
+        "S3BucketName"
+      ],
+      "members":{
+        "ServerlessCacheSnapshotName":{"shape":"String"},
+        "S3BucketName":{"shape":"String"}
+      }
+    },
+    "ExportServerlessCacheSnapshotResponse":{
+      "type":"structure",
+      "members":{
+        "ServerlessCacheSnapshot":{"shape":"ServerlessCacheSnapshot"}
       }
     },
     "FailoverGlobalReplicationGroupMessage":{
@@ -2915,6 +3282,17 @@
       },
       "exception":true
     },
+    "InvalidCredentialsException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"InvalidCredentialsException",
+        "httpStatusCode":408,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "InvalidGlobalReplicationGroupStateFault":{
       "type":"structure",
       "members":{
@@ -2969,6 +3347,28 @@
       },
       "error":{
         "code":"InvalidReplicationGroupState",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "InvalidServerlessCacheSnapshotStateFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"InvalidServerlessCacheSnapshotStateFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "InvalidServerlessCacheStateFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"InvalidServerlessCacheStateFault",
         "httpStatusCode":400,
         "senderFault":true
       },
@@ -3264,6 +3664,26 @@
       "type":"structure",
       "members":{
         "ReplicationGroup":{"shape":"ReplicationGroup"}
+      }
+    },
+    "ModifyServerlessCacheRequest":{
+      "type":"structure",
+      "required":["ServerlessCacheName"],
+      "members":{
+        "ServerlessCacheName":{"shape":"String"},
+        "Description":{"shape":"String"},
+        "CacheUsageLimits":{"shape":"CacheUsageLimits"},
+        "RemoveUserGroup":{"shape":"BooleanOptional"},
+        "UserGroupId":{"shape":"String"},
+        "SecurityGroupIds":{"shape":"SecurityGroupIdsList"},
+        "SnapshotRetentionLimit":{"shape":"IntegerOptional"},
+        "DailySnapshotTime":{"shape":"String"}
+      }
+    },
+    "ModifyServerlessCacheResponse":{
+      "type":"structure",
+      "members":{
+        "ServerlessCache":{"shape":"ServerlessCache"}
       }
     },
     "ModifyUserGroupMessage":{
@@ -4031,6 +4451,127 @@
       "type":"list",
       "member":{"shape":"SecurityGroupMembership"}
     },
+    "ServerlessCache":{
+      "type":"structure",
+      "members":{
+        "ServerlessCacheName":{"shape":"String"},
+        "Description":{"shape":"String"},
+        "CreateTime":{"shape":"TStamp"},
+        "Status":{"shape":"String"},
+        "Engine":{"shape":"String"},
+        "MajorEngineVersion":{"shape":"String"},
+        "FullEngineVersion":{"shape":"String"},
+        "CacheUsageLimits":{"shape":"CacheUsageLimits"},
+        "KmsKeyId":{"shape":"String"},
+        "SecurityGroupIds":{"shape":"SecurityGroupIdsList"},
+        "Endpoint":{"shape":"Endpoint"},
+        "ReaderEndpoint":{"shape":"Endpoint"},
+        "ARN":{"shape":"String"},
+        "UserGroupId":{"shape":"String"},
+        "SubnetIds":{"shape":"SubnetIdsList"},
+        "SnapshotRetentionLimit":{"shape":"IntegerOptional"},
+        "DailySnapshotTime":{"shape":"String"}
+      }
+    },
+    "ServerlessCacheAlreadyExistsFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"ServerlessCacheAlreadyExistsFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "ServerlessCacheConfiguration":{
+      "type":"structure",
+      "members":{
+        "ServerlessCacheName":{"shape":"String"},
+        "Engine":{"shape":"String"},
+        "MajorEngineVersion":{"shape":"String"}
+      }
+    },
+    "ServerlessCacheList":{
+      "type":"list",
+      "member":{"shape":"ServerlessCache"}
+    },
+    "ServerlessCacheNotFoundFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"ServerlessCacheNotFoundFault",
+        "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "ServerlessCacheQuotaForCustomerExceededFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"ServerlessCacheQuotaForCustomerExceededFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "ServerlessCacheSnapshot":{
+      "type":"structure",
+      "members":{
+        "ServerlessCacheSnapshotName":{"shape":"String"},
+        "ARN":{"shape":"String"},
+        "KmsKeyId":{"shape":"String"},
+        "SnapshotType":{"shape":"String"},
+        "Status":{"shape":"String"},
+        "CreateTime":{"shape":"TStamp"},
+        "ExpiryTime":{"shape":"TStamp"},
+        "BytesUsedForCache":{"shape":"String"},
+        "ServerlessCacheConfiguration":{"shape":"ServerlessCacheConfiguration"}
+      }
+    },
+    "ServerlessCacheSnapshotAlreadyExistsFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"ServerlessCacheSnapshotAlreadyExistsFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "ServerlessCacheSnapshotList":{
+      "type":"list",
+      "member":{
+        "shape":"ServerlessCacheSnapshot",
+        "locationName":"ServerlessCacheSnapshot"
+      }
+    },
+    "ServerlessCacheSnapshotNotFoundFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"ServerlessCacheSnapshotNotFoundFault",
+        "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "ServerlessCacheSnapshotQuotaExceededFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"ServerlessCacheSnapshotQuotaExceededFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "ServiceLinkedRoleNotFoundFault":{
       "type":"structure",
       "members":{
@@ -4224,6 +4765,8 @@
         "cache-security-group",
         "cache-subnet-group",
         "replication-group",
+        "serverless-cache",
+        "serverless-cache-snapshot",
         "user",
         "user-group"
       ]
@@ -4260,6 +4803,13 @@
       "member":{
         "shape":"String",
         "locationName":"SubnetIdentifier"
+      }
+    },
+    "SubnetIdsList":{
+      "type":"list",
+      "member":{
+        "shape":"String",
+        "locationName":"SubnetId"
       }
     },
     "SubnetInUse":{
@@ -4403,6 +4953,10 @@
       "type":"list",
       "member":{"shape":"String"}
     },
+    "UGServerlessCacheIdList":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
     "UnprocessedUpdateAction":{
       "type":"structure",
       "members":{
@@ -4517,6 +5071,7 @@
         "MinimumEngineVersion":{"shape":"String"},
         "PendingChanges":{"shape":"UserGroupPendingChanges"},
         "ReplicationGroups":{"shape":"UGReplicationGroupIdList"},
+        "ServerlessCaches":{"shape":"UGServerlessCacheIdList"},
         "ARN":{"shape":"String"}
       }
     },
