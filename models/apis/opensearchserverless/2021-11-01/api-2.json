@@ -1160,6 +1160,9 @@
         "name": {
           "shape": "CollectionName"
         },
+        "standbyReplicas": {
+          "shape": "StandbyReplicas"
+        },
         "status": {
           "shape": "CollectionStatus"
         },
@@ -1354,6 +1357,9 @@
         "name": {
           "shape": "CollectionName"
         },
+        "standbyReplicas": {
+          "shape": "StandbyReplicas"
+        },
         "status": {
           "shape": "CollectionStatus"
         },
@@ -1374,6 +1380,9 @@
         },
         "name": {
           "shape": "CollectionName"
+        },
+        "standbyReplicas": {
+          "shape": "StandbyReplicas"
         },
         "tags": {
           "shape": "Tags"
@@ -2547,6 +2556,13 @@
         "serviceCode"
       ],
       "type": "structure"
+    },
+    "StandbyReplicas": {
+      "enum": [
+        "ENABLED",
+        "DISABLED"
+      ],
+      "type": "string"
     },
     "String": {
       "type": "string"

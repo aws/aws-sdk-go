@@ -1,3 +1,18 @@
+Release v1.48.8 (2023-11-29)
+===
+
+### Service Client Updates
+* `service/application-autoscaling`: Updates service API and documentation
+* `service/cleanrooms`: Updates service API, documentation, and paginators
+* `service/cleanroomsml`: Adds new service
+* `service/opensearch`: Updates service API and documentation
+* `service/opensearchserverless`: Updates service API and documentation
+* `service/runtime.sagemaker`: Updates service API and documentation
+* `service/sagemaker`: Updates service API, documentation, and paginators
+  * This release adds following support 1/ Improved SDK tooling for model deployment. 2/ New Inference Component based features to lower inference costs and latency 3/ SageMaker HyperPod management. 4/ Additional parameters for FM Fine Tuning in Autopilot
+* `service/sts`: Updates service documentation
+  * Documentation updates for AWS Security Token Service.
+
 Release v1.48.7 (2023-11-28)
 ===
 

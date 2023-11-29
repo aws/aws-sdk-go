@@ -4369,6 +4369,9 @@ type CollectionDetail struct {
 	// The name of the collection.
 	Name *string `locationName:"name" min:"3" type:"string"`
 
+	// Details about an OpenSearch Serverless collection.
+	StandbyReplicas *string `locationName:"standbyReplicas" type:"string" enum:"StandbyReplicas"`
+
 	// The current status of the collection.
 	Status *string `locationName:"status" type:"string" enum:"CollectionStatus"`
 
@@ -4445,6 +4448,12 @@ func (s *CollectionDetail) SetLastModifiedDate(v int64) *CollectionDetail {
 // SetName sets the Name field's value.
 func (s *CollectionDetail) SetName(v string) *CollectionDetail {
 	s.Name = &v
+	return s
+}
+
+// SetStandbyReplicas sets the StandbyReplicas field's value.
+func (s *CollectionDetail) SetStandbyReplicas(v string) *CollectionDetail {
+	s.StandbyReplicas = &v
 	return s
 }
 
@@ -4860,6 +4869,9 @@ type CreateCollectionDetail struct {
 	// The name of the collection.
 	Name *string `locationName:"name" min:"3" type:"string"`
 
+	// Creates details about an OpenSearch Serverless collection.
+	StandbyReplicas *string `locationName:"standbyReplicas" type:"string" enum:"StandbyReplicas"`
+
 	// The current status of the collection.
 	Status *string `locationName:"status" type:"string" enum:"CollectionStatus"`
 
@@ -4927,6 +4939,12 @@ func (s *CreateCollectionDetail) SetName(v string) *CreateCollectionDetail {
 	return s
 }
 
+// SetStandbyReplicas sets the StandbyReplicas field's value.
+func (s *CreateCollectionDetail) SetStandbyReplicas(v string) *CreateCollectionDetail {
+	s.StandbyReplicas = &v
+	return s
+}
+
 // SetStatus sets the Status field's value.
 func (s *CreateCollectionDetail) SetStatus(v string) *CreateCollectionDetail {
 	s.Status = &v
@@ -4952,6 +4970,9 @@ type CreateCollectionInput struct {
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"3" type:"string" required:"true"`
+
+	// Indicates whether standby replicas should be used for a collection.
+	StandbyReplicas *string `locationName:"standbyReplicas" type:"string" enum:"StandbyReplicas"`
 
 	// An arbitrary set of tags (key–value pairs) to associate with the OpenSearch
 	// Serverless collection.
@@ -5023,6 +5044,12 @@ func (s *CreateCollectionInput) SetDescription(v string) *CreateCollectionInput 
 // SetName sets the Name field's value.
 func (s *CreateCollectionInput) SetName(v string) *CreateCollectionInput {
 	s.Name = &v
+	return s
+}
+
+// SetStandbyReplicas sets the StandbyReplicas field's value.
+func (s *CreateCollectionInput) SetStandbyReplicas(v string) *CreateCollectionInput {
+	s.StandbyReplicas = &v
 	return s
 }
 
@@ -10491,6 +10518,22 @@ func SecurityPolicyType_Values() []string {
 	return []string{
 		SecurityPolicyTypeEncryption,
 		SecurityPolicyTypeNetwork,
+	}
+}
+
+const (
+	// StandbyReplicasEnabled is a StandbyReplicas enum value
+	StandbyReplicasEnabled = "ENABLED"
+
+	// StandbyReplicasDisabled is a StandbyReplicas enum value
+	StandbyReplicasDisabled = "DISABLED"
+)
+
+// StandbyReplicas_Values returns all elements of the StandbyReplicas enum
+func StandbyReplicas_Values() []string {
+	return []string{
+		StandbyReplicasEnabled,
+		StandbyReplicasDisabled,
 	}
 }
 

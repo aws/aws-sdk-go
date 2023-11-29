@@ -384,6 +384,103 @@ func (c *CleanRooms) CreateCollaborationWithContext(ctx aws.Context, input *Crea
 	return out, req.Send()
 }
 
+const opCreateConfiguredAudienceModelAssociation = "CreateConfiguredAudienceModelAssociation"
+
+// CreateConfiguredAudienceModelAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the CreateConfiguredAudienceModelAssociation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateConfiguredAudienceModelAssociation for more information on using the CreateConfiguredAudienceModelAssociation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateConfiguredAudienceModelAssociationRequest method.
+//	req, resp := client.CreateConfiguredAudienceModelAssociationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/CreateConfiguredAudienceModelAssociation
+func (c *CleanRooms) CreateConfiguredAudienceModelAssociationRequest(input *CreateConfiguredAudienceModelAssociationInput) (req *request.Request, output *CreateConfiguredAudienceModelAssociationOutput) {
+	op := &request.Operation{
+		Name:       opCreateConfiguredAudienceModelAssociation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/memberships/{membershipIdentifier}/configuredaudiencemodelassociations",
+	}
+
+	if input == nil {
+		input = &CreateConfiguredAudienceModelAssociationInput{}
+	}
+
+	output = &CreateConfiguredAudienceModelAssociationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateConfiguredAudienceModelAssociation API operation for AWS Clean Rooms Service.
+//
+// Provides the details necessary to create a configured audience model association.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Clean Rooms Service's
+// API operation CreateConfiguredAudienceModelAssociation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ConflictException
+//     Updating or deleting a resource can cause an inconsistent state.
+//
+//   - ServiceQuotaExceededException
+//     Request denied because service quota has been exceeded.
+//
+//   - ResourceNotFoundException
+//     Request references a resource which does not exist.
+//
+//   - InternalServerException
+//     Unexpected error during processing of request.
+//
+//   - ValidationException
+//     The input fails to satisfy the specified constraints.
+//
+//   - ThrottlingException
+//     Request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     Caller does not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/CreateConfiguredAudienceModelAssociation
+func (c *CleanRooms) CreateConfiguredAudienceModelAssociation(input *CreateConfiguredAudienceModelAssociationInput) (*CreateConfiguredAudienceModelAssociationOutput, error) {
+	req, out := c.CreateConfiguredAudienceModelAssociationRequest(input)
+	return out, req.Send()
+}
+
+// CreateConfiguredAudienceModelAssociationWithContext is the same as CreateConfiguredAudienceModelAssociation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateConfiguredAudienceModelAssociation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) CreateConfiguredAudienceModelAssociationWithContext(ctx aws.Context, input *CreateConfiguredAudienceModelAssociationInput, opts ...request.Option) (*CreateConfiguredAudienceModelAssociationOutput, error) {
+	req, out := c.CreateConfiguredAudienceModelAssociationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateConfiguredTable = "CreateConfiguredTable"
 
 // CreateConfiguredTableRequest generates a "aws/request.Request" representing the
@@ -772,6 +869,103 @@ func (c *CleanRooms) CreateMembershipWithContext(ctx aws.Context, input *CreateM
 	return out, req.Send()
 }
 
+const opCreatePrivacyBudgetTemplate = "CreatePrivacyBudgetTemplate"
+
+// CreatePrivacyBudgetTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the CreatePrivacyBudgetTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreatePrivacyBudgetTemplate for more information on using the CreatePrivacyBudgetTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreatePrivacyBudgetTemplateRequest method.
+//	req, resp := client.CreatePrivacyBudgetTemplateRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/CreatePrivacyBudgetTemplate
+func (c *CleanRooms) CreatePrivacyBudgetTemplateRequest(input *CreatePrivacyBudgetTemplateInput) (req *request.Request, output *CreatePrivacyBudgetTemplateOutput) {
+	op := &request.Operation{
+		Name:       opCreatePrivacyBudgetTemplate,
+		HTTPMethod: "POST",
+		HTTPPath:   "/memberships/{membershipIdentifier}/privacybudgettemplates",
+	}
+
+	if input == nil {
+		input = &CreatePrivacyBudgetTemplateInput{}
+	}
+
+	output = &CreatePrivacyBudgetTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreatePrivacyBudgetTemplate API operation for AWS Clean Rooms Service.
+//
+// Creates a privacy budget template for a specified membership. Each membership
+// can have only one privacy budget template, but it can be deleted and recreated.
+// If you need to change the privacy budget template for a membership, use the
+// UpdatePrivacyBudgetTemplate operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Clean Rooms Service's
+// API operation CreatePrivacyBudgetTemplate for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ConflictException
+//     Updating or deleting a resource can cause an inconsistent state.
+//
+//   - ResourceNotFoundException
+//     Request references a resource which does not exist.
+//
+//   - InternalServerException
+//     Unexpected error during processing of request.
+//
+//   - ValidationException
+//     The input fails to satisfy the specified constraints.
+//
+//   - ThrottlingException
+//     Request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     Caller does not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/CreatePrivacyBudgetTemplate
+func (c *CleanRooms) CreatePrivacyBudgetTemplate(input *CreatePrivacyBudgetTemplateInput) (*CreatePrivacyBudgetTemplateOutput, error) {
+	req, out := c.CreatePrivacyBudgetTemplateRequest(input)
+	return out, req.Send()
+}
+
+// CreatePrivacyBudgetTemplateWithContext is the same as CreatePrivacyBudgetTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreatePrivacyBudgetTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) CreatePrivacyBudgetTemplateWithContext(ctx aws.Context, input *CreatePrivacyBudgetTemplateInput, opts ...request.Option) (*CreatePrivacyBudgetTemplateOutput, error) {
+	req, out := c.CreatePrivacyBudgetTemplateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteAnalysisTemplate = "DeleteAnalysisTemplate"
 
 // DeleteAnalysisTemplateRequest generates a "aws/request.Request" representing the
@@ -948,6 +1142,99 @@ func (c *CleanRooms) DeleteCollaboration(input *DeleteCollaborationInput) (*Dele
 // for more information on using Contexts.
 func (c *CleanRooms) DeleteCollaborationWithContext(ctx aws.Context, input *DeleteCollaborationInput, opts ...request.Option) (*DeleteCollaborationOutput, error) {
 	req, out := c.DeleteCollaborationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteConfiguredAudienceModelAssociation = "DeleteConfiguredAudienceModelAssociation"
+
+// DeleteConfiguredAudienceModelAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteConfiguredAudienceModelAssociation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteConfiguredAudienceModelAssociation for more information on using the DeleteConfiguredAudienceModelAssociation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteConfiguredAudienceModelAssociationRequest method.
+//	req, resp := client.DeleteConfiguredAudienceModelAssociationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/DeleteConfiguredAudienceModelAssociation
+func (c *CleanRooms) DeleteConfiguredAudienceModelAssociationRequest(input *DeleteConfiguredAudienceModelAssociationInput) (req *request.Request, output *DeleteConfiguredAudienceModelAssociationOutput) {
+	op := &request.Operation{
+		Name:       opDeleteConfiguredAudienceModelAssociation,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/memberships/{membershipIdentifier}/configuredaudiencemodelassociations/{configuredAudienceModelAssociationIdentifier}",
+	}
+
+	if input == nil {
+		input = &DeleteConfiguredAudienceModelAssociationInput{}
+	}
+
+	output = &DeleteConfiguredAudienceModelAssociationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteConfiguredAudienceModelAssociation API operation for AWS Clean Rooms Service.
+//
+// Provides the information necessary to delete a configured audience model
+// association.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Clean Rooms Service's
+// API operation DeleteConfiguredAudienceModelAssociation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     Request references a resource which does not exist.
+//
+//   - InternalServerException
+//     Unexpected error during processing of request.
+//
+//   - ValidationException
+//     The input fails to satisfy the specified constraints.
+//
+//   - ThrottlingException
+//     Request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     Caller does not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/DeleteConfiguredAudienceModelAssociation
+func (c *CleanRooms) DeleteConfiguredAudienceModelAssociation(input *DeleteConfiguredAudienceModelAssociationInput) (*DeleteConfiguredAudienceModelAssociationOutput, error) {
+	req, out := c.DeleteConfiguredAudienceModelAssociationRequest(input)
+	return out, req.Send()
+}
+
+// DeleteConfiguredAudienceModelAssociationWithContext is the same as DeleteConfiguredAudienceModelAssociation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteConfiguredAudienceModelAssociation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) DeleteConfiguredAudienceModelAssociationWithContext(ctx aws.Context, input *DeleteConfiguredAudienceModelAssociationInput, opts ...request.Option) (*DeleteConfiguredAudienceModelAssociationOutput, error) {
+	req, out := c.DeleteConfiguredAudienceModelAssociationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1431,6 +1718,98 @@ func (c *CleanRooms) DeleteMembershipWithContext(ctx aws.Context, input *DeleteM
 	return out, req.Send()
 }
 
+const opDeletePrivacyBudgetTemplate = "DeletePrivacyBudgetTemplate"
+
+// DeletePrivacyBudgetTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the DeletePrivacyBudgetTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeletePrivacyBudgetTemplate for more information on using the DeletePrivacyBudgetTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeletePrivacyBudgetTemplateRequest method.
+//	req, resp := client.DeletePrivacyBudgetTemplateRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/DeletePrivacyBudgetTemplate
+func (c *CleanRooms) DeletePrivacyBudgetTemplateRequest(input *DeletePrivacyBudgetTemplateInput) (req *request.Request, output *DeletePrivacyBudgetTemplateOutput) {
+	op := &request.Operation{
+		Name:       opDeletePrivacyBudgetTemplate,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/memberships/{membershipIdentifier}/privacybudgettemplates/{privacyBudgetTemplateIdentifier}",
+	}
+
+	if input == nil {
+		input = &DeletePrivacyBudgetTemplateInput{}
+	}
+
+	output = &DeletePrivacyBudgetTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeletePrivacyBudgetTemplate API operation for AWS Clean Rooms Service.
+//
+// Deletes a privacy budget template for a specified membership.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Clean Rooms Service's
+// API operation DeletePrivacyBudgetTemplate for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     Request references a resource which does not exist.
+//
+//   - InternalServerException
+//     Unexpected error during processing of request.
+//
+//   - ValidationException
+//     The input fails to satisfy the specified constraints.
+//
+//   - ThrottlingException
+//     Request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     Caller does not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/DeletePrivacyBudgetTemplate
+func (c *CleanRooms) DeletePrivacyBudgetTemplate(input *DeletePrivacyBudgetTemplateInput) (*DeletePrivacyBudgetTemplateOutput, error) {
+	req, out := c.DeletePrivacyBudgetTemplateRequest(input)
+	return out, req.Send()
+}
+
+// DeletePrivacyBudgetTemplateWithContext is the same as DeletePrivacyBudgetTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeletePrivacyBudgetTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) DeletePrivacyBudgetTemplateWithContext(ctx aws.Context, input *DeletePrivacyBudgetTemplateInput, opts ...request.Option) (*DeletePrivacyBudgetTemplateOutput, error) {
+	req, out := c.DeletePrivacyBudgetTemplateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetAnalysisTemplate = "GetAnalysisTemplate"
 
 // GetAnalysisTemplateRequest generates a "aws/request.Request" representing the
@@ -1696,6 +2075,279 @@ func (c *CleanRooms) GetCollaborationAnalysisTemplate(input *GetCollaborationAna
 // for more information on using Contexts.
 func (c *CleanRooms) GetCollaborationAnalysisTemplateWithContext(ctx aws.Context, input *GetCollaborationAnalysisTemplateInput, opts ...request.Option) (*GetCollaborationAnalysisTemplateOutput, error) {
 	req, out := c.GetCollaborationAnalysisTemplateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetCollaborationConfiguredAudienceModelAssociation = "GetCollaborationConfiguredAudienceModelAssociation"
+
+// GetCollaborationConfiguredAudienceModelAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the GetCollaborationConfiguredAudienceModelAssociation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetCollaborationConfiguredAudienceModelAssociation for more information on using the GetCollaborationConfiguredAudienceModelAssociation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetCollaborationConfiguredAudienceModelAssociationRequest method.
+//	req, resp := client.GetCollaborationConfiguredAudienceModelAssociationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/GetCollaborationConfiguredAudienceModelAssociation
+func (c *CleanRooms) GetCollaborationConfiguredAudienceModelAssociationRequest(input *GetCollaborationConfiguredAudienceModelAssociationInput) (req *request.Request, output *GetCollaborationConfiguredAudienceModelAssociationOutput) {
+	op := &request.Operation{
+		Name:       opGetCollaborationConfiguredAudienceModelAssociation,
+		HTTPMethod: "GET",
+		HTTPPath:   "/collaborations/{collaborationIdentifier}/configuredaudiencemodelassociations/{configuredAudienceModelAssociationIdentifier}",
+	}
+
+	if input == nil {
+		input = &GetCollaborationConfiguredAudienceModelAssociationInput{}
+	}
+
+	output = &GetCollaborationConfiguredAudienceModelAssociationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetCollaborationConfiguredAudienceModelAssociation API operation for AWS Clean Rooms Service.
+//
+// Retrieves a configured audience model association within a collaboration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Clean Rooms Service's
+// API operation GetCollaborationConfiguredAudienceModelAssociation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     Request references a resource which does not exist.
+//
+//   - InternalServerException
+//     Unexpected error during processing of request.
+//
+//   - ValidationException
+//     The input fails to satisfy the specified constraints.
+//
+//   - ThrottlingException
+//     Request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     Caller does not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/GetCollaborationConfiguredAudienceModelAssociation
+func (c *CleanRooms) GetCollaborationConfiguredAudienceModelAssociation(input *GetCollaborationConfiguredAudienceModelAssociationInput) (*GetCollaborationConfiguredAudienceModelAssociationOutput, error) {
+	req, out := c.GetCollaborationConfiguredAudienceModelAssociationRequest(input)
+	return out, req.Send()
+}
+
+// GetCollaborationConfiguredAudienceModelAssociationWithContext is the same as GetCollaborationConfiguredAudienceModelAssociation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetCollaborationConfiguredAudienceModelAssociation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) GetCollaborationConfiguredAudienceModelAssociationWithContext(ctx aws.Context, input *GetCollaborationConfiguredAudienceModelAssociationInput, opts ...request.Option) (*GetCollaborationConfiguredAudienceModelAssociationOutput, error) {
+	req, out := c.GetCollaborationConfiguredAudienceModelAssociationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetCollaborationPrivacyBudgetTemplate = "GetCollaborationPrivacyBudgetTemplate"
+
+// GetCollaborationPrivacyBudgetTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the GetCollaborationPrivacyBudgetTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetCollaborationPrivacyBudgetTemplate for more information on using the GetCollaborationPrivacyBudgetTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetCollaborationPrivacyBudgetTemplateRequest method.
+//	req, resp := client.GetCollaborationPrivacyBudgetTemplateRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/GetCollaborationPrivacyBudgetTemplate
+func (c *CleanRooms) GetCollaborationPrivacyBudgetTemplateRequest(input *GetCollaborationPrivacyBudgetTemplateInput) (req *request.Request, output *GetCollaborationPrivacyBudgetTemplateOutput) {
+	op := &request.Operation{
+		Name:       opGetCollaborationPrivacyBudgetTemplate,
+		HTTPMethod: "GET",
+		HTTPPath:   "/collaborations/{collaborationIdentifier}/privacybudgettemplates/{privacyBudgetTemplateIdentifier}",
+	}
+
+	if input == nil {
+		input = &GetCollaborationPrivacyBudgetTemplateInput{}
+	}
+
+	output = &GetCollaborationPrivacyBudgetTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetCollaborationPrivacyBudgetTemplate API operation for AWS Clean Rooms Service.
+//
+// Returns details about a specified privacy budget template.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Clean Rooms Service's
+// API operation GetCollaborationPrivacyBudgetTemplate for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     Request references a resource which does not exist.
+//
+//   - InternalServerException
+//     Unexpected error during processing of request.
+//
+//   - ValidationException
+//     The input fails to satisfy the specified constraints.
+//
+//   - ThrottlingException
+//     Request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     Caller does not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/GetCollaborationPrivacyBudgetTemplate
+func (c *CleanRooms) GetCollaborationPrivacyBudgetTemplate(input *GetCollaborationPrivacyBudgetTemplateInput) (*GetCollaborationPrivacyBudgetTemplateOutput, error) {
+	req, out := c.GetCollaborationPrivacyBudgetTemplateRequest(input)
+	return out, req.Send()
+}
+
+// GetCollaborationPrivacyBudgetTemplateWithContext is the same as GetCollaborationPrivacyBudgetTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetCollaborationPrivacyBudgetTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) GetCollaborationPrivacyBudgetTemplateWithContext(ctx aws.Context, input *GetCollaborationPrivacyBudgetTemplateInput, opts ...request.Option) (*GetCollaborationPrivacyBudgetTemplateOutput, error) {
+	req, out := c.GetCollaborationPrivacyBudgetTemplateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetConfiguredAudienceModelAssociation = "GetConfiguredAudienceModelAssociation"
+
+// GetConfiguredAudienceModelAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the GetConfiguredAudienceModelAssociation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetConfiguredAudienceModelAssociation for more information on using the GetConfiguredAudienceModelAssociation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetConfiguredAudienceModelAssociationRequest method.
+//	req, resp := client.GetConfiguredAudienceModelAssociationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/GetConfiguredAudienceModelAssociation
+func (c *CleanRooms) GetConfiguredAudienceModelAssociationRequest(input *GetConfiguredAudienceModelAssociationInput) (req *request.Request, output *GetConfiguredAudienceModelAssociationOutput) {
+	op := &request.Operation{
+		Name:       opGetConfiguredAudienceModelAssociation,
+		HTTPMethod: "GET",
+		HTTPPath:   "/memberships/{membershipIdentifier}/configuredaudiencemodelassociations/{configuredAudienceModelAssociationIdentifier}",
+	}
+
+	if input == nil {
+		input = &GetConfiguredAudienceModelAssociationInput{}
+	}
+
+	output = &GetConfiguredAudienceModelAssociationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetConfiguredAudienceModelAssociation API operation for AWS Clean Rooms Service.
+//
+// Returns information about a configured audience model association.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Clean Rooms Service's
+// API operation GetConfiguredAudienceModelAssociation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     Request references a resource which does not exist.
+//
+//   - InternalServerException
+//     Unexpected error during processing of request.
+//
+//   - ValidationException
+//     The input fails to satisfy the specified constraints.
+//
+//   - ThrottlingException
+//     Request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     Caller does not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/GetConfiguredAudienceModelAssociation
+func (c *CleanRooms) GetConfiguredAudienceModelAssociation(input *GetConfiguredAudienceModelAssociationInput) (*GetConfiguredAudienceModelAssociationOutput, error) {
+	req, out := c.GetConfiguredAudienceModelAssociationRequest(input)
+	return out, req.Send()
+}
+
+// GetConfiguredAudienceModelAssociationWithContext is the same as GetConfiguredAudienceModelAssociation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetConfiguredAudienceModelAssociation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) GetConfiguredAudienceModelAssociationWithContext(ctx aws.Context, input *GetConfiguredAudienceModelAssociationInput, opts ...request.Option) (*GetConfiguredAudienceModelAssociationOutput, error) {
+	req, out := c.GetConfiguredAudienceModelAssociationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2060,6 +2712,97 @@ func (c *CleanRooms) GetMembership(input *GetMembershipInput) (*GetMembershipOut
 // for more information on using Contexts.
 func (c *CleanRooms) GetMembershipWithContext(ctx aws.Context, input *GetMembershipInput, opts ...request.Option) (*GetMembershipOutput, error) {
 	req, out := c.GetMembershipRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetPrivacyBudgetTemplate = "GetPrivacyBudgetTemplate"
+
+// GetPrivacyBudgetTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the GetPrivacyBudgetTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetPrivacyBudgetTemplate for more information on using the GetPrivacyBudgetTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetPrivacyBudgetTemplateRequest method.
+//	req, resp := client.GetPrivacyBudgetTemplateRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/GetPrivacyBudgetTemplate
+func (c *CleanRooms) GetPrivacyBudgetTemplateRequest(input *GetPrivacyBudgetTemplateInput) (req *request.Request, output *GetPrivacyBudgetTemplateOutput) {
+	op := &request.Operation{
+		Name:       opGetPrivacyBudgetTemplate,
+		HTTPMethod: "GET",
+		HTTPPath:   "/memberships/{membershipIdentifier}/privacybudgettemplates/{privacyBudgetTemplateIdentifier}",
+	}
+
+	if input == nil {
+		input = &GetPrivacyBudgetTemplateInput{}
+	}
+
+	output = &GetPrivacyBudgetTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetPrivacyBudgetTemplate API operation for AWS Clean Rooms Service.
+//
+// Returns details for a specified privacy budget template.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Clean Rooms Service's
+// API operation GetPrivacyBudgetTemplate for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     Request references a resource which does not exist.
+//
+//   - InternalServerException
+//     Unexpected error during processing of request.
+//
+//   - ValidationException
+//     The input fails to satisfy the specified constraints.
+//
+//   - ThrottlingException
+//     Request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     Caller does not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/GetPrivacyBudgetTemplate
+func (c *CleanRooms) GetPrivacyBudgetTemplate(input *GetPrivacyBudgetTemplateInput) (*GetPrivacyBudgetTemplateOutput, error) {
+	req, out := c.GetPrivacyBudgetTemplateRequest(input)
+	return out, req.Send()
+}
+
+// GetPrivacyBudgetTemplateWithContext is the same as GetPrivacyBudgetTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetPrivacyBudgetTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) GetPrivacyBudgetTemplateWithContext(ctx aws.Context, input *GetPrivacyBudgetTemplateInput, opts ...request.Option) (*GetPrivacyBudgetTemplateOutput, error) {
+	req, out := c.GetPrivacyBudgetTemplateRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2634,6 +3377,453 @@ func (c *CleanRooms) ListCollaborationAnalysisTemplatesPagesWithContext(ctx aws.
 	return p.Err()
 }
 
+const opListCollaborationConfiguredAudienceModelAssociations = "ListCollaborationConfiguredAudienceModelAssociations"
+
+// ListCollaborationConfiguredAudienceModelAssociationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListCollaborationConfiguredAudienceModelAssociations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListCollaborationConfiguredAudienceModelAssociations for more information on using the ListCollaborationConfiguredAudienceModelAssociations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListCollaborationConfiguredAudienceModelAssociationsRequest method.
+//	req, resp := client.ListCollaborationConfiguredAudienceModelAssociationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/ListCollaborationConfiguredAudienceModelAssociations
+func (c *CleanRooms) ListCollaborationConfiguredAudienceModelAssociationsRequest(input *ListCollaborationConfiguredAudienceModelAssociationsInput) (req *request.Request, output *ListCollaborationConfiguredAudienceModelAssociationsOutput) {
+	op := &request.Operation{
+		Name:       opListCollaborationConfiguredAudienceModelAssociations,
+		HTTPMethod: "GET",
+		HTTPPath:   "/collaborations/{collaborationIdentifier}/configuredaudiencemodelassociations",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListCollaborationConfiguredAudienceModelAssociationsInput{}
+	}
+
+	output = &ListCollaborationConfiguredAudienceModelAssociationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListCollaborationConfiguredAudienceModelAssociations API operation for AWS Clean Rooms Service.
+//
+// Lists configured audience model associations within a collaboration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Clean Rooms Service's
+// API operation ListCollaborationConfiguredAudienceModelAssociations for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     Request references a resource which does not exist.
+//
+//   - InternalServerException
+//     Unexpected error during processing of request.
+//
+//   - ValidationException
+//     The input fails to satisfy the specified constraints.
+//
+//   - ThrottlingException
+//     Request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     Caller does not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/ListCollaborationConfiguredAudienceModelAssociations
+func (c *CleanRooms) ListCollaborationConfiguredAudienceModelAssociations(input *ListCollaborationConfiguredAudienceModelAssociationsInput) (*ListCollaborationConfiguredAudienceModelAssociationsOutput, error) {
+	req, out := c.ListCollaborationConfiguredAudienceModelAssociationsRequest(input)
+	return out, req.Send()
+}
+
+// ListCollaborationConfiguredAudienceModelAssociationsWithContext is the same as ListCollaborationConfiguredAudienceModelAssociations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListCollaborationConfiguredAudienceModelAssociations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) ListCollaborationConfiguredAudienceModelAssociationsWithContext(ctx aws.Context, input *ListCollaborationConfiguredAudienceModelAssociationsInput, opts ...request.Option) (*ListCollaborationConfiguredAudienceModelAssociationsOutput, error) {
+	req, out := c.ListCollaborationConfiguredAudienceModelAssociationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListCollaborationConfiguredAudienceModelAssociationsPages iterates over the pages of a ListCollaborationConfiguredAudienceModelAssociations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListCollaborationConfiguredAudienceModelAssociations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListCollaborationConfiguredAudienceModelAssociations operation.
+//	pageNum := 0
+//	err := client.ListCollaborationConfiguredAudienceModelAssociationsPages(params,
+//	    func(page *cleanrooms.ListCollaborationConfiguredAudienceModelAssociationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *CleanRooms) ListCollaborationConfiguredAudienceModelAssociationsPages(input *ListCollaborationConfiguredAudienceModelAssociationsInput, fn func(*ListCollaborationConfiguredAudienceModelAssociationsOutput, bool) bool) error {
+	return c.ListCollaborationConfiguredAudienceModelAssociationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListCollaborationConfiguredAudienceModelAssociationsPagesWithContext same as ListCollaborationConfiguredAudienceModelAssociationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) ListCollaborationConfiguredAudienceModelAssociationsPagesWithContext(ctx aws.Context, input *ListCollaborationConfiguredAudienceModelAssociationsInput, fn func(*ListCollaborationConfiguredAudienceModelAssociationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListCollaborationConfiguredAudienceModelAssociationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListCollaborationConfiguredAudienceModelAssociationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListCollaborationConfiguredAudienceModelAssociationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListCollaborationPrivacyBudgetTemplates = "ListCollaborationPrivacyBudgetTemplates"
+
+// ListCollaborationPrivacyBudgetTemplatesRequest generates a "aws/request.Request" representing the
+// client's request for the ListCollaborationPrivacyBudgetTemplates operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListCollaborationPrivacyBudgetTemplates for more information on using the ListCollaborationPrivacyBudgetTemplates
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListCollaborationPrivacyBudgetTemplatesRequest method.
+//	req, resp := client.ListCollaborationPrivacyBudgetTemplatesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/ListCollaborationPrivacyBudgetTemplates
+func (c *CleanRooms) ListCollaborationPrivacyBudgetTemplatesRequest(input *ListCollaborationPrivacyBudgetTemplatesInput) (req *request.Request, output *ListCollaborationPrivacyBudgetTemplatesOutput) {
+	op := &request.Operation{
+		Name:       opListCollaborationPrivacyBudgetTemplates,
+		HTTPMethod: "GET",
+		HTTPPath:   "/collaborations/{collaborationIdentifier}/privacybudgettemplates",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListCollaborationPrivacyBudgetTemplatesInput{}
+	}
+
+	output = &ListCollaborationPrivacyBudgetTemplatesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListCollaborationPrivacyBudgetTemplates API operation for AWS Clean Rooms Service.
+//
+// Returns an array that summarizes each privacy budget template in a specified
+// collaboration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Clean Rooms Service's
+// API operation ListCollaborationPrivacyBudgetTemplates for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     Request references a resource which does not exist.
+//
+//   - InternalServerException
+//     Unexpected error during processing of request.
+//
+//   - ValidationException
+//     The input fails to satisfy the specified constraints.
+//
+//   - ThrottlingException
+//     Request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     Caller does not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/ListCollaborationPrivacyBudgetTemplates
+func (c *CleanRooms) ListCollaborationPrivacyBudgetTemplates(input *ListCollaborationPrivacyBudgetTemplatesInput) (*ListCollaborationPrivacyBudgetTemplatesOutput, error) {
+	req, out := c.ListCollaborationPrivacyBudgetTemplatesRequest(input)
+	return out, req.Send()
+}
+
+// ListCollaborationPrivacyBudgetTemplatesWithContext is the same as ListCollaborationPrivacyBudgetTemplates with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListCollaborationPrivacyBudgetTemplates for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) ListCollaborationPrivacyBudgetTemplatesWithContext(ctx aws.Context, input *ListCollaborationPrivacyBudgetTemplatesInput, opts ...request.Option) (*ListCollaborationPrivacyBudgetTemplatesOutput, error) {
+	req, out := c.ListCollaborationPrivacyBudgetTemplatesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListCollaborationPrivacyBudgetTemplatesPages iterates over the pages of a ListCollaborationPrivacyBudgetTemplates operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListCollaborationPrivacyBudgetTemplates method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListCollaborationPrivacyBudgetTemplates operation.
+//	pageNum := 0
+//	err := client.ListCollaborationPrivacyBudgetTemplatesPages(params,
+//	    func(page *cleanrooms.ListCollaborationPrivacyBudgetTemplatesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *CleanRooms) ListCollaborationPrivacyBudgetTemplatesPages(input *ListCollaborationPrivacyBudgetTemplatesInput, fn func(*ListCollaborationPrivacyBudgetTemplatesOutput, bool) bool) error {
+	return c.ListCollaborationPrivacyBudgetTemplatesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListCollaborationPrivacyBudgetTemplatesPagesWithContext same as ListCollaborationPrivacyBudgetTemplatesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) ListCollaborationPrivacyBudgetTemplatesPagesWithContext(ctx aws.Context, input *ListCollaborationPrivacyBudgetTemplatesInput, fn func(*ListCollaborationPrivacyBudgetTemplatesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListCollaborationPrivacyBudgetTemplatesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListCollaborationPrivacyBudgetTemplatesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListCollaborationPrivacyBudgetTemplatesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListCollaborationPrivacyBudgets = "ListCollaborationPrivacyBudgets"
+
+// ListCollaborationPrivacyBudgetsRequest generates a "aws/request.Request" representing the
+// client's request for the ListCollaborationPrivacyBudgets operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListCollaborationPrivacyBudgets for more information on using the ListCollaborationPrivacyBudgets
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListCollaborationPrivacyBudgetsRequest method.
+//	req, resp := client.ListCollaborationPrivacyBudgetsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/ListCollaborationPrivacyBudgets
+func (c *CleanRooms) ListCollaborationPrivacyBudgetsRequest(input *ListCollaborationPrivacyBudgetsInput) (req *request.Request, output *ListCollaborationPrivacyBudgetsOutput) {
+	op := &request.Operation{
+		Name:       opListCollaborationPrivacyBudgets,
+		HTTPMethod: "GET",
+		HTTPPath:   "/collaborations/{collaborationIdentifier}/privacybudgets",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListCollaborationPrivacyBudgetsInput{}
+	}
+
+	output = &ListCollaborationPrivacyBudgetsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListCollaborationPrivacyBudgets API operation for AWS Clean Rooms Service.
+//
+// Returns an array that summarizes each privacy budget in a specified collaboration.
+// The summary includes the collaboration ARN, creation time, creating account,
+// and privacy budget details.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Clean Rooms Service's
+// API operation ListCollaborationPrivacyBudgets for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     Request references a resource which does not exist.
+//
+//   - InternalServerException
+//     Unexpected error during processing of request.
+//
+//   - ValidationException
+//     The input fails to satisfy the specified constraints.
+//
+//   - ThrottlingException
+//     Request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     Caller does not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/ListCollaborationPrivacyBudgets
+func (c *CleanRooms) ListCollaborationPrivacyBudgets(input *ListCollaborationPrivacyBudgetsInput) (*ListCollaborationPrivacyBudgetsOutput, error) {
+	req, out := c.ListCollaborationPrivacyBudgetsRequest(input)
+	return out, req.Send()
+}
+
+// ListCollaborationPrivacyBudgetsWithContext is the same as ListCollaborationPrivacyBudgets with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListCollaborationPrivacyBudgets for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) ListCollaborationPrivacyBudgetsWithContext(ctx aws.Context, input *ListCollaborationPrivacyBudgetsInput, opts ...request.Option) (*ListCollaborationPrivacyBudgetsOutput, error) {
+	req, out := c.ListCollaborationPrivacyBudgetsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListCollaborationPrivacyBudgetsPages iterates over the pages of a ListCollaborationPrivacyBudgets operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListCollaborationPrivacyBudgets method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListCollaborationPrivacyBudgets operation.
+//	pageNum := 0
+//	err := client.ListCollaborationPrivacyBudgetsPages(params,
+//	    func(page *cleanrooms.ListCollaborationPrivacyBudgetsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *CleanRooms) ListCollaborationPrivacyBudgetsPages(input *ListCollaborationPrivacyBudgetsInput, fn func(*ListCollaborationPrivacyBudgetsOutput, bool) bool) error {
+	return c.ListCollaborationPrivacyBudgetsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListCollaborationPrivacyBudgetsPagesWithContext same as ListCollaborationPrivacyBudgetsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) ListCollaborationPrivacyBudgetsPagesWithContext(ctx aws.Context, input *ListCollaborationPrivacyBudgetsInput, fn func(*ListCollaborationPrivacyBudgetsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListCollaborationPrivacyBudgetsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListCollaborationPrivacyBudgetsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListCollaborationPrivacyBudgetsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListCollaborations = "ListCollaborations"
 
 // ListCollaborationsRequest generates a "aws/request.Request" representing the
@@ -2772,6 +3962,154 @@ func (c *CleanRooms) ListCollaborationsPagesWithContext(ctx aws.Context, input *
 
 	for p.Next() {
 		if !fn(p.Page().(*ListCollaborationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListConfiguredAudienceModelAssociations = "ListConfiguredAudienceModelAssociations"
+
+// ListConfiguredAudienceModelAssociationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListConfiguredAudienceModelAssociations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListConfiguredAudienceModelAssociations for more information on using the ListConfiguredAudienceModelAssociations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListConfiguredAudienceModelAssociationsRequest method.
+//	req, resp := client.ListConfiguredAudienceModelAssociationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/ListConfiguredAudienceModelAssociations
+func (c *CleanRooms) ListConfiguredAudienceModelAssociationsRequest(input *ListConfiguredAudienceModelAssociationsInput) (req *request.Request, output *ListConfiguredAudienceModelAssociationsOutput) {
+	op := &request.Operation{
+		Name:       opListConfiguredAudienceModelAssociations,
+		HTTPMethod: "GET",
+		HTTPPath:   "/memberships/{membershipIdentifier}/configuredaudiencemodelassociations",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListConfiguredAudienceModelAssociationsInput{}
+	}
+
+	output = &ListConfiguredAudienceModelAssociationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListConfiguredAudienceModelAssociations API operation for AWS Clean Rooms Service.
+//
+// Lists information about requested configured audience model associations.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Clean Rooms Service's
+// API operation ListConfiguredAudienceModelAssociations for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     Request references a resource which does not exist.
+//
+//   - InternalServerException
+//     Unexpected error during processing of request.
+//
+//   - ValidationException
+//     The input fails to satisfy the specified constraints.
+//
+//   - ThrottlingException
+//     Request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     Caller does not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/ListConfiguredAudienceModelAssociations
+func (c *CleanRooms) ListConfiguredAudienceModelAssociations(input *ListConfiguredAudienceModelAssociationsInput) (*ListConfiguredAudienceModelAssociationsOutput, error) {
+	req, out := c.ListConfiguredAudienceModelAssociationsRequest(input)
+	return out, req.Send()
+}
+
+// ListConfiguredAudienceModelAssociationsWithContext is the same as ListConfiguredAudienceModelAssociations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListConfiguredAudienceModelAssociations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) ListConfiguredAudienceModelAssociationsWithContext(ctx aws.Context, input *ListConfiguredAudienceModelAssociationsInput, opts ...request.Option) (*ListConfiguredAudienceModelAssociationsOutput, error) {
+	req, out := c.ListConfiguredAudienceModelAssociationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListConfiguredAudienceModelAssociationsPages iterates over the pages of a ListConfiguredAudienceModelAssociations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListConfiguredAudienceModelAssociations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListConfiguredAudienceModelAssociations operation.
+//	pageNum := 0
+//	err := client.ListConfiguredAudienceModelAssociationsPages(params,
+//	    func(page *cleanrooms.ListConfiguredAudienceModelAssociationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *CleanRooms) ListConfiguredAudienceModelAssociationsPages(input *ListConfiguredAudienceModelAssociationsInput, fn func(*ListConfiguredAudienceModelAssociationsOutput, bool) bool) error {
+	return c.ListConfiguredAudienceModelAssociationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListConfiguredAudienceModelAssociationsPagesWithContext same as ListConfiguredAudienceModelAssociationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) ListConfiguredAudienceModelAssociationsPagesWithContext(ctx aws.Context, input *ListConfiguredAudienceModelAssociationsInput, fn func(*ListConfiguredAudienceModelAssociationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListConfiguredAudienceModelAssociationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListConfiguredAudienceModelAssociationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListConfiguredAudienceModelAssociationsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -3365,6 +4703,303 @@ func (c *CleanRooms) ListMembershipsPagesWithContext(ctx aws.Context, input *Lis
 	return p.Err()
 }
 
+const opListPrivacyBudgetTemplates = "ListPrivacyBudgetTemplates"
+
+// ListPrivacyBudgetTemplatesRequest generates a "aws/request.Request" representing the
+// client's request for the ListPrivacyBudgetTemplates operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListPrivacyBudgetTemplates for more information on using the ListPrivacyBudgetTemplates
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListPrivacyBudgetTemplatesRequest method.
+//	req, resp := client.ListPrivacyBudgetTemplatesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/ListPrivacyBudgetTemplates
+func (c *CleanRooms) ListPrivacyBudgetTemplatesRequest(input *ListPrivacyBudgetTemplatesInput) (req *request.Request, output *ListPrivacyBudgetTemplatesOutput) {
+	op := &request.Operation{
+		Name:       opListPrivacyBudgetTemplates,
+		HTTPMethod: "GET",
+		HTTPPath:   "/memberships/{membershipIdentifier}/privacybudgettemplates",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListPrivacyBudgetTemplatesInput{}
+	}
+
+	output = &ListPrivacyBudgetTemplatesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListPrivacyBudgetTemplates API operation for AWS Clean Rooms Service.
+//
+// Returns detailed information about the privacy budget templates in a specified
+// membership.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Clean Rooms Service's
+// API operation ListPrivacyBudgetTemplates for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     Request references a resource which does not exist.
+//
+//   - InternalServerException
+//     Unexpected error during processing of request.
+//
+//   - ValidationException
+//     The input fails to satisfy the specified constraints.
+//
+//   - ThrottlingException
+//     Request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     Caller does not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/ListPrivacyBudgetTemplates
+func (c *CleanRooms) ListPrivacyBudgetTemplates(input *ListPrivacyBudgetTemplatesInput) (*ListPrivacyBudgetTemplatesOutput, error) {
+	req, out := c.ListPrivacyBudgetTemplatesRequest(input)
+	return out, req.Send()
+}
+
+// ListPrivacyBudgetTemplatesWithContext is the same as ListPrivacyBudgetTemplates with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListPrivacyBudgetTemplates for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) ListPrivacyBudgetTemplatesWithContext(ctx aws.Context, input *ListPrivacyBudgetTemplatesInput, opts ...request.Option) (*ListPrivacyBudgetTemplatesOutput, error) {
+	req, out := c.ListPrivacyBudgetTemplatesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListPrivacyBudgetTemplatesPages iterates over the pages of a ListPrivacyBudgetTemplates operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListPrivacyBudgetTemplates method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListPrivacyBudgetTemplates operation.
+//	pageNum := 0
+//	err := client.ListPrivacyBudgetTemplatesPages(params,
+//	    func(page *cleanrooms.ListPrivacyBudgetTemplatesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *CleanRooms) ListPrivacyBudgetTemplatesPages(input *ListPrivacyBudgetTemplatesInput, fn func(*ListPrivacyBudgetTemplatesOutput, bool) bool) error {
+	return c.ListPrivacyBudgetTemplatesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListPrivacyBudgetTemplatesPagesWithContext same as ListPrivacyBudgetTemplatesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) ListPrivacyBudgetTemplatesPagesWithContext(ctx aws.Context, input *ListPrivacyBudgetTemplatesInput, fn func(*ListPrivacyBudgetTemplatesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListPrivacyBudgetTemplatesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListPrivacyBudgetTemplatesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListPrivacyBudgetTemplatesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListPrivacyBudgets = "ListPrivacyBudgets"
+
+// ListPrivacyBudgetsRequest generates a "aws/request.Request" representing the
+// client's request for the ListPrivacyBudgets operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListPrivacyBudgets for more information on using the ListPrivacyBudgets
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListPrivacyBudgetsRequest method.
+//	req, resp := client.ListPrivacyBudgetsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/ListPrivacyBudgets
+func (c *CleanRooms) ListPrivacyBudgetsRequest(input *ListPrivacyBudgetsInput) (req *request.Request, output *ListPrivacyBudgetsOutput) {
+	op := &request.Operation{
+		Name:       opListPrivacyBudgets,
+		HTTPMethod: "GET",
+		HTTPPath:   "/memberships/{membershipIdentifier}/privacybudgets",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListPrivacyBudgetsInput{}
+	}
+
+	output = &ListPrivacyBudgetsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListPrivacyBudgets API operation for AWS Clean Rooms Service.
+//
+// Returns detailed information about the privacy budgets in a specified membership.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Clean Rooms Service's
+// API operation ListPrivacyBudgets for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     Request references a resource which does not exist.
+//
+//   - InternalServerException
+//     Unexpected error during processing of request.
+//
+//   - ValidationException
+//     The input fails to satisfy the specified constraints.
+//
+//   - ThrottlingException
+//     Request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     Caller does not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/ListPrivacyBudgets
+func (c *CleanRooms) ListPrivacyBudgets(input *ListPrivacyBudgetsInput) (*ListPrivacyBudgetsOutput, error) {
+	req, out := c.ListPrivacyBudgetsRequest(input)
+	return out, req.Send()
+}
+
+// ListPrivacyBudgetsWithContext is the same as ListPrivacyBudgets with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListPrivacyBudgets for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) ListPrivacyBudgetsWithContext(ctx aws.Context, input *ListPrivacyBudgetsInput, opts ...request.Option) (*ListPrivacyBudgetsOutput, error) {
+	req, out := c.ListPrivacyBudgetsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListPrivacyBudgetsPages iterates over the pages of a ListPrivacyBudgets operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListPrivacyBudgets method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListPrivacyBudgets operation.
+//	pageNum := 0
+//	err := client.ListPrivacyBudgetsPages(params,
+//	    func(page *cleanrooms.ListPrivacyBudgetsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *CleanRooms) ListPrivacyBudgetsPages(input *ListPrivacyBudgetsInput, fn func(*ListPrivacyBudgetsOutput, bool) bool) error {
+	return c.ListPrivacyBudgetsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListPrivacyBudgetsPagesWithContext same as ListPrivacyBudgetsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) ListPrivacyBudgetsPagesWithContext(ctx aws.Context, input *ListPrivacyBudgetsInput, fn func(*ListPrivacyBudgetsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListPrivacyBudgetsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListPrivacyBudgetsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListPrivacyBudgetsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListProtectedQueries = "ListProtectedQueries"
 
 // ListProtectedQueriesRequest generates a "aws/request.Request" representing the
@@ -3738,6 +5373,98 @@ func (c *CleanRooms) ListTagsForResource(input *ListTagsForResourceInput) (*List
 // for more information on using Contexts.
 func (c *CleanRooms) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
 	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPreviewPrivacyImpact = "PreviewPrivacyImpact"
+
+// PreviewPrivacyImpactRequest generates a "aws/request.Request" representing the
+// client's request for the PreviewPrivacyImpact operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PreviewPrivacyImpact for more information on using the PreviewPrivacyImpact
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the PreviewPrivacyImpactRequest method.
+//	req, resp := client.PreviewPrivacyImpactRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/PreviewPrivacyImpact
+func (c *CleanRooms) PreviewPrivacyImpactRequest(input *PreviewPrivacyImpactInput) (req *request.Request, output *PreviewPrivacyImpactOutput) {
+	op := &request.Operation{
+		Name:       opPreviewPrivacyImpact,
+		HTTPMethod: "POST",
+		HTTPPath:   "/memberships/{membershipIdentifier}/previewprivacyimpact",
+	}
+
+	if input == nil {
+		input = &PreviewPrivacyImpactInput{}
+	}
+
+	output = &PreviewPrivacyImpactOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PreviewPrivacyImpact API operation for AWS Clean Rooms Service.
+//
+// An estimate of the number of aggregation functions that the member who can
+// query can run given epsilon and noise parameters.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Clean Rooms Service's
+// API operation PreviewPrivacyImpact for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     Request references a resource which does not exist.
+//
+//   - InternalServerException
+//     Unexpected error during processing of request.
+//
+//   - ValidationException
+//     The input fails to satisfy the specified constraints.
+//
+//   - ThrottlingException
+//     Request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     Caller does not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/PreviewPrivacyImpact
+func (c *CleanRooms) PreviewPrivacyImpact(input *PreviewPrivacyImpactInput) (*PreviewPrivacyImpactOutput, error) {
+	req, out := c.PreviewPrivacyImpactRequest(input)
+	return out, req.Send()
+}
+
+// PreviewPrivacyImpactWithContext is the same as PreviewPrivacyImpact with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PreviewPrivacyImpact for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) PreviewPrivacyImpactWithContext(ctx aws.Context, input *PreviewPrivacyImpactInput, opts ...request.Option) (*PreviewPrivacyImpactOutput, error) {
+	req, out := c.PreviewPrivacyImpactRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4183,6 +5910,97 @@ func (c *CleanRooms) UpdateCollaborationWithContext(ctx aws.Context, input *Upda
 	return out, req.Send()
 }
 
+const opUpdateConfiguredAudienceModelAssociation = "UpdateConfiguredAudienceModelAssociation"
+
+// UpdateConfiguredAudienceModelAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateConfiguredAudienceModelAssociation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateConfiguredAudienceModelAssociation for more information on using the UpdateConfiguredAudienceModelAssociation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateConfiguredAudienceModelAssociationRequest method.
+//	req, resp := client.UpdateConfiguredAudienceModelAssociationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/UpdateConfiguredAudienceModelAssociation
+func (c *CleanRooms) UpdateConfiguredAudienceModelAssociationRequest(input *UpdateConfiguredAudienceModelAssociationInput) (req *request.Request, output *UpdateConfiguredAudienceModelAssociationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateConfiguredAudienceModelAssociation,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/memberships/{membershipIdentifier}/configuredaudiencemodelassociations/{configuredAudienceModelAssociationIdentifier}",
+	}
+
+	if input == nil {
+		input = &UpdateConfiguredAudienceModelAssociationInput{}
+	}
+
+	output = &UpdateConfiguredAudienceModelAssociationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateConfiguredAudienceModelAssociation API operation for AWS Clean Rooms Service.
+//
+// Provides the details necessary to update a configured audience model association.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Clean Rooms Service's
+// API operation UpdateConfiguredAudienceModelAssociation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     Request references a resource which does not exist.
+//
+//   - InternalServerException
+//     Unexpected error during processing of request.
+//
+//   - ValidationException
+//     The input fails to satisfy the specified constraints.
+//
+//   - ThrottlingException
+//     Request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     Caller does not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/UpdateConfiguredAudienceModelAssociation
+func (c *CleanRooms) UpdateConfiguredAudienceModelAssociation(input *UpdateConfiguredAudienceModelAssociationInput) (*UpdateConfiguredAudienceModelAssociationOutput, error) {
+	req, out := c.UpdateConfiguredAudienceModelAssociationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateConfiguredAudienceModelAssociationWithContext is the same as UpdateConfiguredAudienceModelAssociation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateConfiguredAudienceModelAssociation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) UpdateConfiguredAudienceModelAssociationWithContext(ctx aws.Context, input *UpdateConfiguredAudienceModelAssociationInput, opts ...request.Option) (*UpdateConfiguredAudienceModelAssociationOutput, error) {
+	req, out := c.UpdateConfiguredAudienceModelAssociationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateConfiguredTable = "UpdateConfiguredTable"
 
 // UpdateConfiguredTableRequest generates a "aws/request.Request" representing the
@@ -4554,6 +6372,100 @@ func (c *CleanRooms) UpdateMembership(input *UpdateMembershipInput) (*UpdateMemb
 // for more information on using Contexts.
 func (c *CleanRooms) UpdateMembershipWithContext(ctx aws.Context, input *UpdateMembershipInput, opts ...request.Option) (*UpdateMembershipOutput, error) {
 	req, out := c.UpdateMembershipRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdatePrivacyBudgetTemplate = "UpdatePrivacyBudgetTemplate"
+
+// UpdatePrivacyBudgetTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the UpdatePrivacyBudgetTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdatePrivacyBudgetTemplate for more information on using the UpdatePrivacyBudgetTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdatePrivacyBudgetTemplateRequest method.
+//	req, resp := client.UpdatePrivacyBudgetTemplateRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/UpdatePrivacyBudgetTemplate
+func (c *CleanRooms) UpdatePrivacyBudgetTemplateRequest(input *UpdatePrivacyBudgetTemplateInput) (req *request.Request, output *UpdatePrivacyBudgetTemplateOutput) {
+	op := &request.Operation{
+		Name:       opUpdatePrivacyBudgetTemplate,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/memberships/{membershipIdentifier}/privacybudgettemplates/{privacyBudgetTemplateIdentifier}",
+	}
+
+	if input == nil {
+		input = &UpdatePrivacyBudgetTemplateInput{}
+	}
+
+	output = &UpdatePrivacyBudgetTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdatePrivacyBudgetTemplate API operation for AWS Clean Rooms Service.
+//
+// Updates the privacy budget template for the specified membership.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Clean Rooms Service's
+// API operation UpdatePrivacyBudgetTemplate for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ConflictException
+//     Updating or deleting a resource can cause an inconsistent state.
+//
+//   - ResourceNotFoundException
+//     Request references a resource which does not exist.
+//
+//   - InternalServerException
+//     Unexpected error during processing of request.
+//
+//   - ValidationException
+//     The input fails to satisfy the specified constraints.
+//
+//   - ThrottlingException
+//     Request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     Caller does not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cleanrooms-2022-02-17/UpdatePrivacyBudgetTemplate
+func (c *CleanRooms) UpdatePrivacyBudgetTemplate(input *UpdatePrivacyBudgetTemplateInput) (*UpdatePrivacyBudgetTemplateOutput, error) {
+	req, out := c.UpdatePrivacyBudgetTemplateRequest(input)
+	return out, req.Send()
+}
+
+// UpdatePrivacyBudgetTemplateWithContext is the same as UpdatePrivacyBudgetTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdatePrivacyBudgetTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CleanRooms) UpdatePrivacyBudgetTemplateWithContext(ctx aws.Context, input *UpdatePrivacyBudgetTemplateInput, opts ...request.Option) (*UpdatePrivacyBudgetTemplateOutput, error) {
+	req, out := c.UpdatePrivacyBudgetTemplateRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5191,7 +7103,7 @@ func (s *AnalysisRuleAggregation) SetScalarFunctions(v []*string) *AnalysisRuleA
 }
 
 // A type of analysis rule that enables the table owner to approve custom SQL
-// queries on their configured tables.
+// queries on their configured tables. It supports differential privacy.
 type AnalysisRuleCustom struct {
 	_ struct{} `type:"structure"`
 
@@ -5203,6 +7115,9 @@ type AnalysisRuleCustom struct {
 	// The Amazon Web Services accounts that are allowed to query by the custom
 	// analysis rule. Required when allowedAnalyses is ANY_QUERY.
 	AllowedAnalysisProviders []*string `locationName:"allowedAnalysisProviders" type:"list"`
+
+	// The differential privacy configuration.
+	DifferentialPrivacy *DifferentialPrivacyConfiguration `locationName:"differentialPrivacy" type:"structure"`
 }
 
 // String returns the string representation.
@@ -5229,6 +7144,11 @@ func (s *AnalysisRuleCustom) Validate() error {
 	if s.AllowedAnalyses == nil {
 		invalidParams.Add(request.NewErrParamRequired("AllowedAnalyses"))
 	}
+	if s.DifferentialPrivacy != nil {
+		if err := s.DifferentialPrivacy.Validate(); err != nil {
+			invalidParams.AddNested("DifferentialPrivacy", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -5245,6 +7165,12 @@ func (s *AnalysisRuleCustom) SetAllowedAnalyses(v []*string) *AnalysisRuleCustom
 // SetAllowedAnalysisProviders sets the AllowedAnalysisProviders field's value.
 func (s *AnalysisRuleCustom) SetAllowedAnalysisProviders(v []*string) *AnalysisRuleCustom {
 	s.AllowedAnalysisProviders = v
+	return s
+}
+
+// SetDifferentialPrivacy sets the DifferentialPrivacy field's value.
+func (s *AnalysisRuleCustom) SetDifferentialPrivacy(v *DifferentialPrivacyConfiguration) *AnalysisRuleCustom {
+	s.DifferentialPrivacy = v
 	return s
 }
 
@@ -6572,6 +8498,660 @@ func (s *CollaborationAnalysisTemplateSummary) SetUpdateTime(v time.Time) *Colla
 	return s
 }
 
+// The configured audience model association within a collaboration.
+type CollaborationConfiguredAudienceModelAssociation struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the configured audience model association.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// The unique ARN for the configured audience model's associated collaboration.
+	//
+	// CollaborationArn is a required field
+	CollaborationArn *string `locationName:"collaborationArn" type:"string" required:"true"`
+
+	// A unique identifier for the collaboration that the configured audience model
+	// associations belong to. Accepts collaboration ID.
+	//
+	// CollaborationId is a required field
+	CollaborationId *string `locationName:"collaborationId" min:"36" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the configure audience model.
+	//
+	// ConfiguredAudienceModelArn is a required field
+	ConfiguredAudienceModelArn *string `locationName:"configuredAudienceModelArn" min:"20" type:"string" required:"true"`
+
+	// The time at which the configured audience model association was created.
+	//
+	// CreateTime is a required field
+	CreateTime *time.Time `locationName:"createTime" type:"timestamp" required:"true"`
+
+	// The identifier used to reference members of the collaboration. Only supports
+	// AWS account ID.
+	//
+	// CreatorAccountId is a required field
+	CreatorAccountId *string `locationName:"creatorAccountId" min:"12" type:"string" required:"true"`
+
+	// The description of the configured audience model association.
+	Description *string `locationName:"description" type:"string"`
+
+	// The identifier of the configured audience model association.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" min:"36" type:"string" required:"true"`
+
+	// The name of the configured audience model association.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The most recent time at which the configured audience model association was
+	// updated.
+	//
+	// UpdateTime is a required field
+	UpdateTime *time.Time `locationName:"updateTime" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CollaborationConfiguredAudienceModelAssociation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CollaborationConfiguredAudienceModelAssociation) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CollaborationConfiguredAudienceModelAssociation) SetArn(v string) *CollaborationConfiguredAudienceModelAssociation {
+	s.Arn = &v
+	return s
+}
+
+// SetCollaborationArn sets the CollaborationArn field's value.
+func (s *CollaborationConfiguredAudienceModelAssociation) SetCollaborationArn(v string) *CollaborationConfiguredAudienceModelAssociation {
+	s.CollaborationArn = &v
+	return s
+}
+
+// SetCollaborationId sets the CollaborationId field's value.
+func (s *CollaborationConfiguredAudienceModelAssociation) SetCollaborationId(v string) *CollaborationConfiguredAudienceModelAssociation {
+	s.CollaborationId = &v
+	return s
+}
+
+// SetConfiguredAudienceModelArn sets the ConfiguredAudienceModelArn field's value.
+func (s *CollaborationConfiguredAudienceModelAssociation) SetConfiguredAudienceModelArn(v string) *CollaborationConfiguredAudienceModelAssociation {
+	s.ConfiguredAudienceModelArn = &v
+	return s
+}
+
+// SetCreateTime sets the CreateTime field's value.
+func (s *CollaborationConfiguredAudienceModelAssociation) SetCreateTime(v time.Time) *CollaborationConfiguredAudienceModelAssociation {
+	s.CreateTime = &v
+	return s
+}
+
+// SetCreatorAccountId sets the CreatorAccountId field's value.
+func (s *CollaborationConfiguredAudienceModelAssociation) SetCreatorAccountId(v string) *CollaborationConfiguredAudienceModelAssociation {
+	s.CreatorAccountId = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CollaborationConfiguredAudienceModelAssociation) SetDescription(v string) *CollaborationConfiguredAudienceModelAssociation {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *CollaborationConfiguredAudienceModelAssociation) SetId(v string) *CollaborationConfiguredAudienceModelAssociation {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CollaborationConfiguredAudienceModelAssociation) SetName(v string) *CollaborationConfiguredAudienceModelAssociation {
+	s.Name = &v
+	return s
+}
+
+// SetUpdateTime sets the UpdateTime field's value.
+func (s *CollaborationConfiguredAudienceModelAssociation) SetUpdateTime(v time.Time) *CollaborationConfiguredAudienceModelAssociation {
+	s.UpdateTime = &v
+	return s
+}
+
+// A summary of the configured audience model association in the collaboration.
+type CollaborationConfiguredAudienceModelAssociationSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the configured audience model association.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// The unique ARN for the configured audience model's associated collaboration.
+	//
+	// CollaborationArn is a required field
+	CollaborationArn *string `locationName:"collaborationArn" type:"string" required:"true"`
+
+	// A unique identifier for the collaboration that the configured audience model
+	// associations belong to. Accepts collaboration ID.
+	//
+	// CollaborationId is a required field
+	CollaborationId *string `locationName:"collaborationId" min:"36" type:"string" required:"true"`
+
+	// The time at which the configured audience model association was created.
+	//
+	// CreateTime is a required field
+	CreateTime *time.Time `locationName:"createTime" type:"timestamp" required:"true"`
+
+	// The identifier used to reference members of the collaboration. Only supports
+	// AWS account ID.
+	//
+	// CreatorAccountId is a required field
+	CreatorAccountId *string `locationName:"creatorAccountId" min:"12" type:"string" required:"true"`
+
+	// The description of the configured audience model association.
+	Description *string `locationName:"description" type:"string"`
+
+	// The identifier of the configured audience model association.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" min:"36" type:"string" required:"true"`
+
+	// The name of the configured audience model association.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The most recent time at which the configured audience model association was
+	// updated.
+	//
+	// UpdateTime is a required field
+	UpdateTime *time.Time `locationName:"updateTime" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CollaborationConfiguredAudienceModelAssociationSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CollaborationConfiguredAudienceModelAssociationSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CollaborationConfiguredAudienceModelAssociationSummary) SetArn(v string) *CollaborationConfiguredAudienceModelAssociationSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetCollaborationArn sets the CollaborationArn field's value.
+func (s *CollaborationConfiguredAudienceModelAssociationSummary) SetCollaborationArn(v string) *CollaborationConfiguredAudienceModelAssociationSummary {
+	s.CollaborationArn = &v
+	return s
+}
+
+// SetCollaborationId sets the CollaborationId field's value.
+func (s *CollaborationConfiguredAudienceModelAssociationSummary) SetCollaborationId(v string) *CollaborationConfiguredAudienceModelAssociationSummary {
+	s.CollaborationId = &v
+	return s
+}
+
+// SetCreateTime sets the CreateTime field's value.
+func (s *CollaborationConfiguredAudienceModelAssociationSummary) SetCreateTime(v time.Time) *CollaborationConfiguredAudienceModelAssociationSummary {
+	s.CreateTime = &v
+	return s
+}
+
+// SetCreatorAccountId sets the CreatorAccountId field's value.
+func (s *CollaborationConfiguredAudienceModelAssociationSummary) SetCreatorAccountId(v string) *CollaborationConfiguredAudienceModelAssociationSummary {
+	s.CreatorAccountId = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CollaborationConfiguredAudienceModelAssociationSummary) SetDescription(v string) *CollaborationConfiguredAudienceModelAssociationSummary {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *CollaborationConfiguredAudienceModelAssociationSummary) SetId(v string) *CollaborationConfiguredAudienceModelAssociationSummary {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CollaborationConfiguredAudienceModelAssociationSummary) SetName(v string) *CollaborationConfiguredAudienceModelAssociationSummary {
+	s.Name = &v
+	return s
+}
+
+// SetUpdateTime sets the UpdateTime field's value.
+func (s *CollaborationConfiguredAudienceModelAssociationSummary) SetUpdateTime(v time.Time) *CollaborationConfiguredAudienceModelAssociationSummary {
+	s.UpdateTime = &v
+	return s
+}
+
+// A summary of the collaboration privacy budgets. This summary includes the
+// collaboration information, creation information, epsilon provided, and utility
+// in terms of aggregations.
+type CollaborationPrivacyBudgetSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The includes epsilon provided and utility in terms of aggregations.
+	//
+	// Budget is a required field
+	Budget *PrivacyBudget `locationName:"budget" type:"structure" required:"true"`
+
+	// The ARN of the collaboration that includes this privacy budget.
+	//
+	// CollaborationArn is a required field
+	CollaborationArn *string `locationName:"collaborationArn" type:"string" required:"true"`
+
+	// The unique identifier of the collaboration that includes this privacy budget.
+	//
+	// CollaborationId is a required field
+	CollaborationId *string `locationName:"collaborationId" min:"36" type:"string" required:"true"`
+
+	// The time at which the privacy budget was created.
+	//
+	// CreateTime is a required field
+	CreateTime *time.Time `locationName:"createTime" type:"timestamp" required:"true"`
+
+	// The unique identifier of the account that created this privacy budget.
+	//
+	// CreatorAccountId is a required field
+	CreatorAccountId *string `locationName:"creatorAccountId" min:"12" type:"string" required:"true"`
+
+	// The unique identifier of the collaboration privacy budget.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" min:"36" type:"string" required:"true"`
+
+	// The ARN of the collaboration privacy budget template.
+	//
+	// PrivacyBudgetTemplateArn is a required field
+	PrivacyBudgetTemplateArn *string `locationName:"privacyBudgetTemplateArn" type:"string" required:"true"`
+
+	// The unique identifier of the collaboration privacy budget template.
+	//
+	// PrivacyBudgetTemplateId is a required field
+	PrivacyBudgetTemplateId *string `locationName:"privacyBudgetTemplateId" min:"36" type:"string" required:"true"`
+
+	// The type of privacy budget template.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"PrivacyBudgetType"`
+
+	// The most recent time at which the privacy budget was updated.
+	//
+	// UpdateTime is a required field
+	UpdateTime *time.Time `locationName:"updateTime" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CollaborationPrivacyBudgetSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CollaborationPrivacyBudgetSummary) GoString() string {
+	return s.String()
+}
+
+// SetBudget sets the Budget field's value.
+func (s *CollaborationPrivacyBudgetSummary) SetBudget(v *PrivacyBudget) *CollaborationPrivacyBudgetSummary {
+	s.Budget = v
+	return s
+}
+
+// SetCollaborationArn sets the CollaborationArn field's value.
+func (s *CollaborationPrivacyBudgetSummary) SetCollaborationArn(v string) *CollaborationPrivacyBudgetSummary {
+	s.CollaborationArn = &v
+	return s
+}
+
+// SetCollaborationId sets the CollaborationId field's value.
+func (s *CollaborationPrivacyBudgetSummary) SetCollaborationId(v string) *CollaborationPrivacyBudgetSummary {
+	s.CollaborationId = &v
+	return s
+}
+
+// SetCreateTime sets the CreateTime field's value.
+func (s *CollaborationPrivacyBudgetSummary) SetCreateTime(v time.Time) *CollaborationPrivacyBudgetSummary {
+	s.CreateTime = &v
+	return s
+}
+
+// SetCreatorAccountId sets the CreatorAccountId field's value.
+func (s *CollaborationPrivacyBudgetSummary) SetCreatorAccountId(v string) *CollaborationPrivacyBudgetSummary {
+	s.CreatorAccountId = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *CollaborationPrivacyBudgetSummary) SetId(v string) *CollaborationPrivacyBudgetSummary {
+	s.Id = &v
+	return s
+}
+
+// SetPrivacyBudgetTemplateArn sets the PrivacyBudgetTemplateArn field's value.
+func (s *CollaborationPrivacyBudgetSummary) SetPrivacyBudgetTemplateArn(v string) *CollaborationPrivacyBudgetSummary {
+	s.PrivacyBudgetTemplateArn = &v
+	return s
+}
+
+// SetPrivacyBudgetTemplateId sets the PrivacyBudgetTemplateId field's value.
+func (s *CollaborationPrivacyBudgetSummary) SetPrivacyBudgetTemplateId(v string) *CollaborationPrivacyBudgetSummary {
+	s.PrivacyBudgetTemplateId = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *CollaborationPrivacyBudgetSummary) SetType(v string) *CollaborationPrivacyBudgetSummary {
+	s.Type = &v
+	return s
+}
+
+// SetUpdateTime sets the UpdateTime field's value.
+func (s *CollaborationPrivacyBudgetSummary) SetUpdateTime(v time.Time) *CollaborationPrivacyBudgetSummary {
+	s.UpdateTime = &v
+	return s
+}
+
+// An array that specifies the information for a collaboration's privacy budget
+// template.
+type CollaborationPrivacyBudgetTemplate struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the collaboration privacy budget template.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// How often the privacy budget refreshes.
+	//
+	// If you plan to regularly bring new data into the collaboration, use CALENDAR_MONTH
+	// to automatically get a new privacy budget for the collaboration every calendar
+	// month. Choosing this option allows arbitrary amounts of information to be
+	// revealed about rows of the data when repeatedly queried across refreshes.
+	// Avoid choosing this if the same rows will be repeatedly queried between privacy
+	// budget refreshes.
+	//
+	// AutoRefresh is a required field
+	AutoRefresh *string `locationName:"autoRefresh" type:"string" required:"true" enum:"PrivacyBudgetTemplateAutoRefresh"`
+
+	// The ARN of the collaboration that includes this collaboration privacy budget
+	// template.
+	//
+	// CollaborationArn is a required field
+	CollaborationArn *string `locationName:"collaborationArn" type:"string" required:"true"`
+
+	// The unique identifier of the collaboration that includes this collaboration
+	// privacy budget template.
+	//
+	// CollaborationId is a required field
+	CollaborationId *string `locationName:"collaborationId" min:"36" type:"string" required:"true"`
+
+	// The time at which the collaboration privacy budget template was created.
+	//
+	// CreateTime is a required field
+	CreateTime *time.Time `locationName:"createTime" type:"timestamp" required:"true"`
+
+	// The unique identifier of the account that created this collaboration privacy
+	// budget template.
+	//
+	// CreatorAccountId is a required field
+	CreatorAccountId *string `locationName:"creatorAccountId" min:"12" type:"string" required:"true"`
+
+	// The unique identifier of the collaboration privacy budget template.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" min:"36" type:"string" required:"true"`
+
+	// Specifies the epsilon and noise parameters for the privacy budget template.
+	//
+	// Parameters is a required field
+	Parameters *PrivacyBudgetTemplateParametersOutput_ `locationName:"parameters" type:"structure" required:"true"`
+
+	// The type of privacy budget template.
+	//
+	// PrivacyBudgetType is a required field
+	PrivacyBudgetType *string `locationName:"privacyBudgetType" type:"string" required:"true" enum:"PrivacyBudgetType"`
+
+	// The most recent time at which the collaboration privacy budget template was
+	// updated.
+	//
+	// UpdateTime is a required field
+	UpdateTime *time.Time `locationName:"updateTime" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CollaborationPrivacyBudgetTemplate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CollaborationPrivacyBudgetTemplate) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CollaborationPrivacyBudgetTemplate) SetArn(v string) *CollaborationPrivacyBudgetTemplate {
+	s.Arn = &v
+	return s
+}
+
+// SetAutoRefresh sets the AutoRefresh field's value.
+func (s *CollaborationPrivacyBudgetTemplate) SetAutoRefresh(v string) *CollaborationPrivacyBudgetTemplate {
+	s.AutoRefresh = &v
+	return s
+}
+
+// SetCollaborationArn sets the CollaborationArn field's value.
+func (s *CollaborationPrivacyBudgetTemplate) SetCollaborationArn(v string) *CollaborationPrivacyBudgetTemplate {
+	s.CollaborationArn = &v
+	return s
+}
+
+// SetCollaborationId sets the CollaborationId field's value.
+func (s *CollaborationPrivacyBudgetTemplate) SetCollaborationId(v string) *CollaborationPrivacyBudgetTemplate {
+	s.CollaborationId = &v
+	return s
+}
+
+// SetCreateTime sets the CreateTime field's value.
+func (s *CollaborationPrivacyBudgetTemplate) SetCreateTime(v time.Time) *CollaborationPrivacyBudgetTemplate {
+	s.CreateTime = &v
+	return s
+}
+
+// SetCreatorAccountId sets the CreatorAccountId field's value.
+func (s *CollaborationPrivacyBudgetTemplate) SetCreatorAccountId(v string) *CollaborationPrivacyBudgetTemplate {
+	s.CreatorAccountId = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *CollaborationPrivacyBudgetTemplate) SetId(v string) *CollaborationPrivacyBudgetTemplate {
+	s.Id = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *CollaborationPrivacyBudgetTemplate) SetParameters(v *PrivacyBudgetTemplateParametersOutput_) *CollaborationPrivacyBudgetTemplate {
+	s.Parameters = v
+	return s
+}
+
+// SetPrivacyBudgetType sets the PrivacyBudgetType field's value.
+func (s *CollaborationPrivacyBudgetTemplate) SetPrivacyBudgetType(v string) *CollaborationPrivacyBudgetTemplate {
+	s.PrivacyBudgetType = &v
+	return s
+}
+
+// SetUpdateTime sets the UpdateTime field's value.
+func (s *CollaborationPrivacyBudgetTemplate) SetUpdateTime(v time.Time) *CollaborationPrivacyBudgetTemplate {
+	s.UpdateTime = &v
+	return s
+}
+
+// A summary of the collaboration's privacy budget template. This summary includes
+// information about who created the privacy budget template and what collaborations
+// it belongs to.
+type CollaborationPrivacyBudgetTemplateSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the collaboration privacy budget template.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// The ARN of the collaboration that contains this collaboration privacy budget
+	// template.
+	//
+	// CollaborationArn is a required field
+	CollaborationArn *string `locationName:"collaborationArn" type:"string" required:"true"`
+
+	// The unique identifier of the collaboration that contains this collaboration
+	// privacy budget template.
+	//
+	// CollaborationId is a required field
+	CollaborationId *string `locationName:"collaborationId" min:"36" type:"string" required:"true"`
+
+	// The time at which the collaboration privacy budget template was created.
+	//
+	// CreateTime is a required field
+	CreateTime *time.Time `locationName:"createTime" type:"timestamp" required:"true"`
+
+	// The unique identifier of the account that created this collaboration privacy
+	// budget template.
+	//
+	// CreatorAccountId is a required field
+	CreatorAccountId *string `locationName:"creatorAccountId" min:"12" type:"string" required:"true"`
+
+	// The unique identifier of the collaboration privacy budget template.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" min:"36" type:"string" required:"true"`
+
+	// The type of the privacy budget template.
+	//
+	// PrivacyBudgetType is a required field
+	PrivacyBudgetType *string `locationName:"privacyBudgetType" type:"string" required:"true" enum:"PrivacyBudgetType"`
+
+	// The most recent time at which the collaboration privacy budget template was
+	// updated.
+	//
+	// UpdateTime is a required field
+	UpdateTime *time.Time `locationName:"updateTime" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CollaborationPrivacyBudgetTemplateSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CollaborationPrivacyBudgetTemplateSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CollaborationPrivacyBudgetTemplateSummary) SetArn(v string) *CollaborationPrivacyBudgetTemplateSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetCollaborationArn sets the CollaborationArn field's value.
+func (s *CollaborationPrivacyBudgetTemplateSummary) SetCollaborationArn(v string) *CollaborationPrivacyBudgetTemplateSummary {
+	s.CollaborationArn = &v
+	return s
+}
+
+// SetCollaborationId sets the CollaborationId field's value.
+func (s *CollaborationPrivacyBudgetTemplateSummary) SetCollaborationId(v string) *CollaborationPrivacyBudgetTemplateSummary {
+	s.CollaborationId = &v
+	return s
+}
+
+// SetCreateTime sets the CreateTime field's value.
+func (s *CollaborationPrivacyBudgetTemplateSummary) SetCreateTime(v time.Time) *CollaborationPrivacyBudgetTemplateSummary {
+	s.CreateTime = &v
+	return s
+}
+
+// SetCreatorAccountId sets the CreatorAccountId field's value.
+func (s *CollaborationPrivacyBudgetTemplateSummary) SetCreatorAccountId(v string) *CollaborationPrivacyBudgetTemplateSummary {
+	s.CreatorAccountId = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *CollaborationPrivacyBudgetTemplateSummary) SetId(v string) *CollaborationPrivacyBudgetTemplateSummary {
+	s.Id = &v
+	return s
+}
+
+// SetPrivacyBudgetType sets the PrivacyBudgetType field's value.
+func (s *CollaborationPrivacyBudgetTemplateSummary) SetPrivacyBudgetType(v string) *CollaborationPrivacyBudgetTemplateSummary {
+	s.PrivacyBudgetType = &v
+	return s
+}
+
+// SetUpdateTime sets the UpdateTime field's value.
+func (s *CollaborationPrivacyBudgetTemplateSummary) SetUpdateTime(v time.Time) *CollaborationPrivacyBudgetTemplateSummary {
+	s.UpdateTime = &v
+	return s
+}
+
 // The metadata of the collaboration.
 type CollaborationSummary struct {
 	_ struct{} `type:"structure"`
@@ -6745,6 +9325,317 @@ func (s *Column) SetName(v string) *Column {
 // SetType sets the Type field's value.
 func (s *Column) SetType(v string) *Column {
 	s.Type = &v
+	return s
+}
+
+// Details about the configured audience model association.
+type ConfiguredAudienceModelAssociation struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the configured audience model association.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the collaboration that contains this configured
+	// audience model association.
+	//
+	// CollaborationArn is a required field
+	CollaborationArn *string `locationName:"collaborationArn" type:"string" required:"true"`
+
+	// A unique identifier of the collaboration that contains this configured audience
+	// model association.
+	//
+	// CollaborationId is a required field
+	CollaborationId *string `locationName:"collaborationId" min:"36" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the configured audience model that was
+	// used for this configured audience model association.
+	//
+	// ConfiguredAudienceModelArn is a required field
+	ConfiguredAudienceModelArn *string `locationName:"configuredAudienceModelArn" min:"20" type:"string" required:"true"`
+
+	// The time at which the configured audience model association was created.
+	//
+	// CreateTime is a required field
+	CreateTime *time.Time `locationName:"createTime" type:"timestamp" required:"true"`
+
+	// The description of the configured audience model association.
+	Description *string `locationName:"description" type:"string"`
+
+	// A unique identifier of the configured audience model association.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" min:"36" type:"string" required:"true"`
+
+	// When TRUE, indicates that the resource policy for the configured audience
+	// model resource being associated is configured for Clean Rooms to manage permissions
+	// related to the given collaboration. When FALSE, indicates that the configured
+	// audience model resource owner will manage permissions related to the given
+	// collaboration.
+	//
+	// ManageResourcePolicies is a required field
+	ManageResourcePolicies *bool `locationName:"manageResourcePolicies" type:"boolean" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the membership that contains this configured
+	// audience model association.
+	//
+	// MembershipArn is a required field
+	MembershipArn *string `locationName:"membershipArn" type:"string" required:"true"`
+
+	// A unique identifier for the membership that contains this configured audience
+	// model association.
+	//
+	// MembershipId is a required field
+	MembershipId *string `locationName:"membershipId" min:"36" type:"string" required:"true"`
+
+	// The name of the configured audience model association.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The most recent time at which the configured audience model association was
+	// updated.
+	//
+	// UpdateTime is a required field
+	UpdateTime *time.Time `locationName:"updateTime" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfiguredAudienceModelAssociation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfiguredAudienceModelAssociation) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *ConfiguredAudienceModelAssociation) SetArn(v string) *ConfiguredAudienceModelAssociation {
+	s.Arn = &v
+	return s
+}
+
+// SetCollaborationArn sets the CollaborationArn field's value.
+func (s *ConfiguredAudienceModelAssociation) SetCollaborationArn(v string) *ConfiguredAudienceModelAssociation {
+	s.CollaborationArn = &v
+	return s
+}
+
+// SetCollaborationId sets the CollaborationId field's value.
+func (s *ConfiguredAudienceModelAssociation) SetCollaborationId(v string) *ConfiguredAudienceModelAssociation {
+	s.CollaborationId = &v
+	return s
+}
+
+// SetConfiguredAudienceModelArn sets the ConfiguredAudienceModelArn field's value.
+func (s *ConfiguredAudienceModelAssociation) SetConfiguredAudienceModelArn(v string) *ConfiguredAudienceModelAssociation {
+	s.ConfiguredAudienceModelArn = &v
+	return s
+}
+
+// SetCreateTime sets the CreateTime field's value.
+func (s *ConfiguredAudienceModelAssociation) SetCreateTime(v time.Time) *ConfiguredAudienceModelAssociation {
+	s.CreateTime = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ConfiguredAudienceModelAssociation) SetDescription(v string) *ConfiguredAudienceModelAssociation {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ConfiguredAudienceModelAssociation) SetId(v string) *ConfiguredAudienceModelAssociation {
+	s.Id = &v
+	return s
+}
+
+// SetManageResourcePolicies sets the ManageResourcePolicies field's value.
+func (s *ConfiguredAudienceModelAssociation) SetManageResourcePolicies(v bool) *ConfiguredAudienceModelAssociation {
+	s.ManageResourcePolicies = &v
+	return s
+}
+
+// SetMembershipArn sets the MembershipArn field's value.
+func (s *ConfiguredAudienceModelAssociation) SetMembershipArn(v string) *ConfiguredAudienceModelAssociation {
+	s.MembershipArn = &v
+	return s
+}
+
+// SetMembershipId sets the MembershipId field's value.
+func (s *ConfiguredAudienceModelAssociation) SetMembershipId(v string) *ConfiguredAudienceModelAssociation {
+	s.MembershipId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ConfiguredAudienceModelAssociation) SetName(v string) *ConfiguredAudienceModelAssociation {
+	s.Name = &v
+	return s
+}
+
+// SetUpdateTime sets the UpdateTime field's value.
+func (s *ConfiguredAudienceModelAssociation) SetUpdateTime(v time.Time) *ConfiguredAudienceModelAssociation {
+	s.UpdateTime = &v
+	return s
+}
+
+// A summary of the configured audience model association.
+type ConfiguredAudienceModelAssociationSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the configured audience model association.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the collaboration that contains the configured
+	// audience model association.
+	//
+	// CollaborationArn is a required field
+	CollaborationArn *string `locationName:"collaborationArn" type:"string" required:"true"`
+
+	// A unique identifier of the collaboration that configured audience model is
+	// associated with.
+	//
+	// CollaborationId is a required field
+	CollaborationId *string `locationName:"collaborationId" min:"36" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the configured audience model that was
+	// used for this configured audience model association.
+	//
+	// ConfiguredAudienceModelArn is a required field
+	ConfiguredAudienceModelArn *string `locationName:"configuredAudienceModelArn" min:"20" type:"string" required:"true"`
+
+	// The time at which the configured audience model association was created.
+	//
+	// CreateTime is a required field
+	CreateTime *time.Time `locationName:"createTime" type:"timestamp" required:"true"`
+
+	// The description of the configured audience model association.
+	Description *string `locationName:"description" type:"string"`
+
+	// A unique identifier of the configured audience model association.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" min:"36" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the membership that contains the configured
+	// audience model association.
+	//
+	// MembershipArn is a required field
+	MembershipArn *string `locationName:"membershipArn" type:"string" required:"true"`
+
+	// A unique identifier of the membership that contains the configured audience
+	// model association.
+	//
+	// MembershipId is a required field
+	MembershipId *string `locationName:"membershipId" min:"36" type:"string" required:"true"`
+
+	// The name of the configured audience model association.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The most recent time at which the configured audience model association was
+	// updated.
+	//
+	// UpdateTime is a required field
+	UpdateTime *time.Time `locationName:"updateTime" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfiguredAudienceModelAssociationSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfiguredAudienceModelAssociationSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *ConfiguredAudienceModelAssociationSummary) SetArn(v string) *ConfiguredAudienceModelAssociationSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetCollaborationArn sets the CollaborationArn field's value.
+func (s *ConfiguredAudienceModelAssociationSummary) SetCollaborationArn(v string) *ConfiguredAudienceModelAssociationSummary {
+	s.CollaborationArn = &v
+	return s
+}
+
+// SetCollaborationId sets the CollaborationId field's value.
+func (s *ConfiguredAudienceModelAssociationSummary) SetCollaborationId(v string) *ConfiguredAudienceModelAssociationSummary {
+	s.CollaborationId = &v
+	return s
+}
+
+// SetConfiguredAudienceModelArn sets the ConfiguredAudienceModelArn field's value.
+func (s *ConfiguredAudienceModelAssociationSummary) SetConfiguredAudienceModelArn(v string) *ConfiguredAudienceModelAssociationSummary {
+	s.ConfiguredAudienceModelArn = &v
+	return s
+}
+
+// SetCreateTime sets the CreateTime field's value.
+func (s *ConfiguredAudienceModelAssociationSummary) SetCreateTime(v time.Time) *ConfiguredAudienceModelAssociationSummary {
+	s.CreateTime = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ConfiguredAudienceModelAssociationSummary) SetDescription(v string) *ConfiguredAudienceModelAssociationSummary {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ConfiguredAudienceModelAssociationSummary) SetId(v string) *ConfiguredAudienceModelAssociationSummary {
+	s.Id = &v
+	return s
+}
+
+// SetMembershipArn sets the MembershipArn field's value.
+func (s *ConfiguredAudienceModelAssociationSummary) SetMembershipArn(v string) *ConfiguredAudienceModelAssociationSummary {
+	s.MembershipArn = &v
+	return s
+}
+
+// SetMembershipId sets the MembershipId field's value.
+func (s *ConfiguredAudienceModelAssociationSummary) SetMembershipId(v string) *ConfiguredAudienceModelAssociationSummary {
+	s.MembershipId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ConfiguredAudienceModelAssociationSummary) SetName(v string) *ConfiguredAudienceModelAssociationSummary {
+	s.Name = &v
+	return s
+}
+
+// SetUpdateTime sets the UpdateTime field's value.
+func (s *ConfiguredAudienceModelAssociationSummary) SetUpdateTime(v time.Time) *ConfiguredAudienceModelAssociationSummary {
+	s.UpdateTime = &v
 	return s
 }
 
@@ -7028,7 +9919,7 @@ type ConfiguredTableAnalysisRulePolicyV1 struct {
 	Aggregation *AnalysisRuleAggregation `locationName:"aggregation" type:"structure"`
 
 	// A type of analysis rule that enables the table owner to approve custom SQL
-	// queries on their configured tables.
+	// queries on their configured tables. It supports differential privacy.
 	Custom *AnalysisRuleCustom `locationName:"custom" type:"structure"`
 
 	// Analysis rule type that enables only list queries on a configured table.
@@ -7915,6 +10806,169 @@ func (s *CreateCollaborationOutput) SetCollaboration(v *Collaboration) *CreateCo
 	return s
 }
 
+type CreateConfiguredAudienceModelAssociationInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the configured audience model that you want to associate.
+	//
+	// ConfiguredAudienceModelArn is a required field
+	ConfiguredAudienceModelArn *string `locationName:"configuredAudienceModelArn" min:"20" type:"string" required:"true"`
+
+	// The name of the configured audience model association.
+	//
+	// ConfiguredAudienceModelAssociationName is a required field
+	ConfiguredAudienceModelAssociationName *string `locationName:"configuredAudienceModelAssociationName" min:"1" type:"string" required:"true"`
+
+	// A description of the configured audience model association.
+	Description *string `locationName:"description" type:"string"`
+
+	// When TRUE, indicates that the resource policy for the configured audience
+	// model resource being associated is configured for Clean Rooms to manage permissions
+	// related to the given collaboration. When FALSE, indicates that the configured
+	// audience model resource owner will manage permissions related to the given
+	// collaboration.
+	//
+	// Setting this to TRUE requires you to have permissions to create, update,
+	// and delete the resource policy for the cleanrooms-ml resource when you call
+	// the DeleteConfiguredAudienceModelAssociation resource. In addition, if you
+	// are the collaboration creator and specify TRUE, you must have the same permissions
+	// when you call the DeleteMember and DeleteCollaboration APIs.
+	//
+	// ManageResourcePolicies is a required field
+	ManageResourcePolicies *bool `locationName:"manageResourcePolicies" type:"boolean" required:"true"`
+
+	// A unique identifier for one of your memberships for a collaboration. The
+	// configured audience model is associated to the collaboration that this membership
+	// belongs to. Accepts a membership ID.
+	//
+	// MembershipIdentifier is a required field
+	MembershipIdentifier *string `location:"uri" locationName:"membershipIdentifier" min:"36" type:"string" required:"true"`
+
+	// An optional label that you can assign to a resource when you create it. Each
+	// tag consists of a key and an optional value, both of which you define. When
+	// you use tagging, you can also use tag-based access control in IAM policies
+	// to control access to this resource.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateConfiguredAudienceModelAssociationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateConfiguredAudienceModelAssociationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateConfiguredAudienceModelAssociationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateConfiguredAudienceModelAssociationInput"}
+	if s.ConfiguredAudienceModelArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfiguredAudienceModelArn"))
+	}
+	if s.ConfiguredAudienceModelArn != nil && len(*s.ConfiguredAudienceModelArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfiguredAudienceModelArn", 20))
+	}
+	if s.ConfiguredAudienceModelAssociationName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfiguredAudienceModelAssociationName"))
+	}
+	if s.ConfiguredAudienceModelAssociationName != nil && len(*s.ConfiguredAudienceModelAssociationName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfiguredAudienceModelAssociationName", 1))
+	}
+	if s.ManageResourcePolicies == nil {
+		invalidParams.Add(request.NewErrParamRequired("ManageResourcePolicies"))
+	}
+	if s.MembershipIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("MembershipIdentifier"))
+	}
+	if s.MembershipIdentifier != nil && len(*s.MembershipIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("MembershipIdentifier", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfiguredAudienceModelArn sets the ConfiguredAudienceModelArn field's value.
+func (s *CreateConfiguredAudienceModelAssociationInput) SetConfiguredAudienceModelArn(v string) *CreateConfiguredAudienceModelAssociationInput {
+	s.ConfiguredAudienceModelArn = &v
+	return s
+}
+
+// SetConfiguredAudienceModelAssociationName sets the ConfiguredAudienceModelAssociationName field's value.
+func (s *CreateConfiguredAudienceModelAssociationInput) SetConfiguredAudienceModelAssociationName(v string) *CreateConfiguredAudienceModelAssociationInput {
+	s.ConfiguredAudienceModelAssociationName = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateConfiguredAudienceModelAssociationInput) SetDescription(v string) *CreateConfiguredAudienceModelAssociationInput {
+	s.Description = &v
+	return s
+}
+
+// SetManageResourcePolicies sets the ManageResourcePolicies field's value.
+func (s *CreateConfiguredAudienceModelAssociationInput) SetManageResourcePolicies(v bool) *CreateConfiguredAudienceModelAssociationInput {
+	s.ManageResourcePolicies = &v
+	return s
+}
+
+// SetMembershipIdentifier sets the MembershipIdentifier field's value.
+func (s *CreateConfiguredAudienceModelAssociationInput) SetMembershipIdentifier(v string) *CreateConfiguredAudienceModelAssociationInput {
+	s.MembershipIdentifier = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateConfiguredAudienceModelAssociationInput) SetTags(v map[string]*string) *CreateConfiguredAudienceModelAssociationInput {
+	s.Tags = v
+	return s
+}
+
+type CreateConfiguredAudienceModelAssociationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the configured audience model association.
+	//
+	// ConfiguredAudienceModelAssociation is a required field
+	ConfiguredAudienceModelAssociation *ConfiguredAudienceModelAssociation `locationName:"configuredAudienceModelAssociation" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateConfiguredAudienceModelAssociationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateConfiguredAudienceModelAssociationOutput) GoString() string {
+	return s.String()
+}
+
+// SetConfiguredAudienceModelAssociation sets the ConfiguredAudienceModelAssociation field's value.
+func (s *CreateConfiguredAudienceModelAssociationOutput) SetConfiguredAudienceModelAssociation(v *ConfiguredAudienceModelAssociation) *CreateConfiguredAudienceModelAssociationOutput {
+	s.ConfiguredAudienceModelAssociation = v
+	return s
+}
+
 type CreateConfiguredTableAnalysisRuleInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8485,6 +11539,156 @@ func (s *CreateMembershipOutput) SetMembership(v *Membership) *CreateMembershipO
 	return s
 }
 
+type CreatePrivacyBudgetTemplateInput struct {
+	_ struct{} `type:"structure"`
+
+	// How often the privacy budget refreshes.
+	//
+	// If you plan to regularly bring new data into the collaboration, you can use
+	// CALENDAR_MONTH to automatically get a new privacy budget for the collaboration
+	// every calendar month. Choosing this option allows arbitrary amounts of information
+	// to be revealed about rows of the data when repeatedly queries across refreshes.
+	// Avoid choosing this if the same rows will be repeatedly queried between privacy
+	// budget refreshes.
+	//
+	// AutoRefresh is a required field
+	AutoRefresh *string `locationName:"autoRefresh" type:"string" required:"true" enum:"PrivacyBudgetTemplateAutoRefresh"`
+
+	// A unique identifier for one of your memberships for a collaboration. The
+	// privacy budget template is created in the collaboration that this membership
+	// belongs to. Accepts a membership ID.
+	//
+	// MembershipIdentifier is a required field
+	MembershipIdentifier *string `location:"uri" locationName:"membershipIdentifier" min:"36" type:"string" required:"true"`
+
+	// Specifies your parameters for the privacy budget template.
+	//
+	// Parameters is a required field
+	Parameters *PrivacyBudgetTemplateParametersInput_ `locationName:"parameters" type:"structure" required:"true"`
+
+	// Specifies the type of the privacy budget template.
+	//
+	// PrivacyBudgetType is a required field
+	PrivacyBudgetType *string `locationName:"privacyBudgetType" type:"string" required:"true" enum:"PrivacyBudgetType"`
+
+	// An optional label that you can assign to a resource when you create it. Each
+	// tag consists of a key and an optional value, both of which you define. When
+	// you use tagging, you can also use tag-based access control in IAM policies
+	// to control access to this resource.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePrivacyBudgetTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePrivacyBudgetTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreatePrivacyBudgetTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreatePrivacyBudgetTemplateInput"}
+	if s.AutoRefresh == nil {
+		invalidParams.Add(request.NewErrParamRequired("AutoRefresh"))
+	}
+	if s.MembershipIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("MembershipIdentifier"))
+	}
+	if s.MembershipIdentifier != nil && len(*s.MembershipIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("MembershipIdentifier", 36))
+	}
+	if s.Parameters == nil {
+		invalidParams.Add(request.NewErrParamRequired("Parameters"))
+	}
+	if s.PrivacyBudgetType == nil {
+		invalidParams.Add(request.NewErrParamRequired("PrivacyBudgetType"))
+	}
+	if s.Parameters != nil {
+		if err := s.Parameters.Validate(); err != nil {
+			invalidParams.AddNested("Parameters", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAutoRefresh sets the AutoRefresh field's value.
+func (s *CreatePrivacyBudgetTemplateInput) SetAutoRefresh(v string) *CreatePrivacyBudgetTemplateInput {
+	s.AutoRefresh = &v
+	return s
+}
+
+// SetMembershipIdentifier sets the MembershipIdentifier field's value.
+func (s *CreatePrivacyBudgetTemplateInput) SetMembershipIdentifier(v string) *CreatePrivacyBudgetTemplateInput {
+	s.MembershipIdentifier = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *CreatePrivacyBudgetTemplateInput) SetParameters(v *PrivacyBudgetTemplateParametersInput_) *CreatePrivacyBudgetTemplateInput {
+	s.Parameters = v
+	return s
+}
+
+// SetPrivacyBudgetType sets the PrivacyBudgetType field's value.
+func (s *CreatePrivacyBudgetTemplateInput) SetPrivacyBudgetType(v string) *CreatePrivacyBudgetTemplateInput {
+	s.PrivacyBudgetType = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreatePrivacyBudgetTemplateInput) SetTags(v map[string]*string) *CreatePrivacyBudgetTemplateInput {
+	s.Tags = v
+	return s
+}
+
+type CreatePrivacyBudgetTemplateOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A summary of the elements in the privacy budget template.
+	//
+	// PrivacyBudgetTemplate is a required field
+	PrivacyBudgetTemplate *PrivacyBudgetTemplate `locationName:"privacyBudgetTemplate" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePrivacyBudgetTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePrivacyBudgetTemplateOutput) GoString() string {
+	return s.String()
+}
+
+// SetPrivacyBudgetTemplate sets the PrivacyBudgetTemplate field's value.
+func (s *CreatePrivacyBudgetTemplateOutput) SetPrivacyBudgetTemplate(v *PrivacyBudgetTemplate) *CreatePrivacyBudgetTemplateOutput {
+	s.PrivacyBudgetTemplate = v
+	return s
+}
+
 // The settings for client-side encryption for cryptographic computing.
 type DataEncryptionMetadata struct {
 	_ struct{} `type:"structure"`
@@ -8735,6 +11939,96 @@ func (s DeleteCollaborationOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s DeleteCollaborationOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteConfiguredAudienceModelAssociationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// A unique identifier of the configured audience model association that you
+	// want to delete.
+	//
+	// ConfiguredAudienceModelAssociationIdentifier is a required field
+	ConfiguredAudienceModelAssociationIdentifier *string `location:"uri" locationName:"configuredAudienceModelAssociationIdentifier" min:"36" type:"string" required:"true"`
+
+	// A unique identifier of the membership that contains the audience model association
+	// that you want to delete.
+	//
+	// MembershipIdentifier is a required field
+	MembershipIdentifier *string `location:"uri" locationName:"membershipIdentifier" min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteConfiguredAudienceModelAssociationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteConfiguredAudienceModelAssociationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteConfiguredAudienceModelAssociationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteConfiguredAudienceModelAssociationInput"}
+	if s.ConfiguredAudienceModelAssociationIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfiguredAudienceModelAssociationIdentifier"))
+	}
+	if s.ConfiguredAudienceModelAssociationIdentifier != nil && len(*s.ConfiguredAudienceModelAssociationIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfiguredAudienceModelAssociationIdentifier", 36))
+	}
+	if s.MembershipIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("MembershipIdentifier"))
+	}
+	if s.MembershipIdentifier != nil && len(*s.MembershipIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("MembershipIdentifier", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfiguredAudienceModelAssociationIdentifier sets the ConfiguredAudienceModelAssociationIdentifier field's value.
+func (s *DeleteConfiguredAudienceModelAssociationInput) SetConfiguredAudienceModelAssociationIdentifier(v string) *DeleteConfiguredAudienceModelAssociationInput {
+	s.ConfiguredAudienceModelAssociationIdentifier = &v
+	return s
+}
+
+// SetMembershipIdentifier sets the MembershipIdentifier field's value.
+func (s *DeleteConfiguredAudienceModelAssociationInput) SetMembershipIdentifier(v string) *DeleteConfiguredAudienceModelAssociationInput {
+	s.MembershipIdentifier = &v
+	return s
+}
+
+type DeleteConfiguredAudienceModelAssociationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteConfiguredAudienceModelAssociationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteConfiguredAudienceModelAssociationOutput) GoString() string {
 	return s.String()
 }
 
@@ -9151,6 +12445,755 @@ func (s DeleteMembershipOutput) GoString() string {
 	return s.String()
 }
 
+type DeletePrivacyBudgetTemplateInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// A unique identifier for one of your memberships for a collaboration. The
+	// privacy budget template is deleted from the collaboration that this membership
+	// belongs to. Accepts a membership ID.
+	//
+	// MembershipIdentifier is a required field
+	MembershipIdentifier *string `location:"uri" locationName:"membershipIdentifier" min:"36" type:"string" required:"true"`
+
+	// A unique identifier for your privacy budget template.
+	//
+	// PrivacyBudgetTemplateIdentifier is a required field
+	PrivacyBudgetTemplateIdentifier *string `location:"uri" locationName:"privacyBudgetTemplateIdentifier" min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePrivacyBudgetTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePrivacyBudgetTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeletePrivacyBudgetTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeletePrivacyBudgetTemplateInput"}
+	if s.MembershipIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("MembershipIdentifier"))
+	}
+	if s.MembershipIdentifier != nil && len(*s.MembershipIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("MembershipIdentifier", 36))
+	}
+	if s.PrivacyBudgetTemplateIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("PrivacyBudgetTemplateIdentifier"))
+	}
+	if s.PrivacyBudgetTemplateIdentifier != nil && len(*s.PrivacyBudgetTemplateIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("PrivacyBudgetTemplateIdentifier", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMembershipIdentifier sets the MembershipIdentifier field's value.
+func (s *DeletePrivacyBudgetTemplateInput) SetMembershipIdentifier(v string) *DeletePrivacyBudgetTemplateInput {
+	s.MembershipIdentifier = &v
+	return s
+}
+
+// SetPrivacyBudgetTemplateIdentifier sets the PrivacyBudgetTemplateIdentifier field's value.
+func (s *DeletePrivacyBudgetTemplateInput) SetPrivacyBudgetTemplateIdentifier(v string) *DeletePrivacyBudgetTemplateInput {
+	s.PrivacyBudgetTemplateIdentifier = &v
+	return s
+}
+
+type DeletePrivacyBudgetTemplateOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePrivacyBudgetTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePrivacyBudgetTemplateOutput) GoString() string {
+	return s.String()
+}
+
+// Specifies the name of the column that contains the unique identifier of your
+// users, whose privacy you want to protect.
+type DifferentialPrivacyColumn struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the column, such as user_id, that contains the unique identifier
+	// of your users, whose privacy you want to protect. If you want to turn on
+	// differential privacy for two or more tables in a collaboration, you must
+	// configure the same column as the user identifier column in both analysis
+	// rules.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DifferentialPrivacyColumn) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DifferentialPrivacyColumn) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DifferentialPrivacyColumn) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DifferentialPrivacyColumn"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *DifferentialPrivacyColumn) SetName(v string) *DifferentialPrivacyColumn {
+	s.Name = &v
+	return s
+}
+
+// Specifies the unique identifier for your users.
+type DifferentialPrivacyConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the column (such as user_id) that contains the unique identifier
+	// of your users whose privacy you want to protect. If you want to turn on diﬀerential
+	// privacy for two or more tables in a collaboration, you must conﬁgure the
+	// same column as the user identiﬁer column in both analysis rules.
+	//
+	// Columns is a required field
+	Columns []*DifferentialPrivacyColumn `locationName:"columns" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DifferentialPrivacyConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DifferentialPrivacyConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DifferentialPrivacyConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DifferentialPrivacyConfiguration"}
+	if s.Columns == nil {
+		invalidParams.Add(request.NewErrParamRequired("Columns"))
+	}
+	if s.Columns != nil && len(s.Columns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Columns", 1))
+	}
+	if s.Columns != nil {
+		for i, v := range s.Columns {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Columns", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetColumns sets the Columns field's value.
+func (s *DifferentialPrivacyConfiguration) SetColumns(v []*DifferentialPrivacyColumn) *DifferentialPrivacyConfiguration {
+	s.Columns = v
+	return s
+}
+
+// An array that contains the sensitivity parameters.
+type DifferentialPrivacyParameters struct {
+	_ struct{} `type:"structure"`
+
+	// Provides the sensitivity parameters that you can use to better understand
+	// the total amount of noise in query results.
+	//
+	// SensitivityParameters is a required field
+	SensitivityParameters []*DifferentialPrivacySensitivityParameters `locationName:"sensitivityParameters" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DifferentialPrivacyParameters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DifferentialPrivacyParameters) GoString() string {
+	return s.String()
+}
+
+// SetSensitivityParameters sets the SensitivityParameters field's value.
+func (s *DifferentialPrivacyParameters) SetSensitivityParameters(v []*DifferentialPrivacySensitivityParameters) *DifferentialPrivacyParameters {
+	s.SensitivityParameters = v
+	return s
+}
+
+// Provides an estimate of the number of aggregation functions that the member
+// who can query can run given the epsilon and noise parameters.
+type DifferentialPrivacyPreviewAggregation struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of aggregations that the member who can query can run
+	// given the epsilon and noise parameters.
+	//
+	// MaxCount is a required field
+	MaxCount *int64 `locationName:"maxCount" type:"integer" required:"true"`
+
+	// The type of aggregation function.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"DifferentialPrivacyAggregationType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DifferentialPrivacyPreviewAggregation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DifferentialPrivacyPreviewAggregation) GoString() string {
+	return s.String()
+}
+
+// SetMaxCount sets the MaxCount field's value.
+func (s *DifferentialPrivacyPreviewAggregation) SetMaxCount(v int64) *DifferentialPrivacyPreviewAggregation {
+	s.MaxCount = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *DifferentialPrivacyPreviewAggregation) SetType(v string) *DifferentialPrivacyPreviewAggregation {
+	s.Type = &v
+	return s
+}
+
+// The epsilon and noise parameters that you want to preview.
+type DifferentialPrivacyPreviewParametersInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// The epsilon value that you want to preview.
+	//
+	// Epsilon is a required field
+	Epsilon *int64 `locationName:"epsilon" min:"1" type:"integer" required:"true"`
+
+	// Noise added per query is measured in terms of the number of users whose contributions
+	// you want to obscure. This value governs the rate at which the privacy budget
+	// is depleted.
+	//
+	// UsersNoisePerQuery is a required field
+	UsersNoisePerQuery *int64 `locationName:"usersNoisePerQuery" min:"10" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DifferentialPrivacyPreviewParametersInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DifferentialPrivacyPreviewParametersInput_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DifferentialPrivacyPreviewParametersInput_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DifferentialPrivacyPreviewParametersInput_"}
+	if s.Epsilon == nil {
+		invalidParams.Add(request.NewErrParamRequired("Epsilon"))
+	}
+	if s.Epsilon != nil && *s.Epsilon < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Epsilon", 1))
+	}
+	if s.UsersNoisePerQuery == nil {
+		invalidParams.Add(request.NewErrParamRequired("UsersNoisePerQuery"))
+	}
+	if s.UsersNoisePerQuery != nil && *s.UsersNoisePerQuery < 10 {
+		invalidParams.Add(request.NewErrParamMinValue("UsersNoisePerQuery", 10))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEpsilon sets the Epsilon field's value.
+func (s *DifferentialPrivacyPreviewParametersInput_) SetEpsilon(v int64) *DifferentialPrivacyPreviewParametersInput_ {
+	s.Epsilon = &v
+	return s
+}
+
+// SetUsersNoisePerQuery sets the UsersNoisePerQuery field's value.
+func (s *DifferentialPrivacyPreviewParametersInput_) SetUsersNoisePerQuery(v int64) *DifferentialPrivacyPreviewParametersInput_ {
+	s.UsersNoisePerQuery = &v
+	return s
+}
+
+// Specifies the configured epsilon value and the utility in terms of total
+// aggregations, as well as the remaining aggregations available.
+type DifferentialPrivacyPrivacyBudget struct {
+	_ struct{} `type:"structure"`
+
+	// This information includes the configured epsilon value and the utility in
+	// terms of total aggregations, as well as the remaining aggregations.
+	//
+	// Aggregations is a required field
+	Aggregations []*DifferentialPrivacyPrivacyBudgetAggregation `locationName:"aggregations" type:"list" required:"true"`
+
+	// The epsilon value that you configured.
+	//
+	// Epsilon is a required field
+	Epsilon *int64 `locationName:"epsilon" min:"1" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DifferentialPrivacyPrivacyBudget) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DifferentialPrivacyPrivacyBudget) GoString() string {
+	return s.String()
+}
+
+// SetAggregations sets the Aggregations field's value.
+func (s *DifferentialPrivacyPrivacyBudget) SetAggregations(v []*DifferentialPrivacyPrivacyBudgetAggregation) *DifferentialPrivacyPrivacyBudget {
+	s.Aggregations = v
+	return s
+}
+
+// SetEpsilon sets the Epsilon field's value.
+func (s *DifferentialPrivacyPrivacyBudget) SetEpsilon(v int64) *DifferentialPrivacyPrivacyBudget {
+	s.Epsilon = &v
+	return s
+}
+
+// Information about the total number of aggregations, as well as the remaining
+// aggregations.
+type DifferentialPrivacyPrivacyBudgetAggregation struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of aggregation functions that you can perform with the
+	// given privacy budget.
+	//
+	// MaxCount is a required field
+	MaxCount *int64 `locationName:"maxCount" type:"integer" required:"true"`
+
+	// The remaining number of aggregation functions that can be run with the available
+	// privacy budget.
+	//
+	// RemainingCount is a required field
+	RemainingCount *int64 `locationName:"remainingCount" type:"integer" required:"true"`
+
+	// The different types of aggregation functions that you can perform.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"DifferentialPrivacyAggregationType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DifferentialPrivacyPrivacyBudgetAggregation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DifferentialPrivacyPrivacyBudgetAggregation) GoString() string {
+	return s.String()
+}
+
+// SetMaxCount sets the MaxCount field's value.
+func (s *DifferentialPrivacyPrivacyBudgetAggregation) SetMaxCount(v int64) *DifferentialPrivacyPrivacyBudgetAggregation {
+	s.MaxCount = &v
+	return s
+}
+
+// SetRemainingCount sets the RemainingCount field's value.
+func (s *DifferentialPrivacyPrivacyBudgetAggregation) SetRemainingCount(v int64) *DifferentialPrivacyPrivacyBudgetAggregation {
+	s.RemainingCount = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *DifferentialPrivacyPrivacyBudgetAggregation) SetType(v string) *DifferentialPrivacyPrivacyBudgetAggregation {
+	s.Type = &v
+	return s
+}
+
+// Information about the number of aggregation functions that the member who
+// can query can run given the epsilon and noise parameters.
+type DifferentialPrivacyPrivacyImpact struct {
+	_ struct{} `type:"structure"`
+
+	// The number of aggregation functions that you can perform.
+	//
+	// Aggregations is a required field
+	Aggregations []*DifferentialPrivacyPreviewAggregation `locationName:"aggregations" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DifferentialPrivacyPrivacyImpact) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DifferentialPrivacyPrivacyImpact) GoString() string {
+	return s.String()
+}
+
+// SetAggregations sets the Aggregations field's value.
+func (s *DifferentialPrivacyPrivacyImpact) SetAggregations(v []*DifferentialPrivacyPreviewAggregation) *DifferentialPrivacyPrivacyImpact {
+	s.Aggregations = v
+	return s
+}
+
+// Provides the sensitivity parameters.
+type DifferentialPrivacySensitivityParameters struct {
+	_ struct{} `type:"structure"`
+
+	// The aggregation expression that was run.
+	//
+	// AggregationExpression is a required field
+	AggregationExpression *string `locationName:"aggregationExpression" min:"1" type:"string" required:"true"`
+
+	// The type of aggregation function that was run.
+	//
+	// AggregationType is a required field
+	AggregationType *string `locationName:"aggregationType" type:"string" required:"true" enum:"DifferentialPrivacyAggregationType"`
+
+	// The upper bound of the aggregation expression.
+	MaxColumnValue *float64 `locationName:"maxColumnValue" type:"float"`
+
+	// The lower bound of the aggregation expression.
+	MinColumnValue *float64 `locationName:"minColumnValue" type:"float"`
+
+	// The maximum number of rows contributed by a user in a SQL query.
+	//
+	// UserContributionLimit is a required field
+	UserContributionLimit *int64 `locationName:"userContributionLimit" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DifferentialPrivacySensitivityParameters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DifferentialPrivacySensitivityParameters) GoString() string {
+	return s.String()
+}
+
+// SetAggregationExpression sets the AggregationExpression field's value.
+func (s *DifferentialPrivacySensitivityParameters) SetAggregationExpression(v string) *DifferentialPrivacySensitivityParameters {
+	s.AggregationExpression = &v
+	return s
+}
+
+// SetAggregationType sets the AggregationType field's value.
+func (s *DifferentialPrivacySensitivityParameters) SetAggregationType(v string) *DifferentialPrivacySensitivityParameters {
+	s.AggregationType = &v
+	return s
+}
+
+// SetMaxColumnValue sets the MaxColumnValue field's value.
+func (s *DifferentialPrivacySensitivityParameters) SetMaxColumnValue(v float64) *DifferentialPrivacySensitivityParameters {
+	s.MaxColumnValue = &v
+	return s
+}
+
+// SetMinColumnValue sets the MinColumnValue field's value.
+func (s *DifferentialPrivacySensitivityParameters) SetMinColumnValue(v float64) *DifferentialPrivacySensitivityParameters {
+	s.MinColumnValue = &v
+	return s
+}
+
+// SetUserContributionLimit sets the UserContributionLimit field's value.
+func (s *DifferentialPrivacySensitivityParameters) SetUserContributionLimit(v int64) *DifferentialPrivacySensitivityParameters {
+	s.UserContributionLimit = &v
+	return s
+}
+
+// The epsilon and noise parameter values that you want to use for the differential
+// privacy template.
+type DifferentialPrivacyTemplateParametersInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// The epsilon value that you want to use.
+	//
+	// Epsilon is a required field
+	Epsilon *int64 `locationName:"epsilon" min:"1" type:"integer" required:"true"`
+
+	// Noise added per query is measured in terms of the number of users whose contributions
+	// you want to obscure. This value governs the rate at which the privacy budget
+	// is depleted.
+	//
+	// UsersNoisePerQuery is a required field
+	UsersNoisePerQuery *int64 `locationName:"usersNoisePerQuery" min:"10" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DifferentialPrivacyTemplateParametersInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DifferentialPrivacyTemplateParametersInput_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DifferentialPrivacyTemplateParametersInput_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DifferentialPrivacyTemplateParametersInput_"}
+	if s.Epsilon == nil {
+		invalidParams.Add(request.NewErrParamRequired("Epsilon"))
+	}
+	if s.Epsilon != nil && *s.Epsilon < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Epsilon", 1))
+	}
+	if s.UsersNoisePerQuery == nil {
+		invalidParams.Add(request.NewErrParamRequired("UsersNoisePerQuery"))
+	}
+	if s.UsersNoisePerQuery != nil && *s.UsersNoisePerQuery < 10 {
+		invalidParams.Add(request.NewErrParamMinValue("UsersNoisePerQuery", 10))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEpsilon sets the Epsilon field's value.
+func (s *DifferentialPrivacyTemplateParametersInput_) SetEpsilon(v int64) *DifferentialPrivacyTemplateParametersInput_ {
+	s.Epsilon = &v
+	return s
+}
+
+// SetUsersNoisePerQuery sets the UsersNoisePerQuery field's value.
+func (s *DifferentialPrivacyTemplateParametersInput_) SetUsersNoisePerQuery(v int64) *DifferentialPrivacyTemplateParametersInput_ {
+	s.UsersNoisePerQuery = &v
+	return s
+}
+
+// The epsilon and noise parameter values that were used for the differential
+// privacy template.
+type DifferentialPrivacyTemplateParametersOutput_ struct {
+	_ struct{} `type:"structure"`
+
+	// The epsilon value that you specified.
+	//
+	// Epsilon is a required field
+	Epsilon *int64 `locationName:"epsilon" min:"1" type:"integer" required:"true"`
+
+	// Noise added per query is measured in terms of the number of users whose contributions
+	// you want to obscure. This value governs the rate at which the privacy budget
+	// is depleted.
+	//
+	// UsersNoisePerQuery is a required field
+	UsersNoisePerQuery *int64 `locationName:"usersNoisePerQuery" min:"10" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DifferentialPrivacyTemplateParametersOutput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DifferentialPrivacyTemplateParametersOutput_) GoString() string {
+	return s.String()
+}
+
+// SetEpsilon sets the Epsilon field's value.
+func (s *DifferentialPrivacyTemplateParametersOutput_) SetEpsilon(v int64) *DifferentialPrivacyTemplateParametersOutput_ {
+	s.Epsilon = &v
+	return s
+}
+
+// SetUsersNoisePerQuery sets the UsersNoisePerQuery field's value.
+func (s *DifferentialPrivacyTemplateParametersOutput_) SetUsersNoisePerQuery(v int64) *DifferentialPrivacyTemplateParametersOutput_ {
+	s.UsersNoisePerQuery = &v
+	return s
+}
+
+// The epsilon and noise parameter values that you want to update in the differential
+// privacy template.
+type DifferentialPrivacyTemplateUpdateParameters struct {
+	_ struct{} `type:"structure"`
+
+	// The updated epsilon value that you want to use.
+	Epsilon *int64 `locationName:"epsilon" min:"1" type:"integer"`
+
+	// The updated value of noise added per query. It is measured in terms of the
+	// number of users whose contributions you want to obscure. This value governs
+	// the rate at which the privacy budget is depleted.
+	UsersNoisePerQuery *int64 `locationName:"usersNoisePerQuery" min:"10" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DifferentialPrivacyTemplateUpdateParameters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DifferentialPrivacyTemplateUpdateParameters) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DifferentialPrivacyTemplateUpdateParameters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DifferentialPrivacyTemplateUpdateParameters"}
+	if s.Epsilon != nil && *s.Epsilon < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Epsilon", 1))
+	}
+	if s.UsersNoisePerQuery != nil && *s.UsersNoisePerQuery < 10 {
+		invalidParams.Add(request.NewErrParamMinValue("UsersNoisePerQuery", 10))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEpsilon sets the Epsilon field's value.
+func (s *DifferentialPrivacyTemplateUpdateParameters) SetEpsilon(v int64) *DifferentialPrivacyTemplateUpdateParameters {
+	s.Epsilon = &v
+	return s
+}
+
+// SetUsersNoisePerQuery sets the UsersNoisePerQuery field's value.
+func (s *DifferentialPrivacyTemplateUpdateParameters) SetUsersNoisePerQuery(v int64) *DifferentialPrivacyTemplateUpdateParameters {
+	s.UsersNoisePerQuery = &v
+	return s
+}
+
 type GetAnalysisTemplateInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -9351,6 +13394,107 @@ func (s *GetCollaborationAnalysisTemplateOutput) SetCollaborationAnalysisTemplat
 	return s
 }
 
+type GetCollaborationConfiguredAudienceModelAssociationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// A unique identifier for the collaboration that the configured audience model
+	// association belongs to. Accepts a collaboration ID.
+	//
+	// CollaborationIdentifier is a required field
+	CollaborationIdentifier *string `location:"uri" locationName:"collaborationIdentifier" min:"36" type:"string" required:"true"`
+
+	// A unique identifier for the configured audience model association that you
+	// want to retrieve.
+	//
+	// ConfiguredAudienceModelAssociationIdentifier is a required field
+	ConfiguredAudienceModelAssociationIdentifier *string `location:"uri" locationName:"configuredAudienceModelAssociationIdentifier" min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCollaborationConfiguredAudienceModelAssociationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCollaborationConfiguredAudienceModelAssociationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetCollaborationConfiguredAudienceModelAssociationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetCollaborationConfiguredAudienceModelAssociationInput"}
+	if s.CollaborationIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("CollaborationIdentifier"))
+	}
+	if s.CollaborationIdentifier != nil && len(*s.CollaborationIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("CollaborationIdentifier", 36))
+	}
+	if s.ConfiguredAudienceModelAssociationIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfiguredAudienceModelAssociationIdentifier"))
+	}
+	if s.ConfiguredAudienceModelAssociationIdentifier != nil && len(*s.ConfiguredAudienceModelAssociationIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfiguredAudienceModelAssociationIdentifier", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCollaborationIdentifier sets the CollaborationIdentifier field's value.
+func (s *GetCollaborationConfiguredAudienceModelAssociationInput) SetCollaborationIdentifier(v string) *GetCollaborationConfiguredAudienceModelAssociationInput {
+	s.CollaborationIdentifier = &v
+	return s
+}
+
+// SetConfiguredAudienceModelAssociationIdentifier sets the ConfiguredAudienceModelAssociationIdentifier field's value.
+func (s *GetCollaborationConfiguredAudienceModelAssociationInput) SetConfiguredAudienceModelAssociationIdentifier(v string) *GetCollaborationConfiguredAudienceModelAssociationInput {
+	s.ConfiguredAudienceModelAssociationIdentifier = &v
+	return s
+}
+
+type GetCollaborationConfiguredAudienceModelAssociationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The metadata of the configured audience model association.
+	//
+	// CollaborationConfiguredAudienceModelAssociation is a required field
+	CollaborationConfiguredAudienceModelAssociation *CollaborationConfiguredAudienceModelAssociation `locationName:"collaborationConfiguredAudienceModelAssociation" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCollaborationConfiguredAudienceModelAssociationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCollaborationConfiguredAudienceModelAssociationOutput) GoString() string {
+	return s.String()
+}
+
+// SetCollaborationConfiguredAudienceModelAssociation sets the CollaborationConfiguredAudienceModelAssociation field's value.
+func (s *GetCollaborationConfiguredAudienceModelAssociationOutput) SetCollaborationConfiguredAudienceModelAssociation(v *CollaborationConfiguredAudienceModelAssociation) *GetCollaborationConfiguredAudienceModelAssociationOutput {
+	s.CollaborationConfiguredAudienceModelAssociation = v
+	return s
+}
+
 type GetCollaborationInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -9430,6 +13574,206 @@ func (s GetCollaborationOutput) GoString() string {
 // SetCollaboration sets the Collaboration field's value.
 func (s *GetCollaborationOutput) SetCollaboration(v *Collaboration) *GetCollaborationOutput {
 	s.Collaboration = v
+	return s
+}
+
+type GetCollaborationPrivacyBudgetTemplateInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// A unique identifier for one of your collaborations.
+	//
+	// CollaborationIdentifier is a required field
+	CollaborationIdentifier *string `location:"uri" locationName:"collaborationIdentifier" min:"36" type:"string" required:"true"`
+
+	// A unique identifier for one of your privacy budget templates.
+	//
+	// PrivacyBudgetTemplateIdentifier is a required field
+	PrivacyBudgetTemplateIdentifier *string `location:"uri" locationName:"privacyBudgetTemplateIdentifier" min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCollaborationPrivacyBudgetTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCollaborationPrivacyBudgetTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetCollaborationPrivacyBudgetTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetCollaborationPrivacyBudgetTemplateInput"}
+	if s.CollaborationIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("CollaborationIdentifier"))
+	}
+	if s.CollaborationIdentifier != nil && len(*s.CollaborationIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("CollaborationIdentifier", 36))
+	}
+	if s.PrivacyBudgetTemplateIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("PrivacyBudgetTemplateIdentifier"))
+	}
+	if s.PrivacyBudgetTemplateIdentifier != nil && len(*s.PrivacyBudgetTemplateIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("PrivacyBudgetTemplateIdentifier", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCollaborationIdentifier sets the CollaborationIdentifier field's value.
+func (s *GetCollaborationPrivacyBudgetTemplateInput) SetCollaborationIdentifier(v string) *GetCollaborationPrivacyBudgetTemplateInput {
+	s.CollaborationIdentifier = &v
+	return s
+}
+
+// SetPrivacyBudgetTemplateIdentifier sets the PrivacyBudgetTemplateIdentifier field's value.
+func (s *GetCollaborationPrivacyBudgetTemplateInput) SetPrivacyBudgetTemplateIdentifier(v string) *GetCollaborationPrivacyBudgetTemplateInput {
+	s.PrivacyBudgetTemplateIdentifier = &v
+	return s
+}
+
+type GetCollaborationPrivacyBudgetTemplateOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returns the details of the privacy budget template that you requested.
+	//
+	// CollaborationPrivacyBudgetTemplate is a required field
+	CollaborationPrivacyBudgetTemplate *CollaborationPrivacyBudgetTemplate `locationName:"collaborationPrivacyBudgetTemplate" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCollaborationPrivacyBudgetTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCollaborationPrivacyBudgetTemplateOutput) GoString() string {
+	return s.String()
+}
+
+// SetCollaborationPrivacyBudgetTemplate sets the CollaborationPrivacyBudgetTemplate field's value.
+func (s *GetCollaborationPrivacyBudgetTemplateOutput) SetCollaborationPrivacyBudgetTemplate(v *CollaborationPrivacyBudgetTemplate) *GetCollaborationPrivacyBudgetTemplateOutput {
+	s.CollaborationPrivacyBudgetTemplate = v
+	return s
+}
+
+type GetConfiguredAudienceModelAssociationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// A unique identifier for the configured audience model association that you
+	// want to retrieve.
+	//
+	// ConfiguredAudienceModelAssociationIdentifier is a required field
+	ConfiguredAudienceModelAssociationIdentifier *string `location:"uri" locationName:"configuredAudienceModelAssociationIdentifier" min:"36" type:"string" required:"true"`
+
+	// A unique identifier for the membership that contains the configured audience
+	// model association that you want to retrieve.
+	//
+	// MembershipIdentifier is a required field
+	MembershipIdentifier *string `location:"uri" locationName:"membershipIdentifier" min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetConfiguredAudienceModelAssociationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetConfiguredAudienceModelAssociationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetConfiguredAudienceModelAssociationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetConfiguredAudienceModelAssociationInput"}
+	if s.ConfiguredAudienceModelAssociationIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfiguredAudienceModelAssociationIdentifier"))
+	}
+	if s.ConfiguredAudienceModelAssociationIdentifier != nil && len(*s.ConfiguredAudienceModelAssociationIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfiguredAudienceModelAssociationIdentifier", 36))
+	}
+	if s.MembershipIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("MembershipIdentifier"))
+	}
+	if s.MembershipIdentifier != nil && len(*s.MembershipIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("MembershipIdentifier", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfiguredAudienceModelAssociationIdentifier sets the ConfiguredAudienceModelAssociationIdentifier field's value.
+func (s *GetConfiguredAudienceModelAssociationInput) SetConfiguredAudienceModelAssociationIdentifier(v string) *GetConfiguredAudienceModelAssociationInput {
+	s.ConfiguredAudienceModelAssociationIdentifier = &v
+	return s
+}
+
+// SetMembershipIdentifier sets the MembershipIdentifier field's value.
+func (s *GetConfiguredAudienceModelAssociationInput) SetMembershipIdentifier(v string) *GetConfiguredAudienceModelAssociationInput {
+	s.MembershipIdentifier = &v
+	return s
+}
+
+type GetConfiguredAudienceModelAssociationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the configured audience model association that you requested.
+	//
+	// ConfiguredAudienceModelAssociation is a required field
+	ConfiguredAudienceModelAssociation *ConfiguredAudienceModelAssociation `locationName:"configuredAudienceModelAssociation" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetConfiguredAudienceModelAssociationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetConfiguredAudienceModelAssociationOutput) GoString() string {
+	return s.String()
+}
+
+// SetConfiguredAudienceModelAssociation sets the ConfiguredAudienceModelAssociation field's value.
+func (s *GetConfiguredAudienceModelAssociationOutput) SetConfiguredAudienceModelAssociation(v *ConfiguredAudienceModelAssociation) *GetConfiguredAudienceModelAssociationOutput {
+	s.ConfiguredAudienceModelAssociation = v
 	return s
 }
 
@@ -9796,6 +14140,107 @@ func (s GetMembershipOutput) GoString() string {
 // SetMembership sets the Membership field's value.
 func (s *GetMembershipOutput) SetMembership(v *Membership) *GetMembershipOutput {
 	s.Membership = v
+	return s
+}
+
+type GetPrivacyBudgetTemplateInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// A unique identifier for one of your memberships for a collaboration. The
+	// privacy budget template is retrieved from the collaboration that this membership
+	// belongs to. Accepts a membership ID.
+	//
+	// MembershipIdentifier is a required field
+	MembershipIdentifier *string `location:"uri" locationName:"membershipIdentifier" min:"36" type:"string" required:"true"`
+
+	// A unique identifier for your privacy budget template.
+	//
+	// PrivacyBudgetTemplateIdentifier is a required field
+	PrivacyBudgetTemplateIdentifier *string `location:"uri" locationName:"privacyBudgetTemplateIdentifier" min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPrivacyBudgetTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPrivacyBudgetTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetPrivacyBudgetTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetPrivacyBudgetTemplateInput"}
+	if s.MembershipIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("MembershipIdentifier"))
+	}
+	if s.MembershipIdentifier != nil && len(*s.MembershipIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("MembershipIdentifier", 36))
+	}
+	if s.PrivacyBudgetTemplateIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("PrivacyBudgetTemplateIdentifier"))
+	}
+	if s.PrivacyBudgetTemplateIdentifier != nil && len(*s.PrivacyBudgetTemplateIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("PrivacyBudgetTemplateIdentifier", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMembershipIdentifier sets the MembershipIdentifier field's value.
+func (s *GetPrivacyBudgetTemplateInput) SetMembershipIdentifier(v string) *GetPrivacyBudgetTemplateInput {
+	s.MembershipIdentifier = &v
+	return s
+}
+
+// SetPrivacyBudgetTemplateIdentifier sets the PrivacyBudgetTemplateIdentifier field's value.
+func (s *GetPrivacyBudgetTemplateInput) SetPrivacyBudgetTemplateIdentifier(v string) *GetPrivacyBudgetTemplateInput {
+	s.PrivacyBudgetTemplateIdentifier = &v
+	return s
+}
+
+type GetPrivacyBudgetTemplateOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returns the details of the privacy budget template that you requested.
+	//
+	// PrivacyBudgetTemplate is a required field
+	PrivacyBudgetTemplate *PrivacyBudgetTemplate `locationName:"privacyBudgetTemplate" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPrivacyBudgetTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPrivacyBudgetTemplateOutput) GoString() string {
+	return s.String()
+}
+
+// SetPrivacyBudgetTemplate sets the PrivacyBudgetTemplate field's value.
+func (s *GetPrivacyBudgetTemplateOutput) SetPrivacyBudgetTemplate(v *PrivacyBudgetTemplate) *GetPrivacyBudgetTemplateOutput {
+	s.PrivacyBudgetTemplate = v
 	return s
 }
 
@@ -10471,6 +14916,369 @@ func (s *ListCollaborationAnalysisTemplatesOutput) SetNextToken(v string) *ListC
 	return s
 }
 
+type ListCollaborationConfiguredAudienceModelAssociationsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// A unique identifier for the collaboration that the configured audience model
+	// association belongs to. Accepts a collaboration ID.
+	//
+	// CollaborationIdentifier is a required field
+	CollaborationIdentifier *string `location:"uri" locationName:"collaborationIdentifier" min:"36" type:"string" required:"true"`
+
+	// The maximum size of the results that is returned per call.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token value retrieved from a previous call to access the next page of
+	// results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCollaborationConfiguredAudienceModelAssociationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCollaborationConfiguredAudienceModelAssociationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListCollaborationConfiguredAudienceModelAssociationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListCollaborationConfiguredAudienceModelAssociationsInput"}
+	if s.CollaborationIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("CollaborationIdentifier"))
+	}
+	if s.CollaborationIdentifier != nil && len(*s.CollaborationIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("CollaborationIdentifier", 36))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCollaborationIdentifier sets the CollaborationIdentifier field's value.
+func (s *ListCollaborationConfiguredAudienceModelAssociationsInput) SetCollaborationIdentifier(v string) *ListCollaborationConfiguredAudienceModelAssociationsInput {
+	s.CollaborationIdentifier = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListCollaborationConfiguredAudienceModelAssociationsInput) SetMaxResults(v int64) *ListCollaborationConfiguredAudienceModelAssociationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCollaborationConfiguredAudienceModelAssociationsInput) SetNextToken(v string) *ListCollaborationConfiguredAudienceModelAssociationsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListCollaborationConfiguredAudienceModelAssociationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The metadata of the configured audience model association within a collaboration.
+	//
+	// CollaborationConfiguredAudienceModelAssociationSummaries is a required field
+	CollaborationConfiguredAudienceModelAssociationSummaries []*CollaborationConfiguredAudienceModelAssociationSummary `locationName:"collaborationConfiguredAudienceModelAssociationSummaries" type:"list" required:"true"`
+
+	// The token value retrieved from a previous call to access the next page of
+	// results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCollaborationConfiguredAudienceModelAssociationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCollaborationConfiguredAudienceModelAssociationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetCollaborationConfiguredAudienceModelAssociationSummaries sets the CollaborationConfiguredAudienceModelAssociationSummaries field's value.
+func (s *ListCollaborationConfiguredAudienceModelAssociationsOutput) SetCollaborationConfiguredAudienceModelAssociationSummaries(v []*CollaborationConfiguredAudienceModelAssociationSummary) *ListCollaborationConfiguredAudienceModelAssociationsOutput {
+	s.CollaborationConfiguredAudienceModelAssociationSummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCollaborationConfiguredAudienceModelAssociationsOutput) SetNextToken(v string) *ListCollaborationConfiguredAudienceModelAssociationsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListCollaborationPrivacyBudgetTemplatesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// A unique identifier for one of your collaborations.
+	//
+	// CollaborationIdentifier is a required field
+	CollaborationIdentifier *string `location:"uri" locationName:"collaborationIdentifier" min:"36" type:"string" required:"true"`
+
+	// The maximum size of the results that is returned per call. Service chooses
+	// a default if it has not been set. Service may return a nextToken even if
+	// the maximum results has not been met.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token value retrieved from a previous call to access the next page of
+	// results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCollaborationPrivacyBudgetTemplatesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCollaborationPrivacyBudgetTemplatesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListCollaborationPrivacyBudgetTemplatesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListCollaborationPrivacyBudgetTemplatesInput"}
+	if s.CollaborationIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("CollaborationIdentifier"))
+	}
+	if s.CollaborationIdentifier != nil && len(*s.CollaborationIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("CollaborationIdentifier", 36))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCollaborationIdentifier sets the CollaborationIdentifier field's value.
+func (s *ListCollaborationPrivacyBudgetTemplatesInput) SetCollaborationIdentifier(v string) *ListCollaborationPrivacyBudgetTemplatesInput {
+	s.CollaborationIdentifier = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListCollaborationPrivacyBudgetTemplatesInput) SetMaxResults(v int64) *ListCollaborationPrivacyBudgetTemplatesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCollaborationPrivacyBudgetTemplatesInput) SetNextToken(v string) *ListCollaborationPrivacyBudgetTemplatesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListCollaborationPrivacyBudgetTemplatesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array that summarizes the collaboration privacy budget templates. The
+	// summary includes collaboration information, creation information, the privacy
+	// budget type.
+	//
+	// CollaborationPrivacyBudgetTemplateSummaries is a required field
+	CollaborationPrivacyBudgetTemplateSummaries []*CollaborationPrivacyBudgetTemplateSummary `locationName:"collaborationPrivacyBudgetTemplateSummaries" type:"list" required:"true"`
+
+	// The token value retrieved from a previous call to access the next page of
+	// results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCollaborationPrivacyBudgetTemplatesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCollaborationPrivacyBudgetTemplatesOutput) GoString() string {
+	return s.String()
+}
+
+// SetCollaborationPrivacyBudgetTemplateSummaries sets the CollaborationPrivacyBudgetTemplateSummaries field's value.
+func (s *ListCollaborationPrivacyBudgetTemplatesOutput) SetCollaborationPrivacyBudgetTemplateSummaries(v []*CollaborationPrivacyBudgetTemplateSummary) *ListCollaborationPrivacyBudgetTemplatesOutput {
+	s.CollaborationPrivacyBudgetTemplateSummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCollaborationPrivacyBudgetTemplatesOutput) SetNextToken(v string) *ListCollaborationPrivacyBudgetTemplatesOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListCollaborationPrivacyBudgetsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// A unique identifier for one of your collaborations.
+	//
+	// CollaborationIdentifier is a required field
+	CollaborationIdentifier *string `location:"uri" locationName:"collaborationIdentifier" min:"36" type:"string" required:"true"`
+
+	// The maximum size of the results that is returned per call. Service chooses
+	// a default if it has not been set. Service may return a nextToken even if
+	// the maximum results has not been met.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token value retrieved from a previous call to access the next page of
+	// results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// Specifies the type of the privacy budget.
+	//
+	// PrivacyBudgetType is a required field
+	PrivacyBudgetType *string `location:"querystring" locationName:"privacyBudgetType" type:"string" required:"true" enum:"PrivacyBudgetType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCollaborationPrivacyBudgetsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCollaborationPrivacyBudgetsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListCollaborationPrivacyBudgetsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListCollaborationPrivacyBudgetsInput"}
+	if s.CollaborationIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("CollaborationIdentifier"))
+	}
+	if s.CollaborationIdentifier != nil && len(*s.CollaborationIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("CollaborationIdentifier", 36))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.PrivacyBudgetType == nil {
+		invalidParams.Add(request.NewErrParamRequired("PrivacyBudgetType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCollaborationIdentifier sets the CollaborationIdentifier field's value.
+func (s *ListCollaborationPrivacyBudgetsInput) SetCollaborationIdentifier(v string) *ListCollaborationPrivacyBudgetsInput {
+	s.CollaborationIdentifier = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListCollaborationPrivacyBudgetsInput) SetMaxResults(v int64) *ListCollaborationPrivacyBudgetsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCollaborationPrivacyBudgetsInput) SetNextToken(v string) *ListCollaborationPrivacyBudgetsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPrivacyBudgetType sets the PrivacyBudgetType field's value.
+func (s *ListCollaborationPrivacyBudgetsInput) SetPrivacyBudgetType(v string) *ListCollaborationPrivacyBudgetsInput {
+	s.PrivacyBudgetType = &v
+	return s
+}
+
+type ListCollaborationPrivacyBudgetsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Summaries of the collaboration privacy budgets.
+	//
+	// CollaborationPrivacyBudgetSummaries is a required field
+	CollaborationPrivacyBudgetSummaries []*CollaborationPrivacyBudgetSummary `locationName:"collaborationPrivacyBudgetSummaries" type:"list" required:"true"`
+
+	// The token value retrieved from a previous call to access the next page of
+	// results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCollaborationPrivacyBudgetsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCollaborationPrivacyBudgetsOutput) GoString() string {
+	return s.String()
+}
+
+// SetCollaborationPrivacyBudgetSummaries sets the CollaborationPrivacyBudgetSummaries field's value.
+func (s *ListCollaborationPrivacyBudgetsOutput) SetCollaborationPrivacyBudgetSummaries(v []*CollaborationPrivacyBudgetSummary) *ListCollaborationPrivacyBudgetsOutput {
+	s.CollaborationPrivacyBudgetSummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCollaborationPrivacyBudgetsOutput) SetNextToken(v string) *ListCollaborationPrivacyBudgetsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListCollaborationsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -10575,6 +15383,122 @@ func (s *ListCollaborationsOutput) SetCollaborationList(v []*CollaborationSummar
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListCollaborationsOutput) SetNextToken(v string) *ListCollaborationsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListConfiguredAudienceModelAssociationsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The maximum size of the results that is returned per call. Service chooses
+	// a default if it has not been set. Service may return a nextToken even if
+	// the maximum results has not been met.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// A unique identifier for a membership that contains the configured audience
+	// model associations that you want to retrieve.
+	//
+	// MembershipIdentifier is a required field
+	MembershipIdentifier *string `location:"uri" locationName:"membershipIdentifier" min:"36" type:"string" required:"true"`
+
+	// The token value retrieved from a previous call to access the next page of
+	// results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListConfiguredAudienceModelAssociationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListConfiguredAudienceModelAssociationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListConfiguredAudienceModelAssociationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListConfiguredAudienceModelAssociationsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.MembershipIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("MembershipIdentifier"))
+	}
+	if s.MembershipIdentifier != nil && len(*s.MembershipIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("MembershipIdentifier", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListConfiguredAudienceModelAssociationsInput) SetMaxResults(v int64) *ListConfiguredAudienceModelAssociationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetMembershipIdentifier sets the MembershipIdentifier field's value.
+func (s *ListConfiguredAudienceModelAssociationsInput) SetMembershipIdentifier(v string) *ListConfiguredAudienceModelAssociationsInput {
+	s.MembershipIdentifier = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListConfiguredAudienceModelAssociationsInput) SetNextToken(v string) *ListConfiguredAudienceModelAssociationsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListConfiguredAudienceModelAssociationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Summaries of the configured audience model associations that you requested.
+	//
+	// ConfiguredAudienceModelAssociationSummaries is a required field
+	ConfiguredAudienceModelAssociationSummaries []*ConfiguredAudienceModelAssociationSummary `locationName:"configuredAudienceModelAssociationSummaries" type:"list" required:"true"`
+
+	// The token value provided to access the next page of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListConfiguredAudienceModelAssociationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListConfiguredAudienceModelAssociationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetConfiguredAudienceModelAssociationSummaries sets the ConfiguredAudienceModelAssociationSummaries field's value.
+func (s *ListConfiguredAudienceModelAssociationsOutput) SetConfiguredAudienceModelAssociationSummaries(v []*ConfiguredAudienceModelAssociationSummary) *ListConfiguredAudienceModelAssociationsOutput {
+	s.ConfiguredAudienceModelAssociationSummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListConfiguredAudienceModelAssociationsOutput) SetNextToken(v string) *ListConfiguredAudienceModelAssociationsOutput {
 	s.NextToken = &v
 	return s
 }
@@ -11008,6 +15932,259 @@ func (s *ListMembershipsOutput) SetMembershipSummaries(v []*MembershipSummary) *
 // SetNextToken sets the NextToken field's value.
 func (s *ListMembershipsOutput) SetNextToken(v string) *ListMembershipsOutput {
 	s.NextToken = &v
+	return s
+}
+
+type ListPrivacyBudgetTemplatesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The maximum size of the results that is returned per call. Service chooses
+	// a default if it has not been set. Service may return a nextToken even if
+	// the maximum results has not been met.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// A unique identifier for one of your memberships for a collaboration. The
+	// privacy budget templates are retrieved from the collaboration that this membership
+	// belongs to. Accepts a membership ID.
+	//
+	// MembershipIdentifier is a required field
+	MembershipIdentifier *string `location:"uri" locationName:"membershipIdentifier" min:"36" type:"string" required:"true"`
+
+	// The token value retrieved from a previous call to access the next page of
+	// results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPrivacyBudgetTemplatesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPrivacyBudgetTemplatesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListPrivacyBudgetTemplatesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListPrivacyBudgetTemplatesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.MembershipIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("MembershipIdentifier"))
+	}
+	if s.MembershipIdentifier != nil && len(*s.MembershipIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("MembershipIdentifier", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListPrivacyBudgetTemplatesInput) SetMaxResults(v int64) *ListPrivacyBudgetTemplatesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetMembershipIdentifier sets the MembershipIdentifier field's value.
+func (s *ListPrivacyBudgetTemplatesInput) SetMembershipIdentifier(v string) *ListPrivacyBudgetTemplatesInput {
+	s.MembershipIdentifier = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListPrivacyBudgetTemplatesInput) SetNextToken(v string) *ListPrivacyBudgetTemplatesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListPrivacyBudgetTemplatesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The token value retrieved from a previous call to access the next page of
+	// results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// An array that summarizes the privacy budget templates. The summary includes
+	// collaboration information, creation information, and privacy budget type.
+	//
+	// PrivacyBudgetTemplateSummaries is a required field
+	PrivacyBudgetTemplateSummaries []*PrivacyBudgetTemplateSummary `locationName:"privacyBudgetTemplateSummaries" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPrivacyBudgetTemplatesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPrivacyBudgetTemplatesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListPrivacyBudgetTemplatesOutput) SetNextToken(v string) *ListPrivacyBudgetTemplatesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPrivacyBudgetTemplateSummaries sets the PrivacyBudgetTemplateSummaries field's value.
+func (s *ListPrivacyBudgetTemplatesOutput) SetPrivacyBudgetTemplateSummaries(v []*PrivacyBudgetTemplateSummary) *ListPrivacyBudgetTemplatesOutput {
+	s.PrivacyBudgetTemplateSummaries = v
+	return s
+}
+
+type ListPrivacyBudgetsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The maximum size of the results that is returned per call. Service chooses
+	// a default if it has not been set. Service may return a nextToken even if
+	// the maximum results has not been met.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// A unique identifier for one of your memberships for a collaboration. The
+	// privacy budget is retrieved from the collaboration that this membership belongs
+	// to. Accepts a membership ID.
+	//
+	// MembershipIdentifier is a required field
+	MembershipIdentifier *string `location:"uri" locationName:"membershipIdentifier" min:"36" type:"string" required:"true"`
+
+	// The token value retrieved from a previous call to access the next page of
+	// results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// The privacy budget type.
+	//
+	// PrivacyBudgetType is a required field
+	PrivacyBudgetType *string `location:"querystring" locationName:"privacyBudgetType" type:"string" required:"true" enum:"PrivacyBudgetType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPrivacyBudgetsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPrivacyBudgetsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListPrivacyBudgetsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListPrivacyBudgetsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.MembershipIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("MembershipIdentifier"))
+	}
+	if s.MembershipIdentifier != nil && len(*s.MembershipIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("MembershipIdentifier", 36))
+	}
+	if s.PrivacyBudgetType == nil {
+		invalidParams.Add(request.NewErrParamRequired("PrivacyBudgetType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListPrivacyBudgetsInput) SetMaxResults(v int64) *ListPrivacyBudgetsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetMembershipIdentifier sets the MembershipIdentifier field's value.
+func (s *ListPrivacyBudgetsInput) SetMembershipIdentifier(v string) *ListPrivacyBudgetsInput {
+	s.MembershipIdentifier = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListPrivacyBudgetsInput) SetNextToken(v string) *ListPrivacyBudgetsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPrivacyBudgetType sets the PrivacyBudgetType field's value.
+func (s *ListPrivacyBudgetsInput) SetPrivacyBudgetType(v string) *ListPrivacyBudgetsInput {
+	s.PrivacyBudgetType = &v
+	return s
+}
+
+type ListPrivacyBudgetsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The token value retrieved from a previous call to access the next page of
+	// results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// An array that summarizes the privacy budgets. The summary includes collaboration
+	// information, membership information, privacy budget template information,
+	// and privacy budget details.
+	//
+	// PrivacyBudgetSummaries is a required field
+	PrivacyBudgetSummaries []*PrivacyBudgetSummary `locationName:"privacyBudgetSummaries" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPrivacyBudgetsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPrivacyBudgetsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListPrivacyBudgetsOutput) SetNextToken(v string) *ListPrivacyBudgetsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPrivacyBudgetSummaries sets the PrivacyBudgetSummaries field's value.
+func (s *ListPrivacyBudgetsOutput) SetPrivacyBudgetSummaries(v []*PrivacyBudgetSummary) *ListPrivacyBudgetsOutput {
+	s.PrivacyBudgetSummaries = v
 	return s
 }
 
@@ -12179,6 +17356,778 @@ func (s *PaymentConfiguration) SetQueryCompute(v *QueryComputePaymentConfig) *Pa
 	return s
 }
 
+type PreviewPrivacyImpactInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for one of your memberships for a collaboration. Accepts
+	// a membership ID.
+	//
+	// MembershipIdentifier is a required field
+	MembershipIdentifier *string `location:"uri" locationName:"membershipIdentifier" min:"36" type:"string" required:"true"`
+
+	// Specifies the desired epsilon and noise parameters to preview.
+	//
+	// Parameters is a required field
+	Parameters *PreviewPrivacyImpactParametersInput_ `locationName:"parameters" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PreviewPrivacyImpactInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PreviewPrivacyImpactInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PreviewPrivacyImpactInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PreviewPrivacyImpactInput"}
+	if s.MembershipIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("MembershipIdentifier"))
+	}
+	if s.MembershipIdentifier != nil && len(*s.MembershipIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("MembershipIdentifier", 36))
+	}
+	if s.Parameters == nil {
+		invalidParams.Add(request.NewErrParamRequired("Parameters"))
+	}
+	if s.Parameters != nil {
+		if err := s.Parameters.Validate(); err != nil {
+			invalidParams.AddNested("Parameters", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMembershipIdentifier sets the MembershipIdentifier field's value.
+func (s *PreviewPrivacyImpactInput) SetMembershipIdentifier(v string) *PreviewPrivacyImpactInput {
+	s.MembershipIdentifier = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *PreviewPrivacyImpactInput) SetParameters(v *PreviewPrivacyImpactParametersInput_) *PreviewPrivacyImpactInput {
+	s.Parameters = v
+	return s
+}
+
+type PreviewPrivacyImpactOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An estimate of the number of aggregation functions that the member who can
+	// query can run given the epsilon and noise parameters. This does not change
+	// the privacy budget.
+	//
+	// PrivacyImpact is a required field
+	PrivacyImpact *PrivacyImpact `locationName:"privacyImpact" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PreviewPrivacyImpactOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PreviewPrivacyImpactOutput) GoString() string {
+	return s.String()
+}
+
+// SetPrivacyImpact sets the PrivacyImpact field's value.
+func (s *PreviewPrivacyImpactOutput) SetPrivacyImpact(v *PrivacyImpact) *PreviewPrivacyImpactOutput {
+	s.PrivacyImpact = v
+	return s
+}
+
+// Specifies the updated epsilon and noise parameters to preview. The preview
+// allows you to see how the maximum number of each type of aggregation function
+// would change with the new parameters.
+type PreviewPrivacyImpactParametersInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// An array that specifies the epsilon and noise parameters.
+	DifferentialPrivacy *DifferentialPrivacyPreviewParametersInput_ `locationName:"differentialPrivacy" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PreviewPrivacyImpactParametersInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PreviewPrivacyImpactParametersInput_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PreviewPrivacyImpactParametersInput_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PreviewPrivacyImpactParametersInput_"}
+	if s.DifferentialPrivacy != nil {
+		if err := s.DifferentialPrivacy.Validate(); err != nil {
+			invalidParams.AddNested("DifferentialPrivacy", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDifferentialPrivacy sets the DifferentialPrivacy field's value.
+func (s *PreviewPrivacyImpactParametersInput_) SetDifferentialPrivacy(v *DifferentialPrivacyPreviewParametersInput_) *PreviewPrivacyImpactParametersInput_ {
+	s.DifferentialPrivacy = v
+	return s
+}
+
+// The epsilon parameter value and number of each aggregation function that
+// you can perform.
+type PrivacyBudget struct {
+	_ struct{} `type:"structure"`
+
+	// An object that specifies the epsilon parameter and the utility in terms of
+	// total aggregations, as well as the remaining aggregations available.
+	DifferentialPrivacy *DifferentialPrivacyPrivacyBudget `locationName:"differentialPrivacy" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PrivacyBudget) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PrivacyBudget) GoString() string {
+	return s.String()
+}
+
+// SetDifferentialPrivacy sets the DifferentialPrivacy field's value.
+func (s *PrivacyBudget) SetDifferentialPrivacy(v *DifferentialPrivacyPrivacyBudget) *PrivacyBudget {
+	s.DifferentialPrivacy = v
+	return s
+}
+
+// An array that summaries the specified privacy budget. This summary includes
+// collaboration information, creation information, membership information,
+// and privacy budget information.
+type PrivacyBudgetSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The provided privacy budget.
+	//
+	// Budget is a required field
+	Budget *PrivacyBudget `locationName:"budget" type:"structure" required:"true"`
+
+	// The ARN of the collaboration that contains this privacy budget.
+	//
+	// CollaborationArn is a required field
+	CollaborationArn *string `locationName:"collaborationArn" type:"string" required:"true"`
+
+	// The unique identifier of the collaboration that contains this privacy budget.
+	//
+	// CollaborationId is a required field
+	CollaborationId *string `locationName:"collaborationId" min:"36" type:"string" required:"true"`
+
+	// The time at which the privacy budget was created.
+	//
+	// CreateTime is a required field
+	CreateTime *time.Time `locationName:"createTime" type:"timestamp" required:"true"`
+
+	// The unique identifier of the privacy budget.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" min:"36" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the member who created the privacy budget
+	// summary.
+	//
+	// MembershipArn is a required field
+	MembershipArn *string `locationName:"membershipArn" type:"string" required:"true"`
+
+	// The identifier for a membership resource.
+	//
+	// MembershipId is a required field
+	MembershipId *string `locationName:"membershipId" min:"36" type:"string" required:"true"`
+
+	// The ARN of the privacy budget template.
+	//
+	// PrivacyBudgetTemplateArn is a required field
+	PrivacyBudgetTemplateArn *string `locationName:"privacyBudgetTemplateArn" type:"string" required:"true"`
+
+	// The unique identifier of the privacy budget template.
+	//
+	// PrivacyBudgetTemplateId is a required field
+	PrivacyBudgetTemplateId *string `locationName:"privacyBudgetTemplateId" min:"36" type:"string" required:"true"`
+
+	// Specifies the type of the privacy budget.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"PrivacyBudgetType"`
+
+	// The most recent time at which the privacy budget was updated.
+	//
+	// UpdateTime is a required field
+	UpdateTime *time.Time `locationName:"updateTime" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PrivacyBudgetSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PrivacyBudgetSummary) GoString() string {
+	return s.String()
+}
+
+// SetBudget sets the Budget field's value.
+func (s *PrivacyBudgetSummary) SetBudget(v *PrivacyBudget) *PrivacyBudgetSummary {
+	s.Budget = v
+	return s
+}
+
+// SetCollaborationArn sets the CollaborationArn field's value.
+func (s *PrivacyBudgetSummary) SetCollaborationArn(v string) *PrivacyBudgetSummary {
+	s.CollaborationArn = &v
+	return s
+}
+
+// SetCollaborationId sets the CollaborationId field's value.
+func (s *PrivacyBudgetSummary) SetCollaborationId(v string) *PrivacyBudgetSummary {
+	s.CollaborationId = &v
+	return s
+}
+
+// SetCreateTime sets the CreateTime field's value.
+func (s *PrivacyBudgetSummary) SetCreateTime(v time.Time) *PrivacyBudgetSummary {
+	s.CreateTime = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *PrivacyBudgetSummary) SetId(v string) *PrivacyBudgetSummary {
+	s.Id = &v
+	return s
+}
+
+// SetMembershipArn sets the MembershipArn field's value.
+func (s *PrivacyBudgetSummary) SetMembershipArn(v string) *PrivacyBudgetSummary {
+	s.MembershipArn = &v
+	return s
+}
+
+// SetMembershipId sets the MembershipId field's value.
+func (s *PrivacyBudgetSummary) SetMembershipId(v string) *PrivacyBudgetSummary {
+	s.MembershipId = &v
+	return s
+}
+
+// SetPrivacyBudgetTemplateArn sets the PrivacyBudgetTemplateArn field's value.
+func (s *PrivacyBudgetSummary) SetPrivacyBudgetTemplateArn(v string) *PrivacyBudgetSummary {
+	s.PrivacyBudgetTemplateArn = &v
+	return s
+}
+
+// SetPrivacyBudgetTemplateId sets the PrivacyBudgetTemplateId field's value.
+func (s *PrivacyBudgetSummary) SetPrivacyBudgetTemplateId(v string) *PrivacyBudgetSummary {
+	s.PrivacyBudgetTemplateId = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *PrivacyBudgetSummary) SetType(v string) *PrivacyBudgetSummary {
+	s.Type = &v
+	return s
+}
+
+// SetUpdateTime sets the UpdateTime field's value.
+func (s *PrivacyBudgetSummary) SetUpdateTime(v time.Time) *PrivacyBudgetSummary {
+	s.UpdateTime = &v
+	return s
+}
+
+// An object that defines the privacy budget template.
+type PrivacyBudgetTemplate struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the privacy budget template.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// How often the privacy budget refreshes.
+	//
+	// If you plan to regularly bring new data into the collaboration, use CALENDAR_MONTH
+	// to automatically get a new privacy budget for the collaboration every calendar
+	// month. Choosing this option allows arbitrary amounts of information to be
+	// revealed about rows of the data when repeatedly queried across refreshes.
+	// Avoid choosing this if the same rows will be repeatedly queried between privacy
+	// budget refreshes.
+	//
+	// AutoRefresh is a required field
+	AutoRefresh *string `locationName:"autoRefresh" type:"string" required:"true" enum:"PrivacyBudgetTemplateAutoRefresh"`
+
+	// The ARN of the collaboration that contains this privacy budget template.
+	//
+	// CollaborationArn is a required field
+	CollaborationArn *string `locationName:"collaborationArn" type:"string" required:"true"`
+
+	// The unique ID of the collaboration that contains this privacy budget template.
+	//
+	// CollaborationId is a required field
+	CollaborationId *string `locationName:"collaborationId" min:"36" type:"string" required:"true"`
+
+	// The time at which the privacy budget template was created.
+	//
+	// CreateTime is a required field
+	CreateTime *time.Time `locationName:"createTime" type:"timestamp" required:"true"`
+
+	// The unique identifier of the privacy budget template.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" min:"36" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the member who created the privacy budget
+	// template.
+	//
+	// MembershipArn is a required field
+	MembershipArn *string `locationName:"membershipArn" type:"string" required:"true"`
+
+	// The identifier for a membership resource.
+	//
+	// MembershipId is a required field
+	MembershipId *string `locationName:"membershipId" min:"36" type:"string" required:"true"`
+
+	// Specifies the epislon and noise parameters for the privacy budget template.
+	//
+	// Parameters is a required field
+	Parameters *PrivacyBudgetTemplateParametersOutput_ `locationName:"parameters" type:"structure" required:"true"`
+
+	// Specifies the type of the privacy budget template.
+	//
+	// PrivacyBudgetType is a required field
+	PrivacyBudgetType *string `locationName:"privacyBudgetType" type:"string" required:"true" enum:"PrivacyBudgetType"`
+
+	// The most recent time at which the privacy budget template was updated.
+	//
+	// UpdateTime is a required field
+	UpdateTime *time.Time `locationName:"updateTime" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PrivacyBudgetTemplate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PrivacyBudgetTemplate) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *PrivacyBudgetTemplate) SetArn(v string) *PrivacyBudgetTemplate {
+	s.Arn = &v
+	return s
+}
+
+// SetAutoRefresh sets the AutoRefresh field's value.
+func (s *PrivacyBudgetTemplate) SetAutoRefresh(v string) *PrivacyBudgetTemplate {
+	s.AutoRefresh = &v
+	return s
+}
+
+// SetCollaborationArn sets the CollaborationArn field's value.
+func (s *PrivacyBudgetTemplate) SetCollaborationArn(v string) *PrivacyBudgetTemplate {
+	s.CollaborationArn = &v
+	return s
+}
+
+// SetCollaborationId sets the CollaborationId field's value.
+func (s *PrivacyBudgetTemplate) SetCollaborationId(v string) *PrivacyBudgetTemplate {
+	s.CollaborationId = &v
+	return s
+}
+
+// SetCreateTime sets the CreateTime field's value.
+func (s *PrivacyBudgetTemplate) SetCreateTime(v time.Time) *PrivacyBudgetTemplate {
+	s.CreateTime = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *PrivacyBudgetTemplate) SetId(v string) *PrivacyBudgetTemplate {
+	s.Id = &v
+	return s
+}
+
+// SetMembershipArn sets the MembershipArn field's value.
+func (s *PrivacyBudgetTemplate) SetMembershipArn(v string) *PrivacyBudgetTemplate {
+	s.MembershipArn = &v
+	return s
+}
+
+// SetMembershipId sets the MembershipId field's value.
+func (s *PrivacyBudgetTemplate) SetMembershipId(v string) *PrivacyBudgetTemplate {
+	s.MembershipId = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *PrivacyBudgetTemplate) SetParameters(v *PrivacyBudgetTemplateParametersOutput_) *PrivacyBudgetTemplate {
+	s.Parameters = v
+	return s
+}
+
+// SetPrivacyBudgetType sets the PrivacyBudgetType field's value.
+func (s *PrivacyBudgetTemplate) SetPrivacyBudgetType(v string) *PrivacyBudgetTemplate {
+	s.PrivacyBudgetType = &v
+	return s
+}
+
+// SetUpdateTime sets the UpdateTime field's value.
+func (s *PrivacyBudgetTemplate) SetUpdateTime(v time.Time) *PrivacyBudgetTemplate {
+	s.UpdateTime = &v
+	return s
+}
+
+// The epsilon and noise parameters that you want to use for the privacy budget
+// template.
+type PrivacyBudgetTemplateParametersInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// An object that specifies the epsilon and noise parameters.
+	DifferentialPrivacy *DifferentialPrivacyTemplateParametersInput_ `locationName:"differentialPrivacy" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PrivacyBudgetTemplateParametersInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PrivacyBudgetTemplateParametersInput_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PrivacyBudgetTemplateParametersInput_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PrivacyBudgetTemplateParametersInput_"}
+	if s.DifferentialPrivacy != nil {
+		if err := s.DifferentialPrivacy.Validate(); err != nil {
+			invalidParams.AddNested("DifferentialPrivacy", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDifferentialPrivacy sets the DifferentialPrivacy field's value.
+func (s *PrivacyBudgetTemplateParametersInput_) SetDifferentialPrivacy(v *DifferentialPrivacyTemplateParametersInput_) *PrivacyBudgetTemplateParametersInput_ {
+	s.DifferentialPrivacy = v
+	return s
+}
+
+// The epsilon and noise parameters that were used in the privacy budget template.
+type PrivacyBudgetTemplateParametersOutput_ struct {
+	_ struct{} `type:"structure"`
+
+	// The epsilon and noise parameters.
+	DifferentialPrivacy *DifferentialPrivacyTemplateParametersOutput_ `locationName:"differentialPrivacy" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PrivacyBudgetTemplateParametersOutput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PrivacyBudgetTemplateParametersOutput_) GoString() string {
+	return s.String()
+}
+
+// SetDifferentialPrivacy sets the DifferentialPrivacy field's value.
+func (s *PrivacyBudgetTemplateParametersOutput_) SetDifferentialPrivacy(v *DifferentialPrivacyTemplateParametersOutput_) *PrivacyBudgetTemplateParametersOutput_ {
+	s.DifferentialPrivacy = v
+	return s
+}
+
+// A summary of the privacy budget template. The summary includes membership
+// information, collaboration information, and creation information.
+type PrivacyBudgetTemplateSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the privacy budget template.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// The ARN of the collaboration that contains this privacy budget template.
+	//
+	// CollaborationArn is a required field
+	CollaborationArn *string `locationName:"collaborationArn" type:"string" required:"true"`
+
+	// The unique ID of the collaboration that contains this privacy budget template.
+	//
+	// CollaborationId is a required field
+	CollaborationId *string `locationName:"collaborationId" min:"36" type:"string" required:"true"`
+
+	// The time at which the privacy budget template was created.
+	//
+	// CreateTime is a required field
+	CreateTime *time.Time `locationName:"createTime" type:"timestamp" required:"true"`
+
+	// The unique identifier of the privacy budget template.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" min:"36" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the member who created the privacy budget
+	// template.
+	//
+	// MembershipArn is a required field
+	MembershipArn *string `locationName:"membershipArn" type:"string" required:"true"`
+
+	// The identifier for a membership resource.
+	//
+	// MembershipId is a required field
+	MembershipId *string `locationName:"membershipId" min:"36" type:"string" required:"true"`
+
+	// The type of the privacy budget template.
+	//
+	// PrivacyBudgetType is a required field
+	PrivacyBudgetType *string `locationName:"privacyBudgetType" type:"string" required:"true" enum:"PrivacyBudgetType"`
+
+	// The most recent time at which the privacy budget template was updated.
+	//
+	// UpdateTime is a required field
+	UpdateTime *time.Time `locationName:"updateTime" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PrivacyBudgetTemplateSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PrivacyBudgetTemplateSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *PrivacyBudgetTemplateSummary) SetArn(v string) *PrivacyBudgetTemplateSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetCollaborationArn sets the CollaborationArn field's value.
+func (s *PrivacyBudgetTemplateSummary) SetCollaborationArn(v string) *PrivacyBudgetTemplateSummary {
+	s.CollaborationArn = &v
+	return s
+}
+
+// SetCollaborationId sets the CollaborationId field's value.
+func (s *PrivacyBudgetTemplateSummary) SetCollaborationId(v string) *PrivacyBudgetTemplateSummary {
+	s.CollaborationId = &v
+	return s
+}
+
+// SetCreateTime sets the CreateTime field's value.
+func (s *PrivacyBudgetTemplateSummary) SetCreateTime(v time.Time) *PrivacyBudgetTemplateSummary {
+	s.CreateTime = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *PrivacyBudgetTemplateSummary) SetId(v string) *PrivacyBudgetTemplateSummary {
+	s.Id = &v
+	return s
+}
+
+// SetMembershipArn sets the MembershipArn field's value.
+func (s *PrivacyBudgetTemplateSummary) SetMembershipArn(v string) *PrivacyBudgetTemplateSummary {
+	s.MembershipArn = &v
+	return s
+}
+
+// SetMembershipId sets the MembershipId field's value.
+func (s *PrivacyBudgetTemplateSummary) SetMembershipId(v string) *PrivacyBudgetTemplateSummary {
+	s.MembershipId = &v
+	return s
+}
+
+// SetPrivacyBudgetType sets the PrivacyBudgetType field's value.
+func (s *PrivacyBudgetTemplateSummary) SetPrivacyBudgetType(v string) *PrivacyBudgetTemplateSummary {
+	s.PrivacyBudgetType = &v
+	return s
+}
+
+// SetUpdateTime sets the UpdateTime field's value.
+func (s *PrivacyBudgetTemplateSummary) SetUpdateTime(v time.Time) *PrivacyBudgetTemplateSummary {
+	s.UpdateTime = &v
+	return s
+}
+
+// The epsilon and noise parameters that you want to update in the privacy budget
+// template.
+type PrivacyBudgetTemplateUpdateParameters struct {
+	_ struct{} `type:"structure"`
+
+	// An object that specifies the new values for the epsilon and noise parameters.
+	DifferentialPrivacy *DifferentialPrivacyTemplateUpdateParameters `locationName:"differentialPrivacy" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PrivacyBudgetTemplateUpdateParameters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PrivacyBudgetTemplateUpdateParameters) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PrivacyBudgetTemplateUpdateParameters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PrivacyBudgetTemplateUpdateParameters"}
+	if s.DifferentialPrivacy != nil {
+		if err := s.DifferentialPrivacy.Validate(); err != nil {
+			invalidParams.AddNested("DifferentialPrivacy", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDifferentialPrivacy sets the DifferentialPrivacy field's value.
+func (s *PrivacyBudgetTemplateUpdateParameters) SetDifferentialPrivacy(v *DifferentialPrivacyTemplateUpdateParameters) *PrivacyBudgetTemplateUpdateParameters {
+	s.DifferentialPrivacy = v
+	return s
+}
+
+// Provides an estimate of the number of aggregation functions that the member
+// who can query can run given the epsilon and noise parameters.
+type PrivacyImpact struct {
+	_ struct{} `type:"structure"`
+
+	// An object that lists the number and type of aggregation functions you can
+	// perform.
+	DifferentialPrivacy *DifferentialPrivacyPrivacyImpact `locationName:"differentialPrivacy" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PrivacyImpact) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PrivacyImpact) GoString() string {
+	return s.String()
+}
+
+// SetDifferentialPrivacy sets the DifferentialPrivacy field's value.
+func (s *PrivacyImpact) SetDifferentialPrivacy(v *DifferentialPrivacyPrivacyImpact) *PrivacyImpact {
+	s.DifferentialPrivacy = v
+	return s
+}
+
 // The parameters for an Clean Rooms protected query.
 type ProtectedQuery struct {
 	_ struct{} `type:"structure"`
@@ -12187,6 +18136,10 @@ type ProtectedQuery struct {
 	//
 	// CreateTime is a required field
 	CreateTime *time.Time `locationName:"createTime" type:"timestamp" required:"true"`
+
+	// The sensitivity parameters of the differential privacy results of the protected
+	// query.
+	DifferentialPrivacy *DifferentialPrivacyParameters `locationName:"differentialPrivacy" type:"structure"`
 
 	// An error thrown by the protected query.
 	Error *ProtectedQueryError `locationName:"error" type:"structure"`
@@ -12249,6 +18202,12 @@ func (s ProtectedQuery) GoString() string {
 // SetCreateTime sets the CreateTime field's value.
 func (s *ProtectedQuery) SetCreateTime(v time.Time) *ProtectedQuery {
 	s.CreateTime = &v
+	return s
+}
+
+// SetDifferentialPrivacy sets the DifferentialPrivacy field's value.
+func (s *ProtectedQuery) SetDifferentialPrivacy(v *DifferentialPrivacyParameters) *ProtectedQuery {
+	s.DifferentialPrivacy = v
 	return s
 }
 
@@ -13940,6 +19899,128 @@ func (s *UpdateCollaborationOutput) SetCollaboration(v *Collaboration) *UpdateCo
 	return s
 }
 
+type UpdateConfiguredAudienceModelAssociationInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the configured audience model association that you
+	// want to update.
+	//
+	// ConfiguredAudienceModelAssociationIdentifier is a required field
+	ConfiguredAudienceModelAssociationIdentifier *string `location:"uri" locationName:"configuredAudienceModelAssociationIdentifier" min:"36" type:"string" required:"true"`
+
+	// A new description for the configured audience model association.
+	Description *string `locationName:"description" type:"string"`
+
+	// A unique identifier of the membership that contains the configured audience
+	// model association that you want to update.
+	//
+	// MembershipIdentifier is a required field
+	MembershipIdentifier *string `location:"uri" locationName:"membershipIdentifier" min:"36" type:"string" required:"true"`
+
+	// A new name for the configured audience model association.
+	Name *string `locationName:"name" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateConfiguredAudienceModelAssociationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateConfiguredAudienceModelAssociationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateConfiguredAudienceModelAssociationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateConfiguredAudienceModelAssociationInput"}
+	if s.ConfiguredAudienceModelAssociationIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfiguredAudienceModelAssociationIdentifier"))
+	}
+	if s.ConfiguredAudienceModelAssociationIdentifier != nil && len(*s.ConfiguredAudienceModelAssociationIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfiguredAudienceModelAssociationIdentifier", 36))
+	}
+	if s.MembershipIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("MembershipIdentifier"))
+	}
+	if s.MembershipIdentifier != nil && len(*s.MembershipIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("MembershipIdentifier", 36))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfiguredAudienceModelAssociationIdentifier sets the ConfiguredAudienceModelAssociationIdentifier field's value.
+func (s *UpdateConfiguredAudienceModelAssociationInput) SetConfiguredAudienceModelAssociationIdentifier(v string) *UpdateConfiguredAudienceModelAssociationInput {
+	s.ConfiguredAudienceModelAssociationIdentifier = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateConfiguredAudienceModelAssociationInput) SetDescription(v string) *UpdateConfiguredAudienceModelAssociationInput {
+	s.Description = &v
+	return s
+}
+
+// SetMembershipIdentifier sets the MembershipIdentifier field's value.
+func (s *UpdateConfiguredAudienceModelAssociationInput) SetMembershipIdentifier(v string) *UpdateConfiguredAudienceModelAssociationInput {
+	s.MembershipIdentifier = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateConfiguredAudienceModelAssociationInput) SetName(v string) *UpdateConfiguredAudienceModelAssociationInput {
+	s.Name = &v
+	return s
+}
+
+type UpdateConfiguredAudienceModelAssociationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Details about the configured audience model association that you updated.
+	//
+	// ConfiguredAudienceModelAssociation is a required field
+	ConfiguredAudienceModelAssociation *ConfiguredAudienceModelAssociation `locationName:"configuredAudienceModelAssociation" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateConfiguredAudienceModelAssociationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateConfiguredAudienceModelAssociationOutput) GoString() string {
+	return s.String()
+}
+
+// SetConfiguredAudienceModelAssociation sets the ConfiguredAudienceModelAssociation field's value.
+func (s *UpdateConfiguredAudienceModelAssociationOutput) SetConfiguredAudienceModelAssociation(v *ConfiguredAudienceModelAssociation) *UpdateConfiguredAudienceModelAssociationOutput {
+	s.ConfiguredAudienceModelAssociation = v
+	return s
+}
+
 type UpdateConfiguredTableAnalysisRuleInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14395,6 +20476,135 @@ func (s *UpdateMembershipOutput) SetMembership(v *Membership) *UpdateMembershipO
 	return s
 }
 
+type UpdatePrivacyBudgetTemplateInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for one of your memberships for a collaboration. The
+	// privacy budget template is updated in the collaboration that this membership
+	// belongs to. Accepts a membership ID.
+	//
+	// MembershipIdentifier is a required field
+	MembershipIdentifier *string `location:"uri" locationName:"membershipIdentifier" min:"36" type:"string" required:"true"`
+
+	// Specifies the epsilon and noise parameters for the privacy budget template.
+	Parameters *PrivacyBudgetTemplateUpdateParameters `locationName:"parameters" type:"structure"`
+
+	// A unique identifier for your privacy budget template that you want to update.
+	//
+	// PrivacyBudgetTemplateIdentifier is a required field
+	PrivacyBudgetTemplateIdentifier *string `location:"uri" locationName:"privacyBudgetTemplateIdentifier" min:"36" type:"string" required:"true"`
+
+	// Specifies the type of the privacy budget template.
+	//
+	// PrivacyBudgetType is a required field
+	PrivacyBudgetType *string `locationName:"privacyBudgetType" type:"string" required:"true" enum:"PrivacyBudgetType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePrivacyBudgetTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePrivacyBudgetTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdatePrivacyBudgetTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdatePrivacyBudgetTemplateInput"}
+	if s.MembershipIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("MembershipIdentifier"))
+	}
+	if s.MembershipIdentifier != nil && len(*s.MembershipIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("MembershipIdentifier", 36))
+	}
+	if s.PrivacyBudgetTemplateIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("PrivacyBudgetTemplateIdentifier"))
+	}
+	if s.PrivacyBudgetTemplateIdentifier != nil && len(*s.PrivacyBudgetTemplateIdentifier) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("PrivacyBudgetTemplateIdentifier", 36))
+	}
+	if s.PrivacyBudgetType == nil {
+		invalidParams.Add(request.NewErrParamRequired("PrivacyBudgetType"))
+	}
+	if s.Parameters != nil {
+		if err := s.Parameters.Validate(); err != nil {
+			invalidParams.AddNested("Parameters", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMembershipIdentifier sets the MembershipIdentifier field's value.
+func (s *UpdatePrivacyBudgetTemplateInput) SetMembershipIdentifier(v string) *UpdatePrivacyBudgetTemplateInput {
+	s.MembershipIdentifier = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *UpdatePrivacyBudgetTemplateInput) SetParameters(v *PrivacyBudgetTemplateUpdateParameters) *UpdatePrivacyBudgetTemplateInput {
+	s.Parameters = v
+	return s
+}
+
+// SetPrivacyBudgetTemplateIdentifier sets the PrivacyBudgetTemplateIdentifier field's value.
+func (s *UpdatePrivacyBudgetTemplateInput) SetPrivacyBudgetTemplateIdentifier(v string) *UpdatePrivacyBudgetTemplateInput {
+	s.PrivacyBudgetTemplateIdentifier = &v
+	return s
+}
+
+// SetPrivacyBudgetType sets the PrivacyBudgetType field's value.
+func (s *UpdatePrivacyBudgetTemplateInput) SetPrivacyBudgetType(v string) *UpdatePrivacyBudgetTemplateInput {
+	s.PrivacyBudgetType = &v
+	return s
+}
+
+type UpdatePrivacyBudgetTemplateOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Summary of the privacy budget template.
+	//
+	// PrivacyBudgetTemplate is a required field
+	PrivacyBudgetTemplate *PrivacyBudgetTemplate `locationName:"privacyBudgetTemplate" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePrivacyBudgetTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePrivacyBudgetTemplateOutput) GoString() string {
+	return s.String()
+}
+
+// SetPrivacyBudgetTemplate sets the PrivacyBudgetTemplate field's value.
+func (s *UpdatePrivacyBudgetTemplateOutput) SetPrivacyBudgetTemplate(v *PrivacyBudgetTemplate) *UpdatePrivacyBudgetTemplateOutput {
+	s.PrivacyBudgetTemplate = v
+	return s
+}
+
 type UpdateProtectedQueryInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14777,6 +20987,34 @@ func ConflictExceptionReason_Values() []string {
 }
 
 const (
+	// DifferentialPrivacyAggregationTypeAvg is a DifferentialPrivacyAggregationType enum value
+	DifferentialPrivacyAggregationTypeAvg = "AVG"
+
+	// DifferentialPrivacyAggregationTypeCount is a DifferentialPrivacyAggregationType enum value
+	DifferentialPrivacyAggregationTypeCount = "COUNT"
+
+	// DifferentialPrivacyAggregationTypeCountDistinct is a DifferentialPrivacyAggregationType enum value
+	DifferentialPrivacyAggregationTypeCountDistinct = "COUNT_DISTINCT"
+
+	// DifferentialPrivacyAggregationTypeSum is a DifferentialPrivacyAggregationType enum value
+	DifferentialPrivacyAggregationTypeSum = "SUM"
+
+	// DifferentialPrivacyAggregationTypeStddev is a DifferentialPrivacyAggregationType enum value
+	DifferentialPrivacyAggregationTypeStddev = "STDDEV"
+)
+
+// DifferentialPrivacyAggregationType_Values returns all elements of the DifferentialPrivacyAggregationType enum
+func DifferentialPrivacyAggregationType_Values() []string {
+	return []string{
+		DifferentialPrivacyAggregationTypeAvg,
+		DifferentialPrivacyAggregationTypeCount,
+		DifferentialPrivacyAggregationTypeCountDistinct,
+		DifferentialPrivacyAggregationTypeSum,
+		DifferentialPrivacyAggregationTypeStddev,
+	}
+}
+
+const (
 	// FilterableMemberStatusInvited is a FilterableMemberStatus enum value
 	FilterableMemberStatusInvited = "INVITED"
 
@@ -14961,6 +21199,34 @@ func ParameterType_Values() []string {
 		ParameterTypeTime,
 		ParameterTypeTimetz,
 		ParameterTypeVarbyte,
+	}
+}
+
+const (
+	// PrivacyBudgetTemplateAutoRefreshCalendarMonth is a PrivacyBudgetTemplateAutoRefresh enum value
+	PrivacyBudgetTemplateAutoRefreshCalendarMonth = "CALENDAR_MONTH"
+
+	// PrivacyBudgetTemplateAutoRefreshNone is a PrivacyBudgetTemplateAutoRefresh enum value
+	PrivacyBudgetTemplateAutoRefreshNone = "NONE"
+)
+
+// PrivacyBudgetTemplateAutoRefresh_Values returns all elements of the PrivacyBudgetTemplateAutoRefresh enum
+func PrivacyBudgetTemplateAutoRefresh_Values() []string {
+	return []string{
+		PrivacyBudgetTemplateAutoRefreshCalendarMonth,
+		PrivacyBudgetTemplateAutoRefreshNone,
+	}
+}
+
+const (
+	// PrivacyBudgetTypeDifferentialPrivacy is a PrivacyBudgetType enum value
+	PrivacyBudgetTypeDifferentialPrivacy = "DIFFERENTIAL_PRIVACY"
+)
+
+// PrivacyBudgetType_Values returns all elements of the PrivacyBudgetType enum
+func PrivacyBudgetType_Values() []string {
+	return []string{
+		PrivacyBudgetTypeDifferentialPrivacy,
 	}
 }
 

@@ -91,6 +91,11 @@
       "max":1024,
       "pattern":"\\p{ASCII}*"
     },
+    "InferenceComponentHeader":{
+      "type":"string",
+      "max":63,
+      "pattern":"^[a-zA-Z0-9]([\\-a-zA-Z0-9]*[a-zA-Z0-9])?$"
+    },
     "InferenceId":{
       "type":"string",
       "max":64,
@@ -254,6 +259,11 @@
           "shape":"EnableExplanationsHeader",
           "location":"header",
           "locationName":"X-Amzn-SageMaker-Enable-Explanations"
+        },
+        "InferenceComponentName":{
+          "shape":"InferenceComponentHeader",
+          "location":"header",
+          "locationName":"X-Amzn-SageMaker-Inference-Component"
         }
       },
       "payload":"Body"
@@ -323,6 +333,11 @@
           "shape":"InferenceId",
           "location":"header",
           "locationName":"X-Amzn-SageMaker-Inference-Id"
+        },
+        "InferenceComponentName":{
+          "shape":"InferenceComponentHeader",
+          "location":"header",
+          "locationName":"X-Amzn-SageMaker-Inference-Component"
         }
       },
       "payload":"Body"

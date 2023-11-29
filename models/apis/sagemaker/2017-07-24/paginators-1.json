@@ -54,6 +54,18 @@
       "limit_key": "MaxResults",
       "result_key": "Candidates"
     },
+    "ListClusterNodes": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "ClusterNodeSummaries"
+    },
+    "ListClusters": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "ClusterSummaries"
+    },
     "ListCodeRepositories": {
       "input_token": "NextToken",
       "output_token": "NextToken",
@@ -161,6 +173,12 @@
       "output_token": "NextToken",
       "limit_key": "MaxResults",
       "result_key": "Images"
+    },
+    "ListInferenceComponents": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "InferenceComponents"
     },
     "ListInferenceExperiments": {
       "input_token": "NextToken",
