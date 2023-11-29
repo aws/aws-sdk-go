@@ -93,6 +93,7 @@ var throttleCodes = map[string]struct{}{
 	"PriorRequestNotComplete":                {}, // Route53
 	"TransactionInProgressException":         {},
 	"EC2ThrottledException":                  {}, // EC2
+	"SlowDown":				  {},
 }
 
 // credsExpiredCodes is a collection of error codes which signify the credentials
@@ -229,7 +230,14 @@ func shouldRetryError(origErr error) bool {
 // Returns false if error is nil.
 func IsErrorThrottle(err error) bool {
 	if aerr, ok := err.(awserr.Error); ok && aerr != nil {
-		return isCodeThrottle(aerr.Code())
+		if isCodeThrottle(aerr.Code()) {
+			return true
+		}
+		if aerr.OrigErr() != nil {
+			if nested, ok := aerr.OrigErr().(awserr.Error); ok && isCodeThrottle(nested.Code()) {
+				return true
+			}
+		}
 	}
 	return false
 }
