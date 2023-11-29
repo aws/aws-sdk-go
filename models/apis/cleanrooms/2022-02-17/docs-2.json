@@ -6,46 +6,63 @@
     "BatchGetSchema": "<p>Retrieves multiple schemas by their identifiers.</p>",
     "CreateAnalysisTemplate": "<p>Creates a new analysis template.</p>",
     "CreateCollaboration": "<p>Creates a new collaboration.</p>",
+    "CreateConfiguredAudienceModelAssociation": "<p>Provides the details necessary to create a configured audience model association.</p>",
     "CreateConfiguredTable": "<p>Creates a new configured table resource.</p>",
     "CreateConfiguredTableAnalysisRule": "<p>Creates a new analysis rule for a configured table. Currently, only one analysis rule can be created for a given configured table.</p>",
     "CreateConfiguredTableAssociation": "<p>Creates a configured table association. A configured table association links a configured table with a collaboration.</p>",
     "CreateMembership": "<p>Creates a membership for a specific collaboration identifier and joins the collaboration.</p>",
+    "CreatePrivacyBudgetTemplate": "<p>Creates a privacy budget template for a specified membership. Each membership can have only one privacy budget template, but it can be deleted and recreated. If you need to change the privacy budget template for a membership, use the <a>UpdatePrivacyBudgetTemplate</a> operation.</p>",
     "DeleteAnalysisTemplate": "<p>Deletes an analysis template.</p>",
     "DeleteCollaboration": "<p>Deletes a collaboration. It can only be called by the collaboration owner.</p>",
+    "DeleteConfiguredAudienceModelAssociation": "<p>Provides the information necessary to delete a configured audience model association.</p>",
     "DeleteConfiguredTable": "<p>Deletes a configured table.</p>",
     "DeleteConfiguredTableAnalysisRule": "<p>Deletes a configured table analysis rule.</p>",
     "DeleteConfiguredTableAssociation": "<p>Deletes a configured table association.</p>",
     "DeleteMember": "<p>Removes the specified member from a collaboration. The removed member is placed in the Removed status and can't interact with the collaboration. The removed member's data is inaccessible to active members of the collaboration.</p>",
     "DeleteMembership": "<p>Deletes a specified membership. All resources under a membership must be deleted.</p>",
+    "DeletePrivacyBudgetTemplate": "<p>Deletes a privacy budget template for a specified membership.</p>",
     "GetAnalysisTemplate": "<p>Retrieves an analysis template.</p>",
     "GetCollaboration": "<p>Returns metadata about a collaboration.</p>",
     "GetCollaborationAnalysisTemplate": "<p>Retrieves an analysis template within a collaboration.</p>",
+    "GetCollaborationConfiguredAudienceModelAssociation": "<p>Retrieves a configured audience model association within a collaboration.</p>",
+    "GetCollaborationPrivacyBudgetTemplate": "<p>Returns details about a specified privacy budget template.</p>",
+    "GetConfiguredAudienceModelAssociation": "<p>Returns information about a configured audience model association.</p>",
     "GetConfiguredTable": "<p>Retrieves a configured table.</p>",
     "GetConfiguredTableAnalysisRule": "<p>Retrieves a configured table analysis rule.</p>",
     "GetConfiguredTableAssociation": "<p>Retrieves a configured table association.</p>",
     "GetMembership": "<p>Retrieves a specified membership for an identifier.</p>",
+    "GetPrivacyBudgetTemplate": "<p>Returns details for a specified privacy budget template.</p>",
     "GetProtectedQuery": "<p>Returns query processing metadata.</p>",
     "GetSchema": "<p>Retrieves the schema for a relation within a collaboration.</p>",
     "GetSchemaAnalysisRule": "<p>Retrieves a schema analysis rule.</p>",
     "ListAnalysisTemplates": "<p>Lists analysis templates that the caller owns.</p>",
     "ListCollaborationAnalysisTemplates": "<p>Lists analysis templates within a collaboration.</p>",
+    "ListCollaborationConfiguredAudienceModelAssociations": "<p>Lists configured audience model associations within a collaboration.</p>",
+    "ListCollaborationPrivacyBudgetTemplates": "<p>Returns an array that summarizes each privacy budget template in a specified collaboration.</p>",
+    "ListCollaborationPrivacyBudgets": "<p>Returns an array that summarizes each privacy budget in a specified collaboration. The summary includes the collaboration ARN, creation time, creating account, and privacy budget details.</p>",
     "ListCollaborations": "<p>Lists collaborations the caller owns, is active in, or has been invited to.</p>",
+    "ListConfiguredAudienceModelAssociations": "<p>Lists information about requested configured audience model associations.</p>",
     "ListConfiguredTableAssociations": "<p>Lists configured table associations for a membership.</p>",
     "ListConfiguredTables": "<p>Lists configured tables.</p>",
     "ListMembers": "<p>Lists all members within a collaboration.</p>",
     "ListMemberships": "<p>Lists all memberships resources within the caller's account.</p>",
+    "ListPrivacyBudgetTemplates": "<p>Returns detailed information about the privacy budget templates in a specified membership.</p>",
+    "ListPrivacyBudgets": "<p>Returns detailed information about the privacy budgets in a specified membership.</p>",
     "ListProtectedQueries": "<p>Lists protected queries, sorted by the most recent query.</p>",
     "ListSchemas": "<p>Lists the schemas for relations within a collaboration.</p>",
     "ListTagsForResource": "<p>Lists all of the tags that have been added to a resource.</p>",
+    "PreviewPrivacyImpact": "<p>An estimate of the number of aggregation functions that the member who can query can run given epsilon and noise parameters.</p>",
     "StartProtectedQuery": "<p>Creates a protected query that is started by Clean Rooms.</p>",
     "TagResource": "<p>Tags a resource.</p>",
     "UntagResource": "<p>Removes a tag or list of tags from a resource.</p>",
     "UpdateAnalysisTemplate": "<p>Updates the analysis template metadata.</p>",
     "UpdateCollaboration": "<p>Updates collaboration metadata and can only be called by the collaboration owner.</p>",
+    "UpdateConfiguredAudienceModelAssociation": "<p>Provides the details necessary to update a configured audience model association.</p>",
     "UpdateConfiguredTable": "<p>Updates a configured table.</p>",
     "UpdateConfiguredTableAnalysisRule": "<p>Updates a configured table analysis rule.</p>",
     "UpdateConfiguredTableAssociation": "<p>Updates a configured table association.</p>",
     "UpdateMembership": "<p>Updates a membership.</p>",
+    "UpdatePrivacyBudgetTemplate": "<p>Updates the privacy budget template for the specified membership.</p>",
     "UpdateProtectedQuery": "<p>Updates the processing of a currently running query.</p>"
   },
   "shapes": {
@@ -67,6 +84,11 @@
         "Collaboration$creatorAccountId": "<p>The identifier used to reference members of the collaboration. Currently only supports Amazon Web Services account ID.</p>",
         "CollaborationAnalysisTemplate$creatorAccountId": "<p>The identifier used to reference members of the collaboration. Currently only supports Amazon Web Services account ID.</p>",
         "CollaborationAnalysisTemplateSummary$creatorAccountId": "<p>The identifier used to reference members of the collaboration. Currently only supports Amazon Web Services account ID.</p>",
+        "CollaborationConfiguredAudienceModelAssociation$creatorAccountId": "<p>The identifier used to reference members of the collaboration. Only supports AWS account ID.</p>",
+        "CollaborationConfiguredAudienceModelAssociationSummary$creatorAccountId": "<p>The identifier used to reference members of the collaboration. Only supports AWS account ID.</p>",
+        "CollaborationPrivacyBudgetSummary$creatorAccountId": "<p>The unique identifier of the account that created this privacy budget.</p>",
+        "CollaborationPrivacyBudgetTemplate$creatorAccountId": "<p>The unique identifier of the account that created this collaboration privacy budget template.</p>",
+        "CollaborationPrivacyBudgetTemplateSummary$creatorAccountId": "<p>The unique identifier of the account that created this collaboration privacy budget template.</p>",
         "CollaborationSummary$creatorAccountId": "<p>The identifier used to reference members of the collaboration. Currently only supports Amazon Web Services account ID.</p>",
         "DeleteMemberInput$accountId": "<p>The account ID of the member to remove.</p>",
         "MemberSpecification$accountId": "<p>The identifier used to reference members of the collaboration. Currently only supports Amazon Web Services account ID.</p>",
@@ -196,7 +218,7 @@
       }
     },
     "AnalysisRuleCustom": {
-      "base": "<p>A type of analysis rule that enables the table owner to approve custom SQL queries on their configured tables.</p>",
+      "base": "<p>A type of analysis rule that enables the table owner to approve custom SQL queries on their configured tables. It supports differential privacy.</p>",
       "refs": {
         "AnalysisRulePolicyV1$custom": "<p>Analysis rule type that enables custom SQL queries on a configured table.</p>",
         "ConfiguredTableAnalysisRulePolicyV1$custom": null
@@ -379,6 +401,8 @@
     "Boolean": {
       "base": null,
       "refs": {
+        "ConfiguredAudienceModelAssociation$manageResourcePolicies": "<p>When <code>TRUE</code>, indicates that the resource policy for the configured audience model resource being associated is configured for Clean Rooms to manage permissions related to the given collaboration. When <code>FALSE</code>, indicates that the configured audience model resource owner will manage permissions related to the given collaboration.</p>",
+        "CreateConfiguredAudienceModelAssociationInput$manageResourcePolicies": "<p>When <code>TRUE</code>, indicates that the resource policy for the configured audience model resource being associated is configured for Clean Rooms to manage permissions related to the given collaboration. When <code>FALSE</code>, indicates that the configured audience model resource owner will manage permissions related to the given collaboration.</p> <p>Setting this to <code>TRUE</code> requires you to have permissions to create, update, and delete the resource policy for the <code>cleanrooms-ml</code> resource when you call the <a>DeleteConfiguredAudienceModelAssociation</a> resource. In addition, if you are the collaboration creator and specify <code>TRUE</code>, you must have the same permissions when you call the <a>DeleteMember</a> and <a>DeleteCollaboration</a> APIs.</p>",
         "DataEncryptionMetadata$allowCleartext": "<p>Indicates whether encrypted tables can contain cleartext data (<code>TRUE</code>) or are to cryptographically process every column (<code>FALSE</code>).</p>",
         "DataEncryptionMetadata$allowDuplicates": "<p>Indicates whether Fingerprint columns can contain duplicate entries (<code>TRUE</code>) or are to contain only non-repeated values (<code>FALSE</code>).</p>",
         "DataEncryptionMetadata$allowJoinsOnColumnsWithDifferentNames": "<p>Indicates whether Fingerprint columns can be joined on any other Fingerprint column with a different name (<code>TRUE</code>) or can only be joined on Fingerprint columns of the same name (<code>FALSE</code>).</p>",
@@ -436,11 +460,39 @@
         "Collaboration$arn": "<p>The unique ARN for the collaboration.</p>",
         "CollaborationAnalysisTemplate$collaborationArn": "<p>The unique ARN for the analysis template’s associated collaboration.</p>",
         "CollaborationAnalysisTemplateSummary$collaborationArn": "<p>The unique ARN for the analysis template’s associated collaboration.</p>",
+        "CollaborationConfiguredAudienceModelAssociation$collaborationArn": "<p>The unique ARN for the configured audience model's associated collaboration.</p>",
+        "CollaborationConfiguredAudienceModelAssociationSummary$collaborationArn": "<p>The unique ARN for the configured audience model's associated collaboration.</p>",
+        "CollaborationPrivacyBudgetSummary$collaborationArn": "<p>The ARN of the collaboration that includes this privacy budget.</p>",
+        "CollaborationPrivacyBudgetTemplate$collaborationArn": "<p>The ARN of the collaboration that includes this collaboration privacy budget template.</p>",
+        "CollaborationPrivacyBudgetTemplateSummary$collaborationArn": "<p>The ARN of the collaboration that contains this collaboration privacy budget template.</p>",
         "CollaborationSummary$arn": "<p>The ARN of the collaboration.</p>",
+        "ConfiguredAudienceModelAssociation$collaborationArn": "<p>The Amazon Resource Name (ARN) of the collaboration that contains this configured audience model association.</p>",
+        "ConfiguredAudienceModelAssociationSummary$collaborationArn": "<p>The Amazon Resource Name (ARN) of the collaboration that contains the configured audience model association.</p>",
         "Membership$collaborationArn": "<p>The unique ARN for the membership's associated collaboration.</p>",
         "MembershipSummary$collaborationArn": "<p>The unique ARN for the membership's associated collaboration.</p>",
+        "PrivacyBudgetSummary$collaborationArn": "<p>The ARN of the collaboration that contains this privacy budget.</p>",
+        "PrivacyBudgetTemplate$collaborationArn": "<p>The ARN of the collaboration that contains this privacy budget template.</p>",
+        "PrivacyBudgetTemplateSummary$collaborationArn": "<p>The ARN of the collaboration that contains this privacy budget template.</p>",
         "Schema$collaborationArn": "<p>The unique ARN for the collaboration that the schema belongs to.</p>",
         "SchemaSummary$collaborationArn": "<p>The unique ARN for the collaboration that the schema belongs to.</p>"
+      }
+    },
+    "CollaborationConfiguredAudienceModelAssociation": {
+      "base": "<p>The configured audience model association within a collaboration.</p>",
+      "refs": {
+        "GetCollaborationConfiguredAudienceModelAssociationOutput$collaborationConfiguredAudienceModelAssociation": "<p>The metadata of the configured audience model association.</p>"
+      }
+    },
+    "CollaborationConfiguredAudienceModelAssociationSummary": {
+      "base": "<p>A summary of the configured audience model association in the collaboration.</p>",
+      "refs": {
+        "CollaborationConfiguredAudienceModelAssociationSummaryList$member": null
+      }
+    },
+    "CollaborationConfiguredAudienceModelAssociationSummaryList": {
+      "base": null,
+      "refs": {
+        "ListCollaborationConfiguredAudienceModelAssociationsOutput$collaborationConfiguredAudienceModelAssociationSummaries": "<p>The metadata of the configured audience model association within a collaboration.</p>"
       }
     },
     "CollaborationDescription": {
@@ -461,10 +513,15 @@
         "DeleteCollaborationInput$collaborationIdentifier": "<p>The identifier for the collaboration.</p>",
         "DeleteMemberInput$collaborationIdentifier": "<p>The unique identifier for the associated collaboration.</p>",
         "GetCollaborationAnalysisTemplateInput$collaborationIdentifier": "<p>A unique identifier for the collaboration that the analysis templates belong to. Currently accepts collaboration ID.</p>",
+        "GetCollaborationConfiguredAudienceModelAssociationInput$collaborationIdentifier": "<p>A unique identifier for the collaboration that the configured audience model association belongs to. Accepts a collaboration ID.</p>",
         "GetCollaborationInput$collaborationIdentifier": "<p>The identifier for the collaboration.</p>",
+        "GetCollaborationPrivacyBudgetTemplateInput$collaborationIdentifier": "<p>A unique identifier for one of your collaborations.</p>",
         "GetSchemaAnalysisRuleInput$collaborationIdentifier": "<p>A unique identifier for the collaboration that the schema belongs to. Currently accepts a collaboration ID.</p>",
         "GetSchemaInput$collaborationIdentifier": "<p>A unique identifier for the collaboration that the schema belongs to. Currently accepts a collaboration ID.</p>",
         "ListCollaborationAnalysisTemplatesInput$collaborationIdentifier": "<p>A unique identifier for the collaboration that the analysis templates belong to. Currently accepts collaboration ID.</p>",
+        "ListCollaborationConfiguredAudienceModelAssociationsInput$collaborationIdentifier": "<p>A unique identifier for the collaboration that the configured audience model association belongs to. Accepts a collaboration ID.</p>",
+        "ListCollaborationPrivacyBudgetTemplatesInput$collaborationIdentifier": "<p>A unique identifier for one of your collaborations.</p>",
+        "ListCollaborationPrivacyBudgetsInput$collaborationIdentifier": "<p>A unique identifier for one of your collaborations.</p>",
         "ListMembersInput$collaborationIdentifier": "<p>The identifier of the collaboration in which the members are listed.</p>",
         "ListSchemasInput$collaborationIdentifier": "<p>A unique identifier for the collaboration that the schema belongs to. Currently accepts a collaboration ID.</p>",
         "MembershipSummary$collaborationId": "<p>The unique ID for the membership's collaboration.</p>",
@@ -480,6 +537,36 @@
         "Membership$collaborationName": "<p>The name of the membership's collaboration.</p>",
         "MembershipSummary$collaborationName": "<p>The name for the membership's collaboration.</p>",
         "UpdateCollaborationInput$name": "<p>A human-readable identifier provided by the collaboration owner. Display names are not unique.</p>"
+      }
+    },
+    "CollaborationPrivacyBudgetSummary": {
+      "base": "<p>A summary of the collaboration privacy budgets. This summary includes the collaboration information, creation information, epsilon provided, and utility in terms of aggregations.</p>",
+      "refs": {
+        "CollaborationPrivacyBudgetSummaryList$member": null
+      }
+    },
+    "CollaborationPrivacyBudgetSummaryList": {
+      "base": null,
+      "refs": {
+        "ListCollaborationPrivacyBudgetsOutput$collaborationPrivacyBudgetSummaries": "<p>Summaries of the collaboration privacy budgets.</p>"
+      }
+    },
+    "CollaborationPrivacyBudgetTemplate": {
+      "base": "<p>An array that specifies the information for a collaboration's privacy budget template.</p>",
+      "refs": {
+        "GetCollaborationPrivacyBudgetTemplateOutput$collaborationPrivacyBudgetTemplate": "<p>Returns the details of the privacy budget template that you requested.</p>"
+      }
+    },
+    "CollaborationPrivacyBudgetTemplateSummary": {
+      "base": "<p>A summary of the collaboration's privacy budget template. This summary includes information about who created the privacy budget template and what collaborations it belongs to.</p>",
+      "refs": {
+        "CollaborationPrivacyBudgetTemplateSummaryList$member": null
+      }
+    },
+    "CollaborationPrivacyBudgetTemplateSummaryList": {
+      "base": null,
+      "refs": {
+        "ListCollaborationPrivacyBudgetTemplatesOutput$collaborationPrivacyBudgetTemplateSummaries": "<p>An array that summarizes the collaboration privacy budget templates. The summary includes collaboration information, creation information, the privacy budget type.</p>"
       }
     },
     "CollaborationQueryLogStatus": {
@@ -525,6 +612,67 @@
       "base": null,
       "refs": {
         "Column$type": "<p>The type of the column.</p>"
+      }
+    },
+    "ConfiguredAudienceModelArn": {
+      "base": null,
+      "refs": {
+        "CollaborationConfiguredAudienceModelAssociation$configuredAudienceModelArn": "<p>The Amazon Resource Name (ARN) of the configure audience model.</p>",
+        "ConfiguredAudienceModelAssociation$configuredAudienceModelArn": "<p>The Amazon Resource Name (ARN) of the configured audience model that was used for this configured audience model association.</p>",
+        "ConfiguredAudienceModelAssociationSummary$configuredAudienceModelArn": "<p>The Amazon Resource Name (ARN) of the configured audience model that was used for this configured audience model association.</p>",
+        "CreateConfiguredAudienceModelAssociationInput$configuredAudienceModelArn": "<p>A unique identifier for the configured audience model that you want to associate.</p>"
+      }
+    },
+    "ConfiguredAudienceModelAssociation": {
+      "base": "<p>Details about the configured audience model association.</p>",
+      "refs": {
+        "CreateConfiguredAudienceModelAssociationOutput$configuredAudienceModelAssociation": "<p>Information about the configured audience model association.</p>",
+        "GetConfiguredAudienceModelAssociationOutput$configuredAudienceModelAssociation": "<p>Information about the configured audience model association that you requested.</p>",
+        "UpdateConfiguredAudienceModelAssociationOutput$configuredAudienceModelAssociation": "<p>Details about the configured audience model association that you updated.</p>"
+      }
+    },
+    "ConfiguredAudienceModelAssociationArn": {
+      "base": null,
+      "refs": {
+        "CollaborationConfiguredAudienceModelAssociation$arn": "<p>The Amazon Resource Name (ARN) of the configured audience model association.</p>",
+        "CollaborationConfiguredAudienceModelAssociationSummary$arn": "<p>The Amazon Resource Name (ARN) of the configured audience model association.</p>",
+        "ConfiguredAudienceModelAssociation$arn": "<p>The Amazon Resource Name (ARN) of the configured audience model association.</p>",
+        "ConfiguredAudienceModelAssociationSummary$arn": "<p>The Amazon Resource Name (ARN) of the configured audience model association.</p>"
+      }
+    },
+    "ConfiguredAudienceModelAssociationIdentifier": {
+      "base": null,
+      "refs": {
+        "CollaborationConfiguredAudienceModelAssociation$id": "<p>The identifier of the configured audience model association.</p>",
+        "CollaborationConfiguredAudienceModelAssociationSummary$id": "<p>The identifier of the configured audience model association.</p>",
+        "ConfiguredAudienceModelAssociation$id": "<p>A unique identifier of the configured audience model association.</p>",
+        "DeleteConfiguredAudienceModelAssociationInput$configuredAudienceModelAssociationIdentifier": "<p>A unique identifier of the configured audience model association that you want to delete.</p>",
+        "GetCollaborationConfiguredAudienceModelAssociationInput$configuredAudienceModelAssociationIdentifier": "<p>A unique identifier for the configured audience model association that you want to retrieve.</p>",
+        "GetConfiguredAudienceModelAssociationInput$configuredAudienceModelAssociationIdentifier": "<p>A unique identifier for the configured audience model association that you want to retrieve.</p>",
+        "UpdateConfiguredAudienceModelAssociationInput$configuredAudienceModelAssociationIdentifier": "<p>A unique identifier for the configured audience model association that you want to update.</p>"
+      }
+    },
+    "ConfiguredAudienceModelAssociationName": {
+      "base": null,
+      "refs": {
+        "CollaborationConfiguredAudienceModelAssociation$name": "<p>The name of the configured audience model association.</p>",
+        "CollaborationConfiguredAudienceModelAssociationSummary$name": "<p>The name of the configured audience model association.</p>",
+        "ConfiguredAudienceModelAssociation$name": "<p>The name of the configured audience model association.</p>",
+        "ConfiguredAudienceModelAssociationSummary$name": "<p>The name of the configured audience model association.</p>",
+        "CreateConfiguredAudienceModelAssociationInput$configuredAudienceModelAssociationName": "<p>The name of the configured audience model association.</p>",
+        "UpdateConfiguredAudienceModelAssociationInput$name": "<p>A new name for the configured audience model association.</p>"
+      }
+    },
+    "ConfiguredAudienceModelAssociationSummary": {
+      "base": "<p>A summary of the configured audience model association.</p>",
+      "refs": {
+        "ConfiguredAudienceModelAssociationSummaryList$member": null
+      }
+    },
+    "ConfiguredAudienceModelAssociationSummaryList": {
+      "base": null,
+      "refs": {
+        "ListConfiguredAudienceModelAssociationsOutput$configuredAudienceModelAssociationSummaries": "<p>Summaries of the configured audience model associations that you requested.</p>"
       }
     },
     "ConfiguredTable": {
@@ -676,6 +824,16 @@
       "refs": {
       }
     },
+    "CreateConfiguredAudienceModelAssociationInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateConfiguredAudienceModelAssociationOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateConfiguredTableAnalysisRuleInput": {
       "base": null,
       "refs": {
@@ -716,6 +874,16 @@
       "refs": {
       }
     },
+    "CreatePrivacyBudgetTemplateInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreatePrivacyBudgetTemplateOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DataEncryptionMetadata": {
       "base": "<p>The settings for client-side encryption for cryptographic computing.</p>",
       "refs": {
@@ -739,6 +907,16 @@
       }
     },
     "DeleteCollaborationOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteConfiguredAudienceModelAssociationInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteConfiguredAudienceModelAssociationOutput": {
       "base": null,
       "refs": {
       }
@@ -793,6 +971,150 @@
       "refs": {
       }
     },
+    "DeletePrivacyBudgetTemplateInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeletePrivacyBudgetTemplateOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DifferentialPrivacyAggregationExpression": {
+      "base": null,
+      "refs": {
+        "DifferentialPrivacySensitivityParameters$aggregationExpression": "<p>The aggregation expression that was run.</p>"
+      }
+    },
+    "DifferentialPrivacyAggregationType": {
+      "base": null,
+      "refs": {
+        "DifferentialPrivacyPreviewAggregation$type": "<p>The type of aggregation function.</p>",
+        "DifferentialPrivacyPrivacyBudgetAggregation$type": "<p>The different types of aggregation functions that you can perform.</p>",
+        "DifferentialPrivacySensitivityParameters$aggregationType": "<p>The type of aggregation function that was run.</p>"
+      }
+    },
+    "DifferentialPrivacyColumn": {
+      "base": "<p>Specifies the name of the column that contains the unique identifier of your users, whose privacy you want to protect.</p>",
+      "refs": {
+        "DifferentialPrivacyColumnList$member": null
+      }
+    },
+    "DifferentialPrivacyColumnList": {
+      "base": null,
+      "refs": {
+        "DifferentialPrivacyConfiguration$columns": "<p>The name of the column (such as user_id) that contains the unique identifier of your users whose privacy you want to protect. If you want to turn on diﬀerential privacy for two or more tables in a collaboration, you must conﬁgure the same column as the user identiﬁer column in both analysis rules.</p>"
+      }
+    },
+    "DifferentialPrivacyConfiguration": {
+      "base": "<p>Specifies the unique identifier for your users.</p>",
+      "refs": {
+        "AnalysisRuleCustom$differentialPrivacy": "<p>The differential privacy configuration.</p>"
+      }
+    },
+    "DifferentialPrivacyParameters": {
+      "base": "<p>An array that contains the sensitivity parameters.</p>",
+      "refs": {
+        "ProtectedQuery$differentialPrivacy": "<p>The sensitivity parameters of the differential privacy results of the protected query.</p>"
+      }
+    },
+    "DifferentialPrivacyPreviewAggregation": {
+      "base": "<p>Provides an estimate of the number of aggregation functions that the member who can query can run given the epsilon and noise parameters.</p>",
+      "refs": {
+        "DifferentialPrivacyPreviewAggregationList$member": null
+      }
+    },
+    "DifferentialPrivacyPreviewAggregationList": {
+      "base": null,
+      "refs": {
+        "DifferentialPrivacyPrivacyImpact$aggregations": "<p>The number of aggregation functions that you can perform.</p>"
+      }
+    },
+    "DifferentialPrivacyPreviewAggregationMaxCountInteger": {
+      "base": null,
+      "refs": {
+        "DifferentialPrivacyPreviewAggregation$maxCount": "<p>The maximum number of aggregations that the member who can query can run given the epsilon and noise parameters.</p>"
+      }
+    },
+    "DifferentialPrivacyPreviewParametersInput": {
+      "base": "<p>The epsilon and noise parameters that you want to preview.</p>",
+      "refs": {
+        "PreviewPrivacyImpactParametersInput$differentialPrivacy": "<p>An array that specifies the epsilon and noise parameters.</p>"
+      }
+    },
+    "DifferentialPrivacyPrivacyBudget": {
+      "base": "<p>Specifies the configured epsilon value and the utility in terms of total aggregations, as well as the remaining aggregations available.</p>",
+      "refs": {
+        "PrivacyBudget$differentialPrivacy": "<p>An object that specifies the epsilon parameter and the utility in terms of total aggregations, as well as the remaining aggregations available.</p>"
+      }
+    },
+    "DifferentialPrivacyPrivacyBudgetAggregation": {
+      "base": "<p>Information about the total number of aggregations, as well as the remaining aggregations.</p>",
+      "refs": {
+        "DifferentialPrivacyPrivacyBudgetAggregationList$member": null
+      }
+    },
+    "DifferentialPrivacyPrivacyBudgetAggregationList": {
+      "base": null,
+      "refs": {
+        "DifferentialPrivacyPrivacyBudget$aggregations": "<p>This information includes the configured epsilon value and the utility in terms of total aggregations, as well as the remaining aggregations.</p>"
+      }
+    },
+    "DifferentialPrivacyPrivacyBudgetAggregationMaxCountInteger": {
+      "base": null,
+      "refs": {
+        "DifferentialPrivacyPrivacyBudgetAggregation$maxCount": "<p>The maximum number of aggregation functions that you can perform with the given privacy budget.</p>"
+      }
+    },
+    "DifferentialPrivacyPrivacyBudgetAggregationRemainingCountInteger": {
+      "base": null,
+      "refs": {
+        "DifferentialPrivacyPrivacyBudgetAggregation$remainingCount": "<p>The remaining number of aggregation functions that can be run with the available privacy budget.</p>"
+      }
+    },
+    "DifferentialPrivacyPrivacyImpact": {
+      "base": "<p>Information about the number of aggregation functions that the member who can query can run given the epsilon and noise parameters.</p>",
+      "refs": {
+        "PrivacyImpact$differentialPrivacy": "<p>An object that lists the number and type of aggregation functions you can perform.</p>"
+      }
+    },
+    "DifferentialPrivacySensitivityParameters": {
+      "base": "<p>Provides the sensitivity parameters.</p>",
+      "refs": {
+        "DifferentialPrivacySensitivityParametersList$member": null
+      }
+    },
+    "DifferentialPrivacySensitivityParametersList": {
+      "base": null,
+      "refs": {
+        "DifferentialPrivacyParameters$sensitivityParameters": "<p>Provides the sensitivity parameters that you can use to better understand the total amount of noise in query results.</p>"
+      }
+    },
+    "DifferentialPrivacySensitivityParametersUserContributionLimitInteger": {
+      "base": null,
+      "refs": {
+        "DifferentialPrivacySensitivityParameters$userContributionLimit": "<p>The maximum number of rows contributed by a user in a SQL query.</p>"
+      }
+    },
+    "DifferentialPrivacyTemplateParametersInput": {
+      "base": "<p>The epsilon and noise parameter values that you want to use for the differential privacy template.</p>",
+      "refs": {
+        "PrivacyBudgetTemplateParametersInput$differentialPrivacy": "<p>An object that specifies the epsilon and noise parameters.</p>"
+      }
+    },
+    "DifferentialPrivacyTemplateParametersOutput": {
+      "base": "<p>The epsilon and noise parameter values that were used for the differential privacy template.</p>",
+      "refs": {
+        "PrivacyBudgetTemplateParametersOutput$differentialPrivacy": "<p>The epsilon and noise parameters.</p>"
+      }
+    },
+    "DifferentialPrivacyTemplateUpdateParameters": {
+      "base": "<p>The epsilon and noise parameter values that you want to update in the differential privacy template.</p>",
+      "refs": {
+        "PrivacyBudgetTemplateUpdateParameters$differentialPrivacy": "<p>An object that specifies the new values for the epsilon and noise parameters.</p>"
+      }
+    },
     "DisplayName": {
       "base": null,
       "refs": {
@@ -815,10 +1137,27 @@
         "ServiceQuotaExceededException$quotaValue": "<p>The value of the quota.</p>"
       }
     },
+    "Epsilon": {
+      "base": null,
+      "refs": {
+        "DifferentialPrivacyPreviewParametersInput$epsilon": "<p>The epsilon value that you want to preview.</p>",
+        "DifferentialPrivacyPrivacyBudget$epsilon": "<p>The epsilon value that you configured.</p>",
+        "DifferentialPrivacyTemplateParametersInput$epsilon": "<p>The epsilon value that you want to use.</p>",
+        "DifferentialPrivacyTemplateParametersOutput$epsilon": "<p>The epsilon value that you specified.</p>",
+        "DifferentialPrivacyTemplateUpdateParameters$epsilon": "<p>The updated epsilon value that you want to use.</p>"
+      }
+    },
     "FilterableMemberStatus": {
       "base": null,
       "refs": {
         "ListCollaborationsInput$memberStatus": "<p>The caller's status in a collaboration.</p>"
+      }
+    },
+    "Float": {
+      "base": null,
+      "refs": {
+        "DifferentialPrivacySensitivityParameters$minColumnValue": "<p>The lower bound of the aggregation expression.</p>",
+        "DifferentialPrivacySensitivityParameters$maxColumnValue": "<p>The upper bound of the aggregation expression.</p>"
       }
     },
     "GetAnalysisTemplateInput": {
@@ -841,12 +1180,42 @@
       "refs": {
       }
     },
+    "GetCollaborationConfiguredAudienceModelAssociationInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetCollaborationConfiguredAudienceModelAssociationOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetCollaborationInput": {
       "base": null,
       "refs": {
       }
     },
     "GetCollaborationOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetCollaborationPrivacyBudgetTemplateInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetCollaborationPrivacyBudgetTemplateOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetConfiguredAudienceModelAssociationInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetConfiguredAudienceModelAssociationOutput": {
       "base": null,
       "refs": {
       }
@@ -887,6 +1256,16 @@
       }
     },
     "GetMembershipOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetPrivacyBudgetTemplateInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetPrivacyBudgetTemplateOutput": {
       "base": null,
       "refs": {
       }
@@ -989,12 +1368,52 @@
       "refs": {
       }
     },
+    "ListCollaborationConfiguredAudienceModelAssociationsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListCollaborationConfiguredAudienceModelAssociationsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListCollaborationPrivacyBudgetTemplatesInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListCollaborationPrivacyBudgetTemplatesOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListCollaborationPrivacyBudgetsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListCollaborationPrivacyBudgetsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListCollaborationsInput": {
       "base": null,
       "refs": {
       }
     },
     "ListCollaborationsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListConfiguredAudienceModelAssociationsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListConfiguredAudienceModelAssociationsOutput": {
       "base": null,
       "refs": {
       }
@@ -1035,6 +1454,26 @@
       }
     },
     "ListMembershipsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListPrivacyBudgetTemplatesInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListPrivacyBudgetTemplatesOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListPrivacyBudgetsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListPrivacyBudgetsOutput": {
       "base": null,
       "refs": {
       }
@@ -1080,11 +1519,17 @@
       "refs": {
         "ListAnalysisTemplatesInput$maxResults": "<p>The maximum size of the results that is returned per call.</p>",
         "ListCollaborationAnalysisTemplatesInput$maxResults": "<p>The maximum size of the results that is returned per call.</p>",
+        "ListCollaborationConfiguredAudienceModelAssociationsInput$maxResults": "<p>The maximum size of the results that is returned per call.</p>",
+        "ListCollaborationPrivacyBudgetTemplatesInput$maxResults": "<p>The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service may return a nextToken even if the maximum results has not been met.</p>",
+        "ListCollaborationPrivacyBudgetsInput$maxResults": "<p>The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service may return a nextToken even if the maximum results has not been met.</p>",
         "ListCollaborationsInput$maxResults": "<p>The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service may return a nextToken even if the maximum results has not been met.</p>",
+        "ListConfiguredAudienceModelAssociationsInput$maxResults": "<p>The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service may return a nextToken even if the maximum results has not been met.</p>",
         "ListConfiguredTableAssociationsInput$maxResults": "<p>The maximum size of the results that is returned per call.</p>",
         "ListConfiguredTablesInput$maxResults": "<p>The maximum size of the results that is returned per call.</p>",
         "ListMembersInput$maxResults": "<p>The maximum size of the results that is returned per call.</p>",
         "ListMembershipsInput$maxResults": "<p>The maximum size of the results that is returned per call.</p>",
+        "ListPrivacyBudgetTemplatesInput$maxResults": "<p>The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service may return a nextToken even if the maximum results has not been met.</p>",
+        "ListPrivacyBudgetsInput$maxResults": "<p>The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service may return a nextToken even if the maximum results has not been met.</p>",
         "ListProtectedQueriesInput$maxResults": "<p>The maximum size of the results that is returned per call. Service chooses a default if it has not been set. Service can return a nextToken even if the maximum results has not been met. </p>",
         "ListSchemasInput$maxResults": "<p>The maximum size of the results that is returned per call.</p>"
       }
@@ -1152,11 +1597,16 @@
         "AnalysisTemplateSummary$membershipArn": "<p>The Amazon Resource Name (ARN) of the member who created the analysis template.</p>",
         "Collaboration$membershipArn": "<p>The unique ARN for your membership within the collaboration.</p>",
         "CollaborationSummary$membershipArn": "<p>The ARN of a member in a collaboration.</p>",
+        "ConfiguredAudienceModelAssociation$membershipArn": "<p>The Amazon Resource Name (ARN) of the membership that contains this configured audience model association.</p>",
+        "ConfiguredAudienceModelAssociationSummary$membershipArn": "<p>The Amazon Resource Name (ARN) of the membership that contains the configured audience model association.</p>",
         "ConfiguredTableAssociation$membershipArn": "<p>The unique ARN for the membership this configured table association belongs to.</p>",
         "ConfiguredTableAssociationSummary$membershipArn": "<p>The unique ARN for the membership that the configured table association belongs to.</p>",
         "MemberSummary$membershipArn": "<p>The unique ARN for the member's associated membership, if present.</p>",
         "Membership$arn": "<p>The unique ARN for the membership.</p>",
         "MembershipSummary$arn": "<p>The unique ARN for the membership.</p>",
+        "PrivacyBudgetSummary$membershipArn": "<p>The Amazon Resource Name (ARN) of the member who created the privacy budget summary.</p>",
+        "PrivacyBudgetTemplate$membershipArn": "<p>The Amazon Resource Name (ARN) of the member who created the privacy budget template.</p>",
+        "PrivacyBudgetTemplateSummary$membershipArn": "<p>The Amazon Resource Name (ARN) of the member who created the privacy budget template.</p>",
         "ProtectedQuery$membershipArn": "<p>The ARN of the membership.</p>",
         "ProtectedQuerySummary$membershipArn": "<p>The unique ARN for the membership that initiated the protected query.</p>"
       }
@@ -1164,23 +1614,37 @@
     "MembershipIdentifier": {
       "base": null,
       "refs": {
+        "ConfiguredAudienceModelAssociationSummary$membershipId": "<p>A unique identifier of the membership that contains the configured audience model association.</p>",
         "ConfiguredTableAssociationSummary$membershipId": "<p>The unique ID for the membership that the configured table association belongs to.</p>",
         "CreateAnalysisTemplateInput$membershipIdentifier": "<p>The identifier for a membership resource.</p>",
+        "CreateConfiguredAudienceModelAssociationInput$membershipIdentifier": "<p>A unique identifier for one of your memberships for a collaboration. The configured audience model is associated to the collaboration that this membership belongs to. Accepts a membership ID.</p>",
         "CreateConfiguredTableAssociationInput$membershipIdentifier": "<p>A unique identifier for one of your memberships for a collaboration. The configured table is associated to the collaboration that this membership belongs to. Currently accepts a membership ID.</p>",
+        "CreatePrivacyBudgetTemplateInput$membershipIdentifier": "<p>A unique identifier for one of your memberships for a collaboration. The privacy budget template is created in the collaboration that this membership belongs to. Accepts a membership ID.</p>",
         "DeleteAnalysisTemplateInput$membershipIdentifier": "<p>The identifier for a membership resource.</p>",
+        "DeleteConfiguredAudienceModelAssociationInput$membershipIdentifier": "<p>A unique identifier of the membership that contains the audience model association that you want to delete.</p>",
         "DeleteConfiguredTableAssociationInput$membershipIdentifier": "<p>A unique identifier for the membership that the configured table association belongs to. Currently accepts the membership ID.</p>",
         "DeleteMembershipInput$membershipIdentifier": "<p>The identifier for a membership resource.</p>",
+        "DeletePrivacyBudgetTemplateInput$membershipIdentifier": "<p>A unique identifier for one of your memberships for a collaboration. The privacy budget template is deleted from the collaboration that this membership belongs to. Accepts a membership ID.</p>",
         "GetAnalysisTemplateInput$membershipIdentifier": "<p>The identifier for a membership resource.</p>",
+        "GetConfiguredAudienceModelAssociationInput$membershipIdentifier": "<p>A unique identifier for the membership that contains the configured audience model association that you want to retrieve.</p>",
         "GetConfiguredTableAssociationInput$membershipIdentifier": "<p>A unique identifier for the membership that the configured table association belongs to. Currently accepts the membership ID.</p>",
         "GetMembershipInput$membershipIdentifier": "<p>The identifier for a membership resource.</p>",
+        "GetPrivacyBudgetTemplateInput$membershipIdentifier": "<p>A unique identifier for one of your memberships for a collaboration. The privacy budget template is retrieved from the collaboration that this membership belongs to. Accepts a membership ID.</p>",
         "GetProtectedQueryInput$membershipIdentifier": "<p>The identifier for a membership in a protected query instance.</p>",
         "ListAnalysisTemplatesInput$membershipIdentifier": "<p>The identifier for a membership resource.</p>",
+        "ListConfiguredAudienceModelAssociationsInput$membershipIdentifier": "<p>A unique identifier for a membership that contains the configured audience model associations that you want to retrieve.</p>",
         "ListConfiguredTableAssociationsInput$membershipIdentifier": "<p>A unique identifier for the membership to list configured table associations for. Currently accepts the membership ID.</p>",
+        "ListPrivacyBudgetTemplatesInput$membershipIdentifier": "<p>A unique identifier for one of your memberships for a collaboration. The privacy budget templates are retrieved from the collaboration that this membership belongs to. Accepts a membership ID.</p>",
+        "ListPrivacyBudgetsInput$membershipIdentifier": "<p>A unique identifier for one of your memberships for a collaboration. The privacy budget is retrieved from the collaboration that this membership belongs to. Accepts a membership ID.</p>",
         "ListProtectedQueriesInput$membershipIdentifier": "<p>The identifier for the membership in the collaboration.</p>",
+        "PreviewPrivacyImpactInput$membershipIdentifier": "<p>A unique identifier for one of your memberships for a collaboration. Accepts a membership ID.</p>",
+        "PrivacyBudgetSummary$membershipId": "<p>The identifier for a membership resource.</p>",
         "StartProtectedQueryInput$membershipIdentifier": "<p>A unique identifier for the membership to run this query against. Currently accepts a membership ID.</p>",
         "UpdateAnalysisTemplateInput$membershipIdentifier": "<p>The identifier for a membership resource.</p>",
+        "UpdateConfiguredAudienceModelAssociationInput$membershipIdentifier": "<p>A unique identifier of the membership that contains the configured audience model association that you want to update.</p>",
         "UpdateConfiguredTableAssociationInput$membershipIdentifier": "<p>The unique ID for the membership that the configured table association belongs to.</p>",
         "UpdateMembershipInput$membershipIdentifier": "<p>The unique identifier of the membership.</p>",
+        "UpdatePrivacyBudgetTemplateInput$membershipIdentifier": "<p>A unique identifier for one of your memberships for a collaboration. The privacy budget template is updated in the collaboration that this membership belongs to. Accepts a membership ID.</p>",
         "UpdateProtectedQueryInput$membershipIdentifier": "<p>The identifier for a member of a protected query instance.</p>"
       }
     },
@@ -1247,8 +1711,16 @@
         "ListAnalysisTemplatesOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
         "ListCollaborationAnalysisTemplatesInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
         "ListCollaborationAnalysisTemplatesOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListCollaborationConfiguredAudienceModelAssociationsInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListCollaborationConfiguredAudienceModelAssociationsOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListCollaborationPrivacyBudgetTemplatesInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListCollaborationPrivacyBudgetTemplatesOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListCollaborationPrivacyBudgetsInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListCollaborationPrivacyBudgetsOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
         "ListCollaborationsInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
         "ListCollaborationsOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListConfiguredAudienceModelAssociationsInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListConfiguredAudienceModelAssociationsOutput$nextToken": "<p>The token value provided to access the next page of results.</p>",
         "ListConfiguredTableAssociationsInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
         "ListConfiguredTableAssociationsOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
         "ListConfiguredTablesInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
@@ -1257,6 +1729,10 @@
         "ListMembersOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
         "ListMembershipsInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
         "ListMembershipsOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListPrivacyBudgetTemplatesInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListPrivacyBudgetTemplatesOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListPrivacyBudgetsInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
+        "ListPrivacyBudgetsOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
         "ListProtectedQueriesInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
         "ListProtectedQueriesOutput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
         "ListSchemasInput$nextToken": "<p>The token value retrieved from a previous call to access the next page of results.</p>",
@@ -1295,6 +1771,135 @@
         "CreateCollaborationInput$creatorPaymentConfiguration": "<p>The collaboration creator's payment responsibilities set by the collaboration creator. </p> <p>If the collaboration creator hasn't specified anyone as the member paying for query compute costs, then the member who can query is the default payer.</p>",
         "MemberSpecification$paymentConfiguration": "<p>The collaboration member's payment responsibilities set by the collaboration creator. </p> <p>If the collaboration creator hasn't speciﬁed anyone as the member paying for query compute costs, then the member who can query is the default payer.</p>",
         "MemberSummary$paymentConfiguration": "<p>The collaboration member's payment responsibilities set by the collaboration creator. </p>"
+      }
+    },
+    "PreviewPrivacyImpactInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PreviewPrivacyImpactOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PreviewPrivacyImpactParametersInput": {
+      "base": "<p>Specifies the updated epsilon and noise parameters to preview. The preview allows you to see how the maximum number of each type of aggregation function would change with the new parameters.</p>",
+      "refs": {
+        "PreviewPrivacyImpactInput$parameters": "<p>Specifies the desired epsilon and noise parameters to preview.</p>"
+      }
+    },
+    "PrivacyBudget": {
+      "base": "<p>The epsilon parameter value and number of each aggregation function that you can perform.</p>",
+      "refs": {
+        "CollaborationPrivacyBudgetSummary$budget": "<p>The includes epsilon provided and utility in terms of aggregations.</p>",
+        "PrivacyBudgetSummary$budget": "<p>The provided privacy budget.</p>"
+      }
+    },
+    "PrivacyBudgetSummary": {
+      "base": "<p>An array that summaries the specified privacy budget. This summary includes collaboration information, creation information, membership information, and privacy budget information.</p>",
+      "refs": {
+        "PrivacyBudgetSummaryList$member": null
+      }
+    },
+    "PrivacyBudgetSummaryList": {
+      "base": null,
+      "refs": {
+        "ListPrivacyBudgetsOutput$privacyBudgetSummaries": "<p>An array that summarizes the privacy budgets. The summary includes collaboration information, membership information, privacy budget template information, and privacy budget details.</p>"
+      }
+    },
+    "PrivacyBudgetTemplate": {
+      "base": "<p>An object that defines the privacy budget template.</p>",
+      "refs": {
+        "CreatePrivacyBudgetTemplateOutput$privacyBudgetTemplate": "<p>A summary of the elements in the privacy budget template.</p>",
+        "GetPrivacyBudgetTemplateOutput$privacyBudgetTemplate": "<p>Returns the details of the privacy budget template that you requested.</p>",
+        "UpdatePrivacyBudgetTemplateOutput$privacyBudgetTemplate": "<p>Summary of the privacy budget template.</p>"
+      }
+    },
+    "PrivacyBudgetTemplateArn": {
+      "base": null,
+      "refs": {
+        "CollaborationPrivacyBudgetSummary$privacyBudgetTemplateArn": "<p>The ARN of the collaboration privacy budget template.</p>",
+        "CollaborationPrivacyBudgetTemplate$arn": "<p>The ARN of the collaboration privacy budget template.</p>",
+        "CollaborationPrivacyBudgetTemplateSummary$arn": "<p>The ARN of the collaboration privacy budget template.</p>",
+        "PrivacyBudgetSummary$privacyBudgetTemplateArn": "<p>The ARN of the privacy budget template.</p>",
+        "PrivacyBudgetTemplate$arn": "<p>The ARN of the privacy budget template.</p>",
+        "PrivacyBudgetTemplateSummary$arn": "<p>The ARN of the privacy budget template.</p>"
+      }
+    },
+    "PrivacyBudgetTemplateAutoRefresh": {
+      "base": null,
+      "refs": {
+        "CollaborationPrivacyBudgetTemplate$autoRefresh": "<p>How often the privacy budget refreshes.</p> <important> <p>If you plan to regularly bring new data into the collaboration, use <code>CALENDAR_MONTH</code> to automatically get a new privacy budget for the collaboration every calendar month. Choosing this option allows arbitrary amounts of information to be revealed about rows of the data when repeatedly queried across refreshes. Avoid choosing this if the same rows will be repeatedly queried between privacy budget refreshes.</p> </important>",
+        "CreatePrivacyBudgetTemplateInput$autoRefresh": "<p>How often the privacy budget refreshes.</p> <important> <p>If you plan to regularly bring new data into the collaboration, you can use <code>CALENDAR_MONTH</code> to automatically get a new privacy budget for the collaboration every calendar month. Choosing this option allows arbitrary amounts of information to be revealed about rows of the data when repeatedly queries across refreshes. Avoid choosing this if the same rows will be repeatedly queried between privacy budget refreshes.</p> </important>",
+        "PrivacyBudgetTemplate$autoRefresh": "<p>How often the privacy budget refreshes.</p> <important> <p>If you plan to regularly bring new data into the collaboration, use <code>CALENDAR_MONTH</code> to automatically get a new privacy budget for the collaboration every calendar month. Choosing this option allows arbitrary amounts of information to be revealed about rows of the data when repeatedly queried across refreshes. Avoid choosing this if the same rows will be repeatedly queried between privacy budget refreshes.</p> </important>"
+      }
+    },
+    "PrivacyBudgetTemplateIdentifier": {
+      "base": null,
+      "refs": {
+        "CollaborationPrivacyBudgetSummary$privacyBudgetTemplateId": "<p>The unique identifier of the collaboration privacy budget template.</p>",
+        "CollaborationPrivacyBudgetTemplate$id": "<p>The unique identifier of the collaboration privacy budget template.</p>",
+        "CollaborationPrivacyBudgetTemplateSummary$id": "<p>The unique identifier of the collaboration privacy budget template.</p>",
+        "DeletePrivacyBudgetTemplateInput$privacyBudgetTemplateIdentifier": "<p>A unique identifier for your privacy budget template. </p>",
+        "GetCollaborationPrivacyBudgetTemplateInput$privacyBudgetTemplateIdentifier": "<p>A unique identifier for one of your privacy budget templates.</p>",
+        "GetPrivacyBudgetTemplateInput$privacyBudgetTemplateIdentifier": "<p>A unique identifier for your privacy budget template.</p>",
+        "PrivacyBudgetSummary$privacyBudgetTemplateId": "<p>The unique identifier of the privacy budget template.</p>",
+        "PrivacyBudgetTemplate$id": "<p>The unique identifier of the privacy budget template.</p>",
+        "PrivacyBudgetTemplateSummary$id": "<p>The unique identifier of the privacy budget template.</p>",
+        "UpdatePrivacyBudgetTemplateInput$privacyBudgetTemplateIdentifier": "<p>A unique identifier for your privacy budget template that you want to update.</p>"
+      }
+    },
+    "PrivacyBudgetTemplateParametersInput": {
+      "base": "<p>The epsilon and noise parameters that you want to use for the privacy budget template.</p>",
+      "refs": {
+        "CreatePrivacyBudgetTemplateInput$parameters": "<p>Specifies your parameters for the privacy budget template.</p>"
+      }
+    },
+    "PrivacyBudgetTemplateParametersOutput": {
+      "base": "<p>The epsilon and noise parameters that were used in the privacy budget template.</p>",
+      "refs": {
+        "CollaborationPrivacyBudgetTemplate$parameters": "<p>Specifies the epsilon and noise parameters for the privacy budget template.</p>",
+        "PrivacyBudgetTemplate$parameters": "<p>Specifies the epislon and noise parameters for the privacy budget template.</p>"
+      }
+    },
+    "PrivacyBudgetTemplateSummary": {
+      "base": "<p>A summary of the privacy budget template. The summary includes membership information, collaboration information, and creation information.</p>",
+      "refs": {
+        "PrivacyBudgetTemplateSummaryList$member": null
+      }
+    },
+    "PrivacyBudgetTemplateSummaryList": {
+      "base": null,
+      "refs": {
+        "ListPrivacyBudgetTemplatesOutput$privacyBudgetTemplateSummaries": "<p>An array that summarizes the privacy budget templates. The summary includes collaboration information, creation information, and privacy budget type.</p>"
+      }
+    },
+    "PrivacyBudgetTemplateUpdateParameters": {
+      "base": "<p>The epsilon and noise parameters that you want to update in the privacy budget template.</p>",
+      "refs": {
+        "UpdatePrivacyBudgetTemplateInput$parameters": "<p>Specifies the epsilon and noise parameters for the privacy budget template.</p>"
+      }
+    },
+    "PrivacyBudgetType": {
+      "base": null,
+      "refs": {
+        "CollaborationPrivacyBudgetSummary$type": "<p>The type of privacy budget template.</p>",
+        "CollaborationPrivacyBudgetTemplate$privacyBudgetType": "<p>The type of privacy budget template.</p>",
+        "CollaborationPrivacyBudgetTemplateSummary$privacyBudgetType": "<p>The type of the privacy budget template.</p>",
+        "CreatePrivacyBudgetTemplateInput$privacyBudgetType": "<p>Specifies the type of the privacy budget template.</p>",
+        "ListCollaborationPrivacyBudgetsInput$privacyBudgetType": "<p>Specifies the type of the privacy budget.</p>",
+        "ListPrivacyBudgetsInput$privacyBudgetType": "<p>The privacy budget type.</p>",
+        "PrivacyBudgetSummary$type": "<p>Specifies the type of the privacy budget.</p>",
+        "PrivacyBudgetTemplate$privacyBudgetType": "<p>Specifies the type of the privacy budget template.</p>",
+        "PrivacyBudgetTemplateSummary$privacyBudgetType": "<p>The type of the privacy budget template.</p>",
+        "UpdatePrivacyBudgetTemplateInput$privacyBudgetType": "<p>Specifies the type of the privacy budget template.</p>"
+      }
+    },
+    "PrivacyImpact": {
+      "base": "<p>Provides an estimate of the number of aggregation functions that the member who can query can run given the epsilon and noise parameters.</p>",
+      "refs": {
+        "PreviewPrivacyImpactOutput$privacyImpact": "<p>An estimate of the number of aggregation functions that the member who can query can run given the epsilon and noise parameters. This does not change the privacy budget.</p>"
       }
     },
     "ProtectedQuery": {
@@ -1447,8 +2052,14 @@
         "AnalysisTemplateSummary$description": "<p>The description of the analysis template.</p>",
         "CollaborationAnalysisTemplate$description": "<p>The description of the analysis template.</p>",
         "CollaborationAnalysisTemplateSummary$description": "<p>The description of the analysis template.</p>",
+        "CollaborationConfiguredAudienceModelAssociation$description": "<p>The description of the configured audience model association.</p>",
+        "CollaborationConfiguredAudienceModelAssociationSummary$description": "<p>The description of the configured audience model association.</p>",
+        "ConfiguredAudienceModelAssociation$description": "<p>The description of the configured audience model association.</p>",
+        "ConfiguredAudienceModelAssociationSummary$description": "<p>The description of the configured audience model association.</p>",
         "CreateAnalysisTemplateInput$description": "<p>The description of the analysis template.</p>",
-        "UpdateAnalysisTemplateInput$description": "<p>A new description for the analysis template.</p>"
+        "CreateConfiguredAudienceModelAssociationInput$description": "<p>A description of the configured audience model association.</p>",
+        "UpdateAnalysisTemplateInput$description": "<p>A new description for the analysis template.</p>",
+        "UpdateConfiguredAudienceModelAssociationInput$description": "<p>A new description for the configured audience model association.</p>"
       }
     },
     "ResourceNotFoundException": {
@@ -1548,6 +2159,7 @@
         "BatchGetSchemaError$message": "<p>An error message for the error.</p>",
         "ConflictException$message": null,
         "ConflictException$resourceId": "<p>The ID of the conflicting resource.</p>",
+        "DifferentialPrivacyColumn$name": "<p>The name of the column, such as user_id, that contains the unique identifier of your users, whose privacy you want to protect. If you want to turn on differential privacy for two or more tables in a collaboration, you must configure the same column as the user identifier column in both analysis rules.</p>",
         "InternalServerException$message": null,
         "ProtectedQueryError$message": "<p>A description of why the query failed.</p>",
         "ProtectedQueryError$code": "<p>An error code for the error.</p>",
@@ -1622,9 +2234,11 @@
       "refs": {
         "CreateAnalysisTemplateInput$tags": "<p>An optional label that you can assign to a resource when you create it. Each tag consists of a key and an optional value, both of which you define. When you use tagging, you can also use tag-based access control in IAM policies to control access to this resource.</p>",
         "CreateCollaborationInput$tags": "<p>An optional label that you can assign to a resource when you create it. Each tag consists of a key and an optional value, both of which you define. When you use tagging, you can also use tag-based access control in IAM policies to control access to this resource.</p>",
+        "CreateConfiguredAudienceModelAssociationInput$tags": "<p>An optional label that you can assign to a resource when you create it. Each tag consists of a key and an optional value, both of which you define. When you use tagging, you can also use tag-based access control in IAM policies to control access to this resource.</p>",
         "CreateConfiguredTableAssociationInput$tags": "<p>An optional label that you can assign to a resource when you create it. Each tag consists of a key and an optional value, both of which you define. When you use tagging, you can also use tag-based access control in IAM policies to control access to this resource.</p>",
         "CreateConfiguredTableInput$tags": "<p>An optional label that you can assign to a resource when you create it. Each tag consists of a key and an optional value, both of which you define. When you use tagging, you can also use tag-based access control in IAM policies to control access to this resource.</p>",
         "CreateMembershipInput$tags": "<p>An optional label that you can assign to a resource when you create it. Each tag consists of a key and an optional value, both of which you define. When you use tagging, you can also use tag-based access control in IAM policies to control access to this resource.</p>",
+        "CreatePrivacyBudgetTemplateInput$tags": "<p>An optional label that you can assign to a resource when you create it. Each tag consists of a key and an optional value, both of which you define. When you use tagging, you can also use tag-based access control in IAM policies to control access to this resource.</p>",
         "ListTagsForResourceOutput$tags": "<p>A map of objects specifying each key name and value.</p>",
         "TagResourceInput$tags": "<p>A map of objects specifying each key name and value.</p>"
       }
@@ -1671,8 +2285,22 @@
         "CollaborationAnalysisTemplate$updateTime": "<p>The time that the analysis template in the collaboration was last updated.</p>",
         "CollaborationAnalysisTemplateSummary$createTime": "<p>The time that the summary of the analysis template in a collaboration was created.</p>",
         "CollaborationAnalysisTemplateSummary$updateTime": "<p>The time that the summary of the analysis template in the collaboration was last updated.</p>",
+        "CollaborationConfiguredAudienceModelAssociation$createTime": "<p>The time at which the configured audience model association was created.</p>",
+        "CollaborationConfiguredAudienceModelAssociation$updateTime": "<p>The most recent time at which the configured audience model association was updated.</p>",
+        "CollaborationConfiguredAudienceModelAssociationSummary$createTime": "<p>The time at which the configured audience model association was created.</p>",
+        "CollaborationConfiguredAudienceModelAssociationSummary$updateTime": "<p>The most recent time at which the configured audience model association was updated.</p>",
+        "CollaborationPrivacyBudgetSummary$createTime": "<p>The time at which the privacy budget was created.</p>",
+        "CollaborationPrivacyBudgetSummary$updateTime": "<p>The most recent time at which the privacy budget was updated.</p>",
+        "CollaborationPrivacyBudgetTemplate$createTime": "<p>The time at which the collaboration privacy budget template was created.</p>",
+        "CollaborationPrivacyBudgetTemplate$updateTime": "<p>The most recent time at which the collaboration privacy budget template was updated.</p>",
+        "CollaborationPrivacyBudgetTemplateSummary$createTime": "<p>The time at which the collaboration privacy budget template was created.</p>",
+        "CollaborationPrivacyBudgetTemplateSummary$updateTime": "<p>The most recent time at which the collaboration privacy budget template was updated.</p>",
         "CollaborationSummary$createTime": "<p>The time when the collaboration was created.</p>",
         "CollaborationSummary$updateTime": "<p>The time the collaboration metadata was last updated.</p>",
+        "ConfiguredAudienceModelAssociation$createTime": "<p>The time at which the configured audience model association was created.</p>",
+        "ConfiguredAudienceModelAssociation$updateTime": "<p>The most recent time at which the configured audience model association was updated.</p>",
+        "ConfiguredAudienceModelAssociationSummary$createTime": "<p>The time at which the configured audience model association was created.</p>",
+        "ConfiguredAudienceModelAssociationSummary$updateTime": "<p>The most recent time at which the configured audience model association was updated.</p>",
         "ConfiguredTable$createTime": "<p>The time the configured table was created.</p>",
         "ConfiguredTable$updateTime": "<p>The time the configured table was last updated</p>",
         "ConfiguredTableAnalysisRule$createTime": "<p>The time the configured table analysis rule was created.</p>",
@@ -1689,6 +2317,12 @@
         "Membership$updateTime": "<p>The time the membership metadata was last updated.</p>",
         "MembershipSummary$createTime": "<p>The time when the membership was created.</p>",
         "MembershipSummary$updateTime": "<p>The time the membership metadata was last updated.</p>",
+        "PrivacyBudgetSummary$createTime": "<p>The time at which the privacy budget was created.</p>",
+        "PrivacyBudgetSummary$updateTime": "<p>The most recent time at which the privacy budget was updated.</p>",
+        "PrivacyBudgetTemplate$createTime": "<p>The time at which the privacy budget template was created.</p>",
+        "PrivacyBudgetTemplate$updateTime": "<p>The most recent time at which the privacy budget template was updated.</p>",
+        "PrivacyBudgetTemplateSummary$createTime": "<p>The time at which the privacy budget template was created.</p>",
+        "PrivacyBudgetTemplateSummary$updateTime": "<p>The most recent time at which the privacy budget template was updated.</p>",
         "ProtectedQuery$createTime": "<p>The time at which the protected query was created.</p>",
         "ProtectedQuerySummary$createTime": "<p>The time the protected query was created.</p>",
         "Schema$createTime": "<p>The time the schema was created.</p>",
@@ -1708,8 +2342,18 @@
         "Collaboration$membershipId": "<p>The unique ID for your membership within the collaboration.</p>",
         "CollaborationAnalysisTemplate$collaborationId": "<p>A unique identifier for the collaboration that the analysis templates belong to. Currently accepts collaboration ID.</p>",
         "CollaborationAnalysisTemplateSummary$collaborationId": "<p>A unique identifier for the collaboration that the analysis templates belong to. Currently accepts collaboration ID.</p>",
+        "CollaborationConfiguredAudienceModelAssociation$collaborationId": "<p>A unique identifier for the collaboration that the configured audience model associations belong to. Accepts collaboration ID.</p>",
+        "CollaborationConfiguredAudienceModelAssociationSummary$collaborationId": "<p>A unique identifier for the collaboration that the configured audience model associations belong to. Accepts collaboration ID.</p>",
+        "CollaborationPrivacyBudgetSummary$id": "<p>The unique identifier of the collaboration privacy budget.</p>",
+        "CollaborationPrivacyBudgetSummary$collaborationId": "<p>The unique identifier of the collaboration that includes this privacy budget.</p>",
+        "CollaborationPrivacyBudgetTemplate$collaborationId": "<p>The unique identifier of the collaboration that includes this collaboration privacy budget template.</p>",
+        "CollaborationPrivacyBudgetTemplateSummary$collaborationId": "<p>The unique identifier of the collaboration that contains this collaboration privacy budget template.</p>",
         "CollaborationSummary$id": "<p>The identifier for the collaboration.</p>",
         "CollaborationSummary$membershipId": "<p>The identifier of a member in a collaboration.</p>",
+        "ConfiguredAudienceModelAssociation$membershipId": "<p>A unique identifier for the membership that contains this configured audience model association.</p>",
+        "ConfiguredAudienceModelAssociation$collaborationId": "<p>A unique identifier of the collaboration that contains this configured audience model association.</p>",
+        "ConfiguredAudienceModelAssociationSummary$collaborationId": "<p>A unique identifier of the collaboration that configured audience model is associated with.</p>",
+        "ConfiguredAudienceModelAssociationSummary$id": "<p>A unique identifier of the configured audience model association.</p>",
         "ConfiguredTable$id": "<p>The unique ID for the configured table.</p>",
         "ConfiguredTableAnalysisRule$configuredTableId": "<p>The unique ID for the configured table.</p>",
         "ConfiguredTableAssociation$id": "<p>The unique ID for the configured table association.</p>",
@@ -1721,6 +2365,12 @@
         "Membership$id": "<p>The unique ID of the membership.</p>",
         "Membership$collaborationId": "<p>The unique ID for the membership's collaboration.</p>",
         "MembershipSummary$id": "<p>The unique ID for the membership's collaboration.</p>",
+        "PrivacyBudgetSummary$id": "<p>The unique identifier of the privacy budget.</p>",
+        "PrivacyBudgetSummary$collaborationId": "<p>The unique identifier of the collaboration that contains this privacy budget.</p>",
+        "PrivacyBudgetTemplate$membershipId": "<p>The identifier for a membership resource.</p>",
+        "PrivacyBudgetTemplate$collaborationId": "<p>The unique ID of the collaboration that contains this privacy budget template.</p>",
+        "PrivacyBudgetTemplateSummary$membershipId": "<p>The identifier for a membership resource.</p>",
+        "PrivacyBudgetTemplateSummary$collaborationId": "<p>The unique ID of the collaboration that contains this privacy budget template.</p>",
         "ProtectedQuery$id": "<p>The identifier for a protected query instance.</p>",
         "ProtectedQuery$membershipId": "<p>The identifier for the membership.</p>",
         "ProtectedQuerySummary$id": "<p>The unique ID of the protected query.</p>",
@@ -1755,6 +2405,16 @@
       }
     },
     "UpdateCollaborationOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateConfiguredAudienceModelAssociationInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateConfiguredAudienceModelAssociationOutput": {
       "base": null,
       "refs": {
       }
@@ -1799,6 +2459,16 @@
       "refs": {
       }
     },
+    "UpdatePrivacyBudgetTemplateInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdatePrivacyBudgetTemplateOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateProtectedQueryInput": {
       "base": null,
       "refs": {
@@ -1807,6 +2477,15 @@
     "UpdateProtectedQueryOutput": {
       "base": null,
       "refs": {
+      }
+    },
+    "UsersNoisePerQuery": {
+      "base": null,
+      "refs": {
+        "DifferentialPrivacyPreviewParametersInput$usersNoisePerQuery": "<p>Noise added per query is measured in terms of the number of users whose contributions you want to obscure. This value governs the rate at which the privacy budget is depleted.</p>",
+        "DifferentialPrivacyTemplateParametersInput$usersNoisePerQuery": "<p>Noise added per query is measured in terms of the number of users whose contributions you want to obscure. This value governs the rate at which the privacy budget is depleted.</p>",
+        "DifferentialPrivacyTemplateParametersOutput$usersNoisePerQuery": "<p>Noise added per query is measured in terms of the number of users whose contributions you want to obscure. This value governs the rate at which the privacy budget is depleted.</p>",
+        "DifferentialPrivacyTemplateUpdateParameters$usersNoisePerQuery": "<p>The updated value of noise added per query. It is measured in terms of the number of users whose contributions you want to obscure. This value governs the rate at which the privacy budget is depleted.</p>"
       }
     },
     "ValidationException": {

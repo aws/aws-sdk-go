@@ -76,6 +76,10 @@ type CleanRoomsAPI interface {
 	CreateCollaborationWithContext(aws.Context, *cleanrooms.CreateCollaborationInput, ...request.Option) (*cleanrooms.CreateCollaborationOutput, error)
 	CreateCollaborationRequest(*cleanrooms.CreateCollaborationInput) (*request.Request, *cleanrooms.CreateCollaborationOutput)
 
+	CreateConfiguredAudienceModelAssociation(*cleanrooms.CreateConfiguredAudienceModelAssociationInput) (*cleanrooms.CreateConfiguredAudienceModelAssociationOutput, error)
+	CreateConfiguredAudienceModelAssociationWithContext(aws.Context, *cleanrooms.CreateConfiguredAudienceModelAssociationInput, ...request.Option) (*cleanrooms.CreateConfiguredAudienceModelAssociationOutput, error)
+	CreateConfiguredAudienceModelAssociationRequest(*cleanrooms.CreateConfiguredAudienceModelAssociationInput) (*request.Request, *cleanrooms.CreateConfiguredAudienceModelAssociationOutput)
+
 	CreateConfiguredTable(*cleanrooms.CreateConfiguredTableInput) (*cleanrooms.CreateConfiguredTableOutput, error)
 	CreateConfiguredTableWithContext(aws.Context, *cleanrooms.CreateConfiguredTableInput, ...request.Option) (*cleanrooms.CreateConfiguredTableOutput, error)
 	CreateConfiguredTableRequest(*cleanrooms.CreateConfiguredTableInput) (*request.Request, *cleanrooms.CreateConfiguredTableOutput)
@@ -92,6 +96,10 @@ type CleanRoomsAPI interface {
 	CreateMembershipWithContext(aws.Context, *cleanrooms.CreateMembershipInput, ...request.Option) (*cleanrooms.CreateMembershipOutput, error)
 	CreateMembershipRequest(*cleanrooms.CreateMembershipInput) (*request.Request, *cleanrooms.CreateMembershipOutput)
 
+	CreatePrivacyBudgetTemplate(*cleanrooms.CreatePrivacyBudgetTemplateInput) (*cleanrooms.CreatePrivacyBudgetTemplateOutput, error)
+	CreatePrivacyBudgetTemplateWithContext(aws.Context, *cleanrooms.CreatePrivacyBudgetTemplateInput, ...request.Option) (*cleanrooms.CreatePrivacyBudgetTemplateOutput, error)
+	CreatePrivacyBudgetTemplateRequest(*cleanrooms.CreatePrivacyBudgetTemplateInput) (*request.Request, *cleanrooms.CreatePrivacyBudgetTemplateOutput)
+
 	DeleteAnalysisTemplate(*cleanrooms.DeleteAnalysisTemplateInput) (*cleanrooms.DeleteAnalysisTemplateOutput, error)
 	DeleteAnalysisTemplateWithContext(aws.Context, *cleanrooms.DeleteAnalysisTemplateInput, ...request.Option) (*cleanrooms.DeleteAnalysisTemplateOutput, error)
 	DeleteAnalysisTemplateRequest(*cleanrooms.DeleteAnalysisTemplateInput) (*request.Request, *cleanrooms.DeleteAnalysisTemplateOutput)
@@ -99,6 +107,10 @@ type CleanRoomsAPI interface {
 	DeleteCollaboration(*cleanrooms.DeleteCollaborationInput) (*cleanrooms.DeleteCollaborationOutput, error)
 	DeleteCollaborationWithContext(aws.Context, *cleanrooms.DeleteCollaborationInput, ...request.Option) (*cleanrooms.DeleteCollaborationOutput, error)
 	DeleteCollaborationRequest(*cleanrooms.DeleteCollaborationInput) (*request.Request, *cleanrooms.DeleteCollaborationOutput)
+
+	DeleteConfiguredAudienceModelAssociation(*cleanrooms.DeleteConfiguredAudienceModelAssociationInput) (*cleanrooms.DeleteConfiguredAudienceModelAssociationOutput, error)
+	DeleteConfiguredAudienceModelAssociationWithContext(aws.Context, *cleanrooms.DeleteConfiguredAudienceModelAssociationInput, ...request.Option) (*cleanrooms.DeleteConfiguredAudienceModelAssociationOutput, error)
+	DeleteConfiguredAudienceModelAssociationRequest(*cleanrooms.DeleteConfiguredAudienceModelAssociationInput) (*request.Request, *cleanrooms.DeleteConfiguredAudienceModelAssociationOutput)
 
 	DeleteConfiguredTable(*cleanrooms.DeleteConfiguredTableInput) (*cleanrooms.DeleteConfiguredTableOutput, error)
 	DeleteConfiguredTableWithContext(aws.Context, *cleanrooms.DeleteConfiguredTableInput, ...request.Option) (*cleanrooms.DeleteConfiguredTableOutput, error)
@@ -120,6 +132,10 @@ type CleanRoomsAPI interface {
 	DeleteMembershipWithContext(aws.Context, *cleanrooms.DeleteMembershipInput, ...request.Option) (*cleanrooms.DeleteMembershipOutput, error)
 	DeleteMembershipRequest(*cleanrooms.DeleteMembershipInput) (*request.Request, *cleanrooms.DeleteMembershipOutput)
 
+	DeletePrivacyBudgetTemplate(*cleanrooms.DeletePrivacyBudgetTemplateInput) (*cleanrooms.DeletePrivacyBudgetTemplateOutput, error)
+	DeletePrivacyBudgetTemplateWithContext(aws.Context, *cleanrooms.DeletePrivacyBudgetTemplateInput, ...request.Option) (*cleanrooms.DeletePrivacyBudgetTemplateOutput, error)
+	DeletePrivacyBudgetTemplateRequest(*cleanrooms.DeletePrivacyBudgetTemplateInput) (*request.Request, *cleanrooms.DeletePrivacyBudgetTemplateOutput)
+
 	GetAnalysisTemplate(*cleanrooms.GetAnalysisTemplateInput) (*cleanrooms.GetAnalysisTemplateOutput, error)
 	GetAnalysisTemplateWithContext(aws.Context, *cleanrooms.GetAnalysisTemplateInput, ...request.Option) (*cleanrooms.GetAnalysisTemplateOutput, error)
 	GetAnalysisTemplateRequest(*cleanrooms.GetAnalysisTemplateInput) (*request.Request, *cleanrooms.GetAnalysisTemplateOutput)
@@ -131,6 +147,18 @@ type CleanRoomsAPI interface {
 	GetCollaborationAnalysisTemplate(*cleanrooms.GetCollaborationAnalysisTemplateInput) (*cleanrooms.GetCollaborationAnalysisTemplateOutput, error)
 	GetCollaborationAnalysisTemplateWithContext(aws.Context, *cleanrooms.GetCollaborationAnalysisTemplateInput, ...request.Option) (*cleanrooms.GetCollaborationAnalysisTemplateOutput, error)
 	GetCollaborationAnalysisTemplateRequest(*cleanrooms.GetCollaborationAnalysisTemplateInput) (*request.Request, *cleanrooms.GetCollaborationAnalysisTemplateOutput)
+
+	GetCollaborationConfiguredAudienceModelAssociation(*cleanrooms.GetCollaborationConfiguredAudienceModelAssociationInput) (*cleanrooms.GetCollaborationConfiguredAudienceModelAssociationOutput, error)
+	GetCollaborationConfiguredAudienceModelAssociationWithContext(aws.Context, *cleanrooms.GetCollaborationConfiguredAudienceModelAssociationInput, ...request.Option) (*cleanrooms.GetCollaborationConfiguredAudienceModelAssociationOutput, error)
+	GetCollaborationConfiguredAudienceModelAssociationRequest(*cleanrooms.GetCollaborationConfiguredAudienceModelAssociationInput) (*request.Request, *cleanrooms.GetCollaborationConfiguredAudienceModelAssociationOutput)
+
+	GetCollaborationPrivacyBudgetTemplate(*cleanrooms.GetCollaborationPrivacyBudgetTemplateInput) (*cleanrooms.GetCollaborationPrivacyBudgetTemplateOutput, error)
+	GetCollaborationPrivacyBudgetTemplateWithContext(aws.Context, *cleanrooms.GetCollaborationPrivacyBudgetTemplateInput, ...request.Option) (*cleanrooms.GetCollaborationPrivacyBudgetTemplateOutput, error)
+	GetCollaborationPrivacyBudgetTemplateRequest(*cleanrooms.GetCollaborationPrivacyBudgetTemplateInput) (*request.Request, *cleanrooms.GetCollaborationPrivacyBudgetTemplateOutput)
+
+	GetConfiguredAudienceModelAssociation(*cleanrooms.GetConfiguredAudienceModelAssociationInput) (*cleanrooms.GetConfiguredAudienceModelAssociationOutput, error)
+	GetConfiguredAudienceModelAssociationWithContext(aws.Context, *cleanrooms.GetConfiguredAudienceModelAssociationInput, ...request.Option) (*cleanrooms.GetConfiguredAudienceModelAssociationOutput, error)
+	GetConfiguredAudienceModelAssociationRequest(*cleanrooms.GetConfiguredAudienceModelAssociationInput) (*request.Request, *cleanrooms.GetConfiguredAudienceModelAssociationOutput)
 
 	GetConfiguredTable(*cleanrooms.GetConfiguredTableInput) (*cleanrooms.GetConfiguredTableOutput, error)
 	GetConfiguredTableWithContext(aws.Context, *cleanrooms.GetConfiguredTableInput, ...request.Option) (*cleanrooms.GetConfiguredTableOutput, error)
@@ -147,6 +175,10 @@ type CleanRoomsAPI interface {
 	GetMembership(*cleanrooms.GetMembershipInput) (*cleanrooms.GetMembershipOutput, error)
 	GetMembershipWithContext(aws.Context, *cleanrooms.GetMembershipInput, ...request.Option) (*cleanrooms.GetMembershipOutput, error)
 	GetMembershipRequest(*cleanrooms.GetMembershipInput) (*request.Request, *cleanrooms.GetMembershipOutput)
+
+	GetPrivacyBudgetTemplate(*cleanrooms.GetPrivacyBudgetTemplateInput) (*cleanrooms.GetPrivacyBudgetTemplateOutput, error)
+	GetPrivacyBudgetTemplateWithContext(aws.Context, *cleanrooms.GetPrivacyBudgetTemplateInput, ...request.Option) (*cleanrooms.GetPrivacyBudgetTemplateOutput, error)
+	GetPrivacyBudgetTemplateRequest(*cleanrooms.GetPrivacyBudgetTemplateInput) (*request.Request, *cleanrooms.GetPrivacyBudgetTemplateOutput)
 
 	GetProtectedQuery(*cleanrooms.GetProtectedQueryInput) (*cleanrooms.GetProtectedQueryOutput, error)
 	GetProtectedQueryWithContext(aws.Context, *cleanrooms.GetProtectedQueryInput, ...request.Option) (*cleanrooms.GetProtectedQueryOutput, error)
@@ -174,12 +206,40 @@ type CleanRoomsAPI interface {
 	ListCollaborationAnalysisTemplatesPages(*cleanrooms.ListCollaborationAnalysisTemplatesInput, func(*cleanrooms.ListCollaborationAnalysisTemplatesOutput, bool) bool) error
 	ListCollaborationAnalysisTemplatesPagesWithContext(aws.Context, *cleanrooms.ListCollaborationAnalysisTemplatesInput, func(*cleanrooms.ListCollaborationAnalysisTemplatesOutput, bool) bool, ...request.Option) error
 
+	ListCollaborationConfiguredAudienceModelAssociations(*cleanrooms.ListCollaborationConfiguredAudienceModelAssociationsInput) (*cleanrooms.ListCollaborationConfiguredAudienceModelAssociationsOutput, error)
+	ListCollaborationConfiguredAudienceModelAssociationsWithContext(aws.Context, *cleanrooms.ListCollaborationConfiguredAudienceModelAssociationsInput, ...request.Option) (*cleanrooms.ListCollaborationConfiguredAudienceModelAssociationsOutput, error)
+	ListCollaborationConfiguredAudienceModelAssociationsRequest(*cleanrooms.ListCollaborationConfiguredAudienceModelAssociationsInput) (*request.Request, *cleanrooms.ListCollaborationConfiguredAudienceModelAssociationsOutput)
+
+	ListCollaborationConfiguredAudienceModelAssociationsPages(*cleanrooms.ListCollaborationConfiguredAudienceModelAssociationsInput, func(*cleanrooms.ListCollaborationConfiguredAudienceModelAssociationsOutput, bool) bool) error
+	ListCollaborationConfiguredAudienceModelAssociationsPagesWithContext(aws.Context, *cleanrooms.ListCollaborationConfiguredAudienceModelAssociationsInput, func(*cleanrooms.ListCollaborationConfiguredAudienceModelAssociationsOutput, bool) bool, ...request.Option) error
+
+	ListCollaborationPrivacyBudgetTemplates(*cleanrooms.ListCollaborationPrivacyBudgetTemplatesInput) (*cleanrooms.ListCollaborationPrivacyBudgetTemplatesOutput, error)
+	ListCollaborationPrivacyBudgetTemplatesWithContext(aws.Context, *cleanrooms.ListCollaborationPrivacyBudgetTemplatesInput, ...request.Option) (*cleanrooms.ListCollaborationPrivacyBudgetTemplatesOutput, error)
+	ListCollaborationPrivacyBudgetTemplatesRequest(*cleanrooms.ListCollaborationPrivacyBudgetTemplatesInput) (*request.Request, *cleanrooms.ListCollaborationPrivacyBudgetTemplatesOutput)
+
+	ListCollaborationPrivacyBudgetTemplatesPages(*cleanrooms.ListCollaborationPrivacyBudgetTemplatesInput, func(*cleanrooms.ListCollaborationPrivacyBudgetTemplatesOutput, bool) bool) error
+	ListCollaborationPrivacyBudgetTemplatesPagesWithContext(aws.Context, *cleanrooms.ListCollaborationPrivacyBudgetTemplatesInput, func(*cleanrooms.ListCollaborationPrivacyBudgetTemplatesOutput, bool) bool, ...request.Option) error
+
+	ListCollaborationPrivacyBudgets(*cleanrooms.ListCollaborationPrivacyBudgetsInput) (*cleanrooms.ListCollaborationPrivacyBudgetsOutput, error)
+	ListCollaborationPrivacyBudgetsWithContext(aws.Context, *cleanrooms.ListCollaborationPrivacyBudgetsInput, ...request.Option) (*cleanrooms.ListCollaborationPrivacyBudgetsOutput, error)
+	ListCollaborationPrivacyBudgetsRequest(*cleanrooms.ListCollaborationPrivacyBudgetsInput) (*request.Request, *cleanrooms.ListCollaborationPrivacyBudgetsOutput)
+
+	ListCollaborationPrivacyBudgetsPages(*cleanrooms.ListCollaborationPrivacyBudgetsInput, func(*cleanrooms.ListCollaborationPrivacyBudgetsOutput, bool) bool) error
+	ListCollaborationPrivacyBudgetsPagesWithContext(aws.Context, *cleanrooms.ListCollaborationPrivacyBudgetsInput, func(*cleanrooms.ListCollaborationPrivacyBudgetsOutput, bool) bool, ...request.Option) error
+
 	ListCollaborations(*cleanrooms.ListCollaborationsInput) (*cleanrooms.ListCollaborationsOutput, error)
 	ListCollaborationsWithContext(aws.Context, *cleanrooms.ListCollaborationsInput, ...request.Option) (*cleanrooms.ListCollaborationsOutput, error)
 	ListCollaborationsRequest(*cleanrooms.ListCollaborationsInput) (*request.Request, *cleanrooms.ListCollaborationsOutput)
 
 	ListCollaborationsPages(*cleanrooms.ListCollaborationsInput, func(*cleanrooms.ListCollaborationsOutput, bool) bool) error
 	ListCollaborationsPagesWithContext(aws.Context, *cleanrooms.ListCollaborationsInput, func(*cleanrooms.ListCollaborationsOutput, bool) bool, ...request.Option) error
+
+	ListConfiguredAudienceModelAssociations(*cleanrooms.ListConfiguredAudienceModelAssociationsInput) (*cleanrooms.ListConfiguredAudienceModelAssociationsOutput, error)
+	ListConfiguredAudienceModelAssociationsWithContext(aws.Context, *cleanrooms.ListConfiguredAudienceModelAssociationsInput, ...request.Option) (*cleanrooms.ListConfiguredAudienceModelAssociationsOutput, error)
+	ListConfiguredAudienceModelAssociationsRequest(*cleanrooms.ListConfiguredAudienceModelAssociationsInput) (*request.Request, *cleanrooms.ListConfiguredAudienceModelAssociationsOutput)
+
+	ListConfiguredAudienceModelAssociationsPages(*cleanrooms.ListConfiguredAudienceModelAssociationsInput, func(*cleanrooms.ListConfiguredAudienceModelAssociationsOutput, bool) bool) error
+	ListConfiguredAudienceModelAssociationsPagesWithContext(aws.Context, *cleanrooms.ListConfiguredAudienceModelAssociationsInput, func(*cleanrooms.ListConfiguredAudienceModelAssociationsOutput, bool) bool, ...request.Option) error
 
 	ListConfiguredTableAssociations(*cleanrooms.ListConfiguredTableAssociationsInput) (*cleanrooms.ListConfiguredTableAssociationsOutput, error)
 	ListConfiguredTableAssociationsWithContext(aws.Context, *cleanrooms.ListConfiguredTableAssociationsInput, ...request.Option) (*cleanrooms.ListConfiguredTableAssociationsOutput, error)
@@ -209,6 +269,20 @@ type CleanRoomsAPI interface {
 	ListMembershipsPages(*cleanrooms.ListMembershipsInput, func(*cleanrooms.ListMembershipsOutput, bool) bool) error
 	ListMembershipsPagesWithContext(aws.Context, *cleanrooms.ListMembershipsInput, func(*cleanrooms.ListMembershipsOutput, bool) bool, ...request.Option) error
 
+	ListPrivacyBudgetTemplates(*cleanrooms.ListPrivacyBudgetTemplatesInput) (*cleanrooms.ListPrivacyBudgetTemplatesOutput, error)
+	ListPrivacyBudgetTemplatesWithContext(aws.Context, *cleanrooms.ListPrivacyBudgetTemplatesInput, ...request.Option) (*cleanrooms.ListPrivacyBudgetTemplatesOutput, error)
+	ListPrivacyBudgetTemplatesRequest(*cleanrooms.ListPrivacyBudgetTemplatesInput) (*request.Request, *cleanrooms.ListPrivacyBudgetTemplatesOutput)
+
+	ListPrivacyBudgetTemplatesPages(*cleanrooms.ListPrivacyBudgetTemplatesInput, func(*cleanrooms.ListPrivacyBudgetTemplatesOutput, bool) bool) error
+	ListPrivacyBudgetTemplatesPagesWithContext(aws.Context, *cleanrooms.ListPrivacyBudgetTemplatesInput, func(*cleanrooms.ListPrivacyBudgetTemplatesOutput, bool) bool, ...request.Option) error
+
+	ListPrivacyBudgets(*cleanrooms.ListPrivacyBudgetsInput) (*cleanrooms.ListPrivacyBudgetsOutput, error)
+	ListPrivacyBudgetsWithContext(aws.Context, *cleanrooms.ListPrivacyBudgetsInput, ...request.Option) (*cleanrooms.ListPrivacyBudgetsOutput, error)
+	ListPrivacyBudgetsRequest(*cleanrooms.ListPrivacyBudgetsInput) (*request.Request, *cleanrooms.ListPrivacyBudgetsOutput)
+
+	ListPrivacyBudgetsPages(*cleanrooms.ListPrivacyBudgetsInput, func(*cleanrooms.ListPrivacyBudgetsOutput, bool) bool) error
+	ListPrivacyBudgetsPagesWithContext(aws.Context, *cleanrooms.ListPrivacyBudgetsInput, func(*cleanrooms.ListPrivacyBudgetsOutput, bool) bool, ...request.Option) error
+
 	ListProtectedQueries(*cleanrooms.ListProtectedQueriesInput) (*cleanrooms.ListProtectedQueriesOutput, error)
 	ListProtectedQueriesWithContext(aws.Context, *cleanrooms.ListProtectedQueriesInput, ...request.Option) (*cleanrooms.ListProtectedQueriesOutput, error)
 	ListProtectedQueriesRequest(*cleanrooms.ListProtectedQueriesInput) (*request.Request, *cleanrooms.ListProtectedQueriesOutput)
@@ -226,6 +300,10 @@ type CleanRoomsAPI interface {
 	ListTagsForResource(*cleanrooms.ListTagsForResourceInput) (*cleanrooms.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *cleanrooms.ListTagsForResourceInput, ...request.Option) (*cleanrooms.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*cleanrooms.ListTagsForResourceInput) (*request.Request, *cleanrooms.ListTagsForResourceOutput)
+
+	PreviewPrivacyImpact(*cleanrooms.PreviewPrivacyImpactInput) (*cleanrooms.PreviewPrivacyImpactOutput, error)
+	PreviewPrivacyImpactWithContext(aws.Context, *cleanrooms.PreviewPrivacyImpactInput, ...request.Option) (*cleanrooms.PreviewPrivacyImpactOutput, error)
+	PreviewPrivacyImpactRequest(*cleanrooms.PreviewPrivacyImpactInput) (*request.Request, *cleanrooms.PreviewPrivacyImpactOutput)
 
 	StartProtectedQuery(*cleanrooms.StartProtectedQueryInput) (*cleanrooms.StartProtectedQueryOutput, error)
 	StartProtectedQueryWithContext(aws.Context, *cleanrooms.StartProtectedQueryInput, ...request.Option) (*cleanrooms.StartProtectedQueryOutput, error)
@@ -247,6 +325,10 @@ type CleanRoomsAPI interface {
 	UpdateCollaborationWithContext(aws.Context, *cleanrooms.UpdateCollaborationInput, ...request.Option) (*cleanrooms.UpdateCollaborationOutput, error)
 	UpdateCollaborationRequest(*cleanrooms.UpdateCollaborationInput) (*request.Request, *cleanrooms.UpdateCollaborationOutput)
 
+	UpdateConfiguredAudienceModelAssociation(*cleanrooms.UpdateConfiguredAudienceModelAssociationInput) (*cleanrooms.UpdateConfiguredAudienceModelAssociationOutput, error)
+	UpdateConfiguredAudienceModelAssociationWithContext(aws.Context, *cleanrooms.UpdateConfiguredAudienceModelAssociationInput, ...request.Option) (*cleanrooms.UpdateConfiguredAudienceModelAssociationOutput, error)
+	UpdateConfiguredAudienceModelAssociationRequest(*cleanrooms.UpdateConfiguredAudienceModelAssociationInput) (*request.Request, *cleanrooms.UpdateConfiguredAudienceModelAssociationOutput)
+
 	UpdateConfiguredTable(*cleanrooms.UpdateConfiguredTableInput) (*cleanrooms.UpdateConfiguredTableOutput, error)
 	UpdateConfiguredTableWithContext(aws.Context, *cleanrooms.UpdateConfiguredTableInput, ...request.Option) (*cleanrooms.UpdateConfiguredTableOutput, error)
 	UpdateConfiguredTableRequest(*cleanrooms.UpdateConfiguredTableInput) (*request.Request, *cleanrooms.UpdateConfiguredTableOutput)
@@ -262,6 +344,10 @@ type CleanRoomsAPI interface {
 	UpdateMembership(*cleanrooms.UpdateMembershipInput) (*cleanrooms.UpdateMembershipOutput, error)
 	UpdateMembershipWithContext(aws.Context, *cleanrooms.UpdateMembershipInput, ...request.Option) (*cleanrooms.UpdateMembershipOutput, error)
 	UpdateMembershipRequest(*cleanrooms.UpdateMembershipInput) (*request.Request, *cleanrooms.UpdateMembershipOutput)
+
+	UpdatePrivacyBudgetTemplate(*cleanrooms.UpdatePrivacyBudgetTemplateInput) (*cleanrooms.UpdatePrivacyBudgetTemplateOutput, error)
+	UpdatePrivacyBudgetTemplateWithContext(aws.Context, *cleanrooms.UpdatePrivacyBudgetTemplateInput, ...request.Option) (*cleanrooms.UpdatePrivacyBudgetTemplateOutput, error)
+	UpdatePrivacyBudgetTemplateRequest(*cleanrooms.UpdatePrivacyBudgetTemplateInput) (*request.Request, *cleanrooms.UpdatePrivacyBudgetTemplateOutput)
 
 	UpdateProtectedQuery(*cleanrooms.UpdateProtectedQueryInput) (*cleanrooms.UpdateProtectedQueryOutput, error)
 	UpdateProtectedQueryWithContext(aws.Context, *cleanrooms.UpdateProtectedQueryInput, ...request.Option) (*cleanrooms.UpdateProtectedQueryOutput, error)

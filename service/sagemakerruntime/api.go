@@ -309,6 +309,11 @@ func (c *SageMakerRuntime) InvokeEndpointWithResponseStreamRequest(input *Invoke
 //   - For information about how to process the streaming response, see Invoke
 //     real-time endpoints (https://docs.aws.amazon.com/sagemaker/latest/dg/realtime-endpoints-test-endpoints.html).
 //
+// Before you can use this operation, your IAM permissions must allow the sagemaker:InvokeEndpoint
+// action. For more information about Amazon SageMaker actions for IAM policies,
+// see Actions, resources, and condition keys for Amazon SageMaker (https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonsagemaker.html)
+// in the IAM Service Authorization Reference.
+//
 // Amazon SageMaker strips all POST headers except those supported by the API.
 // Amazon SageMaker might add additional headers. You should not rely on the
 // behavior of headers outside those enumerated in the request syntax.
@@ -1013,6 +1018,10 @@ type InvokeEndpointInput struct {
 	// EndpointName is a required field
 	EndpointName *string `location:"uri" locationName:"EndpointName" type:"string" required:"true"`
 
+	// If the endpoint hosts one or more inference components, this parameter specifies
+	// the name of inference component to invoke.
+	InferenceComponentName *string `location:"header" locationName:"X-Amzn-SageMaker-Inference-Component" type:"string"`
+
 	// If you provide a value, it is added to the captured data when you enable
 	// data capture on the endpoint. For information about data capture, see Capture
 	// Data (https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor-data-capture.html).
@@ -1114,6 +1123,12 @@ func (s *InvokeEndpointInput) SetEnableExplanations(v string) *InvokeEndpointInp
 // SetEndpointName sets the EndpointName field's value.
 func (s *InvokeEndpointInput) SetEndpointName(v string) *InvokeEndpointInput {
 	s.EndpointName = &v
+	return s
+}
+
+// SetInferenceComponentName sets the InferenceComponentName field's value.
+func (s *InvokeEndpointInput) SetInferenceComponentName(v string) *InvokeEndpointInput {
+	s.InferenceComponentName = &v
 	return s
 }
 
@@ -1287,6 +1302,10 @@ type InvokeEndpointWithResponseStreamInput struct {
 	// EndpointName is a required field
 	EndpointName *string `location:"uri" locationName:"EndpointName" type:"string" required:"true"`
 
+	// If the endpoint hosts one or more inference components, this parameter specifies
+	// the name of inference component to invoke for a streaming response.
+	InferenceComponentName *string `location:"header" locationName:"X-Amzn-SageMaker-Inference-Component" type:"string"`
+
 	// An identifier that you assign to your request.
 	InferenceId *string `location:"header" locationName:"X-Amzn-SageMaker-Inference-Id" min:"1" type:"string"`
 
@@ -1371,6 +1390,12 @@ func (s *InvokeEndpointWithResponseStreamInput) SetCustomAttributes(v string) *I
 // SetEndpointName sets the EndpointName field's value.
 func (s *InvokeEndpointWithResponseStreamInput) SetEndpointName(v string) *InvokeEndpointWithResponseStreamInput {
 	s.EndpointName = &v
+	return s
+}
+
+// SetInferenceComponentName sets the InferenceComponentName field's value.
+func (s *InvokeEndpointWithResponseStreamInput) SetInferenceComponentName(v string) *InvokeEndpointWithResponseStreamInput {
+	s.InferenceComponentName = &v
 	return s
 }
 

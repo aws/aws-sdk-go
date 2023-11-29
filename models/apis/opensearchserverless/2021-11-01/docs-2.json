@@ -1009,6 +1009,14 @@
       "refs": {
       }
     },
+    "StandbyReplicas": {
+      "base": null,
+      "refs": {
+        "CollectionDetail$standbyReplicas": "<p>Details about an OpenSearch Serverless collection.</p>",
+        "CreateCollectionDetail$standbyReplicas": "<p>Creates details about an OpenSearch Serverless collection.</p>",
+        "CreateCollectionRequest$standbyReplicas": "<p>Indicates whether standby replicas should be used for a collection.</p>"
+      }
+    },
     "String": {
       "base": null,
       "refs": {

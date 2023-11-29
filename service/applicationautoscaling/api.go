@@ -64,8 +64,8 @@ func (c *ApplicationAutoScaling) DeleteScalingPolicyRequest(input *DeleteScaling
 // not delete the CloudWatch alarm associated with the scaling policy, even
 // if it no longer has an associated action.
 //
-// For more information, see Delete a step scaling policy (https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-step-scaling-policies.html#delete-step-scaling-policy)
-// and Delete a target tracking scaling policy (https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-target-tracking.html#delete-target-tracking-policy)
+// For more information, see Delete a step scaling policy (https://docs.aws.amazon.com/autoscaling/application/userguide/create-step-scaling-policy-cli.html#delete-step-scaling-policy)
+// and Delete a target tracking scaling policy (https://docs.aws.amazon.com/autoscaling/application/userguide/create-target-tracking-policy-cli.html#delete-target-tracking-policy)
 // in the Application Auto Scaling User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1912,6 +1912,9 @@ type DeleteScalingPolicyInput struct {
 	//    * SageMaker Serverless endpoint - The resource type is variant and the
 	//    unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
 	//
+	//    * SageMaker inference component - The resource type is inference-component
+	//    and the unique identifier is the resource ID. Example: inference-component/my-inference-component.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -1981,6 +1984,9 @@ type DeleteScalingPolicyInput struct {
 	//
 	//    * sagemaker:variant:DesiredProvisionedConcurrency - The provisioned concurrency
 	//    for a SageMaker Serverless endpoint.
+	//
+	//    * sagemaker:inference-component:DesiredCopyCount - The number of copies
+	//    across an endpoint for a SageMaker inference component.
 	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
@@ -2146,6 +2152,9 @@ type DeleteScheduledActionInput struct {
 	//    * SageMaker Serverless endpoint - The resource type is variant and the
 	//    unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
 	//
+	//    * SageMaker inference component - The resource type is inference-component
+	//    and the unique identifier is the resource ID. Example: inference-component/my-inference-component.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -2215,6 +2224,9 @@ type DeleteScheduledActionInput struct {
 	//
 	//    * sagemaker:variant:DesiredProvisionedConcurrency - The provisioned concurrency
 	//    for a SageMaker Serverless endpoint.
+	//
+	//    * sagemaker:inference-component:DesiredCopyCount - The number of copies
+	//    across an endpoint for a SageMaker inference component.
 	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
@@ -2385,6 +2397,9 @@ type DeregisterScalableTargetInput struct {
 	//    * SageMaker Serverless endpoint - The resource type is variant and the
 	//    unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
 	//
+	//    * SageMaker inference component - The resource type is inference-component
+	//    and the unique identifier is the resource ID. Example: inference-component/my-inference-component.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -2454,6 +2469,9 @@ type DeregisterScalableTargetInput struct {
 	//
 	//    * sagemaker:variant:DesiredProvisionedConcurrency - The provisioned concurrency
 	//    for a SageMaker Serverless endpoint.
+	//
+	//    * sagemaker:inference-component:DesiredCopyCount - The number of copies
+	//    across an endpoint for a SageMaker inference component.
 	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
@@ -2618,6 +2636,9 @@ type DescribeScalableTargetsInput struct {
 	//
 	//    * SageMaker Serverless endpoint - The resource type is variant and the
 	//    unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//
+	//    * SageMaker inference component - The resource type is inference-component
+	//    and the unique identifier is the resource ID. Example: inference-component/my-inference-component.
 	ResourceIds []*string `type:"list"`
 
 	// The scalable dimension associated with the scalable target. This string consists
@@ -2687,6 +2708,9 @@ type DescribeScalableTargetsInput struct {
 	//
 	//    * sagemaker:variant:DesiredProvisionedConcurrency - The provisioned concurrency
 	//    for a SageMaker Serverless endpoint.
+	//
+	//    * sagemaker:inference-component:DesiredCopyCount - The number of copies
+	//    across an endpoint for a SageMaker inference component.
 	ScalableDimension *string `type:"string" enum:"ScalableDimension"`
 
 	// The namespace of the Amazon Web Services service that provides the resource.
@@ -2878,6 +2902,9 @@ type DescribeScalingActivitiesInput struct {
 	//
 	//    * SageMaker Serverless endpoint - The resource type is variant and the
 	//    unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//
+	//    * SageMaker inference component - The resource type is inference-component
+	//    and the unique identifier is the resource ID. Example: inference-component/my-inference-component.
 	ResourceId *string `min:"1" type:"string"`
 
 	// The scalable dimension. This string consists of the service namespace, resource
@@ -2947,6 +2974,9 @@ type DescribeScalingActivitiesInput struct {
 	//
 	//    * sagemaker:variant:DesiredProvisionedConcurrency - The provisioned concurrency
 	//    for a SageMaker Serverless endpoint.
+	//
+	//    * sagemaker:inference-component:DesiredCopyCount - The number of copies
+	//    across an endpoint for a SageMaker inference component.
 	ScalableDimension *string `type:"string" enum:"ScalableDimension"`
 
 	// The namespace of the Amazon Web Services service that provides the resource.
@@ -3143,6 +3173,9 @@ type DescribeScalingPoliciesInput struct {
 	//
 	//    * SageMaker Serverless endpoint - The resource type is variant and the
 	//    unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//
+	//    * SageMaker inference component - The resource type is inference-component
+	//    and the unique identifier is the resource ID. Example: inference-component/my-inference-component.
 	ResourceId *string `min:"1" type:"string"`
 
 	// The scalable dimension. This string consists of the service namespace, resource
@@ -3212,6 +3245,9 @@ type DescribeScalingPoliciesInput struct {
 	//
 	//    * sagemaker:variant:DesiredProvisionedConcurrency - The provisioned concurrency
 	//    for a SageMaker Serverless endpoint.
+	//
+	//    * sagemaker:inference-component:DesiredCopyCount - The number of copies
+	//    across an endpoint for a SageMaker inference component.
 	ScalableDimension *string `type:"string" enum:"ScalableDimension"`
 
 	// The namespace of the Amazon Web Services service that provides the resource.
@@ -3405,6 +3441,9 @@ type DescribeScheduledActionsInput struct {
 	//
 	//    * SageMaker Serverless endpoint - The resource type is variant and the
 	//    unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//
+	//    * SageMaker inference component - The resource type is inference-component
+	//    and the unique identifier is the resource ID. Example: inference-component/my-inference-component.
 	ResourceId *string `min:"1" type:"string"`
 
 	// The scalable dimension. This string consists of the service namespace, resource
@@ -3474,6 +3513,9 @@ type DescribeScheduledActionsInput struct {
 	//
 	//    * sagemaker:variant:DesiredProvisionedConcurrency - The provisioned concurrency
 	//    for a SageMaker Serverless endpoint.
+	//
+	//    * sagemaker:inference-component:DesiredCopyCount - The number of copies
+	//    across an endpoint for a SageMaker inference component.
 	ScalableDimension *string `type:"string" enum:"ScalableDimension"`
 
 	// The names of the scheduled actions to describe.
@@ -4154,7 +4196,7 @@ func (s *ObjectNotFoundException) RequestID() string {
 // Only the Amazon Web Services that you're using send metrics to Amazon CloudWatch.
 // To determine whether a desired metric already exists by looking up its namespace
 // and dimension using the CloudWatch metrics dashboard in the console, follow
-// the procedure in Building dashboards with CloudWatch (https://docs.aws.amazon.com/autoscaling/application/userguide/monitoring-cloudwatch.html)
+// the procedure in Monitor your resources using CloudWatch (https://docs.aws.amazon.com/autoscaling/application/userguide/monitoring-cloudwatch.html)
 // in the Application Auto Scaling User Guide.
 type PredefinedMetricSpecification struct {
 	_ struct{} `type:"structure"`
@@ -4255,7 +4297,7 @@ type PutScalingPolicyInput struct {
 	//
 	// The following policy types are supported:
 	//
-	// TargetTrackingScaling—Not supported for Amazon EMR
+	// TargetTrackingScaling—Not supported for Amazon EMR.
 	//
 	// StepScaling—Not supported for DynamoDB, Amazon Comprehend, Lambda, Amazon
 	// Keyspaces, Amazon MSK, Amazon ElastiCache, or Neptune.
@@ -4322,6 +4364,9 @@ type PutScalingPolicyInput struct {
 	//
 	//    * SageMaker Serverless endpoint - The resource type is variant and the
 	//    unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//
+	//    * SageMaker inference component - The resource type is inference-component
+	//    and the unique identifier is the resource ID. Example: inference-component/my-inference-component.
 	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
@@ -4392,6 +4437,9 @@ type PutScalingPolicyInput struct {
 	//
 	//    * sagemaker:variant:DesiredProvisionedConcurrency - The provisioned concurrency
 	//    for a SageMaker Serverless endpoint.
+	//
+	//    * sagemaker:inference-component:DesiredCopyCount - The number of copies
+	//    across an endpoint for a SageMaker inference component.
 	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
@@ -4621,6 +4669,9 @@ type PutScheduledActionInput struct {
 	//    * SageMaker Serverless endpoint - The resource type is variant and the
 	//    unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
 	//
+	//    * SageMaker inference component - The resource type is inference-component
+	//    and the unique identifier is the resource ID. Example: inference-component/my-inference-component.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -4690,6 +4741,9 @@ type PutScheduledActionInput struct {
 	//
 	//    * sagemaker:variant:DesiredProvisionedConcurrency - The provisioned concurrency
 	//    for a SageMaker Serverless endpoint.
+	//
+	//    * sagemaker:inference-component:DesiredCopyCount - The number of copies
+	//    across an endpoint for a SageMaker inference component.
 	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
@@ -4990,6 +5044,9 @@ type RegisterScalableTargetInput struct {
 	//    * SageMaker Serverless endpoint - The resource type is variant and the
 	//    unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
 	//
+	//    * SageMaker inference component - The resource type is inference-component
+	//    and the unique identifier is the resource ID. Example: inference-component/my-inference-component.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -5068,6 +5125,9 @@ type RegisterScalableTargetInput struct {
 	//
 	//    * sagemaker:variant:DesiredProvisionedConcurrency - The provisioned concurrency
 	//    for a SageMaker Serverless endpoint.
+	//
+	//    * sagemaker:inference-component:DesiredCopyCount - The number of copies
+	//    across an endpoint for a SageMaker inference component.
 	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
@@ -5380,6 +5440,9 @@ type ScalableTarget struct {
 	//    * SageMaker Serverless endpoint - The resource type is variant and the
 	//    unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
 	//
+	//    * SageMaker inference component - The resource type is inference-component
+	//    and the unique identifier is the resource ID. Example: inference-component/my-inference-component.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -5455,6 +5518,9 @@ type ScalableTarget struct {
 	//
 	//    * sagemaker:variant:DesiredProvisionedConcurrency - The provisioned concurrency
 	//    for a SageMaker Serverless endpoint.
+	//
+	//    * sagemaker:inference-component:DesiredCopyCount - The number of copies
+	//    across an endpoint for a SageMaker inference component.
 	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
@@ -5686,6 +5752,9 @@ type ScalingActivity struct {
 	//    * SageMaker Serverless endpoint - The resource type is variant and the
 	//    unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
 	//
+	//    * SageMaker inference component - The resource type is inference-component
+	//    and the unique identifier is the resource ID. Example: inference-component/my-inference-component.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -5755,6 +5824,9 @@ type ScalingActivity struct {
 	//
 	//    * sagemaker:variant:DesiredProvisionedConcurrency - The provisioned concurrency
 	//    for a SageMaker Serverless endpoint.
+	//
+	//    * sagemaker:inference-component:DesiredCopyCount - The number of copies
+	//    across an endpoint for a SageMaker inference component.
 	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
@@ -5966,6 +6038,9 @@ type ScalingPolicy struct {
 	//    * SageMaker Serverless endpoint - The resource type is variant and the
 	//    unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
 	//
+	//    * SageMaker inference component - The resource type is inference-component
+	//    and the unique identifier is the resource ID. Example: inference-component/my-inference-component.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -6035,6 +6110,9 @@ type ScalingPolicy struct {
 	//
 	//    * sagemaker:variant:DesiredProvisionedConcurrency - The provisioned concurrency
 	//    for a SageMaker Serverless endpoint.
+	//
+	//    * sagemaker:inference-component:DesiredCopyCount - The number of copies
+	//    across an endpoint for a SageMaker inference component.
 	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
@@ -6200,6 +6278,9 @@ type ScheduledAction struct {
 	//    * SageMaker Serverless endpoint - The resource type is variant and the
 	//    unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
 	//
+	//    * SageMaker inference component - The resource type is inference-component
+	//    and the unique identifier is the resource ID. Example: inference-component/my-inference-component.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -6269,6 +6350,9 @@ type ScheduledAction struct {
 	//
 	//    * sagemaker:variant:DesiredProvisionedConcurrency - The provisioned concurrency
 	//    for a SageMaker Serverless endpoint.
+	//
+	//    * sagemaker:inference-component:DesiredCopyCount - The number of copies
+	//    across an endpoint for a SageMaker inference component.
 	ScalableDimension *string `type:"string" enum:"ScalableDimension"`
 
 	// The new minimum and maximum capacity. You can set both values or just one.
@@ -6536,7 +6620,7 @@ type StepScalingPolicyConfiguration struct {
 
 	// The amount of time, in seconds, to wait for a previous scaling activity to
 	// take effect. If not specified, the default value is 300. For more information,
-	// see Cooldown period (https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-step-scaling-policies.html#step-scaling-cooldown)
+	// see Cooldown period (https://docs.aws.amazon.com/autoscaling/application/userguide/step-scaling-policy-overview.html#step-scaling-cooldown)
 	// in the Application Auto Scaling User Guide.
 	Cooldown *int64 `type:"integer"`
 
@@ -7182,13 +7266,13 @@ type TargetTrackingScalingPolicyConfiguration struct {
 
 	// The amount of time, in seconds, after a scale-in activity completes before
 	// another scale-in activity can start. For more information and for default
-	// values, see Define cooldown periods (https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-target-tracking.html#target-tracking-cooldown)
+	// values, see Define cooldown periods (https://docs.aws.amazon.com/autoscaling/application/userguide/target-tracking-scaling-policy-overview.html#target-tracking-cooldown)
 	// in the Application Auto Scaling User Guide.
 	ScaleInCooldown *int64 `type:"integer"`
 
 	// The amount of time, in seconds, to wait for a previous scale-out activity
 	// to take effect. For more information and for default values, see Define cooldown
-	// periods (https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-target-tracking.html#target-tracking-cooldown)
+	// periods (https://docs.aws.amazon.com/autoscaling/application/userguide/target-tracking-scaling-policy-overview.html#target-tracking-cooldown)
 	// in the Application Auto Scaling User Guide.
 	ScaleOutCooldown *int64 `type:"integer"`
 
@@ -7644,6 +7728,9 @@ const (
 
 	// MetricTypeElastiCacheDatabaseCapacityUsageCountedForEvictPercentage is a MetricType enum value
 	MetricTypeElastiCacheDatabaseCapacityUsageCountedForEvictPercentage = "ElastiCacheDatabaseCapacityUsageCountedForEvictPercentage"
+
+	// MetricTypeSageMakerInferenceComponentInvocationsPerCopy is a MetricType enum value
+	MetricTypeSageMakerInferenceComponentInvocationsPerCopy = "SageMakerInferenceComponentInvocationsPerCopy"
 )
 
 // MetricType_Values returns all elements of the MetricType enum
@@ -7672,6 +7759,7 @@ func MetricType_Values() []string {
 		MetricTypeNeptuneReaderAverageCpuutilization,
 		MetricTypeSageMakerVariantProvisionedConcurrencyUtilization,
 		MetricTypeElastiCacheDatabaseCapacityUsageCountedForEvictPercentage,
+		MetricTypeSageMakerInferenceComponentInvocationsPerCopy,
 	}
 }
 
@@ -7754,6 +7842,9 @@ const (
 
 	// ScalableDimensionSagemakerVariantDesiredProvisionedConcurrency is a ScalableDimension enum value
 	ScalableDimensionSagemakerVariantDesiredProvisionedConcurrency = "sagemaker:variant:DesiredProvisionedConcurrency"
+
+	// ScalableDimensionSagemakerInferenceComponentDesiredCopyCount is a ScalableDimension enum value
+	ScalableDimensionSagemakerInferenceComponentDesiredCopyCount = "sagemaker:inference-component:DesiredCopyCount"
 )
 
 // ScalableDimension_Values returns all elements of the ScalableDimension enum
@@ -7780,6 +7871,7 @@ func ScalableDimension_Values() []string {
 		ScalableDimensionElasticacheReplicationGroupReplicas,
 		ScalableDimensionNeptuneClusterReadReplicaCount,
 		ScalableDimensionSagemakerVariantDesiredProvisionedConcurrency,
+		ScalableDimensionSagemakerInferenceComponentDesiredCopyCount,
 	}
 }
 
