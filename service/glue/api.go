@@ -36256,6 +36256,65 @@ func (s *DataLakePrincipal) SetDataLakePrincipalIdentifier(v string) *DataLakePr
 	return s
 }
 
+// Describes the result of the evaluation of a data quality analyzer.
+type DataQualityAnalyzerResult struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the data quality analyzer.
+	Description *string `type:"string"`
+
+	// A map of metrics associated with the evaluation of the analyzer.
+	EvaluatedMetrics map[string]*float64 `type:"map"`
+
+	// An evaluation message.
+	EvaluationMessage *string `type:"string"`
+
+	// The name of the data quality analyzer.
+	Name *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataQualityAnalyzerResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataQualityAnalyzerResult) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *DataQualityAnalyzerResult) SetDescription(v string) *DataQualityAnalyzerResult {
+	s.Description = &v
+	return s
+}
+
+// SetEvaluatedMetrics sets the EvaluatedMetrics field's value.
+func (s *DataQualityAnalyzerResult) SetEvaluatedMetrics(v map[string]*float64) *DataQualityAnalyzerResult {
+	s.EvaluatedMetrics = v
+	return s
+}
+
+// SetEvaluationMessage sets the EvaluationMessage field's value.
+func (s *DataQualityAnalyzerResult) SetEvaluationMessage(v string) *DataQualityAnalyzerResult {
+	s.EvaluationMessage = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DataQualityAnalyzerResult) SetName(v string) *DataQualityAnalyzerResult {
+	s.Name = &v
+	return s
+}
+
 // Additional run options you can specify for an evaluation run.
 type DataQualityEvaluationRunAdditionalRunOptions struct {
 	_ struct{} `type:"structure"`
@@ -36297,9 +36356,118 @@ func (s *DataQualityEvaluationRunAdditionalRunOptions) SetResultsS3Prefix(v stri
 	return s
 }
 
+// Describes the data quality metric value according to the analysis of historical
+// data.
+type DataQualityMetricValues struct {
+	_ struct{} `type:"structure"`
+
+	// The actual value of the data quality metric.
+	ActualValue *float64 `type:"double"`
+
+	// The expected value of the data quality metric according to the analysis of
+	// historical data.
+	ExpectedValue *float64 `type:"double"`
+
+	// The lower limit of the data quality metric value according to the analysis
+	// of historical data.
+	LowerLimit *float64 `type:"double"`
+
+	// The upper limit of the data quality metric value according to the analysis
+	// of historical data.
+	UpperLimit *float64 `type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataQualityMetricValues) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataQualityMetricValues) GoString() string {
+	return s.String()
+}
+
+// SetActualValue sets the ActualValue field's value.
+func (s *DataQualityMetricValues) SetActualValue(v float64) *DataQualityMetricValues {
+	s.ActualValue = &v
+	return s
+}
+
+// SetExpectedValue sets the ExpectedValue field's value.
+func (s *DataQualityMetricValues) SetExpectedValue(v float64) *DataQualityMetricValues {
+	s.ExpectedValue = &v
+	return s
+}
+
+// SetLowerLimit sets the LowerLimit field's value.
+func (s *DataQualityMetricValues) SetLowerLimit(v float64) *DataQualityMetricValues {
+	s.LowerLimit = &v
+	return s
+}
+
+// SetUpperLimit sets the UpperLimit field's value.
+func (s *DataQualityMetricValues) SetUpperLimit(v float64) *DataQualityMetricValues {
+	s.UpperLimit = &v
+	return s
+}
+
+// Describes the observation generated after evaluating the rules and analyzers.
+type DataQualityObservation struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the data quality observation.
+	Description *string `type:"string"`
+
+	// An object of type MetricBasedObservation representing the observation that
+	// is based on evaluated data quality metrics.
+	MetricBasedObservation *MetricBasedObservation `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataQualityObservation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataQualityObservation) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *DataQualityObservation) SetDescription(v string) *DataQualityObservation {
+	s.Description = &v
+	return s
+}
+
+// SetMetricBasedObservation sets the MetricBasedObservation field's value.
+func (s *DataQualityObservation) SetMetricBasedObservation(v *MetricBasedObservation) *DataQualityObservation {
+	s.MetricBasedObservation = v
+	return s
+}
+
 // Describes a data quality result.
 type DataQualityResult struct {
 	_ struct{} `type:"structure"`
+
+	// A list of DataQualityAnalyzerResult objects representing the results for
+	// each analyzer.
+	AnalyzerResults []*DataQualityAnalyzerResult `type:"list"`
 
 	// The date and time when this data quality run completed.
 	CompletedOn *time.Time `type:"timestamp"`
@@ -36318,12 +36486,16 @@ type DataQualityResult struct {
 	// The job run ID associated with the data quality result, if any.
 	JobRunId *string `min:"1" type:"string"`
 
+	// A list of DataQualityObservation objects representing the observations generated
+	// after evaluating the rules and analyzers.
+	Observations []*DataQualityObservation `type:"list"`
+
 	// A unique result ID for the data quality result.
 	ResultId *string `min:"1" type:"string"`
 
 	// A list of DataQualityRuleResult objects representing the results for each
 	// rule.
-	RuleResults []*DataQualityRuleResult `min:"1" type:"list"`
+	RuleResults []*DataQualityRuleResult `type:"list"`
 
 	// The unique run ID for the ruleset evaluation for this data quality result.
 	RulesetEvaluationRunId *string `min:"1" type:"string"`
@@ -36357,6 +36529,12 @@ func (s DataQualityResult) GoString() string {
 	return s.String()
 }
 
+// SetAnalyzerResults sets the AnalyzerResults field's value.
+func (s *DataQualityResult) SetAnalyzerResults(v []*DataQualityAnalyzerResult) *DataQualityResult {
+	s.AnalyzerResults = v
+	return s
+}
+
 // SetCompletedOn sets the CompletedOn field's value.
 func (s *DataQualityResult) SetCompletedOn(v time.Time) *DataQualityResult {
 	s.CompletedOn = &v
@@ -36384,6 +36562,12 @@ func (s *DataQualityResult) SetJobName(v string) *DataQualityResult {
 // SetJobRunId sets the JobRunId field's value.
 func (s *DataQualityResult) SetJobRunId(v string) *DataQualityResult {
 	s.JobRunId = &v
+	return s
+}
+
+// SetObservations sets the Observations field's value.
+func (s *DataQualityResult) SetObservations(v []*DataQualityObservation) *DataQualityResult {
+	s.Observations = v
 	return s
 }
 
@@ -45137,6 +45321,10 @@ func (s *GetDataQualityResultInput) SetResultId(v string) *GetDataQualityResultI
 type GetDataQualityResultOutput struct {
 	_ struct{} `type:"structure"`
 
+	// A list of DataQualityAnalyzerResult objects representing the results for
+	// each analyzer.
+	AnalyzerResults []*DataQualityAnalyzerResult `type:"list"`
+
 	// The date and time when the run for this data quality result was completed.
 	CompletedOn *time.Time `type:"timestamp"`
 
@@ -45154,12 +45342,16 @@ type GetDataQualityResultOutput struct {
 	// The job run ID associated with the data quality result, if any.
 	JobRunId *string `min:"1" type:"string"`
 
+	// A list of DataQualityObservation objects representing the observations generated
+	// after evaluating the rules and analyzers.
+	Observations []*DataQualityObservation `type:"list"`
+
 	// A unique result ID for the data quality result.
 	ResultId *string `min:"1" type:"string"`
 
 	// A list of DataQualityRuleResult objects representing the results for each
 	// rule.
-	RuleResults []*DataQualityRuleResult `min:"1" type:"list"`
+	RuleResults []*DataQualityRuleResult `type:"list"`
 
 	// The unique run ID associated with the ruleset evaluation.
 	RulesetEvaluationRunId *string `min:"1" type:"string"`
@@ -45193,6 +45385,12 @@ func (s GetDataQualityResultOutput) GoString() string {
 	return s.String()
 }
 
+// SetAnalyzerResults sets the AnalyzerResults field's value.
+func (s *GetDataQualityResultOutput) SetAnalyzerResults(v []*DataQualityAnalyzerResult) *GetDataQualityResultOutput {
+	s.AnalyzerResults = v
+	return s
+}
+
 // SetCompletedOn sets the CompletedOn field's value.
 func (s *GetDataQualityResultOutput) SetCompletedOn(v time.Time) *GetDataQualityResultOutput {
 	s.CompletedOn = &v
@@ -45220,6 +45418,12 @@ func (s *GetDataQualityResultOutput) SetJobName(v string) *GetDataQualityResultO
 // SetJobRunId sets the JobRunId field's value.
 func (s *GetDataQualityResultOutput) SetJobRunId(v string) *GetDataQualityResultOutput {
 	s.JobRunId = &v
+	return s
+}
+
+// SetObservations sets the Observations field's value.
+func (s *GetDataQualityResultOutput) SetObservations(v []*DataQualityObservation) *GetDataQualityResultOutput {
+	s.Observations = v
 	return s
 }
 
@@ -59074,6 +59278,59 @@ func (s *MetadataKeyValuePair) SetMetadataKey(v string) *MetadataKeyValuePair {
 // SetMetadataValue sets the MetadataValue field's value.
 func (s *MetadataKeyValuePair) SetMetadataValue(v string) *MetadataKeyValuePair {
 	s.MetadataValue = &v
+	return s
+}
+
+// Describes the metric based observation generated based on evaluated data
+// quality metrics.
+type MetricBasedObservation struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the data quality metric used for generating the observation.
+	MetricName *string `min:"1" type:"string"`
+
+	// An object of type DataQualityMetricValues representing the analysis of the
+	// data quality metric value.
+	MetricValues *DataQualityMetricValues `type:"structure"`
+
+	// A list of new data quality rules generated as part of the observation based
+	// on the data quality metric value.
+	NewRules []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricBasedObservation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricBasedObservation) GoString() string {
+	return s.String()
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *MetricBasedObservation) SetMetricName(v string) *MetricBasedObservation {
+	s.MetricName = &v
+	return s
+}
+
+// SetMetricValues sets the MetricValues field's value.
+func (s *MetricBasedObservation) SetMetricValues(v *DataQualityMetricValues) *MetricBasedObservation {
+	s.MetricValues = v
+	return s
+}
+
+// SetNewRules sets the NewRules field's value.
+func (s *MetricBasedObservation) SetNewRules(v []*string) *MetricBasedObservation {
+	s.NewRules = v
 	return s
 }
 

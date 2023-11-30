@@ -30,6 +30,43 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "CreatePracticeRunConfiguration":{
+      "name":"CreatePracticeRunConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/configuration",
+        "responseCode":201
+      },
+      "input":{"shape":"CreatePracticeRunConfigurationRequest"},
+      "output":{"shape":"CreatePracticeRunConfigurationResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "DeletePracticeRunConfiguration":{
+      "name":"DeletePracticeRunConfiguration",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/configuration/{resourceIdentifier}",
+        "responseCode":200
+      },
+      "input":{"shape":"DeletePracticeRunConfigurationRequest"},
+      "output":{"shape":"DeletePracticeRunConfigurationResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"}
+      ],
+      "idempotent":true
+    },
     "GetManagedResource":{
       "name":"GetManagedResource",
       "http":{
@@ -42,6 +79,22 @@
       "errors":[
         {"shape":"InternalServerException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "ListAutoshifts":{
+      "name":"ListAutoshifts",
+      "http":{
+        "method":"GET",
+        "requestUri":"/autoshifts",
+        "responseCode":200
+      },
+      "input":{"shape":"ListAutoshiftsRequest"},
+      "output":{"shape":"ListAutoshiftsResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"}
@@ -97,6 +150,43 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "UpdatePracticeRunConfiguration":{
+      "name":"UpdatePracticeRunConfiguration",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/configuration/{resourceIdentifier}",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdatePracticeRunConfigurationRequest"},
+      "output":{"shape":"UpdatePracticeRunConfigurationResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "UpdateZonalAutoshiftConfiguration":{
+      "name":"UpdateZonalAutoshiftConfiguration",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/managedresources/{resourceIdentifier}",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateZonalAutoshiftConfigurationRequest"},
+      "output":{"shape":"UpdateZonalAutoshiftConfigurationResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"}
+      ],
+      "idempotent":true
+    },
     "UpdateZonalShift":{
       "name":"UpdateZonalShift",
       "http":{
@@ -140,6 +230,56 @@
       "key":{"shape":"AvailabilityZone"},
       "value":{"shape":"Weight"}
     },
+    "AutoshiftAppliedStatus":{
+      "type":"string",
+      "enum":[
+        "APPLIED",
+        "NOT_APPLIED"
+      ]
+    },
+    "AutoshiftExecutionStatus":{
+      "type":"string",
+      "enum":[
+        "ACTIVE",
+        "COMPLETED"
+      ]
+    },
+    "AutoshiftInResource":{
+      "type":"structure",
+      "required":[
+        "appliedStatus",
+        "awayFrom",
+        "startTime"
+      ],
+      "members":{
+        "appliedStatus":{"shape":"AutoshiftAppliedStatus"},
+        "awayFrom":{"shape":"AvailabilityZone"},
+        "startTime":{"shape":"StartTime"}
+      }
+    },
+    "AutoshiftSummaries":{
+      "type":"list",
+      "member":{"shape":"AutoshiftSummary"}
+    },
+    "AutoshiftSummary":{
+      "type":"structure",
+      "required":[
+        "awayFrom",
+        "endTime",
+        "startTime",
+        "status"
+      ],
+      "members":{
+        "awayFrom":{"shape":"AvailabilityZone"},
+        "endTime":{"shape":"ExpiryTime"},
+        "startTime":{"shape":"StartTime"},
+        "status":{"shape":"AutoshiftExecutionStatus"}
+      }
+    },
+    "AutoshiftsInResource":{
+      "type":"list",
+      "member":{"shape":"AutoshiftInResource"}
+    },
     "AvailabilityZone":{
       "type":"string",
       "max":20,
@@ -148,6 +288,30 @@
     "AvailabilityZones":{
       "type":"list",
       "member":{"shape":"AvailabilityZone"}
+    },
+    "BlockedDate":{
+      "type":"string",
+      "max":10,
+      "min":10,
+      "pattern":"^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "BlockedDates":{
+      "type":"list",
+      "member":{"shape":"BlockedDate"},
+      "max":15,
+      "min":0
+    },
+    "BlockedWindow":{
+      "type":"string",
+      "max":19,
+      "min":19,
+      "pattern":"^(Mon|Tue|Wed|Thu|Fri|Sat|Sun):[0-9]{2}:[0-9]{2}-(Mon|Tue|Wed|Thu|Fri|Sat|Sun):[0-9]{2}:[0-9]{2}$"
+    },
+    "BlockedWindows":{
+      "type":"list",
+      "member":{"shape":"BlockedWindow"},
+      "max":15,
+      "min":0
     },
     "CancelZonalShiftRequest":{
       "type":"structure",
@@ -182,8 +346,85 @@
       "enum":[
         "ZonalShiftAlreadyExists",
         "ZonalShiftStatusNotActive",
-        "SimultaneousZonalShiftsConflict"
+        "SimultaneousZonalShiftsConflict",
+        "PracticeConfigurationAlreadyExists",
+        "AutoShiftEnabled",
+        "PracticeConfigurationDoesNotExist"
       ]
+    },
+    "ControlCondition":{
+      "type":"structure",
+      "required":[
+        "alarmIdentifier",
+        "type"
+      ],
+      "members":{
+        "alarmIdentifier":{"shape":"ResourceArn"},
+        "type":{"shape":"ControlConditionType"}
+      }
+    },
+    "ControlConditionType":{
+      "type":"string",
+      "enum":["CLOUDWATCH"]
+    },
+    "ControlConditions":{
+      "type":"list",
+      "member":{"shape":"ControlCondition"},
+      "max":1,
+      "min":1
+    },
+    "CreatePracticeRunConfigurationRequest":{
+      "type":"structure",
+      "required":[
+        "outcomeAlarms",
+        "resourceIdentifier"
+      ],
+      "members":{
+        "blockedDates":{"shape":"BlockedDates"},
+        "blockedWindows":{"shape":"BlockedWindows"},
+        "blockingAlarms":{"shape":"ControlConditions"},
+        "outcomeAlarms":{"shape":"ControlConditions"},
+        "resourceIdentifier":{"shape":"ResourceIdentifier"}
+      }
+    },
+    "CreatePracticeRunConfigurationResponse":{
+      "type":"structure",
+      "required":[
+        "arn",
+        "name",
+        "practiceRunConfiguration",
+        "zonalAutoshiftStatus"
+      ],
+      "members":{
+        "arn":{"shape":"ResourceArn"},
+        "name":{"shape":"ResourceName"},
+        "practiceRunConfiguration":{"shape":"PracticeRunConfiguration"},
+        "zonalAutoshiftStatus":{"shape":"ZonalAutoshiftStatus"}
+      }
+    },
+    "DeletePracticeRunConfigurationRequest":{
+      "type":"structure",
+      "required":["resourceIdentifier"],
+      "members":{
+        "resourceIdentifier":{
+          "shape":"ResourceIdentifier",
+          "location":"uri",
+          "locationName":"resourceIdentifier"
+        }
+      }
+    },
+    "DeletePracticeRunConfigurationResponse":{
+      "type":"structure",
+      "required":[
+        "arn",
+        "name",
+        "zonalAutoshiftStatus"
+      ],
+      "members":{
+        "arn":{"shape":"ResourceArn"},
+        "name":{"shape":"ResourceName"},
+        "zonalAutoshiftStatus":{"shape":"ZonalAutoshiftStatus"}
+      }
     },
     "ExpiresIn":{
       "type":"string",
@@ -212,7 +453,10 @@
       "members":{
         "appliedWeights":{"shape":"AppliedWeights"},
         "arn":{"shape":"ResourceArn"},
+        "autoshifts":{"shape":"AutoshiftsInResource"},
         "name":{"shape":"ResourceName"},
+        "practiceRunConfiguration":{"shape":"PracticeRunConfiguration"},
+        "zonalAutoshiftStatus":{"shape":"ZonalAutoshiftStatus"},
         "zonalShifts":{"shape":"ZonalShiftsInResource"}
       }
     },
@@ -224,6 +468,33 @@
       "error":{"httpStatusCode":500},
       "exception":true,
       "fault":true
+    },
+    "ListAutoshiftsRequest":{
+      "type":"structure",
+      "members":{
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "status":{
+          "shape":"AutoshiftExecutionStatus",
+          "location":"querystring",
+          "locationName":"status"
+        }
+      }
+    },
+    "ListAutoshiftsResponse":{
+      "type":"structure",
+      "members":{
+        "items":{"shape":"AutoshiftSummaries"},
+        "nextToken":{"shape":"String"}
+      }
     },
     "ListManagedResourcesRequest":{
       "type":"structure",
@@ -261,6 +532,11 @@
           "location":"querystring",
           "locationName":"nextToken"
         },
+        "resourceIdentifier":{
+          "shape":"ResourceIdentifier",
+          "location":"querystring",
+          "locationName":"resourceIdentifier"
+        },
         "status":{
           "shape":"ZonalShiftStatus",
           "location":"querystring",
@@ -283,9 +559,14 @@
       "type":"structure",
       "required":["availabilityZones"],
       "members":{
+        "appliedWeights":{"shape":"AppliedWeights"},
         "arn":{"shape":"ResourceArn"},
+        "autoshifts":{"shape":"AutoshiftsInResource"},
         "availabilityZones":{"shape":"AvailabilityZones"},
-        "name":{"shape":"ResourceName"}
+        "name":{"shape":"ResourceName"},
+        "practiceRunStatus":{"shape":"ZonalAutoshiftStatus"},
+        "zonalAutoshiftStatus":{"shape":"ZonalAutoshiftStatus"},
+        "zonalShifts":{"shape":"ZonalShiftsInResource"}
       }
     },
     "MaxResults":{
@@ -293,6 +574,25 @@
       "box":true,
       "max":100,
       "min":1
+    },
+    "PracticeRunConfiguration":{
+      "type":"structure",
+      "required":["outcomeAlarms"],
+      "members":{
+        "blockedDates":{"shape":"BlockedDates"},
+        "blockedWindows":{"shape":"BlockedWindows"},
+        "blockingAlarms":{"shape":"ControlConditions"},
+        "outcomeAlarms":{"shape":"ControlConditions"}
+      }
+    },
+    "PracticeRunOutcome":{
+      "type":"string",
+      "enum":[
+        "FAILED",
+        "INTERRUPTED",
+        "PENDING",
+        "SUCCEEDED"
+      ]
     },
     "ResourceArn":{
       "type":"string",
@@ -350,6 +650,62 @@
       },
       "exception":true
     },
+    "UpdatePracticeRunConfigurationRequest":{
+      "type":"structure",
+      "required":["resourceIdentifier"],
+      "members":{
+        "blockedDates":{"shape":"BlockedDates"},
+        "blockedWindows":{"shape":"BlockedWindows"},
+        "blockingAlarms":{"shape":"ControlConditions"},
+        "outcomeAlarms":{"shape":"ControlConditions"},
+        "resourceIdentifier":{
+          "shape":"ResourceIdentifier",
+          "location":"uri",
+          "locationName":"resourceIdentifier"
+        }
+      }
+    },
+    "UpdatePracticeRunConfigurationResponse":{
+      "type":"structure",
+      "required":[
+        "arn",
+        "name",
+        "practiceRunConfiguration",
+        "zonalAutoshiftStatus"
+      ],
+      "members":{
+        "arn":{"shape":"ResourceArn"},
+        "name":{"shape":"ResourceName"},
+        "practiceRunConfiguration":{"shape":"PracticeRunConfiguration"},
+        "zonalAutoshiftStatus":{"shape":"ZonalAutoshiftStatus"}
+      }
+    },
+    "UpdateZonalAutoshiftConfigurationRequest":{
+      "type":"structure",
+      "required":[
+        "resourceIdentifier",
+        "zonalAutoshiftStatus"
+      ],
+      "members":{
+        "resourceIdentifier":{
+          "shape":"ResourceIdentifier",
+          "location":"uri",
+          "locationName":"resourceIdentifier"
+        },
+        "zonalAutoshiftStatus":{"shape":"ZonalAutoshiftStatus"}
+      }
+    },
+    "UpdateZonalAutoshiftConfigurationResponse":{
+      "type":"structure",
+      "required":[
+        "resourceIdentifier",
+        "zonalAutoshiftStatus"
+      ],
+      "members":{
+        "resourceIdentifier":{"shape":"ResourceIdentifier"},
+        "zonalAutoshiftStatus":{"shape":"ZonalAutoshiftStatus"}
+      }
+    },
     "UpdateZonalShiftRequest":{
       "type":"structure",
       "required":["zonalShiftId"],
@@ -388,7 +744,10 @@
         "InvalidToken",
         "InvalidResourceIdentifier",
         "InvalidAz",
-        "UnsupportedAz"
+        "UnsupportedAz",
+        "InvalidAlarmCondition",
+        "InvalidConditionType",
+        "InvalidPracticeBlocker"
       ]
     },
     "Weight":{
@@ -396,6 +755,13 @@
       "box":true,
       "max":1.0,
       "min":0.0
+    },
+    "ZonalAutoshiftStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
     },
     "ZonalShift":{
       "type":"structure",
@@ -445,6 +811,7 @@
         "awayFrom":{"shape":"AvailabilityZone"},
         "comment":{"shape":"ZonalShiftComment"},
         "expiryTime":{"shape":"ExpiryTime"},
+        "practiceRunOutcome":{"shape":"PracticeRunOutcome"},
         "resourceIdentifier":{"shape":"ResourceIdentifier"},
         "startTime":{"shape":"StartTime"},
         "zonalShiftId":{"shape":"ZonalShiftId"}
@@ -477,6 +844,7 @@
         "awayFrom":{"shape":"AvailabilityZone"},
         "comment":{"shape":"ZonalShiftComment"},
         "expiryTime":{"shape":"ExpiryTime"},
+        "practiceRunOutcome":{"shape":"PracticeRunOutcome"},
         "resourceIdentifier":{"shape":"ResourceIdentifier"},
         "startTime":{"shape":"StartTime"},
         "status":{"shape":"ZonalShiftStatus"},

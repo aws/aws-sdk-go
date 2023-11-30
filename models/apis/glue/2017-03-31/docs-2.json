@@ -2192,11 +2192,49 @@
         "DataLakePrincipal$DataLakePrincipalIdentifier": "<p>An identifier for the Lake Formation principal.</p>"
       }
     },
+    "DataQualityAnalyzerResult": {
+      "base": "<p>Describes the result of the evaluation of a data quality analyzer.</p>",
+      "refs": {
+        "DataQualityAnalyzerResults$member": null
+      }
+    },
+    "DataQualityAnalyzerResults": {
+      "base": null,
+      "refs": {
+        "DataQualityResult$AnalyzerResults": "<p>A list of <code>DataQualityAnalyzerResult</code> objects representing the results for each analyzer. </p>",
+        "GetDataQualityResultResponse$AnalyzerResults": "<p>A list of <code>DataQualityAnalyzerResult</code> objects representing the results for each analyzer. </p>"
+      }
+    },
     "DataQualityEvaluationRunAdditionalRunOptions": {
       "base": "<p>Additional run options you can specify for an evaluation run.</p>",
       "refs": {
         "GetDataQualityRulesetEvaluationRunResponse$AdditionalRunOptions": "<p>Additional run options you can specify for an evaluation run.</p>",
         "StartDataQualityRulesetEvaluationRunRequest$AdditionalRunOptions": "<p>Additional run options you can specify for an evaluation run.</p>"
+      }
+    },
+    "DataQualityMetricValues": {
+      "base": "<p>Describes the data quality metric value according to the analysis of historical data.</p>",
+      "refs": {
+        "MetricBasedObservation$MetricValues": "<p>An object of type <code>DataQualityMetricValues</code> representing the analysis of the data quality metric value.</p>"
+      }
+    },
+    "DataQualityObservation": {
+      "base": "<p>Describes the observation generated after evaluating the rules and analyzers.</p>",
+      "refs": {
+        "DataQualityObservations$member": null
+      }
+    },
+    "DataQualityObservationDescription": {
+      "base": null,
+      "refs": {
+        "DataQualityObservation$Description": "<p>A description of the data quality observation.</p>"
+      }
+    },
+    "DataQualityObservations": {
+      "base": null,
+      "refs": {
+        "DataQualityResult$Observations": "<p>A list of <code>DataQualityObservation</code> objects representing the observations generated after evaluating the rules and analyzers. </p>",
+        "GetDataQualityResultResponse$Observations": "<p>A list of <code>DataQualityObservation</code> objects representing the observations generated after evaluating the rules and analyzers. </p>"
       }
     },
     "DataQualityResult": {
@@ -2264,6 +2302,15 @@
       "base": "<p>Describes the result of the evaluation of a data quality rule.</p>",
       "refs": {
         "DataQualityRuleResults$member": null
+      }
+    },
+    "DataQualityRuleResultDescription": {
+      "base": null,
+      "refs": {
+        "DataQualityAnalyzerResult$Description": "<p>A description of the data quality analyzer.</p>",
+        "DataQualityAnalyzerResult$EvaluationMessage": "<p>An evaluation message.</p>",
+        "DataQualityRuleResult$Description": "<p>A description of the data quality rule.</p>",
+        "DataQualityRuleResult$EvaluationMessage": "<p>An evaluation message.</p>"
       }
     },
     "DataQualityRuleResultStatus": {
@@ -2731,8 +2778,6 @@
         "CreateSchemaResponse$Description": "<p>A description of the schema if specified when created.</p>",
         "CreateSessionRequest$Description": "<p>The description of the session. </p>",
         "CreateTriggerRequest$Description": "<p>A description of the new trigger.</p>",
-        "DataQualityRuleResult$Description": "<p>A description of the data quality rule.</p>",
-        "DataQualityRuleResult$EvaluationMessage": "<p>An evaluation message.</p>",
         "DataQualityRulesetFilterCriteria$Description": "<p>The description of the ruleset filter criteria.</p>",
         "DataQualityRulesetListDetails$Description": "<p>A description of the data quality ruleset.</p>",
         "Database$Description": "<p>A description of the database.</p>",
@@ -3187,6 +3232,7 @@
     "EvaluatedMetricsMap": {
       "base": null,
       "refs": {
+        "DataQualityAnalyzerResult$EvaluatedMetrics": "<p>A map of metrics associated with the evaluation of the analyzer.</p>",
         "DataQualityRuleResult$EvaluatedMetrics": "<p>A map of metrics associated with the evaluation of the rule.</p>"
       }
     },
@@ -5534,6 +5580,12 @@
         "RemoveSchemaVersionMetadataResponse$MetadataValue": "<p>The value of the metadata key.</p>"
       }
     },
+    "MetricBasedObservation": {
+      "base": "<p>Describes the metric based observation generated based on evaluated data quality metrics.</p>",
+      "refs": {
+        "DataQualityObservation$MetricBasedObservation": "<p>An object of type <code>MetricBasedObservation</code> representing the observation that is based on evaluated data quality metrics.</p>"
+      }
+    },
     "MicrosoftSQLServerCatalogSource": {
       "base": "<p>Specifies a Microsoft SQL server data source in the Glue Data Catalog.</p>",
       "refs": {
@@ -5663,6 +5715,7 @@
         "CustomEntityType$Name": "<p>A name for the custom pattern that allows it to be retrieved or deleted later. This name must be unique per Amazon Web Services account.</p>",
         "CustomEntityType$RegexString": "<p>A regular expression string that is used for detecting sensitive data in a custom pattern.</p>",
         "CustomEntityTypeNames$member": null,
+        "DataQualityAnalyzerResult$Name": "<p>The name of the data quality analyzer.</p>",
         "DataQualityResult$RulesetName": "<p>The name of the ruleset associated with the data quality result.</p>",
         "DataQualityResult$JobName": "<p>The job name associated with the data quality result, if any.</p>",
         "DataQualityResultDescription$JobName": "<p>The job name associated with the data quality result.</p>",
@@ -5813,7 +5866,9 @@
         "MLTransform$Name": "<p>A user-defined name for the machine learning transform. Names are not guaranteed unique and can be changed at any time.</p>",
         "MLUserDataEncryption$KmsKeyId": "<p>The ID for the customer-provided KMS key.</p>",
         "MatchCriteria$member": null,
+        "MetricBasedObservation$MetricName": "<p>The name of the data quality metric used for generating the observation.</p>",
         "NameStringList$member": null,
+        "NewRules$member": null,
         "Node$Name": "<p>The name of the Glue component represented by the node.</p>",
         "Node$UniqueId": "<p>The unique Id assigned to the node within the workflow.</p>",
         "NodeIdList$member": null,
@@ -5937,6 +5992,12 @@
         "SkewedInfo$SkewedColumnNames": "<p>A list of names of columns that contain skewed values.</p>",
         "StorageDescriptor$BucketColumns": "<p>A list of reducer grouping columns, clustering columns, and bucketing columns in the table.</p>",
         "UnfilteredPartition$AuthorizedColumns": "<p>The list of columns the user has permissions to access.</p>"
+      }
+    },
+    "NewRules": {
+      "base": null,
+      "refs": {
+        "MetricBasedObservation$NewRules": "<p>A list of new data quality rules generated as part of the observation based on the data quality metric value.</p>"
       }
     },
     "NoScheduleException": {
@@ -6180,6 +6241,10 @@
         "CreateJobRequest$MaxCapacity": "<p>For Glue version 1.0 or earlier jobs, using the standard worker type, the number of Glue data processing units (DPUs) that can be allocated when this job runs. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://aws.amazon.com/glue/pricing/\"> Glue pricing page</a>.</p> <p>For Glue version 2.0+ jobs, you cannot specify a <code>Maximum capacity</code>. Instead, you should specify a <code>Worker type</code> and the <code>Number of workers</code>.</p> <p>Do not set <code>MaxCapacity</code> if using <code>WorkerType</code> and <code>NumberOfWorkers</code>.</p> <p>The value that can be allocated for <code>MaxCapacity</code> depends on whether you are running a Python shell job, an Apache Spark ETL job, or an Apache Spark streaming ETL job:</p> <ul> <li> <p>When you specify a Python shell job (<code>JobCommand.Name</code>=\"pythonshell\"), you can allocate either 0.0625 or 1 DPU. The default is 0.0625 DPU.</p> </li> <li> <p>When you specify an Apache Spark ETL job (<code>JobCommand.Name</code>=\"glueetl\") or Apache Spark streaming ETL job (<code>JobCommand.Name</code>=\"gluestreaming\"), you can allocate from 2 to 100 DPUs. The default is 10 DPUs. This job type cannot have a fractional DPU allocation.</p> </li> </ul>",
         "CreateMLTransformRequest$MaxCapacity": "<p>The number of Glue data processing units (DPUs) that are allocated to task runs for this transform. You can allocate from 2 to 100 DPUs; the default is 10. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://aws.amazon.com/glue/pricing/\">Glue pricing page</a>. </p> <p> <code>MaxCapacity</code> is a mutually exclusive option with <code>NumberOfWorkers</code> and <code>WorkerType</code>.</p> <ul> <li> <p>If either <code>NumberOfWorkers</code> or <code>WorkerType</code> is set, then <code>MaxCapacity</code> cannot be set.</p> </li> <li> <p>If <code>MaxCapacity</code> is set then neither <code>NumberOfWorkers</code> or <code>WorkerType</code> can be set.</p> </li> <li> <p>If <code>WorkerType</code> is set, then <code>NumberOfWorkers</code> is required (and vice versa).</p> </li> <li> <p> <code>MaxCapacity</code> and <code>NumberOfWorkers</code> must both be at least 1.</p> </li> </ul> <p>When the <code>WorkerType</code> field is set to a value other than <code>Standard</code>, the <code>MaxCapacity</code> field is set automatically and becomes read-only.</p> <p>When the <code>WorkerType</code> field is set to a value other than <code>Standard</code>, the <code>MaxCapacity</code> field is set automatically and becomes read-only.</p>",
         "CreateSessionRequest$MaxCapacity": "<p>The number of Glue data processing units (DPUs) that can be allocated when the job runs. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB memory. </p>",
+        "DataQualityMetricValues$ActualValue": "<p>The actual value of the data quality metric.</p>",
+        "DataQualityMetricValues$ExpectedValue": "<p>The expected value of the data quality metric according to the analysis of historical data.</p>",
+        "DataQualityMetricValues$LowerLimit": "<p>The lower limit of the data quality metric value according to the analysis of historical data.</p>",
+        "DataQualityMetricValues$UpperLimit": "<p>The upper limit of the data quality metric value according to the analysis of historical data.</p>",
         "DynamoDBTarget$scanRate": "<p>The percentage of the configured read capacity units to use by the Glue crawler. Read capacity units is a term defined by DynamoDB, and is a numeric value that acts as rate limiter for the number of reads that can be performed on that table per second.</p> <p>The valid values are null or a value between 0.1 to 1.5. A null value is used when user does not provide a value, and defaults to 0.5 of the configured Read Capacity Unit (for provisioned tables), or 0.25 of the max configured Read Capacity Unit (for tables using on-demand mode).</p>",
         "EvaluatedMetricsMap$value": null,
         "GetMLTransformResponse$MaxCapacity": "<p>The number of Glue data processing units (DPUs) that are allocated to task runs for this transform. You can allocate from 2 to 100 DPUs; the default is 10. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://aws.amazon.com/glue/pricing/\">Glue pricing page</a>. </p> <p>When the <code>WorkerType</code> field is set to a value other than <code>Standard</code>, the <code>MaxCapacity</code> field is set automatically and becomes read-only.</p>",

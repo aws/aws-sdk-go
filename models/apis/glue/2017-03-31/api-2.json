@@ -5908,12 +5908,55 @@
       "max":255,
       "min":1
     },
+    "DataQualityAnalyzerResult":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"NameString"},
+        "Description":{"shape":"DataQualityRuleResultDescription"},
+        "EvaluationMessage":{"shape":"DataQualityRuleResultDescription"},
+        "EvaluatedMetrics":{"shape":"EvaluatedMetricsMap"}
+      }
+    },
+    "DataQualityAnalyzerResults":{
+      "type":"list",
+      "member":{"shape":"DataQualityAnalyzerResult"},
+      "max":2000,
+      "min":0
+    },
     "DataQualityEvaluationRunAdditionalRunOptions":{
       "type":"structure",
       "members":{
         "CloudWatchMetricsEnabled":{"shape":"NullableBoolean"},
         "ResultsS3Prefix":{"shape":"UriString"}
       }
+    },
+    "DataQualityMetricValues":{
+      "type":"structure",
+      "members":{
+        "ActualValue":{"shape":"NullableDouble"},
+        "ExpectedValue":{"shape":"NullableDouble"},
+        "LowerLimit":{"shape":"NullableDouble"},
+        "UpperLimit":{"shape":"NullableDouble"}
+      }
+    },
+    "DataQualityObservation":{
+      "type":"structure",
+      "members":{
+        "Description":{"shape":"DataQualityObservationDescription"},
+        "MetricBasedObservation":{"shape":"MetricBasedObservation"}
+      }
+    },
+    "DataQualityObservationDescription":{
+      "type":"string",
+      "max":2048,
+      "min":0,
+      "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
+    },
+    "DataQualityObservations":{
+      "type":"list",
+      "member":{"shape":"DataQualityObservation"},
+      "max":50,
+      "min":0
     },
     "DataQualityResult":{
       "type":"structure",
@@ -5928,7 +5971,9 @@
         "JobName":{"shape":"NameString"},
         "JobRunId":{"shape":"HashString"},
         "RulesetEvaluationRunId":{"shape":"HashString"},
-        "RuleResults":{"shape":"DataQualityRuleResults"}
+        "RuleResults":{"shape":"DataQualityRuleResults"},
+        "AnalyzerResults":{"shape":"DataQualityAnalyzerResults"},
+        "Observations":{"shape":"DataQualityObservations"}
       }
     },
     "DataQualityResultDescription":{
@@ -5997,11 +6042,17 @@
       "type":"structure",
       "members":{
         "Name":{"shape":"NameString"},
-        "Description":{"shape":"DescriptionString"},
-        "EvaluationMessage":{"shape":"DescriptionString"},
+        "Description":{"shape":"DataQualityRuleResultDescription"},
+        "EvaluationMessage":{"shape":"DataQualityRuleResultDescription"},
         "Result":{"shape":"DataQualityRuleResultStatus"},
         "EvaluatedMetrics":{"shape":"EvaluatedMetricsMap"}
       }
+    },
+    "DataQualityRuleResultDescription":{
+      "type":"string",
+      "max":2048,
+      "min":0,
+      "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
     },
     "DataQualityRuleResultStatus":{
       "type":"string",
@@ -6015,7 +6066,7 @@
       "type":"list",
       "member":{"shape":"DataQualityRuleResult"},
       "max":2000,
-      "min":1
+      "min":0
     },
     "DataQualityRulesetEvaluationRunDescription":{
       "type":"structure",
@@ -7522,7 +7573,9 @@
         "JobName":{"shape":"NameString"},
         "JobRunId":{"shape":"HashString"},
         "RulesetEvaluationRunId":{"shape":"HashString"},
-        "RuleResults":{"shape":"DataQualityRuleResults"}
+        "RuleResults":{"shape":"DataQualityRuleResults"},
+        "AnalyzerResults":{"shape":"DataQualityAnalyzerResults"},
+        "Observations":{"shape":"DataQualityObservations"}
       }
     },
     "GetDataQualityRuleRecommendationRunRequest":{
@@ -9813,6 +9866,14 @@
       "min":1,
       "pattern":"[a-zA-Z0-9+-=._./@]+"
     },
+    "MetricBasedObservation":{
+      "type":"structure",
+      "members":{
+        "MetricName":{"shape":"NameString"},
+        "MetricValues":{"shape":"DataQualityMetricValues"},
+        "NewRules":{"shape":"NewRules"}
+      }
+    },
     "MicrosoftSQLServerCatalogSource":{
       "type":"structure",
       "required":[
@@ -9889,6 +9950,10 @@
       "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\t]*"
     },
     "NameStringList":{
+      "type":"list",
+      "member":{"shape":"NameString"}
+    },
+    "NewRules":{
       "type":"list",
       "member":{"shape":"NameString"}
     },
