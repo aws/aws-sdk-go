@@ -1,3 +1,12 @@
+Release v1.48.9 (2023-11-30)
+===
+
+### Service Client Updates
+* `service/marketplace-agreement`: Adds new service
+* `service/marketplace-catalog`: Updates service API and documentation
+* `service/marketplace-deployment`: Adds new service
+* `service/redshift-serverless`: Updates service API, documentation, and paginators
+
 Release v1.48.8 (2023-11-29)
 ===
 

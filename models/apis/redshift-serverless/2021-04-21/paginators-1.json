@@ -24,6 +24,18 @@
       "limit_key": "maxResults",
       "result_key": "recoveryPoints"
     },
+    "ListScheduledActions": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults",
+      "result_key": "scheduledActions"
+    },
+    "ListSnapshotCopyConfigurations": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults",
+      "result_key": "snapshotCopyConfigurations"
+    },
     "ListSnapshots": {
       "input_token": "nextToken",
       "output_token": "nextToken",

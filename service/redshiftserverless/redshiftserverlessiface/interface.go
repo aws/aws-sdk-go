@@ -76,9 +76,17 @@ type RedshiftServerlessAPI interface {
 	CreateNamespaceWithContext(aws.Context, *redshiftserverless.CreateNamespaceInput, ...request.Option) (*redshiftserverless.CreateNamespaceOutput, error)
 	CreateNamespaceRequest(*redshiftserverless.CreateNamespaceInput) (*request.Request, *redshiftserverless.CreateNamespaceOutput)
 
+	CreateScheduledAction(*redshiftserverless.CreateScheduledActionInput) (*redshiftserverless.CreateScheduledActionOutput, error)
+	CreateScheduledActionWithContext(aws.Context, *redshiftserverless.CreateScheduledActionInput, ...request.Option) (*redshiftserverless.CreateScheduledActionOutput, error)
+	CreateScheduledActionRequest(*redshiftserverless.CreateScheduledActionInput) (*request.Request, *redshiftserverless.CreateScheduledActionOutput)
+
 	CreateSnapshot(*redshiftserverless.CreateSnapshotInput) (*redshiftserverless.CreateSnapshotOutput, error)
 	CreateSnapshotWithContext(aws.Context, *redshiftserverless.CreateSnapshotInput, ...request.Option) (*redshiftserverless.CreateSnapshotOutput, error)
 	CreateSnapshotRequest(*redshiftserverless.CreateSnapshotInput) (*request.Request, *redshiftserverless.CreateSnapshotOutput)
+
+	CreateSnapshotCopyConfiguration(*redshiftserverless.CreateSnapshotCopyConfigurationInput) (*redshiftserverless.CreateSnapshotCopyConfigurationOutput, error)
+	CreateSnapshotCopyConfigurationWithContext(aws.Context, *redshiftserverless.CreateSnapshotCopyConfigurationInput, ...request.Option) (*redshiftserverless.CreateSnapshotCopyConfigurationOutput, error)
+	CreateSnapshotCopyConfigurationRequest(*redshiftserverless.CreateSnapshotCopyConfigurationInput) (*request.Request, *redshiftserverless.CreateSnapshotCopyConfigurationOutput)
 
 	CreateUsageLimit(*redshiftserverless.CreateUsageLimitInput) (*redshiftserverless.CreateUsageLimitOutput, error)
 	CreateUsageLimitWithContext(aws.Context, *redshiftserverless.CreateUsageLimitInput, ...request.Option) (*redshiftserverless.CreateUsageLimitOutput, error)
@@ -104,9 +112,17 @@ type RedshiftServerlessAPI interface {
 	DeleteResourcePolicyWithContext(aws.Context, *redshiftserverless.DeleteResourcePolicyInput, ...request.Option) (*redshiftserverless.DeleteResourcePolicyOutput, error)
 	DeleteResourcePolicyRequest(*redshiftserverless.DeleteResourcePolicyInput) (*request.Request, *redshiftserverless.DeleteResourcePolicyOutput)
 
+	DeleteScheduledAction(*redshiftserverless.DeleteScheduledActionInput) (*redshiftserverless.DeleteScheduledActionOutput, error)
+	DeleteScheduledActionWithContext(aws.Context, *redshiftserverless.DeleteScheduledActionInput, ...request.Option) (*redshiftserverless.DeleteScheduledActionOutput, error)
+	DeleteScheduledActionRequest(*redshiftserverless.DeleteScheduledActionInput) (*request.Request, *redshiftserverless.DeleteScheduledActionOutput)
+
 	DeleteSnapshot(*redshiftserverless.DeleteSnapshotInput) (*redshiftserverless.DeleteSnapshotOutput, error)
 	DeleteSnapshotWithContext(aws.Context, *redshiftserverless.DeleteSnapshotInput, ...request.Option) (*redshiftserverless.DeleteSnapshotOutput, error)
 	DeleteSnapshotRequest(*redshiftserverless.DeleteSnapshotInput) (*request.Request, *redshiftserverless.DeleteSnapshotOutput)
+
+	DeleteSnapshotCopyConfiguration(*redshiftserverless.DeleteSnapshotCopyConfigurationInput) (*redshiftserverless.DeleteSnapshotCopyConfigurationOutput, error)
+	DeleteSnapshotCopyConfigurationWithContext(aws.Context, *redshiftserverless.DeleteSnapshotCopyConfigurationInput, ...request.Option) (*redshiftserverless.DeleteSnapshotCopyConfigurationOutput, error)
+	DeleteSnapshotCopyConfigurationRequest(*redshiftserverless.DeleteSnapshotCopyConfigurationInput) (*request.Request, *redshiftserverless.DeleteSnapshotCopyConfigurationOutput)
 
 	DeleteUsageLimit(*redshiftserverless.DeleteUsageLimitInput) (*redshiftserverless.DeleteUsageLimitOutput, error)
 	DeleteUsageLimitWithContext(aws.Context, *redshiftserverless.DeleteUsageLimitInput, ...request.Option) (*redshiftserverless.DeleteUsageLimitOutput, error)
@@ -139,6 +155,10 @@ type RedshiftServerlessAPI interface {
 	GetResourcePolicy(*redshiftserverless.GetResourcePolicyInput) (*redshiftserverless.GetResourcePolicyOutput, error)
 	GetResourcePolicyWithContext(aws.Context, *redshiftserverless.GetResourcePolicyInput, ...request.Option) (*redshiftserverless.GetResourcePolicyOutput, error)
 	GetResourcePolicyRequest(*redshiftserverless.GetResourcePolicyInput) (*request.Request, *redshiftserverless.GetResourcePolicyOutput)
+
+	GetScheduledAction(*redshiftserverless.GetScheduledActionInput) (*redshiftserverless.GetScheduledActionOutput, error)
+	GetScheduledActionWithContext(aws.Context, *redshiftserverless.GetScheduledActionInput, ...request.Option) (*redshiftserverless.GetScheduledActionOutput, error)
+	GetScheduledActionRequest(*redshiftserverless.GetScheduledActionInput) (*request.Request, *redshiftserverless.GetScheduledActionOutput)
 
 	GetSnapshot(*redshiftserverless.GetSnapshotInput) (*redshiftserverless.GetSnapshotOutput, error)
 	GetSnapshotWithContext(aws.Context, *redshiftserverless.GetSnapshotInput, ...request.Option) (*redshiftserverless.GetSnapshotOutput, error)
@@ -184,6 +204,20 @@ type RedshiftServerlessAPI interface {
 	ListRecoveryPointsPages(*redshiftserverless.ListRecoveryPointsInput, func(*redshiftserverless.ListRecoveryPointsOutput, bool) bool) error
 	ListRecoveryPointsPagesWithContext(aws.Context, *redshiftserverless.ListRecoveryPointsInput, func(*redshiftserverless.ListRecoveryPointsOutput, bool) bool, ...request.Option) error
 
+	ListScheduledActions(*redshiftserverless.ListScheduledActionsInput) (*redshiftserverless.ListScheduledActionsOutput, error)
+	ListScheduledActionsWithContext(aws.Context, *redshiftserverless.ListScheduledActionsInput, ...request.Option) (*redshiftserverless.ListScheduledActionsOutput, error)
+	ListScheduledActionsRequest(*redshiftserverless.ListScheduledActionsInput) (*request.Request, *redshiftserverless.ListScheduledActionsOutput)
+
+	ListScheduledActionsPages(*redshiftserverless.ListScheduledActionsInput, func(*redshiftserverless.ListScheduledActionsOutput, bool) bool) error
+	ListScheduledActionsPagesWithContext(aws.Context, *redshiftserverless.ListScheduledActionsInput, func(*redshiftserverless.ListScheduledActionsOutput, bool) bool, ...request.Option) error
+
+	ListSnapshotCopyConfigurations(*redshiftserverless.ListSnapshotCopyConfigurationsInput) (*redshiftserverless.ListSnapshotCopyConfigurationsOutput, error)
+	ListSnapshotCopyConfigurationsWithContext(aws.Context, *redshiftserverless.ListSnapshotCopyConfigurationsInput, ...request.Option) (*redshiftserverless.ListSnapshotCopyConfigurationsOutput, error)
+	ListSnapshotCopyConfigurationsRequest(*redshiftserverless.ListSnapshotCopyConfigurationsInput) (*request.Request, *redshiftserverless.ListSnapshotCopyConfigurationsOutput)
+
+	ListSnapshotCopyConfigurationsPages(*redshiftserverless.ListSnapshotCopyConfigurationsInput, func(*redshiftserverless.ListSnapshotCopyConfigurationsOutput, bool) bool) error
+	ListSnapshotCopyConfigurationsPagesWithContext(aws.Context, *redshiftserverless.ListSnapshotCopyConfigurationsInput, func(*redshiftserverless.ListSnapshotCopyConfigurationsOutput, bool) bool, ...request.Option) error
+
 	ListSnapshots(*redshiftserverless.ListSnapshotsInput) (*redshiftserverless.ListSnapshotsOutput, error)
 	ListSnapshotsWithContext(aws.Context, *redshiftserverless.ListSnapshotsInput, ...request.Option) (*redshiftserverless.ListSnapshotsOutput, error)
 	ListSnapshotsRequest(*redshiftserverless.ListSnapshotsInput) (*request.Request, *redshiftserverless.ListSnapshotsOutput)
@@ -228,6 +262,10 @@ type RedshiftServerlessAPI interface {
 	RestoreFromSnapshotWithContext(aws.Context, *redshiftserverless.RestoreFromSnapshotInput, ...request.Option) (*redshiftserverless.RestoreFromSnapshotOutput, error)
 	RestoreFromSnapshotRequest(*redshiftserverless.RestoreFromSnapshotInput) (*request.Request, *redshiftserverless.RestoreFromSnapshotOutput)
 
+	RestoreTableFromRecoveryPoint(*redshiftserverless.RestoreTableFromRecoveryPointInput) (*redshiftserverless.RestoreTableFromRecoveryPointOutput, error)
+	RestoreTableFromRecoveryPointWithContext(aws.Context, *redshiftserverless.RestoreTableFromRecoveryPointInput, ...request.Option) (*redshiftserverless.RestoreTableFromRecoveryPointOutput, error)
+	RestoreTableFromRecoveryPointRequest(*redshiftserverless.RestoreTableFromRecoveryPointInput) (*request.Request, *redshiftserverless.RestoreTableFromRecoveryPointOutput)
+
 	RestoreTableFromSnapshot(*redshiftserverless.RestoreTableFromSnapshotInput) (*redshiftserverless.RestoreTableFromSnapshotOutput, error)
 	RestoreTableFromSnapshotWithContext(aws.Context, *redshiftserverless.RestoreTableFromSnapshotInput, ...request.Option) (*redshiftserverless.RestoreTableFromSnapshotOutput, error)
 	RestoreTableFromSnapshotRequest(*redshiftserverless.RestoreTableFromSnapshotInput) (*request.Request, *redshiftserverless.RestoreTableFromSnapshotOutput)
@@ -252,9 +290,17 @@ type RedshiftServerlessAPI interface {
 	UpdateNamespaceWithContext(aws.Context, *redshiftserverless.UpdateNamespaceInput, ...request.Option) (*redshiftserverless.UpdateNamespaceOutput, error)
 	UpdateNamespaceRequest(*redshiftserverless.UpdateNamespaceInput) (*request.Request, *redshiftserverless.UpdateNamespaceOutput)
 
+	UpdateScheduledAction(*redshiftserverless.UpdateScheduledActionInput) (*redshiftserverless.UpdateScheduledActionOutput, error)
+	UpdateScheduledActionWithContext(aws.Context, *redshiftserverless.UpdateScheduledActionInput, ...request.Option) (*redshiftserverless.UpdateScheduledActionOutput, error)
+	UpdateScheduledActionRequest(*redshiftserverless.UpdateScheduledActionInput) (*request.Request, *redshiftserverless.UpdateScheduledActionOutput)
+
 	UpdateSnapshot(*redshiftserverless.UpdateSnapshotInput) (*redshiftserverless.UpdateSnapshotOutput, error)
 	UpdateSnapshotWithContext(aws.Context, *redshiftserverless.UpdateSnapshotInput, ...request.Option) (*redshiftserverless.UpdateSnapshotOutput, error)
 	UpdateSnapshotRequest(*redshiftserverless.UpdateSnapshotInput) (*request.Request, *redshiftserverless.UpdateSnapshotOutput)
+
+	UpdateSnapshotCopyConfiguration(*redshiftserverless.UpdateSnapshotCopyConfigurationInput) (*redshiftserverless.UpdateSnapshotCopyConfigurationOutput, error)
+	UpdateSnapshotCopyConfigurationWithContext(aws.Context, *redshiftserverless.UpdateSnapshotCopyConfigurationInput, ...request.Option) (*redshiftserverless.UpdateSnapshotCopyConfigurationOutput, error)
+	UpdateSnapshotCopyConfigurationRequest(*redshiftserverless.UpdateSnapshotCopyConfigurationInput) (*request.Request, *redshiftserverless.UpdateSnapshotCopyConfigurationOutput)
 
 	UpdateUsageLimit(*redshiftserverless.UpdateUsageLimitInput) (*redshiftserverless.UpdateUsageLimitOutput, error)
 	UpdateUsageLimitWithContext(aws.Context, *redshiftserverless.UpdateUsageLimitInput, ...request.Option) (*redshiftserverless.UpdateUsageLimitOutput, error)

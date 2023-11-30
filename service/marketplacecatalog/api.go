@@ -1447,6 +1447,434 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Object that allows filtering on entity id of an AMI product.
+type AmiProductEntityIdFilter struct {
+	_ struct{} `type:"structure"`
+
+	// A string array of unique entity id values to be filtered on.
+	ValueList []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AmiProductEntityIdFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AmiProductEntityIdFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AmiProductEntityIdFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AmiProductEntityIdFilter"}
+	if s.ValueList != nil && len(s.ValueList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ValueList", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetValueList sets the ValueList field's value.
+func (s *AmiProductEntityIdFilter) SetValueList(v []*string) *AmiProductEntityIdFilter {
+	s.ValueList = v
+	return s
+}
+
+// Object containing all the filter fields for AMI products. Client can add
+// a maximum of 8 filters in a single ListEntities request.
+type AmiProductFilters struct {
+	_ struct{} `type:"structure"`
+
+	// Unique identifier for the AMI product.
+	EntityId *AmiProductEntityIdFilter `type:"structure"`
+
+	// The last date on which the AMI product was modified.
+	LastModifiedDate *AmiProductLastModifiedDateFilter `type:"structure"`
+
+	// The title of the AMI product.
+	ProductTitle *AmiProductTitleFilter `type:"structure"`
+
+	// The visibility of the AMI product.
+	Visibility *AmiProductVisibilityFilter `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AmiProductFilters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AmiProductFilters) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AmiProductFilters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AmiProductFilters"}
+	if s.EntityId != nil {
+		if err := s.EntityId.Validate(); err != nil {
+			invalidParams.AddNested("EntityId", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.LastModifiedDate != nil {
+		if err := s.LastModifiedDate.Validate(); err != nil {
+			invalidParams.AddNested("LastModifiedDate", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ProductTitle != nil {
+		if err := s.ProductTitle.Validate(); err != nil {
+			invalidParams.AddNested("ProductTitle", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Visibility != nil {
+		if err := s.Visibility.Validate(); err != nil {
+			invalidParams.AddNested("Visibility", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEntityId sets the EntityId field's value.
+func (s *AmiProductFilters) SetEntityId(v *AmiProductEntityIdFilter) *AmiProductFilters {
+	s.EntityId = v
+	return s
+}
+
+// SetLastModifiedDate sets the LastModifiedDate field's value.
+func (s *AmiProductFilters) SetLastModifiedDate(v *AmiProductLastModifiedDateFilter) *AmiProductFilters {
+	s.LastModifiedDate = v
+	return s
+}
+
+// SetProductTitle sets the ProductTitle field's value.
+func (s *AmiProductFilters) SetProductTitle(v *AmiProductTitleFilter) *AmiProductFilters {
+	s.ProductTitle = v
+	return s
+}
+
+// SetVisibility sets the Visibility field's value.
+func (s *AmiProductFilters) SetVisibility(v *AmiProductVisibilityFilter) *AmiProductFilters {
+	s.Visibility = v
+	return s
+}
+
+// Object that allows filtering based on the last modified date of AMI products.
+type AmiProductLastModifiedDateFilter struct {
+	_ struct{} `type:"structure"`
+
+	// Dates between which the AMI product was last modified.
+	DateRange *AmiProductLastModifiedDateFilterDateRange `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AmiProductLastModifiedDateFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AmiProductLastModifiedDateFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AmiProductLastModifiedDateFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AmiProductLastModifiedDateFilter"}
+	if s.DateRange != nil {
+		if err := s.DateRange.Validate(); err != nil {
+			invalidParams.AddNested("DateRange", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDateRange sets the DateRange field's value.
+func (s *AmiProductLastModifiedDateFilter) SetDateRange(v *AmiProductLastModifiedDateFilterDateRange) *AmiProductLastModifiedDateFilter {
+	s.DateRange = v
+	return s
+}
+
+// Object that contains date range of the last modified date to be filtered
+// on. You can optionally provide a BeforeValue and/or AfterValue. Both are
+// inclusive.
+type AmiProductLastModifiedDateFilterDateRange struct {
+	_ struct{} `type:"structure"`
+
+	// Date after which the AMI product was last modified.
+	AfterValue *string `min:"20" type:"string"`
+
+	// Date before which the AMI product was last modified.
+	BeforeValue *string `min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AmiProductLastModifiedDateFilterDateRange) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AmiProductLastModifiedDateFilterDateRange) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AmiProductLastModifiedDateFilterDateRange) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AmiProductLastModifiedDateFilterDateRange"}
+	if s.AfterValue != nil && len(*s.AfterValue) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("AfterValue", 20))
+	}
+	if s.BeforeValue != nil && len(*s.BeforeValue) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("BeforeValue", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAfterValue sets the AfterValue field's value.
+func (s *AmiProductLastModifiedDateFilterDateRange) SetAfterValue(v string) *AmiProductLastModifiedDateFilterDateRange {
+	s.AfterValue = &v
+	return s
+}
+
+// SetBeforeValue sets the BeforeValue field's value.
+func (s *AmiProductLastModifiedDateFilterDateRange) SetBeforeValue(v string) *AmiProductLastModifiedDateFilterDateRange {
+	s.BeforeValue = &v
+	return s
+}
+
+// Objects that allows sorting on AMI products based on certain fields and sorting
+// order.
+type AmiProductSort struct {
+	_ struct{} `type:"structure"`
+
+	// Field to sort the AMI products by.
+	SortBy *string `type:"string" enum:"AmiProductSortBy"`
+
+	// The sorting order. Can be ASCENDING or DESCENDING. The default value is DESCENDING.
+	SortOrder *string `type:"string" enum:"SortOrder"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AmiProductSort) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AmiProductSort) GoString() string {
+	return s.String()
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *AmiProductSort) SetSortBy(v string) *AmiProductSort {
+	s.SortBy = &v
+	return s
+}
+
+// SetSortOrder sets the SortOrder field's value.
+func (s *AmiProductSort) SetSortOrder(v string) *AmiProductSort {
+	s.SortOrder = &v
+	return s
+}
+
+// Object that contains summarized information about an AMI product.
+type AmiProductSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The title of the AMI product.
+	ProductTitle *string `min:"1" type:"string"`
+
+	// The lifecycle of the AMI product.
+	Visibility *string `type:"string" enum:"AmiProductVisibilityString"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AmiProductSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AmiProductSummary) GoString() string {
+	return s.String()
+}
+
+// SetProductTitle sets the ProductTitle field's value.
+func (s *AmiProductSummary) SetProductTitle(v string) *AmiProductSummary {
+	s.ProductTitle = &v
+	return s
+}
+
+// SetVisibility sets the Visibility field's value.
+func (s *AmiProductSummary) SetVisibility(v string) *AmiProductSummary {
+	s.Visibility = &v
+	return s
+}
+
+// Object that allows filtering on product title.
+type AmiProductTitleFilter struct {
+	_ struct{} `type:"structure"`
+
+	// A string array of unique product title values to be filtered on.
+	ValueList []*string `min:"1" type:"list"`
+
+	// A string that will be the wildCard input for product tile filter. It matches
+	// the provided value as a substring in the actual value.
+	WildCardValue *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AmiProductTitleFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AmiProductTitleFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AmiProductTitleFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AmiProductTitleFilter"}
+	if s.ValueList != nil && len(s.ValueList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ValueList", 1))
+	}
+	if s.WildCardValue != nil && len(*s.WildCardValue) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WildCardValue", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetValueList sets the ValueList field's value.
+func (s *AmiProductTitleFilter) SetValueList(v []*string) *AmiProductTitleFilter {
+	s.ValueList = v
+	return s
+}
+
+// SetWildCardValue sets the WildCardValue field's value.
+func (s *AmiProductTitleFilter) SetWildCardValue(v string) *AmiProductTitleFilter {
+	s.WildCardValue = &v
+	return s
+}
+
+// Object that allows filtering on the visibility of the product in the AWS
+// Marketplace.
+type AmiProductVisibilityFilter struct {
+	_ struct{} `type:"structure"`
+
+	// A string array of unique visibility values to be filtered on.
+	ValueList []*string `min:"1" type:"list" enum:"AmiProductVisibilityString"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AmiProductVisibilityFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AmiProductVisibilityFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AmiProductVisibilityFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AmiProductVisibilityFilter"}
+	if s.ValueList != nil && len(s.ValueList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ValueList", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetValueList sets the ValueList field's value.
+func (s *AmiProductVisibilityFilter) SetValueList(v []*string) *AmiProductVisibilityFilter {
+	s.ValueList = v
+	return s
+}
+
 type CancelChangeSetInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -1849,6 +2277,863 @@ func (s *ChangeSummary) SetEntity(v *Entity) *ChangeSummary {
 // SetErrorDetailList sets the ErrorDetailList field's value.
 func (s *ChangeSummary) SetErrorDetailList(v []*ErrorDetail) *ChangeSummary {
 	s.ErrorDetailList = v
+	return s
+}
+
+// Object that allows filtering on entity id of a container product.
+type ContainerProductEntityIdFilter struct {
+	_ struct{} `type:"structure"`
+
+	// A string array of unique entity id values to be filtered on.
+	ValueList []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerProductEntityIdFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerProductEntityIdFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ContainerProductEntityIdFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ContainerProductEntityIdFilter"}
+	if s.ValueList != nil && len(s.ValueList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ValueList", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetValueList sets the ValueList field's value.
+func (s *ContainerProductEntityIdFilter) SetValueList(v []*string) *ContainerProductEntityIdFilter {
+	s.ValueList = v
+	return s
+}
+
+// Object containing all the filter fields for container products. Client can
+// add a maximum of 8 filters in a single ListEntities request.
+type ContainerProductFilters struct {
+	_ struct{} `type:"structure"`
+
+	// Unique identifier for the container product.
+	EntityId *ContainerProductEntityIdFilter `type:"structure"`
+
+	// The last date on which the container product was modified.
+	LastModifiedDate *ContainerProductLastModifiedDateFilter `type:"structure"`
+
+	// The title of the container product.
+	ProductTitle *ContainerProductTitleFilter `type:"structure"`
+
+	// The visibility of the container product.
+	Visibility *ContainerProductVisibilityFilter `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerProductFilters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerProductFilters) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ContainerProductFilters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ContainerProductFilters"}
+	if s.EntityId != nil {
+		if err := s.EntityId.Validate(); err != nil {
+			invalidParams.AddNested("EntityId", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.LastModifiedDate != nil {
+		if err := s.LastModifiedDate.Validate(); err != nil {
+			invalidParams.AddNested("LastModifiedDate", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ProductTitle != nil {
+		if err := s.ProductTitle.Validate(); err != nil {
+			invalidParams.AddNested("ProductTitle", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Visibility != nil {
+		if err := s.Visibility.Validate(); err != nil {
+			invalidParams.AddNested("Visibility", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEntityId sets the EntityId field's value.
+func (s *ContainerProductFilters) SetEntityId(v *ContainerProductEntityIdFilter) *ContainerProductFilters {
+	s.EntityId = v
+	return s
+}
+
+// SetLastModifiedDate sets the LastModifiedDate field's value.
+func (s *ContainerProductFilters) SetLastModifiedDate(v *ContainerProductLastModifiedDateFilter) *ContainerProductFilters {
+	s.LastModifiedDate = v
+	return s
+}
+
+// SetProductTitle sets the ProductTitle field's value.
+func (s *ContainerProductFilters) SetProductTitle(v *ContainerProductTitleFilter) *ContainerProductFilters {
+	s.ProductTitle = v
+	return s
+}
+
+// SetVisibility sets the Visibility field's value.
+func (s *ContainerProductFilters) SetVisibility(v *ContainerProductVisibilityFilter) *ContainerProductFilters {
+	s.Visibility = v
+	return s
+}
+
+// Object that allows filtering based on the last modified date of container
+// products.
+type ContainerProductLastModifiedDateFilter struct {
+	_ struct{} `type:"structure"`
+
+	// Dates between which the container product was last modified.
+	DateRange *ContainerProductLastModifiedDateFilterDateRange `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerProductLastModifiedDateFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerProductLastModifiedDateFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ContainerProductLastModifiedDateFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ContainerProductLastModifiedDateFilter"}
+	if s.DateRange != nil {
+		if err := s.DateRange.Validate(); err != nil {
+			invalidParams.AddNested("DateRange", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDateRange sets the DateRange field's value.
+func (s *ContainerProductLastModifiedDateFilter) SetDateRange(v *ContainerProductLastModifiedDateFilterDateRange) *ContainerProductLastModifiedDateFilter {
+	s.DateRange = v
+	return s
+}
+
+// Object that contains date range of the last modified date to be filtered
+// on. You can optionally provide a BeforeValue and/or AfterValue. Both are
+// inclusive.
+type ContainerProductLastModifiedDateFilterDateRange struct {
+	_ struct{} `type:"structure"`
+
+	// Date after which the container product was last modified.
+	AfterValue *string `min:"20" type:"string"`
+
+	// Date before which the container product was last modified.
+	BeforeValue *string `min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerProductLastModifiedDateFilterDateRange) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerProductLastModifiedDateFilterDateRange) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ContainerProductLastModifiedDateFilterDateRange) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ContainerProductLastModifiedDateFilterDateRange"}
+	if s.AfterValue != nil && len(*s.AfterValue) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("AfterValue", 20))
+	}
+	if s.BeforeValue != nil && len(*s.BeforeValue) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("BeforeValue", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAfterValue sets the AfterValue field's value.
+func (s *ContainerProductLastModifiedDateFilterDateRange) SetAfterValue(v string) *ContainerProductLastModifiedDateFilterDateRange {
+	s.AfterValue = &v
+	return s
+}
+
+// SetBeforeValue sets the BeforeValue field's value.
+func (s *ContainerProductLastModifiedDateFilterDateRange) SetBeforeValue(v string) *ContainerProductLastModifiedDateFilterDateRange {
+	s.BeforeValue = &v
+	return s
+}
+
+// Objects that allows sorting on container products based on certain fields
+// and sorting order.
+type ContainerProductSort struct {
+	_ struct{} `type:"structure"`
+
+	// Field to sort the container products by.
+	SortBy *string `type:"string" enum:"ContainerProductSortBy"`
+
+	// The sorting order. Can be ASCENDING or DESCENDING. The default value is DESCENDING.
+	SortOrder *string `type:"string" enum:"SortOrder"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerProductSort) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerProductSort) GoString() string {
+	return s.String()
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *ContainerProductSort) SetSortBy(v string) *ContainerProductSort {
+	s.SortBy = &v
+	return s
+}
+
+// SetSortOrder sets the SortOrder field's value.
+func (s *ContainerProductSort) SetSortOrder(v string) *ContainerProductSort {
+	s.SortOrder = &v
+	return s
+}
+
+// Object that contains summarized information about a container product.
+type ContainerProductSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The title of the container product.
+	ProductTitle *string `min:"1" type:"string"`
+
+	// The lifecycle of the product.
+	Visibility *string `type:"string" enum:"ContainerProductVisibilityString"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerProductSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerProductSummary) GoString() string {
+	return s.String()
+}
+
+// SetProductTitle sets the ProductTitle field's value.
+func (s *ContainerProductSummary) SetProductTitle(v string) *ContainerProductSummary {
+	s.ProductTitle = &v
+	return s
+}
+
+// SetVisibility sets the Visibility field's value.
+func (s *ContainerProductSummary) SetVisibility(v string) *ContainerProductSummary {
+	s.Visibility = &v
+	return s
+}
+
+// Object that allows filtering on product title.
+type ContainerProductTitleFilter struct {
+	_ struct{} `type:"structure"`
+
+	// A string array of unique product title values to be filtered on.
+	ValueList []*string `min:"1" type:"list"`
+
+	// A string that will be the wildCard input for product tile filter. It matches
+	// the provided value as a substring in the actual value.
+	WildCardValue *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerProductTitleFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerProductTitleFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ContainerProductTitleFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ContainerProductTitleFilter"}
+	if s.ValueList != nil && len(s.ValueList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ValueList", 1))
+	}
+	if s.WildCardValue != nil && len(*s.WildCardValue) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WildCardValue", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetValueList sets the ValueList field's value.
+func (s *ContainerProductTitleFilter) SetValueList(v []*string) *ContainerProductTitleFilter {
+	s.ValueList = v
+	return s
+}
+
+// SetWildCardValue sets the WildCardValue field's value.
+func (s *ContainerProductTitleFilter) SetWildCardValue(v string) *ContainerProductTitleFilter {
+	s.WildCardValue = &v
+	return s
+}
+
+// Object that allows filtering on the visibility of the product in the AWS
+// Marketplace.
+type ContainerProductVisibilityFilter struct {
+	_ struct{} `type:"structure"`
+
+	// A string array of unique visibility values to be filtered on.
+	ValueList []*string `min:"1" type:"list" enum:"ContainerProductVisibilityString"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerProductVisibilityFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerProductVisibilityFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ContainerProductVisibilityFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ContainerProductVisibilityFilter"}
+	if s.ValueList != nil && len(s.ValueList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ValueList", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetValueList sets the ValueList field's value.
+func (s *ContainerProductVisibilityFilter) SetValueList(v []*string) *ContainerProductVisibilityFilter {
+	s.ValueList = v
+	return s
+}
+
+// Object that allows filtering on entity id of a data product.
+type DataProductEntityIdFilter struct {
+	_ struct{} `type:"structure"`
+
+	// A string array of unique entity id values to be filtered on.
+	ValueList []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataProductEntityIdFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataProductEntityIdFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DataProductEntityIdFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DataProductEntityIdFilter"}
+	if s.ValueList != nil && len(s.ValueList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ValueList", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetValueList sets the ValueList field's value.
+func (s *DataProductEntityIdFilter) SetValueList(v []*string) *DataProductEntityIdFilter {
+	s.ValueList = v
+	return s
+}
+
+// Object containing all the filter fields for data products. Client can add
+// a maximum of 8 filters in a single ListEntities request.
+type DataProductFilters struct {
+	_ struct{} `type:"structure"`
+
+	// Unique identifier for the data product.
+	EntityId *DataProductEntityIdFilter `type:"structure"`
+
+	// The last date on which the data product was modified.
+	LastModifiedDate *DataProductLastModifiedDateFilter `type:"structure"`
+
+	// The title of the data product.
+	ProductTitle *DataProductTitleFilter `type:"structure"`
+
+	// The visibility of the data product.
+	Visibility *DataProductVisibilityFilter `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataProductFilters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataProductFilters) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DataProductFilters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DataProductFilters"}
+	if s.EntityId != nil {
+		if err := s.EntityId.Validate(); err != nil {
+			invalidParams.AddNested("EntityId", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.LastModifiedDate != nil {
+		if err := s.LastModifiedDate.Validate(); err != nil {
+			invalidParams.AddNested("LastModifiedDate", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ProductTitle != nil {
+		if err := s.ProductTitle.Validate(); err != nil {
+			invalidParams.AddNested("ProductTitle", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Visibility != nil {
+		if err := s.Visibility.Validate(); err != nil {
+			invalidParams.AddNested("Visibility", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEntityId sets the EntityId field's value.
+func (s *DataProductFilters) SetEntityId(v *DataProductEntityIdFilter) *DataProductFilters {
+	s.EntityId = v
+	return s
+}
+
+// SetLastModifiedDate sets the LastModifiedDate field's value.
+func (s *DataProductFilters) SetLastModifiedDate(v *DataProductLastModifiedDateFilter) *DataProductFilters {
+	s.LastModifiedDate = v
+	return s
+}
+
+// SetProductTitle sets the ProductTitle field's value.
+func (s *DataProductFilters) SetProductTitle(v *DataProductTitleFilter) *DataProductFilters {
+	s.ProductTitle = v
+	return s
+}
+
+// SetVisibility sets the Visibility field's value.
+func (s *DataProductFilters) SetVisibility(v *DataProductVisibilityFilter) *DataProductFilters {
+	s.Visibility = v
+	return s
+}
+
+// Object that allows filtering based on the last modified date of data products.
+type DataProductLastModifiedDateFilter struct {
+	_ struct{} `type:"structure"`
+
+	// Dates between which the data product was last modified.
+	DateRange *DataProductLastModifiedDateFilterDateRange `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataProductLastModifiedDateFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataProductLastModifiedDateFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DataProductLastModifiedDateFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DataProductLastModifiedDateFilter"}
+	if s.DateRange != nil {
+		if err := s.DateRange.Validate(); err != nil {
+			invalidParams.AddNested("DateRange", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDateRange sets the DateRange field's value.
+func (s *DataProductLastModifiedDateFilter) SetDateRange(v *DataProductLastModifiedDateFilterDateRange) *DataProductLastModifiedDateFilter {
+	s.DateRange = v
+	return s
+}
+
+// Object that contains date range of the last modified date to be filtered
+// on. You can optionally provide a BeforeValue and/or AfterValue. Both are
+// inclusive.
+type DataProductLastModifiedDateFilterDateRange struct {
+	_ struct{} `type:"structure"`
+
+	// Date after which the data product was last modified.
+	AfterValue *string `min:"20" type:"string"`
+
+	// Date before which the data product was last modified.
+	BeforeValue *string `min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataProductLastModifiedDateFilterDateRange) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataProductLastModifiedDateFilterDateRange) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DataProductLastModifiedDateFilterDateRange) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DataProductLastModifiedDateFilterDateRange"}
+	if s.AfterValue != nil && len(*s.AfterValue) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("AfterValue", 20))
+	}
+	if s.BeforeValue != nil && len(*s.BeforeValue) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("BeforeValue", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAfterValue sets the AfterValue field's value.
+func (s *DataProductLastModifiedDateFilterDateRange) SetAfterValue(v string) *DataProductLastModifiedDateFilterDateRange {
+	s.AfterValue = &v
+	return s
+}
+
+// SetBeforeValue sets the BeforeValue field's value.
+func (s *DataProductLastModifiedDateFilterDateRange) SetBeforeValue(v string) *DataProductLastModifiedDateFilterDateRange {
+	s.BeforeValue = &v
+	return s
+}
+
+// Objects that allows sorting on data products based on certain fields and
+// sorting order.
+type DataProductSort struct {
+	_ struct{} `type:"structure"`
+
+	// Field to sort the data products by.
+	SortBy *string `type:"string" enum:"DataProductSortBy"`
+
+	// The sorting order. Can be ASCENDING or DESCENDING. The default value is DESCENDING.
+	SortOrder *string `type:"string" enum:"SortOrder"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataProductSort) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataProductSort) GoString() string {
+	return s.String()
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *DataProductSort) SetSortBy(v string) *DataProductSort {
+	s.SortBy = &v
+	return s
+}
+
+// SetSortOrder sets the SortOrder field's value.
+func (s *DataProductSort) SetSortOrder(v string) *DataProductSort {
+	s.SortOrder = &v
+	return s
+}
+
+// Object that contains summarized information about a data product.
+type DataProductSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The title of the data product.
+	ProductTitle *string `min:"1" type:"string"`
+
+	// The lifecycle of the data product.
+	Visibility *string `type:"string" enum:"DataProductVisibilityString"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataProductSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataProductSummary) GoString() string {
+	return s.String()
+}
+
+// SetProductTitle sets the ProductTitle field's value.
+func (s *DataProductSummary) SetProductTitle(v string) *DataProductSummary {
+	s.ProductTitle = &v
+	return s
+}
+
+// SetVisibility sets the Visibility field's value.
+func (s *DataProductSummary) SetVisibility(v string) *DataProductSummary {
+	s.Visibility = &v
+	return s
+}
+
+// Object that allows filtering on product title.
+type DataProductTitleFilter struct {
+	_ struct{} `type:"structure"`
+
+	// A string array of unique product title values to be filtered on.
+	ValueList []*string `min:"1" type:"list"`
+
+	// A string that will be the wildCard input for product tile filter. It matches
+	// the provided value as a substring in the actual value.
+	WildCardValue *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataProductTitleFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataProductTitleFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DataProductTitleFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DataProductTitleFilter"}
+	if s.ValueList != nil && len(s.ValueList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ValueList", 1))
+	}
+	if s.WildCardValue != nil && len(*s.WildCardValue) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WildCardValue", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetValueList sets the ValueList field's value.
+func (s *DataProductTitleFilter) SetValueList(v []*string) *DataProductTitleFilter {
+	s.ValueList = v
+	return s
+}
+
+// SetWildCardValue sets the WildCardValue field's value.
+func (s *DataProductTitleFilter) SetWildCardValue(v string) *DataProductTitleFilter {
+	s.WildCardValue = &v
+	return s
+}
+
+// Object that allows filtering on the visibility of the product in the AWS
+// Marketplace.
+type DataProductVisibilityFilter struct {
+	_ struct{} `type:"structure"`
+
+	// A string array of unique visibility values to be filtered on.
+	ValueList []*string `min:"1" type:"list" enum:"DataProductVisibilityString"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataProductVisibilityFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataProductVisibilityFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DataProductVisibilityFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DataProductVisibilityFilter"}
+	if s.ValueList != nil && len(s.ValueList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ValueList", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetValueList sets the ValueList field's value.
+func (s *DataProductVisibilityFilter) SetValueList(v []*string) *DataProductVisibilityFilter {
+	s.ValueList = v
 	return s
 }
 
@@ -2306,6 +3591,15 @@ func (s *Entity) SetType(v string) *Entity {
 type EntitySummary struct {
 	_ struct{} `type:"structure"`
 
+	// An object that contains summary information about the AMI product.
+	AmiProductSummary *AmiProductSummary `type:"structure"`
+
+	// An object that contains summary information about the container product.
+	ContainerProductSummary *ContainerProductSummary `type:"structure"`
+
+	// An object that contains summary information about the data product.
+	DataProductSummary *DataProductSummary `type:"structure"`
+
 	// The ARN associated with the unique identifier for the entity.
 	EntityArn *string `min:"1" type:"string"`
 
@@ -2320,6 +3614,15 @@ type EntitySummary struct {
 
 	// The name for the entity. This value is not unique. It is defined by the seller.
 	Name *string `min:"1" type:"string"`
+
+	// An object that contains summary information about the offer.
+	OfferSummary *OfferSummary `type:"structure"`
+
+	// An object that contains summary information about the Resale Authorization.
+	ResaleAuthorizationSummary *ResaleAuthorizationSummary `type:"structure"`
+
+	// An object that contains summary information about the SaaS product.
+	SaaSProductSummary *SaaSProductSummary `type:"structure"`
 
 	// The visibility status of the entity to buyers. This value can be Public (everyone
 	// can view the entity), Limited (the entity is visible to limited accounts
@@ -2344,6 +3647,24 @@ func (s EntitySummary) String() string {
 // value will be replaced with "sensitive".
 func (s EntitySummary) GoString() string {
 	return s.String()
+}
+
+// SetAmiProductSummary sets the AmiProductSummary field's value.
+func (s *EntitySummary) SetAmiProductSummary(v *AmiProductSummary) *EntitySummary {
+	s.AmiProductSummary = v
+	return s
+}
+
+// SetContainerProductSummary sets the ContainerProductSummary field's value.
+func (s *EntitySummary) SetContainerProductSummary(v *ContainerProductSummary) *EntitySummary {
+	s.ContainerProductSummary = v
+	return s
+}
+
+// SetDataProductSummary sets the DataProductSummary field's value.
+func (s *EntitySummary) SetDataProductSummary(v *DataProductSummary) *EntitySummary {
+	s.DataProductSummary = v
+	return s
 }
 
 // SetEntityArn sets the EntityArn field's value.
@@ -2376,9 +3697,221 @@ func (s *EntitySummary) SetName(v string) *EntitySummary {
 	return s
 }
 
+// SetOfferSummary sets the OfferSummary field's value.
+func (s *EntitySummary) SetOfferSummary(v *OfferSummary) *EntitySummary {
+	s.OfferSummary = v
+	return s
+}
+
+// SetResaleAuthorizationSummary sets the ResaleAuthorizationSummary field's value.
+func (s *EntitySummary) SetResaleAuthorizationSummary(v *ResaleAuthorizationSummary) *EntitySummary {
+	s.ResaleAuthorizationSummary = v
+	return s
+}
+
+// SetSaaSProductSummary sets the SaaSProductSummary field's value.
+func (s *EntitySummary) SetSaaSProductSummary(v *SaaSProductSummary) *EntitySummary {
+	s.SaaSProductSummary = v
+	return s
+}
+
 // SetVisibility sets the Visibility field's value.
 func (s *EntitySummary) SetVisibility(v string) *EntitySummary {
 	s.Visibility = &v
+	return s
+}
+
+// Object containing all the filter fields per entity type.
+type EntityTypeFilters struct {
+	_ struct{} `type:"structure"`
+
+	// A filter for AMI products.
+	AmiProductFilters *AmiProductFilters `type:"structure"`
+
+	// A filter for container products.
+	ContainerProductFilters *ContainerProductFilters `type:"structure"`
+
+	// A filter for data products.
+	DataProductFilters *DataProductFilters `type:"structure"`
+
+	// A filter for offers.
+	OfferFilters *OfferFilters `type:"structure"`
+
+	// A filter for Resale Authorizations.
+	ResaleAuthorizationFilters *ResaleAuthorizationFilters `type:"structure"`
+
+	// A filter for SaaS products.
+	SaaSProductFilters *SaaSProductFilters `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EntityTypeFilters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EntityTypeFilters) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EntityTypeFilters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EntityTypeFilters"}
+	if s.AmiProductFilters != nil {
+		if err := s.AmiProductFilters.Validate(); err != nil {
+			invalidParams.AddNested("AmiProductFilters", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ContainerProductFilters != nil {
+		if err := s.ContainerProductFilters.Validate(); err != nil {
+			invalidParams.AddNested("ContainerProductFilters", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.DataProductFilters != nil {
+		if err := s.DataProductFilters.Validate(); err != nil {
+			invalidParams.AddNested("DataProductFilters", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.OfferFilters != nil {
+		if err := s.OfferFilters.Validate(); err != nil {
+			invalidParams.AddNested("OfferFilters", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ResaleAuthorizationFilters != nil {
+		if err := s.ResaleAuthorizationFilters.Validate(); err != nil {
+			invalidParams.AddNested("ResaleAuthorizationFilters", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SaaSProductFilters != nil {
+		if err := s.SaaSProductFilters.Validate(); err != nil {
+			invalidParams.AddNested("SaaSProductFilters", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAmiProductFilters sets the AmiProductFilters field's value.
+func (s *EntityTypeFilters) SetAmiProductFilters(v *AmiProductFilters) *EntityTypeFilters {
+	s.AmiProductFilters = v
+	return s
+}
+
+// SetContainerProductFilters sets the ContainerProductFilters field's value.
+func (s *EntityTypeFilters) SetContainerProductFilters(v *ContainerProductFilters) *EntityTypeFilters {
+	s.ContainerProductFilters = v
+	return s
+}
+
+// SetDataProductFilters sets the DataProductFilters field's value.
+func (s *EntityTypeFilters) SetDataProductFilters(v *DataProductFilters) *EntityTypeFilters {
+	s.DataProductFilters = v
+	return s
+}
+
+// SetOfferFilters sets the OfferFilters field's value.
+func (s *EntityTypeFilters) SetOfferFilters(v *OfferFilters) *EntityTypeFilters {
+	s.OfferFilters = v
+	return s
+}
+
+// SetResaleAuthorizationFilters sets the ResaleAuthorizationFilters field's value.
+func (s *EntityTypeFilters) SetResaleAuthorizationFilters(v *ResaleAuthorizationFilters) *EntityTypeFilters {
+	s.ResaleAuthorizationFilters = v
+	return s
+}
+
+// SetSaaSProductFilters sets the SaaSProductFilters field's value.
+func (s *EntityTypeFilters) SetSaaSProductFilters(v *SaaSProductFilters) *EntityTypeFilters {
+	s.SaaSProductFilters = v
+	return s
+}
+
+// Object containing all the sort fields per entity type.
+type EntityTypeSort struct {
+	_ struct{} `type:"structure"`
+
+	// A sort for AMI products.
+	AmiProductSort *AmiProductSort `type:"structure"`
+
+	// A sort for container products.
+	ContainerProductSort *ContainerProductSort `type:"structure"`
+
+	// A sort for data products.
+	DataProductSort *DataProductSort `type:"structure"`
+
+	// A sort for offers.
+	OfferSort *OfferSort `type:"structure"`
+
+	// A sort for Resale Authorizations.
+	ResaleAuthorizationSort *ResaleAuthorizationSort `type:"structure"`
+
+	// A sort for SaaS products.
+	SaaSProductSort *SaaSProductSort `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EntityTypeSort) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EntityTypeSort) GoString() string {
+	return s.String()
+}
+
+// SetAmiProductSort sets the AmiProductSort field's value.
+func (s *EntityTypeSort) SetAmiProductSort(v *AmiProductSort) *EntityTypeSort {
+	s.AmiProductSort = v
+	return s
+}
+
+// SetContainerProductSort sets the ContainerProductSort field's value.
+func (s *EntityTypeSort) SetContainerProductSort(v *ContainerProductSort) *EntityTypeSort {
+	s.ContainerProductSort = v
+	return s
+}
+
+// SetDataProductSort sets the DataProductSort field's value.
+func (s *EntityTypeSort) SetDataProductSort(v *DataProductSort) *EntityTypeSort {
+	s.DataProductSort = v
+	return s
+}
+
+// SetOfferSort sets the OfferSort field's value.
+func (s *EntityTypeSort) SetOfferSort(v *OfferSort) *EntityTypeSort {
+	s.OfferSort = v
+	return s
+}
+
+// SetResaleAuthorizationSort sets the ResaleAuthorizationSort field's value.
+func (s *EntityTypeSort) SetResaleAuthorizationSort(v *ResaleAuthorizationSort) *EntityTypeSort {
+	s.ResaleAuthorizationSort = v
+	return s
+}
+
+// SetSaaSProductSort sets the SaaSProductSort field's value.
+func (s *EntityTypeSort) SetSaaSProductSort(v *SaaSProductSort) *EntityTypeSort {
+	s.SaaSProductSort = v
 	return s
 }
 
@@ -2813,10 +4346,22 @@ type ListEntitiesInput struct {
 	// Catalog is a required field
 	Catalog *string `min:"1" type:"string" required:"true"`
 
-	// The type of entities to retrieve.
+	// The type of entities to retrieve. Valid values are: ServerProduct, AmiProduct,
+	// ContainerProduct, DataProduct, SaaSProduct, ProcurementPolicy, Experience,
+	// Audience, BrandingSettings, Offer, Seller, ResaleAuthorization.
 	//
 	// EntityType is a required field
 	EntityType *string `min:"1" type:"string" required:"true"`
+
+	// A Union object containing filter shapes for all EntityTypes. Each EntityTypeFilter
+	// shape will have filters applicable for that EntityType that can be used to
+	// search or filter entities.
+	EntityTypeFilters *EntityTypeFilters `type:"structure"`
+
+	// A Union object containing Sort shapes for all EntityTypes. Each EntityTypeSort
+	// shape will have SortBy and SortOrder applicable for fields on that EntityType.
+	// This can be used to sort the results of the filter query.
+	EntityTypeSort *EntityTypeSort `type:"structure"`
 
 	// An array of filter objects. Each filter object contains two attributes, filterName
 	// and filterValues.
@@ -2881,6 +4426,11 @@ func (s *ListEntitiesInput) Validate() error {
 	if s.NextToken != nil && len(*s.NextToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
 	}
+	if s.EntityTypeFilters != nil {
+		if err := s.EntityTypeFilters.Validate(); err != nil {
+			invalidParams.AddNested("EntityTypeFilters", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.FilterList != nil {
 		for i, v := range s.FilterList {
 			if v == nil {
@@ -2912,6 +4462,18 @@ func (s *ListEntitiesInput) SetCatalog(v string) *ListEntitiesInput {
 // SetEntityType sets the EntityType field's value.
 func (s *ListEntitiesInput) SetEntityType(v string) *ListEntitiesInput {
 	s.EntityType = &v
+	return s
+}
+
+// SetEntityTypeFilters sets the EntityTypeFilters field's value.
+func (s *ListEntitiesInput) SetEntityTypeFilters(v *EntityTypeFilters) *ListEntitiesInput {
+	s.EntityTypeFilters = v
+	return s
+}
+
+// SetEntityTypeSort sets the EntityTypeSort field's value.
+func (s *ListEntitiesInput) SetEntityTypeSort(v *EntityTypeSort) *ListEntitiesInput {
+	s.EntityTypeSort = v
 	return s
 }
 
@@ -2948,7 +4510,7 @@ func (s *ListEntitiesInput) SetSort(v *Sort) *ListEntitiesInput {
 type ListEntitiesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Array of EntitySummary object.
+	// Array of EntitySummary objects.
 	EntitySummaryList []*EntitySummary `type:"list"`
 
 	// The value of the next token if it exists. Null if there is no more result.
@@ -3076,6 +4638,888 @@ func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput
 	return s
 }
 
+// Allows filtering on the AvailabilityEndDate of an offer.
+type OfferAvailabilityEndDateFilter struct {
+	_ struct{} `type:"structure"`
+
+	// Allows filtering on the AvailabilityEndDate of an offer with date range as
+	// input.
+	DateRange *OfferAvailabilityEndDateFilterDateRange `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OfferAvailabilityEndDateFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OfferAvailabilityEndDateFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OfferAvailabilityEndDateFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OfferAvailabilityEndDateFilter"}
+	if s.DateRange != nil {
+		if err := s.DateRange.Validate(); err != nil {
+			invalidParams.AddNested("DateRange", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDateRange sets the DateRange field's value.
+func (s *OfferAvailabilityEndDateFilter) SetDateRange(v *OfferAvailabilityEndDateFilterDateRange) *OfferAvailabilityEndDateFilter {
+	s.DateRange = v
+	return s
+}
+
+// Allows filtering on the AvailabilityEndDate of an offer with date range as
+// input.
+type OfferAvailabilityEndDateFilterDateRange struct {
+	_ struct{} `type:"structure"`
+
+	// Allows filtering on the AvailabilityEndDate of an offer after a date.
+	AfterValue *string `min:"20" type:"string"`
+
+	// Allows filtering on the AvailabilityEndDate of an offer before a date.
+	BeforeValue *string `min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OfferAvailabilityEndDateFilterDateRange) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OfferAvailabilityEndDateFilterDateRange) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OfferAvailabilityEndDateFilterDateRange) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OfferAvailabilityEndDateFilterDateRange"}
+	if s.AfterValue != nil && len(*s.AfterValue) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("AfterValue", 20))
+	}
+	if s.BeforeValue != nil && len(*s.BeforeValue) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("BeforeValue", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAfterValue sets the AfterValue field's value.
+func (s *OfferAvailabilityEndDateFilterDateRange) SetAfterValue(v string) *OfferAvailabilityEndDateFilterDateRange {
+	s.AfterValue = &v
+	return s
+}
+
+// SetBeforeValue sets the BeforeValue field's value.
+func (s *OfferAvailabilityEndDateFilterDateRange) SetBeforeValue(v string) *OfferAvailabilityEndDateFilterDateRange {
+	s.BeforeValue = &v
+	return s
+}
+
+// Allows filtering on the BuyerAccounts of an offer.
+type OfferBuyerAccountsFilter struct {
+	_ struct{} `type:"structure"`
+
+	// Allows filtering on the BuyerAccounts of an offer with wild card input.
+	WildCardValue *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OfferBuyerAccountsFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OfferBuyerAccountsFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OfferBuyerAccountsFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OfferBuyerAccountsFilter"}
+	if s.WildCardValue != nil && len(*s.WildCardValue) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WildCardValue", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetWildCardValue sets the WildCardValue field's value.
+func (s *OfferBuyerAccountsFilter) SetWildCardValue(v string) *OfferBuyerAccountsFilter {
+	s.WildCardValue = &v
+	return s
+}
+
+// Allows filtering on the entity id of an offer.
+type OfferEntityIdFilter struct {
+	_ struct{} `type:"structure"`
+
+	// Allows filtering on entity id of an offer with list input.
+	ValueList []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OfferEntityIdFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OfferEntityIdFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OfferEntityIdFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OfferEntityIdFilter"}
+	if s.ValueList != nil && len(s.ValueList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ValueList", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetValueList sets the ValueList field's value.
+func (s *OfferEntityIdFilter) SetValueList(v []*string) *OfferEntityIdFilter {
+	s.ValueList = v
+	return s
+}
+
+// A filter for offers entity.
+type OfferFilters struct {
+	_ struct{} `type:"structure"`
+
+	// Allows filtering on the AvailabilityEndDate of an offer.
+	AvailabilityEndDate *OfferAvailabilityEndDateFilter `type:"structure"`
+
+	// Allows filtering on the BuyerAccounts of an offer.
+	BuyerAccounts *OfferBuyerAccountsFilter `type:"structure"`
+
+	// Allows filtering on EntityId of an offer.
+	EntityId *OfferEntityIdFilter `type:"structure"`
+
+	// Allows filtering on the LastModifiedDate of an offer.
+	LastModifiedDate *OfferLastModifiedDateFilter `type:"structure"`
+
+	// Allows filtering on the Name of an offer.
+	Name *OfferNameFilter `type:"structure"`
+
+	// Allows filtering on the ProductId of an offer.
+	ProductId *OfferProductIdFilter `type:"structure"`
+
+	// Allows filtering on the ReleaseDate of an offer.
+	ReleaseDate *OfferReleaseDateFilter `type:"structure"`
+
+	// Allows filtering on the State of an offer.
+	State *OfferStateFilter `type:"structure"`
+
+	// Allows filtering on the Targeting of an offer.
+	Targeting *OfferTargetingFilter `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OfferFilters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OfferFilters) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OfferFilters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OfferFilters"}
+	if s.AvailabilityEndDate != nil {
+		if err := s.AvailabilityEndDate.Validate(); err != nil {
+			invalidParams.AddNested("AvailabilityEndDate", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.BuyerAccounts != nil {
+		if err := s.BuyerAccounts.Validate(); err != nil {
+			invalidParams.AddNested("BuyerAccounts", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.EntityId != nil {
+		if err := s.EntityId.Validate(); err != nil {
+			invalidParams.AddNested("EntityId", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.LastModifiedDate != nil {
+		if err := s.LastModifiedDate.Validate(); err != nil {
+			invalidParams.AddNested("LastModifiedDate", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Name != nil {
+		if err := s.Name.Validate(); err != nil {
+			invalidParams.AddNested("Name", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ProductId != nil {
+		if err := s.ProductId.Validate(); err != nil {
+			invalidParams.AddNested("ProductId", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ReleaseDate != nil {
+		if err := s.ReleaseDate.Validate(); err != nil {
+			invalidParams.AddNested("ReleaseDate", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.State != nil {
+		if err := s.State.Validate(); err != nil {
+			invalidParams.AddNested("State", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Targeting != nil {
+		if err := s.Targeting.Validate(); err != nil {
+			invalidParams.AddNested("Targeting", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAvailabilityEndDate sets the AvailabilityEndDate field's value.
+func (s *OfferFilters) SetAvailabilityEndDate(v *OfferAvailabilityEndDateFilter) *OfferFilters {
+	s.AvailabilityEndDate = v
+	return s
+}
+
+// SetBuyerAccounts sets the BuyerAccounts field's value.
+func (s *OfferFilters) SetBuyerAccounts(v *OfferBuyerAccountsFilter) *OfferFilters {
+	s.BuyerAccounts = v
+	return s
+}
+
+// SetEntityId sets the EntityId field's value.
+func (s *OfferFilters) SetEntityId(v *OfferEntityIdFilter) *OfferFilters {
+	s.EntityId = v
+	return s
+}
+
+// SetLastModifiedDate sets the LastModifiedDate field's value.
+func (s *OfferFilters) SetLastModifiedDate(v *OfferLastModifiedDateFilter) *OfferFilters {
+	s.LastModifiedDate = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *OfferFilters) SetName(v *OfferNameFilter) *OfferFilters {
+	s.Name = v
+	return s
+}
+
+// SetProductId sets the ProductId field's value.
+func (s *OfferFilters) SetProductId(v *OfferProductIdFilter) *OfferFilters {
+	s.ProductId = v
+	return s
+}
+
+// SetReleaseDate sets the ReleaseDate field's value.
+func (s *OfferFilters) SetReleaseDate(v *OfferReleaseDateFilter) *OfferFilters {
+	s.ReleaseDate = v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *OfferFilters) SetState(v *OfferStateFilter) *OfferFilters {
+	s.State = v
+	return s
+}
+
+// SetTargeting sets the Targeting field's value.
+func (s *OfferFilters) SetTargeting(v *OfferTargetingFilter) *OfferFilters {
+	s.Targeting = v
+	return s
+}
+
+// Allows filtering on the LastModifiedDate of an offer.
+type OfferLastModifiedDateFilter struct {
+	_ struct{} `type:"structure"`
+
+	// Allows filtering on the LastModifiedDate of an offer with date range as input.
+	DateRange *OfferLastModifiedDateFilterDateRange `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OfferLastModifiedDateFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OfferLastModifiedDateFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OfferLastModifiedDateFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OfferLastModifiedDateFilter"}
+	if s.DateRange != nil {
+		if err := s.DateRange.Validate(); err != nil {
+			invalidParams.AddNested("DateRange", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDateRange sets the DateRange field's value.
+func (s *OfferLastModifiedDateFilter) SetDateRange(v *OfferLastModifiedDateFilterDateRange) *OfferLastModifiedDateFilter {
+	s.DateRange = v
+	return s
+}
+
+// Allows filtering on the LastModifiedDate of an offer with date range as input.
+type OfferLastModifiedDateFilterDateRange struct {
+	_ struct{} `type:"structure"`
+
+	// Allows filtering on the LastModifiedDate of an offer after a date.
+	AfterValue *string `min:"20" type:"string"`
+
+	// Allows filtering on the LastModifiedDate of an offer before a date.
+	BeforeValue *string `min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OfferLastModifiedDateFilterDateRange) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OfferLastModifiedDateFilterDateRange) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OfferLastModifiedDateFilterDateRange) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OfferLastModifiedDateFilterDateRange"}
+	if s.AfterValue != nil && len(*s.AfterValue) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("AfterValue", 20))
+	}
+	if s.BeforeValue != nil && len(*s.BeforeValue) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("BeforeValue", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAfterValue sets the AfterValue field's value.
+func (s *OfferLastModifiedDateFilterDateRange) SetAfterValue(v string) *OfferLastModifiedDateFilterDateRange {
+	s.AfterValue = &v
+	return s
+}
+
+// SetBeforeValue sets the BeforeValue field's value.
+func (s *OfferLastModifiedDateFilterDateRange) SetBeforeValue(v string) *OfferLastModifiedDateFilterDateRange {
+	s.BeforeValue = &v
+	return s
+}
+
+// Allows filtering on the Name of an offer.
+type OfferNameFilter struct {
+	_ struct{} `type:"structure"`
+
+	// Allows filtering on the Name of an offer with list input.
+	ValueList []*string `min:"1" type:"list"`
+
+	// Allows filtering on the Name of an offer with wild card input.
+	WildCardValue *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OfferNameFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OfferNameFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OfferNameFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OfferNameFilter"}
+	if s.ValueList != nil && len(s.ValueList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ValueList", 1))
+	}
+	if s.WildCardValue != nil && len(*s.WildCardValue) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WildCardValue", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetValueList sets the ValueList field's value.
+func (s *OfferNameFilter) SetValueList(v []*string) *OfferNameFilter {
+	s.ValueList = v
+	return s
+}
+
+// SetWildCardValue sets the WildCardValue field's value.
+func (s *OfferNameFilter) SetWildCardValue(v string) *OfferNameFilter {
+	s.WildCardValue = &v
+	return s
+}
+
+// Allows filtering on the ProductId of an offer.
+type OfferProductIdFilter struct {
+	_ struct{} `type:"structure"`
+
+	// Allows filtering on the ProductId of an offer with list input.
+	ValueList []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OfferProductIdFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OfferProductIdFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OfferProductIdFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OfferProductIdFilter"}
+	if s.ValueList != nil && len(s.ValueList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ValueList", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetValueList sets the ValueList field's value.
+func (s *OfferProductIdFilter) SetValueList(v []*string) *OfferProductIdFilter {
+	s.ValueList = v
+	return s
+}
+
+// Allows filtering on the ReleaseDate of an offer.
+type OfferReleaseDateFilter struct {
+	_ struct{} `type:"structure"`
+
+	// Allows filtering on the ReleaseDate of an offer with date range as input.
+	DateRange *OfferReleaseDateFilterDateRange `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OfferReleaseDateFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OfferReleaseDateFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OfferReleaseDateFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OfferReleaseDateFilter"}
+	if s.DateRange != nil {
+		if err := s.DateRange.Validate(); err != nil {
+			invalidParams.AddNested("DateRange", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDateRange sets the DateRange field's value.
+func (s *OfferReleaseDateFilter) SetDateRange(v *OfferReleaseDateFilterDateRange) *OfferReleaseDateFilter {
+	s.DateRange = v
+	return s
+}
+
+// Allows filtering on the ReleaseDate of an offer with date range as input.
+type OfferReleaseDateFilterDateRange struct {
+	_ struct{} `type:"structure"`
+
+	// Allows filtering on the ReleaseDate of offers after a date.
+	AfterValue *string `min:"20" type:"string"`
+
+	// Allows filtering on the ReleaseDate of offers before a date.
+	BeforeValue *string `min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OfferReleaseDateFilterDateRange) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OfferReleaseDateFilterDateRange) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OfferReleaseDateFilterDateRange) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OfferReleaseDateFilterDateRange"}
+	if s.AfterValue != nil && len(*s.AfterValue) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("AfterValue", 20))
+	}
+	if s.BeforeValue != nil && len(*s.BeforeValue) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("BeforeValue", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAfterValue sets the AfterValue field's value.
+func (s *OfferReleaseDateFilterDateRange) SetAfterValue(v string) *OfferReleaseDateFilterDateRange {
+	s.AfterValue = &v
+	return s
+}
+
+// SetBeforeValue sets the BeforeValue field's value.
+func (s *OfferReleaseDateFilterDateRange) SetBeforeValue(v string) *OfferReleaseDateFilterDateRange {
+	s.BeforeValue = &v
+	return s
+}
+
+// Allows to sort offers.
+type OfferSort struct {
+	_ struct{} `type:"structure"`
+
+	// Allows to sort offers.
+	SortBy *string `type:"string" enum:"OfferSortBy"`
+
+	// Allows to sort offers.
+	SortOrder *string `type:"string" enum:"SortOrder"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OfferSort) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OfferSort) GoString() string {
+	return s.String()
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *OfferSort) SetSortBy(v string) *OfferSort {
+	s.SortBy = &v
+	return s
+}
+
+// SetSortOrder sets the SortOrder field's value.
+func (s *OfferSort) SetSortOrder(v string) *OfferSort {
+	s.SortOrder = &v
+	return s
+}
+
+// Allows filtering on the State of an offer.
+type OfferStateFilter struct {
+	_ struct{} `type:"structure"`
+
+	// Allows filtering on the State of an offer with list input.
+	ValueList []*string `min:"1" type:"list" enum:"OfferStateString"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OfferStateFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OfferStateFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OfferStateFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OfferStateFilter"}
+	if s.ValueList != nil && len(s.ValueList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ValueList", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetValueList sets the ValueList field's value.
+func (s *OfferStateFilter) SetValueList(v []*string) *OfferStateFilter {
+	s.ValueList = v
+	return s
+}
+
+// Summarized information about an offer.
+type OfferSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The availability end date of the offer.
+	AvailabilityEndDate *string `min:"20" type:"string"`
+
+	// The buyer accounts in the offer.
+	BuyerAccounts []*string `type:"list"`
+
+	// The name of the offer.
+	Name *string `min:"1" type:"string"`
+
+	// The product ID of the offer.
+	ProductId *string `min:"1" type:"string"`
+
+	// The release date of the offer.
+	ReleaseDate *string `min:"20" type:"string"`
+
+	// The status of the offer.
+	State *string `type:"string" enum:"OfferStateString"`
+
+	// The targeting in the offer.
+	Targeting []*string `type:"list" enum:"OfferTargetingString"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OfferSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OfferSummary) GoString() string {
+	return s.String()
+}
+
+// SetAvailabilityEndDate sets the AvailabilityEndDate field's value.
+func (s *OfferSummary) SetAvailabilityEndDate(v string) *OfferSummary {
+	s.AvailabilityEndDate = &v
+	return s
+}
+
+// SetBuyerAccounts sets the BuyerAccounts field's value.
+func (s *OfferSummary) SetBuyerAccounts(v []*string) *OfferSummary {
+	s.BuyerAccounts = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *OfferSummary) SetName(v string) *OfferSummary {
+	s.Name = &v
+	return s
+}
+
+// SetProductId sets the ProductId field's value.
+func (s *OfferSummary) SetProductId(v string) *OfferSummary {
+	s.ProductId = &v
+	return s
+}
+
+// SetReleaseDate sets the ReleaseDate field's value.
+func (s *OfferSummary) SetReleaseDate(v string) *OfferSummary {
+	s.ReleaseDate = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *OfferSummary) SetState(v string) *OfferSummary {
+	s.State = &v
+	return s
+}
+
+// SetTargeting sets the Targeting field's value.
+func (s *OfferSummary) SetTargeting(v []*string) *OfferSummary {
+	s.Targeting = v
+	return s
+}
+
+// Allows filtering on the Targeting of an offer.
+type OfferTargetingFilter struct {
+	_ struct{} `type:"structure"`
+
+	// Allows filtering on the Targeting of an offer with list input.
+	ValueList []*string `min:"1" type:"list" enum:"OfferTargetingString"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OfferTargetingFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OfferTargetingFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OfferTargetingFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OfferTargetingFilter"}
+	if s.ValueList != nil && len(s.ValueList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ValueList", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetValueList sets the ValueList field's value.
+func (s *OfferTargetingFilter) SetValueList(v []*string) *OfferTargetingFilter {
+	s.ValueList = v
+	return s
+}
+
 type PutResourcePolicyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3163,6 +5607,1277 @@ func (s PutResourcePolicyOutput) String() string {
 // value will be replaced with "sensitive".
 func (s PutResourcePolicyOutput) GoString() string {
 	return s.String()
+}
+
+// Allows filtering on AvailabilityEndDate of a ResaleAuthorization.
+type ResaleAuthorizationAvailabilityEndDateFilter struct {
+	_ struct{} `type:"structure"`
+
+	// Allows filtering on AvailabilityEndDate of a ResaleAuthorization with date
+	// range as input
+	DateRange *ResaleAuthorizationAvailabilityEndDateFilterDateRange `type:"structure"`
+
+	// Allows filtering on AvailabilityEndDate of a ResaleAuthorization with date
+	// value as input.
+	ValueList []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResaleAuthorizationAvailabilityEndDateFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResaleAuthorizationAvailabilityEndDateFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResaleAuthorizationAvailabilityEndDateFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResaleAuthorizationAvailabilityEndDateFilter"}
+	if s.ValueList != nil && len(s.ValueList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ValueList", 1))
+	}
+	if s.DateRange != nil {
+		if err := s.DateRange.Validate(); err != nil {
+			invalidParams.AddNested("DateRange", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDateRange sets the DateRange field's value.
+func (s *ResaleAuthorizationAvailabilityEndDateFilter) SetDateRange(v *ResaleAuthorizationAvailabilityEndDateFilterDateRange) *ResaleAuthorizationAvailabilityEndDateFilter {
+	s.DateRange = v
+	return s
+}
+
+// SetValueList sets the ValueList field's value.
+func (s *ResaleAuthorizationAvailabilityEndDateFilter) SetValueList(v []*string) *ResaleAuthorizationAvailabilityEndDateFilter {
+	s.ValueList = v
+	return s
+}
+
+// Allows filtering on AvailabilityEndDate of a ResaleAuthorization with date
+// range as input.
+type ResaleAuthorizationAvailabilityEndDateFilterDateRange struct {
+	_ struct{} `type:"structure"`
+
+	// Allows filtering on AvailabilityEndDate of a ResaleAuthorization after a
+	// date.
+	AfterValue *string `min:"20" type:"string"`
+
+	// Allows filtering on AvailabilityEndDate of a ResaleAuthorization before a
+	// date.
+	BeforeValue *string `min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResaleAuthorizationAvailabilityEndDateFilterDateRange) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResaleAuthorizationAvailabilityEndDateFilterDateRange) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResaleAuthorizationAvailabilityEndDateFilterDateRange) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResaleAuthorizationAvailabilityEndDateFilterDateRange"}
+	if s.AfterValue != nil && len(*s.AfterValue) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("AfterValue", 20))
+	}
+	if s.BeforeValue != nil && len(*s.BeforeValue) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("BeforeValue", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAfterValue sets the AfterValue field's value.
+func (s *ResaleAuthorizationAvailabilityEndDateFilterDateRange) SetAfterValue(v string) *ResaleAuthorizationAvailabilityEndDateFilterDateRange {
+	s.AfterValue = &v
+	return s
+}
+
+// SetBeforeValue sets the BeforeValue field's value.
+func (s *ResaleAuthorizationAvailabilityEndDateFilterDateRange) SetBeforeValue(v string) *ResaleAuthorizationAvailabilityEndDateFilterDateRange {
+	s.BeforeValue = &v
+	return s
+}
+
+// Allows filtering on CreatedDate of a ResaleAuthorization.
+type ResaleAuthorizationCreatedDateFilter struct {
+	_ struct{} `type:"structure"`
+
+	// Allows filtering on CreatedDate of a ResaleAuthorization with date range
+	// as input.
+	DateRange *ResaleAuthorizationCreatedDateFilterDateRange `type:"structure"`
+
+	// Allows filtering on CreatedDate of a ResaleAuthorization with date value
+	// as input.
+	ValueList []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResaleAuthorizationCreatedDateFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResaleAuthorizationCreatedDateFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResaleAuthorizationCreatedDateFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResaleAuthorizationCreatedDateFilter"}
+	if s.ValueList != nil && len(s.ValueList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ValueList", 1))
+	}
+	if s.DateRange != nil {
+		if err := s.DateRange.Validate(); err != nil {
+			invalidParams.AddNested("DateRange", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDateRange sets the DateRange field's value.
+func (s *ResaleAuthorizationCreatedDateFilter) SetDateRange(v *ResaleAuthorizationCreatedDateFilterDateRange) *ResaleAuthorizationCreatedDateFilter {
+	s.DateRange = v
+	return s
+}
+
+// SetValueList sets the ValueList field's value.
+func (s *ResaleAuthorizationCreatedDateFilter) SetValueList(v []*string) *ResaleAuthorizationCreatedDateFilter {
+	s.ValueList = v
+	return s
+}
+
+// Allows filtering on CreatedDate of a ResaleAuthorization with date range
+// as input.
+type ResaleAuthorizationCreatedDateFilterDateRange struct {
+	_ struct{} `type:"structure"`
+
+	// Allows filtering on CreatedDate of a ResaleAuthorization after a date.
+	AfterValue *string `min:"20" type:"string"`
+
+	// Allows filtering on CreatedDate of a ResaleAuthorization before a date.
+	BeforeValue *string `min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResaleAuthorizationCreatedDateFilterDateRange) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResaleAuthorizationCreatedDateFilterDateRange) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResaleAuthorizationCreatedDateFilterDateRange) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResaleAuthorizationCreatedDateFilterDateRange"}
+	if s.AfterValue != nil && len(*s.AfterValue) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("AfterValue", 20))
+	}
+	if s.BeforeValue != nil && len(*s.BeforeValue) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("BeforeValue", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAfterValue sets the AfterValue field's value.
+func (s *ResaleAuthorizationCreatedDateFilterDateRange) SetAfterValue(v string) *ResaleAuthorizationCreatedDateFilterDateRange {
+	s.AfterValue = &v
+	return s
+}
+
+// SetBeforeValue sets the BeforeValue field's value.
+func (s *ResaleAuthorizationCreatedDateFilterDateRange) SetBeforeValue(v string) *ResaleAuthorizationCreatedDateFilterDateRange {
+	s.BeforeValue = &v
+	return s
+}
+
+// Allows filtering on EntityId of a ResaleAuthorization.
+type ResaleAuthorizationEntityIdFilter struct {
+	_ struct{} `type:"structure"`
+
+	// Allows filtering on EntityId of a ResaleAuthorization with list input.
+	ValueList []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResaleAuthorizationEntityIdFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResaleAuthorizationEntityIdFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResaleAuthorizationEntityIdFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResaleAuthorizationEntityIdFilter"}
+	if s.ValueList != nil && len(s.ValueList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ValueList", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetValueList sets the ValueList field's value.
+func (s *ResaleAuthorizationEntityIdFilter) SetValueList(v []*string) *ResaleAuthorizationEntityIdFilter {
+	s.ValueList = v
+	return s
+}
+
+// A filter for ResaleAuthorization entity.
+type ResaleAuthorizationFilters struct {
+	_ struct{} `type:"structure"`
+
+	// Allows filtering on the AvailabilityEndDate of a ResaleAuthorization.
+	AvailabilityEndDate *ResaleAuthorizationAvailabilityEndDateFilter `type:"structure"`
+
+	// Allows filtering on the CreatedDate of a ResaleAuthorization.
+	CreatedDate *ResaleAuthorizationCreatedDateFilter `type:"structure"`
+
+	// Allows filtering on the EntityId of a ResaleAuthorization.
+	EntityId *ResaleAuthorizationEntityIdFilter `type:"structure"`
+
+	// Allows filtering on the LastModifiedDate of a ResaleAuthorization.
+	LastModifiedDate *ResaleAuthorizationLastModifiedDateFilter `type:"structure"`
+
+	// Allows filtering on the ManufacturerAccountId of a ResaleAuthorization.
+	ManufacturerAccountId *ResaleAuthorizationManufacturerAccountIdFilter `type:"structure"`
+
+	// Allows filtering on the ManufacturerLegalName of a ResaleAuthorization.
+	ManufacturerLegalName *ResaleAuthorizationManufacturerLegalNameFilter `type:"structure"`
+
+	// Allows filtering on the Name of a ResaleAuthorization.
+	Name *ResaleAuthorizationNameFilter `type:"structure"`
+
+	// Allows filtering on the OfferExtendedStatus of a ResaleAuthorization.
+	OfferExtendedStatus *ResaleAuthorizationOfferExtendedStatusFilter `type:"structure"`
+
+	// Allows filtering on the ProductId of a ResaleAuthorization.
+	ProductId *ResaleAuthorizationProductIdFilter `type:"structure"`
+
+	// Allows filtering on the ProductName of a ResaleAuthorization.
+	ProductName *ResaleAuthorizationProductNameFilter `type:"structure"`
+
+	// Allows filtering on the ResellerAccountID of a ResaleAuthorization.
+	ResellerAccountID *ResaleAuthorizationResellerAccountIDFilter `type:"structure"`
+
+	// Allows filtering on the ResellerLegalName of a ResaleAuthorization.
+	ResellerLegalName *ResaleAuthorizationResellerLegalNameFilter `type:"structure"`
+
+	// Allows filtering on the Status of a ResaleAuthorization.
+	Status *ResaleAuthorizationStatusFilter `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResaleAuthorizationFilters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResaleAuthorizationFilters) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResaleAuthorizationFilters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResaleAuthorizationFilters"}
+	if s.AvailabilityEndDate != nil {
+		if err := s.AvailabilityEndDate.Validate(); err != nil {
+			invalidParams.AddNested("AvailabilityEndDate", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.CreatedDate != nil {
+		if err := s.CreatedDate.Validate(); err != nil {
+			invalidParams.AddNested("CreatedDate", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.EntityId != nil {
+		if err := s.EntityId.Validate(); err != nil {
+			invalidParams.AddNested("EntityId", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.LastModifiedDate != nil {
+		if err := s.LastModifiedDate.Validate(); err != nil {
+			invalidParams.AddNested("LastModifiedDate", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ManufacturerAccountId != nil {
+		if err := s.ManufacturerAccountId.Validate(); err != nil {
+			invalidParams.AddNested("ManufacturerAccountId", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ManufacturerLegalName != nil {
+		if err := s.ManufacturerLegalName.Validate(); err != nil {
+			invalidParams.AddNested("ManufacturerLegalName", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Name != nil {
+		if err := s.Name.Validate(); err != nil {
+			invalidParams.AddNested("Name", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.OfferExtendedStatus != nil {
+		if err := s.OfferExtendedStatus.Validate(); err != nil {
+			invalidParams.AddNested("OfferExtendedStatus", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ProductId != nil {
+		if err := s.ProductId.Validate(); err != nil {
+			invalidParams.AddNested("ProductId", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ProductName != nil {
+		if err := s.ProductName.Validate(); err != nil {
+			invalidParams.AddNested("ProductName", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ResellerAccountID != nil {
+		if err := s.ResellerAccountID.Validate(); err != nil {
+			invalidParams.AddNested("ResellerAccountID", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ResellerLegalName != nil {
+		if err := s.ResellerLegalName.Validate(); err != nil {
+			invalidParams.AddNested("ResellerLegalName", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Status != nil {
+		if err := s.Status.Validate(); err != nil {
+			invalidParams.AddNested("Status", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAvailabilityEndDate sets the AvailabilityEndDate field's value.
+func (s *ResaleAuthorizationFilters) SetAvailabilityEndDate(v *ResaleAuthorizationAvailabilityEndDateFilter) *ResaleAuthorizationFilters {
+	s.AvailabilityEndDate = v
+	return s
+}
+
+// SetCreatedDate sets the CreatedDate field's value.
+func (s *ResaleAuthorizationFilters) SetCreatedDate(v *ResaleAuthorizationCreatedDateFilter) *ResaleAuthorizationFilters {
+	s.CreatedDate = v
+	return s
+}
+
+// SetEntityId sets the EntityId field's value.
+func (s *ResaleAuthorizationFilters) SetEntityId(v *ResaleAuthorizationEntityIdFilter) *ResaleAuthorizationFilters {
+	s.EntityId = v
+	return s
+}
+
+// SetLastModifiedDate sets the LastModifiedDate field's value.
+func (s *ResaleAuthorizationFilters) SetLastModifiedDate(v *ResaleAuthorizationLastModifiedDateFilter) *ResaleAuthorizationFilters {
+	s.LastModifiedDate = v
+	return s
+}
+
+// SetManufacturerAccountId sets the ManufacturerAccountId field's value.
+func (s *ResaleAuthorizationFilters) SetManufacturerAccountId(v *ResaleAuthorizationManufacturerAccountIdFilter) *ResaleAuthorizationFilters {
+	s.ManufacturerAccountId = v
+	return s
+}
+
+// SetManufacturerLegalName sets the ManufacturerLegalName field's value.
+func (s *ResaleAuthorizationFilters) SetManufacturerLegalName(v *ResaleAuthorizationManufacturerLegalNameFilter) *ResaleAuthorizationFilters {
+	s.ManufacturerLegalName = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ResaleAuthorizationFilters) SetName(v *ResaleAuthorizationNameFilter) *ResaleAuthorizationFilters {
+	s.Name = v
+	return s
+}
+
+// SetOfferExtendedStatus sets the OfferExtendedStatus field's value.
+func (s *ResaleAuthorizationFilters) SetOfferExtendedStatus(v *ResaleAuthorizationOfferExtendedStatusFilter) *ResaleAuthorizationFilters {
+	s.OfferExtendedStatus = v
+	return s
+}
+
+// SetProductId sets the ProductId field's value.
+func (s *ResaleAuthorizationFilters) SetProductId(v *ResaleAuthorizationProductIdFilter) *ResaleAuthorizationFilters {
+	s.ProductId = v
+	return s
+}
+
+// SetProductName sets the ProductName field's value.
+func (s *ResaleAuthorizationFilters) SetProductName(v *ResaleAuthorizationProductNameFilter) *ResaleAuthorizationFilters {
+	s.ProductName = v
+	return s
+}
+
+// SetResellerAccountID sets the ResellerAccountID field's value.
+func (s *ResaleAuthorizationFilters) SetResellerAccountID(v *ResaleAuthorizationResellerAccountIDFilter) *ResaleAuthorizationFilters {
+	s.ResellerAccountID = v
+	return s
+}
+
+// SetResellerLegalName sets the ResellerLegalName field's value.
+func (s *ResaleAuthorizationFilters) SetResellerLegalName(v *ResaleAuthorizationResellerLegalNameFilter) *ResaleAuthorizationFilters {
+	s.ResellerLegalName = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ResaleAuthorizationFilters) SetStatus(v *ResaleAuthorizationStatusFilter) *ResaleAuthorizationFilters {
+	s.Status = v
+	return s
+}
+
+// Allows filtering on the LastModifiedDate of a ResaleAuthorization.
+type ResaleAuthorizationLastModifiedDateFilter struct {
+	_ struct{} `type:"structure"`
+
+	// Allows filtering on the LastModifiedDate of a ResaleAuthorization with date
+	// range as input.
+	DateRange *ResaleAuthorizationLastModifiedDateFilterDateRange `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResaleAuthorizationLastModifiedDateFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResaleAuthorizationLastModifiedDateFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResaleAuthorizationLastModifiedDateFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResaleAuthorizationLastModifiedDateFilter"}
+	if s.DateRange != nil {
+		if err := s.DateRange.Validate(); err != nil {
+			invalidParams.AddNested("DateRange", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDateRange sets the DateRange field's value.
+func (s *ResaleAuthorizationLastModifiedDateFilter) SetDateRange(v *ResaleAuthorizationLastModifiedDateFilterDateRange) *ResaleAuthorizationLastModifiedDateFilter {
+	s.DateRange = v
+	return s
+}
+
+// Allows filtering on the LastModifiedDate of a ResaleAuthorization with date
+// range as input.
+type ResaleAuthorizationLastModifiedDateFilterDateRange struct {
+	_ struct{} `type:"structure"`
+
+	// Allows filtering on the LastModifiedDate of a ResaleAuthorization after a
+	// date.
+	AfterValue *string `min:"20" type:"string"`
+
+	// Allows filtering on the LastModifiedDate of a ResaleAuthorization before
+	// a date.
+	BeforeValue *string `min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResaleAuthorizationLastModifiedDateFilterDateRange) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResaleAuthorizationLastModifiedDateFilterDateRange) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResaleAuthorizationLastModifiedDateFilterDateRange) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResaleAuthorizationLastModifiedDateFilterDateRange"}
+	if s.AfterValue != nil && len(*s.AfterValue) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("AfterValue", 20))
+	}
+	if s.BeforeValue != nil && len(*s.BeforeValue) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("BeforeValue", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAfterValue sets the AfterValue field's value.
+func (s *ResaleAuthorizationLastModifiedDateFilterDateRange) SetAfterValue(v string) *ResaleAuthorizationLastModifiedDateFilterDateRange {
+	s.AfterValue = &v
+	return s
+}
+
+// SetBeforeValue sets the BeforeValue field's value.
+func (s *ResaleAuthorizationLastModifiedDateFilterDateRange) SetBeforeValue(v string) *ResaleAuthorizationLastModifiedDateFilterDateRange {
+	s.BeforeValue = &v
+	return s
+}
+
+// Allows filtering on the ManufacturerAccountId of a ResaleAuthorization.
+type ResaleAuthorizationManufacturerAccountIdFilter struct {
+	_ struct{} `type:"structure"`
+
+	// Allows filtering on the ManufacturerAccountId of a ResaleAuthorization with
+	// list input.
+	ValueList []*string `min:"1" type:"list"`
+
+	// Allows filtering on the ManufacturerAccountId of a ResaleAuthorization with
+	// wild card input.
+	WildCardValue *string `min:"12" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResaleAuthorizationManufacturerAccountIdFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResaleAuthorizationManufacturerAccountIdFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResaleAuthorizationManufacturerAccountIdFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResaleAuthorizationManufacturerAccountIdFilter"}
+	if s.ValueList != nil && len(s.ValueList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ValueList", 1))
+	}
+	if s.WildCardValue != nil && len(*s.WildCardValue) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("WildCardValue", 12))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetValueList sets the ValueList field's value.
+func (s *ResaleAuthorizationManufacturerAccountIdFilter) SetValueList(v []*string) *ResaleAuthorizationManufacturerAccountIdFilter {
+	s.ValueList = v
+	return s
+}
+
+// SetWildCardValue sets the WildCardValue field's value.
+func (s *ResaleAuthorizationManufacturerAccountIdFilter) SetWildCardValue(v string) *ResaleAuthorizationManufacturerAccountIdFilter {
+	s.WildCardValue = &v
+	return s
+}
+
+// Allows filtering on the ManufacturerLegalName of a ResaleAuthorization.
+type ResaleAuthorizationManufacturerLegalNameFilter struct {
+	_ struct{} `type:"structure"`
+
+	// Allows filtering on the ManufacturerLegalName of a ResaleAuthorization with
+	// list input.
+	ValueList []*string `min:"1" type:"list"`
+
+	// Allows filtering on the ManufacturerLegalName of a ResaleAuthorization with
+	// wild card input.
+	WildCardValue *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResaleAuthorizationManufacturerLegalNameFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResaleAuthorizationManufacturerLegalNameFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResaleAuthorizationManufacturerLegalNameFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResaleAuthorizationManufacturerLegalNameFilter"}
+	if s.ValueList != nil && len(s.ValueList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ValueList", 1))
+	}
+	if s.WildCardValue != nil && len(*s.WildCardValue) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WildCardValue", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetValueList sets the ValueList field's value.
+func (s *ResaleAuthorizationManufacturerLegalNameFilter) SetValueList(v []*string) *ResaleAuthorizationManufacturerLegalNameFilter {
+	s.ValueList = v
+	return s
+}
+
+// SetWildCardValue sets the WildCardValue field's value.
+func (s *ResaleAuthorizationManufacturerLegalNameFilter) SetWildCardValue(v string) *ResaleAuthorizationManufacturerLegalNameFilter {
+	s.WildCardValue = &v
+	return s
+}
+
+// Allows filtering on the Name of a ResaleAuthorization.
+type ResaleAuthorizationNameFilter struct {
+	_ struct{} `type:"structure"`
+
+	// Allows filtering on the Name of a ResaleAuthorization with list input.
+	ValueList []*string `min:"1" type:"list"`
+
+	// Allows filtering on the Name of a ResaleAuthorization with wild card input.
+	WildCardValue *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResaleAuthorizationNameFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResaleAuthorizationNameFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResaleAuthorizationNameFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResaleAuthorizationNameFilter"}
+	if s.ValueList != nil && len(s.ValueList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ValueList", 1))
+	}
+	if s.WildCardValue != nil && len(*s.WildCardValue) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WildCardValue", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetValueList sets the ValueList field's value.
+func (s *ResaleAuthorizationNameFilter) SetValueList(v []*string) *ResaleAuthorizationNameFilter {
+	s.ValueList = v
+	return s
+}
+
+// SetWildCardValue sets the WildCardValue field's value.
+func (s *ResaleAuthorizationNameFilter) SetWildCardValue(v string) *ResaleAuthorizationNameFilter {
+	s.WildCardValue = &v
+	return s
+}
+
+// Allows filtering on the OfferExtendedStatus of a ResaleAuthorization.
+type ResaleAuthorizationOfferExtendedStatusFilter struct {
+	_ struct{} `type:"structure"`
+
+	// Allows filtering on the OfferExtendedStatus of a ResaleAuthorization with
+	// list input.
+	ValueList []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResaleAuthorizationOfferExtendedStatusFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResaleAuthorizationOfferExtendedStatusFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResaleAuthorizationOfferExtendedStatusFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResaleAuthorizationOfferExtendedStatusFilter"}
+	if s.ValueList != nil && len(s.ValueList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ValueList", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetValueList sets the ValueList field's value.
+func (s *ResaleAuthorizationOfferExtendedStatusFilter) SetValueList(v []*string) *ResaleAuthorizationOfferExtendedStatusFilter {
+	s.ValueList = v
+	return s
+}
+
+// Allows filtering on the ProductId of a ResaleAuthorization.
+type ResaleAuthorizationProductIdFilter struct {
+	_ struct{} `type:"structure"`
+
+	// Allows filtering on the ProductId of a ResaleAuthorization with list input.
+	ValueList []*string `min:"1" type:"list"`
+
+	// Allows filtering on the ProductId of a ResaleAuthorization with wild card
+	// input.
+	WildCardValue *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResaleAuthorizationProductIdFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResaleAuthorizationProductIdFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResaleAuthorizationProductIdFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResaleAuthorizationProductIdFilter"}
+	if s.ValueList != nil && len(s.ValueList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ValueList", 1))
+	}
+	if s.WildCardValue != nil && len(*s.WildCardValue) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WildCardValue", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetValueList sets the ValueList field's value.
+func (s *ResaleAuthorizationProductIdFilter) SetValueList(v []*string) *ResaleAuthorizationProductIdFilter {
+	s.ValueList = v
+	return s
+}
+
+// SetWildCardValue sets the WildCardValue field's value.
+func (s *ResaleAuthorizationProductIdFilter) SetWildCardValue(v string) *ResaleAuthorizationProductIdFilter {
+	s.WildCardValue = &v
+	return s
+}
+
+// Allows filtering on the ProductName of a ResaleAuthorization.
+type ResaleAuthorizationProductNameFilter struct {
+	_ struct{} `type:"structure"`
+
+	// Allows filtering on the ProductName of a ResaleAuthorization with list input.
+	ValueList []*string `min:"1" type:"list"`
+
+	// Allows filtering on the ProductName of a ResaleAuthorization with wild card
+	// input.
+	WildCardValue *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResaleAuthorizationProductNameFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResaleAuthorizationProductNameFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResaleAuthorizationProductNameFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResaleAuthorizationProductNameFilter"}
+	if s.ValueList != nil && len(s.ValueList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ValueList", 1))
+	}
+	if s.WildCardValue != nil && len(*s.WildCardValue) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WildCardValue", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetValueList sets the ValueList field's value.
+func (s *ResaleAuthorizationProductNameFilter) SetValueList(v []*string) *ResaleAuthorizationProductNameFilter {
+	s.ValueList = v
+	return s
+}
+
+// SetWildCardValue sets the WildCardValue field's value.
+func (s *ResaleAuthorizationProductNameFilter) SetWildCardValue(v string) *ResaleAuthorizationProductNameFilter {
+	s.WildCardValue = &v
+	return s
+}
+
+// Allows filtering on the ResellerAccountID of a ResaleAuthorization.
+type ResaleAuthorizationResellerAccountIDFilter struct {
+	_ struct{} `type:"structure"`
+
+	// Allows filtering on the ResellerAccountID of a ResaleAuthorization with list
+	// input.
+	ValueList []*string `min:"1" type:"list"`
+
+	// Allows filtering on the ResellerAccountID of a ResaleAuthorization with wild
+	// card input.
+	WildCardValue *string `min:"12" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResaleAuthorizationResellerAccountIDFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResaleAuthorizationResellerAccountIDFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResaleAuthorizationResellerAccountIDFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResaleAuthorizationResellerAccountIDFilter"}
+	if s.ValueList != nil && len(s.ValueList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ValueList", 1))
+	}
+	if s.WildCardValue != nil && len(*s.WildCardValue) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("WildCardValue", 12))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetValueList sets the ValueList field's value.
+func (s *ResaleAuthorizationResellerAccountIDFilter) SetValueList(v []*string) *ResaleAuthorizationResellerAccountIDFilter {
+	s.ValueList = v
+	return s
+}
+
+// SetWildCardValue sets the WildCardValue field's value.
+func (s *ResaleAuthorizationResellerAccountIDFilter) SetWildCardValue(v string) *ResaleAuthorizationResellerAccountIDFilter {
+	s.WildCardValue = &v
+	return s
+}
+
+// Allows filtering on the ResellerLegalName of a ResaleAuthorization.
+type ResaleAuthorizationResellerLegalNameFilter struct {
+	_ struct{} `type:"structure"`
+
+	// Allows filtering on the ResellerLegalNameProductName of a ResaleAuthorization
+	// with list input.
+	ValueList []*string `min:"1" type:"list"`
+
+	// Allows filtering on the ResellerLegalName of a ResaleAuthorization with wild
+	// card input.
+	WildCardValue *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResaleAuthorizationResellerLegalNameFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResaleAuthorizationResellerLegalNameFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResaleAuthorizationResellerLegalNameFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResaleAuthorizationResellerLegalNameFilter"}
+	if s.ValueList != nil && len(s.ValueList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ValueList", 1))
+	}
+	if s.WildCardValue != nil && len(*s.WildCardValue) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WildCardValue", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetValueList sets the ValueList field's value.
+func (s *ResaleAuthorizationResellerLegalNameFilter) SetValueList(v []*string) *ResaleAuthorizationResellerLegalNameFilter {
+	s.ValueList = v
+	return s
+}
+
+// SetWildCardValue sets the WildCardValue field's value.
+func (s *ResaleAuthorizationResellerLegalNameFilter) SetWildCardValue(v string) *ResaleAuthorizationResellerLegalNameFilter {
+	s.WildCardValue = &v
+	return s
+}
+
+// Allows to sort ResaleAuthorization.
+type ResaleAuthorizationSort struct {
+	_ struct{} `type:"structure"`
+
+	// Allows to sort ResaleAuthorization.
+	SortBy *string `type:"string" enum:"ResaleAuthorizationSortBy"`
+
+	// Allows to sort ResaleAuthorization.
+	SortOrder *string `type:"string" enum:"SortOrder"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResaleAuthorizationSort) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResaleAuthorizationSort) GoString() string {
+	return s.String()
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *ResaleAuthorizationSort) SetSortBy(v string) *ResaleAuthorizationSort {
+	s.SortBy = &v
+	return s
+}
+
+// SetSortOrder sets the SortOrder field's value.
+func (s *ResaleAuthorizationSort) SetSortOrder(v string) *ResaleAuthorizationSort {
+	s.SortOrder = &v
+	return s
+}
+
+// Allows filtering on the Status of a ResaleAuthorization.
+type ResaleAuthorizationStatusFilter struct {
+	_ struct{} `type:"structure"`
+
+	// Allows filtering on the Status of a ResaleAuthorization with list input.
+	ValueList []*string `min:"1" type:"list" enum:"ResaleAuthorizationStatusString"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResaleAuthorizationStatusFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResaleAuthorizationStatusFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResaleAuthorizationStatusFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResaleAuthorizationStatusFilter"}
+	if s.ValueList != nil && len(s.ValueList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ValueList", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetValueList sets the ValueList field's value.
+func (s *ResaleAuthorizationStatusFilter) SetValueList(v []*string) *ResaleAuthorizationStatusFilter {
+	s.ValueList = v
+	return s
+}
+
+// Summarized information about a Resale Authorization.
+type ResaleAuthorizationSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The availability end date of the ResaleAuthorization.
+	AvailabilityEndDate *string `min:"20" type:"string"`
+
+	// The created date of the ResaleAuthorization.
+	CreatedDate *string `min:"20" type:"string"`
+
+	// The manufacturer account ID of the ResaleAuthorization.
+	ManufacturerAccountId *string `min:"12" type:"string"`
+
+	// The manufacturer legal name of the ResaleAuthorization.
+	ManufacturerLegalName *string `min:"1" type:"string"`
+
+	// The name of the ResaleAuthorization.
+	Name *string `min:"1" type:"string"`
+
+	// The offer extended status of the ResaleAuthorization
+	OfferExtendedStatus *string `min:"1" type:"string"`
+
+	// The product ID of the ResaleAuthorization.
+	ProductId *string `min:"1" type:"string"`
+
+	// The product name of the ResaleAuthorization.
+	ProductName *string `min:"1" type:"string"`
+
+	// The reseller account ID of the ResaleAuthorization.
+	ResellerAccountID *string `min:"12" type:"string"`
+
+	// The reseller legal name of the ResaleAuthorization
+	ResellerLegalName *string `min:"1" type:"string"`
+
+	// The status of the ResaleAuthorization.
+	Status *string `type:"string" enum:"ResaleAuthorizationStatusString"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResaleAuthorizationSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResaleAuthorizationSummary) GoString() string {
+	return s.String()
+}
+
+// SetAvailabilityEndDate sets the AvailabilityEndDate field's value.
+func (s *ResaleAuthorizationSummary) SetAvailabilityEndDate(v string) *ResaleAuthorizationSummary {
+	s.AvailabilityEndDate = &v
+	return s
+}
+
+// SetCreatedDate sets the CreatedDate field's value.
+func (s *ResaleAuthorizationSummary) SetCreatedDate(v string) *ResaleAuthorizationSummary {
+	s.CreatedDate = &v
+	return s
+}
+
+// SetManufacturerAccountId sets the ManufacturerAccountId field's value.
+func (s *ResaleAuthorizationSummary) SetManufacturerAccountId(v string) *ResaleAuthorizationSummary {
+	s.ManufacturerAccountId = &v
+	return s
+}
+
+// SetManufacturerLegalName sets the ManufacturerLegalName field's value.
+func (s *ResaleAuthorizationSummary) SetManufacturerLegalName(v string) *ResaleAuthorizationSummary {
+	s.ManufacturerLegalName = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ResaleAuthorizationSummary) SetName(v string) *ResaleAuthorizationSummary {
+	s.Name = &v
+	return s
+}
+
+// SetOfferExtendedStatus sets the OfferExtendedStatus field's value.
+func (s *ResaleAuthorizationSummary) SetOfferExtendedStatus(v string) *ResaleAuthorizationSummary {
+	s.OfferExtendedStatus = &v
+	return s
+}
+
+// SetProductId sets the ProductId field's value.
+func (s *ResaleAuthorizationSummary) SetProductId(v string) *ResaleAuthorizationSummary {
+	s.ProductId = &v
+	return s
+}
+
+// SetProductName sets the ProductName field's value.
+func (s *ResaleAuthorizationSummary) SetProductName(v string) *ResaleAuthorizationSummary {
+	s.ProductName = &v
+	return s
+}
+
+// SetResellerAccountID sets the ResellerAccountID field's value.
+func (s *ResaleAuthorizationSummary) SetResellerAccountID(v string) *ResaleAuthorizationSummary {
+	s.ResellerAccountID = &v
+	return s
+}
+
+// SetResellerLegalName sets the ResellerLegalName field's value.
+func (s *ResaleAuthorizationSummary) SetResellerLegalName(v string) *ResaleAuthorizationSummary {
+	s.ResellerLegalName = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ResaleAuthorizationSummary) SetStatus(v string) *ResaleAuthorizationSummary {
+	s.Status = &v
+	return s
 }
 
 // The resource is currently in use.
@@ -3357,6 +7072,434 @@ func (s *ResourceNotSupportedException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ResourceNotSupportedException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Object that allows filtering on entity id of a SaaS product.
+type SaaSProductEntityIdFilter struct {
+	_ struct{} `type:"structure"`
+
+	// A string array of unique entity id values to be filtered on.
+	ValueList []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SaaSProductEntityIdFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SaaSProductEntityIdFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SaaSProductEntityIdFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SaaSProductEntityIdFilter"}
+	if s.ValueList != nil && len(s.ValueList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ValueList", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetValueList sets the ValueList field's value.
+func (s *SaaSProductEntityIdFilter) SetValueList(v []*string) *SaaSProductEntityIdFilter {
+	s.ValueList = v
+	return s
+}
+
+// Object containing all the filter fields for SaaS products. Client can add
+// a maximum of 8 filters in a single ListEntities request.
+type SaaSProductFilters struct {
+	_ struct{} `type:"structure"`
+
+	// Unique identifier for the SaaS product.
+	EntityId *SaaSProductEntityIdFilter `type:"structure"`
+
+	// The last date on which the SaaS product was modified.
+	LastModifiedDate *SaaSProductLastModifiedDateFilter `type:"structure"`
+
+	// The title of the SaaS product.
+	ProductTitle *SaaSProductTitleFilter `type:"structure"`
+
+	// The visibility of the SaaS product.
+	Visibility *SaaSProductVisibilityFilter `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SaaSProductFilters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SaaSProductFilters) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SaaSProductFilters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SaaSProductFilters"}
+	if s.EntityId != nil {
+		if err := s.EntityId.Validate(); err != nil {
+			invalidParams.AddNested("EntityId", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.LastModifiedDate != nil {
+		if err := s.LastModifiedDate.Validate(); err != nil {
+			invalidParams.AddNested("LastModifiedDate", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ProductTitle != nil {
+		if err := s.ProductTitle.Validate(); err != nil {
+			invalidParams.AddNested("ProductTitle", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Visibility != nil {
+		if err := s.Visibility.Validate(); err != nil {
+			invalidParams.AddNested("Visibility", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEntityId sets the EntityId field's value.
+func (s *SaaSProductFilters) SetEntityId(v *SaaSProductEntityIdFilter) *SaaSProductFilters {
+	s.EntityId = v
+	return s
+}
+
+// SetLastModifiedDate sets the LastModifiedDate field's value.
+func (s *SaaSProductFilters) SetLastModifiedDate(v *SaaSProductLastModifiedDateFilter) *SaaSProductFilters {
+	s.LastModifiedDate = v
+	return s
+}
+
+// SetProductTitle sets the ProductTitle field's value.
+func (s *SaaSProductFilters) SetProductTitle(v *SaaSProductTitleFilter) *SaaSProductFilters {
+	s.ProductTitle = v
+	return s
+}
+
+// SetVisibility sets the Visibility field's value.
+func (s *SaaSProductFilters) SetVisibility(v *SaaSProductVisibilityFilter) *SaaSProductFilters {
+	s.Visibility = v
+	return s
+}
+
+// Object that allows filtering based on the last modified date of SaaS products
+type SaaSProductLastModifiedDateFilter struct {
+	_ struct{} `type:"structure"`
+
+	// Dates between which the SaaS product was last modified.
+	DateRange *SaaSProductLastModifiedDateFilterDateRange `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SaaSProductLastModifiedDateFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SaaSProductLastModifiedDateFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SaaSProductLastModifiedDateFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SaaSProductLastModifiedDateFilter"}
+	if s.DateRange != nil {
+		if err := s.DateRange.Validate(); err != nil {
+			invalidParams.AddNested("DateRange", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDateRange sets the DateRange field's value.
+func (s *SaaSProductLastModifiedDateFilter) SetDateRange(v *SaaSProductLastModifiedDateFilterDateRange) *SaaSProductLastModifiedDateFilter {
+	s.DateRange = v
+	return s
+}
+
+// Object that contains date range of the last modified date to be filtered
+// on. You can optionally provide a BeforeValue and/or AfterValue. Both are
+// inclusive.
+type SaaSProductLastModifiedDateFilterDateRange struct {
+	_ struct{} `type:"structure"`
+
+	// Date after which the SaaS product was last modified.
+	AfterValue *string `min:"20" type:"string"`
+
+	// Date before which the SaaS product was last modified.
+	BeforeValue *string `min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SaaSProductLastModifiedDateFilterDateRange) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SaaSProductLastModifiedDateFilterDateRange) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SaaSProductLastModifiedDateFilterDateRange) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SaaSProductLastModifiedDateFilterDateRange"}
+	if s.AfterValue != nil && len(*s.AfterValue) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("AfterValue", 20))
+	}
+	if s.BeforeValue != nil && len(*s.BeforeValue) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("BeforeValue", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAfterValue sets the AfterValue field's value.
+func (s *SaaSProductLastModifiedDateFilterDateRange) SetAfterValue(v string) *SaaSProductLastModifiedDateFilterDateRange {
+	s.AfterValue = &v
+	return s
+}
+
+// SetBeforeValue sets the BeforeValue field's value.
+func (s *SaaSProductLastModifiedDateFilterDateRange) SetBeforeValue(v string) *SaaSProductLastModifiedDateFilterDateRange {
+	s.BeforeValue = &v
+	return s
+}
+
+// Objects that allows sorting on SaaS products based on certain fields and
+// sorting order.
+type SaaSProductSort struct {
+	_ struct{} `type:"structure"`
+
+	// Field to sort the SaaS products by.
+	SortBy *string `type:"string" enum:"SaaSProductSortBy"`
+
+	// The sorting order. Can be ASCENDING or DESCENDING. The default value is DESCENDING.
+	SortOrder *string `type:"string" enum:"SortOrder"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SaaSProductSort) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SaaSProductSort) GoString() string {
+	return s.String()
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *SaaSProductSort) SetSortBy(v string) *SaaSProductSort {
+	s.SortBy = &v
+	return s
+}
+
+// SetSortOrder sets the SortOrder field's value.
+func (s *SaaSProductSort) SetSortOrder(v string) *SaaSProductSort {
+	s.SortOrder = &v
+	return s
+}
+
+// Object that contains summarized information about a SaaS product.
+type SaaSProductSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The title of the SaaS product.
+	ProductTitle *string `min:"1" type:"string"`
+
+	// The lifecycle of the SaaS product.
+	Visibility *string `type:"string" enum:"SaaSProductVisibilityString"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SaaSProductSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SaaSProductSummary) GoString() string {
+	return s.String()
+}
+
+// SetProductTitle sets the ProductTitle field's value.
+func (s *SaaSProductSummary) SetProductTitle(v string) *SaaSProductSummary {
+	s.ProductTitle = &v
+	return s
+}
+
+// SetVisibility sets the Visibility field's value.
+func (s *SaaSProductSummary) SetVisibility(v string) *SaaSProductSummary {
+	s.Visibility = &v
+	return s
+}
+
+// Object that allows filtering on product title.
+type SaaSProductTitleFilter struct {
+	_ struct{} `type:"structure"`
+
+	// A string array of unique product title values to be filtered on.
+	ValueList []*string `min:"1" type:"list"`
+
+	// A string that will be the wildCard input for product tile filter. It matches
+	// the provided value as a substring in the actual value.
+	WildCardValue *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SaaSProductTitleFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SaaSProductTitleFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SaaSProductTitleFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SaaSProductTitleFilter"}
+	if s.ValueList != nil && len(s.ValueList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ValueList", 1))
+	}
+	if s.WildCardValue != nil && len(*s.WildCardValue) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WildCardValue", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetValueList sets the ValueList field's value.
+func (s *SaaSProductTitleFilter) SetValueList(v []*string) *SaaSProductTitleFilter {
+	s.ValueList = v
+	return s
+}
+
+// SetWildCardValue sets the WildCardValue field's value.
+func (s *SaaSProductTitleFilter) SetWildCardValue(v string) *SaaSProductTitleFilter {
+	s.WildCardValue = &v
+	return s
+}
+
+// Object that allows filtering on the visibility of the product in the AWS
+// Marketplace.
+type SaaSProductVisibilityFilter struct {
+	_ struct{} `type:"structure"`
+
+	// A string array of unique visibility values to be filtered on.
+	ValueList []*string `min:"1" type:"list" enum:"SaaSProductVisibilityString"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SaaSProductVisibilityFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SaaSProductVisibilityFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SaaSProductVisibilityFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SaaSProductVisibilityFilter"}
+	if s.ValueList != nil && len(s.ValueList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ValueList", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetValueList sets the ValueList field's value.
+func (s *SaaSProductVisibilityFilter) SetValueList(v []*string) *SaaSProductVisibilityFilter {
+	s.ValueList = v
+	return s
 }
 
 // The maximum number of open requests per account has been exceeded.
@@ -4032,6 +8175,54 @@ func (s *ValidationException) RequestID() string {
 }
 
 const (
+	// AmiProductSortByEntityId is a AmiProductSortBy enum value
+	AmiProductSortByEntityId = "EntityId"
+
+	// AmiProductSortByLastModifiedDate is a AmiProductSortBy enum value
+	AmiProductSortByLastModifiedDate = "LastModifiedDate"
+
+	// AmiProductSortByProductTitle is a AmiProductSortBy enum value
+	AmiProductSortByProductTitle = "ProductTitle"
+
+	// AmiProductSortByVisibility is a AmiProductSortBy enum value
+	AmiProductSortByVisibility = "Visibility"
+)
+
+// AmiProductSortBy_Values returns all elements of the AmiProductSortBy enum
+func AmiProductSortBy_Values() []string {
+	return []string{
+		AmiProductSortByEntityId,
+		AmiProductSortByLastModifiedDate,
+		AmiProductSortByProductTitle,
+		AmiProductSortByVisibility,
+	}
+}
+
+const (
+	// AmiProductVisibilityStringLimited is a AmiProductVisibilityString enum value
+	AmiProductVisibilityStringLimited = "Limited"
+
+	// AmiProductVisibilityStringPublic is a AmiProductVisibilityString enum value
+	AmiProductVisibilityStringPublic = "Public"
+
+	// AmiProductVisibilityStringRestricted is a AmiProductVisibilityString enum value
+	AmiProductVisibilityStringRestricted = "Restricted"
+
+	// AmiProductVisibilityStringDraft is a AmiProductVisibilityString enum value
+	AmiProductVisibilityStringDraft = "Draft"
+)
+
+// AmiProductVisibilityString_Values returns all elements of the AmiProductVisibilityString enum
+func AmiProductVisibilityString_Values() []string {
+	return []string{
+		AmiProductVisibilityStringLimited,
+		AmiProductVisibilityStringPublic,
+		AmiProductVisibilityStringRestricted,
+		AmiProductVisibilityStringDraft,
+	}
+}
+
+const (
 	// ChangeStatusPreparing is a ChangeStatus enum value
 	ChangeStatusPreparing = "PREPARING"
 
@@ -4060,6 +8251,106 @@ func ChangeStatus_Values() []string {
 }
 
 const (
+	// ContainerProductSortByEntityId is a ContainerProductSortBy enum value
+	ContainerProductSortByEntityId = "EntityId"
+
+	// ContainerProductSortByLastModifiedDate is a ContainerProductSortBy enum value
+	ContainerProductSortByLastModifiedDate = "LastModifiedDate"
+
+	// ContainerProductSortByProductTitle is a ContainerProductSortBy enum value
+	ContainerProductSortByProductTitle = "ProductTitle"
+
+	// ContainerProductSortByVisibility is a ContainerProductSortBy enum value
+	ContainerProductSortByVisibility = "Visibility"
+)
+
+// ContainerProductSortBy_Values returns all elements of the ContainerProductSortBy enum
+func ContainerProductSortBy_Values() []string {
+	return []string{
+		ContainerProductSortByEntityId,
+		ContainerProductSortByLastModifiedDate,
+		ContainerProductSortByProductTitle,
+		ContainerProductSortByVisibility,
+	}
+}
+
+const (
+	// ContainerProductVisibilityStringLimited is a ContainerProductVisibilityString enum value
+	ContainerProductVisibilityStringLimited = "Limited"
+
+	// ContainerProductVisibilityStringPublic is a ContainerProductVisibilityString enum value
+	ContainerProductVisibilityStringPublic = "Public"
+
+	// ContainerProductVisibilityStringRestricted is a ContainerProductVisibilityString enum value
+	ContainerProductVisibilityStringRestricted = "Restricted"
+
+	// ContainerProductVisibilityStringDraft is a ContainerProductVisibilityString enum value
+	ContainerProductVisibilityStringDraft = "Draft"
+)
+
+// ContainerProductVisibilityString_Values returns all elements of the ContainerProductVisibilityString enum
+func ContainerProductVisibilityString_Values() []string {
+	return []string{
+		ContainerProductVisibilityStringLimited,
+		ContainerProductVisibilityStringPublic,
+		ContainerProductVisibilityStringRestricted,
+		ContainerProductVisibilityStringDraft,
+	}
+}
+
+const (
+	// DataProductSortByEntityId is a DataProductSortBy enum value
+	DataProductSortByEntityId = "EntityId"
+
+	// DataProductSortByProductTitle is a DataProductSortBy enum value
+	DataProductSortByProductTitle = "ProductTitle"
+
+	// DataProductSortByVisibility is a DataProductSortBy enum value
+	DataProductSortByVisibility = "Visibility"
+
+	// DataProductSortByLastModifiedDate is a DataProductSortBy enum value
+	DataProductSortByLastModifiedDate = "LastModifiedDate"
+)
+
+// DataProductSortBy_Values returns all elements of the DataProductSortBy enum
+func DataProductSortBy_Values() []string {
+	return []string{
+		DataProductSortByEntityId,
+		DataProductSortByProductTitle,
+		DataProductSortByVisibility,
+		DataProductSortByLastModifiedDate,
+	}
+}
+
+const (
+	// DataProductVisibilityStringLimited is a DataProductVisibilityString enum value
+	DataProductVisibilityStringLimited = "Limited"
+
+	// DataProductVisibilityStringPublic is a DataProductVisibilityString enum value
+	DataProductVisibilityStringPublic = "Public"
+
+	// DataProductVisibilityStringRestricted is a DataProductVisibilityString enum value
+	DataProductVisibilityStringRestricted = "Restricted"
+
+	// DataProductVisibilityStringUnavailable is a DataProductVisibilityString enum value
+	DataProductVisibilityStringUnavailable = "Unavailable"
+
+	// DataProductVisibilityStringDraft is a DataProductVisibilityString enum value
+	DataProductVisibilityStringDraft = "Draft"
+)
+
+// DataProductVisibilityString_Values returns all elements of the DataProductVisibilityString enum
+func DataProductVisibilityString_Values() []string {
+	return []string{
+		DataProductVisibilityStringLimited,
+		DataProductVisibilityStringPublic,
+		DataProductVisibilityStringRestricted,
+		DataProductVisibilityStringUnavailable,
+		DataProductVisibilityStringDraft,
+	}
+}
+
+const (
 	// FailureCodeClientError is a FailureCode enum value
 	FailureCodeClientError = "CLIENT_ERROR"
 
@@ -4076,6 +8367,90 @@ func FailureCode_Values() []string {
 }
 
 const (
+	// OfferSortByEntityId is a OfferSortBy enum value
+	OfferSortByEntityId = "EntityId"
+
+	// OfferSortByName is a OfferSortBy enum value
+	OfferSortByName = "Name"
+
+	// OfferSortByProductId is a OfferSortBy enum value
+	OfferSortByProductId = "ProductId"
+
+	// OfferSortByReleaseDate is a OfferSortBy enum value
+	OfferSortByReleaseDate = "ReleaseDate"
+
+	// OfferSortByAvailabilityEndDate is a OfferSortBy enum value
+	OfferSortByAvailabilityEndDate = "AvailabilityEndDate"
+
+	// OfferSortByBuyerAccounts is a OfferSortBy enum value
+	OfferSortByBuyerAccounts = "BuyerAccounts"
+
+	// OfferSortByState is a OfferSortBy enum value
+	OfferSortByState = "State"
+
+	// OfferSortByTargeting is a OfferSortBy enum value
+	OfferSortByTargeting = "Targeting"
+
+	// OfferSortByLastModifiedDate is a OfferSortBy enum value
+	OfferSortByLastModifiedDate = "LastModifiedDate"
+)
+
+// OfferSortBy_Values returns all elements of the OfferSortBy enum
+func OfferSortBy_Values() []string {
+	return []string{
+		OfferSortByEntityId,
+		OfferSortByName,
+		OfferSortByProductId,
+		OfferSortByReleaseDate,
+		OfferSortByAvailabilityEndDate,
+		OfferSortByBuyerAccounts,
+		OfferSortByState,
+		OfferSortByTargeting,
+		OfferSortByLastModifiedDate,
+	}
+}
+
+const (
+	// OfferStateStringDraft is a OfferStateString enum value
+	OfferStateStringDraft = "Draft"
+
+	// OfferStateStringReleased is a OfferStateString enum value
+	OfferStateStringReleased = "Released"
+)
+
+// OfferStateString_Values returns all elements of the OfferStateString enum
+func OfferStateString_Values() []string {
+	return []string{
+		OfferStateStringDraft,
+		OfferStateStringReleased,
+	}
+}
+
+const (
+	// OfferTargetingStringBuyerAccounts is a OfferTargetingString enum value
+	OfferTargetingStringBuyerAccounts = "BuyerAccounts"
+
+	// OfferTargetingStringParticipatingPrograms is a OfferTargetingString enum value
+	OfferTargetingStringParticipatingPrograms = "ParticipatingPrograms"
+
+	// OfferTargetingStringCountryCodes is a OfferTargetingString enum value
+	OfferTargetingStringCountryCodes = "CountryCodes"
+
+	// OfferTargetingStringNone is a OfferTargetingString enum value
+	OfferTargetingStringNone = "None"
+)
+
+// OfferTargetingString_Values returns all elements of the OfferTargetingString enum
+func OfferTargetingString_Values() []string {
+	return []string{
+		OfferTargetingStringBuyerAccounts,
+		OfferTargetingStringParticipatingPrograms,
+		OfferTargetingStringCountryCodes,
+		OfferTargetingStringNone,
+	}
+}
+
+const (
 	// OwnershipTypeSelf is a OwnershipType enum value
 	OwnershipTypeSelf = "SELF"
 
@@ -4088,6 +8463,134 @@ func OwnershipType_Values() []string {
 	return []string{
 		OwnershipTypeSelf,
 		OwnershipTypeShared,
+	}
+}
+
+const (
+	// ResaleAuthorizationSortByEntityId is a ResaleAuthorizationSortBy enum value
+	ResaleAuthorizationSortByEntityId = "EntityId"
+
+	// ResaleAuthorizationSortByName is a ResaleAuthorizationSortBy enum value
+	ResaleAuthorizationSortByName = "Name"
+
+	// ResaleAuthorizationSortByProductId is a ResaleAuthorizationSortBy enum value
+	ResaleAuthorizationSortByProductId = "ProductId"
+
+	// ResaleAuthorizationSortByProductName is a ResaleAuthorizationSortBy enum value
+	ResaleAuthorizationSortByProductName = "ProductName"
+
+	// ResaleAuthorizationSortByManufacturerAccountId is a ResaleAuthorizationSortBy enum value
+	ResaleAuthorizationSortByManufacturerAccountId = "ManufacturerAccountId"
+
+	// ResaleAuthorizationSortByManufacturerLegalName is a ResaleAuthorizationSortBy enum value
+	ResaleAuthorizationSortByManufacturerLegalName = "ManufacturerLegalName"
+
+	// ResaleAuthorizationSortByResellerAccountId is a ResaleAuthorizationSortBy enum value
+	ResaleAuthorizationSortByResellerAccountId = "ResellerAccountID"
+
+	// ResaleAuthorizationSortByResellerLegalName is a ResaleAuthorizationSortBy enum value
+	ResaleAuthorizationSortByResellerLegalName = "ResellerLegalName"
+
+	// ResaleAuthorizationSortByStatus is a ResaleAuthorizationSortBy enum value
+	ResaleAuthorizationSortByStatus = "Status"
+
+	// ResaleAuthorizationSortByOfferExtendedStatus is a ResaleAuthorizationSortBy enum value
+	ResaleAuthorizationSortByOfferExtendedStatus = "OfferExtendedStatus"
+
+	// ResaleAuthorizationSortByCreatedDate is a ResaleAuthorizationSortBy enum value
+	ResaleAuthorizationSortByCreatedDate = "CreatedDate"
+
+	// ResaleAuthorizationSortByAvailabilityEndDate is a ResaleAuthorizationSortBy enum value
+	ResaleAuthorizationSortByAvailabilityEndDate = "AvailabilityEndDate"
+
+	// ResaleAuthorizationSortByLastModifiedDate is a ResaleAuthorizationSortBy enum value
+	ResaleAuthorizationSortByLastModifiedDate = "LastModifiedDate"
+)
+
+// ResaleAuthorizationSortBy_Values returns all elements of the ResaleAuthorizationSortBy enum
+func ResaleAuthorizationSortBy_Values() []string {
+	return []string{
+		ResaleAuthorizationSortByEntityId,
+		ResaleAuthorizationSortByName,
+		ResaleAuthorizationSortByProductId,
+		ResaleAuthorizationSortByProductName,
+		ResaleAuthorizationSortByManufacturerAccountId,
+		ResaleAuthorizationSortByManufacturerLegalName,
+		ResaleAuthorizationSortByResellerAccountId,
+		ResaleAuthorizationSortByResellerLegalName,
+		ResaleAuthorizationSortByStatus,
+		ResaleAuthorizationSortByOfferExtendedStatus,
+		ResaleAuthorizationSortByCreatedDate,
+		ResaleAuthorizationSortByAvailabilityEndDate,
+		ResaleAuthorizationSortByLastModifiedDate,
+	}
+}
+
+const (
+	// ResaleAuthorizationStatusStringDraft is a ResaleAuthorizationStatusString enum value
+	ResaleAuthorizationStatusStringDraft = "Draft"
+
+	// ResaleAuthorizationStatusStringActive is a ResaleAuthorizationStatusString enum value
+	ResaleAuthorizationStatusStringActive = "Active"
+
+	// ResaleAuthorizationStatusStringRestricted is a ResaleAuthorizationStatusString enum value
+	ResaleAuthorizationStatusStringRestricted = "Restricted"
+)
+
+// ResaleAuthorizationStatusString_Values returns all elements of the ResaleAuthorizationStatusString enum
+func ResaleAuthorizationStatusString_Values() []string {
+	return []string{
+		ResaleAuthorizationStatusStringDraft,
+		ResaleAuthorizationStatusStringActive,
+		ResaleAuthorizationStatusStringRestricted,
+	}
+}
+
+const (
+	// SaaSProductSortByEntityId is a SaaSProductSortBy enum value
+	SaaSProductSortByEntityId = "EntityId"
+
+	// SaaSProductSortByProductTitle is a SaaSProductSortBy enum value
+	SaaSProductSortByProductTitle = "ProductTitle"
+
+	// SaaSProductSortByVisibility is a SaaSProductSortBy enum value
+	SaaSProductSortByVisibility = "Visibility"
+
+	// SaaSProductSortByLastModifiedDate is a SaaSProductSortBy enum value
+	SaaSProductSortByLastModifiedDate = "LastModifiedDate"
+)
+
+// SaaSProductSortBy_Values returns all elements of the SaaSProductSortBy enum
+func SaaSProductSortBy_Values() []string {
+	return []string{
+		SaaSProductSortByEntityId,
+		SaaSProductSortByProductTitle,
+		SaaSProductSortByVisibility,
+		SaaSProductSortByLastModifiedDate,
+	}
+}
+
+const (
+	// SaaSProductVisibilityStringLimited is a SaaSProductVisibilityString enum value
+	SaaSProductVisibilityStringLimited = "Limited"
+
+	// SaaSProductVisibilityStringPublic is a SaaSProductVisibilityString enum value
+	SaaSProductVisibilityStringPublic = "Public"
+
+	// SaaSProductVisibilityStringRestricted is a SaaSProductVisibilityString enum value
+	SaaSProductVisibilityStringRestricted = "Restricted"
+
+	// SaaSProductVisibilityStringDraft is a SaaSProductVisibilityString enum value
+	SaaSProductVisibilityStringDraft = "Draft"
+)
+
+// SaaSProductVisibilityString_Values returns all elements of the SaaSProductVisibilityString enum
+func SaaSProductVisibilityString_Values() []string {
+	return []string{
+		SaaSProductVisibilityStringLimited,
+		SaaSProductVisibilityStringPublic,
+		SaaSProductVisibilityStringRestricted,
+		SaaSProductVisibilityStringDraft,
 	}
 }
 
