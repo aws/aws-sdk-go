@@ -3862,7 +3862,8 @@
         "AppName":{"shape":"AppName"},
         "Status":{"shape":"AppStatus"},
         "CreationTime":{"shape":"CreationTime"},
-        "SpaceName":{"shape":"SpaceName"}
+        "SpaceName":{"shape":"SpaceName"},
+        "ResourceSpec":{"shape":"ResourceSpec"}
       }
     },
     "AppImageConfigArn":{
@@ -3877,7 +3878,8 @@
         "AppImageConfigName":{"shape":"AppImageConfigName"},
         "CreationTime":{"shape":"Timestamp"},
         "LastModifiedTime":{"shape":"Timestamp"},
-        "KernelGatewayImageConfig":{"shape":"KernelGatewayImageConfig"}
+        "KernelGatewayImageConfig":{"shape":"KernelGatewayImageConfig"},
+        "JupyterLabAppImageConfig":{"shape":"JupyterLabAppImageConfig"}
       }
     },
     "AppImageConfigList":{
@@ -4019,7 +4021,9 @@
         "KernelGateway",
         "TensorBoard",
         "RStudioServerPro",
-        "RSessionGateway"
+        "RSessionGateway",
+        "JupyterLab",
+        "CodeEditor"
       ]
     },
     "ApprovalDescription":{
@@ -5684,6 +5688,13 @@
       "max":2,
       "min":1
     },
+    "CodeEditorAppSettings":{
+      "type":"structure",
+      "members":{
+        "DefaultResourceSpec":{"shape":"ResourceSpec"},
+        "LifecycleConfigArns":{"shape":"LifecycleConfigArns"}
+      }
+    },
     "CodeRepositories":{
       "type":"list",
       "member":{"shape":"CodeRepository"},
@@ -5938,6 +5949,14 @@
       "max":100,
       "min":1
     },
+    "ContainerConfig":{
+      "type":"structure",
+      "members":{
+        "ContainerArguments":{"shape":"CustomImageContainerArguments"},
+        "ContainerEntrypoint":{"shape":"CustomImageContainerEntrypoint"},
+        "ContainerEnvironmentVariables":{"shape":"CustomImageContainerEnvironmentVariables"}
+      }
+    },
     "ContainerDefinition":{
       "type":"structure",
       "members":{
@@ -6142,7 +6161,8 @@
       "members":{
         "AppImageConfigName":{"shape":"AppImageConfigName"},
         "Tags":{"shape":"TagList"},
-        "KernelGatewayImageConfig":{"shape":"KernelGatewayImageConfig"}
+        "KernelGatewayImageConfig":{"shape":"KernelGatewayImageConfig"},
+        "JupyterLabAppImageConfig":{"shape":"JupyterLabAppImageConfig"}
       }
     },
     "CreateAppImageConfigResponse":{
@@ -7210,7 +7230,10 @@
         "DomainId":{"shape":"DomainId"},
         "SpaceName":{"shape":"SpaceName"},
         "Tags":{"shape":"TagList"},
-        "SpaceSettings":{"shape":"SpaceSettings"}
+        "SpaceSettings":{"shape":"SpaceSettings"},
+        "SpaceDisplayName":{"shape":"NonEmptyString64"},
+        "OwnershipSettings":{"shape":"OwnershipSettings"},
+        "SpaceSharingSettings":{"shape":"SpaceSharingSettings"}
       }
     },
     "CreateSpaceResponse":{
@@ -7439,6 +7462,30 @@
       "max":10,
       "min":1
     },
+    "CustomFileSystem":{
+      "type":"structure",
+      "members":{
+        "EFSFileSystem":{"shape":"EFSFileSystem"}
+      },
+      "union":true
+    },
+    "CustomFileSystemConfig":{
+      "type":"structure",
+      "members":{
+        "EFSFileSystemConfig":{"shape":"EFSFileSystemConfig"}
+      },
+      "union":true
+    },
+    "CustomFileSystemConfigs":{
+      "type":"list",
+      "member":{"shape":"CustomFileSystemConfig"},
+      "max":2
+    },
+    "CustomFileSystems":{
+      "type":"list",
+      "member":{"shape":"CustomFileSystem"},
+      "max":1
+    },
     "CustomImage":{
       "type":"structure",
       "required":[
@@ -7454,10 +7501,37 @@
         "AppImageConfigName":{"shape":"AppImageConfigName"}
       }
     },
+    "CustomImageContainerArguments":{
+      "type":"list",
+      "member":{"shape":"NonEmptyString64"},
+      "max":50
+    },
+    "CustomImageContainerEntrypoint":{
+      "type":"list",
+      "member":{"shape":"NonEmptyString256"},
+      "max":1
+    },
+    "CustomImageContainerEnvironmentVariables":{
+      "type":"map",
+      "key":{"shape":"NonEmptyString256"},
+      "value":{"shape":"String256"},
+      "max":25
+    },
     "CustomImages":{
       "type":"list",
       "member":{"shape":"CustomImage"},
       "max":200
+    },
+    "CustomPosixUserConfig":{
+      "type":"structure",
+      "required":[
+        "Uid",
+        "Gid"
+      ],
+      "members":{
+        "Uid":{"shape":"Uid"},
+        "Gid":{"shape":"Gid"}
+      }
     },
     "CustomerMetadataKey":{
       "type":"string",
@@ -7666,6 +7740,17 @@
       "max":20,
       "min":0
     },
+    "DefaultEbsStorageSettings":{
+      "type":"structure",
+      "required":[
+        "DefaultEbsVolumeSizeInGb",
+        "MaximumEbsVolumeSizeInGb"
+      ],
+      "members":{
+        "DefaultEbsVolumeSizeInGb":{"shape":"SpaceEbsVolumeSizeInGb"},
+        "MaximumEbsVolumeSizeInGb":{"shape":"SpaceEbsVolumeSizeInGb"}
+      }
+    },
     "DefaultGid":{
       "type":"integer",
       "max":65535,
@@ -7678,6 +7763,12 @@
         "SecurityGroups":{"shape":"SecurityGroupIds"},
         "JupyterServerAppSettings":{"shape":"JupyterServerAppSettings"},
         "KernelGatewayAppSettings":{"shape":"KernelGatewayAppSettings"}
+      }
+    },
+    "DefaultSpaceStorageSettings":{
+      "type":"structure",
+      "members":{
+        "DefaultEbsStorageSettings":{"shape":"DefaultEbsStorageSettings"}
       }
     },
     "DefaultUid":{
@@ -8324,7 +8415,8 @@
         "AppImageConfigName":{"shape":"AppImageConfigName"},
         "CreationTime":{"shape":"Timestamp"},
         "LastModifiedTime":{"shape":"Timestamp"},
-        "KernelGatewayImageConfig":{"shape":"KernelGatewayImageConfig"}
+        "KernelGatewayImageConfig":{"shape":"KernelGatewayImageConfig"},
+        "JupyterLabAppImageConfig":{"shape":"JupyterLabAppImageConfig"}
       }
     },
     "DescribeAppRequest":{
@@ -9841,7 +9933,10 @@
         "CreationTime":{"shape":"CreationTime"},
         "FailureReason":{"shape":"FailureReason"},
         "SpaceSettings":{"shape":"SpaceSettings"},
-        "Url":{"shape":"String1024"}
+        "Url":{"shape":"String1024"},
+        "SpaceDisplayName":{"shape":"NonEmptyString64"},
+        "OwnershipSettings":{"shape":"OwnershipSettings"},
+        "SpaceSharingSettings":{"shape":"SpaceSharingSettings"}
       }
     },
     "DescribeStudioLifecycleConfigRequest":{
@@ -10471,6 +10566,21 @@
         "ScalingPolicies":{"shape":"ScalingPolicies"}
       }
     },
+    "EFSFileSystem":{
+      "type":"structure",
+      "required":["FileSystemId"],
+      "members":{
+        "FileSystemId":{"shape":"FileSystemId"}
+      }
+    },
+    "EFSFileSystemConfig":{
+      "type":"structure",
+      "required":["FileSystemId"],
+      "members":{
+        "FileSystemId":{"shape":"FileSystemId"},
+        "FileSystemPath":{"shape":"FileSystemPath"}
+      }
+    },
     "EMRStepMetadata":{
       "type":"structure",
       "members":{
@@ -10478,6 +10588,13 @@
         "StepId":{"shape":"String256"},
         "StepName":{"shape":"String256"},
         "LogFilePath":{"shape":"String1024"}
+      }
+    },
+    "EbsStorageSettings":{
+      "type":"structure",
+      "required":["EbsVolumeSizeInGb"],
+      "members":{
+        "EbsVolumeSizeInGb":{"shape":"SpaceEbsVolumeSizeInGb"}
       }
     },
     "Edge":{
@@ -11356,7 +11473,13 @@
     "FileSystemId":{
       "type":"string",
       "min":11,
-      "pattern":".*"
+      "pattern":"^(fs-[0-9a-f]{8,})$"
+    },
+    "FileSystemPath":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"^\\/\\S*$"
     },
     "FileSystemType":{
       "type":"string",
@@ -11687,6 +11810,11 @@
       "members":{
         "PropertyNameSuggestions":{"shape":"PropertyNameSuggestionList"}
       }
+    },
+    "Gid":{
+      "type":"long",
+      "max":4000000,
+      "min":1001
     },
     "GitConfig":{
       "type":"structure",
@@ -13260,6 +13388,21 @@
       "type":"string",
       "max":63,
       "min":0
+    },
+    "JupyterLabAppImageConfig":{
+      "type":"structure",
+      "members":{
+        "ContainerConfig":{"shape":"ContainerConfig"}
+      }
+    },
+    "JupyterLabAppSettings":{
+      "type":"structure",
+      "members":{
+        "DefaultResourceSpec":{"shape":"ResourceSpec"},
+        "CustomImages":{"shape":"CustomImages"},
+        "LifecycleConfigArns":{"shape":"LifecycleConfigArns"},
+        "CodeRepositories":{"shape":"CodeRepositories"}
+      }
     },
     "JupyterServerAppSettings":{
       "type":"structure",
@@ -16958,6 +17101,16 @@
       "max":8192,
       "pattern":".*"
     },
+    "NonEmptyString256":{
+      "type":"string",
+      "max":256,
+      "pattern":"^(?!\\s*$).+"
+    },
+    "NonEmptyString64":{
+      "type":"string",
+      "max":64,
+      "pattern":"^(?!\\s*$).+"
+    },
     "NotebookInstanceAcceleratorType":{
       "type":"string",
       "enum":[
@@ -17326,6 +17479,19 @@
       "member":{"shape":"OutputParameter"},
       "max":50,
       "min":0
+    },
+    "OwnershipSettings":{
+      "type":"structure",
+      "required":["OwnerUserProfileName"],
+      "members":{
+        "OwnerUserProfileName":{"shape":"UserProfileName"}
+      }
+    },
+    "OwnershipSettingsSummary":{
+      "type":"structure",
+      "members":{
+        "OwnerUserProfileName":{"shape":"UserProfileName"}
+      }
     },
     "PaginationToken":{
       "type":"string",
@@ -19770,6 +19936,13 @@
         "S3KmsKeyId":{"shape":"KmsKeyId"}
       }
     },
+    "SharingType":{
+      "type":"string",
+      "enum":[
+        "Private",
+        "Shared"
+      ]
+    },
     "ShuffleConfig":{
       "type":"structure",
       "required":["Seed"],
@@ -19932,6 +20105,12 @@
       "max":256,
       "pattern":"arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:space/.*"
     },
+    "SpaceCodeEditorAppSettings":{
+      "type":"structure",
+      "members":{
+        "DefaultResourceSpec":{"shape":"ResourceSpec"}
+      }
+    },
     "SpaceDetails":{
       "type":"structure",
       "members":{
@@ -19939,7 +20118,23 @@
         "SpaceName":{"shape":"SpaceName"},
         "Status":{"shape":"SpaceStatus"},
         "CreationTime":{"shape":"CreationTime"},
-        "LastModifiedTime":{"shape":"LastModifiedTime"}
+        "LastModifiedTime":{"shape":"LastModifiedTime"},
+        "SpaceDisplayName":{"shape":"NonEmptyString64"},
+        "SpaceSettingsSummary":{"shape":"SpaceSettingsSummary"},
+        "SpaceSharingSettingsSummary":{"shape":"SpaceSharingSettingsSummary"},
+        "OwnershipSettingsSummary":{"shape":"OwnershipSettingsSummary"}
+      }
+    },
+    "SpaceEbsVolumeSizeInGb":{
+      "type":"integer",
+      "max":16384,
+      "min":5
+    },
+    "SpaceJupyterLabAppSettings":{
+      "type":"structure",
+      "members":{
+        "DefaultResourceSpec":{"shape":"ResourceSpec"},
+        "CodeRepositories":{"shape":"CodeRepositories"}
       }
     },
     "SpaceList":{
@@ -19955,7 +20150,32 @@
       "type":"structure",
       "members":{
         "JupyterServerAppSettings":{"shape":"JupyterServerAppSettings"},
-        "KernelGatewayAppSettings":{"shape":"KernelGatewayAppSettings"}
+        "KernelGatewayAppSettings":{"shape":"KernelGatewayAppSettings"},
+        "JupyterLabAppSettings":{"shape":"SpaceJupyterLabAppSettings"},
+        "CodeEditorAppSettings":{"shape":"SpaceCodeEditorAppSettings"},
+        "SpaceStorageSettings":{"shape":"SpaceStorageSettings"},
+        "AppType":{"shape":"AppType"},
+        "CustomFileSystems":{"shape":"CustomFileSystems"}
+      }
+    },
+    "SpaceSettingsSummary":{
+      "type":"structure",
+      "members":{
+        "AppType":{"shape":"AppType"},
+        "SpaceStorageSettings":{"shape":"SpaceStorageSettings"}
+      }
+    },
+    "SpaceSharingSettings":{
+      "type":"structure",
+      "required":["SharingType"],
+      "members":{
+        "SharingType":{"shape":"SharingType"}
+      }
+    },
+    "SpaceSharingSettingsSummary":{
+      "type":"structure",
+      "members":{
+        "SharingType":{"shape":"SharingType"}
       }
     },
     "SpaceSortKey":{
@@ -19976,6 +20196,12 @@
         "Update_Failed",
         "Delete_Failed"
       ]
+    },
+    "SpaceStorageSettings":{
+      "type":"structure",
+      "members":{
+        "EbsStorageSettings":{"shape":"EbsStorageSettings"}
+      }
     },
     "SpawnRate":{
       "type":"integer",
@@ -20311,7 +20537,9 @@
       "type":"string",
       "enum":[
         "JupyterServer",
-        "KernelGateway"
+        "KernelGateway",
+        "JupyterLab",
+        "CodeEditor"
       ]
     },
     "StudioLifecycleConfigArn":{
@@ -21574,6 +21802,11 @@
         "ContentSha256":{"shape":"TemplateContentSha256"}
       }
     },
+    "Uid":{
+      "type":"long",
+      "max":4000000,
+      "min":10000
+    },
     "UpdateActionRequest":{
       "type":"structure",
       "required":["ActionName"],
@@ -21596,7 +21829,8 @@
       "required":["AppImageConfigName"],
       "members":{
         "AppImageConfigName":{"shape":"AppImageConfigName"},
-        "KernelGatewayImageConfig":{"shape":"KernelGatewayImageConfig"}
+        "KernelGatewayImageConfig":{"shape":"KernelGatewayImageConfig"},
+        "JupyterLabAppImageConfig":{"shape":"JupyterLabAppImageConfig"}
       }
     },
     "UpdateAppImageConfigResponse":{
@@ -22086,7 +22320,8 @@
       "members":{
         "DomainId":{"shape":"DomainId"},
         "SpaceName":{"shape":"SpaceName"},
-        "SpaceSettings":{"shape":"SpaceSettings"}
+        "SpaceSettings":{"shape":"SpaceSettings"},
+        "SpaceDisplayName":{"shape":"NonEmptyString64"}
       }
     },
     "UpdateSpaceResponse":{
@@ -22270,8 +22505,13 @@
         "RStudioServerProAppSettings":{"shape":"RStudioServerProAppSettings"},
         "RSessionAppSettings":{"shape":"RSessionAppSettings"},
         "CanvasAppSettings":{"shape":"CanvasAppSettings"},
+        "JupyterLabAppSettings":{"shape":"JupyterLabAppSettings"},
+        "CodeEditorAppSettings":{"shape":"CodeEditorAppSettings"},
+        "SpaceStorageSettings":{"shape":"DefaultSpaceStorageSettings"},
         "DefaultLandingUri":{"shape":"LandingUri"},
-        "StudioWebPortal":{"shape":"StudioWebPortal"}
+        "StudioWebPortal":{"shape":"StudioWebPortal"},
+        "CustomPosixUserConfig":{"shape":"CustomPosixUserConfig"},
+        "CustomFileSystemConfigs":{"shape":"CustomFileSystemConfigs"}
       }
     },
     "UsersPerStep":{

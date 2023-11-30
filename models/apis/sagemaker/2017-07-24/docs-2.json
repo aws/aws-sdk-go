@@ -697,7 +697,9 @@
         "CreateAppRequest$AppType": "<p>The type of app.</p>",
         "DeleteAppRequest$AppType": "<p>The type of app.</p>",
         "DescribeAppRequest$AppType": "<p>The type of app.</p>",
-        "DescribeAppResponse$AppType": "<p>The type of app.</p>"
+        "DescribeAppResponse$AppType": "<p>The type of app.</p>",
+        "SpaceSettings$AppType": "<p>The type of app created within the space.</p>",
+        "SpaceSettingsSummary$AppType": "<p>The type of app created within the space.</p>"
       }
     },
     "ApprovalDescription": {
@@ -2108,10 +2110,18 @@
         "ClusterNodeDetails$ThreadsPerCore": "<p>The number of threads per CPU core you specified under <code>CreateCluster</code>.</p>"
       }
     },
+    "CodeEditorAppSettings": {
+      "base": "<p>The Code Editor application settings.</p> <p>For more information about Code Editor, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/code-editor.html\">Get started with Code Editor in Amazon SageMaker</a>.</p>",
+      "refs": {
+        "UserSettings$CodeEditorAppSettings": "<p>The Code Editor application settings.</p>"
+      }
+    },
     "CodeRepositories": {
       "base": null,
       "refs": {
-        "JupyterServerAppSettings$CodeRepositories": "<p>A list of Git repositories that SageMaker automatically displays to users for cloning in the JupyterServer application.</p>"
+        "JupyterLabAppSettings$CodeRepositories": "<p>A list of Git repositories that SageMaker automatically displays to users for cloning in the JupyterLab application.</p>",
+        "JupyterServerAppSettings$CodeRepositories": "<p>A list of Git repositories that SageMaker automatically displays to users for cloning in the JupyterServer application.</p>",
+        "SpaceJupyterLabAppSettings$CodeRepositories": "<p>A list of Git repositories that SageMaker automatically displays to users for cloning in the JupyterLab application.</p>"
       }
     },
     "CodeRepository": {
@@ -2341,6 +2351,12 @@
       "base": null,
       "refs": {
         "AppSpecification$ContainerArguments": "<p>The arguments for a container used to run a processing job.</p>"
+      }
+    },
+    "ContainerConfig": {
+      "base": "<p>The configuration used to run the application image container.</p>",
+      "refs": {
+        "JupyterLabAppImageConfig$ContainerConfig": null
       }
     },
     "ContainerDefinition": {
@@ -3122,17 +3138,66 @@
         "CaptureContentTypeHeader$CsvContentTypes": "<p>The list of all content type headers that Amazon SageMaker will treat as CSV and capture accordingly.</p>"
       }
     },
+    "CustomFileSystem": {
+      "base": "<p>A file system, created by you, that you assign to a user profile or space for an Amazon SageMaker Domain. Permitted users can access this file system in Amazon SageMaker Studio.</p>",
+      "refs": {
+        "CustomFileSystems$member": null
+      }
+    },
+    "CustomFileSystemConfig": {
+      "base": "<p>The settings for assigning a custom file system to a user profile or space for an Amazon SageMaker Domain. Permitted users can access this file system in Amazon SageMaker Studio.</p>",
+      "refs": {
+        "CustomFileSystemConfigs$member": null
+      }
+    },
+    "CustomFileSystemConfigs": {
+      "base": null,
+      "refs": {
+        "UserSettings$CustomFileSystemConfigs": "<p>The settings for assigning a custom file system to a user profile. Permitted users can access this file system in Amazon SageMaker Studio.</p>"
+      }
+    },
+    "CustomFileSystems": {
+      "base": null,
+      "refs": {
+        "SpaceSettings$CustomFileSystems": "<p>A file system, created by you, that you assign to a space for an Amazon SageMaker Domain. Permitted users can access this file system in Amazon SageMaker Studio.</p>"
+      }
+    },
     "CustomImage": {
       "base": "<p>A custom SageMaker image. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/studio-byoi.html\">Bring your own SageMaker image</a>.</p>",
       "refs": {
         "CustomImages$member": null
       }
     },
+    "CustomImageContainerArguments": {
+      "base": null,
+      "refs": {
+        "ContainerConfig$ContainerArguments": "<p>The arguments for the container when you're running the application.</p>"
+      }
+    },
+    "CustomImageContainerEntrypoint": {
+      "base": null,
+      "refs": {
+        "ContainerConfig$ContainerEntrypoint": "<p>The entrypoint used to run the application in the container.</p>"
+      }
+    },
+    "CustomImageContainerEnvironmentVariables": {
+      "base": null,
+      "refs": {
+        "ContainerConfig$ContainerEnvironmentVariables": "<p>The environment variables to set in the container</p>"
+      }
+    },
     "CustomImages": {
       "base": null,
       "refs": {
+        "JupyterLabAppSettings$CustomImages": "<p>A list of custom SageMaker images that are configured to run as a JupyterLab app.</p>",
         "KernelGatewayAppSettings$CustomImages": "<p>A list of custom SageMaker images that are configured to run as a KernelGateway app.</p>",
         "RSessionAppSettings$CustomImages": "<p>A list of custom SageMaker images that are configured to run as a RSession app.</p>"
+      }
+    },
+    "CustomPosixUserConfig": {
+      "base": "<p>Details about the POSIX identity that is used for file system operations.</p>",
+      "refs": {
+        "UserSettings$CustomPosixUserConfig": "<p>Details about the POSIX identity that is used for file system operations.</p>"
       }
     },
     "CustomerMetadataKey": {
@@ -3297,6 +3362,12 @@
         "TrainingJob$DebugRuleEvaluationStatuses": "<p>Information about the evaluation status of the rules for the training job.</p>"
       }
     },
+    "DefaultEbsStorageSettings": {
+      "base": "<p>A collection of default EBS storage settings that applies to private spaces created within a domain or user profile.</p>",
+      "refs": {
+        "DefaultSpaceStorageSettings$DefaultEbsStorageSettings": "<p>The default EBS storage settings for a private space.</p>"
+      }
+    },
     "DefaultGid": {
       "base": null,
       "refs": {
@@ -3309,6 +3380,12 @@
         "CreateDomainRequest$DefaultSpaceSettings": "<p>The default settings used to create a space.</p>",
         "DescribeDomainResponse$DefaultSpaceSettings": "<p>The default settings used to create a space.</p>",
         "UpdateDomainRequest$DefaultSpaceSettings": "<p>The default settings used to create a space within the Domain.</p>"
+      }
+    },
+    "DefaultSpaceStorageSettings": {
+      "base": "<p>The default storage settings for a private space.</p>",
+      "refs": {
+        "UserSettings$SpaceStorageSettings": "<p>The storage settings for a private space.</p>"
       }
     },
     "DefaultUid": {
@@ -4738,10 +4815,28 @@
         "GetScalingConfigurationRecommendationResponse$DynamicScalingConfiguration": "<p>An object with the recommended values for you to specify when creating an autoscaling policy.</p>"
       }
     },
+    "EFSFileSystem": {
+      "base": "<p>A file system, created by you in Amazon EFS, that you assign to a user profile or space for an Amazon SageMaker Domain. Permitted users can access this file system in Amazon SageMaker Studio.</p>",
+      "refs": {
+        "CustomFileSystem$EFSFileSystem": "<p>A custom file system in Amazon EFS.</p>"
+      }
+    },
+    "EFSFileSystemConfig": {
+      "base": "<p>The settings for assigning a custom Amazon EFS file system to a user profile or space for an Amazon SageMaker Domain.</p>",
+      "refs": {
+        "CustomFileSystemConfig$EFSFileSystemConfig": "<p>The settings for a custom Amazon EFS file system.</p>"
+      }
+    },
     "EMRStepMetadata": {
       "base": "<p>The configurations and outcomes of an Amazon EMR step execution.</p>",
       "refs": {
         "PipelineExecutionStepMetadata$EMR": "<p>The configurations and outcomes of an Amazon EMR step execution.</p>"
+      }
+    },
+    "EbsStorageSettings": {
+      "base": "<p>A collection of EBS storage settings that applies to private spaces.</p>",
+      "refs": {
+        "SpaceStorageSettings$EbsStorageSettings": "<p>A collection of EBS storage settings for a private space.</p>"
       }
     },
     "Edge": {
@@ -5835,7 +5930,15 @@
     "FileSystemId": {
       "base": null,
       "refs": {
+        "EFSFileSystem$FileSystemId": "<p>The ID of your Amazon EFS file system.</p>",
+        "EFSFileSystemConfig$FileSystemId": "<p>The ID of your Amazon EFS file system.</p>",
         "FileSystemDataSource$FileSystemId": "<p>The file system id.</p>"
+      }
+    },
+    "FileSystemPath": {
+      "base": null,
+      "refs": {
+        "EFSFileSystemConfig$FileSystemPath": "<p>The path to the file system directory that is accessible in Amazon SageMaker Studio. Permitted users can access only this directory and below.</p>"
       }
     },
     "FileSystemType": {
@@ -6109,6 +6212,12 @@
     "GetSearchSuggestionsResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "Gid": {
+      "base": null,
+      "refs": {
+        "CustomPosixUserConfig$Gid": "<p>The POSIX group ID.</p>"
       }
     },
     "GitConfig": {
@@ -7537,6 +7646,21 @@
         "DataProcessing$OutputFilter": "<p>A <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform-data-processing.html#data-processing-operators\">JSONPath</a> expression used to select a portion of the joined dataset to save in the output file for a batch transform job. If you want SageMaker to store the entire input dataset in the output file, leave the default value, <code>$</code>. If you specify indexes that aren't within the dimension size of the joined dataset, you get an error.</p> <p>Examples: <code>\"$\"</code>, <code>\"$[0,5:]\"</code>, <code>\"$['id','SageMakerOutput']\"</code> </p>"
       }
     },
+    "JupyterLabAppImageConfig": {
+      "base": "<p>The configuration for the file system and kernels in a SageMaker image running as a JupyterLab app.</p>",
+      "refs": {
+        "AppImageConfigDetails$JupyterLabAppImageConfig": "<p>The configuration for the file system and the runtime, such as the environment variables and entry point.</p>",
+        "CreateAppImageConfigRequest$JupyterLabAppImageConfig": "<p>The <code>JupyterLabAppImageConfig</code>. You can only specify one image kernel in the <code>AppImageConfig</code> API. This kernel is shown to users before the image starts. After the image runs, all kernels are visible in JupyterLab.</p>",
+        "DescribeAppImageConfigResponse$JupyterLabAppImageConfig": "<p>The configuration of the JupyterLab app.</p>",
+        "UpdateAppImageConfigRequest$JupyterLabAppImageConfig": "<p>The JupyterLab app running on the image.</p>"
+      }
+    },
+    "JupyterLabAppSettings": {
+      "base": "<p>The settings for the JupyterLab application.</p>",
+      "refs": {
+        "UserSettings$JupyterLabAppSettings": "<p>The settings for the JupyterLab application.</p>"
+      }
+    },
     "JupyterServerAppSettings": {
       "base": "<p>The JupyterServer app settings.</p>",
       "refs": {
@@ -7884,6 +8008,8 @@
     "LifecycleConfigArns": {
       "base": null,
       "refs": {
+        "CodeEditorAppSettings$LifecycleConfigArns": "<p>The Amazon Resource Name (ARN) of the Code Editor application lifecycle configuration.</p>",
+        "JupyterLabAppSettings$LifecycleConfigArns": "<p>The Amazon Resource Name (ARN) of the lifecycle configurations attached to the user profile or domain. To remove a lifecycle config, you must set <code>LifecycleConfigArns</code> to an empty list.</p>",
         "JupyterServerAppSettings$LifecycleConfigArns": "<p> The Amazon Resource Name (ARN) of the Lifecycle Configurations attached to the JupyterServerApp. If you use this parameter, the <code>DefaultResourceSpec</code> parameter is also required.</p> <note> <p>To remove a Lifecycle Config, you must set <code>LifecycleConfigArns</code> to an empty list.</p> </note>",
         "KernelGatewayAppSettings$LifecycleConfigArns": "<p> The Amazon Resource Name (ARN) of the Lifecycle Configurations attached to the the user profile or domain.</p> <note> <p>To remove a Lifecycle Config, you must set <code>LifecycleConfigArns</code> to an empty list.</p> </note>"
       }
@@ -10610,6 +10736,23 @@
         "SearchResponse$NextToken": "<p>If the result of the previous <code>Search</code> request was truncated, the response includes a NextToken. To retrieve the next set of results, use the token in the next request.</p>"
       }
     },
+    "NonEmptyString256": {
+      "base": null,
+      "refs": {
+        "CustomImageContainerEntrypoint$member": null,
+        "CustomImageContainerEnvironmentVariables$key": null
+      }
+    },
+    "NonEmptyString64": {
+      "base": null,
+      "refs": {
+        "CreateSpaceRequest$SpaceDisplayName": "<p>The name of the space that appears in the SageMaker Studio UI.</p>",
+        "CustomImageContainerArguments$member": null,
+        "DescribeSpaceResponse$SpaceDisplayName": "<p>The name of the space that appears in the Amazon SageMaker Studio UI.</p>",
+        "SpaceDetails$SpaceDisplayName": "<p>The name of the space that appears in the Studio UI.</p>",
+        "UpdateSpaceRequest$SpaceDisplayName": "<p>The name of the space that appears in the Amazon SageMaker Studio UI.</p>"
+      }
+    },
     "NotebookInstanceAcceleratorType": {
       "base": null,
       "refs": {
@@ -11004,6 +11147,19 @@
         "CallbackStepMetadata$OutputParameters": "<p>A list of the output parameters of the callback step.</p>",
         "LambdaStepMetadata$OutputParameters": "<p>A list of the output parameters of the Lambda step.</p>",
         "SendPipelineExecutionStepSuccessRequest$OutputParameters": "<p>A list of the output parameters of the callback step.</p>"
+      }
+    },
+    "OwnershipSettings": {
+      "base": "<p>The collection of ownership settings for a space.</p>",
+      "refs": {
+        "CreateSpaceRequest$OwnershipSettings": "<p>A collection of ownership settings.</p>",
+        "DescribeSpaceResponse$OwnershipSettings": "<p>The collection of ownership settings for a space.</p>"
+      }
+    },
+    "OwnershipSettingsSummary": {
+      "base": "<p>Specifies summary information about the ownership settings.</p>",
+      "refs": {
+        "SpaceDetails$OwnershipSettingsSummary": "<p>Specifies summary information about the ownership settings.</p>"
       }
     },
     "PaginationToken": {
@@ -12561,13 +12717,18 @@
     "ResourceSpec": {
       "base": "<p>Specifies the ARN's of a SageMaker image and SageMaker image version, and the instance type that the version runs on.</p>",
       "refs": {
+        "AppDetails$ResourceSpec": null,
+        "CodeEditorAppSettings$DefaultResourceSpec": null,
         "CreateAppRequest$ResourceSpec": "<p>The instance type and the Amazon Resource Name (ARN) of the SageMaker image created on the instance.</p> <note> <p>The value of <code>InstanceType</code> passed as part of the <code>ResourceSpec</code> in the <code>CreateApp</code> call overrides the value passed as part of the <code>ResourceSpec</code> configured for the user profile or the domain. If <code>InstanceType</code> is not specified in any of those three <code>ResourceSpec</code> values for a <code>KernelGateway</code> app, the <code>CreateApp</code> call fails with a request validation error.</p> </note>",
         "DescribeAppResponse$ResourceSpec": "<p>The instance type and the Amazon Resource Name (ARN) of the SageMaker image created on the instance.</p>",
+        "JupyterLabAppSettings$DefaultResourceSpec": null,
         "JupyterServerAppSettings$DefaultResourceSpec": "<p>The default instance type and the Amazon Resource Name (ARN) of the default SageMaker image used by the JupyterServer app. If you use the <code>LifecycleConfigArns</code> parameter, then this parameter is also required.</p>",
         "KernelGatewayAppSettings$DefaultResourceSpec": "<p>The default instance type and the Amazon Resource Name (ARN) of the default SageMaker image used by the KernelGateway app.</p> <note> <p>The Amazon SageMaker Studio UI does not use the default instance type value set here. The default instance type set here is used when Apps are created using the Amazon Web Services Command Line Interface or Amazon Web Services CloudFormation and the instance type parameter value is not passed.</p> </note>",
         "RSessionAppSettings$DefaultResourceSpec": null,
         "RStudioServerProDomainSettings$DefaultResourceSpec": null,
         "RStudioServerProDomainSettingsForUpdate$DefaultResourceSpec": null,
+        "SpaceCodeEditorAppSettings$DefaultResourceSpec": null,
+        "SpaceJupyterLabAppSettings$DefaultResourceSpec": null,
         "TensorBoardAppSettings$DefaultResourceSpec": "<p>The default instance type and the Amazon Resource Name (ARN) of the SageMaker image created on the instance.</p>"
       }
     },
@@ -13158,6 +13319,13 @@
         "UserSettings$SharingSettings": "<p>Specifies options for sharing Amazon SageMaker Studio notebooks.</p>"
       }
     },
+    "SharingType": {
+      "base": null,
+      "refs": {
+        "SpaceSharingSettings$SharingType": "<p>Specifies the sharing type of the space.</p>",
+        "SpaceSharingSettingsSummary$SharingType": "<p>Specifies the sharing type of the space.</p>"
+      }
+    },
     "ShuffleConfig": {
       "base": "<p>A configuration for a shuffle option for input data in a channel. If you use <code>S3Prefix</code> for <code>S3DataType</code>, the results of the S3 key prefix matches are shuffled. If you use <code>ManifestFile</code>, the order of the S3 object references in the <code>ManifestFile</code> is shuffled. If you use <code>AugmentedManifestFile</code>, the order of the JSON lines in the <code>AugmentedManifestFile</code> is shuffled. The shuffling order is determined using the <code>Seed</code> value.</p> <p>For Pipe input mode, when <code>ShuffleConfig</code> is specified shuffling is done at the start of every epoch. With large datasets, this ensures that the order of the training data is different for each epoch, and it helps reduce bias and possible overfitting. In a multi-node training job when <code>ShuffleConfig</code> is combined with <code>S3DataDistributionType</code> of <code>ShardedByS3Key</code>, the data is shuffled across nodes so that the content sent to a particular node on the first epoch might be sent to a different node on the second epoch.</p>",
       "refs": {
@@ -13374,10 +13542,30 @@
         "UpdateSpaceResponse$SpaceArn": "<p>The space's Amazon Resource Name (ARN).</p>"
       }
     },
+    "SpaceCodeEditorAppSettings": {
+      "base": "<p>The application settings for a Code Editor space.</p>",
+      "refs": {
+        "SpaceSettings$CodeEditorAppSettings": "<p>The Code Editor application settings.</p>"
+      }
+    },
     "SpaceDetails": {
       "base": "<p>The space's details.</p>",
       "refs": {
         "SpaceList$member": null
+      }
+    },
+    "SpaceEbsVolumeSizeInGb": {
+      "base": null,
+      "refs": {
+        "DefaultEbsStorageSettings$DefaultEbsVolumeSizeInGb": "<p>The default size of the EBS storage volume for a private space.</p>",
+        "DefaultEbsStorageSettings$MaximumEbsVolumeSizeInGb": "<p>The maximum size of the EBS storage volume for a private space.</p>",
+        "EbsStorageSettings$EbsVolumeSizeInGb": "<p>The size of an EBS storage volume for a private space.</p>"
+      }
+    },
+    "SpaceJupyterLabAppSettings": {
+      "base": "<p>The settings for the JupyterLab application within a space.</p>",
+      "refs": {
+        "SpaceSettings$JupyterLabAppSettings": "<p>The settings for the JupyterLab application.</p>"
       }
     },
     "SpaceList": {
@@ -13413,6 +13601,25 @@
         "UpdateSpaceRequest$SpaceSettings": "<p>A collection of space settings.</p>"
       }
     },
+    "SpaceSettingsSummary": {
+      "base": "<p>Specifies summary information about the space settings.</p>",
+      "refs": {
+        "SpaceDetails$SpaceSettingsSummary": "<p>Specifies summary information about the space settings.</p>"
+      }
+    },
+    "SpaceSharingSettings": {
+      "base": "<p>A collection of space sharing settings.</p>",
+      "refs": {
+        "CreateSpaceRequest$SpaceSharingSettings": "<p>A collection of space sharing settings.</p>",
+        "DescribeSpaceResponse$SpaceSharingSettings": "<p>The collection of space sharing settings for a space.</p>"
+      }
+    },
+    "SpaceSharingSettingsSummary": {
+      "base": "<p>Specifies summary information about the space sharing settings.</p>",
+      "refs": {
+        "SpaceDetails$SpaceSharingSettingsSummary": "<p>Specifies summary information about the space sharing settings.</p>"
+      }
+    },
     "SpaceSortKey": {
       "base": null,
       "refs": {
@@ -13424,6 +13631,13 @@
       "refs": {
         "DescribeSpaceResponse$Status": "<p>The status.</p>",
         "SpaceDetails$Status": "<p>The status.</p>"
+      }
+    },
+    "SpaceStorageSettings": {
+      "base": "<p>The storage settings for a private space.</p>",
+      "refs": {
+        "SpaceSettings$SpaceStorageSettings": "<p>The storage settings for a private space.</p>",
+        "SpaceSettingsSummary$SpaceStorageSettings": "<p>The storage settings for a private space.</p>"
       }
     },
     "SpawnRate": {
@@ -13778,6 +13992,7 @@
         "CreateArtifactRequest$ArtifactType": "<p>The artifact type.</p>",
         "CreateContextRequest$ContextType": "<p>The context type.</p>",
         "CreateUserProfileRequest$SingleSignOnUserValue": "<p>The username of the associated Amazon Web Services Single Sign-On User for this UserProfile. If the Domain's AuthMode is IAM Identity Center, this field is required, and must match a valid username of a user in your directory. If the Domain's AuthMode is not IAM Identity Center, this field cannot be specified. </p>",
+        "CustomImageContainerEnvironmentVariables$value": null,
         "DescribeActionResponse$ActionType": "<p>The type of the action.</p>",
         "DescribeArtifactResponse$ArtifactType": "<p>The type of the artifact.</p>",
         "DescribeContextResponse$ContextType": "<p>The type of the context.</p>",
@@ -15377,6 +15592,12 @@
         "DescribeHumanTaskUiResponse$UiTemplate": null
       }
     },
+    "Uid": {
+      "base": null,
+      "refs": {
+        "CustomPosixUserConfig$Uid": "<p>The POSIX user ID.</p>"
+      }
+    },
     "UpdateActionRequest": {
       "base": null,
       "refs": {
@@ -15822,6 +16043,8 @@
         "DescribeUserProfileResponse$UserProfileName": "<p>The user profile name.</p>",
         "ListAppsRequest$UserProfileNameEquals": "<p>A parameter to search by user profile name. If <code>SpaceNameEquals</code> is set, then this value cannot be set.</p>",
         "ListUserProfilesRequest$UserProfileNameContains": "<p>A parameter by which to filter the results.</p>",
+        "OwnershipSettings$OwnerUserProfileName": "<p>The user profile who is the owner of the private space.</p>",
+        "OwnershipSettingsSummary$OwnerUserProfileName": "<p>The user profile who is the owner of the private space.</p>",
         "UpdateUserProfileRequest$UserProfileName": "<p>The user profile name.</p>",
         "UserProfileDetails$UserProfileName": "<p>The user profile name.</p>"
       }

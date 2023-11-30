@@ -1,3 +1,13 @@
+Release v1.48.10 (2023-11-30)
+===
+
+### Service Client Updates
+* `service/arc-zonal-shift`: Updates service API, documentation, and paginators
+* `service/glue`: Updates service API and documentation
+  * Adds observation and analyzer support to the GetDataQualityResult and BatchGetDataQualityResult APIs.
+* `service/sagemaker`: Updates service API and documentation
+  * This release adds support for 1/ Code Editor, based on Code-OSS, Visual Studio Code Open Source, a new fully managed IDE option in SageMaker Studio  2/ JupyterLab, a new fully managed JupyterLab IDE experience in SageMaker Studio
+
 Release v1.48.9 (2023-11-30)
 ===
 

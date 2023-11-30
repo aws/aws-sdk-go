@@ -64,9 +64,24 @@ type ARCZonalShiftAPI interface {
 	CancelZonalShiftWithContext(aws.Context, *arczonalshift.CancelZonalShiftInput, ...request.Option) (*arczonalshift.CancelZonalShiftOutput, error)
 	CancelZonalShiftRequest(*arczonalshift.CancelZonalShiftInput) (*request.Request, *arczonalshift.CancelZonalShiftOutput)
 
+	CreatePracticeRunConfiguration(*arczonalshift.CreatePracticeRunConfigurationInput) (*arczonalshift.CreatePracticeRunConfigurationOutput, error)
+	CreatePracticeRunConfigurationWithContext(aws.Context, *arczonalshift.CreatePracticeRunConfigurationInput, ...request.Option) (*arczonalshift.CreatePracticeRunConfigurationOutput, error)
+	CreatePracticeRunConfigurationRequest(*arczonalshift.CreatePracticeRunConfigurationInput) (*request.Request, *arczonalshift.CreatePracticeRunConfigurationOutput)
+
+	DeletePracticeRunConfiguration(*arczonalshift.DeletePracticeRunConfigurationInput) (*arczonalshift.DeletePracticeRunConfigurationOutput, error)
+	DeletePracticeRunConfigurationWithContext(aws.Context, *arczonalshift.DeletePracticeRunConfigurationInput, ...request.Option) (*arczonalshift.DeletePracticeRunConfigurationOutput, error)
+	DeletePracticeRunConfigurationRequest(*arczonalshift.DeletePracticeRunConfigurationInput) (*request.Request, *arczonalshift.DeletePracticeRunConfigurationOutput)
+
 	GetManagedResource(*arczonalshift.GetManagedResourceInput) (*arczonalshift.GetManagedResourceOutput, error)
 	GetManagedResourceWithContext(aws.Context, *arczonalshift.GetManagedResourceInput, ...request.Option) (*arczonalshift.GetManagedResourceOutput, error)
 	GetManagedResourceRequest(*arczonalshift.GetManagedResourceInput) (*request.Request, *arczonalshift.GetManagedResourceOutput)
+
+	ListAutoshifts(*arczonalshift.ListAutoshiftsInput) (*arczonalshift.ListAutoshiftsOutput, error)
+	ListAutoshiftsWithContext(aws.Context, *arczonalshift.ListAutoshiftsInput, ...request.Option) (*arczonalshift.ListAutoshiftsOutput, error)
+	ListAutoshiftsRequest(*arczonalshift.ListAutoshiftsInput) (*request.Request, *arczonalshift.ListAutoshiftsOutput)
+
+	ListAutoshiftsPages(*arczonalshift.ListAutoshiftsInput, func(*arczonalshift.ListAutoshiftsOutput, bool) bool) error
+	ListAutoshiftsPagesWithContext(aws.Context, *arczonalshift.ListAutoshiftsInput, func(*arczonalshift.ListAutoshiftsOutput, bool) bool, ...request.Option) error
 
 	ListManagedResources(*arczonalshift.ListManagedResourcesInput) (*arczonalshift.ListManagedResourcesOutput, error)
 	ListManagedResourcesWithContext(aws.Context, *arczonalshift.ListManagedResourcesInput, ...request.Option) (*arczonalshift.ListManagedResourcesOutput, error)
@@ -85,6 +100,14 @@ type ARCZonalShiftAPI interface {
 	StartZonalShift(*arczonalshift.StartZonalShiftInput) (*arczonalshift.StartZonalShiftOutput, error)
 	StartZonalShiftWithContext(aws.Context, *arczonalshift.StartZonalShiftInput, ...request.Option) (*arczonalshift.StartZonalShiftOutput, error)
 	StartZonalShiftRequest(*arczonalshift.StartZonalShiftInput) (*request.Request, *arczonalshift.StartZonalShiftOutput)
+
+	UpdatePracticeRunConfiguration(*arczonalshift.UpdatePracticeRunConfigurationInput) (*arczonalshift.UpdatePracticeRunConfigurationOutput, error)
+	UpdatePracticeRunConfigurationWithContext(aws.Context, *arczonalshift.UpdatePracticeRunConfigurationInput, ...request.Option) (*arczonalshift.UpdatePracticeRunConfigurationOutput, error)
+	UpdatePracticeRunConfigurationRequest(*arczonalshift.UpdatePracticeRunConfigurationInput) (*request.Request, *arczonalshift.UpdatePracticeRunConfigurationOutput)
+
+	UpdateZonalAutoshiftConfiguration(*arczonalshift.UpdateZonalAutoshiftConfigurationInput) (*arczonalshift.UpdateZonalAutoshiftConfigurationOutput, error)
+	UpdateZonalAutoshiftConfigurationWithContext(aws.Context, *arczonalshift.UpdateZonalAutoshiftConfigurationInput, ...request.Option) (*arczonalshift.UpdateZonalAutoshiftConfigurationOutput, error)
+	UpdateZonalAutoshiftConfigurationRequest(*arczonalshift.UpdateZonalAutoshiftConfigurationInput) (*request.Request, *arczonalshift.UpdateZonalAutoshiftConfigurationOutput)
 
 	UpdateZonalShift(*arczonalshift.UpdateZonalShiftInput) (*arczonalshift.UpdateZonalShiftOutput, error)
 	UpdateZonalShiftWithContext(aws.Context, *arczonalshift.UpdateZonalShiftInput, ...request.Option) (*arczonalshift.UpdateZonalShiftOutput, error)
