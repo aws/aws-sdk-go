@@ -402,6 +402,145 @@
       "synthetic": true,
       "type": "structure"
     },
+    "AmiProductEntityIdFilter": {
+      "members": {
+        "ValueList": {
+          "shape": "AmiProductEntityIdFilterValueList"
+        }
+      },
+      "type": "structure"
+    },
+    "AmiProductEntityIdFilterValueList": {
+      "max": 10,
+      "member": {
+        "shape": "AmiProductEntityIdString"
+      },
+      "min": 1,
+      "type": "list"
+    },
+    "AmiProductEntityIdString": {
+      "max": 255,
+      "min": 1,
+      "pattern": "^[a-zA-Z0-9][.a-zA-Z0-9/-]+[a-zA-Z0-9]$",
+      "type": "string"
+    },
+    "AmiProductFilters": {
+      "members": {
+        "EntityId": {
+          "shape": "AmiProductEntityIdFilter"
+        },
+        "LastModifiedDate": {
+          "shape": "AmiProductLastModifiedDateFilter"
+        },
+        "ProductTitle": {
+          "shape": "AmiProductTitleFilter"
+        },
+        "Visibility": {
+          "shape": "AmiProductVisibilityFilter"
+        }
+      },
+      "type": "structure"
+    },
+    "AmiProductLastModifiedDateFilter": {
+      "members": {
+        "DateRange": {
+          "shape": "AmiProductLastModifiedDateFilterDateRange"
+        }
+      },
+      "type": "structure"
+    },
+    "AmiProductLastModifiedDateFilterDateRange": {
+      "members": {
+        "AfterValue": {
+          "shape": "DateTimeISO8601"
+        },
+        "BeforeValue": {
+          "shape": "DateTimeISO8601"
+        }
+      },
+      "type": "structure"
+    },
+    "AmiProductSort": {
+      "members": {
+        "SortBy": {
+          "shape": "AmiProductSortBy"
+        },
+        "SortOrder": {
+          "shape": "SortOrder"
+        }
+      },
+      "type": "structure"
+    },
+    "AmiProductSortBy": {
+      "enum": [
+        "EntityId",
+        "LastModifiedDate",
+        "ProductTitle",
+        "Visibility"
+      ],
+      "type": "string"
+    },
+    "AmiProductSummary": {
+      "members": {
+        "ProductTitle": {
+          "shape": "AmiProductTitleString"
+        },
+        "Visibility": {
+          "shape": "AmiProductVisibilityString"
+        }
+      },
+      "type": "structure"
+    },
+    "AmiProductTitleFilter": {
+      "members": {
+        "ValueList": {
+          "shape": "AmiProductTitleFilterValueList"
+        },
+        "WildCardValue": {
+          "shape": "AmiProductTitleString"
+        }
+      },
+      "type": "structure"
+    },
+    "AmiProductTitleFilterValueList": {
+      "max": 10,
+      "member": {
+        "shape": "AmiProductTitleString"
+      },
+      "min": 1,
+      "type": "list"
+    },
+    "AmiProductTitleString": {
+      "max": 255,
+      "min": 1,
+      "pattern": "^(.)+$",
+      "type": "string"
+    },
+    "AmiProductVisibilityFilter": {
+      "members": {
+        "ValueList": {
+          "shape": "AmiProductVisibilityFilterValueList"
+        }
+      },
+      "type": "structure"
+    },
+    "AmiProductVisibilityFilterValueList": {
+      "max": 10,
+      "member": {
+        "shape": "AmiProductVisibilityString"
+      },
+      "min": 1,
+      "type": "list"
+    },
+    "AmiProductVisibilityString": {
+      "enum": [
+        "Limited",
+        "Public",
+        "Restricted",
+        "Draft"
+      ],
+      "type": "string"
+    },
     "CancelChangeSetRequest": {
       "members": {
         "Catalog": {
@@ -557,6 +696,285 @@
       "pattern": "^[!-~]+$",
       "type": "string"
     },
+    "ContainerProductEntityIdFilter": {
+      "members": {
+        "ValueList": {
+          "shape": "ContainerProductEntityIdFilterValueList"
+        }
+      },
+      "type": "structure"
+    },
+    "ContainerProductEntityIdFilterValueList": {
+      "max": 10,
+      "member": {
+        "shape": "ContainerProductEntityIdString"
+      },
+      "min": 1,
+      "type": "list"
+    },
+    "ContainerProductEntityIdString": {
+      "max": 255,
+      "min": 1,
+      "pattern": "^[a-zA-Z0-9][.a-zA-Z0-9/-]+[a-zA-Z0-9]$",
+      "type": "string"
+    },
+    "ContainerProductFilters": {
+      "members": {
+        "EntityId": {
+          "shape": "ContainerProductEntityIdFilter"
+        },
+        "LastModifiedDate": {
+          "shape": "ContainerProductLastModifiedDateFilter"
+        },
+        "ProductTitle": {
+          "shape": "ContainerProductTitleFilter"
+        },
+        "Visibility": {
+          "shape": "ContainerProductVisibilityFilter"
+        }
+      },
+      "type": "structure"
+    },
+    "ContainerProductLastModifiedDateFilter": {
+      "members": {
+        "DateRange": {
+          "shape": "ContainerProductLastModifiedDateFilterDateRange"
+        }
+      },
+      "type": "structure"
+    },
+    "ContainerProductLastModifiedDateFilterDateRange": {
+      "members": {
+        "AfterValue": {
+          "shape": "DateTimeISO8601"
+        },
+        "BeforeValue": {
+          "shape": "DateTimeISO8601"
+        }
+      },
+      "type": "structure"
+    },
+    "ContainerProductSort": {
+      "members": {
+        "SortBy": {
+          "shape": "ContainerProductSortBy"
+        },
+        "SortOrder": {
+          "shape": "SortOrder"
+        }
+      },
+      "type": "structure"
+    },
+    "ContainerProductSortBy": {
+      "enum": [
+        "EntityId",
+        "LastModifiedDate",
+        "ProductTitle",
+        "Visibility"
+      ],
+      "type": "string"
+    },
+    "ContainerProductSummary": {
+      "members": {
+        "ProductTitle": {
+          "shape": "ContainerProductTitleString"
+        },
+        "Visibility": {
+          "shape": "ContainerProductVisibilityString"
+        }
+      },
+      "type": "structure"
+    },
+    "ContainerProductTitleFilter": {
+      "members": {
+        "ValueList": {
+          "shape": "ContainerProductTitleFilterValueList"
+        },
+        "WildCardValue": {
+          "shape": "ContainerProductTitleString"
+        }
+      },
+      "type": "structure"
+    },
+    "ContainerProductTitleFilterValueList": {
+      "max": 10,
+      "member": {
+        "shape": "ContainerProductTitleString"
+      },
+      "min": 1,
+      "type": "list"
+    },
+    "ContainerProductTitleString": {
+      "max": 255,
+      "min": 1,
+      "pattern": "^(.)+$",
+      "type": "string"
+    },
+    "ContainerProductVisibilityFilter": {
+      "members": {
+        "ValueList": {
+          "shape": "ContainerProductVisibilityFilterValueList"
+        }
+      },
+      "type": "structure"
+    },
+    "ContainerProductVisibilityFilterValueList": {
+      "max": 10,
+      "member": {
+        "shape": "ContainerProductVisibilityString"
+      },
+      "min": 1,
+      "type": "list"
+    },
+    "ContainerProductVisibilityString": {
+      "enum": [
+        "Limited",
+        "Public",
+        "Restricted",
+        "Draft"
+      ],
+      "type": "string"
+    },
+    "DataProductEntityIdFilter": {
+      "members": {
+        "ValueList": {
+          "shape": "DataProductEntityIdFilterValueList"
+        }
+      },
+      "type": "structure"
+    },
+    "DataProductEntityIdFilterValueList": {
+      "max": 10,
+      "member": {
+        "shape": "DataProductEntityIdString"
+      },
+      "min": 1,
+      "type": "list"
+    },
+    "DataProductEntityIdString": {
+      "max": 255,
+      "min": 1,
+      "pattern": "^[a-zA-Z0-9][.a-zA-Z0-9/-]+[a-zA-Z0-9]$",
+      "type": "string"
+    },
+    "DataProductFilters": {
+      "members": {
+        "EntityId": {
+          "shape": "DataProductEntityIdFilter"
+        },
+        "LastModifiedDate": {
+          "shape": "DataProductLastModifiedDateFilter"
+        },
+        "ProductTitle": {
+          "shape": "DataProductTitleFilter"
+        },
+        "Visibility": {
+          "shape": "DataProductVisibilityFilter"
+        }
+      },
+      "type": "structure"
+    },
+    "DataProductLastModifiedDateFilter": {
+      "members": {
+        "DateRange": {
+          "shape": "DataProductLastModifiedDateFilterDateRange"
+        }
+      },
+      "type": "structure"
+    },
+    "DataProductLastModifiedDateFilterDateRange": {
+      "members": {
+        "AfterValue": {
+          "shape": "DateTimeISO8601"
+        },
+        "BeforeValue": {
+          "shape": "DateTimeISO8601"
+        }
+      },
+      "type": "structure"
+    },
+    "DataProductSort": {
+      "members": {
+        "SortBy": {
+          "shape": "DataProductSortBy"
+        },
+        "SortOrder": {
+          "shape": "SortOrder"
+        }
+      },
+      "type": "structure"
+    },
+    "DataProductSortBy": {
+      "enum": [
+        "EntityId",
+        "ProductTitle",
+        "Visibility",
+        "LastModifiedDate"
+      ],
+      "type": "string"
+    },
+    "DataProductSummary": {
+      "members": {
+        "ProductTitle": {
+          "shape": "DataProductTitleString"
+        },
+        "Visibility": {
+          "shape": "DataProductVisibilityString"
+        }
+      },
+      "type": "structure"
+    },
+    "DataProductTitleFilter": {
+      "members": {
+        "ValueList": {
+          "shape": "DataProductTitleFilterValueList"
+        },
+        "WildCardValue": {
+          "shape": "DataProductTitleString"
+        }
+      },
+      "type": "structure"
+    },
+    "DataProductTitleFilterValueList": {
+      "max": 10,
+      "member": {
+        "shape": "DataProductTitleString"
+      },
+      "min": 1,
+      "type": "list"
+    },
+    "DataProductTitleString": {
+      "max": 255,
+      "min": 1,
+      "pattern": "^(.)+$",
+      "type": "string"
+    },
+    "DataProductVisibilityFilter": {
+      "members": {
+        "ValueList": {
+          "shape": "DataProductVisibilityFilterValueList"
+        }
+      },
+      "type": "structure"
+    },
+    "DataProductVisibilityFilterValueList": {
+      "max": 10,
+      "member": {
+        "shape": "DataProductVisibilityString"
+      },
+      "min": 1,
+      "type": "list"
+    },
+    "DataProductVisibilityString": {
+      "enum": [
+        "Limited",
+        "Public",
+        "Restricted",
+        "Unavailable",
+        "Draft"
+      ],
+      "type": "string"
+    },
     "DateTimeISO8601": {
       "max": 20,
       "min": 20,
@@ -692,6 +1110,15 @@
     },
     "EntitySummary": {
       "members": {
+        "AmiProductSummary": {
+          "shape": "AmiProductSummary"
+        },
+        "ContainerProductSummary": {
+          "shape": "ContainerProductSummary"
+        },
+        "DataProductSummary": {
+          "shape": "DataProductSummary"
+        },
         "EntityArn": {
           "shape": "ARN"
         },
@@ -706,6 +1133,15 @@
         },
         "Name": {
           "shape": "EntityNameString"
+        },
+        "OfferSummary": {
+          "shape": "OfferSummary"
+        },
+        "ResaleAuthorizationSummary": {
+          "shape": "ResaleAuthorizationSummary"
+        },
+        "SaaSProductSummary": {
+          "shape": "SaaSProductSummary"
         },
         "Visibility": {
           "shape": "VisibilityValue"
@@ -724,6 +1160,54 @@
       "min": 1,
       "pattern": "^[a-zA-Z]+$",
       "type": "string"
+    },
+    "EntityTypeFilters": {
+      "members": {
+        "AmiProductFilters": {
+          "shape": "AmiProductFilters"
+        },
+        "ContainerProductFilters": {
+          "shape": "ContainerProductFilters"
+        },
+        "DataProductFilters": {
+          "shape": "DataProductFilters"
+        },
+        "OfferFilters": {
+          "shape": "OfferFilters"
+        },
+        "ResaleAuthorizationFilters": {
+          "shape": "ResaleAuthorizationFilters"
+        },
+        "SaaSProductFilters": {
+          "shape": "SaaSProductFilters"
+        }
+      },
+      "type": "structure",
+      "union": true
+    },
+    "EntityTypeSort": {
+      "members": {
+        "AmiProductSort": {
+          "shape": "AmiProductSort"
+        },
+        "ContainerProductSort": {
+          "shape": "ContainerProductSort"
+        },
+        "DataProductSort": {
+          "shape": "DataProductSort"
+        },
+        "OfferSort": {
+          "shape": "OfferSort"
+        },
+        "ResaleAuthorizationSort": {
+          "shape": "ResaleAuthorizationSort"
+        },
+        "SaaSProductSort": {
+          "shape": "SaaSProductSort"
+        }
+      },
+      "type": "structure",
+      "union": true
     },
     "ErrorCodeString": {
       "max": 72,
@@ -892,6 +1376,12 @@
         "EntityType": {
           "shape": "EntityType"
         },
+        "EntityTypeFilters": {
+          "shape": "EntityTypeFilters"
+        },
+        "EntityTypeSort": {
+          "shape": "EntityTypeSort"
+        },
         "FilterList": {
           "shape": "FilterList"
         },
@@ -953,6 +1443,299 @@
       "pattern": "^[\\w+=.:@\\-\\/]$",
       "type": "string"
     },
+    "OfferAvailabilityEndDateFilter": {
+      "members": {
+        "DateRange": {
+          "shape": "OfferAvailabilityEndDateFilterDateRange"
+        }
+      },
+      "type": "structure"
+    },
+    "OfferAvailabilityEndDateFilterDateRange": {
+      "members": {
+        "AfterValue": {
+          "shape": "DateTimeISO8601"
+        },
+        "BeforeValue": {
+          "shape": "DateTimeISO8601"
+        }
+      },
+      "type": "structure"
+    },
+    "OfferBuyerAccountsFilter": {
+      "members": {
+        "WildCardValue": {
+          "shape": "OfferBuyerAccountsFilterWildcard"
+        }
+      },
+      "type": "structure"
+    },
+    "OfferBuyerAccountsFilterWildcard": {
+      "max": 255,
+      "min": 1,
+      "pattern": "^(.)+$",
+      "type": "string"
+    },
+    "OfferBuyerAccountsList": {
+      "max": 26,
+      "member": {
+        "shape": "OfferBuyerAccountsString"
+      },
+      "min": 0,
+      "type": "list"
+    },
+    "OfferBuyerAccountsString": {
+      "max": 12,
+      "min": 12,
+      "pattern": "^\\d{12}$",
+      "type": "string"
+    },
+    "OfferEntityIdFilter": {
+      "members": {
+        "ValueList": {
+          "shape": "OfferEntityIdFilterValueList"
+        }
+      },
+      "type": "structure"
+    },
+    "OfferEntityIdFilterValueList": {
+      "max": 10,
+      "member": {
+        "shape": "OfferEntityIdString"
+      },
+      "min": 1,
+      "type": "list"
+    },
+    "OfferEntityIdString": {
+      "max": 255,
+      "min": 1,
+      "pattern": "^[a-zA-Z0-9][.a-zA-Z0-9/-]+[a-zA-Z0-9]$",
+      "type": "string"
+    },
+    "OfferFilters": {
+      "members": {
+        "AvailabilityEndDate": {
+          "shape": "OfferAvailabilityEndDateFilter"
+        },
+        "BuyerAccounts": {
+          "shape": "OfferBuyerAccountsFilter"
+        },
+        "EntityId": {
+          "shape": "OfferEntityIdFilter"
+        },
+        "LastModifiedDate": {
+          "shape": "OfferLastModifiedDateFilter"
+        },
+        "Name": {
+          "shape": "OfferNameFilter"
+        },
+        "ProductId": {
+          "shape": "OfferProductIdFilter"
+        },
+        "ReleaseDate": {
+          "shape": "OfferReleaseDateFilter"
+        },
+        "State": {
+          "shape": "OfferStateFilter"
+        },
+        "Targeting": {
+          "shape": "OfferTargetingFilter"
+        }
+      },
+      "type": "structure"
+    },
+    "OfferLastModifiedDateFilter": {
+      "members": {
+        "DateRange": {
+          "shape": "OfferLastModifiedDateFilterDateRange"
+        }
+      },
+      "type": "structure"
+    },
+    "OfferLastModifiedDateFilterDateRange": {
+      "members": {
+        "AfterValue": {
+          "shape": "DateTimeISO8601"
+        },
+        "BeforeValue": {
+          "shape": "DateTimeISO8601"
+        }
+      },
+      "type": "structure"
+    },
+    "OfferNameFilter": {
+      "members": {
+        "ValueList": {
+          "shape": "OfferNameFilterValueList"
+        },
+        "WildCardValue": {
+          "shape": "OfferNameString"
+        }
+      },
+      "type": "structure"
+    },
+    "OfferNameFilterValueList": {
+      "max": 10,
+      "member": {
+        "shape": "OfferNameString"
+      },
+      "min": 1,
+      "type": "list"
+    },
+    "OfferNameString": {
+      "max": 150,
+      "min": 1,
+      "pattern": "^(.)+$",
+      "type": "string"
+    },
+    "OfferProductIdFilter": {
+      "members": {
+        "ValueList": {
+          "shape": "OfferProductIdFilterValueList"
+        }
+      },
+      "type": "structure"
+    },
+    "OfferProductIdFilterValueList": {
+      "max": 10,
+      "member": {
+        "shape": "OfferProductIdString"
+      },
+      "min": 1,
+      "type": "list"
+    },
+    "OfferProductIdString": {
+      "max": 255,
+      "min": 1,
+      "pattern": "^(.)+$",
+      "type": "string"
+    },
+    "OfferReleaseDateFilter": {
+      "members": {
+        "DateRange": {
+          "shape": "OfferReleaseDateFilterDateRange"
+        }
+      },
+      "type": "structure"
+    },
+    "OfferReleaseDateFilterDateRange": {
+      "members": {
+        "AfterValue": {
+          "shape": "DateTimeISO8601"
+        },
+        "BeforeValue": {
+          "shape": "DateTimeISO8601"
+        }
+      },
+      "type": "structure"
+    },
+    "OfferSort": {
+      "members": {
+        "SortBy": {
+          "shape": "OfferSortBy"
+        },
+        "SortOrder": {
+          "shape": "SortOrder"
+        }
+      },
+      "type": "structure"
+    },
+    "OfferSortBy": {
+      "enum": [
+        "EntityId",
+        "Name",
+        "ProductId",
+        "ReleaseDate",
+        "AvailabilityEndDate",
+        "BuyerAccounts",
+        "State",
+        "Targeting",
+        "LastModifiedDate"
+      ],
+      "type": "string"
+    },
+    "OfferStateFilter": {
+      "members": {
+        "ValueList": {
+          "shape": "OfferStateFilterValueList"
+        }
+      },
+      "type": "structure"
+    },
+    "OfferStateFilterValueList": {
+      "max": 2,
+      "member": {
+        "shape": "OfferStateString"
+      },
+      "min": 1,
+      "type": "list"
+    },
+    "OfferStateString": {
+      "enum": [
+        "Draft",
+        "Released"
+      ],
+      "type": "string"
+    },
+    "OfferSummary": {
+      "members": {
+        "AvailabilityEndDate": {
+          "shape": "DateTimeISO8601"
+        },
+        "BuyerAccounts": {
+          "shape": "OfferBuyerAccountsList"
+        },
+        "Name": {
+          "shape": "OfferNameString"
+        },
+        "ProductId": {
+          "shape": "OfferProductIdString"
+        },
+        "ReleaseDate": {
+          "shape": "DateTimeISO8601"
+        },
+        "State": {
+          "shape": "OfferStateString"
+        },
+        "Targeting": {
+          "shape": "OfferTargetingList"
+        }
+      },
+      "type": "structure"
+    },
+    "OfferTargetingFilter": {
+      "members": {
+        "ValueList": {
+          "shape": "OfferTargetingFilterValueList"
+        }
+      },
+      "type": "structure"
+    },
+    "OfferTargetingFilterValueList": {
+      "max": 4,
+      "member": {
+        "shape": "OfferTargetingString"
+      },
+      "min": 1,
+      "type": "list"
+    },
+    "OfferTargetingList": {
+      "max": 4,
+      "member": {
+        "shape": "OfferTargetingString"
+      },
+      "min": 0,
+      "type": "list"
+    },
+    "OfferTargetingString": {
+      "enum": [
+        "BuyerAccounts",
+        "ParticipatingPrograms",
+        "CountryCodes",
+        "None"
+      ],
+      "type": "string"
+    },
     "OwnershipType": {
       "enum": [
         "SELF",
@@ -986,6 +1769,481 @@
       },
       "min": 1,
       "type": "list"
+    },
+    "ResaleAuthorizationAvailabilityEndDateFilter": {
+      "members": {
+        "DateRange": {
+          "shape": "ResaleAuthorizationAvailabilityEndDateFilterDateRange"
+        },
+        "ValueList": {
+          "shape": "ResaleAuthorizationAvailabilityEndDateFilterValueList"
+        }
+      },
+      "type": "structure"
+    },
+    "ResaleAuthorizationAvailabilityEndDateFilterDateRange": {
+      "members": {
+        "AfterValue": {
+          "shape": "DateTimeISO8601"
+        },
+        "BeforeValue": {
+          "shape": "DateTimeISO8601"
+        }
+      },
+      "type": "structure"
+    },
+    "ResaleAuthorizationAvailabilityEndDateFilterValueList": {
+      "max": 10,
+      "member": {
+        "shape": "DateTimeISO8601"
+      },
+      "min": 1,
+      "type": "list"
+    },
+    "ResaleAuthorizationCreatedDateFilter": {
+      "members": {
+        "DateRange": {
+          "shape": "ResaleAuthorizationCreatedDateFilterDateRange"
+        },
+        "ValueList": {
+          "shape": "ResaleAuthorizationCreatedDateFilterValueList"
+        }
+      },
+      "type": "structure"
+    },
+    "ResaleAuthorizationCreatedDateFilterDateRange": {
+      "members": {
+        "AfterValue": {
+          "shape": "DateTimeISO8601"
+        },
+        "BeforeValue": {
+          "shape": "DateTimeISO8601"
+        }
+      },
+      "type": "structure"
+    },
+    "ResaleAuthorizationCreatedDateFilterValueList": {
+      "max": 10,
+      "member": {
+        "shape": "DateTimeISO8601"
+      },
+      "min": 1,
+      "type": "list"
+    },
+    "ResaleAuthorizationEntityIdFilter": {
+      "members": {
+        "ValueList": {
+          "shape": "ResaleAuthorizationEntityIdFilterValueList"
+        }
+      },
+      "type": "structure"
+    },
+    "ResaleAuthorizationEntityIdFilterValueList": {
+      "max": 10,
+      "member": {
+        "shape": "ResaleAuthorizationEntityIdString"
+      },
+      "min": 1,
+      "type": "list"
+    },
+    "ResaleAuthorizationEntityIdString": {
+      "max": 255,
+      "min": 1,
+      "pattern": "^[a-zA-Z0-9][.a-zA-Z0-9/-]+[a-zA-Z0-9]$",
+      "type": "string"
+    },
+    "ResaleAuthorizationFilters": {
+      "members": {
+        "AvailabilityEndDate": {
+          "shape": "ResaleAuthorizationAvailabilityEndDateFilter"
+        },
+        "CreatedDate": {
+          "shape": "ResaleAuthorizationCreatedDateFilter"
+        },
+        "EntityId": {
+          "shape": "ResaleAuthorizationEntityIdFilter"
+        },
+        "LastModifiedDate": {
+          "shape": "ResaleAuthorizationLastModifiedDateFilter"
+        },
+        "ManufacturerAccountId": {
+          "shape": "ResaleAuthorizationManufacturerAccountIdFilter"
+        },
+        "ManufacturerLegalName": {
+          "shape": "ResaleAuthorizationManufacturerLegalNameFilter"
+        },
+        "Name": {
+          "shape": "ResaleAuthorizationNameFilter"
+        },
+        "OfferExtendedStatus": {
+          "shape": "ResaleAuthorizationOfferExtendedStatusFilter"
+        },
+        "ProductId": {
+          "shape": "ResaleAuthorizationProductIdFilter"
+        },
+        "ProductName": {
+          "shape": "ResaleAuthorizationProductNameFilter"
+        },
+        "ResellerAccountID": {
+          "shape": "ResaleAuthorizationResellerAccountIDFilter"
+        },
+        "ResellerLegalName": {
+          "shape": "ResaleAuthorizationResellerLegalNameFilter"
+        },
+        "Status": {
+          "shape": "ResaleAuthorizationStatusFilter"
+        }
+      },
+      "type": "structure"
+    },
+    "ResaleAuthorizationLastModifiedDateFilter": {
+      "members": {
+        "DateRange": {
+          "shape": "ResaleAuthorizationLastModifiedDateFilterDateRange"
+        }
+      },
+      "type": "structure"
+    },
+    "ResaleAuthorizationLastModifiedDateFilterDateRange": {
+      "members": {
+        "AfterValue": {
+          "shape": "DateTimeISO8601"
+        },
+        "BeforeValue": {
+          "shape": "DateTimeISO8601"
+        }
+      },
+      "type": "structure"
+    },
+    "ResaleAuthorizationManufacturerAccountIdFilter": {
+      "members": {
+        "ValueList": {
+          "shape": "ResaleAuthorizationManufacturerAccountIdFilterValueList"
+        },
+        "WildCardValue": {
+          "shape": "ResaleAuthorizationManufacturerAccountIdFilterWildcard"
+        }
+      },
+      "type": "structure"
+    },
+    "ResaleAuthorizationManufacturerAccountIdFilterValueList": {
+      "max": 10,
+      "member": {
+        "shape": "ResaleAuthorizationManufacturerAccountIdString"
+      },
+      "min": 1,
+      "type": "list"
+    },
+    "ResaleAuthorizationManufacturerAccountIdFilterWildcard": {
+      "max": 12,
+      "min": 12,
+      "pattern": "^\\d{12}$",
+      "type": "string"
+    },
+    "ResaleAuthorizationManufacturerAccountIdString": {
+      "max": 12,
+      "min": 12,
+      "pattern": "^\\d{12}$",
+      "type": "string"
+    },
+    "ResaleAuthorizationManufacturerLegalNameFilter": {
+      "members": {
+        "ValueList": {
+          "shape": "ResaleAuthorizationManufacturerLegalNameFilterValueList"
+        },
+        "WildCardValue": {
+          "shape": "ResaleAuthorizationManufacturerLegalNameFilterWildcard"
+        }
+      },
+      "type": "structure"
+    },
+    "ResaleAuthorizationManufacturerLegalNameFilterValueList": {
+      "max": 10,
+      "member": {
+        "shape": "ResaleAuthorizationManufacturerLegalNameString"
+      },
+      "min": 1,
+      "type": "list"
+    },
+    "ResaleAuthorizationManufacturerLegalNameFilterWildcard": {
+      "max": 255,
+      "min": 1,
+      "pattern": "^(.)+$",
+      "type": "string"
+    },
+    "ResaleAuthorizationManufacturerLegalNameString": {
+      "max": 255,
+      "min": 1,
+      "pattern": "^(.)+$",
+      "type": "string"
+    },
+    "ResaleAuthorizationNameFilter": {
+      "members": {
+        "ValueList": {
+          "shape": "ResaleAuthorizationNameFilterValueList"
+        },
+        "WildCardValue": {
+          "shape": "ResaleAuthorizationNameFilterWildcard"
+        }
+      },
+      "type": "structure"
+    },
+    "ResaleAuthorizationNameFilterValueList": {
+      "max": 10,
+      "member": {
+        "shape": "ResaleAuthorizationNameString"
+      },
+      "min": 1,
+      "type": "list"
+    },
+    "ResaleAuthorizationNameFilterWildcard": {
+      "max": 255,
+      "min": 1,
+      "pattern": "^(.)+$",
+      "type": "string"
+    },
+    "ResaleAuthorizationNameString": {
+      "max": 255,
+      "min": 1,
+      "pattern": "^(.)+$",
+      "type": "string"
+    },
+    "ResaleAuthorizationOfferExtendedStatusFilter": {
+      "members": {
+        "ValueList": {
+          "shape": "ResaleAuthorizationOfferExtendedStatusFilterValueList"
+        }
+      },
+      "type": "structure"
+    },
+    "ResaleAuthorizationOfferExtendedStatusFilterValueList": {
+      "max": 10,
+      "member": {
+        "shape": "ResaleAuthorizationOfferExtendedStatusString"
+      },
+      "min": 1,
+      "type": "list"
+    },
+    "ResaleAuthorizationOfferExtendedStatusString": {
+      "max": 255,
+      "min": 1,
+      "pattern": "^(.)+$",
+      "type": "string"
+    },
+    "ResaleAuthorizationProductIdFilter": {
+      "members": {
+        "ValueList": {
+          "shape": "ResaleAuthorizationProductIdFilterValueList"
+        },
+        "WildCardValue": {
+          "shape": "ResaleAuthorizationProductIdFilterWildcard"
+        }
+      },
+      "type": "structure"
+    },
+    "ResaleAuthorizationProductIdFilterValueList": {
+      "max": 10,
+      "member": {
+        "shape": "ResaleAuthorizationProductIdString"
+      },
+      "min": 1,
+      "type": "list"
+    },
+    "ResaleAuthorizationProductIdFilterWildcard": {
+      "max": 255,
+      "min": 1,
+      "pattern": "^(.)+$",
+      "type": "string"
+    },
+    "ResaleAuthorizationProductIdString": {
+      "max": 255,
+      "min": 1,
+      "pattern": "^(.)+$",
+      "type": "string"
+    },
+    "ResaleAuthorizationProductNameFilter": {
+      "members": {
+        "ValueList": {
+          "shape": "ResaleAuthorizationProductNameFilterValueList"
+        },
+        "WildCardValue": {
+          "shape": "ResaleAuthorizationProductNameFilterWildcard"
+        }
+      },
+      "type": "structure"
+    },
+    "ResaleAuthorizationProductNameFilterValueList": {
+      "max": 10,
+      "member": {
+        "shape": "ResaleAuthorizationProductNameString"
+      },
+      "min": 1,
+      "type": "list"
+    },
+    "ResaleAuthorizationProductNameFilterWildcard": {
+      "max": 255,
+      "min": 1,
+      "pattern": "^(.)+$",
+      "type": "string"
+    },
+    "ResaleAuthorizationProductNameString": {
+      "max": 255,
+      "min": 1,
+      "pattern": "^(.)+$",
+      "type": "string"
+    },
+    "ResaleAuthorizationResellerAccountIDFilter": {
+      "members": {
+        "ValueList": {
+          "shape": "ResaleAuthorizationResellerAccountIDFilterValueList"
+        },
+        "WildCardValue": {
+          "shape": "ResaleAuthorizationResellerAccountIDFilterWildcard"
+        }
+      },
+      "type": "structure"
+    },
+    "ResaleAuthorizationResellerAccountIDFilterValueList": {
+      "max": 10,
+      "member": {
+        "shape": "ResaleAuthorizationResellerAccountIDString"
+      },
+      "min": 1,
+      "type": "list"
+    },
+    "ResaleAuthorizationResellerAccountIDFilterWildcard": {
+      "max": 12,
+      "min": 12,
+      "pattern": "^\\d{12}$",
+      "type": "string"
+    },
+    "ResaleAuthorizationResellerAccountIDString": {
+      "max": 12,
+      "min": 12,
+      "pattern": "^\\d{12}$",
+      "type": "string"
+    },
+    "ResaleAuthorizationResellerLegalNameFilter": {
+      "members": {
+        "ValueList": {
+          "shape": "ResaleAuthorizationResellerLegalNameFilterValueList"
+        },
+        "WildCardValue": {
+          "shape": "ResaleAuthorizationResellerLegalNameFilterWildcard"
+        }
+      },
+      "type": "structure"
+    },
+    "ResaleAuthorizationResellerLegalNameFilterValueList": {
+      "max": 10,
+      "member": {
+        "shape": "ResaleAuthorizationResellerLegalNameString"
+      },
+      "min": 1,
+      "type": "list"
+    },
+    "ResaleAuthorizationResellerLegalNameFilterWildcard": {
+      "max": 255,
+      "min": 1,
+      "pattern": "^(.)+$",
+      "type": "string"
+    },
+    "ResaleAuthorizationResellerLegalNameString": {
+      "max": 255,
+      "min": 1,
+      "pattern": "^(.)+$",
+      "type": "string"
+    },
+    "ResaleAuthorizationSort": {
+      "members": {
+        "SortBy": {
+          "shape": "ResaleAuthorizationSortBy"
+        },
+        "SortOrder": {
+          "shape": "SortOrder"
+        }
+      },
+      "type": "structure"
+    },
+    "ResaleAuthorizationSortBy": {
+      "enum": [
+        "EntityId",
+        "Name",
+        "ProductId",
+        "ProductName",
+        "ManufacturerAccountId",
+        "ManufacturerLegalName",
+        "ResellerAccountID",
+        "ResellerLegalName",
+        "Status",
+        "OfferExtendedStatus",
+        "CreatedDate",
+        "AvailabilityEndDate",
+        "LastModifiedDate"
+      ],
+      "type": "string"
+    },
+    "ResaleAuthorizationStatusFilter": {
+      "members": {
+        "ValueList": {
+          "shape": "ResaleAuthorizationStatusFilterValueList"
+        }
+      },
+      "type": "structure"
+    },
+    "ResaleAuthorizationStatusFilterValueList": {
+      "max": 10,
+      "member": {
+        "shape": "ResaleAuthorizationStatusString"
+      },
+      "min": 1,
+      "type": "list"
+    },
+    "ResaleAuthorizationStatusString": {
+      "enum": [
+        "Draft",
+        "Active",
+        "Restricted"
+      ],
+      "type": "string"
+    },
+    "ResaleAuthorizationSummary": {
+      "members": {
+        "AvailabilityEndDate": {
+          "shape": "DateTimeISO8601"
+        },
+        "CreatedDate": {
+          "shape": "DateTimeISO8601"
+        },
+        "ManufacturerAccountId": {
+          "shape": "ResaleAuthorizationManufacturerAccountIdString"
+        },
+        "ManufacturerLegalName": {
+          "shape": "ResaleAuthorizationManufacturerLegalNameString"
+        },
+        "Name": {
+          "shape": "ResaleAuthorizationNameString"
+        },
+        "OfferExtendedStatus": {
+          "shape": "ResaleAuthorizationOfferExtendedStatusString"
+        },
+        "ProductId": {
+          "shape": "ResaleAuthorizationProductIdString"
+        },
+        "ProductName": {
+          "shape": "ResaleAuthorizationProductNameString"
+        },
+        "ResellerAccountID": {
+          "shape": "ResaleAuthorizationResellerAccountIDString"
+        },
+        "ResellerLegalName": {
+          "shape": "ResaleAuthorizationResellerLegalNameString"
+        },
+        "Status": {
+          "shape": "ResaleAuthorizationStatusString"
+        }
+      },
+      "type": "structure"
     },
     "ResourceARN": {
       "max": 255,
@@ -1048,6 +2306,145 @@
       "max": 10240,
       "min": 1,
       "pattern": "^[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+$",
+      "type": "string"
+    },
+    "SaaSProductEntityIdFilter": {
+      "members": {
+        "ValueList": {
+          "shape": "SaaSProductEntityIdFilterValueList"
+        }
+      },
+      "type": "structure"
+    },
+    "SaaSProductEntityIdFilterValueList": {
+      "max": 10,
+      "member": {
+        "shape": "SaaSProductEntityIdString"
+      },
+      "min": 1,
+      "type": "list"
+    },
+    "SaaSProductEntityIdString": {
+      "max": 255,
+      "min": 1,
+      "pattern": "^[a-zA-Z0-9][.a-zA-Z0-9/-]+[a-zA-Z0-9]$",
+      "type": "string"
+    },
+    "SaaSProductFilters": {
+      "members": {
+        "EntityId": {
+          "shape": "SaaSProductEntityIdFilter"
+        },
+        "LastModifiedDate": {
+          "shape": "SaaSProductLastModifiedDateFilter"
+        },
+        "ProductTitle": {
+          "shape": "SaaSProductTitleFilter"
+        },
+        "Visibility": {
+          "shape": "SaaSProductVisibilityFilter"
+        }
+      },
+      "type": "structure"
+    },
+    "SaaSProductLastModifiedDateFilter": {
+      "members": {
+        "DateRange": {
+          "shape": "SaaSProductLastModifiedDateFilterDateRange"
+        }
+      },
+      "type": "structure"
+    },
+    "SaaSProductLastModifiedDateFilterDateRange": {
+      "members": {
+        "AfterValue": {
+          "shape": "DateTimeISO8601"
+        },
+        "BeforeValue": {
+          "shape": "DateTimeISO8601"
+        }
+      },
+      "type": "structure"
+    },
+    "SaaSProductSort": {
+      "members": {
+        "SortBy": {
+          "shape": "SaaSProductSortBy"
+        },
+        "SortOrder": {
+          "shape": "SortOrder"
+        }
+      },
+      "type": "structure"
+    },
+    "SaaSProductSortBy": {
+      "enum": [
+        "EntityId",
+        "ProductTitle",
+        "Visibility",
+        "LastModifiedDate"
+      ],
+      "type": "string"
+    },
+    "SaaSProductSummary": {
+      "members": {
+        "ProductTitle": {
+          "shape": "SaaSProductTitleString"
+        },
+        "Visibility": {
+          "shape": "SaaSProductVisibilityString"
+        }
+      },
+      "type": "structure"
+    },
+    "SaaSProductTitleFilter": {
+      "members": {
+        "ValueList": {
+          "shape": "SaaSProductTitleFilterValueList"
+        },
+        "WildCardValue": {
+          "shape": "SaaSProductTitleString"
+        }
+      },
+      "type": "structure"
+    },
+    "SaaSProductTitleFilterValueList": {
+      "max": 10,
+      "member": {
+        "shape": "SaaSProductTitleString"
+      },
+      "min": 1,
+      "type": "list"
+    },
+    "SaaSProductTitleString": {
+      "max": 255,
+      "min": 1,
+      "pattern": "^(.)+$",
+      "type": "string"
+    },
+    "SaaSProductVisibilityFilter": {
+      "members": {
+        "ValueList": {
+          "shape": "SaaSProductVisibilityFilterValueList"
+        }
+      },
+      "type": "structure"
+    },
+    "SaaSProductVisibilityFilterValueList": {
+      "max": 10,
+      "member": {
+        "shape": "SaaSProductVisibilityString"
+      },
+      "min": 1,
+      "type": "list"
+    },
+    "SaaSProductVisibilityString": {
+      "enum": [
+        "Limited",
+        "Public",
+        "Restricted",
+        "Draft"
+      ],
       "type": "string"
     },
     "ServiceQuotaExceededException": {

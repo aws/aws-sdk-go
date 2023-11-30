@@ -6,14 +6,18 @@
     "CreateCustomDomainAssociation": "<p>Creates a custom domain association for Amazon Redshift Serverless.</p>",
     "CreateEndpointAccess": "<p>Creates an Amazon Redshift Serverless managed VPC endpoint.</p>",
     "CreateNamespace": "<p>Creates a namespace in Amazon Redshift Serverless.</p>",
+    "CreateScheduledAction": "<p>Creates a scheduled action. A scheduled action contains a schedule and an Amazon Redshift API action. For example, you can create a schedule of when to run the <code>CreateSnapshot</code> API operation.</p>",
     "CreateSnapshot": "<p>Creates a snapshot of all databases in a namespace. For more information about snapshots, see <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/serverless-snapshots-recovery.html\"> Working with snapshots and recovery points</a>.</p>",
+    "CreateSnapshotCopyConfiguration": "<p>Creates a snapshot copy configuration that lets you copy snapshots to another Amazon Web Services Region.</p>",
     "CreateUsageLimit": "<p>Creates a usage limit for a specified Amazon Redshift Serverless usage type. The usage limit is identified by the returned usage limit identifier. </p>",
     "CreateWorkgroup": "<p>Creates an workgroup in Amazon Redshift Serverless.</p>",
     "DeleteCustomDomainAssociation": "<p>Deletes a custom domain association for Amazon Redshift Serverless.</p>",
     "DeleteEndpointAccess": "<p>Deletes an Amazon Redshift Serverless managed VPC endpoint.</p>",
     "DeleteNamespace": "<p>Deletes a namespace from Amazon Redshift Serverless. Before you delete the namespace, you can create a final snapshot that has all of the data within the namespace.</p>",
     "DeleteResourcePolicy": "<p>Deletes the specified resource policy.</p>",
+    "DeleteScheduledAction": "<p>Deletes a scheduled action.</p>",
     "DeleteSnapshot": "<p>Deletes a snapshot from Amazon Redshift Serverless.</p>",
+    "DeleteSnapshotCopyConfiguration": "<p>Deletes a snapshot copy configuration</p>",
     "DeleteUsageLimit": "<p>Deletes a usage limit from Amazon Redshift Serverless.</p>",
     "DeleteWorkgroup": "<p>Deletes a workgroup.</p>",
     "GetCredentials": "<p>Returns a database user name and temporary password with temporary authorization to log in to Amazon Redshift Serverless.</p> <p>By default, the temporary credentials expire in 900 seconds. You can optionally specify a duration between 900 seconds (15 minutes) and 3600 seconds (60 minutes).</p> <pre><code> &lt;p&gt;The Identity and Access Management (IAM) user or role that runs GetCredentials must have an IAM policy attached that allows access to all necessary actions and resources.&lt;/p&gt; &lt;p&gt;If the &lt;code&gt;DbName&lt;/code&gt; parameter is specified, the IAM policy must allow access to the resource dbname for the specified database name.&lt;/p&gt; </code></pre>",
@@ -22,6 +26,7 @@
     "GetNamespace": "<p>Returns information about a namespace in Amazon Redshift Serverless.</p>",
     "GetRecoveryPoint": "<p>Returns information about a recovery point.</p>",
     "GetResourcePolicy": "<p>Returns a resource policy.</p>",
+    "GetScheduledAction": "<p>Returns information about a scheduled action.</p>",
     "GetSnapshot": "<p>Returns information about a specific snapshot.</p>",
     "GetTableRestoreStatus": "<p>Returns information about a <code>TableRestoreStatus</code> object.</p>",
     "GetUsageLimit": "<p>Returns information about a usage limit.</p>",
@@ -30,6 +35,8 @@
     "ListEndpointAccess": "<p>Returns an array of <code>EndpointAccess</code> objects and relevant information.</p>",
     "ListNamespaces": "<p>Returns information about a list of specified namespaces.</p>",
     "ListRecoveryPoints": "<p>Returns an array of recovery points.</p>",
+    "ListScheduledActions": "<p>Returns a list of scheduled actions. You can use the flags to filter the list of returned scheduled actions.</p>",
+    "ListSnapshotCopyConfigurations": "<p>Returns a list of snapshot copy configurations.</p>",
     "ListSnapshots": "<p>Returns a list of snapshots.</p>",
     "ListTableRestoreStatus": "<p>Returns information about an array of <code>TableRestoreStatus</code> objects.</p>",
     "ListTagsForResource": "<p>Lists the tags assigned to a resource.</p>",
@@ -38,13 +45,16 @@
     "PutResourcePolicy": "<p>Creates or updates a resource policy. Currently, you can use policies to share snapshots across Amazon Web Services accounts.</p>",
     "RestoreFromRecoveryPoint": "<p>Restore the data from a recovery point.</p>",
     "RestoreFromSnapshot": "<p>Restores a namespace from a snapshot.</p>",
+    "RestoreTableFromRecoveryPoint": "<p>Restores a table from a recovery point to your Amazon Redshift Serverless instance. You can't use this operation to restore tables with interleaved sort keys.</p>",
     "RestoreTableFromSnapshot": "<p>Restores a table from a snapshot to your Amazon Redshift Serverless instance. You can't use this operation to restore tables with <a href=\"https://docs.aws.amazon.com/redshift/latest/dg/t_Sorting_data.html#t_Sorting_data-interleaved\">interleaved sort keys</a>.</p>",
     "TagResource": "<p>Assigns one or more tags to a resource.</p>",
     "UntagResource": "<p>Removes a tag or set of tags from a resource.</p>",
     "UpdateCustomDomainAssociation": "<p>Updates an Amazon Redshift Serverless certificate associated with a custom domain.</p>",
     "UpdateEndpointAccess": "<p>Updates an Amazon Redshift Serverless managed endpoint.</p>",
     "UpdateNamespace": "<p>Updates a namespace with the specified settings. Unless required, you can't update multiple parameters in one request. For example, you must specify both <code>adminUsername</code> and <code>adminUserPassword</code> to update either field, but you can't update both <code>kmsKeyId</code> and <code>logExports</code> in a single request.</p>",
+    "UpdateScheduledAction": "<p>Updates a scheduled action.</p>",
     "UpdateSnapshot": "<p>Updates a snapshot.</p>",
+    "UpdateSnapshotCopyConfiguration": "<p>Updates a snapshot copy configuration.</p>",
     "UpdateUsageLimit": "<p>Update a usage limit in Amazon Redshift Serverless. You can't update the usage type or period of a usage limit.</p>",
     "UpdateWorkgroup": "<p>Updates a workgroup with the specified configuration settings. You can't update multiple parameters in one request. For example, you can update <code>baseCapacity</code> or <code>port</code> in a single request, but you can't update both in the same request.</p>"
   },
@@ -87,11 +97,14 @@
       "base": null,
       "refs": {
         "CreateNamespaceRequest$manageAdminPassword": "<p>If <code>true</code>, Amazon Redshift uses Secrets Manager to manage the namespace's admin credentials. You can't use <code>adminUserPassword</code> if <code>manageAdminPassword</code> is true. If <code>manageAdminPassword</code> is false or not set, Amazon Redshift uses <code>adminUserPassword</code> for the admin user account's password. </p>",
+        "CreateScheduledActionRequest$enabled": "<p>Indicates whether the schedule is enabled. If false, the scheduled action does not trigger. For more information about <code>state</code> of the scheduled action, see <a href=\"https://docs.aws.amazon.com/redshift-serverless/latest/APIReference/API_ScheduledAction.html\">ScheduledAction</a>.</p>",
         "CreateWorkgroupRequest$enhancedVpcRouting": "<p>The value that specifies whether to turn on enhanced virtual private cloud (VPC) routing, which forces Amazon Redshift Serverless to route traffic through your VPC instead of over the internet.</p>",
         "CreateWorkgroupRequest$publiclyAccessible": "<p>A value that specifies whether the workgroup can be accessed from a public network.</p>",
         "RestoreFromSnapshotRequest$manageAdminPassword": "<p>If <code>true</code>, Amazon Redshift uses Secrets Manager to manage the restored snapshot's admin credentials. If <code>MmanageAdminPassword</code> is false or not set, Amazon Redshift uses the admin credentials that the namespace or cluster had at the time the snapshot was taken.</p>",
+        "RestoreTableFromRecoveryPointRequest$activateCaseSensitiveIdentifier": "<p>Indicates whether name identifiers for database, schema, and table are case sensitive. If true, the names are case sensitive. If false, the names are not case sensitive. The default is false.</p>",
         "RestoreTableFromSnapshotRequest$activateCaseSensitiveIdentifier": "<p>Indicates whether name identifiers for database, schema, and table are case sensitive. If true, the names are case sensitive. If false, the names are not case sensitive. The default is false.</p>",
         "UpdateNamespaceRequest$manageAdminPassword": "<p>If <code>true</code>, Amazon Redshift uses Secrets Manager to manage the namespace's admin credentials. You can't use <code>adminUserPassword</code> if <code>manageAdminPassword</code> is true. If <code>manageAdminPassword</code> is false or not set, Amazon Redshift uses <code>adminUserPassword</code> for the admin user account's password. </p>",
+        "UpdateScheduledActionRequest$enabled": "<p>Specifies whether to enable the scheduled action.</p>",
         "UpdateWorkgroupRequest$enhancedVpcRouting": "<p>The value that specifies whether to turn on enhanced virtual private cloud (VPC) routing, which forces Amazon Redshift Serverless to route traffic through your VPC.</p>",
         "UpdateWorkgroupRequest$publiclyAccessible": "<p>A value that specifies whether the workgroup can be accessible from a public network.</p>",
         "Workgroup$enhancedVpcRouting": "<p>The value that specifies whether to enable enhanced virtual private cloud (VPC) routing, which forces Amazon Redshift Serverless to route traffic through your VPC.</p>",
@@ -107,9 +120,9 @@
     "ConfigParameterList": {
       "base": null,
       "refs": {
-        "CreateWorkgroupRequest$configParameters": "<p>An array of parameters to set for advanced control over a database. The options are <code>auto_mv</code>, <code>datestyle</code>, <code>enable_case_sensitivity_identifier</code>, <code>enable_user_activity_logging</code>, <code>query_group</code>, <code>search_path</code>, and query monitoring metrics that let you define performance boundaries. For more information about query monitoring rules and available metrics, see <a href=\"https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html#cm-c-wlm-query-monitoring-metrics-serverless\"> Query monitoring metrics for Amazon Redshift Serverless</a>.</p>",
-        "UpdateWorkgroupRequest$configParameters": "<p>An array of parameters to set for advanced control over a database. The options are <code>auto_mv</code>, <code>datestyle</code>, <code>enable_case_sensitivity_identifier</code>, <code>enable_user_activity_logging</code>, <code>query_group</code>, <code>search_path</code>, and query monitoring metrics that let you define performance boundaries. For more information about query monitoring rules and available metrics, see <a href=\"https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html#cm-c-wlm-query-monitoring-metrics-serverless\"> Query monitoring metrics for Amazon Redshift Serverless</a>.</p>",
-        "Workgroup$configParameters": "<p>An array of parameters to set for advanced control over a database. The options are <code>auto_mv</code>, <code>datestyle</code>, <code>enable_case_sensitivity_identifier</code>, <code>enable_user_activity_logging</code>, <code>query_group</code>, , <code>search_path</code>, and query monitoring metrics that let you define performance boundaries. For more information about query monitoring rules and available metrics, see <a href=\"https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html#cm-c-wlm-query-monitoring-metrics-serverless\"> Query monitoring metrics for Amazon Redshift Serverless</a>.</p>"
+        "CreateWorkgroupRequest$configParameters": "<p>An array of parameters to set for advanced control over a database. The options are <code>auto_mv</code>, <code>datestyle</code>, <code>enable_case_sensitive_identifier</code>, <code>enable_user_activity_logging</code>, <code>query_group</code>, <code>search_path</code>, and query monitoring metrics that let you define performance boundaries. For more information about query monitoring rules and available metrics, see <a href=\"https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html#cm-c-wlm-query-monitoring-metrics-serverless\"> Query monitoring metrics for Amazon Redshift Serverless</a>.</p>",
+        "UpdateWorkgroupRequest$configParameters": "<p>An array of parameters to set for advanced control over a database. The options are <code>auto_mv</code>, <code>datestyle</code>, <code>enable_case_sensitive_identifier</code>, <code>enable_user_activity_logging</code>, <code>query_group</code>, <code>search_path</code>, and query monitoring metrics that let you define performance boundaries. For more information about query monitoring rules and available metrics, see <a href=\"https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html#cm-c-wlm-query-monitoring-metrics-serverless\"> Query monitoring metrics for Amazon Redshift Serverless</a>.</p>",
+        "Workgroup$configParameters": "<p>An array of parameters to set for advanced control over a database. The options are <code>auto_mv</code>, <code>datestyle</code>, <code>enable_case_sensitive_identifier</code>, <code>enable_user_activity_logging</code>, <code>query_group</code>, <code>search_path</code>, and query monitoring metrics that let you define performance boundaries. For more information about query monitoring rules and available metrics, see <a href=\"https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html#cm-c-wlm-query-monitoring-metrics-serverless\"> Query monitoring metrics for Amazon Redshift Serverless</a>.</p>"
       }
     },
     "ConflictException": {
@@ -157,6 +170,26 @@
       "refs": {
       }
     },
+    "CreateScheduledActionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateScheduledActionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateSnapshotCopyConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateSnapshotCopyConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateSnapshotRequest": {
       "base": null,
       "refs": {
@@ -165,6 +198,12 @@
     "CreateSnapshotResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "CreateSnapshotScheduleActionParameters": {
+      "base": "<p>The parameters that you can use to configure a <a href=\"https://docs.aws.amazon.com/redshift-serverless/latest/APIReference/API_CreateScheduledAction.html\">scheduled action</a> to create a snapshot. For more information about creating a scheduled action, see <a href=\"https://docs.aws.amazon.com/redshift-serverless/latest/APIReference/API_CreateScheduledAction.html\">CreateScheduledAction</a>.</p>",
+      "refs": {
+        "TargetAction$createSnapshot": null
       }
     },
     "CreateUsageLimitRequest": {
@@ -275,6 +314,26 @@
       }
     },
     "DeleteResourcePolicyResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteScheduledActionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteScheduledActionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteSnapshotCopyConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteSnapshotCopyConfigurationResponse": {
       "base": null,
       "refs": {
       }
@@ -401,6 +460,16 @@
       "refs": {
       }
     },
+    "GetScheduledActionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetScheduledActionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetSnapshotRequest": {
       "base": null,
       "refs": {
@@ -444,7 +513,10 @@
     "IamRoleArn": {
       "base": null,
       "refs": {
-        "IamRoleArnList$member": null
+        "CreateScheduledActionRequest$roleArn": "<p>The ARN of the IAM role to assume to run the scheduled action. This IAM role must have permission to run the Amazon Redshift Serverless API operation in the scheduled action. This IAM role must allow the Amazon Redshift scheduler to schedule creating snapshots. (Principal scheduler.redshift.amazonaws.com) to assume permissions on your behalf. For more information about the IAM role to use with the Amazon Redshift scheduler, see <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-access-control-identity-based.html\">Using Identity-Based Policies for Amazon Redshift</a> in the Amazon Redshift Cluster Management Guide</p>",
+        "IamRoleArnList$member": null,
+        "ScheduledActionResponse$roleArn": "<p>The ARN of the IAM role to assume to run the scheduled action. This IAM role must have permission to run the Amazon Redshift Serverless API operation in the scheduled action. This IAM role must allow the Amazon Redshift scheduler to schedule creating snapshots. (Principal scheduler.redshift.amazonaws.com) to assume permissions on your behalf. For more information about the IAM role to use with the Amazon Redshift scheduler, see <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-access-control-identity-based.html\">Using Identity-Based Policies for Amazon Redshift</a> in the Amazon Redshift Cluster Management Guide</p>",
+        "UpdateScheduledActionRequest$roleArn": "<p>The ARN of the IAM role to assume to run the scheduled action. This IAM role must have permission to run the Amazon Redshift Serverless API operation in the scheduled action. This IAM role must allow the Amazon Redshift scheduler to schedule creating snapshots (Principal scheduler.redshift.amazonaws.com) to assume permissions on your behalf. For more information about the IAM role to use with the Amazon Redshift scheduler, see <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-access-control-identity-based.html\">Using Identity-Based Policies for Amazon Redshift</a> in the Amazon Redshift Cluster Management Guide</p>"
       }
     },
     "IamRoleArnList": {
@@ -464,7 +536,9 @@
       "base": null,
       "refs": {
         "ConvertRecoveryPointToSnapshotRequest$retentionPeriod": "<p>How long to retain the snapshot.</p>",
+        "CreateSnapshotCopyConfigurationRequest$snapshotRetentionPeriod": "<p>The retention period of the snapshots that you copy to the destination Amazon Web Services Region.</p>",
         "CreateSnapshotRequest$retentionPeriod": "<p>How long to retain the created snapshot.</p>",
+        "CreateSnapshotScheduleActionParameters$retentionPeriod": "<p>The retention period of the snapshot created by the scheduled action.</p>",
         "CreateWorkgroupRequest$baseCapacity": "<p>The base data warehouse capacity of the workgroup in Redshift Processing Units (RPUs).</p>",
         "CreateWorkgroupRequest$maxCapacity": "<p>The maximum data-warehouse capacity Amazon Redshift Serverless uses to serve queries. The max capacity is specified in RPUs.</p>",
         "CreateWorkgroupRequest$port": "<p>The custom port to use when connecting to a workgroup. Valid port ranges are 5431-5455 and 8191-8215. The default is 5439.</p>",
@@ -474,6 +548,8 @@
         "GetCredentialsRequest$durationSeconds": "<p>The number of seconds until the returned temporary password expires. The minimum is 900 seconds, and the maximum is 3600 seconds.</p>",
         "Snapshot$snapshotRemainingDays": "<p>The amount of days until the snapshot is deleted.</p>",
         "Snapshot$snapshotRetentionPeriod": "<p>The period of time, in days, of how long the snapshot is retained.</p>",
+        "SnapshotCopyConfiguration$snapshotRetentionPeriod": "<p>The retention period of snapshots that are copied to the destination Amazon Web Services Region.</p>",
+        "UpdateSnapshotCopyConfigurationRequest$snapshotRetentionPeriod": "<p>The new retention period of how long to keep a snapshot in the destination Amazon Web Services Region.</p>",
         "UpdateSnapshotRequest$retentionPeriod": "<p>The new retention period of the snapshot.</p>",
         "UpdateWorkgroupRequest$baseCapacity": "<p>The new base data warehouse capacity in Redshift Processing Units (RPUs).</p>",
         "UpdateWorkgroupRequest$maxCapacity": "<p>The maximum data-warehouse capacity Amazon Redshift Serverless uses to serve queries. The max capacity is specified in RPUs.</p>",
@@ -497,10 +573,12 @@
       "base": null,
       "refs": {
         "CreateNamespaceRequest$adminPasswordSecretKmsKeyId": "<p>The ID of the Key Management Service (KMS) key used to encrypt and store the namespace's admin credentials secret. You can only use this parameter if <code>manageAdminPassword</code> is true.</p>",
+        "CreateSnapshotCopyConfigurationRequest$destinationKmsKeyId": "<p>The KMS key to use to encrypt your snapshots in the destination Amazon Web Services Region.</p>",
         "Namespace$adminPasswordSecretKmsKeyId": "<p>The ID of the Key Management Service (KMS) key used to encrypt and store the namespace's admin credentials secret.</p>",
         "RestoreFromSnapshotRequest$adminPasswordSecretKmsKeyId": "<p>The ID of the Key Management Service (KMS) key used to encrypt and store the namespace's admin credentials secret.</p>",
         "Snapshot$adminPasswordSecretKmsKeyId": "<p>The ID of the Key Management Service (KMS) key used to encrypt and store the namespace's admin credentials secret.</p>",
         "Snapshot$kmsKeyId": "<p>The unique identifier of the KMS key used to encrypt the snapshot.</p>",
+        "SnapshotCopyConfiguration$destinationKmsKeyId": "<p>The ID of the KMS key to use to encrypt your snapshots in the destination Amazon Web Services Region.</p>",
         "UpdateNamespaceRequest$adminPasswordSecretKmsKeyId": "<p>The ID of the Key Management Service (KMS) key used to encrypt and store the namespace's admin credentials secret. You can only use this parameter if <code>manageAdminPassword</code> is true.</p>"
       }
     },
@@ -564,6 +642,38 @@
       }
     },
     "ListRecoveryPointsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListScheduledActionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListScheduledActionsRequestMaxResultsInteger": {
+      "base": null,
+      "refs": {
+        "ListScheduledActionsRequest$maxResults": "<p>An optional parameter that specifies the maximum number of results to return. Use <code>nextToken</code> to display the next page of results.</p>"
+      }
+    },
+    "ListScheduledActionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListSnapshotCopyConfigurationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListSnapshotCopyConfigurationsRequestMaxResultsInteger": {
+      "base": null,
+      "refs": {
+        "ListSnapshotCopyConfigurationsRequest$maxResults": "<p>An optional parameter that specifies the maximum number of results to return. You can use <code>nextToken</code> to display the next page of results.</p>"
+      }
+    },
+    "ListSnapshotCopyConfigurationsResponse": {
       "base": null,
       "refs": {
       }
@@ -690,14 +800,21 @@
       "base": null,
       "refs": {
         "CreateNamespaceRequest$namespaceName": "<p>The name of the namespace.</p>",
+        "CreateScheduledActionRequest$namespaceName": "<p>The name of the namespace for which to create a scheduled action.</p>",
+        "CreateSnapshotCopyConfigurationRequest$namespaceName": "<p>The name of the namespace to copy snapshots from.</p>",
+        "CreateSnapshotScheduleActionParameters$namespaceName": "<p>The name of the namespace for which you want to configure a scheduled action to create a snapshot.</p>",
         "CreateWorkgroupRequest$namespaceName": "<p>The name of the namespace to associate with the workgroup.</p>",
         "DeleteNamespaceRequest$namespaceName": "<p>The name of the namespace to delete.</p>",
         "GetNamespaceRequest$namespaceName": "<p>The name of the namespace to retrieve information for.</p>",
         "ListRecoveryPointsRequest$namespaceName": "<p>The name of the namespace to list recovery points for.</p>",
+        "ListScheduledActionsRequest$namespaceName": "<p>The name of namespace associated with the scheduled action to retrieve.</p>",
+        "ListSnapshotCopyConfigurationsRequest$namespaceName": "<p>The namespace from which to list all snapshot copy configurations.</p>",
         "Namespace$namespaceName": "<p>The name of the namespace. Must be between 3-64 alphanumeric characters in lowercase, and it cannot be a reserved word. A list of reserved words can be found in <a href=\"https://docs.aws.amazon.com/redshift/latest/dg/r_pg_keywords.html\">Reserved Words</a> in the Amazon Redshift Database Developer Guide.</p>",
         "RecoveryPoint$namespaceName": "<p>The name of the namespace the recovery point is associated with.</p>",
         "RestoreFromRecoveryPointRequest$namespaceName": "<p>The name of the namespace to restore data into.</p>",
         "RestoreFromSnapshotRequest$namespaceName": "<p>The name of the namespace to restore the snapshot to.</p>",
+        "ScheduledActionResponse$namespaceName": "<p>The end time in UTC when the schedule is no longer active. After this time, the scheduled action does not trigger.</p>",
+        "SnapshotCopyConfiguration$namespaceName": "<p>The name of the namespace to copy snapshots from in the source Amazon Web Services Region.</p>",
         "UpdateNamespaceRequest$namespaceName": "<p>The name of the namespace to update. You can't update the name of a namespace once it is created.</p>"
       }
     },
@@ -719,11 +836,29 @@
         "VpcEndpoint$networkInterfaces": "<p>One or more network interfaces of the endpoint. Also known as an interface endpoint.</p>"
       }
     },
+    "NextInvocationsList": {
+      "base": null,
+      "refs": {
+        "ScheduledActionResponse$nextInvocations": "<p>An array of timestamps of when the next scheduled actions will trigger.</p>"
+      }
+    },
+    "OwnerAccount": {
+      "base": null,
+      "refs": {
+        "CreateEndpointAccessRequest$ownerAccount": "<p>The owner Amazon Web Services account for the Amazon Redshift Serverless workgroup.</p>",
+        "ListEndpointAccessRequest$ownerAccount": "<p>The owner Amazon Web Services account for the Amazon Redshift Serverless workgroup.</p>",
+        "ListWorkgroupsRequest$ownerAccount": "<p>The owner Amazon Web Services account for the Amazon Redshift Serverless workgroup.</p>"
+      }
+    },
     "PaginationToken": {
       "base": null,
       "refs": {
         "ListCustomDomainAssociationsRequest$nextToken": "<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>",
         "ListCustomDomainAssociationsResponse$nextToken": "<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>",
+        "ListScheduledActionsRequest$nextToken": "<p>If <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>",
+        "ListScheduledActionsResponse$nextToken": "<p>If nextToken is returned, there are more results available. The value of nextToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>",
+        "ListSnapshotCopyConfigurationsRequest$nextToken": "<p>If <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>",
+        "ListSnapshotCopyConfigurationsResponse$nextToken": "<p>If <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>",
         "ListTableRestoreStatusRequest$nextToken": "<p>If your initial <code>ListTableRestoreStatus</code> operation returns a nextToken, you can include the returned <code>nextToken</code> in following <code>ListTableRestoreStatus</code> operations. This will return results on the next page.</p>",
         "ListTableRestoreStatusResponse$nextToken": "<p>If your initial <code>ListTableRestoreStatus</code> operation returns a <code>nextToken</code>, you can include the returned <code>nextToken</code> in following <code>ListTableRestoreStatus</code> operations. This will returns results on the next page.</p>",
         "ListUsageLimitsRequest$nextToken": "<p>If your initial <code>ListUsageLimits</code> operation returns a <code>nextToken</code>, you can include the returned <code>nextToken</code> in following <code>ListUsageLimits</code> operations, which returns results in the next page. </p>",
@@ -733,7 +868,7 @@
     "ParameterKey": {
       "base": null,
       "refs": {
-        "ConfigParameter$parameterKey": "<p>The key of the parameter. The options are <code>auto_mv</code>, <code>datestyle</code>, <code>enable_case_sensitivity_identifier</code>, <code>enable_user_activity_logging</code>, <code>query_group</code>, <code>search_path</code>, and query monitoring metrics that let you define performance boundaries. For more information about query monitoring rules and available metrics, see <a href=\"https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html#cm-c-wlm-query-monitoring-metrics-serverless\">Query monitoring metrics for Amazon Redshift Serverless</a>.</p>"
+        "ConfigParameter$parameterKey": "<p>The key of the parameter. The options are <code>auto_mv</code>, <code>datestyle</code>, <code>enable_case_sensitive_identifier</code>, <code>enable_user_activity_logging</code>, <code>query_group</code>, <code>search_path</code>, and query monitoring metrics that let you define performance boundaries. For more information about query monitoring rules and available metrics, see <a href=\"https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html#cm-c-wlm-query-monitoring-metrics-serverless\">Query monitoring metrics for Amazon Redshift Serverless</a>.</p>"
       }
     },
     "ParameterValue": {
@@ -803,6 +938,16 @@
       "refs": {
       }
     },
+    "RestoreTableFromRecoveryPointRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RestoreTableFromRecoveryPointResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "RestoreTableFromSnapshotRequest": {
       "base": null,
       "refs": {
@@ -811,6 +956,40 @@
     "RestoreTableFromSnapshotResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "Schedule": {
+      "base": "<p>The schedule of when Amazon Redshift Serverless should run the scheduled action.</p>",
+      "refs": {
+        "CreateScheduledActionRequest$schedule": "<p>The schedule for a one-time (at format) or recurring (cron format) scheduled action. Schedule invocations must be separated by at least one hour.</p> <p>Format of at expressions is \"<code>at(yyyy-mm-ddThh:mm:ss)</code>\". For example, \"<code>at(2016-03-04T17:27:00)</code>\".</p> <p>Format of cron expressions is \"<code>cron(Minutes Hours Day-of-month Month Day-of-week Year)</code>\". For example, \"<code>cron(0 10 ? * MON *)</code>\". For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions\">Cron Expressions</a> in the <i>Amazon CloudWatch Events User Guide</i>.</p>",
+        "ScheduledActionResponse$schedule": "<p>The schedule for a one-time (at format) or recurring (cron format) scheduled action. Schedule invocations must be separated by at least one hour.</p> <p>Format of at expressions is \"<code>at(yyyy-mm-ddThh:mm:ss)</code>\". For example, \"<code>at(2016-03-04T17:27:00)</code>\".</p> <p>Format of cron expressions is \"<code>cron(Minutes Hours Day-of-month Month Day-of-week Year)</code>\". For example, \"<code>cron(0 10 ? * MON *)</code>\". For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions\">Cron Expressions</a> in the <i>Amazon CloudWatch Events User Guide</i>.</p>",
+        "UpdateScheduledActionRequest$schedule": "<p>The schedule for a one-time (at format) or recurring (cron format) scheduled action. Schedule invocations must be separated by at least one hour.</p> <p>Format of at expressions is \"<code>at(yyyy-mm-ddThh:mm:ss)</code>\". For example, \"<code>at(2016-03-04T17:27:00)</code>\".</p> <p>Format of cron expressions is \"<code>cron(Minutes Hours Day-of-month Month Day-of-week Year)</code>\". For example, \"<code>cron(0 10 ? * MON *)</code>\". For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions\">Cron Expressions</a> in the <i>Amazon CloudWatch Events User Guide</i>.</p>"
+      }
+    },
+    "ScheduledActionName": {
+      "base": null,
+      "refs": {
+        "CreateScheduledActionRequest$scheduledActionName": "<p>The name of the scheduled action.</p>",
+        "DeleteScheduledActionRequest$scheduledActionName": "<p>The name of the scheduled action to delete.</p>",
+        "GetScheduledActionRequest$scheduledActionName": "<p>The name of the scheduled action.</p>",
+        "ScheduledActionResponse$scheduledActionName": "<p>The name of the scheduled action.</p>",
+        "ScheduledActionsList$member": null,
+        "UpdateScheduledActionRequest$scheduledActionName": "<p>The name of the scheduled action to update to.</p>"
+      }
+    },
+    "ScheduledActionResponse": {
+      "base": "<p>The returned scheduled action object.</p>",
+      "refs": {
+        "CreateScheduledActionResponse$scheduledAction": "<p>The returned <code>ScheduledAction</code> object that describes the properties of a scheduled action.</p>",
+        "DeleteScheduledActionResponse$scheduledAction": "<p>The deleted scheduled action object.</p>",
+        "GetScheduledActionResponse$scheduledAction": "<p>The returned scheduled action object.</p>",
+        "UpdateScheduledActionResponse$scheduledAction": "<p>The ScheduledAction object that was updated.</p>"
+      }
+    },
+    "ScheduledActionsList": {
+      "base": null,
+      "refs": {
+        "ListScheduledActionsResponse$scheduledActions": "<p>All of the returned scheduled action objects.</p>"
       }
     },
     "SecurityGroupId": {
@@ -843,16 +1022,43 @@
         "UpdateSnapshotResponse$snapshot": "<p>The updated snapshot object.</p>"
       }
     },
+    "SnapshotCopyConfiguration": {
+      "base": "<p>The object that you configure to copy snapshots from one namespace to a namespace in another Amazon Web Services Region.</p>",
+      "refs": {
+        "CreateSnapshotCopyConfigurationResponse$snapshotCopyConfiguration": "<p>The snapshot copy configuration object that is returned.</p>",
+        "DeleteSnapshotCopyConfigurationResponse$snapshotCopyConfiguration": "<p>The deleted snapshot copy configuration object.</p>",
+        "SnapshotCopyConfigurations$member": null,
+        "UpdateSnapshotCopyConfigurationResponse$snapshotCopyConfiguration": "<p>The updated snapshot copy configuration object.</p>"
+      }
+    },
+    "SnapshotCopyConfigurations": {
+      "base": null,
+      "refs": {
+        "ListSnapshotCopyConfigurationsResponse$snapshotCopyConfigurations": "<p>All of the returned snapshot copy configurations.</p>"
+      }
+    },
     "SnapshotList": {
       "base": null,
       "refs": {
         "ListSnapshotsResponse$snapshots": "<p>All of the returned snapshot objects.</p>"
       }
     },
+    "SnapshotNamePrefix": {
+      "base": null,
+      "refs": {
+        "CreateSnapshotScheduleActionParameters$snapshotNamePrefix": "<p>A string prefix that is attached to the name of the snapshot created by the scheduled action. The final name of the snapshot is the string prefix appended by the date and time of when the snapshot was created.</p>"
+      }
+    },
     "SnapshotStatus": {
       "base": null,
       "refs": {
         "Snapshot$status": "<p>The status of the snapshot.</p>"
+      }
+    },
+    "State": {
+      "base": null,
+      "refs": {
+        "ScheduledActionResponse$state": "<p>The state of the scheduled action.</p>"
       }
     },
     "String": {
@@ -869,12 +1075,15 @@
         "CreateNamespaceRequest$dbName": "<p>The name of the first database created in the namespace.</p>",
         "CreateNamespaceRequest$defaultIamRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role to set as a default in the namespace.</p>",
         "CreateNamespaceRequest$kmsKeyId": "<p>The ID of the Amazon Web Services Key Management Service key used to encrypt your data.</p>",
+        "CreateScheduledActionRequest$scheduledActionDescription": "<p>The description of the scheduled action.</p>",
+        "CreateSnapshotCopyConfigurationRequest$destinationRegion": "<p>The destination Amazon Web Services Region that you want to copy snapshots to.</p>",
         "CreateSnapshotRequest$namespaceName": "<p>The namespace to create a snapshot for.</p>",
         "CreateSnapshotRequest$snapshotName": "<p>The name of the snapshot.</p>",
         "CreateUsageLimitRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the Amazon Redshift Serverless resource to create the usage limit for.</p>",
         "DeleteEndpointAccessRequest$endpointName": "<p>The name of the VPC endpoint to delete.</p>",
         "DeleteNamespaceRequest$finalSnapshotName": "<p>The name of the snapshot to be created before the namespace is deleted.</p>",
         "DeleteResourcePolicyRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the policy to delete.</p>",
+        "DeleteSnapshotCopyConfigurationRequest$snapshotCopyConfigurationId": "<p>The ID of the snapshot copy configuration to delete.</p>",
         "DeleteSnapshotRequest$snapshotName": "<p>The name of the snapshot to be deleted.</p>",
         "DeleteUsageLimitRequest$usageLimitId": "<p>The unique identifier of the usage limit to delete.</p>",
         "Endpoint$address": "<p>The DNS address of the VPC endpoint.</p>",
@@ -937,6 +1146,15 @@
         "RestoreFromSnapshotRequest$snapshotName": "<p>The name of the snapshot to restore from. Must not be specified at the same time as <code>snapshotArn</code>.</p>",
         "RestoreFromSnapshotResponse$ownerAccount": "<p>The owner Amazon Web Services; account of the snapshot that was restored.</p>",
         "RestoreFromSnapshotResponse$snapshotName": "<p>The name of the snapshot used to restore the namespace.</p>",
+        "RestoreTableFromRecoveryPointRequest$namespaceName": "<p>Namespace of the recovery point to restore from.</p>",
+        "RestoreTableFromRecoveryPointRequest$newTableName": "<p>The name of the table to create from the restore operation.</p>",
+        "RestoreTableFromRecoveryPointRequest$recoveryPointId": "<p>The ID of the recovery point to restore the table from.</p>",
+        "RestoreTableFromRecoveryPointRequest$sourceDatabaseName": "<p>The name of the source database that contains the table being restored.</p>",
+        "RestoreTableFromRecoveryPointRequest$sourceSchemaName": "<p>The name of the source schema that contains the table being restored.</p>",
+        "RestoreTableFromRecoveryPointRequest$sourceTableName": "<p>The name of the source table being restored.</p>",
+        "RestoreTableFromRecoveryPointRequest$targetDatabaseName": "<p>The name of the database to restore the table to.</p>",
+        "RestoreTableFromRecoveryPointRequest$targetSchemaName": "<p>The name of the schema to restore the table to.</p>",
+        "RestoreTableFromRecoveryPointRequest$workgroupName": "<p>The workgroup to restore the table to.</p>",
         "RestoreTableFromSnapshotRequest$namespaceName": "<p>The namespace of the snapshot to restore from.</p>",
         "RestoreTableFromSnapshotRequest$newTableName": "<p>The name of the table to create from the restore operation.</p>",
         "RestoreTableFromSnapshotRequest$snapshotName": "<p>The name of the snapshot to restore the table from.</p>",
@@ -946,6 +1164,9 @@
         "RestoreTableFromSnapshotRequest$targetDatabaseName": "<p>The name of the database to restore the table to.</p>",
         "RestoreTableFromSnapshotRequest$targetSchemaName": "<p>The name of the schema to restore the table to.</p>",
         "RestoreTableFromSnapshotRequest$workgroupName": "<p>The workgroup to restore the table to.</p>",
+        "Schedule$cron": "<p>The cron expression to use to schedule a recurring scheduled action. Schedule invocations must be separated by at least one hour.</p> <p>Format of cron expressions is \"<code>cron(Minutes Hours Day-of-month Month Day-of-week Year)</code>\". For example, \"<code>cron(0 10 ? * MON *)</code>\". For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions\">Cron Expressions</a> in the <i>Amazon CloudWatch Events User Guide</i>.</p>",
+        "ScheduledActionResponse$scheduledActionDescription": "<p>The description of the scheduled action.</p>",
+        "ScheduledActionResponse$scheduledActionUuid": "<p>The uuid of the scheduled action.</p>",
         "ServiceQuotaExceededException$message": null,
         "Snapshot$adminPasswordSecretArn": "<p>The Amazon Resource Name (ARN) for the namespace's admin user credentials secret.</p>",
         "Snapshot$adminUsername": "<p>The username of the database within a snapshot.</p>",
@@ -954,14 +1175,18 @@
         "Snapshot$ownerAccount": "<p>The owner Amazon Web Services; account of the snapshot.</p>",
         "Snapshot$snapshotArn": "<p>The Amazon Resource Name (ARN) of the snapshot.</p>",
         "Snapshot$snapshotName": "<p>The name of the snapshot.</p>",
-        "TableRestoreStatus$message": "<p>A description of the status of the table restore request. Status values include <code>SUCCEEDED</code>, <code>FAILED</code>, <code>CANCELED</code>, <code>PENDING</code>, <code>IN_PROGRESS</code>.</p>",
+        "SnapshotCopyConfiguration$destinationRegion": "<p>The destination Amazon Web Services Region to copy snapshots to.</p>",
+        "SnapshotCopyConfiguration$snapshotCopyConfigurationArn": "<p>The ARN of the snapshot copy configuration object.</p>",
+        "SnapshotCopyConfiguration$snapshotCopyConfigurationId": "<p>The ID of the snapshot copy configuration object.</p>",
+        "TableRestoreStatus$message": "<p>A message that explains the returned status. For example, if the status of the operation is <code>FAILED</code>, the message explains why the operation failed.</p>",
         "TableRestoreStatus$namespaceName": "<p>The namespace of the table being restored from.</p>",
         "TableRestoreStatus$newTableName": "<p>The name of the table to create from the restore operation.</p>",
+        "TableRestoreStatus$recoveryPointId": "<p>The ID of the recovery point being restored from.</p>",
         "TableRestoreStatus$snapshotName": "<p>The name of the snapshot being restored from.</p>",
         "TableRestoreStatus$sourceDatabaseName": "<p>The name of the source database being restored from.</p>",
         "TableRestoreStatus$sourceSchemaName": "<p>The name of the source schema being restored from.</p>",
         "TableRestoreStatus$sourceTableName": "<p>The name of the source table being restored from.</p>",
-        "TableRestoreStatus$status": "<p>A value that describes the current state of the table restore request. Possible values include <code>SUCCEEDED</code>, <code>FAILED</code>, <code>CANCELED</code>, <code>PENDING</code>, <code>IN_PROGRESS</code>.</p>",
+        "TableRestoreStatus$status": "<p>A value that describes the current state of the table restore request. Possible values are <code>SUCCEEDED</code>, <code>FAILED</code>, <code>CANCELED</code>, <code>PENDING</code>, and <code>IN_PROGRESS</code>.</p>",
         "TableRestoreStatus$tableRestoreRequestId": "<p>The ID of the RestoreTableFromSnapshot request.</p>",
         "TableRestoreStatus$targetDatabaseName": "<p>The name of the database to restore to.</p>",
         "TableRestoreStatus$targetSchemaName": "<p>The name of the schema to restore to.</p>",
@@ -972,6 +1197,8 @@
         "UpdateEndpointAccessRequest$endpointName": "<p>The name of the VPC endpoint to update.</p>",
         "UpdateNamespaceRequest$defaultIamRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role to set as a default in the namespace. This parameter must be updated together with <code>iamRoles</code>.</p>",
         "UpdateNamespaceRequest$kmsKeyId": "<p>The ID of the Amazon Web Services Key Management Service key used to encrypt your data.</p>",
+        "UpdateScheduledActionRequest$scheduledActionDescription": "<p>The descripion of the scheduled action to update to.</p>",
+        "UpdateSnapshotCopyConfigurationRequest$snapshotCopyConfigurationId": "<p>The ID of the snapshot copy configuration to update.</p>",
         "UpdateSnapshotRequest$snapshotName": "<p>The name of the snapshot.</p>",
         "UpdateUsageLimitRequest$usageLimitId": "<p>The identifier of the usage limit to update.</p>",
         "UsageLimit$resourceArn": "<p>The Amazon Resource Name (ARN) that identifies the Amazon Redshift Serverless resource.</p>",
@@ -980,6 +1207,7 @@
         "ValidationException$message": null,
         "VpcEndpoint$vpcEndpointId": "<p>The connection endpoint ID for connecting to Amazon Redshift Serverless.</p>",
         "VpcEndpoint$vpcId": "<p>The VPC identifier that the endpoint is associated with.</p>",
+        "VpcIds$member": null,
         "VpcSecurityGroupMembership$status": "<p>The status of the VPC security group.</p>",
         "Workgroup$namespaceName": "<p>The namespace the workgroup is associated with.</p>",
         "Workgroup$patchVersion": "<p>The patch version of your Amazon Redshift Serverless workgroup. For more information about patch versions, see <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/cluster-versions.html\">Cluster versions for Amazon Redshift</a>.</p>",
@@ -1024,6 +1252,7 @@
       "base": "<p>Contains information about a table restore request.</p>",
       "refs": {
         "GetTableRestoreStatusResponse$tableRestoreStatus": "<p>The returned <code>TableRestoreStatus</code> object that contains information about the status of your <code>RestoreTableFromSnapshot</code> request.</p>",
+        "RestoreTableFromRecoveryPointResponse$tableRestoreStatus": null,
         "RestoreTableFromSnapshotResponse$tableRestoreStatus": "<p>The TableRestoreStatus object that contains the status of the restore operation.</p>",
         "TableRestoreStatusList$member": null
       }
@@ -1059,6 +1288,7 @@
         "ConvertRecoveryPointToSnapshotRequest$tags": "<p>An array of <a href=\"https://docs.aws.amazon.com/redshift-serverless/latest/APIReference/API_Tag.html\">Tag objects</a> to associate with the created snapshot.</p>",
         "CreateNamespaceRequest$tags": "<p>A list of tag instances.</p>",
         "CreateSnapshotRequest$tags": "<p>An array of <a href=\"https://docs.aws.amazon.com/redshift-serverless/latest/APIReference/API_Tag.html\">Tag objects</a> to associate with the snapshot.</p>",
+        "CreateSnapshotScheduleActionParameters$tags": "<p>An array of <a href=\"https://docs.aws.amazon.com/redshift-serverless/latest/APIReference/API_Tag.html\">Tag objects</a> to associate with the snapshot.</p>",
         "CreateWorkgroupRequest$tags": "<p>A array of tag instances.</p>",
         "ListTagsForResourceResponse$tags": "<p>A map of the key-value pairs assigned to the resource.</p>",
         "TagResourceRequest$tags": "<p>The map of the key-value pairs used to tag the resource.</p>"
@@ -1080,6 +1310,14 @@
         "Tag$value": "<p>The value of the tag.</p>"
       }
     },
+    "TargetAction": {
+      "base": "<p>A JSON format string of the Amazon Redshift Serverless API operation with input parameters. The following is an example of a target action.</p> <p> <code>\"{\"CreateSnapshot\": {\"NamespaceName\": \"sampleNamespace\",\"SnapshotName\": \"sampleSnapshot\", \"retentionPeriod\": \"1\"}}\"</code> </p>",
+      "refs": {
+        "CreateScheduledActionRequest$targetAction": null,
+        "ScheduledActionResponse$targetAction": null,
+        "UpdateScheduledActionRequest$targetAction": null
+      }
+    },
     "ThrottlingException": {
       "base": "<p>The request was denied due to request throttling.</p>",
       "refs": {
@@ -1088,13 +1326,21 @@
     "Timestamp": {
       "base": null,
       "refs": {
+        "CreateScheduledActionRequest$endTime": "<p>The end time in UTC when the schedule is no longer active. After this time, the scheduled action does not trigger.</p>",
+        "CreateScheduledActionRequest$startTime": "<p>The start time in UTC when the schedule is active. Before this time, the scheduled action does not trigger.</p>",
         "GetCredentialsResponse$expiration": "<p>The date and time the password in <code>DbPassword</code> expires.</p>",
         "GetCredentialsResponse$nextRefreshTime": "<p>The date and time of when the <code>DbUser</code> and <code>DbPassword</code> authorization refreshes.</p>",
         "ListRecoveryPointsRequest$endTime": "<p>The time when creation of the recovery point finished.</p>",
         "ListRecoveryPointsRequest$startTime": "<p>The time when the recovery point's creation was initiated.</p>",
         "ListSnapshotsRequest$endTime": "<p>The timestamp showing when the snapshot creation finished.</p>",
         "ListSnapshotsRequest$startTime": "<p>The time when the creation of the snapshot was initiated.</p>",
-        "TableRestoreStatus$requestTime": "<p>The time that the table restore request was made, in Universal Coordinated Time (UTC).</p>"
+        "NextInvocationsList$member": null,
+        "Schedule$at": "<p>The timestamp of when Amazon Redshift Serverless should run the scheduled action. Format of at expressions is \"<code>at(yyyy-mm-ddThh:mm:ss)</code>\". For example, \"<code>at(2016-03-04T17:27:00)</code>\".</p>",
+        "ScheduledActionResponse$endTime": "<p>The end time of </p>",
+        "ScheduledActionResponse$startTime": "<p>The start time in UTC when the schedule is active. Before this time, the scheduled action does not trigger.</p>",
+        "TableRestoreStatus$requestTime": "<p>The time that the table restore request was made, in Universal Coordinated Time (UTC).</p>",
+        "UpdateScheduledActionRequest$endTime": "<p>The end time in UTC of the scheduled action to update.</p>",
+        "UpdateScheduledActionRequest$startTime": "<p>The start time in UTC of the scheduled action to update to.</p>"
       }
     },
     "TooManyTagsException": {
@@ -1138,6 +1384,26 @@
       }
     },
     "UpdateNamespaceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateScheduledActionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateScheduledActionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateSnapshotCopyConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateSnapshotCopyConfigurationResponse": {
       "base": null,
       "refs": {
       }
@@ -1227,6 +1493,12 @@
       "base": null,
       "refs": {
         "Endpoint$vpcEndpoints": "<p>An array of <code>VpcEndpoint</code> objects.</p>"
+      }
+    },
+    "VpcIds": {
+      "base": null,
+      "refs": {
+        "Workgroup$crossAccountVpcs": "<p>A list of VPCs. Each entry is the unique identifier of a virtual private cloud with access to Amazon Redshift Serverless. If all of the VPCs for the grantee are allowed, it shows an asterisk.</p>"
       }
     },
     "VpcSecurityGroupId": {
