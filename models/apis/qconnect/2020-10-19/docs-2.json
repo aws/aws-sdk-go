@@ -1,12 +1,12 @@
 {
   "version": "2.0",
-  "service": "<p>Amazon Q in Connect is a generative AI customer service assistant. It is an LLM-enhanced evolution of Amazon Connect Wisdom that delivers real-time recommendations to help contact center agents resolve customer issues quickly and accurately.</p> <p>Amazon Q automatically detects customer intent during calls and chats using conversational analytics and natural language understanding (NLU). It then provides agents with immediate, real-time generative responses and suggested actions, and links to relevant documents and articles. Agents can also query Amazon Q directly using natural language or keywords to answer customer requests.</p> <p>Use the Amazon Q in Connect APIs to create an assistant and a knowledge base, for example, or manage content by uploading custom files.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/amazon-q-connect.html\">Use Amazon Q in Connect for generative AI powered agent assistance in real-time</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
+  "service": "<note> <p> <b>Powered by Amazon Bedrock</b>: Amazon Web Services implements <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/abuse-detection.html\">automated abuse detection</a>. Because Amazon Q in Connect is built on Amazon Bedrock, users can take full advantage of the controls implemented in Amazon Bedrock to enforce safety, security, and the responsible use of artificial intelligence (AI).</p> </note> <p>Amazon Q in Connect is a generative AI customer service assistant. It is an LLM-enhanced evolution of Amazon Connect Wisdom that delivers real-time recommendations to help contact center agents resolve customer issues quickly and accurately.</p> <p>Amazon Q automatically detects customer intent during calls and chats using conversational analytics and natural language understanding (NLU). It then provides agents with immediate, real-time generative responses and suggested actions, and links to relevant documents and articles. Agents can also query Amazon Q directly using natural language or keywords to answer customer requests.</p> <p>Use the Amazon Q in Connect APIs to create an assistant and a knowledge base, for example, or manage content by uploading custom files.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/amazon-q-connect.html\">Use Amazon Q in Connect for generative AI powered agent assistance in real-time</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
   "operations": {
     "CreateAssistant": "<p>Creates an Amazon Q in Connect assistant.</p>",
     "CreateAssistantAssociation": "<p>Creates an association between an Amazon Q in Connect assistant and another resource. Currently, the only supported association is with a knowledge base. An assistant can have only a single association.</p>",
     "CreateContent": "<p>Creates Amazon Q content. Before to calling this API, use <a href=\"https://docs.aws.amazon.com/amazon-q-connect/latest/APIReference/API_StartContentUpload.html\">StartContentUpload</a> to upload an asset.</p>",
     "CreateKnowledgeBase": "<p>Creates a knowledge base.</p> <note> <p>When using this API, you cannot reuse <a href=\"https://docs.aws.amazon.com/appintegrations/latest/APIReference/Welcome.html\">Amazon AppIntegrations</a> DataIntegrations with external knowledge bases such as Salesforce and ServiceNow. If you do, you'll get an <code>InvalidRequestException</code> error. </p> <p>For example, you're programmatically managing your external knowledge base, and you want to add or remove one of the fields that is being ingested from Salesforce. Do the following:</p> <ol> <li> <p>Call <a href=\"https://docs.aws.amazon.com/amazon-q-connect/latest/APIReference/API_DeleteKnowledgeBase.html\">DeleteKnowledgeBase</a>.</p> </li> <li> <p>Call <a href=\"https://docs.aws.amazon.com/appintegrations/latest/APIReference/API_DeleteDataIntegration.html\">DeleteDataIntegration</a>.</p> </li> <li> <p>Call <a href=\"https://docs.aws.amazon.com/appintegrations/latest/APIReference/API_CreateDataIntegration.html\">CreateDataIntegration</a> to recreate the DataIntegration or a create different one.</p> </li> <li> <p>Call CreateKnowledgeBase.</p> </li> </ol> </note>",
-    "CreateQuickResponse": "<p>Creates a Amazon Q quick response.</p>",
+    "CreateQuickResponse": "<p>Creates an Amazon Q quick response.</p>",
     "CreateSession": "<p>Creates a session. A session is a contextual container used for generating recommendations. Amazon Connect creates a new Amazon Q session for each contact on which Amazon Q is enabled.</p>",
     "DeleteAssistant": "<p>Deletes an assistant.</p>",
     "DeleteAssistantAssociation": "<p>Deletes an assistant association.</p>",
@@ -31,10 +31,11 @@
     "ListQuickResponses": "<p>Lists information about quick response.</p>",
     "ListTagsForResource": "<p>Lists the tags for the specified resource.</p>",
     "NotifyRecommendationsReceived": "<p>Removes the specified recommendations from the specified assistant's queue of newly available recommendations. You can use this API in conjunction with <a href=\"https://docs.aws.amazon.com/amazon-q-connect/latest/APIReference/API_GetRecommendations.html\">GetRecommendations</a> and a <code>waitTimeSeconds</code> input for long-polling behavior and avoiding duplicate recommendations.</p>",
+    "PutFeedback": "<p>Provides feedback against the specified assistant for the specified target. This API only supports generative targets.</p>",
     "QueryAssistant": "<p>Performs a manual search against the specified assistant. To retrieve recommendations for an assistant, use <a href=\"https://docs.aws.amazon.com/amazon-q-connect/latest/APIReference/API_GetRecommendations.html\">GetRecommendations</a>. </p>",
     "RemoveKnowledgeBaseTemplateUri": "<p>Removes a URI template from a knowledge base.</p>",
     "SearchContent": "<p>Searches for content in a specified knowledge base. Can be used to get a specific content resource by its name.</p>",
-    "SearchQuickResponses": "<p>Searches existing Amazon Q quick responses in a Amazon Q knowledge base.</p>",
+    "SearchQuickResponses": "<p>Searches existing Amazon Q quick responses in an Amazon Q knowledge base.</p>",
     "SearchSessions": "<p>Searches for sessions.</p>",
     "StartContentUpload": "<p>Get a URL to upload content to a knowledge base. To upload content, first make a PUT request to the returned URL with your file, making sure to include the required headers. Then use <a href=\"https://docs.aws.amazon.com/amazon-q-connect/latest/APIReference/API_CreateContent.html\">CreateContent</a> to finalize the content creation process or <a href=\"https://docs.aws.amazon.com/amazon-q-connect/latest/APIReference/API_UpdateContent.html\">UpdateContent</a> to modify an existing resource. You can only upload content to a knowledge base of type CUSTOM.</p>",
     "StartImportJob": "<p>Start an asynchronous job to import Amazon Q resources from an uploaded source file. Before calling this API, use <a href=\"https://docs.aws.amazon.com/wisdom/latest/APIReference/API_StartContentUpload.html\">StartContentUpload</a> to upload an asset that contains the resource data.</p> <ul> <li> <p>For importing Amazon Q quick responses, you need to upload a csv file including the quick responses. For information about how to format the csv file for importing quick responses, see <a href=\"https://docs.aws.amazon.com/console/connect/quick-responses/add-data\">Import quick responses</a>.</p> </li> </ul>",
@@ -123,7 +124,7 @@
       }
     },
     "AssistantCapabilityConfiguration": {
-      "base": "<p>The capability configuration for a Amazon Q assistant. </p>",
+      "base": "<p>The capability configuration for an Amazon Q assistant. </p>",
       "refs": {
         "AssistantData$capabilityConfiguration": "<p>The configuration information for the Amazon Q assistant capability. </p>",
         "AssistantSummary$capabilityConfiguration": "<p>The configuration information for the Amazon Q assistant capability. </p>"
@@ -279,6 +280,13 @@
       "base": "<p>Details about the content data.</p>",
       "refs": {
         "DataDetails$contentData": "<p>Details about the content data.</p>"
+      }
+    },
+    "ContentFeedbackData": {
+      "base": "<p>Information about the feedback.</p>",
+      "refs": {
+        "PutFeedbackRequest$contentFeedback": "<p>Information about the feedback provided.</p>",
+        "PutFeedbackResponse$contentFeedback": "<p>Information about the feedback provided.</p>"
       }
     },
     "ContentMetadata": {
@@ -549,6 +557,12 @@
       "base": null,
       "refs": {
         "Filter$operator": "<p>The operator to use for comparing the field’s value with the provided value.</p>"
+      }
+    },
+    "GenerativeContentFeedbackData": {
+      "base": "<p>The feedback information for a generative target type.</p>",
+      "refs": {
+        "ContentFeedbackData$generativeContentFeedbackData": "<p>Information about the feedback for a generative target type.</p>"
       }
     },
     "GenerativeDataDetails": {
@@ -1008,6 +1022,16 @@
         "QuickResponseQueryField$priority": "<p>The importance of the attribute field when calculating query result relevancy scores. The value set for this parameter affects the ordering of search results.</p>"
       }
     },
+    "PutFeedbackRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutFeedbackResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "QueryAssistantRequest": {
       "base": null,
       "refs": {
@@ -1315,6 +1339,12 @@
         "RecommendationData$type": "<p>The type of recommendation.</p>"
       }
     },
+    "Relevance": {
+      "base": null,
+      "refs": {
+        "GenerativeContentFeedbackData$relevance": "<p>The relevance of the feedback.</p>"
+      }
+    },
     "RelevanceLevel": {
       "base": null,
       "refs": {
@@ -1586,6 +1616,13 @@
         "TagResourceRequest$tags": "<p>The tags used to organize, track, or control access for this resource.</p>"
       }
     },
+    "TargetType": {
+      "base": null,
+      "refs": {
+        "PutFeedbackRequest$targetType": "<p>The type of the feedback target.</p>",
+        "PutFeedbackResponse$targetType": "<p>The type of the feedback target.</p>"
+      }
+    },
     "TextData": {
       "base": "<p>Details about the source content text data.</p>",
       "refs": {
@@ -1700,6 +1737,9 @@
         "KnowledgeBaseAssociationData$knowledgeBaseId": "<p>The identifier of the knowledge base. This should not be a QUICK_RESPONSES type knowledge base if you're storing Amazon Q Content resource to it.</p>",
         "KnowledgeBaseData$knowledgeBaseId": "<p>The identifier of the knowledge base. This should not be a QUICK_RESPONSES type knowledge base if you're storing Amazon Q Content resource to it.</p>",
         "KnowledgeBaseSummary$knowledgeBaseId": "<p>The identifier of the knowledge base. This should not be a QUICK_RESPONSES type knowledge base if you're storing Amazon Q Content resource to it.</p>",
+        "PutFeedbackRequest$targetId": "<p>The identifier of the feedback target.</p>",
+        "PutFeedbackResponse$assistantId": "<p>The identifier of the Amazon Q assistant.</p>",
+        "PutFeedbackResponse$targetId": "<p>The identifier of the feedback target.</p>",
         "QuickResponseData$knowledgeBaseId": "<p>The identifier of the knowledge base. This should not be a QUICK_RESPONSES type knowledge base if you're storing Amazon Q Content resource to it. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
         "QuickResponseData$quickResponseId": "<p>The identifier of the quick response.</p>",
         "QuickResponseSearchResultData$knowledgeBaseId": "<p>The identifier of the knowledge base. This should not be a QUICK_RESPONSES type knowledge base if you're storing Amazon Q Content resource to it. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
@@ -1751,6 +1791,8 @@
         "ListQuickResponsesRequest$knowledgeBaseId": "<p>The identifier of the knowledge base. This should not be a QUICK_RESPONSES type knowledge base if you're storing Amazon Q Content resource to it. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
         "NotifyRecommendationsReceivedRequest$assistantId": "<p>The identifier of the Amazon Q assistant. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
         "NotifyRecommendationsReceivedRequest$sessionId": "<p>The identifier of the session. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
+        "PutFeedbackRequest$assistantId": "<p>The identifier of the Amazon Q assistant.</p>",
+        "PutFeedbackResponse$assistantArn": "<p>The Amazon Resource Name (ARN) of the Amazon Q assistant.</p>",
         "QueryAssistantRequest$assistantId": "<p>The identifier of the Amazon Q assistant. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
         "QueryAssistantRequest$sessionId": "<p>The identifier of the Amazon Q session. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",
         "RemoveKnowledgeBaseTemplateUriRequest$knowledgeBaseId": "<p>The identifier of the knowledge base. This should not be a QUICK_RESPONSES type knowledge base if you're storing Amazon Q Content resource to it. Can be either the ID or the ARN. URLs cannot contain the ARN.</p>",

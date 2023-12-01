@@ -3,6 +3,12 @@
 // Package qconnect provides the client and types for making API
 // requests to Amazon Q Connect.
 //
+// Powered by Amazon Bedrock: Amazon Web Services implements automated abuse
+// detection (https://docs.aws.amazon.com/bedrock/latest/userguide/abuse-detection.html).
+// Because Amazon Q in Connect is built on Amazon Bedrock, users can take full
+// advantage of the controls implemented in Amazon Bedrock to enforce safety,
+// security, and the responsible use of artificial intelligence (AI).
+//
 // Amazon Q in Connect is a generative AI customer service assistant. It is
 // an LLM-enhanced evolution of Amazon Connect Wisdom that delivers real-time
 // recommendations to help contact center agents resolve customer issues quickly

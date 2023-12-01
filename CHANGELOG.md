@@ -1,3 +1,11 @@
+Release v1.48.11 (2023-12-01)
+===
+
+### Service Client Updates
+* `service/qconnect`: Updates service API and documentation
+* `service/rbin`: Updates service API and documentation
+* `service/verifiedpermissions`: Updates service API and documentation
+
 Release v1.48.10 (2023-11-30)
 ===
 

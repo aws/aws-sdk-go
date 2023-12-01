@@ -455,7 +455,7 @@ func (c *QConnect) CreateQuickResponseRequest(input *CreateQuickResponseInput) (
 
 // CreateQuickResponse API operation for Amazon Q Connect.
 //
-// Creates a Amazon Q quick response.
+// Creates an Amazon Q quick response.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2915,6 +2915,92 @@ func (c *QConnect) NotifyRecommendationsReceivedWithContext(ctx aws.Context, inp
 	return out, req.Send()
 }
 
+const opPutFeedback = "PutFeedback"
+
+// PutFeedbackRequest generates a "aws/request.Request" representing the
+// client's request for the PutFeedback operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutFeedback for more information on using the PutFeedback
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the PutFeedbackRequest method.
+//	req, resp := client.PutFeedbackRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/qconnect-2020-10-19/PutFeedback
+func (c *QConnect) PutFeedbackRequest(input *PutFeedbackInput) (req *request.Request, output *PutFeedbackOutput) {
+	op := &request.Operation{
+		Name:       opPutFeedback,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/assistants/{assistantId}/feedback",
+	}
+
+	if input == nil {
+		input = &PutFeedbackInput{}
+	}
+
+	output = &PutFeedbackOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PutFeedback API operation for Amazon Q Connect.
+//
+// Provides feedback against the specified assistant for the specified target.
+// This API only supports generative targets.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Q Connect's
+// API operation PutFeedback for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by a service.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/qconnect-2020-10-19/PutFeedback
+func (c *QConnect) PutFeedback(input *PutFeedbackInput) (*PutFeedbackOutput, error) {
+	req, out := c.PutFeedbackRequest(input)
+	return out, req.Send()
+}
+
+// PutFeedbackWithContext is the same as PutFeedback with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutFeedback for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QConnect) PutFeedbackWithContext(ctx aws.Context, input *PutFeedbackInput, opts ...request.Option) (*PutFeedbackOutput, error) {
+	req, out := c.PutFeedbackRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opQueryAssistant = "QueryAssistant"
 
 // QueryAssistantRequest generates a "aws/request.Request" representing the
@@ -3342,7 +3428,7 @@ func (c *QConnect) SearchQuickResponsesRequest(input *SearchQuickResponsesInput)
 
 // SearchQuickResponses API operation for Amazon Q Connect.
 //
-// Searches existing Amazon Q quick responses in a Amazon Q knowledge base.
+// Searches existing Amazon Q quick responses in an Amazon Q knowledge base.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4642,7 +4728,7 @@ func (s *AssistantAssociationSummary) SetTags(v map[string]*string) *AssistantAs
 	return s
 }
 
-// The capability configuration for a Amazon Q assistant.
+// The capability configuration for an Amazon Q assistant.
 type AssistantCapabilityConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -5354,6 +5440,53 @@ func (s *ContentDataDetails) SetRankingData(v *RankingData) *ContentDataDetails 
 // SetTextData sets the TextData field's value.
 func (s *ContentDataDetails) SetTextData(v *TextData) *ContentDataDetails {
 	s.TextData = v
+	return s
+}
+
+// Information about the feedback.
+type ContentFeedbackData struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the feedback for a generative target type.
+	GenerativeContentFeedbackData *GenerativeContentFeedbackData `locationName:"generativeContentFeedbackData" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContentFeedbackData) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContentFeedbackData) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ContentFeedbackData) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ContentFeedbackData"}
+	if s.GenerativeContentFeedbackData != nil {
+		if err := s.GenerativeContentFeedbackData.Validate(); err != nil {
+			invalidParams.AddNested("GenerativeContentFeedbackData", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGenerativeContentFeedbackData sets the GenerativeContentFeedbackData field's value.
+func (s *ContentFeedbackData) SetGenerativeContentFeedbackData(v *GenerativeContentFeedbackData) *ContentFeedbackData {
+	s.GenerativeContentFeedbackData = v
 	return s
 }
 
@@ -7453,6 +7586,53 @@ func (s *Filter) SetOperator(v string) *Filter {
 // SetValue sets the Value field's value.
 func (s *Filter) SetValue(v string) *Filter {
 	s.Value = &v
+	return s
+}
+
+// The feedback information for a generative target type.
+type GenerativeContentFeedbackData struct {
+	_ struct{} `type:"structure"`
+
+	// The relevance of the feedback.
+	//
+	// Relevance is a required field
+	Relevance *string `locationName:"relevance" type:"string" required:"true" enum:"Relevance"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GenerativeContentFeedbackData) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GenerativeContentFeedbackData) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GenerativeContentFeedbackData) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GenerativeContentFeedbackData"}
+	if s.Relevance == nil {
+		invalidParams.Add(request.NewErrParamRequired("Relevance"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRelevance sets the Relevance field's value.
+func (s *GenerativeContentFeedbackData) SetRelevance(v string) *GenerativeContentFeedbackData {
+	s.Relevance = &v
 	return s
 }
 
@@ -10153,6 +10333,179 @@ func (s *PreconditionFailedException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *PreconditionFailedException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type PutFeedbackInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Q assistant.
+	//
+	// AssistantId is a required field
+	AssistantId *string `location:"uri" locationName:"assistantId" type:"string" required:"true"`
+
+	// Information about the feedback provided.
+	//
+	// ContentFeedback is a required field
+	ContentFeedback *ContentFeedbackData `locationName:"contentFeedback" type:"structure" required:"true"`
+
+	// The identifier of the feedback target.
+	//
+	// TargetId is a required field
+	TargetId *string `locationName:"targetId" type:"string" required:"true"`
+
+	// The type of the feedback target.
+	//
+	// TargetType is a required field
+	TargetType *string `locationName:"targetType" type:"string" required:"true" enum:"TargetType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutFeedbackInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutFeedbackInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutFeedbackInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutFeedbackInput"}
+	if s.AssistantId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssistantId"))
+	}
+	if s.AssistantId != nil && len(*s.AssistantId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AssistantId", 1))
+	}
+	if s.ContentFeedback == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContentFeedback"))
+	}
+	if s.TargetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetId"))
+	}
+	if s.TargetType == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetType"))
+	}
+	if s.ContentFeedback != nil {
+		if err := s.ContentFeedback.Validate(); err != nil {
+			invalidParams.AddNested("ContentFeedback", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssistantId sets the AssistantId field's value.
+func (s *PutFeedbackInput) SetAssistantId(v string) *PutFeedbackInput {
+	s.AssistantId = &v
+	return s
+}
+
+// SetContentFeedback sets the ContentFeedback field's value.
+func (s *PutFeedbackInput) SetContentFeedback(v *ContentFeedbackData) *PutFeedbackInput {
+	s.ContentFeedback = v
+	return s
+}
+
+// SetTargetId sets the TargetId field's value.
+func (s *PutFeedbackInput) SetTargetId(v string) *PutFeedbackInput {
+	s.TargetId = &v
+	return s
+}
+
+// SetTargetType sets the TargetType field's value.
+func (s *PutFeedbackInput) SetTargetType(v string) *PutFeedbackInput {
+	s.TargetType = &v
+	return s
+}
+
+type PutFeedbackOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Amazon Q assistant.
+	//
+	// AssistantArn is a required field
+	AssistantArn *string `locationName:"assistantArn" type:"string" required:"true"`
+
+	// The identifier of the Amazon Q assistant.
+	//
+	// AssistantId is a required field
+	AssistantId *string `locationName:"assistantId" type:"string" required:"true"`
+
+	// Information about the feedback provided.
+	//
+	// ContentFeedback is a required field
+	ContentFeedback *ContentFeedbackData `locationName:"contentFeedback" type:"structure" required:"true"`
+
+	// The identifier of the feedback target.
+	//
+	// TargetId is a required field
+	TargetId *string `locationName:"targetId" type:"string" required:"true"`
+
+	// The type of the feedback target.
+	//
+	// TargetType is a required field
+	TargetType *string `locationName:"targetType" type:"string" required:"true" enum:"TargetType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutFeedbackOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutFeedbackOutput) GoString() string {
+	return s.String()
+}
+
+// SetAssistantArn sets the AssistantArn field's value.
+func (s *PutFeedbackOutput) SetAssistantArn(v string) *PutFeedbackOutput {
+	s.AssistantArn = &v
+	return s
+}
+
+// SetAssistantId sets the AssistantId field's value.
+func (s *PutFeedbackOutput) SetAssistantId(v string) *PutFeedbackOutput {
+	s.AssistantId = &v
+	return s
+}
+
+// SetContentFeedback sets the ContentFeedback field's value.
+func (s *PutFeedbackOutput) SetContentFeedback(v *ContentFeedbackData) *PutFeedbackOutput {
+	s.ContentFeedback = v
+	return s
+}
+
+// SetTargetId sets the TargetId field's value.
+func (s *PutFeedbackOutput) SetTargetId(v string) *PutFeedbackOutput {
+	s.TargetId = &v
+	return s
+}
+
+// SetTargetType sets the TargetType field's value.
+func (s *PutFeedbackOutput) SetTargetType(v string) *PutFeedbackOutput {
+	s.TargetType = &v
+	return s
 }
 
 type QueryAssistantInput struct {
@@ -14712,6 +15065,22 @@ func RecommendationType_Values() []string {
 }
 
 const (
+	// RelevanceHelpful is a Relevance enum value
+	RelevanceHelpful = "HELPFUL"
+
+	// RelevanceNotHelpful is a Relevance enum value
+	RelevanceNotHelpful = "NOT_HELPFUL"
+)
+
+// Relevance_Values returns all elements of the Relevance enum
+func Relevance_Values() []string {
+	return []string{
+		RelevanceHelpful,
+		RelevanceNotHelpful,
+	}
+}
+
+const (
 	// RelevanceLevelHigh is a RelevanceLevel enum value
 	RelevanceLevelHigh = "HIGH"
 
@@ -14740,5 +15109,21 @@ const (
 func SourceContentType_Values() []string {
 	return []string{
 		SourceContentTypeKnowledgeContent,
+	}
+}
+
+const (
+	// TargetTypeRecommendation is a TargetType enum value
+	TargetTypeRecommendation = "RECOMMENDATION"
+
+	// TargetTypeResult is a TargetType enum value
+	TargetTypeResult = "RESULT"
+)
+
+// TargetType_Values returns all elements of the TargetType enum
+func TargetType_Values() []string {
+	return []string{
+		TargetTypeRecommendation,
+		TargetTypeResult,
 	}
 }

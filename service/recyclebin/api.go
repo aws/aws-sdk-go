@@ -924,6 +924,10 @@ func (c *RecycleBin) UpdateRuleRequest(input *UpdateRuleInput) (req *request.Req
 //   - ConflictException
 //     The specified retention rule lock request can't be completed.
 //
+//   - ServiceQuotaExceededException
+//     The request would cause a service quota for the number of tags per resource
+//     to be exceeded.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rbin-2021-06-15/UpdateRule
 func (c *RecycleBin) UpdateRule(input *UpdateRuleInput) (*UpdateRuleOutput, error) {
 	req, out := c.UpdateRuleRequest(input)
@@ -1194,6 +1198,9 @@ type CreateRuleOutput struct {
 	// retain resources.
 	RetentionPeriod *RetentionPeriod `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the retention rule.
+	RuleArn *string `type:"string"`
+
 	// The state of the retention rule. Only retention rules that are in the available
 	// state retain resources.
 	Status *string `type:"string" enum:"RuleStatus"`
@@ -1259,6 +1266,12 @@ func (s *CreateRuleOutput) SetResourceType(v string) *CreateRuleOutput {
 // SetRetentionPeriod sets the RetentionPeriod field's value.
 func (s *CreateRuleOutput) SetRetentionPeriod(v *RetentionPeriod) *CreateRuleOutput {
 	s.RetentionPeriod = v
+	return s
+}
+
+// SetRuleArn sets the RuleArn field's value.
+func (s *CreateRuleOutput) SetRuleArn(v string) *CreateRuleOutput {
+	s.RuleArn = &v
 	return s
 }
 
@@ -1438,6 +1451,9 @@ type GetRuleOutput struct {
 	// retain resources.
 	RetentionPeriod *RetentionPeriod `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the retention rule.
+	RuleArn *string `type:"string"`
+
 	// The state of the retention rule. Only retention rules that are in the available
 	// state retain resources.
 	Status *string `type:"string" enum:"RuleStatus"`
@@ -1506,6 +1522,12 @@ func (s *GetRuleOutput) SetResourceType(v string) *GetRuleOutput {
 // SetRetentionPeriod sets the RetentionPeriod field's value.
 func (s *GetRuleOutput) SetRetentionPeriod(v *RetentionPeriod) *GetRuleOutput {
 	s.RetentionPeriod = v
+	return s
+}
+
+// SetRuleArn sets the RuleArn field's value.
+func (s *GetRuleOutput) SetRuleArn(v string) *GetRuleOutput {
+	s.RuleArn = &v
 	return s
 }
 
@@ -1961,6 +1983,9 @@ type LockRuleOutput struct {
 	// retain resources.
 	RetentionPeriod *RetentionPeriod `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the retention rule.
+	RuleArn *string `type:"string"`
+
 	// The state of the retention rule. Only retention rules that are in the available
 	// state retain resources.
 	Status *string `type:"string" enum:"RuleStatus"`
@@ -2023,6 +2048,12 @@ func (s *LockRuleOutput) SetResourceType(v string) *LockRuleOutput {
 // SetRetentionPeriod sets the RetentionPeriod field's value.
 func (s *LockRuleOutput) SetRetentionPeriod(v *RetentionPeriod) *LockRuleOutput {
 	s.RetentionPeriod = v
+	return s
+}
+
+// SetRuleArn sets the RuleArn field's value.
+func (s *LockRuleOutput) SetRuleArn(v string) *LockRuleOutput {
+	s.RuleArn = &v
 	return s
 }
 
@@ -2252,6 +2283,9 @@ type RuleSummary struct {
 	// Information about the retention period for which the retention rule is to
 	// retain resources.
 	RetentionPeriod *RetentionPeriod `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the retention rule.
+	RuleArn *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -2293,6 +2327,12 @@ func (s *RuleSummary) SetLockState(v string) *RuleSummary {
 // SetRetentionPeriod sets the RetentionPeriod field's value.
 func (s *RuleSummary) SetRetentionPeriod(v *RetentionPeriod) *RuleSummary {
 	s.RetentionPeriod = v
+	return s
+}
+
+// SetRuleArn sets the RuleArn field's value.
+func (s *RuleSummary) SetRuleArn(v string) *RuleSummary {
+	s.RuleArn = &v
 	return s
 }
 
@@ -2684,6 +2724,9 @@ type UnlockRuleOutput struct {
 	// retain resources.
 	RetentionPeriod *RetentionPeriod `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the retention rule.
+	RuleArn *string `type:"string"`
+
 	// The state of the retention rule. Only retention rules that are in the available
 	// state retain resources.
 	Status *string `type:"string" enum:"RuleStatus"`
@@ -2752,6 +2795,12 @@ func (s *UnlockRuleOutput) SetResourceType(v string) *UnlockRuleOutput {
 // SetRetentionPeriod sets the RetentionPeriod field's value.
 func (s *UnlockRuleOutput) SetRetentionPeriod(v *RetentionPeriod) *UnlockRuleOutput {
 	s.RetentionPeriod = v
+	return s
+}
+
+// SetRuleArn sets the RuleArn field's value.
+func (s *UnlockRuleOutput) SetRuleArn(v string) *UnlockRuleOutput {
+	s.RuleArn = &v
 	return s
 }
 
@@ -3004,6 +3053,9 @@ type UpdateRuleOutput struct {
 	// retain resources.
 	RetentionPeriod *RetentionPeriod `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the retention rule.
+	RuleArn *string `type:"string"`
+
 	// The state of the retention rule. Only retention rules that are in the available
 	// state retain resources.
 	Status *string `type:"string" enum:"RuleStatus"`
@@ -3066,6 +3118,12 @@ func (s *UpdateRuleOutput) SetResourceType(v string) *UpdateRuleOutput {
 // SetRetentionPeriod sets the RetentionPeriod field's value.
 func (s *UpdateRuleOutput) SetRetentionPeriod(v *RetentionPeriod) *UpdateRuleOutput {
 	s.RetentionPeriod = v
+	return s
+}
+
+// SetRuleArn sets the RuleArn field's value.
+func (s *UpdateRuleOutput) SetRuleArn(v string) *UpdateRuleOutput {
+	s.RuleArn = &v
 	return s
 }
 
