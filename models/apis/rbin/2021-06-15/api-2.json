@@ -163,7 +163,8 @@
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"ConflictException"}
+        {"shape":"ConflictException"},
+        {"shape":"ServiceQuotaExceededException"}
       ]
     }
   },
@@ -207,7 +208,8 @@
         "ResourceTags":{"shape":"ResourceTags"},
         "Status":{"shape":"RuleStatus"},
         "LockConfiguration":{"shape":"LockConfiguration"},
-        "LockState":{"shape":"LockState"}
+        "LockState":{"shape":"LockState"},
+        "RuleArn":{"shape":"RuleArn"}
       }
     },
     "DeleteRuleRequest":{
@@ -253,7 +255,8 @@
         "Status":{"shape":"RuleStatus"},
         "LockConfiguration":{"shape":"LockConfiguration"},
         "LockState":{"shape":"LockState"},
-        "LockEndTime":{"shape":"TimeStamp"}
+        "LockEndTime":{"shape":"TimeStamp"},
+        "RuleArn":{"shape":"RuleArn"}
       }
     },
     "InternalServerException":{
@@ -332,7 +335,8 @@
         "ResourceTags":{"shape":"ResourceTags"},
         "Status":{"shape":"RuleStatus"},
         "LockConfiguration":{"shape":"LockConfiguration"},
-        "LockState":{"shape":"LockState"}
+        "LockState":{"shape":"LockState"},
+        "RuleArn":{"shape":"RuleArn"}
       }
     },
     "LockState":{
@@ -437,7 +441,8 @@
         "Identifier":{"shape":"RuleIdentifier"},
         "Description":{"shape":"Description"},
         "RetentionPeriod":{"shape":"RetentionPeriod"},
-        "LockState":{"shape":"LockState"}
+        "LockState":{"shape":"LockState"},
+        "RuleArn":{"shape":"RuleArn"}
       }
     },
     "RuleSummaryList":{
@@ -555,7 +560,8 @@
         "Status":{"shape":"RuleStatus"},
         "LockConfiguration":{"shape":"LockConfiguration"},
         "LockState":{"shape":"LockState"},
-        "LockEndTime":{"shape":"TimeStamp"}
+        "LockEndTime":{"shape":"TimeStamp"},
+        "RuleArn":{"shape":"RuleArn"}
       }
     },
     "UntagResourceRequest":{
@@ -607,7 +613,8 @@
         "ResourceTags":{"shape":"ResourceTags"},
         "Status":{"shape":"RuleStatus"},
         "LockState":{"shape":"LockState"},
-        "LockEndTime":{"shape":"TimeStamp"}
+        "LockEndTime":{"shape":"TimeStamp"},
+        "RuleArn":{"shape":"RuleArn"}
       }
     },
     "ValidationException":{

@@ -194,6 +194,10 @@ type QConnectAPI interface {
 	NotifyRecommendationsReceivedWithContext(aws.Context, *qconnect.NotifyRecommendationsReceivedInput, ...request.Option) (*qconnect.NotifyRecommendationsReceivedOutput, error)
 	NotifyRecommendationsReceivedRequest(*qconnect.NotifyRecommendationsReceivedInput) (*request.Request, *qconnect.NotifyRecommendationsReceivedOutput)
 
+	PutFeedback(*qconnect.PutFeedbackInput) (*qconnect.PutFeedbackOutput, error)
+	PutFeedbackWithContext(aws.Context, *qconnect.PutFeedbackInput, ...request.Option) (*qconnect.PutFeedbackOutput, error)
+	PutFeedbackRequest(*qconnect.PutFeedbackInput) (*request.Request, *qconnect.PutFeedbackOutput)
+
 	QueryAssistant(*qconnect.QueryAssistantInput) (*qconnect.QueryAssistantOutput, error)
 	QueryAssistantWithContext(aws.Context, *qconnect.QueryAssistantInput, ...request.Option) (*qconnect.QueryAssistantOutput, error)
 	QueryAssistantRequest(*qconnect.QueryAssistantInput) (*request.Request, *qconnect.QueryAssistantOutput)

@@ -73,6 +73,10 @@ func (c *VerifiedPermissions) BatchIsAuthorizedRequest(input *BatchIsAuthorizedI
 // and up to 100 resources. The requests of a BatchIsAuthorized API request
 // can contain up to 30 requests.
 //
+// The BatchIsAuthorized operation doesn't have its own IAM permission. To authorize
+// this operation for Amazon Web Services principals, include the permission
+// verifiedpermissions:IsAuthorized in their IAM policies.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -5114,6 +5118,14 @@ type CreatePolicyStoreInput struct {
 	// parameters, the retry fails with an IdempotentParameterMismatch error.
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
+	// Descriptive text that you can provide to help with identification of the
+	// current policy store.
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreatePolicyStoreInput's
+	// String and GoString methods.
+	Description *string `locationName:"description" type:"string" sensitive:"true"`
+
 	// Specifies the validation setting for this policy store.
 	//
 	// Currently, the only valid and required value is Mode.
@@ -5171,6 +5183,12 @@ func (s *CreatePolicyStoreInput) Validate() error {
 // SetClientToken sets the ClientToken field's value.
 func (s *CreatePolicyStoreInput) SetClientToken(v string) *CreatePolicyStoreInput {
 	s.ClientToken = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreatePolicyStoreInput) SetDescription(v string) *CreatePolicyStoreInput {
+	s.Description = &v
 	return s
 }
 
@@ -6547,6 +6565,14 @@ type GetPolicyStoreOutput struct {
 	// CreatedDate is a required field
 	CreatedDate *time.Time `locationName:"createdDate" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
+	// Descriptive text that you can provide to help with identification of the
+	// current policy store.
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetPolicyStoreOutput's
+	// String and GoString methods.
+	Description *string `locationName:"description" type:"string" sensitive:"true"`
+
 	// The date and time that the policy store was last updated.
 	//
 	// LastUpdatedDate is a required field
@@ -6590,6 +6616,12 @@ func (s *GetPolicyStoreOutput) SetArn(v string) *GetPolicyStoreOutput {
 // SetCreatedDate sets the CreatedDate field's value.
 func (s *GetPolicyStoreOutput) SetCreatedDate(v time.Time) *GetPolicyStoreOutput {
 	s.CreatedDate = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *GetPolicyStoreOutput) SetDescription(v string) *GetPolicyStoreOutput {
+	s.Description = &v
 	return s
 }
 
@@ -6835,6 +6867,9 @@ type GetSchemaOutput struct {
 	// LastUpdatedDate is a required field
 	LastUpdatedDate *time.Time `locationName:"lastUpdatedDate" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
+	// The namespaces of the entities referenced by this schema.
+	Namespaces []*string `locationName:"namespaces" type:"list"`
+
 	// The ID of the policy store that contains the schema.
 	//
 	// PolicyStoreId is a required field
@@ -6877,6 +6912,12 @@ func (s *GetSchemaOutput) SetCreatedDate(v time.Time) *GetSchemaOutput {
 // SetLastUpdatedDate sets the LastUpdatedDate field's value.
 func (s *GetSchemaOutput) SetLastUpdatedDate(v time.Time) *GetSchemaOutput {
 	s.LastUpdatedDate = &v
+	return s
+}
+
+// SetNamespaces sets the Namespaces field's value.
+func (s *GetSchemaOutput) SetNamespaces(v []*string) *GetSchemaOutput {
+	s.Namespaces = v
 	return s
 }
 
@@ -8599,6 +8640,17 @@ type PolicyStoreItem struct {
 	// CreatedDate is a required field
 	CreatedDate *time.Time `locationName:"createdDate" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
+	// Descriptive text that you can provide to help with identification of the
+	// current policy store.
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PolicyStoreItem's
+	// String and GoString methods.
+	Description *string `locationName:"description" type:"string" sensitive:"true"`
+
+	// The date and time the policy store was most recently updated.
+	LastUpdatedDate *time.Time `locationName:"lastUpdatedDate" type:"timestamp" timestampFormat:"iso8601"`
+
 	// The unique identifier of the policy store.
 	//
 	// PolicyStoreId is a required field
@@ -8632,6 +8684,18 @@ func (s *PolicyStoreItem) SetArn(v string) *PolicyStoreItem {
 // SetCreatedDate sets the CreatedDate field's value.
 func (s *PolicyStoreItem) SetCreatedDate(v time.Time) *PolicyStoreItem {
 	s.CreatedDate = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *PolicyStoreItem) SetDescription(v string) *PolicyStoreItem {
+	s.Description = &v
+	return s
+}
+
+// SetLastUpdatedDate sets the LastUpdatedDate field's value.
+func (s *PolicyStoreItem) SetLastUpdatedDate(v time.Time) *PolicyStoreItem {
+	s.LastUpdatedDate = &v
 	return s
 }
 
@@ -10094,6 +10158,14 @@ func (s *UpdatePolicyOutput) SetResource(v *EntityIdentifier) *UpdatePolicyOutpu
 type UpdatePolicyStoreInput struct {
 	_ struct{} `type:"structure"`
 
+	// Descriptive text that you can provide to help with identification of the
+	// current policy store.
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdatePolicyStoreInput's
+	// String and GoString methods.
+	Description *string `locationName:"description" type:"string" sensitive:"true"`
+
 	// Specifies the ID of the policy store that you want to update
 	//
 	// PolicyStoreId is a required field
@@ -10146,6 +10218,12 @@ func (s *UpdatePolicyStoreInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdatePolicyStoreInput) SetDescription(v string) *UpdatePolicyStoreInput {
+	s.Description = &v
+	return s
 }
 
 // SetPolicyStoreId sets the PolicyStoreId field's value.

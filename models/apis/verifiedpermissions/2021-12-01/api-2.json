@@ -674,7 +674,8 @@
           "shape":"IdempotencyToken",
           "idempotencyToken":true
         },
-        "validationSettings":{"shape":"ValidationSettings"}
+        "validationSettings":{"shape":"ValidationSettings"},
+        "description":{"shape":"PolicyStoreDescription"}
       }
     },
     "CreatePolicyStoreOutput":{
@@ -960,7 +961,8 @@
         "arn":{"shape":"ResourceArn"},
         "validationSettings":{"shape":"ValidationSettings"},
         "createdDate":{"shape":"TimestampFormat"},
-        "lastUpdatedDate":{"shape":"TimestampFormat"}
+        "lastUpdatedDate":{"shape":"TimestampFormat"},
+        "description":{"shape":"PolicyStoreDescription"}
       }
     },
     "GetPolicyTemplateInput":{
@@ -1011,7 +1013,8 @@
         "policyStoreId":{"shape":"PolicyStoreId"},
         "schema":{"shape":"SchemaJson"},
         "createdDate":{"shape":"TimestampFormat"},
-        "lastUpdatedDate":{"shape":"TimestampFormat"}
+        "lastUpdatedDate":{"shape":"TimestampFormat"},
+        "namespaces":{"shape":"NamespaceList"}
       }
     },
     "IdempotencyToken":{
@@ -1322,6 +1325,12 @@
       "min":1,
       "sensitive":true
     },
+    "PolicyStoreDescription":{
+      "type":"string",
+      "max":150,
+      "min":0,
+      "sensitive":true
+    },
     "PolicyStoreId":{
       "type":"string",
       "max":200,
@@ -1338,7 +1347,9 @@
       "members":{
         "policyStoreId":{"shape":"PolicyStoreId"},
         "arn":{"shape":"ResourceArn"},
-        "createdDate":{"shape":"TimestampFormat"}
+        "createdDate":{"shape":"TimestampFormat"},
+        "lastUpdatedDate":{"shape":"TimestampFormat"},
+        "description":{"shape":"PolicyStoreDescription"}
       }
     },
     "PolicyStoreList":{
@@ -1672,7 +1683,8 @@
       ],
       "members":{
         "policyStoreId":{"shape":"PolicyStoreId"},
-        "validationSettings":{"shape":"ValidationSettings"}
+        "validationSettings":{"shape":"ValidationSettings"},
+        "description":{"shape":"PolicyStoreDescription"}
       }
     },
     "UpdatePolicyStoreOutput":{
