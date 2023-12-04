@@ -4111,6 +4111,49 @@
       "members": {
       }
     },
+    "ColorCorrection": {
+      "type": "structure",
+      "members": {
+        "InputColorSpace": {
+          "shape": "ColorSpace",
+          "locationName": "inputColorSpace"
+        },
+        "OutputColorSpace": {
+          "shape": "ColorSpace",
+          "locationName": "outputColorSpace"
+        },
+        "Uri": {
+          "shape": "__string",
+          "locationName": "uri"
+        }
+      },
+      "required": [
+        "OutputColorSpace",
+        "InputColorSpace",
+        "Uri"
+      ]
+    },
+    "ColorCorrectionSettings": {
+      "type": "structure",
+      "members": {
+        "GlobalColorCorrections": {
+          "shape": "__listOfColorCorrection",
+          "locationName": "globalColorCorrections"
+        }
+      },
+      "required": [
+        "GlobalColorCorrections"
+      ]
+    },
+    "ColorSpace": {
+      "type": "string",
+      "enum": [
+        "HDR10",
+        "HLG_2020",
+        "REC_601",
+        "REC_709"
+      ]
+    },
     "ColorSpacePassthroughSettings": {
       "type": "structure",
       "members": {
@@ -6354,6 +6397,10 @@
         "ThumbnailConfiguration": {
           "shape": "ThumbnailConfiguration",
           "locationName": "thumbnailConfiguration"
+        },
+        "ColorCorrectionSettings": {
+          "shape": "ColorCorrectionSettings",
+          "locationName": "colorCorrectionSettings"
         }
       },
       "required": [
@@ -14501,6 +14548,12 @@
       "type": "list",
       "member": {
         "shape": "ChannelSummary"
+      }
+    },
+    "__listOfColorCorrection": {
+      "type": "list",
+      "member": {
+        "shape": "ColorCorrection"
       }
     },
     "__listOfFailoverCondition": {

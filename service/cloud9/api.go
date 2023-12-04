@@ -1619,7 +1619,7 @@ type CreateEnvironmentEC2Input struct {
 	//
 	// AMI aliases
 	//
-	//    * Amazon Linux (default): amazonlinux-1-x86_64
+	//    * Amazon Linux: amazonlinux-1-x86_64
 	//
 	//    * Amazon Linux 2: amazonlinux-2-x86_64
 	//
@@ -1629,14 +1629,16 @@ type CreateEnvironmentEC2Input struct {
 	//
 	// SSM paths
 	//
-	//    * Amazon Linux (default): resolve:ssm:/aws/service/cloud9/amis/amazonlinux-1-x86_64
+	//    * Amazon Linux: resolve:ssm:/aws/service/cloud9/amis/amazonlinux-1-x86_64
 	//
 	//    * Amazon Linux 2: resolve:ssm:/aws/service/cloud9/amis/amazonlinux-2-x86_64
 	//
 	//    * Ubuntu 18.04: resolve:ssm:/aws/service/cloud9/amis/ubuntu-18.04-x86_64
 	//
 	//    * Ubuntu 22.04: resolve:ssm:/aws/service/cloud9/amis/ubuntu-22.04-x86_64
-	ImageId *string `locationName:"imageId" type:"string"`
+	//
+	// ImageId is a required field
+	ImageId *string `locationName:"imageId" type:"string" required:"true"`
 
 	// The type of instance to connect to the environment (for example, t2.micro).
 	//
@@ -1689,6 +1691,9 @@ func (s CreateEnvironmentEC2Input) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateEnvironmentEC2Input) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateEnvironmentEC2Input"}
+	if s.ImageId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ImageId"))
+	}
 	if s.InstanceType == nil {
 		invalidParams.Add(request.NewErrParamRequired("InstanceType"))
 	}

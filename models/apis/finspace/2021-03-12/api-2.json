@@ -1599,6 +1599,7 @@
     "KxClusterCodeDeploymentStrategy":{
       "type":"string",
       "enum":[
+        "NO_RESTART",
         "ROLLING",
         "FORCE"
       ]
@@ -1644,7 +1645,8 @@
       "enum":[
         "HDB",
         "RDB",
-        "GATEWAY"
+        "GATEWAY",
+        "GP"
       ]
     },
     "KxClusters":{

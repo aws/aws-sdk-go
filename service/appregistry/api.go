@@ -168,7 +168,7 @@ func (c *AppRegistry) AssociateResourceRequest(input *AssociateResourceInput) (r
 // (https://docs.aws.amazon.com/servicecatalog/latest/arguide/full.html) in
 // the AppRegistry Administrator Guide.
 //
-//   - resource-groups:DisassociateResource
+//   - resource-groups:AssociateResource
 //
 //   - cloudformation:UpdateStack
 //
