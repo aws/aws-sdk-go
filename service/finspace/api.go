@@ -4262,7 +4262,7 @@ type CreateKxChangesetInput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of change request objects that are run in order. A change request
-	// object consists of changeType , s3Path, and a dbPath. A changeType can has
+	// object consists of changeType , s3Path, and dbPath. A changeType can has
 	// the following values:
 	//
 	//    * PUT – Adds or updates files in a database.
@@ -4270,20 +4270,38 @@ type CreateKxChangesetInput struct {
 	//    * DELETE – Deletes files in a database.
 	//
 	// All the change requests require a mandatory dbPath attribute that defines
-	// the path within the database directory. The s3Path attribute defines the
-	// s3 source file path and is required for a PUT change type.
+	// the path within the database directory. All database paths must start with
+	// a leading / and end with a trailing /. The s3Path attribute defines the s3
+	// source file path and is required for a PUT change type. The s3path must end
+	// with a trailing / if it is a directory and must end without a trailing /
+	// if it is a file.
 	//
-	// Here is an example of how you can use the change request object:
+	// Here are few examples of how you can use the change request object:
 	//
-	// [ { "changeType": "PUT", "s3Path":"s3://bucket/db/2020.01.02/", "dbPath":"/2020.01.02/"},
-	// { "changeType": "PUT", "s3Path":"s3://bucket/db/sym", "dbPath":"/"}, { "changeType":
-	// "DELETE", "dbPath": "/2020.01.01/"} ]
+	// This request adds a single sym file at database root location.
 	//
-	// In this example, the first request with PUT change type allows you to add
-	// files in the given s3Path under the 2020.01.02 partition of the database.
-	// The second request with PUT change type allows you to add a single sym file
-	// at database root location. The last request with DELETE change type allows
-	// you to delete the files under the 2020.01.01 partition of the database.
+	// { "changeType": "PUT", "s3Path":"s3://bucket/db/sym", "dbPath":"/"}
+	//
+	// This request adds files in the given s3Path under the 2020.01.02 partition
+	// of the database.
+	//
+	// { "changeType": "PUT", "s3Path":"s3://bucket/db/2020.01.02/", "dbPath":"/2020.01.02/"}
+	//
+	// This request adds files in the given s3Path under the taq table partition
+	// of the database.
+	//
+	// [ { "changeType": "PUT", "s3Path":"s3://bucket/db/2020.01.02/taq/", "dbPath":"/2020.01.02/taq/"}]
+	//
+	// This request deletes the 2020.01.02 partition of the database.
+	//
+	// [{ "changeType": "DELETE", "dbPath": "/2020.01.02/"} ]
+	//
+	// The DELETE request allows you to delete the existing files under the 2020.01.02
+	// partition of the database, and the PUT request adds a new taq table under
+	// it.
+	//
+	// [ {"changeType": "DELETE", "dbPath":"/2020.01.02/"}, {"changeType": "PUT",
+	// "s3Path":"s3://bucket/db/2020.01.02/taq/", "dbPath":"/2020.01.02/taq/"}]
 	//
 	// ChangeRequests is a required field
 	ChangeRequests []*ChangeRequest `locationName:"changeRequests" min:"1" type:"list" required:"true"`
@@ -4551,6 +4569,13 @@ type CreateKxClusterInput struct {
 	//    in kdb systems. It allows you to create your own routing logic using the
 	//    initialization scripts and custom code. This type of cluster does not
 	//    require a writable local storage.
+	//
+	//    * GP – A general purpose cluster allows you to quickly iterate on code
+	//    during development by granting greater access to system commands and enabling
+	//    a fast reload of custom code. This cluster type can optionally mount databases
+	//    including cache and savedown storage. For this cluster type, the node
+	//    count is fixed at 1. It does not support autoscaling and supports only
+	//    SINGLE AZ mode.
 	//
 	// ClusterType is a required field
 	ClusterType *string `locationName:"clusterType" type:"string" required:"true" enum:"KxClusterType"`
@@ -4890,6 +4915,13 @@ type CreateKxClusterOutput struct {
 	//    in kdb systems. It allows you to create your own routing logic using the
 	//    initialization scripts and custom code. This type of cluster does not
 	//    require a writable local storage.
+	//
+	//    * GP – A general purpose cluster allows you to quickly iterate on code
+	//    during development by granting greater access to system commands and enabling
+	//    a fast reload of custom code. This cluster type can optionally mount databases
+	//    including cache and savedown storage. For this cluster type, the node
+	//    count is fixed at 1. It does not support autoscaling and supports only
+	//    SINGLE AZ mode.
 	ClusterType *string `locationName:"clusterType" type:"string" enum:"KxClusterType"`
 
 	// The details of the custom code that you want to use inside a cluster when
@@ -6819,6 +6851,13 @@ type GetKxClusterOutput struct {
 	//    in kdb systems. It allows you to create your own routing logic using the
 	//    initialization scripts and custom code. This type of cluster does not
 	//    require a writable local storage.
+	//
+	//    * GP – A general purpose cluster allows you to quickly iterate on code
+	//    during development by granting greater access to system commands and enabling
+	//    a fast reload of custom code. This cluster type can optionally mount databases
+	//    including cache and savedown storage. For this cluster type, the node
+	//    count is fixed at 1. It does not support autoscaling and supports only
+	//    SINGLE AZ mode.
 	ClusterType *string `locationName:"clusterType" type:"string" enum:"KxClusterType"`
 
 	// The details of the custom code that you want to use inside a cluster when
@@ -8069,6 +8108,13 @@ type KxCluster struct {
 	//    in kdb systems. It allows you to create your own routing logic using the
 	//    initialization scripts and custom code. This type of cluster does not
 	//    require a writable local storage.
+	//
+	//    * GP – A general purpose cluster allows you to quickly iterate on code
+	//    during development by granting greater access to system commands and enabling
+	//    a fast reload of custom code. This cluster type can optionally mount databases
+	//    including cache and savedown storage. For this cluster type, the node
+	//    count is fixed at 1. It does not support autoscaling and supports only
+	//    SINGLE AZ mode.
 	ClusterType *string `locationName:"clusterType" type:"string" enum:"KxClusterType"`
 
 	// The timestamp at which the cluster was created in FinSpace. The value is
@@ -8216,6 +8262,12 @@ type KxClusterCodeDeploymentConfiguration struct {
 	//
 	//    * ROLLING – This options updates the cluster by stopping the exiting
 	//    q process and starting a new q process with updated configuration.
+	//
+	//    * NO_RESTART – This option updates the cluster without stopping the
+	//    running q process. It is only available for GP type cluster. This option
+	//    is quicker as it reduces the turn around time to update configuration
+	//    on a cluster. With this deployment mode, you cannot update the initializationScript
+	//    and commandLineArguments parameters.
 	//
 	//    * FORCE – This option updates the cluster by immediately stopping all
 	//    the running processes before starting up new ones with the updated configuration.
@@ -9412,6 +9464,13 @@ type ListKxClustersInput struct {
 	//    in kdb systems. It allows you to create your own routing logic using the
 	//    initialization scripts and custom code. This type of cluster does not
 	//    require a writable local storage.
+	//
+	//    * GP – A general purpose cluster allows you to quickly iterate on code
+	//    during development by granting greater access to system commands and enabling
+	//    a fast reload of custom code. This cluster type can optionally mount databases
+	//    including cache and savedown storage. For this cluster type, the node
+	//    count is fixed at 1. It does not support autoscaling and supports only
+	//    SINGLE AZ mode.
 	ClusterType *string `location:"querystring" locationName:"clusterType" type:"string" enum:"KxClusterType"`
 
 	// A unique identifier for the kdb environment.
@@ -10880,6 +10939,8 @@ type UpdateKxClusterCodeConfigurationInput struct {
 	Code *CodeConfiguration `locationName:"code" type:"structure" required:"true"`
 
 	// Specifies the key-value pairs to make them available inside the cluster.
+	//
+	// You cannot update this parameter for a NO_RESTART deployment.
 	CommandLineArguments []*KxCommandLineArgument `locationName:"commandLineArguments" type:"list"`
 
 	// The configuration that allows you to choose how you want to update the code
@@ -10894,6 +10955,8 @@ type UpdateKxClusterCodeConfigurationInput struct {
 	// Specifies a Q program that will be run at launch of a cluster. It is a relative
 	// path within .zip file that contains the custom code, which will be loaded
 	// on the cluster. It must include the file name itself. For example, somedir/init.q.
+	//
+	// You cannot update this parameter for a NO_RESTART deployment.
 	InitializationScript *string `locationName:"initializationScript" min:"1" type:"string"`
 }
 
@@ -12360,6 +12423,9 @@ func KxAzMode_Values() []string {
 }
 
 const (
+	// KxClusterCodeDeploymentStrategyNoRestart is a KxClusterCodeDeploymentStrategy enum value
+	KxClusterCodeDeploymentStrategyNoRestart = "NO_RESTART"
+
 	// KxClusterCodeDeploymentStrategyRolling is a KxClusterCodeDeploymentStrategy enum value
 	KxClusterCodeDeploymentStrategyRolling = "ROLLING"
 
@@ -12370,6 +12436,7 @@ const (
 // KxClusterCodeDeploymentStrategy_Values returns all elements of the KxClusterCodeDeploymentStrategy enum
 func KxClusterCodeDeploymentStrategy_Values() []string {
 	return []string{
+		KxClusterCodeDeploymentStrategyNoRestart,
 		KxClusterCodeDeploymentStrategyRolling,
 		KxClusterCodeDeploymentStrategyForce,
 	}
@@ -12424,6 +12491,9 @@ const (
 
 	// KxClusterTypeGateway is a KxClusterType enum value
 	KxClusterTypeGateway = "GATEWAY"
+
+	// KxClusterTypeGp is a KxClusterType enum value
+	KxClusterTypeGp = "GP"
 )
 
 // KxClusterType_Values returns all elements of the KxClusterType enum
@@ -12432,6 +12502,7 @@ func KxClusterType_Values() []string {
 		KxClusterTypeHdb,
 		KxClusterTypeRdb,
 		KxClusterTypeGateway,
+		KxClusterTypeGp,
 	}
 }
 

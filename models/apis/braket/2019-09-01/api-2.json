@@ -253,6 +253,29 @@
         "scriptModeConfig":{"shape":"ScriptModeConfig"}
       }
     },
+    "Association":{
+      "type":"structure",
+      "required":[
+        "arn",
+        "type"
+      ],
+      "members":{
+        "arn":{"shape":"BraketResourceArn"},
+        "type":{"shape":"AssociationType"}
+      }
+    },
+    "AssociationType":{
+      "type":"string",
+      "enum":["RESERVATION_TIME_WINDOW_ARN"]
+    },
+    "Associations":{
+      "type":"list",
+      "member":{"shape":"Association"}
+    },
+    "BraketResourceArn":{
+      "type":"string",
+      "pattern":"^arn:aws[a-z\\-]*:braket:[a-z0-9\\-]*:[0-9]{12}:.*$"
+    },
     "CancelJobRequest":{
       "type":"structure",
       "required":["jobArn"],
@@ -349,6 +372,7 @@
       ],
       "members":{
         "algorithmSpecification":{"shape":"AlgorithmSpecification"},
+        "associations":{"shape":"CreateJobRequestAssociationsList"},
         "checkpointConfig":{"shape":"JobCheckpointConfig"},
         "clientToken":{
           "shape":"String64",
@@ -364,6 +388,12 @@
         "stoppingCondition":{"shape":"JobStoppingCondition"},
         "tags":{"shape":"TagsMap"}
       }
+    },
+    "CreateJobRequestAssociationsList":{
+      "type":"list",
+      "member":{"shape":"Association"},
+      "max":1,
+      "min":0
     },
     "CreateJobRequestInputDataConfigList":{
       "type":"list",
@@ -399,6 +429,7 @@
           "shape":"JsonValue",
           "jsonvalue":true
         },
+        "associations":{"shape":"CreateQuantumTaskRequestAssociationsList"},
         "clientToken":{
           "shape":"String64",
           "idempotencyToken":true
@@ -414,6 +445,12 @@
         "shots":{"shape":"CreateQuantumTaskRequestShotsLong"},
         "tags":{"shape":"TagsMap"}
       }
+    },
+    "CreateQuantumTaskRequestAssociationsList":{
+      "type":"list",
+      "member":{"shape":"Association"},
+      "max":1,
+      "min":0
     },
     "CreateQuantumTaskRequestDeviceParametersString":{
       "type":"string",
@@ -599,6 +636,7 @@
       ],
       "members":{
         "algorithmSpecification":{"shape":"AlgorithmSpecification"},
+        "associations":{"shape":"Associations"},
         "billableDuration":{"shape":"Integer"},
         "checkpointConfig":{"shape":"JobCheckpointConfig"},
         "createdAt":{"shape":"SyntheticTimestamp_date_time"},
@@ -655,6 +693,7 @@
         "status"
       ],
       "members":{
+        "associations":{"shape":"Associations"},
         "createdAt":{"shape":"SyntheticTimestamp_date_time"},
         "deviceArn":{"shape":"DeviceArn"},
         "deviceParameters":{
@@ -703,7 +742,8 @@
     "HyperParametersValueString":{
       "type":"string",
       "max":2500,
-      "min":1
+      "min":1,
+      "pattern":"^.*$"
     },
     "InputConfigList":{
       "type":"list",

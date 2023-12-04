@@ -656,6 +656,25 @@
       "refs": {
       }
     },
+    "ColorCorrection": {
+      "base": "Property of ColorCorrectionSettings. Used for custom color space conversion. The object identifies one 3D LUT file and specifies the input/output color space combination that the file will be used for.",
+      "refs": {
+        "__listOfColorCorrection$member": null
+      }
+    },
+    "ColorCorrectionSettings": {
+      "base": "Property of encoderSettings. Controls color conversion when you are using 3D LUT files to perform color conversion on video.",
+      "refs": {
+        "EncoderSettings$ColorCorrectionSettings": "Color correction settings"
+      }
+    },
+    "ColorSpace": {
+      "base": "Property of colorCorrections. When you are using 3D LUT files to perform color conversion on video, these are the supported color spaces.",
+      "refs": {
+        "ColorCorrection$InputColorSpace": "The color space of the input.",
+        "ColorCorrection$OutputColorSpace": "The color space of the output."
+      }
+    },
     "ColorSpacePassthroughSettings": {
       "base": "Passthrough applies no color space conversion to the output",
       "refs": {
@@ -4330,6 +4349,12 @@
         "ListChannelsResultModel$Channels": null
       }
     },
+    "__listOfColorCorrection": {
+      "base": null,
+      "refs": {
+        "ColorCorrectionSettings$GlobalColorCorrections": "An array of colorCorrections that applies when you are using 3D LUT files to perform color conversion on video. Each colorCorrection contains one 3D LUT file (that defines the color mapping for converting an input color space to an output color space), and the input/output combination that this 3D LUT file applies to. MediaLive reads the color space in the input metadata, determines the color space that you have specified for the output, and finds and uses the LUT file that applies to this combination."
+      }
+    },
     "__listOfFailoverCondition": {
       "base": null,
       "refs": {
@@ -4691,6 +4716,7 @@
         "ChannelSummary$Name": "The name of the channel. (user-mutable)",
         "ChannelSummary$RoleArn": "The Amazon Resource Name (ARN) of the role assumed when running the Channel.",
         "ClaimDeviceRequest$Id": "The id of the device you want to claim.",
+        "ColorCorrection$Uri": "The URI of the 3D LUT file. The protocol must be 's3:' or 's3ssl:':.",
         "CreateChannel$Name": "Name of channel.",
         "CreateChannel$RequestId": "Unique request ID to be specified. This is needed to prevent retries from\ncreating multiple resources.\n",
         "CreateChannel$Reserved": "Deprecated field that's only usable by whitelisted customers.",

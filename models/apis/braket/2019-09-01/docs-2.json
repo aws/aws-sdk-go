@@ -29,6 +29,33 @@
         "GetJobResponse$algorithmSpecification": "<p>Definition of the Amazon Braket job created. Specifies the container image the job uses, information about the Python scripts used for entry and training, and the user-defined metrics used to evaluation the job.</p>"
       }
     },
+    "Association": {
+      "base": "<p>The Amazon Braket resource and the association type.</p>",
+      "refs": {
+        "Associations$member": null,
+        "CreateJobRequestAssociationsList$member": null,
+        "CreateQuantumTaskRequestAssociationsList$member": null
+      }
+    },
+    "AssociationType": {
+      "base": null,
+      "refs": {
+        "Association$type": "<p>The association type for the specified Amazon Braket resource arn.</p>"
+      }
+    },
+    "Associations": {
+      "base": null,
+      "refs": {
+        "GetJobResponse$associations": "<p>The list of Amazon Braket resources associated with the hybrid job.</p>",
+        "GetQuantumTaskResponse$associations": "<p>The list of Amazon Braket resources associated with the quantum task.</p>"
+      }
+    },
+    "BraketResourceArn": {
+      "base": null,
+      "refs": {
+        "Association$arn": "<p>The Amazon Braket resource arn.</p>"
+      }
+    },
     "CancelJobRequest": {
       "base": null,
       "refs": {
@@ -78,6 +105,12 @@
       "refs": {
       }
     },
+    "CreateJobRequestAssociationsList": {
+      "base": null,
+      "refs": {
+        "CreateJobRequest$associations": "<p>The list of Amazon Braket resources associated with the hybrid job.</p>"
+      }
+    },
     "CreateJobRequestInputDataConfigList": {
       "base": null,
       "refs": {
@@ -98,6 +131,12 @@
     "CreateQuantumTaskRequest": {
       "base": null,
       "refs": {
+      }
+    },
+    "CreateQuantumTaskRequestAssociationsList": {
+      "base": null,
+      "refs": {
+        "CreateQuantumTaskRequest$associations": "<p>The list of Amazon Braket resources associated with the quantum task.</p>"
       }
     },
     "CreateQuantumTaskRequestDeviceParametersString": {
@@ -454,7 +493,7 @@
         "CancelQuantumTaskRequest$quantumTaskArn": "<p>The ARN of the task to cancel.</p>",
         "CancelQuantumTaskResponse$quantumTaskArn": "<p>The ARN of the task.</p>",
         "CreateQuantumTaskResponse$quantumTaskArn": "<p>The ARN of the task created by the request.</p>",
-        "GetQuantumTaskRequest$quantumTaskArn": "<p>the ARN of the task to retrieve.</p>",
+        "GetQuantumTaskRequest$quantumTaskArn": "<p>The ARN of the task to retrieve.</p>",
         "GetQuantumTaskResponse$quantumTaskArn": "<p>The ARN of the task.</p>",
         "QuantumTaskSummary$quantumTaskArn": "<p>The ARN of the task.</p>"
       }
@@ -747,7 +786,7 @@
         "GetJobResponse$startedAt": "<p>The date and time that the Amazon Braket job was started.</p>",
         "GetQuantumTaskResponse$createdAt": "<p>The time at which the task was created.</p>",
         "GetQuantumTaskResponse$endedAt": "<p>The time at which the task ended.</p>",
-        "JobEventDetails$timeOfEvent": "<p>TThe type of event that occurred related to the Amazon Braket job.</p>",
+        "JobEventDetails$timeOfEvent": "<p>The type of event that occurred related to the Amazon Braket job.</p>",
         "JobSummary$createdAt": "<p>The date and time that the Amazon Braket job was created.</p>",
         "JobSummary$endedAt": "<p>The date and time that the Amazon Braket job ended.</p>",
         "JobSummary$startedAt": "<p>The date and time that the Amazon Braket job was started.</p>",

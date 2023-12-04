@@ -78,6 +78,9 @@
         "AccountIdList$member": null,
         "BillingGroupListElement$PrimaryAccountId": "<p>The account ID that serves as the main account in a billing group.</p>",
         "CreateBillingGroupInput$PrimaryAccountId": "<p> The account ID that serves as the main account in a billing group. </p>",
+        "CreateCustomLineItemInput$AccountId": "<p>The Amazon Web Services account in which this custom line item will be applied to.</p>",
+        "CustomLineItemListElement$AccountId": "<p>The Amazon Web Services account in which this custom line item will be applied to.</p>",
+        "CustomLineItemVersionListElement$AccountId": "<p>The Amazon Web Services account in which this custom line item will be applied to.</p>",
         "ListAccountAssociationsFilter$AccountId": "<p>The Amazon Web Services account ID to filter on.</p>",
         "UpdateBillingGroupOutput$PrimaryAccountId": "<p> The account ID that serves as the main account in a billing group. </p>"
       }
@@ -93,7 +96,8 @@
       "refs": {
         "AccountGrouping$LinkedAccountIds": "<p>The account IDs that make up the billing group. Account IDs must be a part of the consolidated billing family, and not associated with another billing group.</p>",
         "AssociateAccountsInput$AccountIds": "<p> The associating array of account IDs. </p>",
-        "DisassociateAccountsInput$AccountIds": "<p>The array of account IDs to disassociate. </p>"
+        "DisassociateAccountsInput$AccountIds": "<p>The array of account IDs to disassociate. </p>",
+        "ListCustomLineItemsFilter$AccountIds": "<p>The Amazon Web Services accounts in which this custom line item will be applied to.</p>"
       }
     },
     "AccountName": {

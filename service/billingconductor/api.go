@@ -4688,6 +4688,10 @@ func (s *CreateBillingGroupOutput) SetArn(v string) *CreateBillingGroupOutput {
 type CreateCustomLineItemInput struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Web Services account in which this custom line item will be applied
+	// to.
+	AccountId *string `type:"string"`
+
 	// The Amazon Resource Name (ARN) that references the billing group where the
 	// custom line item applies to.
 	//
@@ -4791,6 +4795,12 @@ func (s *CreateCustomLineItemInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *CreateCustomLineItemInput) SetAccountId(v string) *CreateCustomLineItemInput {
+	s.AccountId = &v
+	return s
 }
 
 // SetBillingGroupArn sets the BillingGroupArn field's value.
@@ -5533,6 +5543,10 @@ func (s *CustomLineItemFlatChargeDetails) SetChargeValue(v float64) *CustomLineI
 type CustomLineItemListElement struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Web Services account in which this custom line item will be applied
+	// to.
+	AccountId *string `type:"string"`
+
 	// The Amazon Resource Names (ARNs) for custom line items.
 	Arn *string `type:"string"`
 
@@ -5592,6 +5606,12 @@ func (s CustomLineItemListElement) String() string {
 // value will be replaced with "sensitive".
 func (s CustomLineItemListElement) GoString() string {
 	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *CustomLineItemListElement) SetAccountId(v string) *CustomLineItemListElement {
+	s.AccountId = &v
+	return s
 }
 
 // SetArn sets the Arn field's value.
@@ -5716,6 +5736,10 @@ func (s *CustomLineItemPercentageChargeDetails) SetPercentageValue(v float64) *C
 type CustomLineItemVersionListElement struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Web Services account in which this custom line item will be applied
+	// to.
+	AccountId *string `type:"string"`
+
 	// A list of custom line item Amazon Resource Names (ARNs) to retrieve information.
 	Arn *string `type:"string"`
 
@@ -5781,6 +5805,12 @@ func (s CustomLineItemVersionListElement) String() string {
 // value will be replaced with "sensitive".
 func (s CustomLineItemVersionListElement) GoString() string {
 	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *CustomLineItemVersionListElement) SetAccountId(v string) *CustomLineItemVersionListElement {
+	s.AccountId = &v
+	return s
 }
 
 // SetArn sets the Arn field's value.
@@ -7516,6 +7546,10 @@ func (s *ListCustomLineItemVersionsOutput) SetNextToken(v string) *ListCustomLin
 type ListCustomLineItemsFilter struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Web Services accounts in which this custom line item will be applied
+	// to.
+	AccountIds []*string `min:"1" type:"list"`
+
 	// A list of custom line item ARNs to retrieve information.
 	Arns []*string `min:"1" type:"list"`
 
@@ -7547,6 +7581,9 @@ func (s ListCustomLineItemsFilter) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ListCustomLineItemsFilter) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListCustomLineItemsFilter"}
+	if s.AccountIds != nil && len(s.AccountIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountIds", 1))
+	}
 	if s.Arns != nil && len(s.Arns) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Arns", 1))
 	}
@@ -7561,6 +7598,12 @@ func (s *ListCustomLineItemsFilter) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountIds sets the AccountIds field's value.
+func (s *ListCustomLineItemsFilter) SetAccountIds(v []*string) *ListCustomLineItemsFilter {
+	s.AccountIds = v
+	return s
 }
 
 // SetArns sets the Arns field's value.
@@ -10963,6 +11006,9 @@ const (
 
 	// ValidationExceptionReasonCannotDeleteAutoAssociateBillingGroup is a ValidationExceptionReason enum value
 	ValidationExceptionReasonCannotDeleteAutoAssociateBillingGroup = "CANNOT_DELETE_AUTO_ASSOCIATE_BILLING_GROUP"
+
+	// ValidationExceptionReasonIllegalAccountId is a ValidationExceptionReason enum value
+	ValidationExceptionReasonIllegalAccountId = "ILLEGAL_ACCOUNT_ID"
 )
 
 // ValidationExceptionReason_Values returns all elements of the ValidationExceptionReason enum
@@ -11027,5 +11073,6 @@ func ValidationExceptionReason_Values() []string {
 		ValidationExceptionReasonInvalidFilter,
 		ValidationExceptionReasonTooManyAutoAssociateBillingGroups,
 		ValidationExceptionReasonCannotDeleteAutoAssociateBillingGroup,
+		ValidationExceptionReasonIllegalAccountId,
 	}
 }

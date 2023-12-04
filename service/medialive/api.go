@@ -10807,6 +10807,147 @@ func (s ClaimDeviceOutput) GoString() string {
 	return s.String()
 }
 
+// Property of ColorCorrectionSettings. Used for custom color space conversion.
+// The object identifies one 3D LUT file and specifies the input/output color
+// space combination that the file will be used for.
+type ColorCorrection struct {
+	_ struct{} `type:"structure"`
+
+	// The color space of the input.
+	//
+	// InputColorSpace is a required field
+	InputColorSpace *string `locationName:"inputColorSpace" type:"string" required:"true" enum:"ColorSpace"`
+
+	// The color space of the output.
+	//
+	// OutputColorSpace is a required field
+	OutputColorSpace *string `locationName:"outputColorSpace" type:"string" required:"true" enum:"ColorSpace"`
+
+	// The URI of the 3D LUT file. The protocol must be 's3:' or 's3ssl:':.
+	//
+	// Uri is a required field
+	Uri *string `locationName:"uri" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ColorCorrection) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ColorCorrection) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ColorCorrection) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ColorCorrection"}
+	if s.InputColorSpace == nil {
+		invalidParams.Add(request.NewErrParamRequired("InputColorSpace"))
+	}
+	if s.OutputColorSpace == nil {
+		invalidParams.Add(request.NewErrParamRequired("OutputColorSpace"))
+	}
+	if s.Uri == nil {
+		invalidParams.Add(request.NewErrParamRequired("Uri"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInputColorSpace sets the InputColorSpace field's value.
+func (s *ColorCorrection) SetInputColorSpace(v string) *ColorCorrection {
+	s.InputColorSpace = &v
+	return s
+}
+
+// SetOutputColorSpace sets the OutputColorSpace field's value.
+func (s *ColorCorrection) SetOutputColorSpace(v string) *ColorCorrection {
+	s.OutputColorSpace = &v
+	return s
+}
+
+// SetUri sets the Uri field's value.
+func (s *ColorCorrection) SetUri(v string) *ColorCorrection {
+	s.Uri = &v
+	return s
+}
+
+// Property of encoderSettings. Controls color conversion when you are using
+// 3D LUT files to perform color conversion on video.
+type ColorCorrectionSettings struct {
+	_ struct{} `type:"structure"`
+
+	// An array of colorCorrections that applies when you are using 3D LUT files
+	// to perform color conversion on video. Each colorCorrection contains one 3D
+	// LUT file (that defines the color mapping for converting an input color space
+	// to an output color space), and the input/output combination that this 3D
+	// LUT file applies to. MediaLive reads the color space in the input metadata,
+	// determines the color space that you have specified for the output, and finds
+	// and uses the LUT file that applies to this combination.
+	//
+	// GlobalColorCorrections is a required field
+	GlobalColorCorrections []*ColorCorrection `locationName:"globalColorCorrections" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ColorCorrectionSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ColorCorrectionSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ColorCorrectionSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ColorCorrectionSettings"}
+	if s.GlobalColorCorrections == nil {
+		invalidParams.Add(request.NewErrParamRequired("GlobalColorCorrections"))
+	}
+	if s.GlobalColorCorrections != nil {
+		for i, v := range s.GlobalColorCorrections {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "GlobalColorCorrections", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGlobalColorCorrections sets the GlobalColorCorrections field's value.
+func (s *ColorCorrectionSettings) SetGlobalColorCorrections(v []*ColorCorrection) *ColorCorrectionSettings {
+	s.GlobalColorCorrections = v
+	return s
+}
+
 // Passthrough applies no color space conversion to the output
 type ColorSpacePassthroughSettings struct {
 	_ struct{} `type:"structure"`
@@ -15630,6 +15771,9 @@ type EncoderSettings struct {
 	// Settings for caption decriptions
 	CaptionDescriptions []*CaptionDescription `locationName:"captionDescriptions" type:"list"`
 
+	// Color correction settings
+	ColorCorrectionSettings *ColorCorrectionSettings `locationName:"colorCorrectionSettings" type:"structure"`
+
 	// Feature Activations
 	FeatureActivations *FeatureActivations `locationName:"featureActivations" type:"structure"`
 
@@ -15725,6 +15869,11 @@ func (s *EncoderSettings) Validate() error {
 			}
 		}
 	}
+	if s.ColorCorrectionSettings != nil {
+		if err := s.ColorCorrectionSettings.Validate(); err != nil {
+			invalidParams.AddNested("ColorCorrectionSettings", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.GlobalConfiguration != nil {
 		if err := s.GlobalConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("GlobalConfiguration", err.(request.ErrInvalidParams))
@@ -15799,6 +15948,12 @@ func (s *EncoderSettings) SetBlackoutSlate(v *BlackoutSlate) *EncoderSettings {
 // SetCaptionDescriptions sets the CaptionDescriptions field's value.
 func (s *EncoderSettings) SetCaptionDescriptions(v []*CaptionDescription) *EncoderSettings {
 	s.CaptionDescriptions = v
+	return s
+}
+
+// SetColorCorrectionSettings sets the ColorCorrectionSettings field's value.
+func (s *EncoderSettings) SetColorCorrectionSettings(v *ColorCorrectionSettings) *EncoderSettings {
+	s.ColorCorrectionSettings = v
 	return s
 }
 
@@ -34503,6 +34658,32 @@ func ChannelState_Values() []string {
 		ChannelStateDeleted,
 		ChannelStateUpdating,
 		ChannelStateUpdateFailed,
+	}
+}
+
+// Property of colorCorrections. When you are using 3D LUT files to perform
+// color conversion on video, these are the supported color spaces.
+const (
+	// ColorSpaceHdr10 is a ColorSpace enum value
+	ColorSpaceHdr10 = "HDR10"
+
+	// ColorSpaceHlg2020 is a ColorSpace enum value
+	ColorSpaceHlg2020 = "HLG_2020"
+
+	// ColorSpaceRec601 is a ColorSpace enum value
+	ColorSpaceRec601 = "REC_601"
+
+	// ColorSpaceRec709 is a ColorSpace enum value
+	ColorSpaceRec709 = "REC_709"
+)
+
+// ColorSpace_Values returns all elements of the ColorSpace enum
+func ColorSpace_Values() []string {
+	return []string{
+		ColorSpaceHdr10,
+		ColorSpaceHlg2020,
+		ColorSpaceRec601,
+		ColorSpaceRec709,
 	}
 }
 

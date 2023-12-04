@@ -917,7 +917,8 @@
         "BillingGroupArn":{"shape":"BillingGroupArn"},
         "BillingPeriodRange":{"shape":"CustomLineItemBillingPeriodRange"},
         "Tags":{"shape":"TagMap"},
-        "ChargeDetails":{"shape":"CustomLineItemChargeDetails"}
+        "ChargeDetails":{"shape":"CustomLineItemChargeDetails"},
+        "AccountId":{"shape":"AccountId"}
       }
     },
     "CreateCustomLineItemOutput":{
@@ -1088,7 +1089,8 @@
         "BillingGroupArn":{"shape":"BillingGroupArn"},
         "CreationTime":{"shape":"Instant"},
         "LastModifiedTime":{"shape":"Instant"},
-        "AssociationSize":{"shape":"NumberOfAssociations"}
+        "AssociationSize":{"shape":"NumberOfAssociations"},
+        "AccountId":{"shape":"AccountId"}
       }
     },
     "CustomLineItemName":{
@@ -1156,7 +1158,8 @@
         "StartBillingPeriod":{"shape":"BillingPeriod"},
         "EndBillingPeriod":{"shape":"BillingPeriod"},
         "Arn":{"shape":"CustomLineItemArn"},
-        "StartTime":{"shape":"Instant"}
+        "StartTime":{"shape":"Instant"},
+        "AccountId":{"shape":"AccountId"}
       }
     },
     "DeleteBillingGroupInput":{
@@ -1448,7 +1451,8 @@
       "members":{
         "Names":{"shape":"CustomLineItemNameList"},
         "BillingGroups":{"shape":"BillingGroupArnList"},
-        "Arns":{"shape":"CustomLineItemArns"}
+        "Arns":{"shape":"CustomLineItemArns"},
+        "AccountIds":{"shape":"AccountIdList"}
       }
     },
     "ListCustomLineItemsInput":{
@@ -2159,7 +2163,8 @@
         "INVALID_SKU_COMBO",
         "INVALID_FILTER",
         "TOO_MANY_AUTO_ASSOCIATE_BILLING_GROUPS",
-        "CANNOT_DELETE_AUTO_ASSOCIATE_BILLING_GROUP"
+        "CANNOT_DELETE_AUTO_ASSOCIATE_BILLING_GROUP",
+        "ILLEGAL_ACCOUNT_ID"
       ]
     }
   }

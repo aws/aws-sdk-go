@@ -1,3 +1,18 @@
+Release v1.48.12 (2023-12-04)
+===
+
+### Service Client Updates
+* `service/billingconductor`: Updates service API and documentation
+* `service/braket`: Updates service API and documentation
+* `service/cloud9`: Updates service API and documentation
+  * This release adds the requirement to include the imageId parameter in the CreateEnvironmentEC2 API call.
+* `service/cloudformation`: Updates service waiters
+  * Including UPDATE_* states as a success status for CreateStack waiter.
+* `service/finspace`: Updates service API and documentation
+* `service/medialive`: Updates service API and documentation
+  * Adds support for custom color correction on channels using 3D LUT files.
+* `service/servicecatalog-appregistry`: Updates service documentation
+
 Release v1.48.11 (2023-12-01)
 ===
 
