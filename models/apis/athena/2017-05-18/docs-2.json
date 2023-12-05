@@ -124,6 +124,12 @@
         "CreatePresignedNotebookUrlResponse$AuthToken": "<p>The authentication token for the notebook.</p>"
       }
     },
+    "AuthenticationType": {
+      "base": null,
+      "refs": {
+        "QueryResultsS3AccessGrantsConfiguration$AuthenticationType": "<p>The authentication type used for Amazon S3 access grants. Currently, only <code>DIRECTORY_IDENTITY</code> is supported.</p>"
+      }
+    },
     "AwsAccountId": {
       "base": null,
       "refs": {
@@ -174,6 +180,9 @@
       "base": null,
       "refs": {
         "DeleteWorkGroupInput$RecursiveDeleteOption": "<p>The option to delete the workgroup and its contents even if the workgroup contains any named queries, query executions, or notebooks.</p>",
+        "IdentityCenterConfiguration$EnableIdentityCenter": "<p>Specifies whether the workgroup is IAM Identity Center supported.</p>",
+        "QueryResultsS3AccessGrantsConfiguration$EnableS3AccessGrants": "<p>Specifies whether Amazon S3 access grants are enabled for query results.</p>",
+        "QueryResultsS3AccessGrantsConfiguration$CreateUserLevelPrefix": "<p>When enabled, appends the user ID as an Amazon S3 path prefix to the query result output location.</p>",
         "ResultConfigurationUpdates$RemoveOutputLocation": "<p>If set to \"true\", indicates that the previously-specified query results location (also known as a client-side setting) for queries in this workgroup should be ignored and set to null. If set to \"false\" or not set, and a value is present in the <code>OutputLocation</code> in <code>ResultConfigurationUpdates</code> (the client-side setting), the <code>OutputLocation</code> in the workgroup's <code>ResultConfiguration</code> will be updated with the new value. For more information, see <a href=\"https://docs.aws.amazon.com/athena/latest/ug/workgroups-settings-override.html\">Workgroup Settings Override Client-Side Settings</a>.</p>",
         "ResultConfigurationUpdates$RemoveEncryptionConfiguration": "<p>If set to \"true\", indicates that the previously-specified encryption configuration (also known as the client-side setting) for queries in this workgroup should be ignored and set to null. If set to \"false\" or not set, and a value is present in the <code>EncryptionConfiguration</code> in <code>ResultConfigurationUpdates</code> (the client-side setting), the <code>EncryptionConfiguration</code> in the workgroup's <code>ResultConfiguration</code> will be updated with the new value. For more information, see <a href=\"https://docs.aws.amazon.com/athena/latest/ug/workgroups-settings-override.html\">Workgroup Settings Override Client-Side Settings</a>.</p>",
         "ResultConfigurationUpdates$RemoveExpectedBucketOwner": "<p>If set to \"true\", removes the Amazon Web Services account ID previously specified for <a>ResultConfiguration$ExpectedBucketOwner</a>. If set to \"false\" or not set, and a value is present in the <code>ExpectedBucketOwner</code> in <code>ResultConfigurationUpdates</code> (the client-side setting), the <code>ExpectedBucketOwner</code> in the workgroup's <code>ResultConfiguration</code> is updated with the new value. For more information, see <a href=\"https://docs.aws.amazon.com/athena/latest/ug/workgroups-settings-override.html\">Workgroup Settings Override Client-Side Settings</a>.</p>",
@@ -398,7 +407,7 @@
     "ColumnNullable": {
       "base": null,
       "refs": {
-        "ColumnInfo$Nullable": "<p>Indicates the column's nullable status.</p>"
+        "ColumnInfo$Nullable": "<p>Unsupported constraint. This value always shows as <code>UNKNOWN</code>.</p>"
       }
     },
     "CommentString": {
@@ -967,8 +976,27 @@
       "refs": {
         "CreateNamedQueryInput$ClientRequestToken": "<p>A unique case-sensitive string used to ensure the request to create the query is idempotent (executes only once). If another <code>CreateNamedQuery</code> request is received, the same response is returned and another query is not created. If a parameter has changed, for example, the <code>QueryString</code>, an error is returned.</p> <important> <p>This token is listed as not required because Amazon Web Services SDKs (for example the Amazon Web Services SDK for Java) auto-generate the token for users. If you are not using the Amazon Web Services SDK or the Amazon Web Services CLI, you must provide this token or the action will fail.</p> </important>",
         "StartCalculationExecutionRequest$ClientRequestToken": "<p>A unique case-sensitive string used to ensure the request to create the calculation is idempotent (executes only once). If another <code>StartCalculationExecutionRequest</code> is received, the same response is returned and another calculation is not created. If a parameter has changed, an error is returned.</p> <important> <p>This token is listed as not required because Amazon Web Services SDKs (for example the Amazon Web Services SDK for Java) auto-generate the token for users. If you are not using the Amazon Web Services SDK or the Amazon Web Services CLI, you must provide this token or the action will fail.</p> </important>",
-        "StartQueryExecutionInput$ClientRequestToken": "<p>A unique case-sensitive string used to ensure the request to create the query is idempotent (executes only once). If another <code>StartQueryExecution</code> request is received, the same response is returned and another query is not created. If a parameter has changed, for example, the <code>QueryString</code>, an error is returned.</p> <important> <p>This token is listed as not required because Amazon Web Services SDKs (for example the Amazon Web Services SDK for Java) auto-generate the token for users. If you are not using the Amazon Web Services SDK or the Amazon Web Services CLI, you must provide this token or the action will fail.</p> </important>",
+        "StartQueryExecutionInput$ClientRequestToken": "<p>A unique case-sensitive string used to ensure the request to create the query is idempotent (executes only once). If another <code>StartQueryExecution</code> request is received, the same response is returned and another query is not created. An error is returned if a parameter, such as <code>QueryString</code>, has changed. A call to <code>StartQueryExecution</code> that uses a previous client request token returns the same <code>QueryExecutionId</code> even if the requester doesn't have permission on the tables specified in <code>QueryString</code>.</p> <important> <p>This token is listed as not required because Amazon Web Services SDKs (for example the Amazon Web Services SDK for Java) auto-generate the token for users. If you are not using the Amazon Web Services SDK or the Amazon Web Services CLI, you must provide this token or the action will fail.</p> </important>",
         "StartSessionRequest$ClientRequestToken": "<p>A unique case-sensitive string used to ensure the request to create the session is idempotent (executes only once). If another <code>StartSessionRequest</code> is received, the same response is returned and another session is not created. If a parameter has changed, an error is returned.</p> <important> <p>This token is listed as not required because Amazon Web Services SDKs (for example the Amazon Web Services SDK for Java) auto-generate the token for users. If you are not using the Amazon Web Services SDK or the Amazon Web Services CLI, you must provide this token or the action will fail.</p> </important>"
+      }
+    },
+    "IdentityCenterApplicationArn": {
+      "base": null,
+      "refs": {
+        "WorkGroup$IdentityCenterApplicationArn": "<p>The ARN of the IAM Identity Center enabled application associated with the workgroup.</p>",
+        "WorkGroupSummary$IdentityCenterApplicationArn": "<p>The ARN of the IAM Identity Center enabled application associated with the workgroup.</p>"
+      }
+    },
+    "IdentityCenterConfiguration": {
+      "base": "<p>Specifies whether the workgroup is IAM Identity Center supported.</p>",
+      "refs": {
+        "WorkGroupConfiguration$IdentityCenterConfiguration": "<p>Specifies whether the workgroup is IAM Identity Center supported.</p>"
+      }
+    },
+    "IdentityCenterInstanceArn": {
+      "base": null,
+      "refs": {
+        "IdentityCenterConfiguration$IdentityCenterInstanceArn": "<p>The IAM Identity Center instance ARN that the workgroup associates to.</p>"
       }
     },
     "ImportNotebookInput": {
@@ -1560,6 +1588,14 @@
         "QueryExecution$Status": "<p>The completion date, current state, submission time, and state change reason (if applicable) for the query execution.</p>"
       }
     },
+    "QueryResultsS3AccessGrantsConfiguration": {
+      "base": "<p>Specifies whether Amazon S3 access grants are enabled for query results.</p>",
+      "refs": {
+        "QueryExecution$QueryResultsS3AccessGrantsConfiguration": "<p>Specifies whether Amazon S3 access grants are enabled for query results.</p>",
+        "WorkGroupConfiguration$QueryResultsS3AccessGrantsConfiguration": "<p>Specifies whether Amazon S3 access grants are enabled for query results.</p>",
+        "WorkGroupConfigurationUpdates$QueryResultsS3AccessGrantsConfiguration": "<p>Specifies whether Amazon S3 access grants are enabled for query results.</p>"
+      }
+    },
     "QueryRuntimeStatistics": {
       "base": "<p>The query execution timeline, statistics on input and output rows and bytes, and the different query stages that form the query execution plan.</p>",
       "refs": {
@@ -1678,9 +1714,9 @@
     "RoleArn": {
       "base": null,
       "refs": {
-        "SessionConfiguration$ExecutionRole": "<p>The ARN of the execution role used in a Spark session to access user resources. This property applies only to Spark-enabled workgroups.</p>",
-        "WorkGroupConfiguration$ExecutionRole": "<p>Role used in a Spark session for accessing the user's resources. This property applies only to Spark-enabled workgroups.</p>",
-        "WorkGroupConfigurationUpdates$ExecutionRole": "<p>The ARN of the execution role used to access user resources. This property applies only to Spark-enabled workgroups.</p>"
+        "SessionConfiguration$ExecutionRole": "<p>The ARN of the execution role used to access user resources for Spark sessions and Identity Center enabled workgroups. This property applies only to Spark enabled workgroups and Identity Center enabled workgroups.</p>",
+        "WorkGroupConfiguration$ExecutionRole": "<p>The ARN of the execution role used to access user resources for Spark sessions and Identity Center enabled workgroups. This property applies only to Spark enabled workgroups and Identity Center enabled workgroups.</p>",
+        "WorkGroupConfigurationUpdates$ExecutionRole": "<p>The ARN of the execution role used to access user resources for Spark sessions and Identity Center enabled workgroups. This property applies only to Spark enabled workgroups and Identity Center enabled workgroups.</p>"
       }
     },
     "Row": {
@@ -2193,15 +2229,21 @@
         "CreateWorkGroupInput$Name": "<p>The workgroup name.</p>",
         "DeletePreparedStatementInput$WorkGroup": "<p>The workgroup to which the statement to be deleted belongs.</p>",
         "DeleteWorkGroupInput$WorkGroup": "<p>The unique name of the workgroup to delete.</p>",
+        "GetDataCatalogInput$WorkGroup": "<p>The name of the workgroup. Required if making an IAM Identity Center request.</p>",
+        "GetDatabaseInput$WorkGroup": "<p>The name of the workgroup for which the metadata is being fetched. Required if requesting an IAM Identity Center enabled Glue Data Catalog.</p>",
         "GetPreparedStatementInput$WorkGroup": "<p>The workgroup to which the statement to be retrieved belongs.</p>",
         "GetSessionResponse$WorkGroup": "<p>The workgroup to which the session belongs.</p>",
+        "GetTableMetadataInput$WorkGroup": "<p>The name of the workgroup for which the metadata is being fetched. Required if requesting an IAM Identity Center enabled Glue Data Catalog.</p>",
         "GetWorkGroupInput$WorkGroup": "<p>The name of the workgroup.</p>",
         "ImportNotebookInput$WorkGroup": "<p>The name of the Spark enabled workgroup to import the notebook to.</p>",
+        "ListDataCatalogsInput$WorkGroup": "<p>The name of the workgroup. Required if making an IAM Identity Center request.</p>",
+        "ListDatabasesInput$WorkGroup": "<p>The name of the workgroup for which the metadata is being fetched. Required if requesting an IAM Identity Center enabled Glue Data Catalog.</p>",
         "ListNamedQueriesInput$WorkGroup": "<p>The name of the workgroup from which the named queries are being returned. If a workgroup is not specified, the saved queries for the primary workgroup are returned.</p>",
         "ListNotebookMetadataInput$WorkGroup": "<p>The name of the Spark enabled workgroup to retrieve notebook metadata for.</p>",
         "ListPreparedStatementsInput$WorkGroup": "<p>The workgroup to list the prepared statements for.</p>",
         "ListQueryExecutionsInput$WorkGroup": "<p>The name of the workgroup from which queries are being returned. If a workgroup is not specified, a list of available query execution IDs for the queries in the primary workgroup is returned.</p>",
         "ListSessionsRequest$WorkGroup": "<p>The workgroup to which the session belongs.</p>",
+        "ListTableMetadataInput$WorkGroup": "<p>The name of the workgroup for which the metadata is being fetched. Required if requesting an IAM Identity Center enabled Glue Data Catalog.</p>",
         "NamedQuery$WorkGroup": "<p>The name of the workgroup that contains the named query.</p>",
         "NotebookMetadata$WorkGroup": "<p>The name of the Spark enabled workgroup to which the notebook belongs.</p>",
         "PreparedStatement$WorkGroupName": "<p>The name of the workgroup to which the prepared statement belongs.</p>",

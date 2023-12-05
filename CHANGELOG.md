@@ -1,3 +1,15 @@
+Release v1.48.13 (2023-12-05)
+===
+
+### Service Client Updates
+* `service/athena`: Updates service API and documentation
+  * Adding IdentityCenter enabled request for interactive query
+* `service/cleanroomsml`: Updates service API and documentation
+* `service/cloudformation`: Updates service documentation
+  * Documentation update, December 2023
+* `service/ec2`: Updates service API and documentation
+  * Adds A10G, T4G, and H100 as accelerator name options and Habana as an accelerator manufacturer option for attribute based selection
+
 Release v1.48.12 (2023-12-04)
 ===
 
