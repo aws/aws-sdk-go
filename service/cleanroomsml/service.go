@@ -13,7 +13,7 @@ import (
 )
 
 // CleanRoomsML provides the API operation methods for making requests to
-// cleanrooms-ml. See this package's package overview docs
+// AWS Clean Rooms ML. See this package's package overview docs
 // for details on the service.
 //
 // CleanRoomsML methods are safe to use concurrently. It is not safe to

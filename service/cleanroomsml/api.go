@@ -54,7 +54,7 @@ func (c *CleanRoomsML) CreateAudienceModelRequest(input *CreateAudienceModelInpu
 	return
 }
 
-// CreateAudienceModel API operation for cleanrooms-ml.
+// CreateAudienceModel API operation for AWS Clean Rooms ML.
 //
 // Defines the information necessary to create an audience model. An audience
 // model is a machine learning model that Clean Rooms ML trains to measure similarity
@@ -66,7 +66,7 @@ func (c *CleanRoomsML) CreateAudienceModelRequest(input *CreateAudienceModelInpu
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for cleanrooms-ml's
+// See the AWS API reference guide for AWS Clean Rooms ML's
 // API operation CreateAudienceModel for usage and error information.
 //
 // Returned Error Types:
@@ -149,7 +149,7 @@ func (c *CleanRoomsML) CreateConfiguredAudienceModelRequest(input *CreateConfigu
 	return
 }
 
-// CreateConfiguredAudienceModel API operation for cleanrooms-ml.
+// CreateConfiguredAudienceModel API operation for AWS Clean Rooms ML.
 //
 // Defines the information necessary to create a configured audience model.
 //
@@ -157,7 +157,7 @@ func (c *CleanRoomsML) CreateConfiguredAudienceModelRequest(input *CreateConfigu
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for cleanrooms-ml's
+// See the AWS API reference guide for AWS Clean Rooms ML's
 // API operation CreateConfiguredAudienceModel for usage and error information.
 //
 // Returned Error Types:
@@ -240,7 +240,7 @@ func (c *CleanRoomsML) CreateTrainingDatasetRequest(input *CreateTrainingDataset
 	return
 }
 
-// CreateTrainingDataset API operation for cleanrooms-ml.
+// CreateTrainingDataset API operation for AWS Clean Rooms ML.
 //
 // Defines the information necessary to create a training dataset, or seed audience.
 // In Clean Rooms ML, the TrainingDataset is metadata that points to a Glue
@@ -250,7 +250,7 @@ func (c *CleanRoomsML) CreateTrainingDatasetRequest(input *CreateTrainingDataset
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for cleanrooms-ml's
+// See the AWS API reference guide for AWS Clean Rooms ML's
 // API operation CreateTrainingDataset for usage and error information.
 //
 // Returned Error Types:
@@ -328,7 +328,7 @@ func (c *CleanRoomsML) DeleteAudienceGenerationJobRequest(input *DeleteAudienceG
 	return
 }
 
-// DeleteAudienceGenerationJob API operation for cleanrooms-ml.
+// DeleteAudienceGenerationJob API operation for AWS Clean Rooms ML.
 //
 // Deletes the specified audience generation job, and removes all data associated
 // with the job.
@@ -337,7 +337,7 @@ func (c *CleanRoomsML) DeleteAudienceGenerationJobRequest(input *DeleteAudienceG
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for cleanrooms-ml's
+// See the AWS API reference guide for AWS Clean Rooms ML's
 // API operation DeleteAudienceGenerationJob for usage and error information.
 //
 // Returned Error Types:
@@ -418,7 +418,7 @@ func (c *CleanRoomsML) DeleteAudienceModelRequest(input *DeleteAudienceModelInpu
 	return
 }
 
-// DeleteAudienceModel API operation for cleanrooms-ml.
+// DeleteAudienceModel API operation for AWS Clean Rooms ML.
 //
 // Specifies an audience model that you want to delete. You can't delete an
 // audience model if there are any configured audience models that depend on
@@ -428,7 +428,7 @@ func (c *CleanRoomsML) DeleteAudienceModelRequest(input *DeleteAudienceModelInpu
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for cleanrooms-ml's
+// See the AWS API reference guide for AWS Clean Rooms ML's
 // API operation DeleteAudienceModel for usage and error information.
 //
 // Returned Error Types:
@@ -509,7 +509,7 @@ func (c *CleanRoomsML) DeleteConfiguredAudienceModelRequest(input *DeleteConfigu
 	return
 }
 
-// DeleteConfiguredAudienceModel API operation for cleanrooms-ml.
+// DeleteConfiguredAudienceModel API operation for AWS Clean Rooms ML.
 //
 // Deletes the specified configured audience model. You can't delete a configured
 // audience model if there are any lookalike models that use the configured
@@ -520,7 +520,7 @@ func (c *CleanRoomsML) DeleteConfiguredAudienceModelRequest(input *DeleteConfigu
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for cleanrooms-ml's
+// See the AWS API reference guide for AWS Clean Rooms ML's
 // API operation DeleteConfiguredAudienceModel for usage and error information.
 //
 // Returned Error Types:
@@ -601,7 +601,7 @@ func (c *CleanRoomsML) DeleteConfiguredAudienceModelPolicyRequest(input *DeleteC
 	return
 }
 
-// DeleteConfiguredAudienceModelPolicy API operation for cleanrooms-ml.
+// DeleteConfiguredAudienceModelPolicy API operation for AWS Clean Rooms ML.
 //
 // Deletes the specified configured audience model policy.
 //
@@ -609,7 +609,7 @@ func (c *CleanRoomsML) DeleteConfiguredAudienceModelPolicyRequest(input *DeleteC
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for cleanrooms-ml's
+// See the AWS API reference guide for AWS Clean Rooms ML's
 // API operation DeleteConfiguredAudienceModelPolicy for usage and error information.
 //
 // Returned Error Types:
@@ -687,7 +687,7 @@ func (c *CleanRoomsML) DeleteTrainingDatasetRequest(input *DeleteTrainingDataset
 	return
 }
 
-// DeleteTrainingDataset API operation for cleanrooms-ml.
+// DeleteTrainingDataset API operation for AWS Clean Rooms ML.
 //
 // Specifies a training dataset that you want to delete. You can't delete a
 // training dataset if there are any audience models that depend on the training
@@ -699,7 +699,7 @@ func (c *CleanRoomsML) DeleteTrainingDatasetRequest(input *DeleteTrainingDataset
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for cleanrooms-ml's
+// See the AWS API reference guide for AWS Clean Rooms ML's
 // API operation DeleteTrainingDataset for usage and error information.
 //
 // Returned Error Types:
@@ -779,7 +779,7 @@ func (c *CleanRoomsML) GetAudienceGenerationJobRequest(input *GetAudienceGenerat
 	return
 }
 
-// GetAudienceGenerationJob API operation for cleanrooms-ml.
+// GetAudienceGenerationJob API operation for AWS Clean Rooms ML.
 //
 // Returns information about an audience generation job.
 //
@@ -787,7 +787,7 @@ func (c *CleanRoomsML) GetAudienceGenerationJobRequest(input *GetAudienceGenerat
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for cleanrooms-ml's
+// See the AWS API reference guide for AWS Clean Rooms ML's
 // API operation GetAudienceGenerationJob for usage and error information.
 //
 // Returned Error Types:
@@ -864,7 +864,7 @@ func (c *CleanRoomsML) GetAudienceModelRequest(input *GetAudienceModelInput) (re
 	return
 }
 
-// GetAudienceModel API operation for cleanrooms-ml.
+// GetAudienceModel API operation for AWS Clean Rooms ML.
 //
 // # Returns information about an audience model
 //
@@ -872,7 +872,7 @@ func (c *CleanRoomsML) GetAudienceModelRequest(input *GetAudienceModelInput) (re
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for cleanrooms-ml's
+// See the AWS API reference guide for AWS Clean Rooms ML's
 // API operation GetAudienceModel for usage and error information.
 //
 // Returned Error Types:
@@ -949,7 +949,7 @@ func (c *CleanRoomsML) GetConfiguredAudienceModelRequest(input *GetConfiguredAud
 	return
 }
 
-// GetConfiguredAudienceModel API operation for cleanrooms-ml.
+// GetConfiguredAudienceModel API operation for AWS Clean Rooms ML.
 //
 // Returns information about a specified configured audience model.
 //
@@ -957,7 +957,7 @@ func (c *CleanRoomsML) GetConfiguredAudienceModelRequest(input *GetConfiguredAud
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for cleanrooms-ml's
+// See the AWS API reference guide for AWS Clean Rooms ML's
 // API operation GetConfiguredAudienceModel for usage and error information.
 //
 // Returned Error Types:
@@ -1034,7 +1034,7 @@ func (c *CleanRoomsML) GetConfiguredAudienceModelPolicyRequest(input *GetConfigu
 	return
 }
 
-// GetConfiguredAudienceModelPolicy API operation for cleanrooms-ml.
+// GetConfiguredAudienceModelPolicy API operation for AWS Clean Rooms ML.
 //
 // Returns information about a configured audience model policy.
 //
@@ -1042,7 +1042,7 @@ func (c *CleanRoomsML) GetConfiguredAudienceModelPolicyRequest(input *GetConfigu
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for cleanrooms-ml's
+// See the AWS API reference guide for AWS Clean Rooms ML's
 // API operation GetConfiguredAudienceModelPolicy for usage and error information.
 //
 // Returned Error Types:
@@ -1119,7 +1119,7 @@ func (c *CleanRoomsML) GetTrainingDatasetRequest(input *GetTrainingDatasetInput)
 	return
 }
 
-// GetTrainingDataset API operation for cleanrooms-ml.
+// GetTrainingDataset API operation for AWS Clean Rooms ML.
 //
 // Returns information about a training dataset.
 //
@@ -1127,7 +1127,7 @@ func (c *CleanRoomsML) GetTrainingDatasetRequest(input *GetTrainingDatasetInput)
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for cleanrooms-ml's
+// See the AWS API reference guide for AWS Clean Rooms ML's
 // API operation GetTrainingDataset for usage and error information.
 //
 // Returned Error Types:
@@ -1210,7 +1210,7 @@ func (c *CleanRoomsML) ListAudienceExportJobsRequest(input *ListAudienceExportJo
 	return
 }
 
-// ListAudienceExportJobs API operation for cleanrooms-ml.
+// ListAudienceExportJobs API operation for AWS Clean Rooms ML.
 //
 // Returns a list of the audience export jobs.
 //
@@ -1218,7 +1218,7 @@ func (c *CleanRoomsML) ListAudienceExportJobsRequest(input *ListAudienceExportJo
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for cleanrooms-ml's
+// See the AWS API reference guide for AWS Clean Rooms ML's
 // API operation ListAudienceExportJobs for usage and error information.
 //
 // Returned Error Types:
@@ -1349,7 +1349,7 @@ func (c *CleanRoomsML) ListAudienceGenerationJobsRequest(input *ListAudienceGene
 	return
 }
 
-// ListAudienceGenerationJobs API operation for cleanrooms-ml.
+// ListAudienceGenerationJobs API operation for AWS Clean Rooms ML.
 //
 // Returns a list of audience generation jobs.
 //
@@ -1357,7 +1357,7 @@ func (c *CleanRoomsML) ListAudienceGenerationJobsRequest(input *ListAudienceGene
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for cleanrooms-ml's
+// See the AWS API reference guide for AWS Clean Rooms ML's
 // API operation ListAudienceGenerationJobs for usage and error information.
 //
 // Returned Error Types:
@@ -1488,7 +1488,7 @@ func (c *CleanRoomsML) ListAudienceModelsRequest(input *ListAudienceModelsInput)
 	return
 }
 
-// ListAudienceModels API operation for cleanrooms-ml.
+// ListAudienceModels API operation for AWS Clean Rooms ML.
 //
 // Returns a list of audience models.
 //
@@ -1496,7 +1496,7 @@ func (c *CleanRoomsML) ListAudienceModelsRequest(input *ListAudienceModelsInput)
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for cleanrooms-ml's
+// See the AWS API reference guide for AWS Clean Rooms ML's
 // API operation ListAudienceModels for usage and error information.
 //
 // Returned Error Types:
@@ -1627,7 +1627,7 @@ func (c *CleanRoomsML) ListConfiguredAudienceModelsRequest(input *ListConfigured
 	return
 }
 
-// ListConfiguredAudienceModels API operation for cleanrooms-ml.
+// ListConfiguredAudienceModels API operation for AWS Clean Rooms ML.
 //
 // Returns a list of the configured audience models.
 //
@@ -1635,7 +1635,7 @@ func (c *CleanRoomsML) ListConfiguredAudienceModelsRequest(input *ListConfigured
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for cleanrooms-ml's
+// See the AWS API reference guide for AWS Clean Rooms ML's
 // API operation ListConfiguredAudienceModels for usage and error information.
 //
 // Returned Error Types:
@@ -1760,7 +1760,7 @@ func (c *CleanRoomsML) ListTagsForResourceRequest(input *ListTagsForResourceInpu
 	return
 }
 
-// ListTagsForResource API operation for cleanrooms-ml.
+// ListTagsForResource API operation for AWS Clean Rooms ML.
 //
 // Returns a list of tags for a provided resource.
 //
@@ -1768,7 +1768,7 @@ func (c *CleanRoomsML) ListTagsForResourceRequest(input *ListTagsForResourceInpu
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for cleanrooms-ml's
+// See the AWS API reference guide for AWS Clean Rooms ML's
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
@@ -1851,7 +1851,7 @@ func (c *CleanRoomsML) ListTrainingDatasetsRequest(input *ListTrainingDatasetsIn
 	return
 }
 
-// ListTrainingDatasets API operation for cleanrooms-ml.
+// ListTrainingDatasets API operation for AWS Clean Rooms ML.
 //
 // Returns a list of training datasets.
 //
@@ -1859,7 +1859,7 @@ func (c *CleanRoomsML) ListTrainingDatasetsRequest(input *ListTrainingDatasetsIn
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for cleanrooms-ml's
+// See the AWS API reference guide for AWS Clean Rooms ML's
 // API operation ListTrainingDatasets for usage and error information.
 //
 // Returned Error Types:
@@ -1984,7 +1984,7 @@ func (c *CleanRoomsML) PutConfiguredAudienceModelPolicyRequest(input *PutConfigu
 	return
 }
 
-// PutConfiguredAudienceModelPolicy API operation for cleanrooms-ml.
+// PutConfiguredAudienceModelPolicy API operation for AWS Clean Rooms ML.
 //
 // Create or update the resource policy for a configured audience model.
 //
@@ -1992,7 +1992,7 @@ func (c *CleanRoomsML) PutConfiguredAudienceModelPolicyRequest(input *PutConfigu
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for cleanrooms-ml's
+// See the AWS API reference guide for AWS Clean Rooms ML's
 // API operation PutConfiguredAudienceModelPolicy for usage and error information.
 //
 // Returned Error Types:
@@ -2070,7 +2070,7 @@ func (c *CleanRoomsML) StartAudienceExportJobRequest(input *StartAudienceExportJ
 	return
 }
 
-// StartAudienceExportJob API operation for cleanrooms-ml.
+// StartAudienceExportJob API operation for AWS Clean Rooms ML.
 //
 // Export an audience of a specified size after you have generated an audience.
 //
@@ -2078,7 +2078,7 @@ func (c *CleanRoomsML) StartAudienceExportJobRequest(input *StartAudienceExportJ
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for cleanrooms-ml's
+// See the AWS API reference guide for AWS Clean Rooms ML's
 // API operation StartAudienceExportJob for usage and error information.
 //
 // Returned Error Types:
@@ -2161,7 +2161,7 @@ func (c *CleanRoomsML) StartAudienceGenerationJobRequest(input *StartAudienceGen
 	return
 }
 
-// StartAudienceGenerationJob API operation for cleanrooms-ml.
+// StartAudienceGenerationJob API operation for AWS Clean Rooms ML.
 //
 // Information necessary to start the audience generation job.
 //
@@ -2169,7 +2169,7 @@ func (c *CleanRoomsML) StartAudienceGenerationJobRequest(input *StartAudienceGen
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for cleanrooms-ml's
+// See the AWS API reference guide for AWS Clean Rooms ML's
 // API operation StartAudienceGenerationJob for usage and error information.
 //
 // Returned Error Types:
@@ -2253,7 +2253,7 @@ func (c *CleanRoomsML) TagResourceRequest(input *TagResourceInput) (req *request
 	return
 }
 
-// TagResource API operation for cleanrooms-ml.
+// TagResource API operation for AWS Clean Rooms ML.
 //
 // Adds metadata tags to a specified resource.
 //
@@ -2261,7 +2261,7 @@ func (c *CleanRoomsML) TagResourceRequest(input *TagResourceInput) (req *request
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for cleanrooms-ml's
+// See the AWS API reference guide for AWS Clean Rooms ML's
 // API operation TagResource for usage and error information.
 //
 // Returned Error Types:
@@ -2339,7 +2339,7 @@ func (c *CleanRoomsML) UntagResourceRequest(input *UntagResourceInput) (req *req
 	return
 }
 
-// UntagResource API operation for cleanrooms-ml.
+// UntagResource API operation for AWS Clean Rooms ML.
 //
 // Removes metadata tags from a specified resource.
 //
@@ -2347,7 +2347,7 @@ func (c *CleanRoomsML) UntagResourceRequest(input *UntagResourceInput) (req *req
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for cleanrooms-ml's
+// See the AWS API reference guide for AWS Clean Rooms ML's
 // API operation UntagResource for usage and error information.
 //
 // Returned Error Types:
@@ -2424,7 +2424,7 @@ func (c *CleanRoomsML) UpdateConfiguredAudienceModelRequest(input *UpdateConfigu
 	return
 }
 
-// UpdateConfiguredAudienceModel API operation for cleanrooms-ml.
+// UpdateConfiguredAudienceModel API operation for AWS Clean Rooms ML.
 //
 // Provides the information necessary to update a configured audience model.
 // Updates that impact audience generation jobs take effect when a new job starts,
@@ -2434,7 +2434,7 @@ func (c *CleanRoomsML) UpdateConfiguredAudienceModelRequest(input *UpdateConfigu
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for cleanrooms-ml's
+// See the AWS API reference guide for AWS Clean Rooms ML's
 // API operation UpdateConfiguredAudienceModel for usage and error information.
 //
 // Returned Error Types:
@@ -3735,6 +3735,10 @@ type CreateConfiguredAudienceModelInput struct {
 	// FROM_PARENT_RESOURCE, the audience generation job inherits the tags from
 	// the configured audience model, by default. Tags in the StartAudienceGenerationJob
 	// will override the default.
+	//
+	// When the client is in a different account than the configured audience model,
+	// the tags from the client are never applied to a resource in the caller's
+	// account.
 	ChildResourceTagOnCreatePolicy *string `locationName:"childResourceTagOnCreatePolicy" type:"string" enum:"TagOnCreatePolicy"`
 
 	// The description of the configured audience model.

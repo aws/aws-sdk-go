@@ -7985,7 +7985,7 @@ type ChangeSetSummary struct {
 	// creating it or in an OBSOLETE state because the stack was already updated.
 	ExecutionStatus *string `type:"string" enum:"ExecutionStatus"`
 
-	// Indicates if the stack set imports resources that already exist.
+	// Indicates if the change set imports resources that already exist.
 	ImportExistingResources *bool `type:"boolean"`
 
 	// Specifies the current setting of IncludeNestedStacks for the change set.
@@ -8348,7 +8348,7 @@ type CreateChangeSetInput struct {
 	// A description to help you identify this change set.
 	Description *string `min:"1" type:"string"`
 
-	// Indicates if the stack set imports resources that already exist.
+	// Indicates if the change set imports resources that already exist.
 	//
 	// This parameter can only import resources that have custom names in templates.
 	// For more information, see name type (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-name.html)
@@ -10859,7 +10859,7 @@ type DescribeChangeSetOutput struct {
 	// creating it or in an OBSOLETE state because the stack was already updated.
 	ExecutionStatus *string `type:"string" enum:"ExecutionStatus"`
 
-	// Indicates if the stack set imports resources that already exist.
+	// Indicates if the change set imports resources that already exist.
 	//
 	// This parameter can only import resources that have custom names (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-name.html)
 	// in templates. To import resources that do not accept custom names, such as

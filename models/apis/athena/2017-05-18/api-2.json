@@ -991,6 +991,10 @@
       "type":"string",
       "max":2048
     },
+    "AuthenticationType":{
+      "type":"string",
+      "enum":["DIRECTORY_IDENTITY"]
+    },
     "AwsAccountId":{
       "type":"string",
       "max":12,
@@ -1779,7 +1783,8 @@
       "type":"structure",
       "required":["Name"],
       "members":{
-        "Name":{"shape":"CatalogNameString"}
+        "Name":{"shape":"CatalogNameString"},
+        "WorkGroup":{"shape":"WorkGroupName"}
       }
     },
     "GetDataCatalogOutput":{
@@ -1796,7 +1801,8 @@
       ],
       "members":{
         "CatalogName":{"shape":"CatalogNameString"},
-        "DatabaseName":{"shape":"NameString"}
+        "DatabaseName":{"shape":"NameString"},
+        "WorkGroup":{"shape":"WorkGroupName"}
       }
     },
     "GetDatabaseOutput":{
@@ -1936,7 +1942,8 @@
       "members":{
         "CatalogName":{"shape":"CatalogNameString"},
         "DatabaseName":{"shape":"NameString"},
-        "TableName":{"shape":"NameString"}
+        "TableName":{"shape":"NameString"},
+        "WorkGroup":{"shape":"WorkGroupName"}
       }
     },
     "GetTableMetadataOutput":{
@@ -1962,6 +1969,25 @@
       "type":"string",
       "max":128,
       "min":32
+    },
+    "IdentityCenterApplicationArn":{
+      "type":"string",
+      "max":255,
+      "min":0,
+      "pattern":"^arn:(aws|aws-us-gov|aws-cn|aws-iso|aws-iso-b):sso::\\d{12}:application/(sso)?ins-[a-zA-Z0-9-.]{16}/apl-[a-zA-Z0-9]{16}$"
+    },
+    "IdentityCenterConfiguration":{
+      "type":"structure",
+      "members":{
+        "EnableIdentityCenter":{"shape":"BoxedBoolean"},
+        "IdentityCenterInstanceArn":{"shape":"IdentityCenterInstanceArn"}
+      }
+    },
+    "IdentityCenterInstanceArn":{
+      "type":"string",
+      "max":255,
+      "min":0,
+      "pattern":"^arn:(aws|aws-us-gov|aws-cn|aws-iso|aws-iso-b):sso:::instance/(sso)?ins-[a-zA-Z0-9-.]{16}$"
     },
     "ImportNotebookInput":{
       "type":"structure",
@@ -2064,7 +2090,8 @@
       "type":"structure",
       "members":{
         "NextToken":{"shape":"Token"},
-        "MaxResults":{"shape":"MaxDataCatalogsCount"}
+        "MaxResults":{"shape":"MaxDataCatalogsCount"},
+        "WorkGroup":{"shape":"WorkGroupName"}
       }
     },
     "ListDataCatalogsOutput":{
@@ -2080,7 +2107,8 @@
       "members":{
         "CatalogName":{"shape":"CatalogNameString"},
         "NextToken":{"shape":"Token"},
-        "MaxResults":{"shape":"MaxDatabasesCount"}
+        "MaxResults":{"shape":"MaxDatabasesCount"},
+        "WorkGroup":{"shape":"WorkGroupName"}
       }
     },
     "ListDatabasesOutput":{
@@ -2231,7 +2259,8 @@
         "DatabaseName":{"shape":"NameString"},
         "Expression":{"shape":"ExpressionString"},
         "NextToken":{"shape":"Token"},
-        "MaxResults":{"shape":"MaxTableMetadataCount"}
+        "MaxResults":{"shape":"MaxTableMetadataCount"},
+        "WorkGroup":{"shape":"WorkGroupName"}
       }
     },
     "ListTableMetadataOutput":{
@@ -2539,7 +2568,8 @@
         "WorkGroup":{"shape":"WorkGroupName"},
         "EngineVersion":{"shape":"EngineVersion"},
         "ExecutionParameters":{"shape":"ExecutionParameters"},
-        "SubstatementType":{"shape":"String"}
+        "SubstatementType":{"shape":"String"},
+        "QueryResultsS3AccessGrantsConfiguration":{"shape":"QueryResultsS3AccessGrantsConfiguration"}
       }
     },
     "QueryExecutionContext":{
@@ -2597,6 +2627,18 @@
         "SubmissionDateTime":{"shape":"Date"},
         "CompletionDateTime":{"shape":"Date"},
         "AthenaError":{"shape":"AthenaError"}
+      }
+    },
+    "QueryResultsS3AccessGrantsConfiguration":{
+      "type":"structure",
+      "required":[
+        "EnableS3AccessGrants",
+        "AuthenticationType"
+      ],
+      "members":{
+        "EnableS3AccessGrants":{"shape":"BoxedBoolean"},
+        "CreateUserLevelPrefix":{"shape":"BoxedBoolean"},
+        "AuthenticationType":{"shape":"AuthenticationType"}
       }
     },
     "QueryRuntimeStatistics":{
@@ -3235,7 +3277,8 @@
         "State":{"shape":"WorkGroupState"},
         "Configuration":{"shape":"WorkGroupConfiguration"},
         "Description":{"shape":"WorkGroupDescriptionString"},
-        "CreationTime":{"shape":"Date"}
+        "CreationTime":{"shape":"Date"},
+        "IdentityCenterApplicationArn":{"shape":"IdentityCenterApplicationArn"}
       }
     },
     "WorkGroupConfiguration":{
@@ -3250,7 +3293,9 @@
         "AdditionalConfiguration":{"shape":"NameString"},
         "ExecutionRole":{"shape":"RoleArn"},
         "CustomerContentEncryptionConfiguration":{"shape":"CustomerContentEncryptionConfiguration"},
-        "EnableMinimumEncryptionConfiguration":{"shape":"BoxedBoolean"}
+        "EnableMinimumEncryptionConfiguration":{"shape":"BoxedBoolean"},
+        "IdentityCenterConfiguration":{"shape":"IdentityCenterConfiguration"},
+        "QueryResultsS3AccessGrantsConfiguration":{"shape":"QueryResultsS3AccessGrantsConfiguration"}
       }
     },
     "WorkGroupConfigurationUpdates":{
@@ -3267,7 +3312,8 @@
         "AdditionalConfiguration":{"shape":"NameString"},
         "ExecutionRole":{"shape":"RoleArn"},
         "CustomerContentEncryptionConfiguration":{"shape":"CustomerContentEncryptionConfiguration"},
-        "EnableMinimumEncryptionConfiguration":{"shape":"BoxedBoolean"}
+        "EnableMinimumEncryptionConfiguration":{"shape":"BoxedBoolean"},
+        "QueryResultsS3AccessGrantsConfiguration":{"shape":"QueryResultsS3AccessGrantsConfiguration"}
       }
     },
     "WorkGroupDescriptionString":{
@@ -3297,7 +3343,8 @@
         "State":{"shape":"WorkGroupState"},
         "Description":{"shape":"WorkGroupDescriptionString"},
         "CreationTime":{"shape":"Date"},
-        "EngineVersion":{"shape":"EngineVersion"}
+        "EngineVersion":{"shape":"EngineVersion"},
+        "IdentityCenterApplicationArn":{"shape":"IdentityCenterApplicationArn"}
       }
     },
     "WorkGroupsList":{
