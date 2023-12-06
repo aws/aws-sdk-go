@@ -9413,12 +9413,10 @@ func (c *Backup) UpdateRegionSettingsRequest(input *UpdateRegionSettingsInput) (
 
 // UpdateRegionSettings API operation for AWS Backup.
 //
-// Updates the current service opt-in settings for the Region. If service-opt-in
-// is enabled for a service, Backup tries to protect that service's resources
-// in this Region, when the resource is included in an on-demand backup or scheduled
-// backup plan. Otherwise, Backup does not try to protect that service's resources
-// in this Region. Use the DescribeRegionSettings API to determine the resource
-// types that are supported.
+// Updates the current service opt-in settings for the Region.
+//
+// Use the DescribeRegionSettings API to determine the resource types that are
+// supported.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -14729,6 +14727,9 @@ type DescribeRecoveryPointOutput struct {
 	// Specifies the storage class of the recovery point. Valid values are WARM
 	// or COLD.
 	StorageClass *string `type:"string" enum:"StorageClass"`
+
+	// This is the type of vault in which the described recovery point is stored.
+	VaultType *string `type:"string" enum:"VaultType"`
 }
 
 // String returns the string representation.
@@ -14884,6 +14885,12 @@ func (s *DescribeRecoveryPointOutput) SetStatusMessage(v string) *DescribeRecove
 // SetStorageClass sets the StorageClass field's value.
 func (s *DescribeRecoveryPointOutput) SetStorageClass(v string) *DescribeRecoveryPointOutput {
 	s.StorageClass = &v
+	return s
+}
+
+// SetVaultType sets the VaultType field's value.
+func (s *DescribeRecoveryPointOutput) SetVaultType(v string) *DescribeRecoveryPointOutput {
+	s.VaultType = &v
 	return s
 }
 
@@ -18329,6 +18336,8 @@ type ListBackupJobsInput struct {
 	//
 	//    * Aurora for Amazon Aurora
 	//
+	//    * CloudFormation for CloudFormation
+	//
 	//    * DocumentDB for Amazon DocumentDB (with MongoDB compatibility)
 	//
 	//    * DynamoDB for Amazon DynamoDB
@@ -18343,11 +18352,17 @@ type ListBackupJobsInput struct {
 	//
 	//    * Neptune for Amazon Neptune
 	//
+	//    * Redshift for Amazon Redshift
+	//
 	//    * RDS for Amazon Relational Database Service
+	//
+	//    * SAP HANA on Amazon EC2 for SAP HANA databases
 	//
 	//    * Storage Gateway for Storage Gateway
 	//
 	//    * S3 for Amazon S3
+	//
+	//    * Timestream for Amazon Timestream
 	//
 	//    * VirtualMachine for virtual machines
 	ByResourceType *string `location:"querystring" locationName:"resourceType" type:"string"`
@@ -19330,6 +19345,8 @@ type ListCopyJobsInput struct {
 	//
 	//    * Aurora for Amazon Aurora
 	//
+	//    * CloudFormation for CloudFormation
+	//
 	//    * DocumentDB for Amazon DocumentDB (with MongoDB compatibility)
 	//
 	//    * DynamoDB for Amazon DynamoDB
@@ -19344,11 +19361,17 @@ type ListCopyJobsInput struct {
 	//
 	//    * Neptune for Amazon Neptune
 	//
+	//    * Redshift for Amazon Redshift
+	//
 	//    * RDS for Amazon Relational Database Service
+	//
+	//    * SAP HANA on Amazon EC2 for SAP HANA databases
 	//
 	//    * Storage Gateway for Storage Gateway
 	//
 	//    * S3 for Amazon S3
+	//
+	//    * Timestream for Amazon Timestream
 	//
 	//    * VirtualMachine for virtual machines
 	ByResourceType *string `location:"querystring" locationName:"resourceType" type:"string"`
@@ -19978,7 +20001,39 @@ type ListRecoveryPointsByBackupVaultInput struct {
 	// Name (ARN).
 	ByResourceArn *string `location:"querystring" locationName:"resourceArn" type:"string"`
 
-	// Returns only recovery points that match the specified resource type.
+	// Returns only recovery points that match the specified resource type(s):
+	//
+	//    * Aurora for Amazon Aurora
+	//
+	//    * CloudFormation for CloudFormation
+	//
+	//    * DocumentDB for Amazon DocumentDB (with MongoDB compatibility)
+	//
+	//    * DynamoDB for Amazon DynamoDB
+	//
+	//    * EBS for Amazon Elastic Block Store
+	//
+	//    * EC2 for Amazon Elastic Compute Cloud
+	//
+	//    * EFS for Amazon Elastic File System
+	//
+	//    * FSx for Amazon FSx
+	//
+	//    * Neptune for Amazon Neptune
+	//
+	//    * Redshift for Amazon Redshift
+	//
+	//    * RDS for Amazon Relational Database Service
+	//
+	//    * SAP HANA on Amazon EC2 for SAP HANA databases
+	//
+	//    * Storage Gateway for Storage Gateway
+	//
+	//    * S3 for Amazon S3
+	//
+	//    * Timestream for Amazon Timestream
+	//
+	//    * VirtualMachine for virtual machines
 	ByResourceType *string `location:"querystring" locationName:"resourceType" type:"string"`
 
 	// The maximum number of items to be returned.
@@ -20959,6 +21014,41 @@ type ListRestoreJobsInput struct {
 	// Returns only restore jobs that were created before the specified date.
 	ByCreatedBefore *time.Time `location:"querystring" locationName:"createdBefore" type:"timestamp"`
 
+	// Include this parameter to return only restore jobs for the specified resources:
+	//
+	//    * Aurora for Amazon Aurora
+	//
+	//    * CloudFormation for CloudFormation
+	//
+	//    * DocumentDB for Amazon DocumentDB (with MongoDB compatibility)
+	//
+	//    * DynamoDB for Amazon DynamoDB
+	//
+	//    * EBS for Amazon Elastic Block Store
+	//
+	//    * EC2 for Amazon Elastic Compute Cloud
+	//
+	//    * EFS for Amazon Elastic File System
+	//
+	//    * FSx for Amazon FSx
+	//
+	//    * Neptune for Amazon Neptune
+	//
+	//    * Redshift for Amazon Redshift
+	//
+	//    * RDS for Amazon Relational Database Service
+	//
+	//    * SAP HANA on Amazon EC2 for SAP HANA databases
+	//
+	//    * Storage Gateway for Storage Gateway
+	//
+	//    * S3 for Amazon S3
+	//
+	//    * Timestream for Amazon Timestream
+	//
+	//    * VirtualMachine for virtual machines
+	ByResourceType *string `location:"querystring" locationName:"resourceType" type:"string"`
+
 	// This returns only restore testing jobs that match the specified resource
 	// Amazon Resource Name (ARN).
 	ByRestoreTestingPlanArn *string `location:"querystring" locationName:"restoreTestingPlanArn" type:"string"`
@@ -21034,6 +21124,12 @@ func (s *ListRestoreJobsInput) SetByCreatedAfter(v time.Time) *ListRestoreJobsIn
 // SetByCreatedBefore sets the ByCreatedBefore field's value.
 func (s *ListRestoreJobsInput) SetByCreatedBefore(v time.Time) *ListRestoreJobsInput {
 	s.ByCreatedBefore = &v
+	return s
+}
+
+// SetByResourceType sets the ByResourceType field's value.
+func (s *ListRestoreJobsInput) SetByResourceType(v string) *ListRestoreJobsInput {
+	s.ByResourceType = &v
 	return s
 }
 
@@ -22543,6 +22639,9 @@ type RecoveryPointByBackupVault struct {
 
 	// A message explaining the reason of the recovery point deletion failure.
 	StatusMessage *string `type:"string"`
+
+	// This is the type of vault in which the described recovery point is stored.
+	VaultType *string `type:"string" enum:"VaultType"`
 }
 
 // String returns the string representation.
@@ -22692,6 +22791,12 @@ func (s *RecoveryPointByBackupVault) SetStatus(v string) *RecoveryPointByBackupV
 // SetStatusMessage sets the StatusMessage field's value.
 func (s *RecoveryPointByBackupVault) SetStatusMessage(v string) *RecoveryPointByBackupVault {
 	s.StatusMessage = &v
+	return s
+}
+
+// SetVaultType sets the VaultType field's value.
+func (s *RecoveryPointByBackupVault) SetVaultType(v string) *RecoveryPointByBackupVault {
+	s.VaultType = &v
 	return s
 }
 
@@ -27044,6 +27149,14 @@ type UpdateRegionSettingsInput struct {
 	ResourceTypeManagementPreference map[string]*bool `type:"map"`
 
 	// Updates the list of services along with the opt-in preferences for the Region.
+	//
+	// If resource assignments are only based on tags, then service opt-in settings
+	// are applied. If a resource type is explicitly assigned to a backup plan,
+	// such as Amazon S3, Amazon EC2, or Amazon RDS, it will be included in the
+	// backup even if the opt-in is not enabled for that particular service. If
+	// both a resource type and tags are specified in a resource assignment, the
+	// resource type specified in the backup plan takes priority over the tag condition.
+	// Service opt-in settings are disregarded in this situation.
 	ResourceTypeOptInPreference map[string]*bool `type:"map"`
 }
 

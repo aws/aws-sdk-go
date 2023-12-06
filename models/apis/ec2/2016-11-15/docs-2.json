@@ -4030,6 +4030,12 @@
         "CpuManufacturerSet$member": null
       }
     },
+    "CpuManufacturerName": {
+      "base": null,
+      "refs": {
+        "ProcessorInfo$Manufacturer": "<p>The manufacturer of the processor.</p>"
+      }
+    },
     "CpuManufacturerSet": {
       "base": null,
       "refs": {

@@ -10118,6 +10118,7 @@
         "amazon-web-services"
       ]
     },
+    "CpuManufacturerName":{"type":"string"},
     "CpuManufacturerSet":{
       "type":"list",
       "member":{
@@ -36296,6 +36297,10 @@
         "SupportedFeatures":{
           "shape":"SupportedAdditionalProcessorFeatureList",
           "locationName":"supportedFeatures"
+        },
+        "Manufacturer":{
+          "shape":"CpuManufacturerName",
+          "locationName":"manufacturer"
         }
       }
     },

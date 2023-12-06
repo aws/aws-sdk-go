@@ -168,10 +168,8 @@ func (c *Comprehend) BatchDetectEntitiesRequest(input *BatchDetectEntitiesInput)
 //     The size of the input text exceeds the limit. Use a smaller document.
 //
 //   - UnsupportedLanguageException
-//     Amazon Comprehend can't process the language of the input text. For custom
-//     entity recognition APIs, only English, Spanish, French, Italian, German,
-//     or Portuguese are accepted. For a list of supported languages, Supported
-//     languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
+//     Amazon Comprehend can't process the language of the input text. For a list
+//     of supported languages, Supported languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
 //     in the Comprehend Developer Guide.
 //
 //   - BatchSizeLimitExceededException
@@ -264,10 +262,8 @@ func (c *Comprehend) BatchDetectKeyPhrasesRequest(input *BatchDetectKeyPhrasesIn
 //     The size of the input text exceeds the limit. Use a smaller document.
 //
 //   - UnsupportedLanguageException
-//     Amazon Comprehend can't process the language of the input text. For custom
-//     entity recognition APIs, only English, Spanish, French, Italian, German,
-//     or Portuguese are accepted. For a list of supported languages, Supported
-//     languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
+//     Amazon Comprehend can't process the language of the input text. For a list
+//     of supported languages, Supported languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
 //     in the Comprehend Developer Guide.
 //
 //   - BatchSizeLimitExceededException
@@ -361,10 +357,8 @@ func (c *Comprehend) BatchDetectSentimentRequest(input *BatchDetectSentimentInpu
 //     The size of the input text exceeds the limit. Use a smaller document.
 //
 //   - UnsupportedLanguageException
-//     Amazon Comprehend can't process the language of the input text. For custom
-//     entity recognition APIs, only English, Spanish, French, Italian, German,
-//     or Portuguese are accepted. For a list of supported languages, Supported
-//     languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
+//     Amazon Comprehend can't process the language of the input text. For a list
+//     of supported languages, Supported languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
 //     in the Comprehend Developer Guide.
 //
 //   - BatchSizeLimitExceededException
@@ -460,10 +454,8 @@ func (c *Comprehend) BatchDetectSyntaxRequest(input *BatchDetectSyntaxInput) (re
 //     The size of the input text exceeds the limit. Use a smaller document.
 //
 //   - UnsupportedLanguageException
-//     Amazon Comprehend can't process the language of the input text. For custom
-//     entity recognition APIs, only English, Spanish, French, Italian, German,
-//     or Portuguese are accepted. For a list of supported languages, Supported
-//     languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
+//     Amazon Comprehend can't process the language of the input text. For a list
+//     of supported languages, Supported languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
 //     in the Comprehend Developer Guide.
 //
 //   - BatchSizeLimitExceededException
@@ -560,10 +552,8 @@ func (c *Comprehend) BatchDetectTargetedSentimentRequest(input *BatchDetectTarge
 //     The size of the input text exceeds the limit. Use a smaller document.
 //
 //   - UnsupportedLanguageException
-//     Amazon Comprehend can't process the language of the input text. For custom
-//     entity recognition APIs, only English, Spanish, French, Italian, German,
-//     or Portuguese are accepted. For a list of supported languages, Supported
-//     languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
+//     Amazon Comprehend can't process the language of the input text. For a list
+//     of supported languages, Supported languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
 //     in the Comprehend Developer Guide.
 //
 //   - BatchSizeLimitExceededException
@@ -643,18 +633,19 @@ func (c *Comprehend) ClassifyDocumentRequest(input *ClassifyDocumentInput) (req 
 //
 //   - Custom classifier - a custom model that you have created and trained.
 //     For input, you can provide plain text, a single-page document (PDF, Word,
-//     or image), or Textract API output. For more information, see Custom classification
-//     (https://docs.aws.amazon.com/comprehend/latest/dg/how-document-classification.html)
+//     or image), or Amazon Textract API output. For more information, see Custom
+//     classification (https://docs.aws.amazon.com/comprehend/latest/dg/how-document-classification.html)
 //     in the Amazon Comprehend Developer Guide.
 //
-//   - Prompt classifier - Amazon Comprehend provides a model for classifying
-//     prompts. For input, you provide English plain text input. For prompt classification,
+//   - Prompt safety classifier - Amazon Comprehend provides a pre-trained
+//     model for classifying input prompts for generative AI applications. For
+//     input, you provide English plain text input. For prompt safety classification,
 //     the response includes only the Classes field. For more information about
-//     prompt classifiers, see Prompt classifiers (https://docs.aws.amazon.com/comprehend/latest/dg/prompt-classification.html)
+//     prompt safety classifiers, see Prompt safety classification (https://docs.aws.amazon.com/comprehend/latest/dg/trust-safety.html#prompt-classification)
 //     in the Amazon Comprehend Developer Guide.
 //
 // If the system detects errors while processing a page in the input document,
-// the API response includes an entry in Errors that describes the errors.
+// the API response includes an Errors field that describes the errors.
 //
 // If the system detects a document-level error in your input document, the
 // API returns an InvalidRequestException error response. For details about
@@ -768,10 +759,8 @@ func (c *Comprehend) ContainsPiiEntitiesRequest(input *ContainsPiiEntitiesInput)
 //     The size of the input text exceeds the limit. Use a smaller document.
 //
 //   - UnsupportedLanguageException
-//     Amazon Comprehend can't process the language of the input text. For custom
-//     entity recognition APIs, only English, Spanish, French, Italian, German,
-//     or Portuguese are accepted. For a list of supported languages, Supported
-//     languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
+//     Amazon Comprehend can't process the language of the input text. For a list
+//     of supported languages, Supported languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
 //     in the Comprehend Developer Guide.
 //
 //   - InternalServerException
@@ -982,10 +971,8 @@ func (c *Comprehend) CreateDocumentClassifierRequest(input *CreateDocumentClassi
 //     resources, and then try your request again.
 //
 //   - UnsupportedLanguageException
-//     Amazon Comprehend can't process the language of the input text. For custom
-//     entity recognition APIs, only English, Spanish, French, Italian, German,
-//     or Portuguese are accepted. For a list of supported languages, Supported
-//     languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
+//     Amazon Comprehend can't process the language of the input text. For a list
+//     of supported languages, Supported languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
 //     in the Comprehend Developer Guide.
 //
 //   - KmsKeyValidationException
@@ -1201,10 +1188,8 @@ func (c *Comprehend) CreateEntityRecognizerRequest(input *CreateEntityRecognizer
 //     resources, and then try your request again.
 //
 //   - UnsupportedLanguageException
-//     Amazon Comprehend can't process the language of the input text. For custom
-//     entity recognition APIs, only English, Spanish, French, Italian, German,
-//     or Portuguese are accepted. For a list of supported languages, Supported
-//     languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
+//     Amazon Comprehend can't process the language of the input text. For a list
+//     of supported languages, Supported languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
 //     in the Comprehend Developer Guide.
 //
 //   - KmsKeyValidationException
@@ -1327,10 +1312,8 @@ func (c *Comprehend) CreateFlywheelRequest(input *CreateFlywheelInput) (req *req
 //     resources, and then try your request again.
 //
 //   - UnsupportedLanguageException
-//     Amazon Comprehend can't process the language of the input text. For custom
-//     entity recognition APIs, only English, Spanish, French, Italian, German,
-//     or Portuguese are accepted. For a list of supported languages, Supported
-//     languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
+//     Amazon Comprehend can't process the language of the input text. For a list
+//     of supported languages, Supported languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
 //     in the Comprehend Developer Guide.
 //
 //   - KmsKeyValidationException
@@ -3465,10 +3448,8 @@ func (c *Comprehend) DetectEntitiesRequest(input *DetectEntitiesInput) (req *req
 //     The size of the input text exceeds the limit. Use a smaller document.
 //
 //   - UnsupportedLanguageException
-//     Amazon Comprehend can't process the language of the input text. For custom
-//     entity recognition APIs, only English, Spanish, French, Italian, German,
-//     or Portuguese are accepted. For a list of supported languages, Supported
-//     languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
+//     Amazon Comprehend can't process the language of the input text. For a list
+//     of supported languages, Supported languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
 //     in the Comprehend Developer Guide.
 //
 //   - InternalServerException
@@ -3557,10 +3538,8 @@ func (c *Comprehend) DetectKeyPhrasesRequest(input *DetectKeyPhrasesInput) (req 
 //     The size of the input text exceeds the limit. Use a smaller document.
 //
 //   - UnsupportedLanguageException
-//     Amazon Comprehend can't process the language of the input text. For custom
-//     entity recognition APIs, only English, Spanish, French, Italian, German,
-//     or Portuguese are accepted. For a list of supported languages, Supported
-//     languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
+//     Amazon Comprehend can't process the language of the input text. For a list
+//     of supported languages, Supported languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
 //     in the Comprehend Developer Guide.
 //
 //   - InternalServerException
@@ -3650,10 +3629,8 @@ func (c *Comprehend) DetectPiiEntitiesRequest(input *DetectPiiEntitiesInput) (re
 //     The size of the input text exceeds the limit. Use a smaller document.
 //
 //   - UnsupportedLanguageException
-//     Amazon Comprehend can't process the language of the input text. For custom
-//     entity recognition APIs, only English, Spanish, French, Italian, German,
-//     or Portuguese are accepted. For a list of supported languages, Supported
-//     languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
+//     Amazon Comprehend can't process the language of the input text. For a list
+//     of supported languages, Supported languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
 //     in the Comprehend Developer Guide.
 //
 //   - InternalServerException
@@ -3743,10 +3720,8 @@ func (c *Comprehend) DetectSentimentRequest(input *DetectSentimentInput) (req *r
 //     The size of the input text exceeds the limit. Use a smaller document.
 //
 //   - UnsupportedLanguageException
-//     Amazon Comprehend can't process the language of the input text. For custom
-//     entity recognition APIs, only English, Spanish, French, Italian, German,
-//     or Portuguese are accepted. For a list of supported languages, Supported
-//     languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
+//     Amazon Comprehend can't process the language of the input text. For a list
+//     of supported languages, Supported languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
 //     in the Comprehend Developer Guide.
 //
 //   - InternalServerException
@@ -3837,10 +3812,8 @@ func (c *Comprehend) DetectSyntaxRequest(input *DetectSyntaxInput) (req *request
 //     The size of the input text exceeds the limit. Use a smaller document.
 //
 //   - UnsupportedLanguageException
-//     Amazon Comprehend can't process the language of the input text. For custom
-//     entity recognition APIs, only English, Spanish, French, Italian, German,
-//     or Portuguese are accepted. For a list of supported languages, Supported
-//     languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
+//     Amazon Comprehend can't process the language of the input text. For a list
+//     of supported languages, Supported languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
 //     in the Comprehend Developer Guide.
 //
 //   - InternalServerException
@@ -3933,10 +3906,8 @@ func (c *Comprehend) DetectTargetedSentimentRequest(input *DetectTargetedSentime
 //     The size of the input text exceeds the limit. Use a smaller document.
 //
 //   - UnsupportedLanguageException
-//     Amazon Comprehend can't process the language of the input text. For custom
-//     entity recognition APIs, only English, Spanish, French, Italian, German,
-//     or Portuguese are accepted. For a list of supported languages, Supported
-//     languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
+//     Amazon Comprehend can't process the language of the input text. For a list
+//     of supported languages, Supported languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
 //     in the Comprehend Developer Guide.
 //
 //   - InternalServerException
@@ -4008,11 +3979,10 @@ func (c *Comprehend) DetectToxicContentRequest(input *DetectToxicContentInput) (
 // DetectToxicContent API operation for Amazon Comprehend.
 //
 // Performs toxicity analysis on the list of text strings that you provide as
-// input. The analysis uses the order of strings in the list to determine context
-// when predicting toxicity. The API response contains a results list that matches
-// the size of the input list. For more information about toxicity detection,
-// see Toxicity detection (https://docs.aws.amazon.com/comprehend/latest/dg/toxicity-detection.html)
-// in the Amazon Comprehend Developer Guide
+// input. The API response contains a results list that matches the size of
+// the input list. For more information about toxicity detection, see Toxicity
+// detection (https://docs.aws.amazon.com/comprehend/latest/dg/toxicity-detection.html)
+// in the Amazon Comprehend Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4030,10 +4000,8 @@ func (c *Comprehend) DetectToxicContentRequest(input *DetectToxicContentInput) (
 //     The size of the input text exceeds the limit. Use a smaller document.
 //
 //   - UnsupportedLanguageException
-//     Amazon Comprehend can't process the language of the input text. For custom
-//     entity recognition APIs, only English, Spanish, French, Italian, German,
-//     or Portuguese are accepted. For a list of supported languages, Supported
-//     languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
+//     Amazon Comprehend can't process the language of the input text. For a list
+//     of supported languages, Supported languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
 //     in the Comprehend Developer Guide.
 //
 //   - InternalServerException
@@ -6872,8 +6840,9 @@ func (c *Comprehend) StartDocumentClassificationJobRequest(input *StartDocumentC
 
 // StartDocumentClassificationJob API operation for Amazon Comprehend.
 //
-// Starts an asynchronous document classification job. Use the DescribeDocumentClassificationJob
-// operation to track the progress of the job.
+// Starts an asynchronous document classification job using a custom classification
+// model. Use the DescribeDocumentClassificationJob operation to track the progress
+// of the job.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10728,7 +10697,7 @@ type ClassifyDocumentInput struct {
 	// parameter to input an Amazon Textract DetectDocumentText or AnalyzeDocument
 	// output file.
 	//
-	// To classify a document using the prompt classifier, use the Text parameter
+	// To classify a document using the prompt safety classifier, use the Text parameter
 	// for input.
 	//
 	// Provide the input document as a sequence of base64-encoded bytes. If your
@@ -10749,7 +10718,10 @@ type ClassifyDocumentInput struct {
 
 	// The Amazon Resource Number (ARN) of the endpoint.
 	//
-	// For prompt classification, Amazon Comprehend provides the endpoint ARN: zzz.
+	// For prompt safety classification, Amazon Comprehend provides the endpoint
+	// ARN. For more information about prompt safety classifiers, see Prompt safety
+	// classification (https://docs.aws.amazon.com/comprehend/latest/dg/trust-safety.html#prompt-classification)
+	// in the Amazon Comprehend Developer Guide
 	//
 	// For custom classification, you create an endpoint for your custom model.
 	// For more information, see Using Amazon Comprehend endpoints (https://docs.aws.amazon.com/comprehend/latest/dg/using-endpoints.html).
@@ -10835,14 +10807,14 @@ func (s *ClassifyDocumentInput) SetText(v string) *ClassifyDocumentInput {
 type ClassifyDocumentOutput struct {
 	_ struct{} `type:"structure" sensitive:"true"`
 
-	// The classes used by the document being analyzed. These are used for multi-class
-	// trained models. Individual classes are mutually exclusive and each document
-	// is expected to have only a single class assigned to it. For example, an animal
-	// can be a dog or a cat, but not both at the same time.
+	// The classes used by the document being analyzed. These are used for models
+	// trained in multi-class mode. Individual classes are mutually exclusive and
+	// each document is expected to have only a single class assigned to it. For
+	// example, an animal can be a dog or a cat, but not both at the same time.
 	//
-	// For prompt classification, the response includes a single class (UNDESIRED_PROMPT),
-	// along with a confidence score. A higher confidence score indicates that the
-	// input prompt is undesired in nature.
+	// For prompt safety classification, the response includes only two classes
+	// (SAFE_PROMPT and UNSAFE_PROMPT), along with a confidence score for each class.
+	// The value range of the score is zero to one, where one is the highest confidence.
 	Classes []*DocumentClass `type:"list"`
 
 	// Extraction information about the document. This field is present in the response
@@ -10857,7 +10829,7 @@ type ClassifyDocumentOutput struct {
 	// The field is empty if the system encountered no errors.
 	Errors []*ErrorsListItem `type:"list"`
 
-	// The labels used the document being analyzed. These are used for multi-label
+	// The labels used in the document being analyzed. These are used for multi-label
 	// trained models. Individual labels represent different categories that are
 	// related in some manner and are not mutually exclusive. For example, a movie
 	// can be just an action movie, or it can be an action movie, a science fiction
@@ -11282,11 +11254,11 @@ type CreateDocumentClassifierInput struct {
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
 
 	// Indicates the mode in which the classifier will be trained. The classifier
-	// can be trained in multi-class mode, which identifies one and only one class
-	// for each document, or multi-label mode, which identifies one or more labels
-	// for each document. In multi-label mode, multiple labels for an individual
-	// document are separated by a delimiter. The default delimiter between labels
-	// is a pipe (|).
+	// can be trained in multi-class (single-label) mode or multi-label mode. Multi-class
+	// mode identifies a single class label for each document and multi-label mode
+	// identifies one or more class labels for each document. Multiple labels for
+	// an individual document are separated by a delimiter. The default delimiter
+	// between labels is a pipe (|).
 	Mode *string `type:"string" enum:"DocumentClassifierMode"`
 
 	// ID for the KMS key that Amazon Comprehend uses to encrypt trained custom
@@ -15424,7 +15396,8 @@ type DetectToxicContentInput struct {
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
 
-	// A list of up to 10 text strings. The maximum size for the list is 10 KB.
+	// A list of up to 10 text strings. Each string has a maximum size of 1 KB,
+	// and the maximum size of the list is 10 KB.
 	//
 	// TextSegments is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by DetectToxicContentInput's
@@ -16704,10 +16677,10 @@ type DocumentReaderConfig struct {
 	// Specifies the type of Amazon Textract features to apply. If you chose TEXTRACT_ANALYZE_DOCUMENT
 	// as the read action, you must specify one or both of the following values:
 	//
-	//    * TABLES - Returns information about any tables that are detected in the
-	//    input document.
+	//    * TABLES - Returns additional information about any tables that are detected
+	//    in the input document.
 	//
-	//    * FORMS - Returns information and the data from any forms that are detected
+	//    * FORMS - Returns additional information about any forms that are detected
 	//    in the input document.
 	FeatureTypes []*string `min:"1" type:"list" enum:"DocumentReadFeatureTypes"`
 }
@@ -18683,7 +18656,7 @@ type EntityTypesListItem struct {
 	//
 	// Entity types must not contain the following invalid characters: \n (line
 	// break), \\n (escaped line break, \r (carriage return), \\r (escaped carriage
-	// return), \t (tab), \\t (escaped tab), space, and , (comma).
+	// return), \t (tab), \\t (escaped tab), and , (comma).
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true"`
@@ -19970,23 +19943,33 @@ func (s *InvalidFilterException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Provides additional detail about why the request failed:
-//
-//   - Document size is too large - Check the size of your file and resubmit
-//     the request.
-//
-//   - Document type is not supported - Check the file type and resubmit the
-//     request.
-//
-//   - Too many pages in the document - Check the number of pages in your file
-//     and resubmit the request.
-//
-//   - Access denied to Amazon Textract - Verify that your account has permission
-//     to use Amazon Textract API operations and resubmit the request.
+// Provides additional detail about why the request failed.
 type InvalidRequestDetail struct {
 	_ struct{} `type:"structure"`
 
-	// Reason code is INVALID_DOCUMENT.
+	// Reason codes include the following values:
+	//
+	//    * DOCUMENT_SIZE_EXCEEDED - Document size is too large. Check the size
+	//    of your file and resubmit the request.
+	//
+	//    * UNSUPPORTED_DOC_TYPE - Document type is not supported. Check the file
+	//    type and resubmit the request.
+	//
+	//    * PAGE_LIMIT_EXCEEDED - Too many pages in the document. Check the number
+	//    of pages in your file and resubmit the request.
+	//
+	//    * TEXTRACT_ACCESS_DENIED - Access denied to Amazon Textract. Verify that
+	//    your account has permission to use Amazon Textract API operations and
+	//    resubmit the request.
+	//
+	//    * NOT_TEXTRACT_JSON - Document is not Amazon Textract JSON format. Verify
+	//    the format and resubmit the request.
+	//
+	//    * MISMATCHED_TOTAL_PAGE_COUNT - Check the number of pages in your file
+	//    and resubmit the request.
+	//
+	//    * INVALID_DOCUMENT - Invalid document. Check the file and resubmit the
+	//    request.
 	Reason *string `type:"string" enum:"InvalidRequestDetailReason"`
 }
 
@@ -20019,19 +20002,7 @@ type InvalidRequestException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	// Provides additional detail about why the request failed:
-	//
-	//    * Document size is too large - Check the size of your file and resubmit
-	//    the request.
-	//
-	//    * Document type is not supported - Check the file type and resubmit the
-	//    request.
-	//
-	//    * Too many pages in the document - Check the number of pages in your file
-	//    and resubmit the request.
-	//
-	//    * Access denied to Amazon Textract - Verify that your account has permission
-	//    to use Amazon Textract API operations and resubmit the request.
+	// Provides additional detail about why the request failed.
 	Detail *InvalidRequestDetail `type:"structure"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
@@ -28239,14 +28210,15 @@ func (s *ToxicContent) SetScore(v float64) *ToxicContent {
 
 // Toxicity analysis result for one string. For more information about toxicity
 // detection, see Toxicity detection (https://docs.aws.amazon.com/comprehend/latest/dg/toxicity-detection.html)
-// in the Amazon Comprehend Developer Guide
+// in the Amazon Comprehend Developer Guide.
 type ToxicLabels struct {
 	_ struct{} `type:"structure"`
 
 	// Array of toxic content types identified in the string.
 	Labels []*ToxicContent `type:"list"`
 
-	// Overall toxicity score for the string.
+	// Overall toxicity score for the string. Value range is zero to one, where
+	// one is the highest confidence.
 	Toxicity *float64 `type:"float"`
 }
 
@@ -28280,10 +28252,8 @@ func (s *ToxicLabels) SetToxicity(v float64) *ToxicLabels {
 	return s
 }
 
-// Amazon Comprehend can't process the language of the input text. For custom
-// entity recognition APIs, only English, Spanish, French, Italian, German,
-// or Portuguese are accepted. For a list of supported languages, Supported
-// languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
+// Amazon Comprehend can't process the language of the input text. For a list
+// of supported languages, Supported languages (https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html)
 // in the Comprehend Developer Guide.
 type UnsupportedLanguageException struct {
 	_            struct{}                  `type:"structure"`
@@ -29024,14 +28994,7 @@ func DocumentReadAction_Values() []string {
 	}
 }
 
-// Specifies the type of Amazon Textract features to apply. If you chose TEXTRACT_ANALYZE_DOCUMENT
-// as the read action, you must specify one or both of the following values:
-//
-//   - TABLES - Returns additional information about any tables that are detected
-//     in the input document.
-//
-//   - FORMS - Returns additional information about any forms that are detected
-//     in the input document.
+// TABLES or FORMS
 const (
 	// DocumentReadFeatureTypesTables is a DocumentReadFeatureTypes enum value
 	DocumentReadFeatureTypesTables = "TABLES"
