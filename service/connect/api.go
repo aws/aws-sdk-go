@@ -30262,6 +30262,10 @@ type CreateInstanceInput struct {
 	//
 	// OutboundCallsEnabled is a required field
 	OutboundCallsEnabled *bool `type:"boolean" required:"true"`
+
+	// The tags used to organize, track, or control access for this resource. For
+	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
+	Tags map[string]*string `min:"1" type:"map"`
 }
 
 // String returns the string representation.
@@ -30299,6 +30303,9 @@ func (s *CreateInstanceInput) Validate() error {
 	}
 	if s.OutboundCallsEnabled == nil {
 		invalidParams.Add(request.NewErrParamRequired("OutboundCallsEnabled"))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -30340,6 +30347,12 @@ func (s *CreateInstanceInput) SetInstanceAlias(v string) *CreateInstanceInput {
 // SetOutboundCallsEnabled sets the OutboundCallsEnabled field's value.
 func (s *CreateInstanceInput) SetOutboundCallsEnabled(v bool) *CreateInstanceInput {
 	s.OutboundCallsEnabled = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateInstanceInput) SetTags(v map[string]*string) *CreateInstanceInput {
+	s.Tags = v
 	return s
 }
 
@@ -46006,6 +46019,9 @@ type Instance struct {
 
 	// Relevant details why the instance was not successfully created.
 	StatusReason *InstanceStatusReason `type:"structure"`
+
+	// The tags of an instance.
+	Tags map[string]*string `min:"1" type:"map"`
 }
 
 // String returns the string representation.
@@ -46089,6 +46105,12 @@ func (s *Instance) SetServiceRole(v string) *Instance {
 // SetStatusReason sets the StatusReason field's value.
 func (s *Instance) SetStatusReason(v *InstanceStatusReason) *Instance {
 	s.StatusReason = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *Instance) SetTags(v map[string]*string) *Instance {
+	s.Tags = v
 	return s
 }
 

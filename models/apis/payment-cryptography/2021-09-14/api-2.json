@@ -30,7 +30,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"InternalServerException"}
-      ]
+      ],
+      "idempotent":true
     },
     "CreateKey":{
       "name":"CreateKey",
@@ -67,7 +68,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"InternalServerException"}
-      ]
+      ],
+      "idempotent":true
     },
     "DeleteKey":{
       "name":"DeleteKey",
@@ -85,7 +87,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"InternalServerException"}
-      ]
+      ],
+      "idempotent":true
     },
     "ExportKey":{
       "name":"ExportKey",
@@ -490,6 +493,20 @@
         "Key":{"shape":"Key"}
       }
     },
+    "ExportAttributes":{
+      "type":"structure",
+      "members":{
+        "ExportDukptInitialKey":{"shape":"ExportDukptInitialKey"},
+        "KeyCheckValueAlgorithm":{"shape":"KeyCheckValueAlgorithm"}
+      }
+    },
+    "ExportDukptInitialKey":{
+      "type":"structure",
+      "required":["KeySerialNumber"],
+      "members":{
+        "KeySerialNumber":{"shape":"HexLength20Or24"}
+      }
+    },
     "ExportKeyInput":{
       "type":"structure",
       "required":[
@@ -497,6 +514,7 @@
         "KeyMaterial"
       ],
       "members":{
+        "ExportAttributes":{"shape":"ExportAttributes"},
         "ExportKeyIdentifier":{"shape":"KeyArnOrKeyAliasType"},
         "KeyMaterial":{"shape":"ExportKeyMaterial"}
       }
@@ -649,6 +667,12 @@
       "max":16,
       "min":16,
       "pattern":"^[0-9A-F]+$"
+    },
+    "HexLength20Or24":{
+      "type":"string",
+      "max":24,
+      "min":20,
+      "pattern":"^[0-9A-F]{20}$|^[0-9A-F]{24}$"
     },
     "ImportKeyInput":{
       "type":"structure",
@@ -1175,6 +1199,8 @@
         "WrappingKeyArn"
       ],
       "members":{
+        "KeyCheckValue":{"shape":"KeyCheckValue"},
+        "KeyCheckValueAlgorithm":{"shape":"KeyCheckValueAlgorithm"},
         "KeyMaterial":{"shape":"KeyMaterial"},
         "WrappedKeyMaterialFormat":{"shape":"WrappedKeyMaterialFormat"},
         "WrappingKeyArn":{"shape":"KeyArn"}

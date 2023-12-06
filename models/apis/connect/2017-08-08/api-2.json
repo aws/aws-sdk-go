@@ -4987,7 +4987,8 @@
         "InstanceAlias":{"shape":"DirectoryAlias"},
         "DirectoryId":{"shape":"DirectoryId"},
         "InboundCallsEnabled":{"shape":"InboundCallsEnabled"},
-        "OutboundCallsEnabled":{"shape":"OutboundCallsEnabled"}
+        "OutboundCallsEnabled":{"shape":"OutboundCallsEnabled"},
+        "Tags":{"shape":"TagMap"}
       }
     },
     "CreateInstanceResponse":{
@@ -8359,7 +8360,8 @@
         "StatusReason":{"shape":"InstanceStatusReason"},
         "InboundCallsEnabled":{"shape":"InboundCallsEnabled"},
         "OutboundCallsEnabled":{"shape":"OutboundCallsEnabled"},
-        "InstanceAccessUrl":{"shape":"Url"}
+        "InstanceAccessUrl":{"shape":"Url"},
+        "Tags":{"shape":"TagMap"}
       }
     },
     "InstanceArn":{

@@ -2558,7 +2558,8 @@
         "ParentRecoveryPointArn":{"shape":"ARN"},
         "CompositeMemberIdentifier":{"shape":"string"},
         "IsParent":{"shape":"boolean"},
-        "ResourceName":{"shape":"string"}
+        "ResourceName":{"shape":"string"},
+        "VaultType":{"shape":"VaultType"}
       }
     },
     "DescribeRegionSettingsInput":{
@@ -3902,6 +3903,11 @@
           "location":"querystring",
           "locationName":"accountId"
         },
+        "ByResourceType":{
+          "shape":"ResourceType",
+          "location":"querystring",
+          "locationName":"resourceType"
+        },
         "ByCreatedBefore":{
           "shape":"timestamp",
           "location":"querystring",
@@ -4170,7 +4176,8 @@
         "ParentRecoveryPointArn":{"shape":"ARN"},
         "CompositeMemberIdentifier":{"shape":"string"},
         "IsParent":{"shape":"boolean"},
-        "ResourceName":{"shape":"string"}
+        "ResourceName":{"shape":"string"},
+        "VaultType":{"shape":"VaultType"}
       }
     },
     "RecoveryPointByBackupVaultList":{

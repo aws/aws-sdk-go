@@ -193,7 +193,7 @@ func (c *PaymentCryptography) CreateKeyRequest(input *CreateKeyInput) (req *requ
 // key usage, key origin, creation date, description, and key state.
 //
 // When you create a key, you specify both immutable and mutable data about
-// the key. The immutable data contains key attributes that defines the scope
+// the key. The immutable data contains key attributes that define the scope
 // and cryptographic operations that you can perform using the key, for example
 // key class (example: SYMMETRIC_KEY), key algorithm (example: TDES_2KEY), key
 // usage (example: TR31_P0_PIN_ENCRYPTION_KEY) and key modes of use (example:
@@ -435,7 +435,7 @@ func (c *PaymentCryptography) DeleteKeyRequest(input *DeleteKeyInput) (req *requ
 
 // DeleteKey API operation for Payment Cryptography Control Plane.
 //
-// Deletes the key material and all metadata associated with Amazon Web Services
+// Deletes the key material and metadata associated with Amazon Web Services
 // Payment Cryptography key.
 //
 // Key deletion is irreversible. After a key is deleted, you can't perform cryptographic
@@ -444,13 +444,10 @@ func (c *PaymentCryptography) DeleteKeyRequest(input *DeleteKeyInput) (req *requ
 // become unrecoverable. Because key deletion is destructive, Amazon Web Services
 // Payment Cryptography has a safety mechanism to prevent accidental deletion
 // of a key. When you call this operation, Amazon Web Services Payment Cryptography
-// disables the specified key but doesn't delete it until after a waiting period.
-// The default waiting period is 7 days. To set a different waiting period,
-// set DeleteKeyInDays. During the waiting period, the KeyState is DELETE_PENDING.
-// After the key is deleted, the KeyState is DELETE_COMPLETE.
-//
-// If you delete key material, you can use ImportKey to reimport the same key
-// material into the Amazon Web Services Payment Cryptography key.
+// disables the specified key but doesn't delete it until after a waiting period
+// set using DeleteKeyInDays. The default waiting period is 7 days. During the
+// waiting period, the KeyState is DELETE_PENDING. After the key is deleted,
+// the KeyState is DELETE_COMPLETE.
 //
 // You should delete a key only when you are sure that you don't need to use
 // it anymore and no other parties are utilizing this key. If you aren't sure,
@@ -563,64 +560,109 @@ func (c *PaymentCryptography) ExportKeyRequest(input *ExportKeyInput) (req *requ
 
 // ExportKey API operation for Payment Cryptography Control Plane.
 //
-// Exports a key from Amazon Web Services Payment Cryptography using either
-// ANSI X9 TR-34 or TR-31 key export standard.
+// Exports a key from Amazon Web Services Payment Cryptography.
 //
-// Amazon Web Services Payment Cryptography simplifies main or root key exchange
-// process by eliminating the need of a paper-based key exchange process. It
-// takes a modern and secure approach based of the ANSI X9 TR-34 key exchange
-// standard.
+// Amazon Web Services Payment Cryptography simplifies key exchange by replacing
+// the existing paper-based approach with a modern electronic approach. With
+// ExportKey you can export symmetric keys using either symmetric and asymmetric
+// key exchange mechanisms. Using this operation, you can share your Amazon
+// Web Services Payment Cryptography generated keys with other service partners
+// to perform cryptographic operations outside of Amazon Web Services Payment
+// Cryptography
 //
-// You can use ExportKey to export main or root keys such as KEK (Key Encryption
-// Key), using asymmetric key exchange technique following ANSI X9 TR-34 standard.
-// The ANSI X9 TR-34 standard uses asymmetric keys to establishes bi-directional
-// trust between the two parties exchanging keys. After which you can export
-// working keys using the ANSI X9 TR-31 symmetric key exchange standard as mandated
-// by PCI PIN. Using this operation, you can share your Amazon Web Services
-// Payment Cryptography generated keys with other service partners to perform
-// cryptographic operations outside of Amazon Web Services Payment Cryptography
+// For symmetric key exchange, Amazon Web Services Payment Cryptography uses
+// the ANSI X9 TR-31 norm in accordance with PCI PIN guidelines. And for asymmetric
+// key exchange, Amazon Web Services Payment Cryptography supports ANSI X9 TR-34
+// norm . Asymmetric key exchange methods are typically used to establish bi-directional
+// trust between the two parties exhanging keys and are used for initial key
+// exchange such as Key Encryption Key (KEK). After which you can export working
+// keys using symmetric method to perform various cryptographic operations within
+// Amazon Web Services Payment Cryptography.
 //
-// # TR-34 key export
+// The TR-34 norm is intended for exchanging 3DES keys only and keys are imported
+// in a WrappedKeyBlock format. Key attributes (such as KeyUsage, KeyAlgorithm,
+// KeyModesOfUse, Exportability) are contained within the key block.
 //
-// Amazon Web Services Payment Cryptography uses TR-34 asymmetric key exchange
-// standard to export main keys such as KEK. In TR-34 terminology, the sending
-// party of the key is called Key Distribution Host (KDH) and the receiving
-// party of the key is called Key Receiving Host (KRH). In key export process,
-// KDH is Amazon Web Services Payment Cryptography which initiates key export.
-// KRH is the user receiving the key. Before you initiate TR-34 key export,
-// you must obtain an export token by calling GetParametersForExport. This operation
-// also returns the signing key certificate that KDH uses to sign the wrapped
-// key to generate a TR-34 wrapped key block. The export token expires after
-// 7 days.
+// You can also use ExportKey functionality to generate and export an IPEK (Initial
+// Pin Encryption Key) from Amazon Web Services Payment Cryptography using either
+// TR-31 or TR-34 export key exchange. IPEK is generated from BDK (Base Derivation
+// Key) and ExportDukptInitialKey attribute KSN (KeySerialNumber). The generated
+// IPEK does not persist within Amazon Web Services Payment Cryptography and
+// has to be re-generated each time during export.
+//
+// # To export KEK or IPEK using TR-34
+//
+// Using this operation, you can export initial key using TR-34 asymmetric key
+// exchange. You can only export KEK generated within Amazon Web Services Payment
+// Cryptography. In TR-34 terminology, the sending party of the key is called
+// Key Distribution Host (KDH) and the receiving party of the key is called
+// Key Receiving Device (KRD). During key export process, KDH is Amazon Web
+// Services Payment Cryptography which initiates key export and KRD is the user
+// receiving the key.
+//
+// To initiate TR-34 key export, the KRD must obtain an export token by calling
+// GetParametersForExport. This operation also generates a key pair for the
+// purpose of key export, signs the key and returns back the signing public
+// key certificate (also known as KDH signing certificate) and root certificate
+// chain. The KDH uses the private key to sign the the export payload and the
+// signing public key certificate is provided to KRD to verify the signature.
+// The KRD can import the root certificate into its Hardware Security Module
+// (HSM), as required. The export token and the associated KDH signing certificate
+// expires after 7 days.
+//
+// Next the KRD generates a key pair for the the purpose of encrypting the KDH
+// key and provides the public key cerificate (also known as KRD wrapping certificate)
+// back to KDH. The KRD will also import the root cerificate chain into Amazon
+// Web Services Payment Cryptography by calling ImportKey for RootCertificatePublicKey.
+// The KDH, Amazon Web Services Payment Cryptography, will use the KRD wrapping
+// cerificate to encrypt (wrap) the key under export and signs it with signing
+// private key to generate a TR-34 WrappedKeyBlock. For more information on
+// TR-34 key export, see section Exporting symmetric keys (https://docs.aws.amazon.com/payment-cryptography/latest/userguide/keys-export.html)
+// in the Amazon Web Services Payment Cryptography User Guide.
 //
 // Set the following parameters:
 //
-// # CertificateAuthorityPublicKeyIdentifier
+//   - ExportAttributes: Specify export attributes in case of IPEK export.
+//     This parameter is optional for KEK export.
 //
-// The KeyARN of the certificate chain that will sign the wrapping key certificate.
-// This must exist within Amazon Web Services Payment Cryptography before you
-// initiate TR-34 key export. If it does not exist, you can import it by calling
-// ImportKey for RootCertificatePublicKey.
+//   - ExportKeyIdentifier: The KeyARN of the KEK or BDK (in case of IPEK)
+//     under export.
 //
-// # ExportToken
+//   - KeyMaterial: Use Tr34KeyBlock parameters.
 //
-// Obtained from KDH by calling GetParametersForExport.
+//   - CertificateAuthorityPublicKeyIdentifier: The KeyARN of the certificate
+//     chain that signed the KRD wrapping key certificate.
 //
-// # WrappingKeyCertificate
+//   - ExportToken: Obtained from KDH by calling GetParametersForImport.
 //
-// Amazon Web Services Payment Cryptography uses this to wrap the key under
-// export.
+//   - WrappingKeyCertificate: The public key certificate in PEM format (base64
+//     encoded) of the KRD wrapping key Amazon Web Services Payment Cryptography
+//     uses for encryption of the TR-34 export payload. This certificate must
+//     be signed by the root certificate (CertificateAuthorityPublicKeyIdentifier)
+//     imported into Amazon Web Services Payment Cryptography.
 //
 // When this operation is successful, Amazon Web Services Payment Cryptography
-// returns the TR-34 wrapped key block.
+// returns the KEK or IPEK as a TR-34 WrappedKeyBlock.
 //
-// # TR-31 key export
+// # To export WK (Working Key) or IPEK using TR-31
 //
-// Amazon Web Services Payment Cryptography uses TR-31 symmetric key exchange
-// standard to export working keys. In TR-31, you must use a main key such as
-// KEK to encrypt or wrap the key under export. To establish a KEK, you can
-// use CreateKey or ImportKey. When this operation is successful, Amazon Web
-// Services Payment Cryptography returns a TR-31 wrapped key block.
+// Using this operation, you can export working keys or IPEK using TR-31 symmetric
+// key exchange. In TR-31, you must use an initial key such as KEK to encrypt
+// or wrap the key under export. To establish a KEK, you can use CreateKey or
+// ImportKey.
+//
+// Set the following parameters:
+//
+//   - ExportAttributes: Specify export attributes in case of IPEK export.
+//     This parameter is optional for KEK export.
+//
+//   - ExportKeyIdentifier: The KeyARN of the KEK or BDK (in case of IPEK)
+//     under export.
+//
+//   - KeyMaterial: Use Tr31KeyBlock parameters.
+//
+// When this operation is successful, Amazon Web Services Payment Cryptography
+// returns the WK or IPEK as a TR-31 WrappedKeyBlock.
 //
 // Cross-account use: This operation can't be used across different Amazon Web
 // Services accounts.
@@ -1060,14 +1102,13 @@ func (c *PaymentCryptography) GetParametersForImportRequest(input *GetParameters
 
 // GetParametersForImport API operation for Payment Cryptography Control Plane.
 //
-// Gets the import token and the wrapping key certificate to initiate a TR-34
-// key import into Amazon Web Services Payment Cryptography.
+// Gets the import token and the wrapping key certificate in PEM format (base64
+// encoded) to initiate a TR-34 WrappedKeyBlock.
 //
-// The wrapping key certificate wraps the key under import within the TR-34
-// key payload. The import token and wrapping key certificate must be in place
-// and operational before calling ImportKey. The import token expires in 7 days.
-// The same import token can be used to import multiple keys into your service
-// account.
+// The wrapping key certificate wraps the key under import. The import token
+// and wrapping key certificate must be in place and operational before calling
+// ImportKey. The import token expires in 7 days. You can use the same import
+// token to import multiple keys into your service account.
 //
 // Cross-account use: This operation can't be used across different Amazon Web
 // Services accounts.
@@ -1282,27 +1323,36 @@ func (c *PaymentCryptography) ImportKeyRequest(input *ImportKeyInput) (req *requ
 
 // ImportKey API operation for Payment Cryptography Control Plane.
 //
-// Imports keys and public key certificates into Amazon Web Services Payment
-// Cryptography.
+// Imports symmetric keys and public key certificates in PEM format (base64
+// encoded) into Amazon Web Services Payment Cryptography.
 //
-// Amazon Web Services Payment Cryptography simplifies main or root key exchange
-// process by eliminating the need of a paper-based key exchange process. It
-// takes a modern and secure approach based of the ANSI X9 TR-34 key exchange
-// standard.
+// Amazon Web Services Payment Cryptography simplifies key exchange by replacing
+// the existing paper-based approach with a modern electronic approach. With
+// ImportKey you can import symmetric keys using either symmetric and asymmetric
+// key exchange mechanisms.
 //
-// You can use ImportKey to import main or root keys such as KEK (Key Encryption
-// Key) using asymmetric key exchange technique following the ANSI X9 TR-34
-// standard. The ANSI X9 TR-34 standard uses asymmetric keys to establishes
-// bi-directional trust between the two parties exchanging keys.
+// For symmetric key exchange, Amazon Web Services Payment Cryptography uses
+// the ANSI X9 TR-31 norm in accordance with PCI PIN guidelines. And for asymmetric
+// key exchange, Amazon Web Services Payment Cryptography supports ANSI X9 TR-34
+// norm . Asymmetric key exchange methods are typically used to establish bi-directional
+// trust between the two parties exhanging keys and are used for initial key
+// exchange such as Key Encryption Key (KEK) or Zone Master Key (ZMK). After
+// which you can import working keys using symmetric method to perform various
+// cryptographic operations within Amazon Web Services Payment Cryptography.
 //
-// After you have imported a main or root key, you can import working keys to
-// perform various cryptographic operations within Amazon Web Services Payment
-// Cryptography using the ANSI X9 TR-31 symmetric key exchange standard as mandated
-// by PCI PIN.
+// The TR-34 norm is intended for exchanging 3DES keys only and keys are imported
+// in a WrappedKeyBlock format. Key attributes (such as KeyUsage, KeyAlgorithm,
+// KeyModesOfUse, Exportability) are contained within the key block.
 //
-// You can also import a root public key certificate, a self-signed certificate
-// used to sign other public key certificates, or a trusted public key certificate
-// under an already established root public key certificate.
+// You can also import a root public key certificate, used to sign other public
+// key certificates, or a trusted public key certificate under an already established
+// root public key certificate.
+//
+// # To import a public root key certificate
+//
+// You can also import a root public key certificate, used to sign other public
+// key certificates, or a trusted public key certificate under an already established
+// root public key certificate.
 //
 // # To import a public root key certificate
 //
@@ -1321,8 +1371,8 @@ func (c *PaymentCryptography) ImportKeyRequest(input *ImportKeyInput) (req *requ
 //
 //   - KeyUsage: TR31_S0_ASYMMETRIC_KEY_FOR_DIGITAL_SIGNATURE
 //
-//   - PublicKeyCertificate: The certificate authority used to sign the root
-//     public key certificate.
+//   - PublicKeyCertificate: The public key certificate in PEM format (base64
+//     encoded) of the private root key under import.
 //
 // # To import a trusted public key certificate
 //
@@ -1337,54 +1387,66 @@ func (c *PaymentCryptography) ImportKeyRequest(input *ImportKeyInput) (req *requ
 //     such as wrap, sign, or encrypt that you will allow the trusted public
 //     key certificate to perform.
 //
-//   - PublicKeyCertificate: The certificate authority used to sign the trusted
-//     public key certificate.
+//   - PublicKeyCertificate: The trusted public key certificate in PEM format
+//     (base64 encoded) under import.
 //
-// # Import main keys
+// # To import KEK or ZMK using TR-34
 //
-// Amazon Web Services Payment Cryptography uses TR-34 asymmetric key exchange
-// standard to import main keys such as KEK. In TR-34 terminology, the sending
-// party of the key is called Key Distribution Host (KDH) and the receiving
-// party of the key is called Key Receiving Host (KRH). During the key import
-// process, KDH is the user who initiates the key import and KRH is Amazon Web
-// Services Payment Cryptography who receives the key. Before initiating TR-34
-// key import, you must obtain an import token by calling GetParametersForImport.
-// This operation also returns the wrapping key certificate that KDH uses wrap
-// key under import to generate a TR-34 wrapped key block. The import token
-// expires after 7 days.
+// Using this operation, you can import initial key using TR-34 asymmetric key
+// exchange. In TR-34 terminology, the sending party of the key is called Key
+// Distribution Host (KDH) and the receiving party of the key is called Key
+// Receiving Device (KRD). During the key import process, KDH is the user who
+// initiates the key import and KRD is Amazon Web Services Payment Cryptography
+// who receives the key.
+//
+// To initiate TR-34 key import, the KDH must obtain an import token by calling
+// GetParametersForImport. This operation generates an encryption keypair for
+// the purpose of key import, signs the key and returns back the wrapping key
+// certificate (also known as KRD wrapping certificate) and the root certificate
+// chain. The KDH must trust and install the KRD wrapping certificate on its
+// HSM and use it to encrypt (wrap) the KDH key during TR-34 WrappedKeyBlock
+// generation. The import token and associated KRD wrapping certificate expires
+// after 7 days.
+//
+// Next the KDH generates a key pair for the purpose of signing the encrypted
+// KDH key and provides the public certificate of the signing key to Amazon
+// Web Services Payment Cryptography. The KDH will also need to import the root
+// certificate chain of the KDH signing certificate by calling ImportKey for
+// RootCertificatePublicKey. For more information on TR-34 key import, see section
+// Importing symmetric keys (https://docs.aws.amazon.com/payment-cryptography/latest/userguide/keys-import.html)
+// in the Amazon Web Services Payment Cryptography User Guide.
 //
 // Set the following parameters:
 //
-//   - CertificateAuthorityPublicKeyIdentifier: The KeyArn of the certificate
-//     chain that will sign the signing key certificate and should exist within
-//     Amazon Web Services Payment Cryptography before initiating TR-34 key import.
-//     If it does not exist, you can import it by calling by calling ImportKey
-//     for RootCertificatePublicKey.
+//   - KeyMaterial: Use Tr34KeyBlock parameters.
 //
-//   - ImportToken: Obtained from KRH by calling GetParametersForImport.
+//   - CertificateAuthorityPublicKeyIdentifier: The KeyARN of the certificate
+//     chain that signed the KDH signing key certificate.
 //
-//   - WrappedKeyBlock: The TR-34 wrapped key block from KDH. It contains the
-//     KDH key under import, wrapped with KRH provided wrapping key certificate
-//     and signed by the KDH private signing key. This TR-34 key block is generated
+//   - ImportToken: Obtained from KRD by calling GetParametersForImport.
+//
+//   - WrappedKeyBlock: The TR-34 wrapped key material from KDH. It contains
+//     the KDH key under import, wrapped with KRD wrapping certificate and signed
+//     by KDH signing private key. This TR-34 key block is typically generated
 //     by the KDH Hardware Security Module (HSM) outside of Amazon Web Services
 //     Payment Cryptography.
 //
-//   - SigningKeyCertificate: The public component of the private key that
-//     signed the KDH TR-34 wrapped key block. In PEM certificate format.
+//   - SigningKeyCertificate: The public key certificate in PEM format (base64
+//     encoded) of the KDH signing key generated under the root certificate (CertificateAuthorityPublicKeyIdentifier)
+//     imported in Amazon Web Services Payment Cryptography.
 //
-// TR-34 is intended primarily to exchange 3DES keys. Your ability to export
-// AES-128 and larger AES keys may be dependent on your source system.
-//
-// # Import working keys
+// # To import WK (Working Key) using TR-31
 //
 // Amazon Web Services Payment Cryptography uses TR-31 symmetric key exchange
-// standard to import working keys. A KEK must be established within Amazon
-// Web Services Payment Cryptography by using TR-34 key import. To initiate
-// a TR-31 key import, set the following parameters:
+// norm to import working keys. A KEK must be established within Amazon Web
+// Services Payment Cryptography by using TR-34 key import or by using CreateKey.
+// To initiate a TR-31 key import, set the following parameters:
 //
-//   - WrappedKeyBlock: The key under import and encrypted using KEK. The TR-31
-//     key block generated by your HSM outside of Amazon Web Services Payment
-//     Cryptography.
+//   - KeyMaterial: Use Tr31KeyBlock parameters.
+//
+//   - WrappedKeyBlock: The TR-31 wrapped key material. It contains the key
+//     under import, encrypted using KEK. The TR-31 key block is typically generated
+//     by a HSM outside of Amazon Web Services Payment Cryptography.
 //
 //   - WrappingKeyIdentifier: The KeyArn of the KEK that Amazon Web Services
 //     Payment Cryptography uses to decrypt or unwrap the key under import.
@@ -2831,13 +2893,13 @@ func (s *ConflictException) RequestID() string {
 type CreateAliasInput struct {
 	_ struct{} `type:"structure"`
 
-	// A friendly name that you can use to refer a key. An alias must begin with
+	// A friendly name that you can use to refer to a key. An alias must begin with
 	// alias/ followed by a name, for example alias/ExampleAlias. It can contain
 	// only alphanumeric characters, forward slashes (/), underscores (_), and dashes
 	// (-).
 	//
-	// Don't include confidential or sensitive information in this field. This field
-	// may be displayed in plaintext in CloudTrail logs and other output.
+	// Don't include personal, confidential or sensitive information in this field.
+	// This field may be displayed in plaintext in CloudTrail logs and other output.
 	//
 	// AliasName is a required field
 	AliasName *string `min:"7" type:"string" required:"true"`
@@ -2932,8 +2994,8 @@ type CreateKeyInput struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies whether to enable the key. If the key is enabled, it is activated
-	// for use within the service. If the key not enabled, then it is created but
-	// not activated. The default value is enabled.
+	// for use within the service. If the key is not enabled, then it is created
+	// but not activated. The default value is enabled.
 	Enabled *bool `type:"boolean"`
 
 	// Specifies whether the key is exportable from the service.
@@ -2948,24 +3010,26 @@ type CreateKeyInput struct {
 	KeyAttributes *KeyAttributes `type:"structure" required:"true"`
 
 	// The algorithm that Amazon Web Services Payment Cryptography uses to calculate
-	// the key check value (KCV) for DES and AES keys.
+	// the key check value (KCV). It is used to validate the key integrity.
 	//
-	// For DES key, the KCV is computed by encrypting 8 bytes, each with value '00',
-	// with the key to be checked and retaining the 3 highest order bytes of the
-	// encrypted result. For AES key, the KCV is computed by encrypting 8 bytes,
-	// each with value '01', with the key to be checked and retaining the 3 highest
-	// order bytes of the encrypted result.
+	// For TDES keys, the KCV is computed by encrypting 8 bytes, each with value
+	// of zero, with the key to be checked and retaining the 3 highest order bytes
+	// of the encrypted result. For AES keys, the KCV is computed using a CMAC algorithm
+	// where the input data is 16 bytes of zero and retaining the 3 highest order
+	// bytes of the encrypted result.
 	KeyCheckValueAlgorithm *string `type:"string" enum:"KeyCheckValueAlgorithm"`
 
-	// The tags to attach to the key. Each tag consists of a tag key and a tag value.
-	// Both the tag key and the tag value are required, but the tag value can be
-	// an empty (null) string. You can't have more than one tag on an Amazon Web
-	// Services Payment Cryptography key with the same tag key.
+	// Assigns one or more tags to the Amazon Web Services Payment Cryptography
+	// key. Use this parameter to tag a key when it is created. To tag an existing
+	// Amazon Web Services Payment Cryptography key, use the TagResource operation.
 	//
-	// To use this parameter, you must have TagResource permission.
+	// Each tag consists of a tag key and a tag value. Both the tag key and the
+	// tag value are required, but the tag value can be an empty (null) string.
+	// You can't have more than one tag on an Amazon Web Services Payment Cryptography
+	// key with the same tag key.
 	//
-	// Don't include confidential or sensitive information in this field. This field
-	// may be displayed in plaintext in CloudTrail logs and other output.
+	// Don't include personal, confidential or sensitive information in this field.
+	// This field may be displayed in plaintext in CloudTrail logs and other output.
 	//
 	// Tagging or untagging an Amazon Web Services Payment Cryptography key can
 	// allow or deny permission to the key.
@@ -3250,8 +3314,128 @@ func (s *DeleteKeyOutput) SetKey(v *Key) *DeleteKeyOutput {
 	return s
 }
 
+// The attributes for IPEK generation during export.
+type ExportAttributes struct {
+	_ struct{} `type:"structure"`
+
+	// Parameter information for IPEK export.
+	ExportDukptInitialKey *ExportDukptInitialKey `type:"structure"`
+
+	// The algorithm that Amazon Web Services Payment Cryptography uses to calculate
+	// the key check value (KCV). It is used to validate the key integrity. Specify
+	// KCV for IPEK export only.
+	//
+	// For TDES keys, the KCV is computed by encrypting 8 bytes, each with value
+	// of zero, with the key to be checked and retaining the 3 highest order bytes
+	// of the encrypted result. For AES keys, the KCV is computed using a CMAC algorithm
+	// where the input data is 16 bytes of zero and retaining the 3 highest order
+	// bytes of the encrypted result.
+	KeyCheckValueAlgorithm *string `type:"string" enum:"KeyCheckValueAlgorithm"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExportAttributes) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExportAttributes) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ExportAttributes) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ExportAttributes"}
+	if s.ExportDukptInitialKey != nil {
+		if err := s.ExportDukptInitialKey.Validate(); err != nil {
+			invalidParams.AddNested("ExportDukptInitialKey", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExportDukptInitialKey sets the ExportDukptInitialKey field's value.
+func (s *ExportAttributes) SetExportDukptInitialKey(v *ExportDukptInitialKey) *ExportAttributes {
+	s.ExportDukptInitialKey = v
+	return s
+}
+
+// SetKeyCheckValueAlgorithm sets the KeyCheckValueAlgorithm field's value.
+func (s *ExportAttributes) SetKeyCheckValueAlgorithm(v string) *ExportAttributes {
+	s.KeyCheckValueAlgorithm = &v
+	return s
+}
+
+// Parameter information for IPEK generation during export.
+type ExportDukptInitialKey struct {
+	_ struct{} `type:"structure"`
+
+	// The KSN for IPEK generation using DUKPT.
+	//
+	// KSN must be padded before sending to Amazon Web Services Payment Cryptography.
+	// KSN hex length should be 20 for a TDES_2KEY key or 24 for an AES key.
+	//
+	// KeySerialNumber is a required field
+	KeySerialNumber *string `min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExportDukptInitialKey) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExportDukptInitialKey) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ExportDukptInitialKey) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ExportDukptInitialKey"}
+	if s.KeySerialNumber == nil {
+		invalidParams.Add(request.NewErrParamRequired("KeySerialNumber"))
+	}
+	if s.KeySerialNumber != nil && len(*s.KeySerialNumber) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("KeySerialNumber", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKeySerialNumber sets the KeySerialNumber field's value.
+func (s *ExportDukptInitialKey) SetKeySerialNumber(v string) *ExportDukptInitialKey {
+	s.KeySerialNumber = &v
+	return s
+}
+
 type ExportKeyInput struct {
 	_ struct{} `type:"structure"`
+
+	// The attributes for IPEK generation during export.
+	ExportAttributes *ExportAttributes `type:"structure"`
 
 	// The KeyARN of the key under export from Amazon Web Services Payment Cryptography.
 	//
@@ -3295,6 +3479,11 @@ func (s *ExportKeyInput) Validate() error {
 	if s.KeyMaterial == nil {
 		invalidParams.Add(request.NewErrParamRequired("KeyMaterial"))
 	}
+	if s.ExportAttributes != nil {
+		if err := s.ExportAttributes.Validate(); err != nil {
+			invalidParams.AddNested("ExportAttributes", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.KeyMaterial != nil {
 		if err := s.KeyMaterial.Validate(); err != nil {
 			invalidParams.AddNested("KeyMaterial", err.(request.ErrInvalidParams))
@@ -3305,6 +3494,12 @@ func (s *ExportKeyInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetExportAttributes sets the ExportAttributes field's value.
+func (s *ExportKeyInput) SetExportAttributes(v *ExportAttributes) *ExportKeyInput {
+	s.ExportAttributes = v
+	return s
 }
 
 // SetExportKeyIdentifier sets the ExportKeyIdentifier field's value.
@@ -3320,14 +3515,16 @@ func (s *ExportKeyInput) SetKeyMaterial(v *ExportKeyMaterial) *ExportKeyInput {
 }
 
 // Parameter information for key material export from Amazon Web Services Payment
-// Cryptography.
+// Cryptography using TR-31 or TR-34 key exchange method.
 type ExportKeyMaterial struct {
 	_ struct{} `type:"structure"`
 
-	// Parameter information for key material export using TR-31 standard.
+	// Parameter information for key material export using symmetric TR-31 key exchange
+	// method.
 	Tr31KeyBlock *ExportTr31KeyBlock `type:"structure"`
 
-	// Parameter information for key material export using TR-34 standard.
+	// Parameter information for key material export using the asymmetric TR-34
+	// key exchange method.
 	Tr34KeyBlock *ExportTr34KeyBlock `type:"structure"`
 }
 
@@ -3384,7 +3581,7 @@ func (s *ExportKeyMaterial) SetTr34KeyBlock(v *ExportTr34KeyBlock) *ExportKeyMat
 type ExportKeyOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The key material under export as a TR-34 or TR-31 wrapped key block.
+	// The key material under export as a TR-34 WrappedKeyBlock or a TR-31 WrappedKeyBlock.
 	WrappedKey *WrappedKey `type:"structure"`
 }
 
@@ -3412,7 +3609,8 @@ func (s *ExportKeyOutput) SetWrappedKey(v *WrappedKey) *ExportKeyOutput {
 	return s
 }
 
-// Parameter information for key material export using TR-31 standard.
+// Parameter information for key material export using symmetric TR-31 key exchange
+// method.
 type ExportTr31KeyBlock struct {
 	_ struct{} `type:"structure"`
 
@@ -3463,7 +3661,8 @@ func (s *ExportTr31KeyBlock) SetWrappingKeyIdentifier(v string) *ExportTr31KeyBl
 	return s
 }
 
-// Parameter information for key material export using TR-34 standard.
+// Parameter information for key material export using the asymmetric TR-34
+// key exchange method.
 type ExportTr34KeyBlock struct {
 	_ struct{} `type:"structure"`
 
@@ -3758,8 +3957,8 @@ type GetParametersForExportInput struct {
 	KeyMaterialType *string `type:"string" required:"true" enum:"KeyMaterialType"`
 
 	// The signing key algorithm to generate a signing key certificate. This certificate
-	// signs the wrapped key under export within the TR-34 key block cryptogram.
-	// RSA_2048 is the only signing key algorithm allowed.
+	// signs the wrapped key under export within the TR-34 key block. RSA_2048 is
+	// the only signing key algorithm allowed.
 	//
 	// SigningKeyAlgorithm is a required field
 	SigningKeyAlgorithm *string `type:"string" required:"true" enum:"KeyAlgorithm"`
@@ -3832,8 +4031,9 @@ type GetParametersForExportOutput struct {
 	// SigningKeyAlgorithm is a required field
 	SigningKeyAlgorithm *string `type:"string" required:"true" enum:"KeyAlgorithm"`
 
-	// The signing key certificate of the public key for signature within the TR-34
-	// key block cryptogram. The certificate expires after 7 days.
+	// The signing key certificate in PEM format (base64 encoded) of the public
+	// key for signature within the TR-34 key block. The certificate expires after
+	// 7 days.
 	//
 	// SigningKeyCertificate is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by GetParametersForExportOutput's
@@ -3842,8 +4042,8 @@ type GetParametersForExportOutput struct {
 	// SigningKeyCertificate is a required field
 	SigningKeyCertificate *string `min:"1" type:"string" required:"true" sensitive:"true"`
 
-	// The certificate chain that signed the signing key certificate. This is the
-	// root certificate authority (CA) within your service account.
+	// The root certificate authority (CA) that signed the signing key certificate
+	// in PEM format (base64 encoded).
 	//
 	// SigningKeyCertificateChain is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by GetParametersForExportOutput's
@@ -3904,16 +4104,20 @@ func (s *GetParametersForExportOutput) SetSigningKeyCertificateChain(v string) *
 type GetParametersForImportInput struct {
 	_ struct{} `type:"structure"`
 
-	// The key block format type such as TR-34 or TR-31 to use during key material
-	// import. Import token is only required for TR-34 key import TR34_KEY_BLOCK.
-	// Import token is not required for TR-31 key import.
+	// The method to use for key material import. Import token is only required
+	// for TR-34 WrappedKeyBlock (TR34_KEY_BLOCK).
+	//
+	// Import token is not required for TR-31, root public key cerificate or trusted
+	// public key certificate.
 	//
 	// KeyMaterialType is a required field
 	KeyMaterialType *string `type:"string" required:"true" enum:"KeyMaterialType"`
 
 	// The wrapping key algorithm to generate a wrapping key certificate. This certificate
-	// wraps the key under import within the TR-34 key block cryptogram. RSA_2048
-	// is the only wrapping key algorithm allowed.
+	// wraps the key under import.
+	//
+	// At this time, RSA_2048, RSA_3072, RSA_4096 are the only allowed algorithms
+	// for TR-34 WrappedKeyBlock import.
 	//
 	// WrappingKeyAlgorithm is a required field
 	WrappingKeyAlgorithm *string `type:"string" required:"true" enum:"KeyAlgorithm"`
@@ -3980,14 +4184,13 @@ type GetParametersForImportOutput struct {
 	// ParametersValidUntilTimestamp is a required field
 	ParametersValidUntilTimestamp *time.Time `type:"timestamp" required:"true"`
 
-	// The algorithm of the wrapping key for use within TR-34 key block. RSA_2048
-	// is the only wrapping key algorithm allowed.
+	// The algorithm of the wrapping key for use within TR-34 WrappedKeyBlock.
 	//
 	// WrappingKeyAlgorithm is a required field
 	WrappingKeyAlgorithm *string `type:"string" required:"true" enum:"KeyAlgorithm"`
 
-	// The wrapping key certificate of the wrapping key for use within the TR-34
-	// key block. The certificate expires in 7 days.
+	// The wrapping key certificate in PEM format (base64 encoded) of the wrapping
+	// key for use within the TR-34 key block. The certificate expires in 7 days.
 	//
 	// WrappingKeyCertificate is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by GetParametersForImportOutput's
@@ -3996,9 +4199,8 @@ type GetParametersForImportOutput struct {
 	// WrappingKeyCertificate is a required field
 	WrappingKeyCertificate *string `min:"1" type:"string" required:"true" sensitive:"true"`
 
-	// The Amazon Web Services Payment Cryptography certificate chain that signed
-	// the wrapping key certificate. This is the root certificate authority (CA)
-	// within your service account.
+	// The Amazon Web Services Payment Cryptography root certificate authority (CA)
+	// that signed the wrapping key certificate in PEM format (base64 encoded).
 	//
 	// WrappingKeyCertificateChain is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by GetParametersForImportOutput's
@@ -4108,9 +4310,9 @@ func (s *GetPublicKeyCertificateInput) SetKeyIdentifier(v string) *GetPublicKeyC
 type GetPublicKeyCertificateOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The public key component of the asymmetric key pair in a certificate (PEM)
-	// format. It is signed by the root certificate authority (CA) within your service
-	// account. The certificate expires in 90 days.
+	// The public key component of the asymmetric key pair in a certificate PEM
+	// format (base64 encoded). It is signed by the root certificate authority (CA).
+	// The certificate expires in 90 days.
 	//
 	// KeyCertificate is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by GetPublicKeyCertificateOutput's
@@ -4119,9 +4321,8 @@ type GetPublicKeyCertificateOutput struct {
 	// KeyCertificate is a required field
 	KeyCertificate *string `min:"1" type:"string" required:"true" sensitive:"true"`
 
-	// The certificate chain that signed the public key certificate of the asymmetric
-	// key pair. This is the root certificate authority (CA) within your service
-	// account.
+	// The root certificate authority (CA) that signed the public key certificate
+	// in PEM format (base64 encoded) of the asymmetric key pair.
 	//
 	// KeyCertificateChain is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by GetPublicKeyCertificateOutput's
@@ -4168,13 +4369,13 @@ type ImportKeyInput struct {
 	Enabled *bool `type:"boolean"`
 
 	// The algorithm that Amazon Web Services Payment Cryptography uses to calculate
-	// the key check value (KCV) for DES and AES keys.
+	// the key check value (KCV). It is used to validate the key integrity.
 	//
-	// For DES key, the KCV is computed by encrypting 8 bytes, each with value '00',
-	// with the key to be checked and retaining the 3 highest order bytes of the
-	// encrypted result. For AES key, the KCV is computed by encrypting 8 bytes,
-	// each with value '01', with the key to be checked and retaining the 3 highest
-	// order bytes of the encrypted result.
+	// For TDES keys, the KCV is computed by encrypting 8 bytes, each with value
+	// of zero, with the key to be checked and retaining the 3 highest order bytes
+	// of the encrypted result. For AES keys, the KCV is computed using a CMAC algorithm
+	// where the input data is 16 bytes of zero and retaining the 3 highest order
+	// bytes of the encrypted result.
 	KeyCheckValueAlgorithm *string `type:"string" enum:"KeyCheckValueAlgorithm"`
 
 	// The key or public key certificate type to use during key material import,
@@ -4183,20 +4384,19 @@ type ImportKeyInput struct {
 	// KeyMaterial is a required field
 	KeyMaterial *ImportKeyMaterial `type:"structure" required:"true"`
 
-	// The tags to attach to the key. Each tag consists of a tag key and a tag value.
-	// Both the tag key and the tag value are required, but the tag value can be
-	// an empty (null) string. You can't have more than one tag on an Amazon Web
-	// Services Payment Cryptography key with the same tag key.
+	// Assigns one or more tags to the Amazon Web Services Payment Cryptography
+	// key. Use this parameter to tag a key when it is imported. To tag an existing
+	// Amazon Web Services Payment Cryptography key, use the TagResource operation.
 	//
+	// Each tag consists of a tag key and a tag value. Both the tag key and the
+	// tag value are required, but the tag value can be an empty (null) string.
 	// You can't have more than one tag on an Amazon Web Services Payment Cryptography
 	// key with the same tag key. If you specify an existing tag key with a different
 	// tag value, Amazon Web Services Payment Cryptography replaces the current
 	// tag value with the specified one.
 	//
-	// To use this parameter, you must have TagResource permission.
-	//
-	// Don't include confidential or sensitive information in this field. This field
-	// may be displayed in plaintext in CloudTrail logs and other output.
+	// Don't include personal, confidential or sensitive information in this field.
+	// This field may be displayed in plaintext in CloudTrail logs and other output.
 	//
 	// Tagging or untagging an Amazon Web Services Payment Cryptography key can
 	// allow or deny permission to the key.
@@ -4273,17 +4473,20 @@ func (s *ImportKeyInput) SetTags(v []*Tag) *ImportKeyInput {
 	return s
 }
 
-// Parameter information for key material import.
+// Parameter information for key material import into Amazon Web Services Payment
+// Cryptography using TR-31 or TR-34 key exchange method.
 type ImportKeyMaterial struct {
 	_ struct{} `type:"structure"`
 
 	// Parameter information for root public key certificate import.
 	RootCertificatePublicKey *RootCertificatePublicKey `type:"structure"`
 
-	// Parameter information for key material import using TR-31 standard.
+	// Parameter information for key material import using symmetric TR-31 key exchange
+	// method.
 	Tr31KeyBlock *ImportTr31KeyBlock `type:"structure"`
 
-	// Parameter information for key material import using TR-34 standard.
+	// Parameter information for key material import using the asymmetric TR-34
+	// key exchange method.
 	Tr34KeyBlock *ImportTr34KeyBlock `type:"structure"`
 
 	// Parameter information for trusted public key certificate import.
@@ -4396,11 +4599,12 @@ func (s *ImportKeyOutput) SetKey(v *Key) *ImportKeyOutput {
 	return s
 }
 
-// Parameter information for key material import using TR-31 standard.
+// Parameter information for key material import using symmetric TR-31 key exchange
+// method.
 type ImportTr31KeyBlock struct {
 	_ struct{} `type:"structure"`
 
-	// The TR-34 wrapped key block to import.
+	// The TR-31 wrapped key block to import.
 	//
 	// WrappedKeyBlock is a required field
 	WrappedKeyBlock *string `min:"56" type:"string" required:"true"`
@@ -4464,7 +4668,8 @@ func (s *ImportTr31KeyBlock) SetWrappingKeyIdentifier(v string) *ImportTr31KeyBl
 	return s
 }
 
-// Parameter information for key material import using TR-34 standard.
+// Parameter information for key material import using the asymmetric TR-34
+// key exchange method.
 type ImportTr34KeyBlock struct {
 	_ struct{} `type:"structure"`
 
@@ -4474,9 +4679,10 @@ type ImportTr34KeyBlock struct {
 	// CertificateAuthorityPublicKeyIdentifier is a required field
 	CertificateAuthorityPublicKeyIdentifier *string `min:"7" type:"string" required:"true"`
 
-	// The import token that initiates key import into Amazon Web Services Payment
-	// Cryptography. It expires after 7 days. You can use the same import token
-	// to import multiple keys to the same service account.
+	// The import token that initiates key import using the asymmetric TR-34 key
+	// exchange method into Amazon Web Services Payment Cryptography. It expires
+	// after 7 days. You can use the same import token to import multiple keys to
+	// the same service account.
 	//
 	// ImportToken is a required field
 	ImportToken *string `type:"string" required:"true"`
@@ -4493,7 +4699,7 @@ type ImportTr34KeyBlock struct {
 	RandomNonce *string `min:"16" type:"string"`
 
 	// The public key component in PEM certificate format of the private key that
-	// signs the KDH TR-34 wrapped key block.
+	// signs the KDH TR-34 WrappedKeyBlock.
 	//
 	// SigningKeyCertificate is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ImportTr34KeyBlock's
@@ -4706,21 +4912,19 @@ type Key struct {
 	KeyAttributes *KeyAttributes `type:"structure" required:"true"`
 
 	// The key check value (KCV) is used to check if all parties holding a given
-	// key have the same key or to detect that a key has changed. Amazon Web Services
-	// Payment Cryptography calculates the KCV by using standard algorithms, typically
-	// by encrypting 8 or 16 bytes or "00" or "01" and then truncating the result
-	// to the first 3 bytes, or 6 hex digits, of the resulting cryptogram.
+	// key have the same key or to detect that a key has changed.
 	//
 	// KeyCheckValue is a required field
 	KeyCheckValue *string `min:"4" type:"string" required:"true"`
 
-	// The algorithm used for calculating key check value (KCV) for DES and AES
-	// keys. For a DES key, Amazon Web Services Payment Cryptography computes the
-	// KCV by encrypting 8 bytes, each with value '00', with the key to be checked
-	// and retaining the 3 highest order bytes of the encrypted result. For an AES
-	// key, Amazon Web Services Payment Cryptography computes the KCV by encrypting
-	// 8 bytes, each with value '01', with the key to be checked and retaining the
-	// 3 highest order bytes of the encrypted result.
+	// The algorithm that Amazon Web Services Payment Cryptography uses to calculate
+	// the key check value (KCV). It is used to validate the key integrity.
+	//
+	// For TDES keys, the KCV is computed by encrypting 8 bytes, each with value
+	// of zero, with the key to be checked and retaining the 3 highest order bytes
+	// of the encrypted result. For AES keys, the KCV is computed using a CMAC algorithm
+	// where the input data is 16 bytes of zero and retaining the 3 highest order
+	// bytes of the encrypted result.
 	//
 	// KeyCheckValueAlgorithm is a required field
 	KeyCheckValueAlgorithm *string `type:"string" required:"true" enum:"KeyCheckValueAlgorithm"`
@@ -5082,10 +5286,7 @@ type KeySummary struct {
 	KeyAttributes *KeyAttributes `type:"structure" required:"true"`
 
 	// The key check value (KCV) is used to check if all parties holding a given
-	// key have the same key or to detect that a key has changed. Amazon Web Services
-	// Payment Cryptography calculates the KCV by using standard algorithms, typically
-	// by encrypting 8 or 16 bytes or "00" or "01" and then truncating the result
-	// to the first 3 bytes, or 6 hex digits, of the resulting cryptogram.
+	// key have the same key or to detect that a key has changed.
 	//
 	// KeyCheckValue is a required field
 	KeyCheckValue *string `min:"4" type:"string" required:"true"`
@@ -5266,6 +5467,9 @@ type ListKeysInput struct {
 	// Use this parameter to specify the maximum number of items to return. When
 	// this value is present, Amazon Web Services Payment Cryptography does not
 	// return more than the specified number of items, but it might return fewer.
+	//
+	// This value is optional. If you include a value, it must be between 1 and
+	// 100, inclusive. If you do not include a value, it defaults to 50.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// Use this parameter in a subsequent request after you receive a response with
@@ -5376,6 +5580,9 @@ type ListTagsForResourceInput struct {
 	// Use this parameter to specify the maximum number of items to return. When
 	// this value is present, Amazon Web Services Payment Cryptography does not
 	// return more than the specified number of items, but it might return fewer.
+	//
+	// This value is optional. If you include a value, it must be between 1 and
+	// 100, inclusive. If you do not include a value, it defaults to 50.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// Use this parameter in a subsequent request after you receive a response with
@@ -6082,13 +6289,13 @@ type TagResourceInput struct {
 	// you specify an existing tag key with a different tag value, Amazon Web Services
 	// Payment Cryptography replaces the current tag value with the new one.
 	//
-	// Don't include confidential or sensitive information in this field. This field
-	// may be displayed in plaintext in CloudTrail logs and other output.
+	// Don't include personal, confidential or sensitive information in this field.
+	// This field may be displayed in plaintext in CloudTrail logs and other output.
 	//
 	// To use this parameter, you must have TagResource permission in an IAM policy.
 	//
-	// Don't include confidential or sensitive information in this field. This field
-	// may be displayed in plaintext in CloudTrail logs and other output.
+	// Don't include personal, confidential or sensitive information in this field.
+	// This field may be displayed in plaintext in CloudTrail logs and other output.
 	//
 	// Tags is a required field
 	Tags []*Tag `type:"list" required:"true"`
@@ -6580,11 +6787,26 @@ func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Parameter information for generating a wrapped key using TR-31 or TR-34 standard.
+// Parameter information for generating a WrappedKeyBlock for key exchange.
 type WrappedKey struct {
 	_ struct{} `type:"structure"`
 
-	// Parameter information for generating a wrapped key using TR-31 or TR-34 standard.
+	// The key check value (KCV) is used to check if all parties holding a given
+	// key have the same key or to detect that a key has changed.
+	KeyCheckValue *string `min:"4" type:"string"`
+
+	// The algorithm that Amazon Web Services Payment Cryptography uses to calculate
+	// the key check value (KCV). It is used to validate the key integrity.
+	//
+	// For TDES keys, the KCV is computed by encrypting 8 bytes, each with value
+	// of zero, with the key to be checked and retaining the 3 highest order bytes
+	// of the encrypted result. For AES keys, the KCV is computed using a CMAC algorithm
+	// where the input data is 16 bytes of zero and retaining the 3 highest order
+	// bytes of the encrypted result.
+	KeyCheckValueAlgorithm *string `type:"string" enum:"KeyCheckValueAlgorithm"`
+
+	// Parameter information for generating a wrapped key using TR-31 or TR-34 skey
+	// exchange method.
 	//
 	// KeyMaterial is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by WrappedKey's
@@ -6620,6 +6842,18 @@ func (s WrappedKey) String() string {
 // value will be replaced with "sensitive".
 func (s WrappedKey) GoString() string {
 	return s.String()
+}
+
+// SetKeyCheckValue sets the KeyCheckValue field's value.
+func (s *WrappedKey) SetKeyCheckValue(v string) *WrappedKey {
+	s.KeyCheckValue = &v
+	return s
+}
+
+// SetKeyCheckValueAlgorithm sets the KeyCheckValueAlgorithm field's value.
+func (s *WrappedKey) SetKeyCheckValueAlgorithm(v string) *WrappedKey {
+	s.KeyCheckValueAlgorithm = &v
+	return s
 }
 
 // SetKeyMaterial sets the KeyMaterial field's value.

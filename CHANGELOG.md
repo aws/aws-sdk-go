@@ -1,3 +1,14 @@
+Release v1.48.14 (2023-12-06)
+===
+
+### Service Client Updates
+* `service/backup`: Updates service API and documentation
+* `service/comprehend`: Updates service documentation
+* `service/connect`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * Releasing the new cpuManufacturer attribute within the DescribeInstanceTypes API response which notifies our customers with information on who the Manufacturer is for the processor attached to the instance, for example: Intel.
+* `service/payment-cryptography`: Updates service API and documentation
+
 Release v1.48.13 (2023-12-05)
 ===
 
