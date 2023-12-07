@@ -227,7 +227,8 @@
     "AutoScalingGroupHook": {
       "base": null,
       "refs": {
-        "AutoScalingGroup$hook": "<p>An Auto Scaling lifecycle event hook name.</p>"
+        "AutoScalingGroup$hook": "<p>The name of the launch hook that CodeDeploy installed into the Auto Scaling group.</p> <p>For more information about the launch hook, see <a href=\"https://docs.aws.amazon.com/codedeploy/latest/userguide/integrations-aws-auto-scaling.html#integrations-aws-auto-scaling-behaviors\">How Amazon EC2 Auto Scaling works with CodeDeploy</a> in the <i>CodeDeploy User Guide</i>.</p>",
+        "AutoScalingGroup$terminationHook": "<p>The name of the termination hook that CodeDeploy installed into the Auto Scaling group.</p> <p>For more information about the termination hook, see <a href=\"https://docs.aws.amazon.com/codedeploy/latest/userguide/integrations-aws-auto-scaling.html#integrations-aws-auto-scaling-behaviors-hook-enable\">Enabling termination deployments during Auto Scaling scale-in events</a> in the <i>CodeDeploy User Guide</i>.</p>"
       }
     },
     "AutoScalingGroupList": {
@@ -352,6 +353,7 @@
         "AutoRollbackConfiguration$enabled": "<p>Indicates whether a defined automatic rollback configuration is currently enabled.</p>",
         "CreateDeploymentInput$ignoreApplicationStopFailures": "<p> If true, then if an <code>ApplicationStop</code>, <code>BeforeBlockTraffic</code>, or <code>AfterBlockTraffic</code> deployment lifecycle event to an instance fails, then the deployment continues to the next deployment lifecycle event. For example, if <code>ApplicationStop</code> fails, the deployment continues with <code>DownloadBundle</code>. If <code>BeforeBlockTraffic</code> fails, the deployment continues with <code>BlockTraffic</code>. If <code>AfterBlockTraffic</code> fails, the deployment continues with <code>ApplicationStop</code>. </p> <p> If false or not specified, then if a lifecycle event fails during a deployment to an instance, that deployment fails. If deployment to that instance is part of an overall deployment and the number of healthy hosts is not less than the minimum number of healthy hosts, then a deployment to the next instance is attempted. </p> <p> During a deployment, the CodeDeploy agent runs the scripts specified for <code>ApplicationStop</code>, <code>BeforeBlockTraffic</code>, and <code>AfterBlockTraffic</code> in the AppSpec file from the previous successful deployment. (All other scripts are run from the AppSpec file in the current deployment.) If one of these scripts contains an error and does not run successfully, the deployment can fail. </p> <p> If the cause of the failure is a script from the last successful deployment that will never run successfully, create a new deployment and use <code>ignoreApplicationStopFailures</code> to specify that the <code>ApplicationStop</code>, <code>BeforeBlockTraffic</code>, and <code>AfterBlockTraffic</code> failures should be ignored. </p>",
         "CreateDeploymentInput$updateOutdatedInstancesOnly": "<p> Indicates whether to deploy to all instances or only to instances that are not running the latest application revision. </p>",
+        "DeploymentGroupInfo$terminationHookEnabled": "<p>Indicates whether the deployment group was configured to have CodeDeploy install a termination hook into an Auto Scaling group.</p> <p>For more information about the termination hook, see <a href=\"https://docs.aws.amazon.com/codedeploy/latest/userguide/integrations-aws-auto-scaling.html#integrations-aws-auto-scaling-behaviors\">How Amazon EC2 Auto Scaling works with CodeDeploy</a> in the <i>CodeDeploy User Guide</i>.</p>",
         "DeploymentInfo$ignoreApplicationStopFailures": "<p> If true, then if an <code>ApplicationStop</code>, <code>BeforeBlockTraffic</code>, or <code>AfterBlockTraffic</code> deployment lifecycle event to an instance fails, then the deployment continues to the next deployment lifecycle event. For example, if <code>ApplicationStop</code> fails, the deployment continues with DownloadBundle. If <code>BeforeBlockTraffic</code> fails, the deployment continues with <code>BlockTraffic</code>. If <code>AfterBlockTraffic</code> fails, the deployment continues with <code>ApplicationStop</code>. </p> <p> If false or not specified, then if a lifecycle event fails during a deployment to an instance, that deployment fails. If deployment to that instance is part of an overall deployment and the number of healthy hosts is not less than the minimum number of healthy hosts, then a deployment to the next instance is attempted. </p> <p> During a deployment, the CodeDeploy agent runs the scripts specified for <code>ApplicationStop</code>, <code>BeforeBlockTraffic</code>, and <code>AfterBlockTraffic</code> in the AppSpec file from the previous successful deployment. (All other scripts are run from the AppSpec file in the current deployment.) If one of these scripts contains an error and does not run successfully, the deployment can fail. </p> <p> If the cause of the failure is a script from the last successful deployment that will never run successfully, create a new deployment and use <code>ignoreApplicationStopFailures</code> to specify that the <code>ApplicationStop</code>, <code>BeforeBlockTraffic</code>, and <code>AfterBlockTraffic</code> failures should be ignored. </p>",
         "DeploymentInfo$updateOutdatedInstancesOnly": "<p>Indicates whether only instances that are not running the latest application revision are to be deployed to.</p>",
         "DeploymentInfo$instanceTerminationWaitTimeStarted": "<p>Indicates whether the wait period set for the termination of instances in the original environment has started. Status is 'false' if the KEEP_ALIVE option is specified. Otherwise, 'true' as soon as the termination wait period starts.</p>"
@@ -1594,6 +1596,11 @@
       "refs": {
       }
     },
+    "InvalidZonalDeploymentConfigurationException": {
+      "base": "<p>The <code>ZonalConfig</code> object is not valid.</p>",
+      "refs": {
+      }
+    },
     "Key": {
       "base": null,
       "refs": {
@@ -1832,10 +1839,28 @@
       }
     },
     "MinimumHealthyHosts": {
-      "base": "<p>Information about minimum healthy instance.</p>",
+      "base": "<p>Information about the minimum number of healthy instances.</p>",
       "refs": {
         "CreateDeploymentConfigInput$minimumHealthyHosts": "<p>The minimum number of healthy instances that should be available at any time during the deployment. There are two parameters expected in the input: type and value.</p> <p>The type parameter takes either of the following values:</p> <ul> <li> <p>HOST_COUNT: The value parameter represents the minimum number of healthy instances as an absolute value.</p> </li> <li> <p>FLEET_PERCENT: The value parameter represents the minimum number of healthy instances as a percentage of the total number of instances in the deployment. If you specify FLEET_PERCENT, at the start of the deployment, CodeDeploy converts the percentage to the equivalent number of instances and rounds up fractional instances.</p> </li> </ul> <p>The value parameter takes an integer.</p> <p>For example, to set a minimum of 95% healthy instance, specify a type of FLEET_PERCENT and a value of 95.</p>",
-        "DeploymentConfigInfo$minimumHealthyHosts": "<p>Information about the number or percentage of minimum healthy instance.</p>"
+        "DeploymentConfigInfo$minimumHealthyHosts": "<p>Information about the number or percentage of minimum healthy instances.</p>"
+      }
+    },
+    "MinimumHealthyHostsPerZone": {
+      "base": "<p>Information about the minimum number of healthy instances per Availability Zone.</p>",
+      "refs": {
+        "ZonalConfig$minimumHealthyHostsPerZone": "<p>The number or percentage of instances that must remain available per Availability Zone during a deployment. This option works in conjunction with the <code>MinimumHealthyHosts</code> option. For more information, see <a href=\"https://docs.aws.amazon.com/codedeploy/latest/userguide/instances-health.html#minimum-healthy-hosts-az\">About the minimum number of healthy hosts per Availability Zone</a> in the <i>CodeDeploy User Guide</i>.</p> <p>If you don't specify the <code>minimumHealthyHostsPerZone</code> option, then CodeDeploy uses a default value of <code>0</code> percent.</p> <p>For more information about the zonal configuration feature, see <a href=\"https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-configurations-create.html#zonal-config\">zonal configuration</a> in the <i>CodeDeploy User Guide</i>.</p>"
+      }
+    },
+    "MinimumHealthyHostsPerZoneType": {
+      "base": null,
+      "refs": {
+        "MinimumHealthyHostsPerZone$type": "<p>The <code>type</code> associated with the <code>MinimumHealthyHostsPerZone</code> option.</p>"
+      }
+    },
+    "MinimumHealthyHostsPerZoneValue": {
+      "base": null,
+      "refs": {
+        "MinimumHealthyHostsPerZone$value": "<p>The <code>value</code> associated with the <code>MinimumHealthyHostsPerZone</code> option.</p>"
       }
     },
     "MinimumHealthyHostsType": {
@@ -1883,7 +1908,9 @@
     "NullableBoolean": {
       "base": null,
       "refs": {
-        "StopDeploymentInput$autoRollbackEnabled": "<p> Indicates, when a deployment is stopped, whether instances that have been updated should be rolled back to the previous version of the application revision. </p>"
+        "CreateDeploymentGroupInput$terminationHookEnabled": "<p>This parameter only applies if you are using CodeDeploy with Amazon EC2 Auto Scaling. For more information, see <a href=\"https://docs.aws.amazon.com/codedeploy/latest/userguide/integrations-aws-auto-scaling.html\">Integrating CodeDeploy with Amazon EC2 Auto Scaling</a> in the <i>CodeDeploy User Guide</i>.</p> <p>Set <code>terminationHookEnabled</code> to <code>true</code> to have CodeDeploy install a termination hook into your Auto Scaling group when you create a deployment group. When this hook is installed, CodeDeploy will perform termination deployments.</p> <p>For information about termination deployments, see <a href=\"https://docs.aws.amazon.com/codedeploy/latest/userguide/integrations-aws-auto-scaling.html#integrations-aws-auto-scaling-behaviors-hook-enable\">Enabling termination deployments during Auto Scaling scale-in events</a> in the <i>CodeDeploy User Guide</i>.</p> <p>For more information about Auto Scaling scale-in events, see the <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-lifecycle.html#as-lifecycle-scale-in\">Scale in</a> topic in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p>",
+        "StopDeploymentInput$autoRollbackEnabled": "<p> Indicates, when a deployment is stopped, whether instances that have been updated should be rolled back to the previous version of the application revision. </p>",
+        "UpdateDeploymentGroupInput$terminationHookEnabled": "<p>This parameter only applies if you are using CodeDeploy with Amazon EC2 Auto Scaling. For more information, see <a href=\"https://docs.aws.amazon.com/codedeploy/latest/userguide/integrations-aws-auto-scaling.html\">Integrating CodeDeploy with Amazon EC2 Auto Scaling</a> in the <i>CodeDeploy User Guide</i>.</p> <p>Set <code>terminationHookEnabled</code> to <code>true</code> to have CodeDeploy install a termination hook into your Auto Scaling group when you update a deployment group. When this hook is installed, CodeDeploy will perform termination deployments.</p> <p>For information about termination deployments, see <a href=\"https://docs.aws.amazon.com/codedeploy/latest/userguide/integrations-aws-auto-scaling.html#integrations-aws-auto-scaling-behaviors-hook-enable\">Enabling termination deployments during Auto Scaling scale-in events</a> in the <i>CodeDeploy User Guide</i>.</p> <p>For more information about Auto Scaling scale-in events, see the <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-lifecycle.html#as-lifecycle-scale-in\">Scale in</a> topic in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p>"
       }
     },
     "OnPremisesTagSet": {
@@ -2459,6 +2486,20 @@
       "refs": {
         "TimeBasedCanary$canaryInterval": "<p>The number of minutes between the first and second traffic shifts of a <code>TimeBasedCanary</code> deployment.</p>",
         "TimeBasedLinear$linearInterval": "<p>The number of minutes between each incremental traffic shift of a <code>TimeBasedLinear</code> deployment.</p>"
+      }
+    },
+    "WaitTimeInSeconds": {
+      "base": null,
+      "refs": {
+        "ZonalConfig$firstZoneMonitorDurationInSeconds": "<p>The period of time, in seconds, that CodeDeploy must wait after completing a deployment to the <i>first</i> Availability Zone. CodeDeploy will wait this amount of time before starting a deployment to the second Availability Zone. You might set this option if you want to allow extra bake time for the first Availability Zone. If you don't specify a value for <code>firstZoneMonitorDurationInSeconds</code>, then CodeDeploy uses the <code>monitorDurationInSeconds</code> value for the first Availability Zone.</p> <p>For more information about the zonal configuration feature, see <a href=\"https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-configurations-create.html#zonal-config\">zonal configuration</a> in the <i>CodeDeploy User Guide</i>.</p>",
+        "ZonalConfig$monitorDurationInSeconds": "<p>The period of time, in seconds, that CodeDeploy must wait after completing a deployment to an Availability Zone. CodeDeploy will wait this amount of time before starting a deployment to the next Availability Zone. Consider adding a monitor duration to give the deployment some time to prove itself (or 'bake') in one Availability Zone before it is released in the next zone. If you don't specify a <code>monitorDurationInSeconds</code>, CodeDeploy starts deploying to the next Availability Zone immediately.</p> <p>For more information about the zonal configuration feature, see <a href=\"https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-configurations-create.html#zonal-config\">zonal configuration</a> in the <i>CodeDeploy User Guide</i>.</p>"
+      }
+    },
+    "ZonalConfig": {
+      "base": "<p>Configure the <code>ZonalConfig</code> object if you want CodeDeploy to deploy your application to one <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-availability-zones\">Availability Zone</a> at a time, within an Amazon Web Services Region. By deploying to one Availability Zone at a time, you can expose your deployment to a progressively larger audience as confidence in the deployment's performance and viability grows. If you don't configure the <code>ZonalConfig</code> object, CodeDeploy deploys your application to a random selection of hosts across a Region.</p> <p>For more information about the zonal configuration feature, see <a href=\"https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-configurations-create.html#zonal-config\">zonal configuration</a> in the <i>CodeDeploy User Guide</i>.</p>",
+      "refs": {
+        "CreateDeploymentConfigInput$zonalConfig": "<p>Configure the <code>ZonalConfig</code> object if you want CodeDeploy to deploy your application to one <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-availability-zones\">Availability Zone</a> at a time, within an Amazon Web Services Region.</p> <p>For more information about the zonal configuration feature, see <a href=\"https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-configurations-create.html#zonal-config\">zonal configuration</a> in the <i>CodeDeploy User Guide</i>.</p>",
+        "DeploymentConfigInfo$zonalConfig": "<p>Information about a zonal configuration.</p>"
       }
     }
   }

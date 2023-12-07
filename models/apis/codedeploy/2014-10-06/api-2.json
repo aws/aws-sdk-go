@@ -235,7 +235,8 @@
         {"shape":"InvalidMinimumHealthyHostValueException"},
         {"shape":"DeploymentConfigLimitExceededException"},
         {"shape":"InvalidComputePlatformException"},
-        {"shape":"InvalidTrafficRoutingConfigurationException"}
+        {"shape":"InvalidTrafficRoutingConfigurationException"},
+        {"shape":"InvalidZonalDeploymentConfigurationException"}
       ]
     },
     "CreateDeploymentGroup":{
@@ -593,7 +594,8 @@
         {"shape":"InvalidDeploymentIdException"},
         {"shape":"InvalidInstanceStatusException"},
         {"shape":"InvalidInstanceTypeException"},
-        {"shape":"InvalidDeploymentInstanceTypeException"}
+        {"shape":"InvalidDeploymentInstanceTypeException"},
+        {"shape":"InvalidTargetFilterNameException"}
       ]
     },
     "ListDeployments":{
@@ -1001,7 +1003,8 @@
       "type":"structure",
       "members":{
         "name":{"shape":"AutoScalingGroupName"},
-        "hook":{"shape":"AutoScalingGroupHook"}
+        "hook":{"shape":"AutoScalingGroupHook"},
+        "terminationHook":{"shape":"AutoScalingGroupHook"}
       }
     },
     "AutoScalingGroupHook":{"type":"string"},
@@ -1084,6 +1087,10 @@
     },
     "BatchGetDeploymentTargetsInput":{
       "type":"structure",
+      "required":[
+        "deploymentId",
+        "targetIds"
+      ],
       "members":{
         "deploymentId":{"shape":"DeploymentId"},
         "targetIds":{"shape":"TargetIdList"}
@@ -1210,7 +1217,8 @@
         "deploymentConfigName":{"shape":"DeploymentConfigName"},
         "minimumHealthyHosts":{"shape":"MinimumHealthyHosts"},
         "trafficRoutingConfig":{"shape":"TrafficRoutingConfig"},
-        "computePlatform":{"shape":"ComputePlatform"}
+        "computePlatform":{"shape":"ComputePlatform"},
+        "zonalConfig":{"shape":"ZonalConfig"}
       }
     },
     "CreateDeploymentConfigOutput":{
@@ -1244,7 +1252,8 @@
         "ec2TagSet":{"shape":"EC2TagSet"},
         "ecsServices":{"shape":"ECSServiceList"},
         "onPremisesTagSet":{"shape":"OnPremisesTagSet"},
-        "tags":{"shape":"TagList"}
+        "tags":{"shape":"TagList"},
+        "terminationHookEnabled":{"shape":"NullableBoolean"}
       }
     },
     "CreateDeploymentGroupOutput":{
@@ -1369,7 +1378,8 @@
         "minimumHealthyHosts":{"shape":"MinimumHealthyHosts"},
         "createTime":{"shape":"Timestamp"},
         "computePlatform":{"shape":"ComputePlatform"},
-        "trafficRoutingConfig":{"shape":"TrafficRoutingConfig"}
+        "trafficRoutingConfig":{"shape":"TrafficRoutingConfig"},
+        "zonalConfig":{"shape":"ZonalConfig"}
       }
     },
     "DeploymentConfigLimitExceededException":{
@@ -1402,7 +1412,8 @@
         "CodeDeploy",
         "CodeDeployAutoUpdate",
         "CloudFormation",
-        "CloudFormationRollback"
+        "CloudFormationRollback",
+        "autoscalingTermination"
       ]
     },
     "DeploymentDoesNotExistException":{
@@ -1448,7 +1459,8 @@
         "ec2TagSet":{"shape":"EC2TagSet"},
         "onPremisesTagSet":{"shape":"OnPremisesTagSet"},
         "computePlatform":{"shape":"ComputePlatform"},
-        "ecsServices":{"shape":"ECSServiceList"}
+        "ecsServices":{"shape":"ECSServiceList"},
+        "terminationHookEnabled":{"shape":"Boolean"}
       }
     },
     "DeploymentGroupInfoList":{
@@ -1941,6 +1953,10 @@
     },
     "GetDeploymentTargetInput":{
       "type":"structure",
+      "required":[
+        "deploymentId",
+        "targetId"
+      ],
       "members":{
         "deploymentId":{"shape":"DeploymentId"},
         "targetId":{"shape":"TargetId"}
@@ -2497,6 +2513,12 @@
       },
       "exception":true
     },
+    "InvalidZonalDeploymentConfigurationException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
     "Key":{"type":"string"},
     "LambdaFunctionAlias":{"type":"string"},
     "LambdaFunctionInfo":{
@@ -2663,6 +2685,7 @@
     },
     "ListDeploymentTargetsInput":{
       "type":"structure",
+      "required":["deploymentId"],
       "members":{
         "deploymentId":{"shape":"DeploymentId"},
         "nextToken":{"shape":"NextToken"},
@@ -2767,6 +2790,21 @@
         "value":{"shape":"MinimumHealthyHostsValue"}
       }
     },
+    "MinimumHealthyHostsPerZone":{
+      "type":"structure",
+      "members":{
+        "type":{"shape":"MinimumHealthyHostsPerZoneType"},
+        "value":{"shape":"MinimumHealthyHostsPerZoneValue"}
+      }
+    },
+    "MinimumHealthyHostsPerZoneType":{
+      "type":"string",
+      "enum":[
+        "HOST_COUNT",
+        "FLEET_PERCENT"
+      ]
+    },
+    "MinimumHealthyHostsPerZoneValue":{"type":"integer"},
     "MinimumHealthyHostsType":{
       "type":"string",
       "enum":[
@@ -3281,7 +3319,8 @@
         "loadBalancerInfo":{"shape":"LoadBalancerInfo"},
         "ec2TagSet":{"shape":"EC2TagSet"},
         "ecsServices":{"shape":"ECSServiceList"},
-        "onPremisesTagSet":{"shape":"OnPremisesTagSet"}
+        "onPremisesTagSet":{"shape":"OnPremisesTagSet"},
+        "terminationHookEnabled":{"shape":"NullableBoolean"}
       }
     },
     "UpdateDeploymentGroupOutput":{
@@ -3293,6 +3332,15 @@
     "Value":{"type":"string"},
     "Version":{"type":"string"},
     "VersionId":{"type":"string"},
-    "WaitTimeInMins":{"type":"integer"}
+    "WaitTimeInMins":{"type":"integer"},
+    "WaitTimeInSeconds":{"type":"long"},
+    "ZonalConfig":{
+      "type":"structure",
+      "members":{
+        "firstZoneMonitorDurationInSeconds":{"shape":"WaitTimeInSeconds"},
+        "monitorDurationInSeconds":{"shape":"WaitTimeInSeconds"},
+        "minimumHealthyHostsPerZone":{"shape":"MinimumHealthyHostsPerZone"}
+      }
+    }
   }
 }

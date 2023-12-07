@@ -627,6 +627,12 @@ const (
 	// false is expected. For EC2/On-premises deployments, true or false is expected.
 	ErrCodeInvalidUpdateOutdatedInstancesOnlyValueException = "InvalidUpdateOutdatedInstancesOnlyValueException"
 
+	// ErrCodeInvalidZonalDeploymentConfigurationException for service response error code
+	// "InvalidZonalDeploymentConfigurationException".
+	//
+	// The ZonalConfig object is not valid.
+	ErrCodeInvalidZonalDeploymentConfigurationException = "InvalidZonalDeploymentConfigurationException"
+
 	// ErrCodeLifecycleEventAlreadyCompletedException for service response error code
 	// "LifecycleEventAlreadyCompletedException".
 	//
@@ -815,6 +821,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"InvalidTrafficRoutingConfigurationException":        newErrorInvalidTrafficRoutingConfigurationException,
 	"InvalidTriggerConfigException":                      newErrorInvalidTriggerConfigException,
 	"InvalidUpdateOutdatedInstancesOnlyValueException":   newErrorInvalidUpdateOutdatedInstancesOnlyValueException,
+	"InvalidZonalDeploymentConfigurationException":       newErrorInvalidZonalDeploymentConfigurationException,
 	"LifecycleEventAlreadyCompletedException":            newErrorLifecycleEventAlreadyCompletedException,
 	"LifecycleHookLimitExceededException":                newErrorLifecycleHookLimitExceededException,
 	"MultipleIamArnsProvidedException":                   newErrorMultipleIamArnsProvidedException,

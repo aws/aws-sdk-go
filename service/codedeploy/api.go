@@ -1264,6 +1264,9 @@ func (c *CodeDeploy) CreateDeploymentConfigRequest(input *CreateDeploymentConfig
 //     The configuration that specifies how traffic is routed during a deployment
 //     is invalid.
 //
+//   - InvalidZonalDeploymentConfigurationException
+//     The ZonalConfig object is not valid.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codedeploy-2014-10-06/CreateDeploymentConfig
 func (c *CodeDeploy) CreateDeploymentConfig(input *CreateDeploymentConfigInput) (*CreateDeploymentConfigOutput, error) {
 	req, out := c.CreateDeploymentConfigRequest(input)
@@ -3610,6 +3613,9 @@ func (c *CodeDeploy) ListDeploymentTargetsRequest(input *ListDeploymentTargetsIn
 //     An instance type was specified for an in-place deployment. Instance types
 //     are supported for blue/green deployments only.
 //
+//   - InvalidTargetFilterNameException
+//     The target filter name is invalid.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codedeploy-2014-10-06/ListDeploymentTargets
 func (c *CodeDeploy) ListDeploymentTargets(input *ListDeploymentTargetsInput) (*ListDeploymentTargetsOutput, error) {
 	req, out := c.ListDeploymentTargetsRequest(input)
@@ -5917,11 +5923,24 @@ func (s *AutoRollbackConfiguration) SetEvents(v []*string) *AutoRollbackConfigur
 type AutoScalingGroup struct {
 	_ struct{} `type:"structure"`
 
-	// An Auto Scaling lifecycle event hook name.
+	// The name of the launch hook that CodeDeploy installed into the Auto Scaling
+	// group.
+	//
+	// For more information about the launch hook, see How Amazon EC2 Auto Scaling
+	// works with CodeDeploy (https://docs.aws.amazon.com/codedeploy/latest/userguide/integrations-aws-auto-scaling.html#integrations-aws-auto-scaling-behaviors)
+	// in the CodeDeploy User Guide.
 	Hook *string `locationName:"hook" type:"string"`
 
 	// The Auto Scaling group name.
 	Name *string `locationName:"name" type:"string"`
+
+	// The name of the termination hook that CodeDeploy installed into the Auto
+	// Scaling group.
+	//
+	// For more information about the termination hook, see Enabling termination
+	// deployments during Auto Scaling scale-in events (https://docs.aws.amazon.com/codedeploy/latest/userguide/integrations-aws-auto-scaling.html#integrations-aws-auto-scaling-behaviors-hook-enable)
+	// in the CodeDeploy User Guide.
+	TerminationHook *string `locationName:"terminationHook" type:"string"`
 }
 
 // String returns the string representation.
@@ -5951,6 +5970,12 @@ func (s *AutoScalingGroup) SetHook(v string) *AutoScalingGroup {
 // SetName sets the Name field's value.
 func (s *AutoScalingGroup) SetName(v string) *AutoScalingGroup {
 	s.Name = &v
+	return s
+}
+
+// SetTerminationHook sets the TerminationHook field's value.
+func (s *AutoScalingGroup) SetTerminationHook(v string) *AutoScalingGroup {
+	s.TerminationHook = &v
 	return s
 }
 
@@ -6363,7 +6388,9 @@ type BatchGetDeploymentTargetsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The unique ID of a deployment.
-	DeploymentId *string `locationName:"deploymentId" type:"string"`
+	//
+	// DeploymentId is a required field
+	DeploymentId *string `locationName:"deploymentId" type:"string" required:"true"`
 
 	// The unique IDs of the deployment targets. The compute platform of the deployment
 	// determines the type of the targets and their formats. The maximum number
@@ -6382,7 +6409,9 @@ type BatchGetDeploymentTargetsInput struct {
 	//
 	//    * For deployments that are deployed with CloudFormation, the target IDs
 	//    are CloudFormation stack IDs. Their target type is cloudFormationTarget.
-	TargetIds []*string `locationName:"targetIds" type:"list"`
+	//
+	// TargetIds is a required field
+	TargetIds []*string `locationName:"targetIds" type:"list" required:"true"`
 }
 
 // String returns the string representation.
@@ -6401,6 +6430,22 @@ func (s BatchGetDeploymentTargetsInput) String() string {
 // value will be replaced with "sensitive".
 func (s BatchGetDeploymentTargetsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchGetDeploymentTargetsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchGetDeploymentTargetsInput"}
+	if s.DeploymentId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeploymentId"))
+	}
+	if s.TargetIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetIds"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetDeploymentId sets the DeploymentId field's value.
@@ -7148,6 +7193,15 @@ type CreateDeploymentConfigInput struct {
 
 	// The configuration that specifies how the deployment traffic is routed.
 	TrafficRoutingConfig *TrafficRoutingConfig `locationName:"trafficRoutingConfig" type:"structure"`
+
+	// Configure the ZonalConfig object if you want CodeDeploy to deploy your application
+	// to one Availability Zone (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-availability-zones)
+	// at a time, within an Amazon Web Services Region.
+	//
+	// For more information about the zonal configuration feature, see zonal configuration
+	// (https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-configurations-create.html#zonal-config)
+	// in the CodeDeploy User Guide.
+	ZonalConfig *ZonalConfig `locationName:"zonalConfig" type:"structure"`
 }
 
 // String returns the string representation.
@@ -7205,6 +7259,12 @@ func (s *CreateDeploymentConfigInput) SetMinimumHealthyHosts(v *MinimumHealthyHo
 // SetTrafficRoutingConfig sets the TrafficRoutingConfig field's value.
 func (s *CreateDeploymentConfigInput) SetTrafficRoutingConfig(v *TrafficRoutingConfig) *CreateDeploymentConfigInput {
 	s.TrafficRoutingConfig = v
+	return s
+}
+
+// SetZonalConfig sets the ZonalConfig field's value.
+func (s *CreateDeploymentConfigInput) SetZonalConfig(v *ZonalConfig) *CreateDeploymentConfigInput {
+	s.ZonalConfig = v
 	return s
 }
 
@@ -7338,6 +7398,24 @@ type CreateDeploymentGroupInput struct {
 	// and categorize them. Each tag consists of a key and an optional value, both
 	// of which you define.
 	Tags []*Tag `locationName:"tags" type:"list"`
+
+	// This parameter only applies if you are using CodeDeploy with Amazon EC2 Auto
+	// Scaling. For more information, see Integrating CodeDeploy with Amazon EC2
+	// Auto Scaling (https://docs.aws.amazon.com/codedeploy/latest/userguide/integrations-aws-auto-scaling.html)
+	// in the CodeDeploy User Guide.
+	//
+	// Set terminationHookEnabled to true to have CodeDeploy install a termination
+	// hook into your Auto Scaling group when you create a deployment group. When
+	// this hook is installed, CodeDeploy will perform termination deployments.
+	//
+	// For information about termination deployments, see Enabling termination deployments
+	// during Auto Scaling scale-in events (https://docs.aws.amazon.com/codedeploy/latest/userguide/integrations-aws-auto-scaling.html#integrations-aws-auto-scaling-behaviors-hook-enable)
+	// in the CodeDeploy User Guide.
+	//
+	// For more information about Auto Scaling scale-in events, see the Scale in
+	// (https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-lifecycle.html#as-lifecycle-scale-in)
+	// topic in the Amazon EC2 Auto Scaling User Guide.
+	TerminationHookEnabled *bool `locationName:"terminationHookEnabled" type:"boolean"`
 
 	// Information about triggers to create when the deployment group is created.
 	// For examples, see Create a Trigger for an CodeDeploy Event (https://docs.aws.amazon.com/codedeploy/latest/userguide/how-to-notify-sns.html)
@@ -7490,6 +7568,12 @@ func (s *CreateDeploymentGroupInput) SetServiceRoleArn(v string) *CreateDeployme
 // SetTags sets the Tags field's value.
 func (s *CreateDeploymentGroupInput) SetTags(v []*Tag) *CreateDeploymentGroupInput {
 	s.Tags = v
+	return s
+}
+
+// SetTerminationHookEnabled sets the TerminationHookEnabled field's value.
+func (s *CreateDeploymentGroupInput) SetTerminationHookEnabled(v bool) *CreateDeploymentGroupInput {
+	s.TerminationHookEnabled = &v
 	return s
 }
 
@@ -8406,12 +8490,15 @@ type DeploymentConfigInfo struct {
 	// The deployment configuration name.
 	DeploymentConfigName *string `locationName:"deploymentConfigName" min:"1" type:"string"`
 
-	// Information about the number or percentage of minimum healthy instance.
+	// Information about the number or percentage of minimum healthy instances.
 	MinimumHealthyHosts *MinimumHealthyHosts `locationName:"minimumHealthyHosts" type:"structure"`
 
 	// The configuration that specifies how the deployment traffic is routed. Used
 	// for deployments with a Lambda or Amazon ECS compute platform only.
 	TrafficRoutingConfig *TrafficRoutingConfig `locationName:"trafficRoutingConfig" type:"structure"`
+
+	// Information about a zonal configuration.
+	ZonalConfig *ZonalConfig `locationName:"zonalConfig" type:"structure"`
 }
 
 // String returns the string representation.
@@ -8465,6 +8552,12 @@ func (s *DeploymentConfigInfo) SetMinimumHealthyHosts(v *MinimumHealthyHosts) *D
 // SetTrafficRoutingConfig sets the TrafficRoutingConfig field's value.
 func (s *DeploymentConfigInfo) SetTrafficRoutingConfig(v *TrafficRoutingConfig) *DeploymentConfigInfo {
 	s.TrafficRoutingConfig = v
+	return s
+}
+
+// SetZonalConfig sets the ZonalConfig field's value.
+func (s *DeploymentConfigInfo) SetZonalConfig(v *ZonalConfig) *DeploymentConfigInfo {
+	s.ZonalConfig = v
 	return s
 }
 
@@ -8883,6 +8976,14 @@ type DeploymentGroupInfo struct {
 	// and location.
 	TargetRevision *RevisionLocation `locationName:"targetRevision" type:"structure"`
 
+	// Indicates whether the deployment group was configured to have CodeDeploy
+	// install a termination hook into an Auto Scaling group.
+	//
+	// For more information about the termination hook, see How Amazon EC2 Auto
+	// Scaling works with CodeDeploy (https://docs.aws.amazon.com/codedeploy/latest/userguide/integrations-aws-auto-scaling.html#integrations-aws-auto-scaling-behaviors)
+	// in the CodeDeploy User Guide.
+	TerminationHookEnabled *bool `locationName:"terminationHookEnabled" type:"boolean"`
+
 	// Information about triggers associated with the deployment group.
 	TriggerConfigurations []*TriggerConfig `locationName:"triggerConfigurations" type:"list"`
 }
@@ -9028,6 +9129,12 @@ func (s *DeploymentGroupInfo) SetServiceRoleArn(v string) *DeploymentGroupInfo {
 // SetTargetRevision sets the TargetRevision field's value.
 func (s *DeploymentGroupInfo) SetTargetRevision(v *RevisionLocation) *DeploymentGroupInfo {
 	s.TargetRevision = v
+	return s
+}
+
+// SetTerminationHookEnabled sets the TerminationHookEnabled field's value.
+func (s *DeploymentGroupInfo) SetTerminationHookEnabled(v bool) *DeploymentGroupInfo {
+	s.TerminationHookEnabled = &v
 	return s
 }
 
@@ -11567,10 +11674,14 @@ type GetDeploymentTargetInput struct {
 	_ struct{} `type:"structure"`
 
 	// The unique ID of a deployment.
-	DeploymentId *string `locationName:"deploymentId" type:"string"`
+	//
+	// DeploymentId is a required field
+	DeploymentId *string `locationName:"deploymentId" type:"string" required:"true"`
 
 	// The unique ID of a deployment target.
-	TargetId *string `locationName:"targetId" type:"string"`
+	//
+	// TargetId is a required field
+	TargetId *string `locationName:"targetId" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -11589,6 +11700,22 @@ func (s GetDeploymentTargetInput) String() string {
 // value will be replaced with "sensitive".
 func (s GetDeploymentTargetInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetDeploymentTargetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetDeploymentTargetInput"}
+	if s.DeploymentId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeploymentId"))
+	}
+	if s.TargetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetDeploymentId sets the DeploymentId field's value.
@@ -16344,6 +16471,70 @@ func (s *InvalidUpdateOutdatedInstancesOnlyValueException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The ZonalConfig object is not valid.
+type InvalidZonalDeploymentConfigurationException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidZonalDeploymentConfigurationException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidZonalDeploymentConfigurationException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidZonalDeploymentConfigurationException(v protocol.ResponseMetadata) error {
+	return &InvalidZonalDeploymentConfigurationException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InvalidZonalDeploymentConfigurationException) Code() string {
+	return "InvalidZonalDeploymentConfigurationException"
+}
+
+// Message returns the exception's message.
+func (s *InvalidZonalDeploymentConfigurationException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InvalidZonalDeploymentConfigurationException) OrigErr() error {
+	return nil
+}
+
+func (s *InvalidZonalDeploymentConfigurationException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InvalidZonalDeploymentConfigurationException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InvalidZonalDeploymentConfigurationException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // Information about a Lambda function specified in a deployment.
 type LambdaFunctionInfo struct {
 	_ struct{} `type:"structure"`
@@ -17351,7 +17542,9 @@ type ListDeploymentTargetsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The unique ID of a deployment.
-	DeploymentId *string `locationName:"deploymentId" type:"string"`
+	//
+	// DeploymentId is a required field
+	DeploymentId *string `locationName:"deploymentId" type:"string" required:"true"`
 
 	// A token identifier returned from the previous ListDeploymentTargets call.
 	// It can be used to return the next set of deployment targets in the list.
@@ -17383,6 +17576,19 @@ func (s ListDeploymentTargetsInput) String() string {
 // value will be replaced with "sensitive".
 func (s ListDeploymentTargetsInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListDeploymentTargetsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListDeploymentTargetsInput"}
+	if s.DeploymentId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeploymentId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetDeploymentId sets the DeploymentId field's value.
@@ -17953,7 +18159,7 @@ func (s *LoadBalancerInfo) SetTargetGroupPairInfoList(v []*TargetGroupPairInfo) 
 	return s
 }
 
-// Information about minimum healthy instance.
+// Information about the minimum number of healthy instances.
 type MinimumHealthyHosts struct {
 	_ struct{} `type:"structure"`
 
@@ -18015,6 +18221,48 @@ func (s *MinimumHealthyHosts) SetType(v string) *MinimumHealthyHosts {
 
 // SetValue sets the Value field's value.
 func (s *MinimumHealthyHosts) SetValue(v int64) *MinimumHealthyHosts {
+	s.Value = &v
+	return s
+}
+
+// Information about the minimum number of healthy instances per Availability
+// Zone.
+type MinimumHealthyHostsPerZone struct {
+	_ struct{} `type:"structure"`
+
+	// The type associated with the MinimumHealthyHostsPerZone option.
+	Type *string `locationName:"type" type:"string" enum:"MinimumHealthyHostsPerZoneType"`
+
+	// The value associated with the MinimumHealthyHostsPerZone option.
+	Value *int64 `locationName:"value" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MinimumHealthyHostsPerZone) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MinimumHealthyHostsPerZone) GoString() string {
+	return s.String()
+}
+
+// SetType sets the Type field's value.
+func (s *MinimumHealthyHostsPerZone) SetType(v string) *MinimumHealthyHostsPerZone {
+	s.Type = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *MinimumHealthyHostsPerZone) SetValue(v int64) *MinimumHealthyHostsPerZone {
 	s.Value = &v
 	return s
 }
@@ -20624,6 +20872,24 @@ type UpdateDeploymentGroupInput struct {
 	// A replacement ARN for the service role, if you want to change it.
 	ServiceRoleArn *string `locationName:"serviceRoleArn" type:"string"`
 
+	// This parameter only applies if you are using CodeDeploy with Amazon EC2 Auto
+	// Scaling. For more information, see Integrating CodeDeploy with Amazon EC2
+	// Auto Scaling (https://docs.aws.amazon.com/codedeploy/latest/userguide/integrations-aws-auto-scaling.html)
+	// in the CodeDeploy User Guide.
+	//
+	// Set terminationHookEnabled to true to have CodeDeploy install a termination
+	// hook into your Auto Scaling group when you update a deployment group. When
+	// this hook is installed, CodeDeploy will perform termination deployments.
+	//
+	// For information about termination deployments, see Enabling termination deployments
+	// during Auto Scaling scale-in events (https://docs.aws.amazon.com/codedeploy/latest/userguide/integrations-aws-auto-scaling.html#integrations-aws-auto-scaling-behaviors-hook-enable)
+	// in the CodeDeploy User Guide.
+	//
+	// For more information about Auto Scaling scale-in events, see the Scale in
+	// (https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-lifecycle.html#as-lifecycle-scale-in)
+	// topic in the Amazon EC2 Auto Scaling User Guide.
+	TerminationHookEnabled *bool `locationName:"terminationHookEnabled" type:"boolean"`
+
 	// Information about triggers to change when the deployment group is updated.
 	// For examples, see Edit a Trigger in a CodeDeploy Deployment Group (https://docs.aws.amazon.com/codedeploy/latest/userguide/how-to-notify-edit.html)
 	// in the CodeDeploy User Guide.
@@ -20778,6 +21044,12 @@ func (s *UpdateDeploymentGroupInput) SetServiceRoleArn(v string) *UpdateDeployme
 	return s
 }
 
+// SetTerminationHookEnabled sets the TerminationHookEnabled field's value.
+func (s *UpdateDeploymentGroupInput) SetTerminationHookEnabled(v bool) *UpdateDeploymentGroupInput {
+	s.TerminationHookEnabled = &v
+	return s
+}
+
 // SetTriggerConfigurations sets the TriggerConfigurations field's value.
 func (s *UpdateDeploymentGroupInput) SetTriggerConfigurations(v []*TriggerConfig) *UpdateDeploymentGroupInput {
 	s.TriggerConfigurations = v
@@ -20817,6 +21089,97 @@ func (s UpdateDeploymentGroupOutput) GoString() string {
 // SetHooksNotCleanedUp sets the HooksNotCleanedUp field's value.
 func (s *UpdateDeploymentGroupOutput) SetHooksNotCleanedUp(v []*AutoScalingGroup) *UpdateDeploymentGroupOutput {
 	s.HooksNotCleanedUp = v
+	return s
+}
+
+// Configure the ZonalConfig object if you want CodeDeploy to deploy your application
+// to one Availability Zone (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-availability-zones)
+// at a time, within an Amazon Web Services Region. By deploying to one Availability
+// Zone at a time, you can expose your deployment to a progressively larger
+// audience as confidence in the deployment's performance and viability grows.
+// If you don't configure the ZonalConfig object, CodeDeploy deploys your application
+// to a random selection of hosts across a Region.
+//
+// For more information about the zonal configuration feature, see zonal configuration
+// (https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-configurations-create.html#zonal-config)
+// in the CodeDeploy User Guide.
+type ZonalConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The period of time, in seconds, that CodeDeploy must wait after completing
+	// a deployment to the first Availability Zone. CodeDeploy will wait this amount
+	// of time before starting a deployment to the second Availability Zone. You
+	// might set this option if you want to allow extra bake time for the first
+	// Availability Zone. If you don't specify a value for firstZoneMonitorDurationInSeconds,
+	// then CodeDeploy uses the monitorDurationInSeconds value for the first Availability
+	// Zone.
+	//
+	// For more information about the zonal configuration feature, see zonal configuration
+	// (https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-configurations-create.html#zonal-config)
+	// in the CodeDeploy User Guide.
+	FirstZoneMonitorDurationInSeconds *int64 `locationName:"firstZoneMonitorDurationInSeconds" type:"long"`
+
+	// The number or percentage of instances that must remain available per Availability
+	// Zone during a deployment. This option works in conjunction with the MinimumHealthyHosts
+	// option. For more information, see About the minimum number of healthy hosts
+	// per Availability Zone (https://docs.aws.amazon.com/codedeploy/latest/userguide/instances-health.html#minimum-healthy-hosts-az)
+	// in the CodeDeploy User Guide.
+	//
+	// If you don't specify the minimumHealthyHostsPerZone option, then CodeDeploy
+	// uses a default value of 0 percent.
+	//
+	// For more information about the zonal configuration feature, see zonal configuration
+	// (https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-configurations-create.html#zonal-config)
+	// in the CodeDeploy User Guide.
+	MinimumHealthyHostsPerZone *MinimumHealthyHostsPerZone `locationName:"minimumHealthyHostsPerZone" type:"structure"`
+
+	// The period of time, in seconds, that CodeDeploy must wait after completing
+	// a deployment to an Availability Zone. CodeDeploy will wait this amount of
+	// time before starting a deployment to the next Availability Zone. Consider
+	// adding a monitor duration to give the deployment some time to prove itself
+	// (or 'bake') in one Availability Zone before it is released in the next zone.
+	// If you don't specify a monitorDurationInSeconds, CodeDeploy starts deploying
+	// to the next Availability Zone immediately.
+	//
+	// For more information about the zonal configuration feature, see zonal configuration
+	// (https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-configurations-create.html#zonal-config)
+	// in the CodeDeploy User Guide.
+	MonitorDurationInSeconds *int64 `locationName:"monitorDurationInSeconds" type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ZonalConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ZonalConfig) GoString() string {
+	return s.String()
+}
+
+// SetFirstZoneMonitorDurationInSeconds sets the FirstZoneMonitorDurationInSeconds field's value.
+func (s *ZonalConfig) SetFirstZoneMonitorDurationInSeconds(v int64) *ZonalConfig {
+	s.FirstZoneMonitorDurationInSeconds = &v
+	return s
+}
+
+// SetMinimumHealthyHostsPerZone sets the MinimumHealthyHostsPerZone field's value.
+func (s *ZonalConfig) SetMinimumHealthyHostsPerZone(v *MinimumHealthyHostsPerZone) *ZonalConfig {
+	s.MinimumHealthyHostsPerZone = v
+	return s
+}
+
+// SetMonitorDurationInSeconds sets the MonitorDurationInSeconds field's value.
+func (s *ZonalConfig) SetMonitorDurationInSeconds(v int64) *ZonalConfig {
+	s.MonitorDurationInSeconds = &v
 	return s
 }
 
@@ -20929,6 +21292,9 @@ const (
 
 	// DeploymentCreatorCloudFormationRollback is a DeploymentCreator enum value
 	DeploymentCreatorCloudFormationRollback = "CloudFormationRollback"
+
+	// DeploymentCreatorAutoscalingTermination is a DeploymentCreator enum value
+	DeploymentCreatorAutoscalingTermination = "autoscalingTermination"
 )
 
 // DeploymentCreator_Values returns all elements of the DeploymentCreator enum
@@ -20941,6 +21307,7 @@ func DeploymentCreator_Values() []string {
 		DeploymentCreatorCodeDeployAutoUpdate,
 		DeploymentCreatorCloudFormation,
 		DeploymentCreatorCloudFormationRollback,
+		DeploymentCreatorAutoscalingTermination,
 	}
 }
 
@@ -21421,6 +21788,22 @@ func ListStateFilterAction_Values() []string {
 		ListStateFilterActionInclude,
 		ListStateFilterActionExclude,
 		ListStateFilterActionIgnore,
+	}
+}
+
+const (
+	// MinimumHealthyHostsPerZoneTypeHostCount is a MinimumHealthyHostsPerZoneType enum value
+	MinimumHealthyHostsPerZoneTypeHostCount = "HOST_COUNT"
+
+	// MinimumHealthyHostsPerZoneTypeFleetPercent is a MinimumHealthyHostsPerZoneType enum value
+	MinimumHealthyHostsPerZoneTypeFleetPercent = "FLEET_PERCENT"
+)
+
+// MinimumHealthyHostsPerZoneType_Values returns all elements of the MinimumHealthyHostsPerZoneType enum
+func MinimumHealthyHostsPerZoneType_Values() []string {
+	return []string{
+		MinimumHealthyHostsPerZoneTypeHostCount,
+		MinimumHealthyHostsPerZoneTypeFleetPercent,
 	}
 }
 
