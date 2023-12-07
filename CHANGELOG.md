@@ -1,3 +1,10 @@
+Release v1.48.15 (2023-12-07)
+===
+
+### Service Client Updates
+* `service/codedeploy`: Updates service API and documentation
+  * This release adds support for two new CodeDeploy features: 1) zonal deployments for Amazon EC2 in-place deployments, 2) deployments triggered by Auto Scaling group termination lifecycle hook events.
+
 Release v1.48.14 (2023-12-06)
 ===
 
