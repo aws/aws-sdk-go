@@ -95,11 +95,11 @@ type Metadata struct {
 	EndpointsID         string
 	ServiceID           string
 
-	NoResolveEndpoint bool
+	NoResolveEndpoint  bool
 	AWSQueryCompatible *awsQueryCompatible
 }
 
-type awsQueryCompatible struct {}
+type awsQueryCompatible struct{}
 
 // ProtocolSettings define how the SDK should handle requests in the context
 // of of a protocol.
@@ -950,12 +950,100 @@ const (
 {{- end }}
 `))
 
+// A tplAPIErrors is the top level template for the API
+var tplAPIErrorsSQS = template.Must(template.New("api").Parse(`
+const (
+	{{- range $_, $s := $.ShapeListErrors }}
+
+		// {{ $s.ErrorCodeName }} for service response error code
+		{{- if eq $s.ErrorCodeName "ErrCodeBatchEntryIdsNotDistinct" }}
+			// "AWS.SimpleQueueService.BatchEntryIdsNotDistinct".
+		{{- else if eq $s.ErrorCodeName "ErrCodeBatchRequestTooLong" }}
+			// "AWS.SimpleQueueService.BatchRequestTooLong".
+		{{- else if eq $s.ErrorCodeName "ErrCodeEmptyBatchRequest" }}
+			// "AWS.SimpleQueueService.EmptyBatchRequest".
+		{{- else if eq $s.ErrorCodeName "ErrCodeInvalidBatchEntryId" }}
+			// "AWS.SimpleQueueService.InvalidBatchEntryId".
+		{{- else if eq $s.ErrorCodeName "ErrCodeMessageNotInflight" }}
+			// "AWS.SimpleQueueService.MessageNotInflight".
+		{{- else if eq $s.ErrorCodeName "ErrCodePurgeQueueInProgress" }}
+			// "AWS.SimpleQueueService.PurgeQueueInProgress".
+		{{- else if eq $s.ErrorCodeName "ErrCodeQueueDeletedRecently" }}
+			// "AWS.SimpleQueueService.QueueDeletedRecently".
+		{{- else if eq $s.ErrorCodeName "ErrCodeQueueDoesNotExist" }}
+			// "AWS.SimpleQueueService.NonExistentQueue".
+		{{- else if eq $s.ErrorCodeName "ErrCodeTooManyEntriesInBatchRequest" }}
+			// "AWS.SimpleQueueService.TooManyEntriesInBatchRequest".
+		{{- else if eq $s.ErrorCodeName "ErrCodeUnsupportedOperation" }}
+			// "AWS.SimpleQueueService.UnsupportedOperation".
+		{{- else if eq $s.ErrorCodeName "ErrCodeQueueNameExists" }}
+			// "QueueAlreadyExists".
+		{{- else }}
+			// {{ printf "%q" $s.ErrorName }}.
+		{{- end }}
+		{{ if $s.Docstring -}}
+			//
+			{{ $s.Docstring }}
+		{{ end -}}
+
+
+		{{- if eq $s.ErrorCodeName "ErrCodeBatchEntryIdsNotDistinct" -}}
+			{{ $s.ErrorCodeName }} = "AWS.SimpleQueueService.BatchEntryIdsNotDistinct"
+		{{- else if eq $s.ErrorCodeName "ErrCodeBatchRequestTooLong" -}}
+			{{ $s.ErrorCodeName }} = "AWS.SimpleQueueService.BatchRequestTooLong"
+		{{- else if eq $s.ErrorCodeName "ErrCodeEmptyBatchRequest" -}}
+			{{ $s.ErrorCodeName }} = "AWS.SimpleQueueService.EmptyBatchRequest"
+		{{- else if eq $s.ErrorCodeName "ErrCodeInvalidBatchEntryId" -}}
+			{{ $s.ErrorCodeName }} = "AWS.SimpleQueueService.InvalidBatchEntryId"
+		{{- else if eq $s.ErrorCodeName "ErrCodeMessageNotInflight" -}}
+			{{ $s.ErrorCodeName }} = "AWS.SimpleQueueService.MessageNotInflight"
+		{{- else if eq $s.ErrorCodeName "ErrCodePurgeQueueInProgress" -}}
+			{{ $s.ErrorCodeName }} = "AWS.SimpleQueueService.PurgeQueueInProgress"
+		{{- else if eq $s.ErrorCodeName "ErrCodeQueueDeletedRecently" -}}
+			{{ $s.ErrorCodeName }} = "AWS.SimpleQueueService.QueueDeletedRecently"
+		{{- else if eq $s.ErrorCodeName "ErrCodeQueueDoesNotExist" -}}
+			{{ $s.ErrorCodeName }} = "AWS.SimpleQueueService.NonExistentQueue"
+		{{- else if eq $s.ErrorCodeName "ErrCodeTooManyEntriesInBatchRequest" -}}
+			{{ $s.ErrorCodeName }} = "AWS.SimpleQueueService.TooManyEntriesInBatchRequest"
+		{{- else if eq $s.ErrorCodeName "ErrCodeUnsupportedOperation" -}}
+			{{ $s.ErrorCodeName }} = "AWS.SimpleQueueService.UnsupportedOperation"
+		{{- else if eq $s.ErrorCodeName "ErrCodeQueueNameExists" -}}
+			{{ $s.ErrorCodeName }} = "QueueAlreadyExists"
+		{{- else -}}
+			{{ $s.ErrorCodeName }} = {{ printf "%q" $s.ErrorName }}
+		{{- end -}}
+	{{- end }}
+)
+
+{{- if $.WithGeneratedTypedErrors }}
+	{{- $_ := $.AddSDKImport "private/protocol" }}
+
+	var exceptionFromCode = map[string]func(protocol.ResponseMetadata)error {
+		{{- range $_, $s := $.ShapeListErrors }}
+			"{{ $s.ErrorName }}": newError{{ $s.ShapeName }},
+		{{- end }}
+	}
+	{{- if .Metadata.AWSQueryCompatible }}
+	var queryExceptionFromCode = map[string]func(protocol.ResponseMetadata, string)error {
+		{{- range $_, $s := $.ShapeListErrors }}
+			"{{ $s.ErrorName }}": newQueryCompatibleError{{ $s.ShapeName }},
+		{{- end }}
+	}
+	{{- end }}
+{{- end }}
+`))
+
 // APIErrorsGoCode returns the Go code for the errors.go file.
 func (a *API) APIErrorsGoCode() string {
 	a.resetImports()
 
 	var buf bytes.Buffer
-	err := tplAPIErrors.Execute(&buf, a)
+	var err error
+	if a.Metadata.ServiceID == "SQS" {
+		err = tplAPIErrorsSQS.Execute(&buf, a)
+	} else {
+		err = tplAPIErrors.Execute(&buf, a)
+	}
 
 	if err != nil {
 		panic(err)
