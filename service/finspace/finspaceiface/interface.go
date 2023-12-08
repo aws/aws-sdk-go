@@ -76,13 +76,25 @@ type FinspaceAPI interface {
 	CreateKxDatabaseWithContext(aws.Context, *finspace.CreateKxDatabaseInput, ...request.Option) (*finspace.CreateKxDatabaseOutput, error)
 	CreateKxDatabaseRequest(*finspace.CreateKxDatabaseInput) (*request.Request, *finspace.CreateKxDatabaseOutput)
 
+	CreateKxDataview(*finspace.CreateKxDataviewInput) (*finspace.CreateKxDataviewOutput, error)
+	CreateKxDataviewWithContext(aws.Context, *finspace.CreateKxDataviewInput, ...request.Option) (*finspace.CreateKxDataviewOutput, error)
+	CreateKxDataviewRequest(*finspace.CreateKxDataviewInput) (*request.Request, *finspace.CreateKxDataviewOutput)
+
 	CreateKxEnvironment(*finspace.CreateKxEnvironmentInput) (*finspace.CreateKxEnvironmentOutput, error)
 	CreateKxEnvironmentWithContext(aws.Context, *finspace.CreateKxEnvironmentInput, ...request.Option) (*finspace.CreateKxEnvironmentOutput, error)
 	CreateKxEnvironmentRequest(*finspace.CreateKxEnvironmentInput) (*request.Request, *finspace.CreateKxEnvironmentOutput)
 
+	CreateKxScalingGroup(*finspace.CreateKxScalingGroupInput) (*finspace.CreateKxScalingGroupOutput, error)
+	CreateKxScalingGroupWithContext(aws.Context, *finspace.CreateKxScalingGroupInput, ...request.Option) (*finspace.CreateKxScalingGroupOutput, error)
+	CreateKxScalingGroupRequest(*finspace.CreateKxScalingGroupInput) (*request.Request, *finspace.CreateKxScalingGroupOutput)
+
 	CreateKxUser(*finspace.CreateKxUserInput) (*finspace.CreateKxUserOutput, error)
 	CreateKxUserWithContext(aws.Context, *finspace.CreateKxUserInput, ...request.Option) (*finspace.CreateKxUserOutput, error)
 	CreateKxUserRequest(*finspace.CreateKxUserInput) (*request.Request, *finspace.CreateKxUserOutput)
+
+	CreateKxVolume(*finspace.CreateKxVolumeInput) (*finspace.CreateKxVolumeOutput, error)
+	CreateKxVolumeWithContext(aws.Context, *finspace.CreateKxVolumeInput, ...request.Option) (*finspace.CreateKxVolumeOutput, error)
+	CreateKxVolumeRequest(*finspace.CreateKxVolumeInput) (*request.Request, *finspace.CreateKxVolumeOutput)
 
 	DeleteEnvironment(*finspace.DeleteEnvironmentInput) (*finspace.DeleteEnvironmentOutput, error)
 	DeleteEnvironmentWithContext(aws.Context, *finspace.DeleteEnvironmentInput, ...request.Option) (*finspace.DeleteEnvironmentOutput, error)
@@ -96,13 +108,25 @@ type FinspaceAPI interface {
 	DeleteKxDatabaseWithContext(aws.Context, *finspace.DeleteKxDatabaseInput, ...request.Option) (*finspace.DeleteKxDatabaseOutput, error)
 	DeleteKxDatabaseRequest(*finspace.DeleteKxDatabaseInput) (*request.Request, *finspace.DeleteKxDatabaseOutput)
 
+	DeleteKxDataview(*finspace.DeleteKxDataviewInput) (*finspace.DeleteKxDataviewOutput, error)
+	DeleteKxDataviewWithContext(aws.Context, *finspace.DeleteKxDataviewInput, ...request.Option) (*finspace.DeleteKxDataviewOutput, error)
+	DeleteKxDataviewRequest(*finspace.DeleteKxDataviewInput) (*request.Request, *finspace.DeleteKxDataviewOutput)
+
 	DeleteKxEnvironment(*finspace.DeleteKxEnvironmentInput) (*finspace.DeleteKxEnvironmentOutput, error)
 	DeleteKxEnvironmentWithContext(aws.Context, *finspace.DeleteKxEnvironmentInput, ...request.Option) (*finspace.DeleteKxEnvironmentOutput, error)
 	DeleteKxEnvironmentRequest(*finspace.DeleteKxEnvironmentInput) (*request.Request, *finspace.DeleteKxEnvironmentOutput)
 
+	DeleteKxScalingGroup(*finspace.DeleteKxScalingGroupInput) (*finspace.DeleteKxScalingGroupOutput, error)
+	DeleteKxScalingGroupWithContext(aws.Context, *finspace.DeleteKxScalingGroupInput, ...request.Option) (*finspace.DeleteKxScalingGroupOutput, error)
+	DeleteKxScalingGroupRequest(*finspace.DeleteKxScalingGroupInput) (*request.Request, *finspace.DeleteKxScalingGroupOutput)
+
 	DeleteKxUser(*finspace.DeleteKxUserInput) (*finspace.DeleteKxUserOutput, error)
 	DeleteKxUserWithContext(aws.Context, *finspace.DeleteKxUserInput, ...request.Option) (*finspace.DeleteKxUserOutput, error)
 	DeleteKxUserRequest(*finspace.DeleteKxUserInput) (*request.Request, *finspace.DeleteKxUserOutput)
+
+	DeleteKxVolume(*finspace.DeleteKxVolumeInput) (*finspace.DeleteKxVolumeOutput, error)
+	DeleteKxVolumeWithContext(aws.Context, *finspace.DeleteKxVolumeInput, ...request.Option) (*finspace.DeleteKxVolumeOutput, error)
+	DeleteKxVolumeRequest(*finspace.DeleteKxVolumeInput) (*request.Request, *finspace.DeleteKxVolumeOutput)
 
 	GetEnvironment(*finspace.GetEnvironmentInput) (*finspace.GetEnvironmentOutput, error)
 	GetEnvironmentWithContext(aws.Context, *finspace.GetEnvironmentInput, ...request.Option) (*finspace.GetEnvironmentOutput, error)
@@ -124,13 +148,25 @@ type FinspaceAPI interface {
 	GetKxDatabaseWithContext(aws.Context, *finspace.GetKxDatabaseInput, ...request.Option) (*finspace.GetKxDatabaseOutput, error)
 	GetKxDatabaseRequest(*finspace.GetKxDatabaseInput) (*request.Request, *finspace.GetKxDatabaseOutput)
 
+	GetKxDataview(*finspace.GetKxDataviewInput) (*finspace.GetKxDataviewOutput, error)
+	GetKxDataviewWithContext(aws.Context, *finspace.GetKxDataviewInput, ...request.Option) (*finspace.GetKxDataviewOutput, error)
+	GetKxDataviewRequest(*finspace.GetKxDataviewInput) (*request.Request, *finspace.GetKxDataviewOutput)
+
 	GetKxEnvironment(*finspace.GetKxEnvironmentInput) (*finspace.GetKxEnvironmentOutput, error)
 	GetKxEnvironmentWithContext(aws.Context, *finspace.GetKxEnvironmentInput, ...request.Option) (*finspace.GetKxEnvironmentOutput, error)
 	GetKxEnvironmentRequest(*finspace.GetKxEnvironmentInput) (*request.Request, *finspace.GetKxEnvironmentOutput)
 
+	GetKxScalingGroup(*finspace.GetKxScalingGroupInput) (*finspace.GetKxScalingGroupOutput, error)
+	GetKxScalingGroupWithContext(aws.Context, *finspace.GetKxScalingGroupInput, ...request.Option) (*finspace.GetKxScalingGroupOutput, error)
+	GetKxScalingGroupRequest(*finspace.GetKxScalingGroupInput) (*request.Request, *finspace.GetKxScalingGroupOutput)
+
 	GetKxUser(*finspace.GetKxUserInput) (*finspace.GetKxUserOutput, error)
 	GetKxUserWithContext(aws.Context, *finspace.GetKxUserInput, ...request.Option) (*finspace.GetKxUserOutput, error)
 	GetKxUserRequest(*finspace.GetKxUserInput) (*request.Request, *finspace.GetKxUserOutput)
+
+	GetKxVolume(*finspace.GetKxVolumeInput) (*finspace.GetKxVolumeOutput, error)
+	GetKxVolumeWithContext(aws.Context, *finspace.GetKxVolumeInput, ...request.Option) (*finspace.GetKxVolumeOutput, error)
+	GetKxVolumeRequest(*finspace.GetKxVolumeInput) (*request.Request, *finspace.GetKxVolumeOutput)
 
 	ListEnvironments(*finspace.ListEnvironmentsInput) (*finspace.ListEnvironmentsOutput, error)
 	ListEnvironmentsWithContext(aws.Context, *finspace.ListEnvironmentsInput, ...request.Option) (*finspace.ListEnvironmentsOutput, error)
@@ -161,6 +197,13 @@ type FinspaceAPI interface {
 	ListKxDatabasesPages(*finspace.ListKxDatabasesInput, func(*finspace.ListKxDatabasesOutput, bool) bool) error
 	ListKxDatabasesPagesWithContext(aws.Context, *finspace.ListKxDatabasesInput, func(*finspace.ListKxDatabasesOutput, bool) bool, ...request.Option) error
 
+	ListKxDataviews(*finspace.ListKxDataviewsInput) (*finspace.ListKxDataviewsOutput, error)
+	ListKxDataviewsWithContext(aws.Context, *finspace.ListKxDataviewsInput, ...request.Option) (*finspace.ListKxDataviewsOutput, error)
+	ListKxDataviewsRequest(*finspace.ListKxDataviewsInput) (*request.Request, *finspace.ListKxDataviewsOutput)
+
+	ListKxDataviewsPages(*finspace.ListKxDataviewsInput, func(*finspace.ListKxDataviewsOutput, bool) bool) error
+	ListKxDataviewsPagesWithContext(aws.Context, *finspace.ListKxDataviewsInput, func(*finspace.ListKxDataviewsOutput, bool) bool, ...request.Option) error
+
 	ListKxEnvironments(*finspace.ListKxEnvironmentsInput) (*finspace.ListKxEnvironmentsOutput, error)
 	ListKxEnvironmentsWithContext(aws.Context, *finspace.ListKxEnvironmentsInput, ...request.Option) (*finspace.ListKxEnvironmentsOutput, error)
 	ListKxEnvironmentsRequest(*finspace.ListKxEnvironmentsInput) (*request.Request, *finspace.ListKxEnvironmentsOutput)
@@ -168,9 +211,20 @@ type FinspaceAPI interface {
 	ListKxEnvironmentsPages(*finspace.ListKxEnvironmentsInput, func(*finspace.ListKxEnvironmentsOutput, bool) bool) error
 	ListKxEnvironmentsPagesWithContext(aws.Context, *finspace.ListKxEnvironmentsInput, func(*finspace.ListKxEnvironmentsOutput, bool) bool, ...request.Option) error
 
+	ListKxScalingGroups(*finspace.ListKxScalingGroupsInput) (*finspace.ListKxScalingGroupsOutput, error)
+	ListKxScalingGroupsWithContext(aws.Context, *finspace.ListKxScalingGroupsInput, ...request.Option) (*finspace.ListKxScalingGroupsOutput, error)
+	ListKxScalingGroupsRequest(*finspace.ListKxScalingGroupsInput) (*request.Request, *finspace.ListKxScalingGroupsOutput)
+
+	ListKxScalingGroupsPages(*finspace.ListKxScalingGroupsInput, func(*finspace.ListKxScalingGroupsOutput, bool) bool) error
+	ListKxScalingGroupsPagesWithContext(aws.Context, *finspace.ListKxScalingGroupsInput, func(*finspace.ListKxScalingGroupsOutput, bool) bool, ...request.Option) error
+
 	ListKxUsers(*finspace.ListKxUsersInput) (*finspace.ListKxUsersOutput, error)
 	ListKxUsersWithContext(aws.Context, *finspace.ListKxUsersInput, ...request.Option) (*finspace.ListKxUsersOutput, error)
 	ListKxUsersRequest(*finspace.ListKxUsersInput) (*request.Request, *finspace.ListKxUsersOutput)
+
+	ListKxVolumes(*finspace.ListKxVolumesInput) (*finspace.ListKxVolumesOutput, error)
+	ListKxVolumesWithContext(aws.Context, *finspace.ListKxVolumesInput, ...request.Option) (*finspace.ListKxVolumesOutput, error)
+	ListKxVolumesRequest(*finspace.ListKxVolumesInput) (*request.Request, *finspace.ListKxVolumesOutput)
 
 	ListTagsForResource(*finspace.ListTagsForResourceInput) (*finspace.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *finspace.ListTagsForResourceInput, ...request.Option) (*finspace.ListTagsForResourceOutput, error)
@@ -200,6 +254,10 @@ type FinspaceAPI interface {
 	UpdateKxDatabaseWithContext(aws.Context, *finspace.UpdateKxDatabaseInput, ...request.Option) (*finspace.UpdateKxDatabaseOutput, error)
 	UpdateKxDatabaseRequest(*finspace.UpdateKxDatabaseInput) (*request.Request, *finspace.UpdateKxDatabaseOutput)
 
+	UpdateKxDataview(*finspace.UpdateKxDataviewInput) (*finspace.UpdateKxDataviewOutput, error)
+	UpdateKxDataviewWithContext(aws.Context, *finspace.UpdateKxDataviewInput, ...request.Option) (*finspace.UpdateKxDataviewOutput, error)
+	UpdateKxDataviewRequest(*finspace.UpdateKxDataviewInput) (*request.Request, *finspace.UpdateKxDataviewOutput)
+
 	UpdateKxEnvironment(*finspace.UpdateKxEnvironmentInput) (*finspace.UpdateKxEnvironmentOutput, error)
 	UpdateKxEnvironmentWithContext(aws.Context, *finspace.UpdateKxEnvironmentInput, ...request.Option) (*finspace.UpdateKxEnvironmentOutput, error)
 	UpdateKxEnvironmentRequest(*finspace.UpdateKxEnvironmentInput) (*request.Request, *finspace.UpdateKxEnvironmentOutput)
@@ -211,6 +269,10 @@ type FinspaceAPI interface {
 	UpdateKxUser(*finspace.UpdateKxUserInput) (*finspace.UpdateKxUserOutput, error)
 	UpdateKxUserWithContext(aws.Context, *finspace.UpdateKxUserInput, ...request.Option) (*finspace.UpdateKxUserOutput, error)
 	UpdateKxUserRequest(*finspace.UpdateKxUserInput) (*request.Request, *finspace.UpdateKxUserOutput)
+
+	UpdateKxVolume(*finspace.UpdateKxVolumeInput) (*finspace.UpdateKxVolumeOutput, error)
+	UpdateKxVolumeWithContext(aws.Context, *finspace.UpdateKxVolumeInput, ...request.Option) (*finspace.UpdateKxVolumeOutput, error)
+	UpdateKxVolumeRequest(*finspace.UpdateKxVolumeInput) (*request.Request, *finspace.UpdateKxVolumeOutput)
 }
 
 var _ FinspaceAPI = (*finspace.Finspace)(nil)

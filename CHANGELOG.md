@@ -1,3 +1,13 @@
+Release v1.48.16 (2023-12-08)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API
+  * M2 Mac instances are built on Apple M2 Mac mini computers. I4i instances are powered by 3rd generation Intel Xeon Scalable processors. C7i compute optimized, M7i general purpose and R7i memory optimized instances are powered by custom 4th Generation Intel Xeon Scalable processors.
+* `service/finspace`: Updates service API, documentation, and paginators
+* `service/monitoring`: Updates service API and documentation
+  * Adds support for the OpenTelemetry 1.0 output format in CloudWatch Metric Streams.
+
 Release v1.48.15 (2023-12-07)
 ===
 

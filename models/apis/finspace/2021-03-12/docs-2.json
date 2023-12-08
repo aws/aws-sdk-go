@@ -6,27 +6,39 @@
     "CreateKxChangeset": "<p> Creates a changeset for a kdb database. A changeset allows you to add and delete existing files by using an ordered list of change requests. </p>",
     "CreateKxCluster": "<p>Creates a new kdb cluster.</p>",
     "CreateKxDatabase": "<p>Creates a new kdb database in the environment.</p>",
+    "CreateKxDataview": "<p> Creates a snapshot of kdb database with tiered storage capabilities and a pre-warmed cache, ready for mounting on kdb clusters. Dataviews are only available for clusters running on a scaling group. They are not supported on dedicated clusters. </p>",
     "CreateKxEnvironment": "<p>Creates a managed kdb environment for the account.</p>",
+    "CreateKxScalingGroup": "<p>Creates a new scaling group. </p>",
     "CreateKxUser": "<p>Creates a user in FinSpace kdb environment with an associated IAM role.</p>",
+    "CreateKxVolume": "<p> Creates a new volume with a specific amount of throughput and storage capacity. </p>",
     "DeleteEnvironment": "<p>Delete an FinSpace environment.</p>",
     "DeleteKxCluster": "<p>Deletes a kdb cluster.</p>",
     "DeleteKxDatabase": "<p>Deletes the specified database and all of its associated data. This action is irreversible. You must copy any data out of the database before deleting it if the data is to be retained.</p>",
+    "DeleteKxDataview": "<p> Deletes the specified dataview. Before deleting a dataview, make sure that it is not in use by any cluster. </p>",
     "DeleteKxEnvironment": "<p>Deletes the kdb environment. This action is irreversible. Deleting a kdb environment will remove all the associated data and any services running in it. </p>",
+    "DeleteKxScalingGroup": "<p> Deletes the specified scaling group. This action is irreversible. You cannot delete a scaling group until all the clusters running on it have been deleted.</p>",
     "DeleteKxUser": "<p>Deletes a user in the specified kdb environment.</p>",
+    "DeleteKxVolume": "<p> Deletes a volume. You can only delete a volume if it's not attached to a cluster or a dataview. When a volume is deleted, any data on the volume is lost. This action is irreversible. </p>",
     "GetEnvironment": "<p>Returns the FinSpace environment object.</p>",
     "GetKxChangeset": "<p>Returns information about a kdb changeset.</p>",
     "GetKxCluster": "<p>Retrieves information about a kdb cluster.</p>",
     "GetKxConnectionString": "<p>Retrieves a connection string for a user to connect to a kdb cluster. You must call this API using the same role that you have defined while creating a user. </p>",
     "GetKxDatabase": "<p>Returns database information for the specified environment ID.</p>",
+    "GetKxDataview": "<p> Retrieves details of the dataview. </p>",
     "GetKxEnvironment": "<p>Retrieves all the information for the specified kdb environment.</p>",
+    "GetKxScalingGroup": "<p> Retrieves details of a scaling group.</p>",
     "GetKxUser": "<p>Retrieves information about the specified kdb user.</p>",
+    "GetKxVolume": "<p> Retrieves the information about the volume. </p>",
     "ListEnvironments": "<p>A list of all of your FinSpace environments.</p>",
     "ListKxChangesets": "<p>Returns a list of all the changesets for a database.</p>",
     "ListKxClusterNodes": "<p>Lists all the nodes in a kdb cluster.</p>",
     "ListKxClusters": "<p>Returns a list of clusters.</p>",
     "ListKxDatabases": "<p>Returns a list of all the databases in the kdb environment.</p>",
+    "ListKxDataviews": "<p> Returns a list of all the dataviews in the database.</p>",
     "ListKxEnvironments": "<p>Returns a list of kdb environments created in an account.</p>",
+    "ListKxScalingGroups": "<p> Returns a list of scaling groups in a kdb environment.</p>",
     "ListKxUsers": "<p>Lists all the users in a kdb environment.</p>",
+    "ListKxVolumes": "<p> Lists all the volumes in a kdb environment. </p>",
     "ListTagsForResource": "<p>A list of all tags for a resource.</p>",
     "TagResource": "<p>Adds metadata tags to a FinSpace resource.</p>",
     "UntagResource": "<p>Removes metadata tags from a FinSpace resource.</p>",
@@ -34,14 +46,22 @@
     "UpdateKxClusterCodeConfiguration": "<p> Allows you to update code configuration on a running cluster. By using this API you can update the code, the initialization script path, and the command line arguments for a specific cluster. The configuration that you want to update will override any existing configurations on the cluster. </p>",
     "UpdateKxClusterDatabases": "<p>Updates the databases mounted on a kdb cluster, which includes the <code>changesetId</code> and all the dbPaths to be cached. This API does not allow you to change a database name or add a database if you created a cluster without one. </p> <p>Using this API you can point a cluster to a different changeset and modify a list of partitions being cached.</p>",
     "UpdateKxDatabase": "<p>Updates information for the given kdb database.</p>",
+    "UpdateKxDataview": "<p> Updates the specified dataview. The dataviews get automatically updated when any new changesets are ingested. Each update of the dataview creates a new version, including changeset details and cache configurations</p>",
     "UpdateKxEnvironment": "<p>Updates information for the given kdb environment.</p>",
     "UpdateKxEnvironmentNetwork": "<p>Updates environment network to connect to your internal network by using a transit gateway. This API supports request to create a transit gateway attachment from FinSpace VPC to your transit gateway ID and create a custom Route-53 outbound resolvers.</p> <p>Once you send a request to update a network, you cannot change it again. Network update might require termination of any clusters that are running in the existing network.</p>",
-    "UpdateKxUser": "<p>Updates the user details. You can only update the IAM role associated with a user.</p>"
+    "UpdateKxUser": "<p>Updates the user details. You can only update the IAM role associated with a user.</p>",
+    "UpdateKxVolume": "<p> Updates the throughput or capacity of a volume. During the update process, the filesystem might be unavailable for a few minutes. You can retry any operations after the update is complete. </p>"
   },
   "shapes": {
     "AccessDeniedException": {
       "base": "<p>You do not have sufficient access to perform this action.</p>",
       "refs": {
+      }
+    },
+    "AttachedClusterList": {
+      "base": null,
+      "refs": {
+        "KxDataviewActiveVersion$attachedClusters": "<p> The list of clusters that are currently using this dataview. </p>"
       }
     },
     "AttributeMap": {
@@ -76,18 +96,32 @@
         "AvailabilityZoneIds$member": null,
         "CreateKxClusterRequest$availabilityZoneId": "<p>The availability zone identifiers for the requested regions.</p>",
         "CreateKxClusterResponse$availabilityZoneId": "<p> The availability zone identifiers for the requested regions. </p>",
+        "CreateKxDataviewRequest$availabilityZoneId": "<p> The identifier of the availability zones. </p>",
+        "CreateKxDataviewResponse$availabilityZoneId": "<p> The identifier of the availability zones. </p>",
+        "CreateKxScalingGroupRequest$availabilityZoneId": "<p>The identifier of the availability zones.</p>",
+        "CreateKxScalingGroupResponse$availabilityZoneId": "<p>The identifier of the availability zones.</p>",
         "GetKxClusterResponse$availabilityZoneId": "<p> The availability zone identifiers for the requested regions. </p>",
+        "GetKxDataviewResponse$availabilityZoneId": "<p> The identifier of the availability zones. </p>",
+        "GetKxScalingGroupResponse$availabilityZoneId": "<p>The identifier of the availability zones.</p>",
         "KxCluster$availabilityZoneId": "<p> The availability zone identifiers for the requested regions. </p>",
-        "KxNode$availabilityZoneId": "<p>The identifier of the availability zones where subnets for the environment are created.</p>"
+        "KxDataviewListEntry$availabilityZoneId": "<p> The identifier of the availability zones. </p>",
+        "KxNode$availabilityZoneId": "<p>The identifier of the availability zones where subnets for the environment are created.</p>",
+        "KxScalingGroup$availabilityZoneId": "<p>The identifier of the availability zones.</p>",
+        "UpdateKxDataviewResponse$availabilityZoneId": "<p> The identifier of the availability zones. </p>"
       }
     },
     "AvailabilityZoneIds": {
       "base": null,
       "refs": {
+        "CreateKxVolumeRequest$availabilityZoneIds": "<p>The identifier of the availability zones.</p>",
+        "CreateKxVolumeResponse$availabilityZoneIds": "<p>The identifier of the availability zones.</p>",
         "GetKxEnvironmentResponse$availabilityZoneIds": "<p>The identifier of the availability zones where subnets for the environment are created.</p>",
+        "GetKxVolumeResponse$availabilityZoneIds": "<p>The identifier of the availability zones.</p>",
         "KxEnvironment$availabilityZoneIds": "<p>The identifier of the availability zones where subnets for the environment are created.</p>",
+        "KxVolume$availabilityZoneIds": "<p>The identifier of the availability zones.</p>",
         "UpdateKxEnvironmentNetworkResponse$availabilityZoneIds": "<p>The identifier of the availability zones where subnets for the environment are created.</p>",
-        "UpdateKxEnvironmentResponse$availabilityZoneIds": "<p>The identifier of the availability zones where subnets for the environment are created.</p>"
+        "UpdateKxEnvironmentResponse$availabilityZoneIds": "<p>The identifier of the availability zones where subnets for the environment are created.</p>",
+        "UpdateKxVolumeResponse$availabilityZoneIds": "<p>The identifier of the availability zones.</p>"
       }
     },
     "BoxedInteger": {
@@ -128,11 +162,19 @@
       "base": null,
       "refs": {
         "CreateKxChangesetResponse$changesetId": "<p>A unique identifier for the changeset.</p>",
+        "CreateKxDataviewRequest$changesetId": "<p> A unique identifier of the changeset that you want to use to ingest data. </p>",
+        "CreateKxDataviewResponse$changesetId": "<p>A unique identifier for the changeset.</p>",
         "GetKxChangesetRequest$changesetId": "<p>A unique identifier of the changeset for which you want to retrieve data.</p>",
         "GetKxChangesetResponse$changesetId": "<p>A unique identifier for the changeset.</p>",
         "GetKxDatabaseResponse$lastCompletedChangesetId": "<p>A unique identifier for the changeset.</p>",
+        "GetKxDataviewResponse$changesetId": "<p> A unique identifier of the changeset that you want to use to ingest data. </p>",
         "KxChangesetListEntry$changesetId": "<p>A unique identifier for the changeset.</p>",
-        "KxDatabaseConfiguration$changesetId": "<p>A unique identifier of the changeset that is associated with the cluster.</p>"
+        "KxDatabaseConfiguration$changesetId": "<p>A unique identifier of the changeset that is associated with the cluster.</p>",
+        "KxDataviewActiveVersion$changesetId": "<p>A unique identifier for the changeset.</p>",
+        "KxDataviewConfiguration$changesetId": "<p>A unique identifier for the changeset.</p>",
+        "KxDataviewListEntry$changesetId": "<p>A unique identifier for the changeset.</p>",
+        "UpdateKxDataviewRequest$changesetId": "<p>A unique identifier for the changeset.</p>",
+        "UpdateKxDataviewResponse$changesetId": "<p>A unique identifier for the changeset.</p>"
       }
     },
     "ChangesetStatus": {
@@ -148,7 +190,11 @@
       "refs": {
         "CreateKxClusterRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
         "CreateKxEnvironmentRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
+        "CreateKxScalingGroupRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
         "CreateKxUserRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
+        "CreateKxVolumeRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
+        "DeleteKxEnvironmentRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
+        "DeleteKxUserRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
         "UpdateKxEnvironmentNetworkRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
         "UpdateKxEnvironmentRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
         "UpdateKxUserRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>"
@@ -159,11 +205,23 @@
       "refs": {
         "CreateKxChangesetRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
         "CreateKxDatabaseRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
+        "CreateKxDataviewRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
         "DeleteKxClusterRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
         "DeleteKxDatabaseRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
+        "DeleteKxDataviewRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
+        "DeleteKxScalingGroupRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
+        "DeleteKxVolumeRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
         "UpdateKxClusterCodeConfigurationRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
         "UpdateKxClusterDatabasesRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
-        "UpdateKxDatabaseRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>"
+        "UpdateKxDatabaseRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
+        "UpdateKxDataviewRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>",
+        "UpdateKxVolumeRequest$clientToken": "<p>A token that ensures idempotency. This token expires in 10 minutes.</p>"
+      }
+    },
+    "ClusterNodeCount": {
+      "base": null,
+      "refs": {
+        "KxScalingGroupConfiguration$nodeCount": "<p> The number of kdb cluster nodes. </p>"
       }
     },
     "CodeConfiguration": {
@@ -185,6 +243,12 @@
       "refs": {
         "AutoScalingConfiguration$scaleInCooldownSeconds": "<p>The duration in seconds that FinSpace will wait after a scale in event before initiating another scaling event.</p>",
         "AutoScalingConfiguration$scaleOutCooldownSeconds": "<p>The duration in seconds that FinSpace will wait after a scale out event before initiating another scaling event.</p>"
+      }
+    },
+    "CpuCount": {
+      "base": null,
+      "refs": {
+        "KxScalingGroupConfiguration$cpu": "<p> The number of vCPUs that you want to reserve for each node of this kdb cluster on the scaling group host. </p>"
       }
     },
     "CreateEnvironmentRequest": {
@@ -227,6 +291,16 @@
       "refs": {
       }
     },
+    "CreateKxDataviewRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateKxDataviewResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateKxEnvironmentRequest": {
       "base": null,
       "refs": {
@@ -237,12 +311,32 @@
       "refs": {
       }
     },
+    "CreateKxScalingGroupRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateKxScalingGroupResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateKxUserRequest": {
       "base": null,
       "refs": {
       }
     },
     "CreateKxUserResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateKxVolumeRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateKxVolumeResponse": {
       "base": null,
       "refs": {
       }
@@ -289,23 +383,33 @@
         "CreateKxChangesetResponse$databaseName": "<p>The name of the kdb database.</p>",
         "CreateKxDatabaseRequest$databaseName": "<p>The name of the kdb database.</p>",
         "CreateKxDatabaseResponse$databaseName": "<p>The name of the kdb database.</p>",
+        "CreateKxDataviewRequest$databaseName": "<p> The name of the database where you want to create a dataview. </p>",
+        "CreateKxDataviewResponse$databaseName": "<p>The name of the database where you want to create a dataview.</p>",
         "DeleteKxDatabaseRequest$databaseName": "<p>The name of the kdb database that you want to delete.</p>",
+        "DeleteKxDataviewRequest$databaseName": "<p>The name of the database whose dataview you want to delete.</p>",
         "GetKxChangesetRequest$databaseName": "<p>The name of the kdb database.</p>",
         "GetKxChangesetResponse$databaseName": "<p>The name of the kdb database.</p>",
         "GetKxDatabaseRequest$databaseName": "<p>The name of the kdb database.</p>",
         "GetKxDatabaseResponse$databaseName": "<p>The name of the kdb database for which the information is retrieved.</p>",
+        "GetKxDataviewRequest$databaseName": "<p> The name of the database where you created the dataview.</p>",
+        "GetKxDataviewResponse$databaseName": "<p> The name of the database where you created the dataview.</p>",
         "KxDatabaseConfiguration$databaseName": "<p>The name of the kdb database. When this parameter is specified in the structure, S3 with the whole database is included by default.</p>",
         "KxDatabaseListEntry$databaseName": "<p>The name of the kdb database.</p>",
+        "KxDataviewListEntry$databaseName": "<p> A unique identifier of the database.</p>",
         "ListKxChangesetsRequest$databaseName": "<p>The name of the kdb database.</p>",
+        "ListKxDataviewsRequest$databaseName": "<p> The name of the database where the dataviews were created.</p>",
         "UpdateKxDatabaseRequest$databaseName": "<p>The name of the kdb database.</p>",
-        "UpdateKxDatabaseResponse$databaseName": "<p>The name of the kdb database.</p>"
+        "UpdateKxDatabaseResponse$databaseName": "<p>The name of the kdb database.</p>",
+        "UpdateKxDataviewRequest$databaseName": "<p> The name of the database.</p>",
+        "UpdateKxDataviewResponse$databaseName": "<p> The name of the database. </p>"
       }
     },
     "DbPath": {
       "base": null,
       "refs": {
         "ChangeRequest$dbPath": "<p>Defines the path within the database directory. </p>",
-        "DbPaths$member": null
+        "DbPaths$member": null,
+        "SegmentConfigurationDbPathList$member": null
       }
     },
     "DbPaths": {
@@ -344,12 +448,32 @@
       "refs": {
       }
     },
+    "DeleteKxDataviewRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteKxDataviewResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteKxEnvironmentRequest": {
       "base": null,
       "refs": {
       }
     },
     "DeleteKxEnvironmentResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteKxScalingGroupRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteKxScalingGroupResponse": {
       "base": null,
       "refs": {
       }
@@ -364,24 +488,46 @@
       "refs": {
       }
     },
+    "DeleteKxVolumeRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteKxVolumeResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Description": {
       "base": null,
       "refs": {
         "CreateEnvironmentRequest$description": "<p>The description of the FinSpace environment to be created.</p>",
         "CreateKxDatabaseRequest$description": "<p>A description of the database.</p>",
         "CreateKxDatabaseResponse$description": "<p>A description of the database.</p>",
+        "CreateKxDataviewRequest$description": "<p>A description of the dataview.</p>",
+        "CreateKxDataviewResponse$description": "<p>A description of the dataview.</p>",
         "CreateKxEnvironmentRequest$description": "<p>A description for the kdb environment.</p>",
         "CreateKxEnvironmentResponse$description": "<p>A description for the kdb environment.</p>",
+        "CreateKxVolumeRequest$description": "<p> A description of the volume. </p>",
+        "CreateKxVolumeResponse$description": "<p> A description of the volume. </p>",
         "Environment$description": "<p>The description of the FinSpace environment.</p>",
         "GetKxDatabaseResponse$description": "<p>A description of the database.</p>",
+        "GetKxDataviewResponse$description": "<p>A description of the dataview.</p>",
         "GetKxEnvironmentResponse$description": "<p>A description for the kdb environment.</p>",
+        "GetKxVolumeResponse$description": "<p> A description of the volume. </p>",
+        "KxDataviewListEntry$description": "<p> A description for the dataview list entry.</p>",
         "KxEnvironment$description": "<p>A description of the kdb environment.</p>",
+        "KxVolume$description": "<p> A description of the volume. </p>",
         "UpdateEnvironmentRequest$description": "<p>The description of the environment.</p>",
         "UpdateKxDatabaseRequest$description": "<p>A description of the database.</p>",
         "UpdateKxDatabaseResponse$description": "<p>A description of the database.</p>",
+        "UpdateKxDataviewRequest$description": "<p> The description for a dataview. </p>",
+        "UpdateKxDataviewResponse$description": "<p>A description of the dataview.</p>",
         "UpdateKxEnvironmentNetworkResponse$description": "<p>The description of the environment.</p>",
         "UpdateKxEnvironmentRequest$description": "<p>A description of the kdb environment.</p>",
-        "UpdateKxEnvironmentResponse$description": "<p>The description of the environment.</p>"
+        "UpdateKxEnvironmentResponse$description": "<p>The description of the environment.</p>",
+        "UpdateKxVolumeRequest$description": "<p> A description of the volume. </p>",
+        "UpdateKxVolumeResponse$description": "<p> The description for the volume. </p>"
       }
     },
     "EmailId": {
@@ -426,15 +572,24 @@
         "CreateKxChangesetResponse$environmentId": "<p>A unique identifier for the kdb environment.</p>",
         "CreateKxDatabaseRequest$environmentId": "<p>A unique identifier for the kdb environment.</p>",
         "CreateKxDatabaseResponse$environmentId": "<p>A unique identifier for the kdb environment.</p>",
+        "CreateKxDataviewRequest$environmentId": "<p>A unique identifier for the kdb environment, where you want to create the dataview. </p>",
+        "CreateKxDataviewResponse$environmentId": "<p>A unique identifier for the kdb environment, where you want to create the dataview. </p>",
         "DeleteKxDatabaseRequest$environmentId": "<p>A unique identifier for the kdb environment.</p>",
+        "DeleteKxDataviewRequest$environmentId": "<p>A unique identifier for the kdb environment, from where you want to delete the dataview. </p>",
         "GetKxChangesetRequest$environmentId": "<p>A unique identifier for the kdb environment.</p>",
         "GetKxChangesetResponse$environmentId": "<p>A unique identifier for the kdb environment.</p>",
         "GetKxDatabaseRequest$environmentId": "<p>A unique identifier for the kdb environment.</p>",
         "GetKxDatabaseResponse$environmentId": "<p>A unique identifier for the kdb environment.</p>",
+        "GetKxDataviewRequest$environmentId": "<p>A unique identifier for the kdb environment, from where you want to retrieve the dataview details.</p>",
+        "GetKxDataviewResponse$environmentId": "<p>A unique identifier for the kdb environment, from where you want to retrieve the dataview details.</p>",
+        "KxDataviewListEntry$environmentId": "<p>A unique identifier for the kdb environment.</p>",
         "ListKxChangesetsRequest$environmentId": "<p>A unique identifier for the kdb environment.</p>",
         "ListKxDatabasesRequest$environmentId": "<p>A unique identifier for the kdb environment.</p>",
+        "ListKxDataviewsRequest$environmentId": "<p>A unique identifier for the kdb environment, for which you want to retrieve a list of dataviews.</p>",
         "UpdateKxDatabaseRequest$environmentId": "<p>A unique identifier for the kdb environment.</p>",
-        "UpdateKxDatabaseResponse$environmentId": "<p>A unique identifier for the kdb environment.</p>"
+        "UpdateKxDatabaseResponse$environmentId": "<p>A unique identifier for the kdb environment.</p>",
+        "UpdateKxDataviewRequest$environmentId": "<p>A unique identifier for the kdb environment, where you want to update the dataview.</p>",
+        "UpdateKxDataviewResponse$environmentId": "<p>A unique identifier for the kdb environment, where you want to update the dataview.</p>"
       }
     },
     "EnvironmentList": {
@@ -582,6 +737,16 @@
       "refs": {
       }
     },
+    "GetKxDataviewRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetKxDataviewResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetKxEnvironmentRequest": {
       "base": null,
       "refs": {
@@ -592,12 +757,32 @@
       "refs": {
       }
     },
+    "GetKxScalingGroupRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetKxScalingGroupResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetKxUserRequest": {
       "base": null,
       "refs": {
       }
     },
     "GetKxUserResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetKxVolumeRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetKxVolumeResponse": {
       "base": null,
       "refs": {
       }
@@ -698,13 +883,36 @@
         "UpdateKxEnvironmentResponse$kmsKeyId": "<p>The KMS key ID to encrypt your data in the FinSpace environment.</p>"
       }
     },
+    "KxAttachedCluster": {
+      "base": "<p>The structure containing the metadata of the attached clusters.</p>",
+      "refs": {
+        "KxAttachedClusters$member": null
+      }
+    },
+    "KxAttachedClusters": {
+      "base": null,
+      "refs": {
+        "GetKxVolumeResponse$attachedClusters": "<p> A list of cluster identifiers that a volume is attached to. </p>",
+        "UpdateKxVolumeResponse$attachedClusters": "<p> Specifies the clusters that a volume is attached to. </p>"
+      }
+    },
     "KxAzMode": {
       "base": null,
       "refs": {
         "CreateKxClusterRequest$azMode": "<p>The number of availability zones you want to assign per cluster. This can be one of the following </p> <ul> <li> <p> <code>SINGLE</code> – Assigns one availability zone per cluster.</p> </li> <li> <p> <code>MULTI</code> – Assigns all the availability zones per cluster.</p> </li> </ul>",
         "CreateKxClusterResponse$azMode": "<p>The number of availability zones you want to assign per cluster. This can be one of the following </p> <ul> <li> <p> <code>SINGLE</code> – Assigns one availability zone per cluster.</p> </li> <li> <p> <code>MULTI</code> – Assigns all the availability zones per cluster.</p> </li> </ul>",
+        "CreateKxDataviewRequest$azMode": "<p>The number of availability zones you want to assign per cluster. This can be one of the following </p> <ul> <li> <p> <code>SINGLE</code> – Assigns one availability zone per cluster.</p> </li> <li> <p> <code>MULTI</code> – Assigns all the availability zones per cluster.</p> </li> </ul>",
+        "CreateKxDataviewResponse$azMode": "<p>The number of availability zones you want to assign per cluster. This can be one of the following </p> <ul> <li> <p> <code>SINGLE</code> – Assigns one availability zone per cluster.</p> </li> <li> <p> <code>MULTI</code> – Assigns all the availability zones per cluster.</p> </li> </ul>",
+        "CreateKxVolumeRequest$azMode": "<p>The number of availability zones you want to assign per cluster. Currently, FinSpace only support <code>SINGLE</code> for volumes.</p>",
+        "CreateKxVolumeResponse$azMode": "<p>The number of availability zones you want to assign per cluster. Currently, FinSpace only support <code>SINGLE</code> for volumes.</p>",
         "GetKxClusterResponse$azMode": "<p>The number of availability zones you want to assign per cluster. This can be one of the following </p> <ul> <li> <p> <code>SINGLE</code> – Assigns one availability zone per cluster.</p> </li> <li> <p> <code>MULTI</code> – Assigns all the availability zones per cluster.</p> </li> </ul>",
-        "KxCluster$azMode": "<p>The number of availability zones assigned per cluster. This can be one of the following:</p> <ul> <li> <p> <code>SINGLE</code> – Assigns one availability zone per cluster.</p> </li> <li> <p> <code>MULTI</code> – Assigns all the availability zones per cluster.</p> </li> </ul>"
+        "GetKxDataviewResponse$azMode": "<p>The number of availability zones you want to assign per cluster. This can be one of the following </p> <ul> <li> <p> <code>SINGLE</code> – Assigns one availability zone per cluster.</p> </li> <li> <p> <code>MULTI</code> – Assigns all the availability zones per cluster.</p> </li> </ul>",
+        "GetKxVolumeResponse$azMode": "<p>The number of availability zones you want to assign per cluster. Currently, FinSpace only support <code>SINGLE</code> for volumes.</p>",
+        "KxCluster$azMode": "<p>The number of availability zones assigned per cluster. This can be one of the following:</p> <ul> <li> <p> <code>SINGLE</code> – Assigns one availability zone per cluster.</p> </li> <li> <p> <code>MULTI</code> – Assigns all the availability zones per cluster.</p> </li> </ul>",
+        "KxDataviewListEntry$azMode": "<p>The number of availability zones you want to assign per cluster. This can be one of the following </p> <ul> <li> <p> <code>SINGLE</code> – Assigns one availability zone per cluster.</p> </li> <li> <p> <code>MULTI</code> – Assigns all the availability zones per cluster.</p> </li> </ul>",
+        "KxVolume$azMode": "<p> The number of availability zones assigned to the volume. Currently, only <code>SINGLE</code> is supported. </p>",
+        "UpdateKxDataviewResponse$azMode": "<p>The number of availability zones you want to assign per cluster. This can be one of the following </p> <ul> <li> <p> <code>SINGLE</code> – Assigns one availability zone per cluster.</p> </li> <li> <p> <code>MULTI</code> – Assigns all the availability zones per cluster.</p> </li> </ul>",
+        "UpdateKxVolumeResponse$azMode": "<p>The number of availability zones you want to assign per cluster. Currently, FinSpace only support <code>SINGLE</code> for volumes.</p>"
       }
     },
     "KxCacheStorageConfiguration": {
@@ -776,16 +984,26 @@
     "KxClusterName": {
       "base": null,
       "refs": {
+        "AttachedClusterList$member": null,
         "CreateKxClusterRequest$clusterName": "<p>A unique name for the cluster that you want to create.</p>",
         "CreateKxClusterResponse$clusterName": "<p>A unique name for the cluster.</p>",
         "DeleteKxClusterRequest$clusterName": "<p>The name of the cluster that you want to delete.</p>",
         "GetKxClusterRequest$clusterName": "<p>The name of the cluster that you want to retrieve.</p>",
         "GetKxClusterResponse$clusterName": "<p>A unique name for the cluster.</p>",
         "GetKxConnectionStringRequest$clusterName": "<p>A name of the kdb cluster.</p>",
+        "KxAttachedCluster$clusterName": "<p>A unique name for the attached cluster.</p>",
         "KxCluster$clusterName": "<p>A unique name for the cluster.</p>",
+        "KxClusterNameList$member": null,
         "ListKxClusterNodesRequest$clusterName": "<p>A unique name for the cluster.</p>",
         "UpdateKxClusterCodeConfigurationRequest$clusterName": "<p>The name of the cluster.</p>",
         "UpdateKxClusterDatabasesRequest$clusterName": "<p>A unique name for the cluster that you want to modify.</p>"
+      }
+    },
+    "KxClusterNameList": {
+      "base": null,
+      "refs": {
+        "GetKxScalingGroupResponse$clusters": "<p> The list of Managed kdb clusters that are currently active in the given scaling group. </p>",
+        "KxScalingGroup$clusters": "<p> The list of clusters currently active in a given scaling group. </p>"
       }
     },
     "KxClusterNodeIdString": {
@@ -799,6 +1017,7 @@
       "refs": {
         "CreateKxClusterResponse$status": "<p>The status of cluster creation.</p> <ul> <li> <p>PENDING – The cluster is pending creation.</p> </li> <li> <p>CREATING – The cluster creation process is in progress.</p> </li> <li> <p>CREATE_FAILED – The cluster creation process has failed.</p> </li> <li> <p>RUNNING – The cluster creation process is running.</p> </li> <li> <p>UPDATING – The cluster is in the process of being updated.</p> </li> <li> <p>DELETING – The cluster is in the process of being deleted.</p> </li> <li> <p>DELETED – The cluster has been deleted.</p> </li> <li> <p>DELETE_FAILED – The cluster failed to delete.</p> </li> </ul>",
         "GetKxClusterResponse$status": "<p>The status of cluster creation.</p> <ul> <li> <p>PENDING – The cluster is pending creation.</p> </li> <li> <p>CREATING – The cluster creation process is in progress.</p> </li> <li> <p>CREATE_FAILED – The cluster creation process has failed.</p> </li> <li> <p>RUNNING – The cluster creation process is running.</p> </li> <li> <p>UPDATING – The cluster is in the process of being updated.</p> </li> <li> <p>DELETING – The cluster is in the process of being deleted.</p> </li> <li> <p>DELETED – The cluster has been deleted.</p> </li> <li> <p>DELETE_FAILED – The cluster failed to delete.</p> </li> </ul>",
+        "KxAttachedCluster$clusterStatus": "<p>The status of the attached cluster.</p> <ul> <li> <p>PENDING – The cluster is pending creation.</p> </li> <li> <p>CREATING – The cluster creation process is in progress.</p> </li> <li> <p>CREATE_FAILED – The cluster creation process has failed.</p> </li> <li> <p>RUNNING – The cluster creation process is running.</p> </li> <li> <p>UPDATING – The cluster is in the process of being updated.</p> </li> <li> <p>DELETING – The cluster is in the process of being deleted.</p> </li> <li> <p>DELETED – The cluster has been deleted.</p> </li> <li> <p>DELETE_FAILED – The cluster failed to delete.</p> </li> </ul>",
         "KxCluster$status": "<p>The status of a cluster.</p> <ul> <li> <p>PENDING – The cluster is pending creation.</p> </li> <li> <p>CREATING –The cluster creation process is in progress.</p> </li> <li> <p>CREATE_FAILED– The cluster creation process has failed.</p> </li> <li> <p>RUNNING – The cluster creation process is running.</p> </li> <li> <p>UPDATING – The cluster is in the process of being updated.</p> </li> <li> <p> DELETING – The cluster is in the process of being deleted.</p> </li> <li> <p>DELETED – The cluster has been deleted.</p> </li> <li> <p>DELETE_FAILED – The cluster failed to delete.</p> </li> </ul>"
       }
     },
@@ -807,17 +1026,20 @@
       "refs": {
         "CreateKxClusterResponse$statusReason": "<p>The error message when a failed state occurs. </p>",
         "GetKxClusterResponse$statusReason": "<p>The error message when a failed state occurs. </p>",
-        "KxCluster$statusReason": "<p>The error message when a failed state occurs. </p>"
+        "GetKxScalingGroupResponse$statusReason": "<p> The error message when a failed state occurs. </p>",
+        "KxCluster$statusReason": "<p>The error message when a failed state occurs. </p>",
+        "KxScalingGroup$statusReason": "<p> The error message when a failed state occurs. </p>"
       }
     },
     "KxClusterType": {
       "base": null,
       "refs": {
-        "CreateKxClusterRequest$clusterType": "<p>Specifies the type of KDB database that is being created. The following types are available: </p> <ul> <li> <p>HDB – A Historical Database. The data is only accessible with read-only permissions from one of the FinSpace managed kdb databases mounted to the cluster.</p> </li> <li> <p>RDB – A Realtime Database. This type of database captures all the data from a ticker plant and stores it in memory until the end of day, after which it writes all of its data to a disk and reloads the HDB. This cluster type requires local storage for temporary storage of data during the savedown process. If you specify this field in your request, you must provide the <code>savedownStorageConfiguration</code> parameter.</p> </li> <li> <p>GATEWAY – A gateway cluster allows you to access data across processes in kdb systems. It allows you to create your own routing logic using the initialization scripts and custom code. This type of cluster does not require a writable local storage.</p> </li> <li> <p>GP – A general purpose cluster allows you to quickly iterate on code during development by granting greater access to system commands and enabling a fast reload of custom code. This cluster type can optionally mount databases including cache and savedown storage. For this cluster type, the node count is fixed at 1. It does not support autoscaling and supports only <code>SINGLE</code> AZ mode.</p> </li> </ul>",
-        "CreateKxClusterResponse$clusterType": "<p>Specifies the type of KDB database that is being created. The following types are available: </p> <ul> <li> <p>HDB – A Historical Database. The data is only accessible with read-only permissions from one of the FinSpace managed kdb databases mounted to the cluster.</p> </li> <li> <p>RDB – A Realtime Database. This type of database captures all the data from a ticker plant and stores it in memory until the end of day, after which it writes all of its data to a disk and reloads the HDB. This cluster type requires local storage for temporary storage of data during the savedown process. If you specify this field in your request, you must provide the <code>savedownStorageConfiguration</code> parameter.</p> </li> <li> <p>GATEWAY – A gateway cluster allows you to access data across processes in kdb systems. It allows you to create your own routing logic using the initialization scripts and custom code. This type of cluster does not require a writable local storage.</p> </li> <li> <p>GP – A general purpose cluster allows you to quickly iterate on code during development by granting greater access to system commands and enabling a fast reload of custom code. This cluster type can optionally mount databases including cache and savedown storage. For this cluster type, the node count is fixed at 1. It does not support autoscaling and supports only <code>SINGLE</code> AZ mode.</p> </li> </ul>",
-        "GetKxClusterResponse$clusterType": "<p>Specifies the type of KDB database that is being created. The following types are available: </p> <ul> <li> <p>HDB – A Historical Database. The data is only accessible with read-only permissions from one of the FinSpace managed kdb databases mounted to the cluster.</p> </li> <li> <p>RDB – A Realtime Database. This type of database captures all the data from a ticker plant and stores it in memory until the end of day, after which it writes all of its data to a disk and reloads the HDB. This cluster type requires local storage for temporary storage of data during the savedown process. If you specify this field in your request, you must provide the <code>savedownStorageConfiguration</code> parameter.</p> </li> <li> <p>GATEWAY – A gateway cluster allows you to access data across processes in kdb systems. It allows you to create your own routing logic using the initialization scripts and custom code. This type of cluster does not require a writable local storage.</p> </li> <li> <p>GP – A general purpose cluster allows you to quickly iterate on code during development by granting greater access to system commands and enabling a fast reload of custom code. This cluster type can optionally mount databases including cache and savedown storage. For this cluster type, the node count is fixed at 1. It does not support autoscaling and supports only <code>SINGLE</code> AZ mode.</p> </li> </ul>",
-        "KxCluster$clusterType": "<p>Specifies the type of KDB database that is being created. The following types are available: </p> <ul> <li> <p>HDB – A Historical Database. The data is only accessible with read-only permissions from one of the FinSpace managed kdb databases mounted to the cluster.</p> </li> <li> <p>RDB – A Realtime Database. This type of database captures all the data from a ticker plant and stores it in memory until the end of day, after which it writes all of its data to a disk and reloads the HDB. This cluster type requires local storage for temporary storage of data during the savedown process. If you specify this field in your request, you must provide the <code>savedownStorageConfiguration</code> parameter.</p> </li> <li> <p>GATEWAY – A gateway cluster allows you to access data across processes in kdb systems. It allows you to create your own routing logic using the initialization scripts and custom code. This type of cluster does not require a writable local storage.</p> </li> <li> <p>GP – A general purpose cluster allows you to quickly iterate on code during development by granting greater access to system commands and enabling a fast reload of custom code. This cluster type can optionally mount databases including cache and savedown storage. For this cluster type, the node count is fixed at 1. It does not support autoscaling and supports only <code>SINGLE</code> AZ mode.</p> </li> </ul>",
-        "ListKxClustersRequest$clusterType": "<p>Specifies the type of KDB database that is being created. The following types are available: </p> <ul> <li> <p>HDB – A Historical Database. The data is only accessible with read-only permissions from one of the FinSpace managed kdb databases mounted to the cluster.</p> </li> <li> <p>RDB – A Realtime Database. This type of database captures all the data from a ticker plant and stores it in memory until the end of day, after which it writes all of its data to a disk and reloads the HDB. This cluster type requires local storage for temporary storage of data during the savedown process. If you specify this field in your request, you must provide the <code>savedownStorageConfiguration</code> parameter.</p> </li> <li> <p>GATEWAY – A gateway cluster allows you to access data across processes in kdb systems. It allows you to create your own routing logic using the initialization scripts and custom code. This type of cluster does not require a writable local storage.</p> </li> <li> <p>GP – A general purpose cluster allows you to quickly iterate on code during development by granting greater access to system commands and enabling a fast reload of custom code. This cluster type can optionally mount databases including cache and savedown storage. For this cluster type, the node count is fixed at 1. It does not support autoscaling and supports only <code>SINGLE</code> AZ mode.</p> </li> </ul>"
+        "CreateKxClusterRequest$clusterType": "<p>Specifies the type of KDB database that is being created. The following types are available: </p> <ul> <li> <p>HDB – A Historical Database. The data is only accessible with read-only permissions from one of the FinSpace managed kdb databases mounted to the cluster.</p> </li> <li> <p>RDB – A Realtime Database. This type of database captures all the data from a ticker plant and stores it in memory until the end of day, after which it writes all of its data to a disk and reloads the HDB. This cluster type requires local storage for temporary storage of data during the savedown process. If you specify this field in your request, you must provide the <code>savedownStorageConfiguration</code> parameter.</p> </li> <li> <p>GATEWAY – A gateway cluster allows you to access data across processes in kdb systems. It allows you to create your own routing logic using the initialization scripts and custom code. This type of cluster does not require a writable local storage.</p> </li> <li> <p>GP – A general purpose cluster allows you to quickly iterate on code during development by granting greater access to system commands and enabling a fast reload of custom code. This cluster type can optionally mount databases including cache and savedown storage. For this cluster type, the node count is fixed at 1. It does not support autoscaling and supports only <code>SINGLE</code> AZ mode.</p> </li> <li> <p>Tickerplant – A tickerplant cluster allows you to subscribe to feed handlers based on IAM permissions. It can publish to RDBs, other Tickerplants, and real-time subscribers (RTS). Tickerplants can persist messages to log, which is readable by any RDB environment. It supports only single-node that is only one kdb process.</p> </li> </ul>",
+        "CreateKxClusterResponse$clusterType": "<p>Specifies the type of KDB database that is being created. The following types are available: </p> <ul> <li> <p>HDB – A Historical Database. The data is only accessible with read-only permissions from one of the FinSpace managed kdb databases mounted to the cluster.</p> </li> <li> <p>RDB – A Realtime Database. This type of database captures all the data from a ticker plant and stores it in memory until the end of day, after which it writes all of its data to a disk and reloads the HDB. This cluster type requires local storage for temporary storage of data during the savedown process. If you specify this field in your request, you must provide the <code>savedownStorageConfiguration</code> parameter.</p> </li> <li> <p>GATEWAY – A gateway cluster allows you to access data across processes in kdb systems. It allows you to create your own routing logic using the initialization scripts and custom code. This type of cluster does not require a writable local storage.</p> </li> <li> <p>GP – A general purpose cluster allows you to quickly iterate on code during development by granting greater access to system commands and enabling a fast reload of custom code. This cluster type can optionally mount databases including cache and savedown storage. For this cluster type, the node count is fixed at 1. It does not support autoscaling and supports only <code>SINGLE</code> AZ mode.</p> </li> <li> <p>Tickerplant – A tickerplant cluster allows you to subscribe to feed handlers based on IAM permissions. It can publish to RDBs, other Tickerplants, and real-time subscribers (RTS). Tickerplants can persist messages to log, which is readable by any RDB environment. It supports only single-node that is only one kdb process.</p> </li> </ul>",
+        "GetKxClusterResponse$clusterType": "<p>Specifies the type of KDB database that is being created. The following types are available: </p> <ul> <li> <p>HDB – A Historical Database. The data is only accessible with read-only permissions from one of the FinSpace managed kdb databases mounted to the cluster.</p> </li> <li> <p>RDB – A Realtime Database. This type of database captures all the data from a ticker plant and stores it in memory until the end of day, after which it writes all of its data to a disk and reloads the HDB. This cluster type requires local storage for temporary storage of data during the savedown process. If you specify this field in your request, you must provide the <code>savedownStorageConfiguration</code> parameter.</p> </li> <li> <p>GATEWAY – A gateway cluster allows you to access data across processes in kdb systems. It allows you to create your own routing logic using the initialization scripts and custom code. This type of cluster does not require a writable local storage.</p> </li> <li> <p>GP – A general purpose cluster allows you to quickly iterate on code during development by granting greater access to system commands and enabling a fast reload of custom code. This cluster type can optionally mount databases including cache and savedown storage. For this cluster type, the node count is fixed at 1. It does not support autoscaling and supports only <code>SINGLE</code> AZ mode.</p> </li> <li> <p>Tickerplant – A tickerplant cluster allows you to subscribe to feed handlers based on IAM permissions. It can publish to RDBs, other Tickerplants, and real-time subscribers (RTS). Tickerplants can persist messages to log, which is readable by any RDB environment. It supports only single-node that is only one kdb process.</p> </li> </ul>",
+        "KxAttachedCluster$clusterType": "<p>Specifies the type of cluster. The volume for TP and RDB cluster types will be used for TP logs.</p>",
+        "KxCluster$clusterType": "<p>Specifies the type of KDB database that is being created. The following types are available: </p> <ul> <li> <p>HDB – A Historical Database. The data is only accessible with read-only permissions from one of the FinSpace managed kdb databases mounted to the cluster.</p> </li> <li> <p>RDB – A Realtime Database. This type of database captures all the data from a ticker plant and stores it in memory until the end of day, after which it writes all of its data to a disk and reloads the HDB. This cluster type requires local storage for temporary storage of data during the savedown process. If you specify this field in your request, you must provide the <code>savedownStorageConfiguration</code> parameter.</p> </li> <li> <p>GATEWAY – A gateway cluster allows you to access data across processes in kdb systems. It allows you to create your own routing logic using the initialization scripts and custom code. This type of cluster does not require a writable local storage.</p> </li> <li> <p>GP – A general purpose cluster allows you to quickly iterate on code during development by granting greater access to system commands and enabling a fast reload of custom code. This cluster type can optionally mount databases including cache and savedown storage. For this cluster type, the node count is fixed at 1. It does not support autoscaling and supports only <code>SINGLE</code> AZ mode.</p> </li> <li> <p>Tickerplant – A tickerplant cluster allows you to subscribe to feed handlers based on IAM permissions. It can publish to RDBs, other Tickerplants, and real-time subscribers (RTS). Tickerplants can persist messages to log, which is readable by any RDB environment. It supports only single-node that is only one kdb process.</p> </li> </ul>",
+        "ListKxClustersRequest$clusterType": "<p>Specifies the type of KDB database that is being created. The following types are available: </p> <ul> <li> <p>HDB – A Historical Database. The data is only accessible with read-only permissions from one of the FinSpace managed kdb databases mounted to the cluster.</p> </li> <li> <p>RDB – A Realtime Database. This type of database captures all the data from a ticker plant and stores it in memory until the end of day, after which it writes all of its data to a disk and reloads the HDB. This cluster type requires local storage for temporary storage of data during the savedown process. If you specify this field in your request, you must provide the <code>savedownStorageConfiguration</code> parameter.</p> </li> <li> <p>GATEWAY – A gateway cluster allows you to access data across processes in kdb systems. It allows you to create your own routing logic using the initialization scripts and custom code. This type of cluster does not require a writable local storage.</p> </li> <li> <p>GP – A general purpose cluster allows you to quickly iterate on code during development by granting greater access to system commands and enabling a fast reload of custom code. This cluster type can optionally mount databases including cache and savedown storage. For this cluster type, the node count is fixed at 1. It does not support autoscaling and supports only <code>SINGLE</code> AZ mode.</p> </li> <li> <p>Tickerplant – A tickerplant cluster allows you to subscribe to feed handlers based on IAM permissions. It can publish to RDBs, other Tickerplants, and real-time subscribers (RTS). Tickerplants can persist messages to log, which is readable by any RDB environment. It supports only single-node that is only one kdb process.</p> </li> </ul>"
       }
     },
     "KxClusters": {
@@ -892,6 +1114,89 @@
         "ListKxDatabasesResponse$kxDatabases": "<p>A list of databases in the kdb environment.</p>"
       }
     },
+    "KxDataviewActiveVersion": {
+      "base": "<p> The active version of the dataview that is currently in use by this cluster. </p>",
+      "refs": {
+        "KxDataviewActiveVersionList$member": null
+      }
+    },
+    "KxDataviewActiveVersionList": {
+      "base": null,
+      "refs": {
+        "GetKxDataviewResponse$activeVersions": "<p> The current active changeset versions of the database on the given dataview. </p>",
+        "KxDataviewListEntry$activeVersions": "<p> The active changeset versions for the given dataview entry. </p>",
+        "UpdateKxDataviewResponse$activeVersions": "<p> The current active changeset versions of the database on the given dataview. </p>"
+      }
+    },
+    "KxDataviewConfiguration": {
+      "base": "<p> The structure that stores the configuration details of a dataview.</p>",
+      "refs": {
+        "KxDatabaseConfiguration$dataviewConfiguration": "<p> The configuration of the dataview to be used with specified cluster. </p>"
+      }
+    },
+    "KxDataviewListEntry": {
+      "base": "<p> A collection of kdb dataview entries. </p>",
+      "refs": {
+        "KxDataviews$member": null
+      }
+    },
+    "KxDataviewName": {
+      "base": null,
+      "refs": {
+        "CreateKxDataviewRequest$dataviewName": "<p>A unique identifier for the dataview.</p>",
+        "CreateKxDataviewResponse$dataviewName": "<p>A unique identifier for the dataview.</p>",
+        "DeleteKxDataviewRequest$dataviewName": "<p>The name of the dataview that you want to delete.</p>",
+        "GetKxDataviewRequest$dataviewName": "<p>A unique identifier for the dataview.</p>",
+        "GetKxDataviewResponse$dataviewName": "<p>A unique identifier for the dataview.</p>",
+        "KxDatabaseCacheConfiguration$dataviewName": "<p> The name of the dataview to be used for caching historical data on disk. </p>",
+        "KxDatabaseConfiguration$dataviewName": "<p> The name of the dataview to be used for caching historical data on disk. </p>",
+        "KxDataviewConfiguration$dataviewName": "<p> The unique identifier of the dataview.</p>",
+        "KxDataviewListEntry$dataviewName": "<p> A unique identifier of the dataview.</p>",
+        "UpdateKxDataviewRequest$dataviewName": "<p>The name of the dataview that you want to update.</p>",
+        "UpdateKxDataviewResponse$dataviewName": "<p> The name of the database under which the dataview was created. </p>"
+      }
+    },
+    "KxDataviewSegmentConfiguration": {
+      "base": "<p> The configuration that contains the database path of the data that you want to place on each selected volume. Each segment must have a unique database path for each volume. If you do not explicitly specify any database path for a volume, they are accessible from the cluster through the default S3/object store segment. </p>",
+      "refs": {
+        "KxDataviewSegmentConfigurationList$member": null
+      }
+    },
+    "KxDataviewSegmentConfigurationList": {
+      "base": null,
+      "refs": {
+        "CreateKxDataviewRequest$segmentConfigurations": "<p> The configuration that contains the database path of the data that you want to place on each selected volume. Each segment must have a unique database path for each volume. If you do not explicitly specify any database path for a volume, they are accessible from the cluster through the default S3/object store segment. </p>",
+        "CreateKxDataviewResponse$segmentConfigurations": "<p> The configuration that contains the database path of the data that you want to place on each selected volume. Each segment must have a unique database path for each volume. If you do not explicitly specify any database path for a volume, they are accessible from the cluster through the default S3/object store segment. </p>",
+        "GetKxDataviewResponse$segmentConfigurations": "<p> The configuration that contains the database path of the data that you want to place on each selected volume. Each segment must have a unique database path for each volume. If you do not explicitly specify any database path for a volume, they are accessible from the cluster through the default S3/object store segment. </p>",
+        "KxDataviewActiveVersion$segmentConfigurations": "<p> The configuration that contains the database path of the data that you want to place on each selected volume. Each segment must have a unique database path for each volume. If you do not explicitly specify any database path for a volume, they are accessible from the cluster through the default S3/object store segment. </p>",
+        "KxDataviewConfiguration$segmentConfigurations": "<p> The db path and volume configuration for the segmented database.</p>",
+        "KxDataviewListEntry$segmentConfigurations": "<p> The configuration that contains the database path of the data that you want to place on each selected volume. Each segment must have a unique database path for each volume. If you do not explicitly specify any database path for a volume, they are accessible from the cluster through the default S3/object store segment. </p>",
+        "UpdateKxDataviewRequest$segmentConfigurations": "<p> The configuration that contains the database path of the data that you want to place on each selected volume. Each segment must have a unique database path for each volume. If you do not explicitly specify any database path for a volume, they are accessible from the cluster through the default S3/object store segment. </p>",
+        "UpdateKxDataviewResponse$segmentConfigurations": "<p> The configuration that contains the database path of the data that you want to place on each selected volume. Each segment must have a unique database path for each volume. If you do not explicitly specify any database path for a volume, they are accessible from the cluster through the default S3/object store segment. </p>"
+      }
+    },
+    "KxDataviewStatus": {
+      "base": null,
+      "refs": {
+        "CreateKxDataviewResponse$status": "<p> The status of dataview creation.</p> <ul> <li> <p> <code>CREATING</code> – The dataview creation is in progress.</p> </li> <li> <p> <code>UPDATING</code> – The dataview is in the process of being updated.</p> </li> <li> <p> <code>ACTIVE</code> – The dataview is active.</p> </li> </ul>",
+        "GetKxDataviewResponse$status": "<p> The status of dataview creation.</p> <ul> <li> <p> <code>CREATING</code> – The dataview creation is in progress.</p> </li> <li> <p> <code>UPDATING</code> – The dataview is in the process of being updated.</p> </li> <li> <p> <code>ACTIVE</code> – The dataview is active.</p> </li> </ul>",
+        "KxDataviewListEntry$status": "<p> The status of a given dataview entry. </p>",
+        "UpdateKxDataviewResponse$status": "<p> The status of dataview creation.</p> <ul> <li> <p> <code>CREATING</code> – The dataview creation is in progress.</p> </li> <li> <p> <code>UPDATING</code> – The dataview is in the process of being updated.</p> </li> <li> <p> <code>ACTIVE</code> – The dataview is active.</p> </li> </ul>"
+      }
+    },
+    "KxDataviewStatusReason": {
+      "base": null,
+      "refs": {
+        "GetKxDataviewResponse$statusReason": "<p> The error message when a failed state occurs. </p>",
+        "KxDataviewListEntry$statusReason": "<p> The error message when a failed state occurs. </p>"
+      }
+    },
+    "KxDataviews": {
+      "base": null,
+      "refs": {
+        "ListKxDataviewsResponse$kxDataviews": "<p> The list of kdb dataviews that are currently active for the given database. </p>"
+      }
+    },
     "KxDeploymentConfiguration": {
       "base": "<p> The configuration that allows you to choose how you want to update the databases on a cluster. Depending on the option you choose, you can reduce the time it takes to update the cluster. </p>",
       "refs": {
@@ -915,12 +1220,25 @@
       "refs": {
         "CreateKxClusterRequest$environmentId": "<p>A unique identifier for the kdb environment.</p>",
         "CreateKxClusterResponse$environmentId": "<p>A unique identifier for the kdb environment.</p>",
+        "CreateKxScalingGroupRequest$environmentId": "<p>A unique identifier for the kdb environment, where you want to create the scaling group. </p>",
+        "CreateKxScalingGroupResponse$environmentId": "<p>A unique identifier for the kdb environment, where you create the scaling group. </p>",
+        "CreateKxVolumeRequest$environmentId": "<p>A unique identifier for the kdb environment, whose clusters can attach to the volume. </p>",
+        "CreateKxVolumeResponse$environmentId": "<p>A unique identifier for the kdb environment, whose clusters can attach to the volume. </p>",
         "DeleteKxClusterRequest$environmentId": "<p>A unique identifier for the kdb environment.</p>",
+        "DeleteKxScalingGroupRequest$environmentId": "<p>A unique identifier for the kdb environment, from where you want to delete the dataview. </p>",
+        "DeleteKxVolumeRequest$environmentId": "<p>A unique identifier for the kdb environment, whose clusters can attach to the volume. </p>",
         "GetKxClusterRequest$environmentId": "<p>A unique identifier for the kdb environment.</p>",
+        "GetKxScalingGroupRequest$environmentId": "<p>A unique identifier for the kdb environment. </p>",
+        "GetKxVolumeRequest$environmentId": "<p>A unique identifier for the kdb environment, whose clusters can attach to the volume. </p>",
+        "GetKxVolumeResponse$environmentId": "<p>A unique identifier for the kdb environment, whose clusters can attach to the volume. </p>",
         "ListKxClusterNodesRequest$environmentId": "<p>A unique identifier for the kdb environment.</p>",
         "ListKxClustersRequest$environmentId": "<p>A unique identifier for the kdb environment.</p>",
+        "ListKxScalingGroupsRequest$environmentId": "<p>A unique identifier for the kdb environment, for which you want to retrieve a list of scaling groups.</p>",
+        "ListKxVolumesRequest$environmentId": "<p>A unique identifier for the kdb environment, whose clusters can attach to the volume. </p>",
         "UpdateKxClusterCodeConfigurationRequest$environmentId": "<p> A unique identifier of the kdb environment. </p>",
-        "UpdateKxClusterDatabasesRequest$environmentId": "<p>The unique identifier of a kdb environment.</p>"
+        "UpdateKxClusterDatabasesRequest$environmentId": "<p>The unique identifier of a kdb environment.</p>",
+        "UpdateKxVolumeRequest$environmentId": "<p>A unique identifier for the kdb environment where you created the storage volume. </p>",
+        "UpdateKxVolumeResponse$environmentId": "<p>A unique identifier for the kdb environment where you want to update the volume. </p>"
       }
     },
     "KxEnvironmentList": {
@@ -939,6 +1257,37 @@
         "UpdateKxEnvironmentNetworkResponse$name": "<p>The name of the kdb environment.</p>",
         "UpdateKxEnvironmentRequest$name": "<p>The name of the kdb environment.</p>",
         "UpdateKxEnvironmentResponse$name": "<p>The name of the kdb environment.</p>"
+      }
+    },
+    "KxHostType": {
+      "base": null,
+      "refs": {
+        "CreateKxScalingGroupRequest$hostType": "<p> The memory and CPU capabilities of the scaling group host on which FinSpace Managed kdb clusters will be placed. </p>",
+        "CreateKxScalingGroupResponse$hostType": "<p> The memory and CPU capabilities of the scaling group host on which FinSpace Managed kdb clusters will be placed. </p>",
+        "GetKxScalingGroupResponse$hostType": "<p> The memory and CPU capabilities of the scaling group host on which FinSpace Managed kdb clusters will be placed. </p>",
+        "KxScalingGroup$hostType": "<p> The memory and CPU capabilities of the scaling group host on which FinSpace Managed kdb clusters will be placed. </p>"
+      }
+    },
+    "KxNAS1Configuration": {
+      "base": "<p> The structure containing the size and type of the network attached storage (NAS_1) file system volume. </p>",
+      "refs": {
+        "CreateKxVolumeRequest$nas1Configuration": "<p> Specifies the configuration for the Network attached storage (NAS_1) file system volume. This parameter is required when you choose <code>volumeType</code> as <i>NAS_1</i>.</p>",
+        "CreateKxVolumeResponse$nas1Configuration": "<p> Specifies the configuration for the Network attached storage (NAS_1) file system volume.</p>",
+        "GetKxVolumeResponse$nas1Configuration": "<p> Specifies the configuration for the Network attached storage (NAS_1) file system volume.</p>",
+        "UpdateKxVolumeRequest$nas1Configuration": "<p> Specifies the configuration for the Network attached storage (NAS_1) file system volume.</p>",
+        "UpdateKxVolumeResponse$nas1Configuration": "<p> Specifies the configuration for the Network attached storage (NAS_1) file system volume.</p>"
+      }
+    },
+    "KxNAS1Size": {
+      "base": null,
+      "refs": {
+        "KxNAS1Configuration$size": "<p> The size of the network attached storage.</p>"
+      }
+    },
+    "KxNAS1Type": {
+      "base": null,
+      "refs": {
+        "KxNAS1Configuration$type": "<p> The type of the network attached storage. </p>"
       }
     },
     "KxNode": {
@@ -973,6 +1322,46 @@
         "KxSavedownStorageConfiguration$type": "<p>The type of writeable storage space for temporarily storing your savedown data. The valid values are:</p> <ul> <li> <p>SDS01 – This type represents 3000 IOPS and io2 ebs volume type.</p> </li> </ul>"
       }
     },
+    "KxScalingGroup": {
+      "base": "<p> A structure for storing metadata of scaling group.</p>",
+      "refs": {
+        "KxScalingGroupList$member": null
+      }
+    },
+    "KxScalingGroupConfiguration": {
+      "base": "<p>The structure that stores the capacity configuration details of a scaling group.</p>",
+      "refs": {
+        "CreateKxClusterRequest$scalingGroupConfiguration": "<p>The structure that stores the configuration details of a scaling group.</p>",
+        "CreateKxClusterResponse$scalingGroupConfiguration": "<p>The structure that stores the configuration details of a scaling group.</p>",
+        "GetKxClusterResponse$scalingGroupConfiguration": null
+      }
+    },
+    "KxScalingGroupList": {
+      "base": null,
+      "refs": {
+        "ListKxScalingGroupsResponse$scalingGroups": "<p> A list of scaling groups available in a kdb environment.</p>"
+      }
+    },
+    "KxScalingGroupName": {
+      "base": null,
+      "refs": {
+        "CreateKxScalingGroupRequest$scalingGroupName": "<p>A unique identifier for the kdb scaling group. </p>",
+        "CreateKxScalingGroupResponse$scalingGroupName": "<p>A unique identifier for the kdb scaling group. </p>",
+        "DeleteKxScalingGroupRequest$scalingGroupName": "<p>A unique identifier for the kdb scaling group. </p>",
+        "GetKxScalingGroupRequest$scalingGroupName": "<p>A unique identifier for the kdb scaling group. </p>",
+        "GetKxScalingGroupResponse$scalingGroupName": "<p>A unique identifier for the kdb scaling group. </p>",
+        "KxScalingGroup$scalingGroupName": "<p>A unique identifier for the kdb scaling group. </p>",
+        "KxScalingGroupConfiguration$scalingGroupName": "<p>A unique identifier for the kdb scaling group. </p>"
+      }
+    },
+    "KxScalingGroupStatus": {
+      "base": null,
+      "refs": {
+        "CreateKxScalingGroupResponse$status": "<p>The status of scaling group.</p> <ul> <li> <p>CREATING – The scaling group creation is in progress.</p> </li> <li> <p>CREATE_FAILED – The scaling group creation has failed.</p> </li> <li> <p>ACTIVE – The scaling group is active.</p> </li> <li> <p>UPDATING – The scaling group is in the process of being updated.</p> </li> <li> <p>UPDATE_FAILED – The update action failed.</p> </li> <li> <p>DELETING – The scaling group is in the process of being deleted.</p> </li> <li> <p>DELETE_FAILED – The system failed to delete the scaling group.</p> </li> <li> <p>DELETED – The scaling group is successfully deleted.</p> </li> </ul>",
+        "GetKxScalingGroupResponse$status": "<p>The status of scaling group.</p> <ul> <li> <p>CREATING – The scaling group creation is in progress.</p> </li> <li> <p>CREATE_FAILED – The scaling group creation has failed.</p> </li> <li> <p>ACTIVE – The scaling group is active.</p> </li> <li> <p>UPDATING – The scaling group is in the process of being updated.</p> </li> <li> <p>UPDATE_FAILED – The update action failed.</p> </li> <li> <p>DELETING – The scaling group is in the process of being deleted.</p> </li> <li> <p>DELETE_FAILED – The system failed to delete the scaling group.</p> </li> <li> <p>DELETED – The scaling group is successfully deleted.</p> </li> </ul>",
+        "KxScalingGroup$status": "<p> The status of scaling groups. </p>"
+      }
+    },
     "KxUser": {
       "base": "<p>A structure that stores metadata for a kdb user.</p>",
       "refs": {
@@ -1005,6 +1394,70 @@
         "KxUser$userName": "<p>A unique identifier for the user.</p>",
         "UpdateKxUserRequest$userName": "<p>A unique identifier for the user.</p>",
         "UpdateKxUserResponse$userName": "<p>A unique identifier for the user.</p>"
+      }
+    },
+    "KxVolume": {
+      "base": "<p> The structure that contains the metadata of the volume. </p>",
+      "refs": {
+        "KxVolumes$member": null
+      }
+    },
+    "KxVolumeArn": {
+      "base": null,
+      "refs": {
+        "CreateKxVolumeResponse$volumeArn": "<p> The ARN identifier of the volume. </p>",
+        "GetKxVolumeResponse$volumeArn": "<p> The ARN identifier of the volume. </p>",
+        "UpdateKxVolumeResponse$volumeArn": "<p> The ARN identifier of the volume. </p>"
+      }
+    },
+    "KxVolumeName": {
+      "base": null,
+      "refs": {
+        "CreateKxVolumeRequest$volumeName": "<p>A unique identifier for the volume.</p>",
+        "CreateKxVolumeResponse$volumeName": "<p>A unique identifier for the volume.</p>",
+        "DeleteKxVolumeRequest$volumeName": "<p> The name of the volume that you want to delete. </p>",
+        "GetKxVolumeRequest$volumeName": "<p>A unique identifier for the volume.</p>",
+        "GetKxVolumeResponse$volumeName": "<p> A unique identifier for the volume.</p>",
+        "KxDataviewSegmentConfiguration$volumeName": "<p> The name of the volume where you want to add data. </p>",
+        "KxSavedownStorageConfiguration$volumeName": "<p> The name of the kdb volume that you want to use as writeable save-down storage for clusters. </p>",
+        "KxVolume$volumeName": "<p>A unique identifier for the volume.</p>",
+        "UpdateKxVolumeRequest$volumeName": "<p> A unique identifier for the volume.</p>",
+        "UpdateKxVolumeResponse$volumeName": "<p>A unique identifier for the volume that you want to update.</p>"
+      }
+    },
+    "KxVolumeStatus": {
+      "base": null,
+      "refs": {
+        "CreateKxVolumeResponse$status": "<p>The status of volume creation.</p> <ul> <li> <p>CREATING – The volume creation is in progress.</p> </li> <li> <p>CREATE_FAILED – The volume creation has failed.</p> </li> <li> <p>ACTIVE – The volume is active.</p> </li> <li> <p>UPDATING – The volume is in the process of being updated.</p> </li> <li> <p>UPDATE_FAILED – The update action failed.</p> </li> <li> <p>UPDATED – The volume is successfully updated.</p> </li> <li> <p>DELETING – The volume is in the process of being deleted.</p> </li> <li> <p>DELETE_FAILED – The system failed to delete the volume.</p> </li> <li> <p>DELETED – The volume is successfully deleted.</p> </li> </ul>",
+        "GetKxVolumeResponse$status": "<p>The status of volume creation.</p> <ul> <li> <p>CREATING – The volume creation is in progress.</p> </li> <li> <p>CREATE_FAILED – The volume creation has failed.</p> </li> <li> <p>ACTIVE – The volume is active.</p> </li> <li> <p>UPDATING – The volume is in the process of being updated.</p> </li> <li> <p>UPDATE_FAILED – The update action failed.</p> </li> <li> <p>UPDATED – The volume is successfully updated.</p> </li> <li> <p>DELETING – The volume is in the process of being deleted.</p> </li> <li> <p>DELETE_FAILED – The system failed to delete the volume.</p> </li> <li> <p>DELETED – The volume is successfully deleted.</p> </li> </ul>",
+        "KxVolume$status": "<p>The status of volume.</p> <ul> <li> <p>CREATING – The volume creation is in progress.</p> </li> <li> <p>CREATE_FAILED – The volume creation has failed.</p> </li> <li> <p>ACTIVE – The volume is active.</p> </li> <li> <p>UPDATING – The volume is in the process of being updated.</p> </li> <li> <p>UPDATE_FAILED – The update action failed.</p> </li> <li> <p>UPDATED – The volume is successfully updated.</p> </li> <li> <p>DELETING – The volume is in the process of being deleted.</p> </li> <li> <p>DELETE_FAILED – The system failed to delete the volume.</p> </li> <li> <p>DELETED – The volume is successfully deleted.</p> </li> </ul>",
+        "UpdateKxVolumeResponse$status": "<p>The status of the volume.</p> <ul> <li> <p>CREATING – The volume creation is in progress.</p> </li> <li> <p>CREATE_FAILED – The volume creation has failed.</p> </li> <li> <p>ACTIVE – The volume is active.</p> </li> <li> <p>UPDATING – The volume is in the process of being updated.</p> </li> <li> <p>UPDATE_FAILED – The update action failed.</p> </li> <li> <p>UPDATED – The volume is successfully updated.</p> </li> <li> <p>DELETING – The volume is in the process of being deleted.</p> </li> <li> <p>DELETE_FAILED – The system failed to delete the volume.</p> </li> <li> <p>DELETED – The volume is successfully deleted.</p> </li> </ul>"
+      }
+    },
+    "KxVolumeStatusReason": {
+      "base": null,
+      "refs": {
+        "CreateKxVolumeResponse$statusReason": "<p>The error message when a failed state occurs. </p>",
+        "GetKxVolumeResponse$statusReason": "<p>The error message when a failed state occurs. </p>",
+        "KxVolume$statusReason": "<p>The error message when a failed state occurs. </p>",
+        "UpdateKxVolumeResponse$statusReason": "<p>The error message when a failed state occurs. </p>"
+      }
+    },
+    "KxVolumeType": {
+      "base": null,
+      "refs": {
+        "CreateKxVolumeRequest$volumeType": "<p> The type of file system volume. Currently, FinSpace only supports <code>NAS_1</code> volume type. When you select <code>NAS_1</code> volume type, you must also provide <code>nas1Configuration</code>. </p>",
+        "CreateKxVolumeResponse$volumeType": "<p> The type of file system volume. Currently, FinSpace only supports <code>NAS_1</code> volume type. </p>",
+        "GetKxVolumeResponse$volumeType": "<p> The type of file system volume. Currently, FinSpace only supports <code>NAS_1</code> volume type. </p>",
+        "KxVolume$volumeType": "<p> The type of file system volume. Currently, FinSpace only supports <code>NAS_1</code> volume type. </p>",
+        "ListKxVolumesRequest$volumeType": "<p> The type of file system volume. Currently, FinSpace only supports <code>NAS_1</code> volume type. </p>",
+        "UpdateKxVolumeResponse$volumeType": "<p> The type of file system volume. Currently, FinSpace only supports <code>NAS_1</code> volume type. </p>"
+      }
+    },
+    "KxVolumes": {
+      "base": null,
+      "refs": {
+        "ListKxVolumesResponse$kxVolumeSummaries": "<p> A summary of volumes. </p>"
       }
     },
     "LimitExceededException": {
@@ -1062,6 +1515,16 @@
       "refs": {
       }
     },
+    "ListKxDataviewsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListKxDataviewsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListKxEnvironmentsRequest": {
       "base": null,
       "refs": {
@@ -1072,12 +1535,32 @@
       "refs": {
       }
     },
+    "ListKxScalingGroupsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListKxScalingGroupsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListKxUsersRequest": {
       "base": null,
       "refs": {
       }
     },
     "ListKxUsersResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListKxVolumesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListKxVolumesResponse": {
       "base": null,
       "refs": {
       }
@@ -1097,7 +1580,17 @@
       "refs": {
         "ListKxChangesetsRequest$maxResults": "<p>The maximum number of results to return in this request.</p>",
         "ListKxClustersRequest$maxResults": "<p>The maximum number of results to return in this request.</p>",
-        "ListKxDatabasesRequest$maxResults": "<p>The maximum number of results to return in this request.</p>"
+        "ListKxDatabasesRequest$maxResults": "<p>The maximum number of results to return in this request.</p>",
+        "ListKxDataviewsRequest$maxResults": "<p>The maximum number of results to return in this request.</p>",
+        "ListKxScalingGroupsRequest$maxResults": "<p>The maximum number of results to return in this request.</p>",
+        "ListKxVolumesRequest$maxResults": "<p>The maximum number of results to return in this request.</p>"
+      }
+    },
+    "MemoryMib": {
+      "base": null,
+      "refs": {
+        "KxScalingGroupConfiguration$memoryLimit": "<p> An optional hard limit on the amount of memory a kdb cluster can use. </p>",
+        "KxScalingGroupConfiguration$memoryReservation": "<p> A reservation of the minimum amount of memory that should be available on the scaling group for a kdb cluster to be successfully placed in a scaling group. </p>"
       }
     },
     "NameString": {
@@ -1146,10 +1639,16 @@
         "ListKxClustersResponse$nextToken": "<p>A token that indicates where a results page should begin.</p>",
         "ListKxDatabasesRequest$nextToken": "<p>A token that indicates where a results page should begin.</p>",
         "ListKxDatabasesResponse$nextToken": "<p>A token that indicates where a results page should begin.</p>",
+        "ListKxDataviewsRequest$nextToken": "<p> A token that indicates where a results page should begin. </p>",
+        "ListKxDataviewsResponse$nextToken": "<p> A token that indicates where a results page should begin. </p>",
         "ListKxEnvironmentsRequest$nextToken": "<p>A token that indicates where a results page should begin.</p>",
         "ListKxEnvironmentsResponse$nextToken": "<p>A token that indicates where a results page should begin.</p>",
+        "ListKxScalingGroupsRequest$nextToken": "<p> A token that indicates where a results page should begin. </p>",
+        "ListKxScalingGroupsResponse$nextToken": "<p> A token that indicates where a results page should begin. </p>",
         "ListKxUsersRequest$nextToken": "<p>A token that indicates where a results page should begin.</p>",
-        "ListKxUsersResponse$nextToken": "<p>A token that indicates where a results page should begin.</p>"
+        "ListKxUsersResponse$nextToken": "<p>A token that indicates where a results page should begin.</p>",
+        "ListKxVolumesRequest$nextToken": "<p>A token that indicates where a results page should begin.</p>",
+        "ListKxVolumesResponse$nextToken": "<p>A token that indicates where a results page should begin.</p>"
       }
     },
     "Port": {
@@ -1263,6 +1762,12 @@
         "SecurityGroupIdList$member": null
       }
     },
+    "SegmentConfigurationDbPathList": {
+      "base": null,
+      "refs": {
+        "KxDataviewSegmentConfiguration$dbPaths": "<p> The database path of the data that you want to place on each selected volume for the segment. Each segment must have a unique database path for each volume.</p>"
+      }
+    },
     "ServiceQuotaExceededException": {
       "base": "<p> You have exceeded your service quota. To perform the requested action, remove some of the relevant resources, or use Service Quotas to request a service quota increase.</p>",
       "refs": {
@@ -1317,8 +1822,11 @@
         "CreateEnvironmentRequest$tags": "<p>Add tags to your FinSpace environment.</p>",
         "CreateKxClusterRequest$tags": "<p>A list of key-value pairs to label the cluster. You can add up to 50 tags to a cluster.</p>",
         "CreateKxDatabaseRequest$tags": "<p>A list of key-value pairs to label the kdb database. You can add up to 50 tags to your kdb database</p>",
+        "CreateKxDataviewRequest$tags": "<p> A list of key-value pairs to label the dataview. You can add up to 50 tags to a dataview. </p>",
         "CreateKxEnvironmentRequest$tags": "<p>A list of key-value pairs to label the kdb environment. You can add up to 50 tags to your kdb environment.</p>",
+        "CreateKxScalingGroupRequest$tags": "<p> A list of key-value pairs to label the scaling group. You can add up to 50 tags to a scaling group. </p>",
         "CreateKxUserRequest$tags": "<p>A list of key-value pairs to label the user. You can add up to 50 tags to a user.</p>",
+        "CreateKxVolumeRequest$tags": "<p> A list of key-value pairs to label the volume. You can add up to 50 tags to a volume. </p>",
         "ListTagsForResourceResponse$tags": "<p>A list of all tags for a resource.</p>",
         "TagResourceRequest$tags": "<p>One or more tags to be assigned to the resource.</p>"
       }
@@ -1344,6 +1852,20 @@
       "refs": {
       }
     },
+    "TickerplantLogConfiguration": {
+      "base": "<p> A configuration to store the Tickerplant logs. It consists of a list of volumes that will be mounted to your cluster. For the cluster type <code>Tickerplant</code>, the location of the TP volume on the cluster will be available by using the global variable <code>.aws.tp_log_path</code>. </p>",
+      "refs": {
+        "CreateKxClusterRequest$tickerplantLogConfiguration": "<p> A configuration to store Tickerplant logs. It consists of a list of volumes that will be mounted to your cluster. For the cluster type <code>Tickerplant</code>, the location of the TP volume on the cluster will be available by using the global variable <code>.aws.tp_log_path</code>. </p>",
+        "CreateKxClusterResponse$tickerplantLogConfiguration": null,
+        "GetKxClusterResponse$tickerplantLogConfiguration": null
+      }
+    },
+    "TickerplantLogVolumes": {
+      "base": null,
+      "refs": {
+        "TickerplantLogConfiguration$tickerplantLogVolumes": "<p> The name of the volumes for tickerplant logs. </p>"
+      }
+    },
     "Timestamp": {
       "base": null,
       "refs": {
@@ -1353,7 +1875,12 @@
         "CreateKxClusterResponse$createdTimestamp": "<p>The timestamp at which the cluster was created in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
         "CreateKxDatabaseResponse$createdTimestamp": "<p>The timestamp at which the database is created in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
         "CreateKxDatabaseResponse$lastModifiedTimestamp": "<p>The last time that the database was updated in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "CreateKxDataviewResponse$createdTimestamp": "<p> The timestamp at which the dataview was created in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "CreateKxDataviewResponse$lastModifiedTimestamp": "<p> The last time that the dataview was updated in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000. </p>",
         "CreateKxEnvironmentResponse$creationTimestamp": "<p>The timestamp at which the kdb environment was created in FinSpace.</p>",
+        "CreateKxScalingGroupResponse$lastModifiedTimestamp": "<p> The last time that the scaling group was updated in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000. </p>",
+        "CreateKxScalingGroupResponse$createdTimestamp": "<p> The timestamp at which the scaling group was created in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "CreateKxVolumeResponse$createdTimestamp": "<p>The timestamp at which the volume was created in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
         "GetKxChangesetResponse$createdTimestamp": "<p>The timestamp at which the changeset was created in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
         "GetKxChangesetResponse$activeFromTimestamp": "<p>Beginning time from which the changeset is active. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
         "GetKxChangesetResponse$lastModifiedTimestamp": "<p>The timestamp at which the changeset was updated in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
@@ -1361,8 +1888,14 @@
         "GetKxClusterResponse$createdTimestamp": "<p>The timestamp at which the cluster was created in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
         "GetKxDatabaseResponse$createdTimestamp": "<p>The timestamp at which the database is created in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
         "GetKxDatabaseResponse$lastModifiedTimestamp": "<p>The last time that the database was modified. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "GetKxDataviewResponse$createdTimestamp": "<p>The timestamp at which the dataview was created in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "GetKxDataviewResponse$lastModifiedTimestamp": "<p> The last time that the dataview was updated in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000. </p>",
         "GetKxEnvironmentResponse$creationTimestamp": "<p>The timestamp at which the kdb environment was created in FinSpace. </p>",
         "GetKxEnvironmentResponse$updateTimestamp": "<p>The timestamp at which the kdb environment was updated. </p>",
+        "GetKxScalingGroupResponse$lastModifiedTimestamp": "<p> The last time that the scaling group was updated in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000. </p>",
+        "GetKxScalingGroupResponse$createdTimestamp": "<p> The timestamp at which the scaling group was created in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "GetKxVolumeResponse$createdTimestamp": "<p> The timestamp at which the volume was created in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000. </p>",
+        "GetKxVolumeResponse$lastModifiedTimestamp": "<p>The last time that the volume was updated in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
         "KxChangesetListEntry$createdTimestamp": "<p>The timestamp at which the changeset was created in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
         "KxChangesetListEntry$activeFromTimestamp": "<p>Beginning time from which the changeset is active. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
         "KxChangesetListEntry$lastModifiedTimestamp": "<p>The timestamp at which the changeset was modified. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
@@ -1370,16 +1903,27 @@
         "KxCluster$createdTimestamp": "<p>The timestamp at which the cluster was created in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
         "KxDatabaseListEntry$createdTimestamp": "<p>The timestamp at which the database was created in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
         "KxDatabaseListEntry$lastModifiedTimestamp": "<p>The last time that the database was modified. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "KxDataviewActiveVersion$createdTimestamp": "<p> The timestamp at which the dataview version was active. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "KxDataviewListEntry$createdTimestamp": "<p> The timestamp at which the dataview list entry was created in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "KxDataviewListEntry$lastModifiedTimestamp": "<p>The last time that the dataview list was updated in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
         "KxEnvironment$creationTimestamp": "<p>The timestamp at which the kdb environment was created in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
         "KxEnvironment$updateTimestamp": "<p>The timestamp at which the kdb environment was modified in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
         "KxNode$launchTime": "<p>The time when a particular node is started. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "KxScalingGroup$lastModifiedTimestamp": "<p> The last time that the scaling group was updated in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000. </p>",
+        "KxScalingGroup$createdTimestamp": "<p> The timestamp at which the scaling group was created in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000. </p>",
         "KxUser$createTimestamp": "<p>The timestamp at which the kdb user was created. </p>",
         "KxUser$updateTimestamp": "<p>The timestamp at which the kdb user was updated. </p>",
+        "KxVolume$createdTimestamp": "<p> The timestamp at which the volume was created in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "KxVolume$lastModifiedTimestamp": "<p>The last time that the volume was updated in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
         "UpdateKxDatabaseResponse$lastModifiedTimestamp": "<p>The last time that the database was modified. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "UpdateKxDataviewResponse$createdTimestamp": "<p> The timestamp at which the dataview was created in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000. </p>",
+        "UpdateKxDataviewResponse$lastModifiedTimestamp": "<p> The last time that the dataview was updated in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000. </p>",
         "UpdateKxEnvironmentNetworkResponse$creationTimestamp": "<p>The timestamp at which the kdb environment was created in FinSpace. </p>",
         "UpdateKxEnvironmentNetworkResponse$updateTimestamp": "<p>The timestamp at which the kdb environment was updated. </p>",
         "UpdateKxEnvironmentResponse$creationTimestamp": "<p>The timestamp at which the kdb environment was created in FinSpace. </p>",
-        "UpdateKxEnvironmentResponse$updateTimestamp": "<p>The timestamp at which the kdb environment was updated. </p>"
+        "UpdateKxEnvironmentResponse$updateTimestamp": "<p>The timestamp at which the kdb environment was updated. </p>",
+        "UpdateKxVolumeResponse$createdTimestamp": "<p> The timestamp at which the volume was created in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>",
+        "UpdateKxVolumeResponse$lastModifiedTimestamp": "<p>The last time that the volume was updated in FinSpace. The value is determined as epoch time in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.</p>"
       }
     },
     "TransitGatewayConfiguration": {
@@ -1448,6 +1992,16 @@
       "refs": {
       }
     },
+    "UpdateKxDataviewRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateKxDataviewResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateKxEnvironmentNetworkRequest": {
       "base": null,
       "refs": {
@@ -1474,6 +2028,16 @@
       }
     },
     "UpdateKxUserResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateKxVolumeRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateKxVolumeResponse": {
       "base": null,
       "refs": {
       }
@@ -1507,6 +2071,40 @@
       "refs": {
       }
     },
+    "VersionId": {
+      "base": null,
+      "refs": {
+        "KxDataviewActiveVersion$versionId": "<p> A unique identifier of the active version.</p>",
+        "KxDataviewConfiguration$dataviewVersionId": "<p> The version of the dataview corresponding to a given changeset. </p>"
+      }
+    },
+    "Volume": {
+      "base": "<p> The structure that consists of name and type of volume.</p>",
+      "refs": {
+        "Volumes$member": null
+      }
+    },
+    "VolumeName": {
+      "base": null,
+      "refs": {
+        "TickerplantLogVolumes$member": null,
+        "Volume$volumeName": "<p>A unique identifier for the volume.</p>"
+      }
+    },
+    "VolumeType": {
+      "base": null,
+      "refs": {
+        "Volume$volumeType": "<p> The type of file system volume. Currently, FinSpace only supports <code>NAS_1</code> volume type. </p>"
+      }
+    },
+    "Volumes": {
+      "base": null,
+      "refs": {
+        "CreateKxClusterResponse$volumes": "<p> A list of volumes mounted on the cluster. </p>",
+        "GetKxClusterResponse$volumes": "<p> A list of volumes attached to the cluster. </p>",
+        "KxCluster$volumes": "<p> A list of volumes attached to the cluster. </p>"
+      }
+    },
     "VpcConfiguration": {
       "base": "<p>Configuration details about the network where the Privatelink endpoint of the cluster resides.</p>",
       "refs": {
@@ -1519,6 +2117,22 @@
       "base": null,
       "refs": {
         "VpcConfiguration$vpcId": "<p>The identifier of the VPC endpoint.</p>"
+      }
+    },
+    "arn": {
+      "base": null,
+      "refs": {
+        "GetKxScalingGroupResponse$scalingGroupArn": "<p> The ARN identifier for the scaling group. </p>"
+      }
+    },
+    "booleanValue": {
+      "base": null,
+      "refs": {
+        "CreateKxDataviewRequest$autoUpdate": "<p>The option to specify whether you want to apply all the future additions and corrections automatically to the dataview, when you ingest new changesets. The default value is false.</p>",
+        "CreateKxDataviewResponse$autoUpdate": "<p>The option to select whether you want to apply all the future additions and corrections automatically to the dataview when you ingest new changesets. The default value is false.</p>",
+        "GetKxDataviewResponse$autoUpdate": "<p>The option to specify whether you want to apply all the future additions and corrections automatically to the dataview when new changesets are ingested. The default value is false.</p>",
+        "KxDataviewListEntry$autoUpdate": "<p> The option to specify whether you want to apply all the future additions and corrections automatically to the dataview when you ingest new changesets. The default value is false. </p>",
+        "UpdateKxDataviewResponse$autoUpdate": "<p>The option to specify whether you want to apply all the future additions and corrections automatically to the dataview when new changesets are ingested. The default value is false.</p>"
       }
     },
     "dnsStatus": {

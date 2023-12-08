@@ -1970,7 +1970,8 @@
       "type":"string",
       "enum":[
         "json",
-        "opentelemetry0.7"
+        "opentelemetry0.7",
+        "opentelemetry1.0"
       ],
       "max":255,
       "min":1
