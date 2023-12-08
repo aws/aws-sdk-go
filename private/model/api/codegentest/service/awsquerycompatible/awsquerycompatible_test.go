@@ -16,6 +16,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/corehandlers"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/awstesting/unit"
+	"github.com/aws/aws-sdk-go/service/sqs"
 )
 
 func TestAWSQuery(t *testing.T) {
@@ -31,7 +32,7 @@ func TestAWSQuery(t *testing.T) {
 		"when header is present": {
 			statusCode:      400,
 			responseBody:    strings.NewReader(`{"__type":"com.amazonaws.awsquerycompatible#QueueDeletedRecently", "message":"Some user-visible message"}`),
-			expectErrorCode: "AWS.SimpleQueueService.QueueDeletedRecently",
+			expectErrorCode: sqs.ErrCodeQueueDeletedRecently,
 			headers:         map[string]string{"x-amzn-query-error": "AWS.SimpleQueueService.QueueDeletedRecently;Sender"},
 		},
 		"for unmodeled error code": {
