@@ -814,7 +814,8 @@
         {"shape":"DBClusterParameterGroupNotFoundFault"},
         {"shape":"InvalidDBSecurityGroupStateFault"},
         {"shape":"InvalidDBInstanceStateFault"},
-        {"shape":"DBClusterAlreadyExistsFault"}
+        {"shape":"DBClusterAlreadyExistsFault"},
+        {"shape":"StorageTypeNotSupportedFault"}
       ]
     },
     "ModifyDBClusterEndpoint":{
@@ -1332,6 +1333,7 @@
         "IAMDatabaseAuthenticationEnabled":{"shape":"BooleanOptional"},
         "EngineVersion":{"shape":"String"},
         "BackupRetentionPeriod":{"shape":"IntegerOptional"},
+        "StorageType":{"shape":"String"},
         "AllocatedStorage":{"shape":"IntegerOptional"},
         "Iops":{"shape":"IntegerOptional"}
       }
@@ -1461,7 +1463,8 @@
         "EnableCloudwatchLogsExports":{"shape":"LogTypeList"},
         "DeletionProtection":{"shape":"BooleanOptional"},
         "ServerlessV2ScalingConfiguration":{"shape":"ServerlessV2ScalingConfiguration"},
-        "GlobalClusterIdentifier":{"shape":"GlobalClusterIdentifier"}
+        "GlobalClusterIdentifier":{"shape":"GlobalClusterIdentifier"},
+        "StorageType":{"shape":"String"}
       }
     },
     "CreateDBClusterParameterGroupMessage":{
@@ -1696,7 +1699,9 @@
         "CrossAccountClone":{"shape":"BooleanOptional"},
         "AutomaticRestartTime":{"shape":"TStamp"},
         "ServerlessV2ScalingConfiguration":{"shape":"ServerlessV2ScalingConfigurationInfo"},
-        "GlobalClusterIdentifier":{"shape":"GlobalClusterIdentifier"}
+        "GlobalClusterIdentifier":{"shape":"GlobalClusterIdentifier"},
+        "IOOptimizedNextAllowedModificationTime":{"shape":"TStamp"},
+        "StorageType":{"shape":"String"}
       },
       "wrapper":true
     },
@@ -1958,7 +1963,8 @@
         "KmsKeyId":{"shape":"String"},
         "DBClusterSnapshotArn":{"shape":"String"},
         "SourceDBClusterSnapshotArn":{"shape":"String"},
-        "IAMDatabaseAuthenticationEnabled":{"shape":"Boolean"}
+        "IAMDatabaseAuthenticationEnabled":{"shape":"Boolean"},
+        "StorageType":{"shape":"String"}
       },
       "wrapper":true
     },
@@ -3298,7 +3304,8 @@
         "DBInstanceParameterGroupName":{"shape":"String"},
         "DeletionProtection":{"shape":"BooleanOptional"},
         "CopyTagsToSnapshot":{"shape":"BooleanOptional"},
-        "ServerlessV2ScalingConfiguration":{"shape":"ServerlessV2ScalingConfiguration"}
+        "ServerlessV2ScalingConfiguration":{"shape":"ServerlessV2ScalingConfiguration"},
+        "StorageType":{"shape":"String"}
       }
     },
     "ModifyDBClusterParameterGroupMessage":{
@@ -3795,7 +3802,8 @@
         "DBClusterParameterGroupName":{"shape":"String"},
         "DeletionProtection":{"shape":"BooleanOptional"},
         "CopyTagsToSnapshot":{"shape":"BooleanOptional"},
-        "ServerlessV2ScalingConfiguration":{"shape":"ServerlessV2ScalingConfiguration"}
+        "ServerlessV2ScalingConfiguration":{"shape":"ServerlessV2ScalingConfiguration"},
+        "StorageType":{"shape":"String"}
       }
     },
     "RestoreDBClusterFromSnapshotResult":{
@@ -3826,7 +3834,8 @@
         "EnableCloudwatchLogsExports":{"shape":"LogTypeList"},
         "DBClusterParameterGroupName":{"shape":"String"},
         "DeletionProtection":{"shape":"BooleanOptional"},
-        "ServerlessV2ScalingConfiguration":{"shape":"ServerlessV2ScalingConfiguration"}
+        "ServerlessV2ScalingConfiguration":{"shape":"ServerlessV2ScalingConfiguration"},
+        "StorageType":{"shape":"String"}
       }
     },
     "RestoreDBClusterToPointInTimeResult":{

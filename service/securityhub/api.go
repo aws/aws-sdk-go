@@ -8567,6 +8567,14 @@ func (c *SecurityHub) UpdateSecurityControlRequest(input *UpdateSecurityControlI
 //   - AccessDeniedException
 //     You don't have permission to perform the action specified in the request.
 //
+//   - ResourceNotFoundException
+//     The request was rejected because we can't find the specified resource.
+//
+//   - ResourceInUseException
+//     The request was rejected because it conflicts with the resource's availability.
+//     For example, you tried to update a security control that's currently in the
+//     UPDATING state.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/UpdateSecurityControl
 func (c *SecurityHub) UpdateSecurityControl(input *UpdateSecurityControlInput) (*UpdateSecurityControlOutput, error) {
 	req, out := c.UpdateSecurityControlRequest(input)
@@ -18340,6 +18348,10 @@ type AwsDynamoDbTableDetails struct {
 	// 2020-03-22T13:22:13.933Z.
 	CreationDateTime *string `type:"string"`
 
+	// Indicates whether deletion protection is to be enabled (true) or disabled
+	// (false) on the table.
+	DeletionProtectionEnabled *bool `type:"boolean"`
+
 	// List of global secondary indexes for the table.
 	GlobalSecondaryIndexes []*AwsDynamoDbTableGlobalSecondaryIndex `type:"list"`
 
@@ -18436,6 +18448,12 @@ func (s *AwsDynamoDbTableDetails) SetBillingModeSummary(v *AwsDynamoDbTableBilli
 // SetCreationDateTime sets the CreationDateTime field's value.
 func (s *AwsDynamoDbTableDetails) SetCreationDateTime(v string) *AwsDynamoDbTableDetails {
 	s.CreationDateTime = &v
+	return s
+}
+
+// SetDeletionProtectionEnabled sets the DeletionProtectionEnabled field's value.
+func (s *AwsDynamoDbTableDetails) SetDeletionProtectionEnabled(v bool) *AwsDynamoDbTableDetails {
+	s.DeletionProtectionEnabled = &v
 	return s
 }
 
@@ -19211,6 +19229,535 @@ func (s *AwsDynamoDbTableStreamSpecification) SetStreamEnabled(v bool) *AwsDynam
 // SetStreamViewType sets the StreamViewType field's value.
 func (s *AwsDynamoDbTableStreamSpecification) SetStreamViewType(v string) *AwsDynamoDbTableStreamSpecification {
 	s.StreamViewType = &v
+	return s
+}
+
+// Provides details about an Active Directory that’s used to authenticate
+// an Client VPN endpoint.
+type AwsEc2ClientVpnEndpointAuthenticationOptionsActiveDirectoryDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Active Directory used for authentication.
+	DirectoryId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2ClientVpnEndpointAuthenticationOptionsActiveDirectoryDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2ClientVpnEndpointAuthenticationOptionsActiveDirectoryDetails) GoString() string {
+	return s.String()
+}
+
+// SetDirectoryId sets the DirectoryId field's value.
+func (s *AwsEc2ClientVpnEndpointAuthenticationOptionsActiveDirectoryDetails) SetDirectoryId(v string) *AwsEc2ClientVpnEndpointAuthenticationOptionsActiveDirectoryDetails {
+	s.DirectoryId = &v
+	return s
+}
+
+// Information about the authentication method used by the Client VPN endpoint.
+type AwsEc2ClientVpnEndpointAuthenticationOptionsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the Active Directory, if applicable. With Active Directory
+	// authentication, clients are authenticated against existing Active Directory
+	// groups.
+	ActiveDirectory *AwsEc2ClientVpnEndpointAuthenticationOptionsActiveDirectoryDetails `type:"structure"`
+
+	// Information about the IAM SAML identity provider, if applicable.
+	FederatedAuthentication *AwsEc2ClientVpnEndpointAuthenticationOptionsFederatedAuthenticationDetails `type:"structure"`
+
+	// Information about the authentication certificates, if applicable.
+	MutualAuthentication *AwsEc2ClientVpnEndpointAuthenticationOptionsMutualAuthenticationDetails `type:"structure"`
+
+	// The authentication type used.
+	Type *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2ClientVpnEndpointAuthenticationOptionsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2ClientVpnEndpointAuthenticationOptionsDetails) GoString() string {
+	return s.String()
+}
+
+// SetActiveDirectory sets the ActiveDirectory field's value.
+func (s *AwsEc2ClientVpnEndpointAuthenticationOptionsDetails) SetActiveDirectory(v *AwsEc2ClientVpnEndpointAuthenticationOptionsActiveDirectoryDetails) *AwsEc2ClientVpnEndpointAuthenticationOptionsDetails {
+	s.ActiveDirectory = v
+	return s
+}
+
+// SetFederatedAuthentication sets the FederatedAuthentication field's value.
+func (s *AwsEc2ClientVpnEndpointAuthenticationOptionsDetails) SetFederatedAuthentication(v *AwsEc2ClientVpnEndpointAuthenticationOptionsFederatedAuthenticationDetails) *AwsEc2ClientVpnEndpointAuthenticationOptionsDetails {
+	s.FederatedAuthentication = v
+	return s
+}
+
+// SetMutualAuthentication sets the MutualAuthentication field's value.
+func (s *AwsEc2ClientVpnEndpointAuthenticationOptionsDetails) SetMutualAuthentication(v *AwsEc2ClientVpnEndpointAuthenticationOptionsMutualAuthenticationDetails) *AwsEc2ClientVpnEndpointAuthenticationOptionsDetails {
+	s.MutualAuthentication = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *AwsEc2ClientVpnEndpointAuthenticationOptionsDetails) SetType(v string) *AwsEc2ClientVpnEndpointAuthenticationOptionsDetails {
+	s.Type = &v
+	return s
+}
+
+// Describes the IAM SAML identity providers used for federated authentication.
+type AwsEc2ClientVpnEndpointAuthenticationOptionsFederatedAuthenticationDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the IAM SAML identity provider.
+	SamlProviderArn *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the IAM SAML identity provider for the
+	// self-service portal.
+	SelfServiceSamlProviderArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2ClientVpnEndpointAuthenticationOptionsFederatedAuthenticationDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2ClientVpnEndpointAuthenticationOptionsFederatedAuthenticationDetails) GoString() string {
+	return s.String()
+}
+
+// SetSamlProviderArn sets the SamlProviderArn field's value.
+func (s *AwsEc2ClientVpnEndpointAuthenticationOptionsFederatedAuthenticationDetails) SetSamlProviderArn(v string) *AwsEc2ClientVpnEndpointAuthenticationOptionsFederatedAuthenticationDetails {
+	s.SamlProviderArn = &v
+	return s
+}
+
+// SetSelfServiceSamlProviderArn sets the SelfServiceSamlProviderArn field's value.
+func (s *AwsEc2ClientVpnEndpointAuthenticationOptionsFederatedAuthenticationDetails) SetSelfServiceSamlProviderArn(v string) *AwsEc2ClientVpnEndpointAuthenticationOptionsFederatedAuthenticationDetails {
+	s.SelfServiceSamlProviderArn = &v
+	return s
+}
+
+// Information about the client certificate used for authentication.
+type AwsEc2ClientVpnEndpointAuthenticationOptionsMutualAuthenticationDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the client certificate.
+	ClientRootCertificateChain *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2ClientVpnEndpointAuthenticationOptionsMutualAuthenticationDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2ClientVpnEndpointAuthenticationOptionsMutualAuthenticationDetails) GoString() string {
+	return s.String()
+}
+
+// SetClientRootCertificateChain sets the ClientRootCertificateChain field's value.
+func (s *AwsEc2ClientVpnEndpointAuthenticationOptionsMutualAuthenticationDetails) SetClientRootCertificateChain(v string) *AwsEc2ClientVpnEndpointAuthenticationOptionsMutualAuthenticationDetails {
+	s.ClientRootCertificateChain = &v
+	return s
+}
+
+// The options for managing connection authorization for new client connections.
+type AwsEc2ClientVpnEndpointClientConnectOptionsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether client connect options are enabled.
+	Enabled *bool `type:"boolean"`
+
+	// The Amazon Resource Name (ARN) of the Lambda function used for connection
+	// authorization.
+	LambdaFunctionArn *string `type:"string"`
+
+	// The status of any updates to the client connect options.
+	Status *AwsEc2ClientVpnEndpointClientConnectOptionsStatusDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2ClientVpnEndpointClientConnectOptionsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2ClientVpnEndpointClientConnectOptionsDetails) GoString() string {
+	return s.String()
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *AwsEc2ClientVpnEndpointClientConnectOptionsDetails) SetEnabled(v bool) *AwsEc2ClientVpnEndpointClientConnectOptionsDetails {
+	s.Enabled = &v
+	return s
+}
+
+// SetLambdaFunctionArn sets the LambdaFunctionArn field's value.
+func (s *AwsEc2ClientVpnEndpointClientConnectOptionsDetails) SetLambdaFunctionArn(v string) *AwsEc2ClientVpnEndpointClientConnectOptionsDetails {
+	s.LambdaFunctionArn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *AwsEc2ClientVpnEndpointClientConnectOptionsDetails) SetStatus(v *AwsEc2ClientVpnEndpointClientConnectOptionsStatusDetails) *AwsEc2ClientVpnEndpointClientConnectOptionsDetails {
+	s.Status = v
+	return s
+}
+
+// Describes the status of the Client VPN endpoint attribute.
+type AwsEc2ClientVpnEndpointClientConnectOptionsStatusDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The status code.
+	Code *string `type:"string"`
+
+	// The status message.
+	Message *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2ClientVpnEndpointClientConnectOptionsStatusDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2ClientVpnEndpointClientConnectOptionsStatusDetails) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *AwsEc2ClientVpnEndpointClientConnectOptionsStatusDetails) SetCode(v string) *AwsEc2ClientVpnEndpointClientConnectOptionsStatusDetails {
+	s.Code = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *AwsEc2ClientVpnEndpointClientConnectOptionsStatusDetails) SetMessage(v string) *AwsEc2ClientVpnEndpointClientConnectOptionsStatusDetails {
+	s.Message = &v
+	return s
+}
+
+// Options for enabling a customizable text banner that will be displayed on
+// Amazon Web Services provided clients when a VPN session is established.
+type AwsEc2ClientVpnEndpointClientLoginBannerOptionsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Customizable text that will be displayed in a banner on Amazon Web Services
+	// provided clients when a VPN session is established.
+	BannerText *string `type:"string"`
+
+	// Current state of text banner feature.
+	Enabled *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2ClientVpnEndpointClientLoginBannerOptionsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2ClientVpnEndpointClientLoginBannerOptionsDetails) GoString() string {
+	return s.String()
+}
+
+// SetBannerText sets the BannerText field's value.
+func (s *AwsEc2ClientVpnEndpointClientLoginBannerOptionsDetails) SetBannerText(v string) *AwsEc2ClientVpnEndpointClientLoginBannerOptionsDetails {
+	s.BannerText = &v
+	return s
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *AwsEc2ClientVpnEndpointClientLoginBannerOptionsDetails) SetEnabled(v bool) *AwsEc2ClientVpnEndpointClientLoginBannerOptionsDetails {
+	s.Enabled = &v
+	return s
+}
+
+// Information about the client connection logging options for the Client VPN
+// endpoint.
+type AwsEc2ClientVpnEndpointConnectionLogOptionsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Amazon CloudWatch Logs log group to which connection logging
+	// data is published.
+	CloudwatchLogGroup *string `type:"string"`
+
+	// The name of the Amazon CloudWatch Logs log stream to which connection logging
+	// data is published.
+	CloudwatchLogStream *string `type:"string"`
+
+	// Indicates whether client connection logging is enabled for the Client VPN
+	// endpoint.
+	Enabled *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2ClientVpnEndpointConnectionLogOptionsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2ClientVpnEndpointConnectionLogOptionsDetails) GoString() string {
+	return s.String()
+}
+
+// SetCloudwatchLogGroup sets the CloudwatchLogGroup field's value.
+func (s *AwsEc2ClientVpnEndpointConnectionLogOptionsDetails) SetCloudwatchLogGroup(v string) *AwsEc2ClientVpnEndpointConnectionLogOptionsDetails {
+	s.CloudwatchLogGroup = &v
+	return s
+}
+
+// SetCloudwatchLogStream sets the CloudwatchLogStream field's value.
+func (s *AwsEc2ClientVpnEndpointConnectionLogOptionsDetails) SetCloudwatchLogStream(v string) *AwsEc2ClientVpnEndpointConnectionLogOptionsDetails {
+	s.CloudwatchLogStream = &v
+	return s
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *AwsEc2ClientVpnEndpointConnectionLogOptionsDetails) SetEnabled(v bool) *AwsEc2ClientVpnEndpointConnectionLogOptionsDetails {
+	s.Enabled = &v
+	return s
+}
+
+// Describes an Client VPN endpoint. A Client VPN endpoint is the resource that
+// you create and configure to enable and manage client VPN sessions. It's the
+// termination point for all client VPN sessions.
+type AwsEc2ClientVpnEndpointDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the authentication method used by the Client VPN endpoint.
+	AuthenticationOptions []*AwsEc2ClientVpnEndpointAuthenticationOptionsDetails `type:"list"`
+
+	// The IPv4 address range, in CIDR notation, from which client IP addresses
+	// are assigned.
+	ClientCidrBlock *string `type:"string"`
+
+	// The options for managing connection authorization for new client connections.
+	ClientConnectOptions *AwsEc2ClientVpnEndpointClientConnectOptionsDetails `type:"structure"`
+
+	// Options for enabling a customizable text banner that will be displayed on
+	// Amazon Web Services provided clients when a VPN session is established.
+	ClientLoginBannerOptions *AwsEc2ClientVpnEndpointClientLoginBannerOptionsDetails `type:"structure"`
+
+	// The ID of the Client VPN endpoint.
+	ClientVpnEndpointId *string `type:"string"`
+
+	// Information about the client connection logging options for the Client VPN
+	// endpoint.
+	ConnectionLogOptions *AwsEc2ClientVpnEndpointConnectionLogOptionsDetails `type:"structure"`
+
+	// A brief description of the endpoint.
+	Description *string `type:"string"`
+
+	// Information about the DNS servers to be used for DNS resolution.
+	DnsServer []*string `type:"list"`
+
+	// The IDs of the security groups for the target network.
+	SecurityGroupIdSet []*string `type:"list"`
+
+	// The URL of the self-service portal.
+	SelfServicePortalUrl *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the server certificate.
+	ServerCertificateArn *string `type:"string"`
+
+	// The maximum VPN session duration time in hours.
+	SessionTimeoutHours *int64 `type:"integer"`
+
+	// Indicates whether split-tunnel is enabled in the Client VPN endpoint.
+	SplitTunnel *bool `type:"boolean"`
+
+	// The transport protocol used by the Client VPN endpoint.
+	TransportProtocol *string `type:"string"`
+
+	// The ID of the VPC.
+	VpcId *string `type:"string"`
+
+	// The port number for the Client VPN endpoint.
+	VpnPort *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2ClientVpnEndpointDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2ClientVpnEndpointDetails) GoString() string {
+	return s.String()
+}
+
+// SetAuthenticationOptions sets the AuthenticationOptions field's value.
+func (s *AwsEc2ClientVpnEndpointDetails) SetAuthenticationOptions(v []*AwsEc2ClientVpnEndpointAuthenticationOptionsDetails) *AwsEc2ClientVpnEndpointDetails {
+	s.AuthenticationOptions = v
+	return s
+}
+
+// SetClientCidrBlock sets the ClientCidrBlock field's value.
+func (s *AwsEc2ClientVpnEndpointDetails) SetClientCidrBlock(v string) *AwsEc2ClientVpnEndpointDetails {
+	s.ClientCidrBlock = &v
+	return s
+}
+
+// SetClientConnectOptions sets the ClientConnectOptions field's value.
+func (s *AwsEc2ClientVpnEndpointDetails) SetClientConnectOptions(v *AwsEc2ClientVpnEndpointClientConnectOptionsDetails) *AwsEc2ClientVpnEndpointDetails {
+	s.ClientConnectOptions = v
+	return s
+}
+
+// SetClientLoginBannerOptions sets the ClientLoginBannerOptions field's value.
+func (s *AwsEc2ClientVpnEndpointDetails) SetClientLoginBannerOptions(v *AwsEc2ClientVpnEndpointClientLoginBannerOptionsDetails) *AwsEc2ClientVpnEndpointDetails {
+	s.ClientLoginBannerOptions = v
+	return s
+}
+
+// SetClientVpnEndpointId sets the ClientVpnEndpointId field's value.
+func (s *AwsEc2ClientVpnEndpointDetails) SetClientVpnEndpointId(v string) *AwsEc2ClientVpnEndpointDetails {
+	s.ClientVpnEndpointId = &v
+	return s
+}
+
+// SetConnectionLogOptions sets the ConnectionLogOptions field's value.
+func (s *AwsEc2ClientVpnEndpointDetails) SetConnectionLogOptions(v *AwsEc2ClientVpnEndpointConnectionLogOptionsDetails) *AwsEc2ClientVpnEndpointDetails {
+	s.ConnectionLogOptions = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *AwsEc2ClientVpnEndpointDetails) SetDescription(v string) *AwsEc2ClientVpnEndpointDetails {
+	s.Description = &v
+	return s
+}
+
+// SetDnsServer sets the DnsServer field's value.
+func (s *AwsEc2ClientVpnEndpointDetails) SetDnsServer(v []*string) *AwsEc2ClientVpnEndpointDetails {
+	s.DnsServer = v
+	return s
+}
+
+// SetSecurityGroupIdSet sets the SecurityGroupIdSet field's value.
+func (s *AwsEc2ClientVpnEndpointDetails) SetSecurityGroupIdSet(v []*string) *AwsEc2ClientVpnEndpointDetails {
+	s.SecurityGroupIdSet = v
+	return s
+}
+
+// SetSelfServicePortalUrl sets the SelfServicePortalUrl field's value.
+func (s *AwsEc2ClientVpnEndpointDetails) SetSelfServicePortalUrl(v string) *AwsEc2ClientVpnEndpointDetails {
+	s.SelfServicePortalUrl = &v
+	return s
+}
+
+// SetServerCertificateArn sets the ServerCertificateArn field's value.
+func (s *AwsEc2ClientVpnEndpointDetails) SetServerCertificateArn(v string) *AwsEc2ClientVpnEndpointDetails {
+	s.ServerCertificateArn = &v
+	return s
+}
+
+// SetSessionTimeoutHours sets the SessionTimeoutHours field's value.
+func (s *AwsEc2ClientVpnEndpointDetails) SetSessionTimeoutHours(v int64) *AwsEc2ClientVpnEndpointDetails {
+	s.SessionTimeoutHours = &v
+	return s
+}
+
+// SetSplitTunnel sets the SplitTunnel field's value.
+func (s *AwsEc2ClientVpnEndpointDetails) SetSplitTunnel(v bool) *AwsEc2ClientVpnEndpointDetails {
+	s.SplitTunnel = &v
+	return s
+}
+
+// SetTransportProtocol sets the TransportProtocol field's value.
+func (s *AwsEc2ClientVpnEndpointDetails) SetTransportProtocol(v string) *AwsEc2ClientVpnEndpointDetails {
+	s.TransportProtocol = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *AwsEc2ClientVpnEndpointDetails) SetVpcId(v string) *AwsEc2ClientVpnEndpointDetails {
+	s.VpcId = &v
+	return s
+}
+
+// SetVpnPort sets the VpnPort field's value.
+func (s *AwsEc2ClientVpnEndpointDetails) SetVpnPort(v int64) *AwsEc2ClientVpnEndpointDetails {
+	s.VpnPort = &v
 	return s
 }
 
@@ -33790,7 +34337,8 @@ func (s *AwsMskClusterClusterInfoClientAuthenticationUnauthenticatedDetails) Set
 	return s
 }
 
-// Provide details about an Amazon MSK cluster.
+// Provide details about an Amazon Managed Streaming for Apache Kafka (Amazon
+// MSK) cluster.
 type AwsMskClusterClusterInfoDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -33800,12 +34348,15 @@ type AwsMskClusterClusterInfoDetails struct {
 	// The name of the cluster.
 	ClusterName *string `type:"string"`
 
-	// The current version of the MSK cluster.
+	// The current version of the cluster.
 	CurrentVersion *string `type:"string"`
 
 	// Includes encryption-related information, such as the KMS key used for encrypting
 	// data at rest and whether you want Amazon MSK to encrypt your data in transit.
 	EncryptionInfo *AwsMskClusterClusterInfoEncryptionInfoDetails `type:"structure"`
+
+	// Specifies the level of monitoring for the cluster.
+	EnhancedMonitoring *string `type:"string"`
 
 	// The number of broker nodes in the cluster.
 	NumberOfBrokerNodes *int64 `type:"integer"`
@@ -33850,6 +34401,12 @@ func (s *AwsMskClusterClusterInfoDetails) SetCurrentVersion(v string) *AwsMskClu
 // SetEncryptionInfo sets the EncryptionInfo field's value.
 func (s *AwsMskClusterClusterInfoDetails) SetEncryptionInfo(v *AwsMskClusterClusterInfoEncryptionInfoDetails) *AwsMskClusterClusterInfoDetails {
 	s.EncryptionInfo = v
+	return s
+}
+
+// SetEnhancedMonitoring sets the EnhancedMonitoring field's value.
+func (s *AwsMskClusterClusterInfoDetails) SetEnhancedMonitoring(v string) *AwsMskClusterClusterInfoDetails {
+	s.EnhancedMonitoring = &v
 	return s
 }
 
@@ -39534,6 +40091,139 @@ func (s *AwsRoute53QueryLoggingConfigDetails) SetCloudWatchLogsLogGroupArn(v *Cl
 	return s
 }
 
+// Returns configuration information about the specified Amazon S3 access point.
+// S3 access points are named network endpoints that are attached to buckets
+// that you can use to perform S3 object operations.
+type AwsS3AccessPointDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the access point.
+	AccessPointArn *string `type:"string"`
+
+	// The name or alias of the access point.
+	Alias *string `type:"string"`
+
+	// The name of the S3 bucket associated with the specified access point.
+	Bucket *string `type:"string"`
+
+	// The Amazon Web Services account ID associated with the S3 bucket associated
+	// with this access point.
+	BucketAccountId *string `type:"string"`
+
+	// The name of the specified access point.
+	Name *string `type:"string"`
+
+	// Indicates whether this access point allows access from the public internet.
+	NetworkOrigin *string `type:"string"`
+
+	// provides information about the Amazon S3 Public Access Block configuration
+	// for accounts.
+	PublicAccessBlockConfiguration *AwsS3AccountPublicAccessBlockDetails `type:"structure"`
+
+	// Contains the virtual private cloud (VPC) configuration for the specified
+	// access point.
+	VpcConfiguration *AwsS3AccessPointVpcConfigurationDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsS3AccessPointDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsS3AccessPointDetails) GoString() string {
+	return s.String()
+}
+
+// SetAccessPointArn sets the AccessPointArn field's value.
+func (s *AwsS3AccessPointDetails) SetAccessPointArn(v string) *AwsS3AccessPointDetails {
+	s.AccessPointArn = &v
+	return s
+}
+
+// SetAlias sets the Alias field's value.
+func (s *AwsS3AccessPointDetails) SetAlias(v string) *AwsS3AccessPointDetails {
+	s.Alias = &v
+	return s
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *AwsS3AccessPointDetails) SetBucket(v string) *AwsS3AccessPointDetails {
+	s.Bucket = &v
+	return s
+}
+
+// SetBucketAccountId sets the BucketAccountId field's value.
+func (s *AwsS3AccessPointDetails) SetBucketAccountId(v string) *AwsS3AccessPointDetails {
+	s.BucketAccountId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AwsS3AccessPointDetails) SetName(v string) *AwsS3AccessPointDetails {
+	s.Name = &v
+	return s
+}
+
+// SetNetworkOrigin sets the NetworkOrigin field's value.
+func (s *AwsS3AccessPointDetails) SetNetworkOrigin(v string) *AwsS3AccessPointDetails {
+	s.NetworkOrigin = &v
+	return s
+}
+
+// SetPublicAccessBlockConfiguration sets the PublicAccessBlockConfiguration field's value.
+func (s *AwsS3AccessPointDetails) SetPublicAccessBlockConfiguration(v *AwsS3AccountPublicAccessBlockDetails) *AwsS3AccessPointDetails {
+	s.PublicAccessBlockConfiguration = v
+	return s
+}
+
+// SetVpcConfiguration sets the VpcConfiguration field's value.
+func (s *AwsS3AccessPointDetails) SetVpcConfiguration(v *AwsS3AccessPointVpcConfigurationDetails) *AwsS3AccessPointDetails {
+	s.VpcConfiguration = v
+	return s
+}
+
+// The virtual private cloud (VPC) configuration for an Amazon S3 access point.
+type AwsS3AccessPointVpcConfigurationDetails struct {
+	_ struct{} `type:"structure"`
+
+	// If this field is specified, this access point will only allow connections
+	// from the specified VPC ID.
+	VpcId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsS3AccessPointVpcConfigurationDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsS3AccessPointVpcConfigurationDetails) GoString() string {
+	return s.String()
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *AwsS3AccessPointVpcConfigurationDetails) SetVpcId(v string) *AwsS3AccessPointVpcConfigurationDetails {
+	s.VpcId = &v
+	return s
+}
+
 // provides information about the Amazon S3 Public Access Block configuration
 // for accounts.
 type AwsS3AccountPublicAccessBlockDetails struct {
@@ -40179,14 +40869,14 @@ func (s *AwsS3BucketBucketVersioningConfiguration) SetStatus(v string) *AwsS3Buc
 	return s
 }
 
-// The details of an Amazon S3 bucket.
+// The details of an Amazon Simple Storage Service (Amazon S3) bucket.
 type AwsS3BucketDetails struct {
 	_ struct{} `type:"structure"`
 
 	// The access control list for the S3 bucket.
 	AccessControlList *string `type:"string"`
 
-	// The lifecycle configuration for objects in the S3 bucket.
+	// The lifecycle configuration for objects in the specified bucket.
 	BucketLifecycleConfiguration *AwsS3BucketBucketLifecycleConfigurationDetails `type:"structure"`
 
 	// The logging configuration for the S3 bucket.
@@ -40209,8 +40899,11 @@ type AwsS3BucketDetails struct {
 	// 2020-03-22T13:22:13.933Z.
 	CreatedAt *string `type:"string"`
 
+	// The name of the bucket.
+	Name *string `type:"string"`
+
 	// Specifies which rule Amazon S3 applies by default to every new object placed
-	// in the specified bucket.
+	// in the bucket.
 	ObjectLockConfiguration *AwsS3BucketObjectLockConfiguration `type:"structure"`
 
 	// The Amazon Web Services account identifier of the account that owns the S3
@@ -40288,6 +40981,12 @@ func (s *AwsS3BucketDetails) SetBucketWebsiteConfiguration(v *AwsS3BucketWebsite
 // SetCreatedAt sets the CreatedAt field's value.
 func (s *AwsS3BucketDetails) SetCreatedAt(v string) *AwsS3BucketDetails {
 	s.CreatedAt = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AwsS3BucketDetails) SetName(v string) *AwsS3BucketDetails {
+	s.Name = &v
 	return s
 }
 
@@ -48222,7 +48921,8 @@ type ConfigurationPolicySummary struct {
 	// The universally unique identifier (UUID) of the configuration policy.
 	Id *string `type:"string"`
 
-	// The name of the configuration policy.
+	// The name of the configuration policy. Alphanumeric characters and the following
+	// ASCII characters are permitted: -, ., !, *, /.
 	Name *string `type:"string"`
 
 	// Indicates whether the service that the configuration policy applies to is
@@ -48739,7 +49439,8 @@ type CreateConfigurationPolicyInput struct {
 	// The description of the configuration policy.
 	Description *string `type:"string"`
 
-	// The name of the configuration policy.
+	// The name of the configuration policy. Alphanumeric characters and the following
+	// ASCII characters are permitted: -, ., !, *, /.
 	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
@@ -56799,7 +57500,14 @@ type ParameterConfiguration struct {
 	Value *ParameterValue `type:"structure"`
 
 	// Identifies whether a control parameter uses a custom user-defined value or
-	// the Security Hub default value.
+	// subscribes to the default Security Hub behavior.
+	//
+	// When ValueType is set equal to DEFAULT, the default behavior can be a specific
+	// Security Hub default value, or the default behavior can be to ignore a specific
+	// parameter. When ValueType is set equal to DEFAULT, Security Hub ignores user-provided
+	// input for the Value field.
+	//
+	// When ValueType is set equal to CUSTOM, the Value field can't be empty.
 	//
 	// ValueType is a required field
 	ValueType *string `type:"string" required:"true" enum:"ParameterValueType"`
@@ -58156,6 +58864,11 @@ type ResourceDetails struct {
 	// Details about a DynamoDB table.
 	AwsDynamoDbTable *AwsDynamoDbTableDetails `type:"structure"`
 
+	// Provides details about an Client VPN endpoint. A Client VPN endpoint is the
+	// resource that you create and configure to enable and manage client VPN sessions.
+	// It's the termination point for all client VPN sessions.
+	AwsEc2ClientVpnEndpoint *AwsEc2ClientVpnEndpointDetails `type:"structure"`
+
 	// Details about an Elastic IP address.
 	AwsEc2Eip *AwsEc2EipDetails `type:"structure"`
 
@@ -58336,6 +59049,11 @@ type ResourceDetails struct {
 	// of records that can be managed together, belonging to a single parent domain
 	// name.
 	AwsRoute53HostedZone *AwsRoute53HostedZoneDetails `type:"structure"`
+
+	// Provides details about an Amazon Simple Storage Service (Amazon S3) access
+	// point. S3 access points are named network endpoints that are attached to
+	// S3 buckets that you can use to perform S3 object operations.
+	AwsS3AccessPoint *AwsS3AccessPointDetails `type:"structure"`
 
 	// Details about the Amazon S3 Public Access Block configuration for an account.
 	AwsS3AccountPublicAccessBlock *AwsS3AccountPublicAccessBlockDetails `type:"structure"`
@@ -58577,6 +59295,12 @@ func (s *ResourceDetails) SetAwsDmsReplicationTask(v *AwsDmsReplicationTaskDetai
 // SetAwsDynamoDbTable sets the AwsDynamoDbTable field's value.
 func (s *ResourceDetails) SetAwsDynamoDbTable(v *AwsDynamoDbTableDetails) *ResourceDetails {
 	s.AwsDynamoDbTable = v
+	return s
+}
+
+// SetAwsEc2ClientVpnEndpoint sets the AwsEc2ClientVpnEndpoint field's value.
+func (s *ResourceDetails) SetAwsEc2ClientVpnEndpoint(v *AwsEc2ClientVpnEndpointDetails) *ResourceDetails {
+	s.AwsEc2ClientVpnEndpoint = v
 	return s
 }
 
@@ -58895,6 +59619,12 @@ func (s *ResourceDetails) SetAwsRedshiftCluster(v *AwsRedshiftClusterDetails) *R
 // SetAwsRoute53HostedZone sets the AwsRoute53HostedZone field's value.
 func (s *ResourceDetails) SetAwsRoute53HostedZone(v *AwsRoute53HostedZoneDetails) *ResourceDetails {
 	s.AwsRoute53HostedZone = v
+	return s
+}
+
+// SetAwsS3AccessPoint sets the AwsS3AccessPoint field's value.
+func (s *ResourceDetails) SetAwsS3AccessPoint(v *AwsS3AccessPointDetails) *ResourceDetails {
+	s.AwsS3AccessPoint = v
 	return s
 }
 
@@ -63579,7 +64309,8 @@ type UpdateConfigurationPolicyInput struct {
 	// Identifier is a required field
 	Identifier *string `location:"uri" locationName:"Identifier" type:"string" required:"true"`
 
-	// The name of the configuration policy.
+	// The name of the configuration policy. Alphanumeric characters and the following
+	// ASCII characters are permitted: -, ., !, *, /.
 	Name *string `type:"string"`
 
 	// The reason for updating the configuration policy.

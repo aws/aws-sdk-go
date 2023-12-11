@@ -1239,7 +1239,9 @@
         {"shape":"LimitExceededException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ResourceInUseException"},
-        {"shape":"AccessDeniedException"}
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceInUseException"}
       ]
     },
     "UpdateSecurityHubConfiguration":{
@@ -1434,7 +1436,7 @@
     },
     "AlphaNumericNonEmptyString":{
       "type":"string",
-      "pattern":"^[-_ a-zA-Z0-9]+$"
+      "pattern":"^([^\\u0000-\\u007F]|[-_ a-zA-Z0-9])+$"
     },
     "ArnList":{
       "type":"list",
@@ -2744,7 +2746,8 @@
         "TableId":{"shape":"NonEmptyString"},
         "TableName":{"shape":"NonEmptyString"},
         "TableSizeBytes":{"shape":"SizeBytes"},
-        "TableStatus":{"shape":"NonEmptyString"}
+        "TableStatus":{"shape":"NonEmptyString"},
+        "DeletionProtectionEnabled":{"shape":"Boolean"}
       }
     },
     "AwsDynamoDbTableGlobalSecondaryIndex":{
@@ -2861,6 +2864,89 @@
       "members":{
         "StreamEnabled":{"shape":"Boolean"},
         "StreamViewType":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsEc2ClientVpnEndpointAuthenticationOptionsActiveDirectoryDetails":{
+      "type":"structure",
+      "members":{
+        "DirectoryId":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsEc2ClientVpnEndpointAuthenticationOptionsDetails":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"NonEmptyString"},
+        "ActiveDirectory":{"shape":"AwsEc2ClientVpnEndpointAuthenticationOptionsActiveDirectoryDetails"},
+        "MutualAuthentication":{"shape":"AwsEc2ClientVpnEndpointAuthenticationOptionsMutualAuthenticationDetails"},
+        "FederatedAuthentication":{"shape":"AwsEc2ClientVpnEndpointAuthenticationOptionsFederatedAuthenticationDetails"}
+      }
+    },
+    "AwsEc2ClientVpnEndpointAuthenticationOptionsFederatedAuthenticationDetails":{
+      "type":"structure",
+      "members":{
+        "SamlProviderArn":{"shape":"NonEmptyString"},
+        "SelfServiceSamlProviderArn":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsEc2ClientVpnEndpointAuthenticationOptionsList":{
+      "type":"list",
+      "member":{"shape":"AwsEc2ClientVpnEndpointAuthenticationOptionsDetails"}
+    },
+    "AwsEc2ClientVpnEndpointAuthenticationOptionsMutualAuthenticationDetails":{
+      "type":"structure",
+      "members":{
+        "ClientRootCertificateChain":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsEc2ClientVpnEndpointClientConnectOptionsDetails":{
+      "type":"structure",
+      "members":{
+        "Enabled":{"shape":"Boolean"},
+        "LambdaFunctionArn":{"shape":"NonEmptyString"},
+        "Status":{"shape":"AwsEc2ClientVpnEndpointClientConnectOptionsStatusDetails"}
+      }
+    },
+    "AwsEc2ClientVpnEndpointClientConnectOptionsStatusDetails":{
+      "type":"structure",
+      "members":{
+        "Code":{"shape":"NonEmptyString"},
+        "Message":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsEc2ClientVpnEndpointClientLoginBannerOptionsDetails":{
+      "type":"structure",
+      "members":{
+        "Enabled":{"shape":"Boolean"},
+        "BannerText":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsEc2ClientVpnEndpointConnectionLogOptionsDetails":{
+      "type":"structure",
+      "members":{
+        "Enabled":{"shape":"Boolean"},
+        "CloudwatchLogGroup":{"shape":"NonEmptyString"},
+        "CloudwatchLogStream":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsEc2ClientVpnEndpointDetails":{
+      "type":"structure",
+      "members":{
+        "ClientVpnEndpointId":{"shape":"NonEmptyString"},
+        "Description":{"shape":"NonEmptyString"},
+        "ClientCidrBlock":{"shape":"NonEmptyString"},
+        "DnsServer":{"shape":"StringList"},
+        "SplitTunnel":{"shape":"Boolean"},
+        "TransportProtocol":{"shape":"NonEmptyString"},
+        "VpnPort":{"shape":"Integer"},
+        "ServerCertificateArn":{"shape":"NonEmptyString"},
+        "AuthenticationOptions":{"shape":"AwsEc2ClientVpnEndpointAuthenticationOptionsList"},
+        "ConnectionLogOptions":{"shape":"AwsEc2ClientVpnEndpointConnectionLogOptionsDetails"},
+        "SecurityGroupIdSet":{"shape":"StringList"},
+        "VpcId":{"shape":"NonEmptyString"},
+        "SelfServicePortalUrl":{"shape":"NonEmptyString"},
+        "ClientConnectOptions":{"shape":"AwsEc2ClientVpnEndpointClientConnectOptionsDetails"},
+        "SessionTimeoutHours":{"shape":"Integer"},
+        "ClientLoginBannerOptions":{"shape":"AwsEc2ClientVpnEndpointClientLoginBannerOptionsDetails"}
       }
     },
     "AwsEc2EipDetails":{
@@ -5232,7 +5318,8 @@
         "CurrentVersion":{"shape":"NonEmptyString"},
         "NumberOfBrokerNodes":{"shape":"Integer"},
         "ClusterName":{"shape":"NonEmptyString"},
-        "ClientAuthentication":{"shape":"AwsMskClusterClusterInfoClientAuthenticationDetails"}
+        "ClientAuthentication":{"shape":"AwsMskClusterClusterInfoClientAuthenticationDetails"},
+        "EnhancedMonitoring":{"shape":"NonEmptyString"}
       }
     },
     "AwsMskClusterClusterInfoEncryptionInfoDetails":{
@@ -6077,6 +6164,25 @@
         "CloudWatchLogsLogGroupArn":{"shape":"CloudWatchLogsLogGroupArnConfigDetails"}
       }
     },
+    "AwsS3AccessPointDetails":{
+      "type":"structure",
+      "members":{
+        "AccessPointArn":{"shape":"NonEmptyString"},
+        "Alias":{"shape":"NonEmptyString"},
+        "Bucket":{"shape":"NonEmptyString"},
+        "BucketAccountId":{"shape":"NonEmptyString"},
+        "Name":{"shape":"NonEmptyString"},
+        "NetworkOrigin":{"shape":"NonEmptyString"},
+        "PublicAccessBlockConfiguration":{"shape":"AwsS3AccountPublicAccessBlockDetails"},
+        "VpcConfiguration":{"shape":"AwsS3AccessPointVpcConfigurationDetails"}
+      }
+    },
+    "AwsS3AccessPointVpcConfigurationDetails":{
+      "type":"structure",
+      "members":{
+        "VpcId":{"shape":"NonEmptyString"}
+      }
+    },
     "AwsS3AccountPublicAccessBlockDetails":{
       "type":"structure",
       "members":{
@@ -6204,7 +6310,8 @@
         "BucketWebsiteConfiguration":{"shape":"AwsS3BucketWebsiteConfiguration"},
         "BucketNotificationConfiguration":{"shape":"AwsS3BucketNotificationConfiguration"},
         "BucketVersioningConfiguration":{"shape":"AwsS3BucketBucketVersioningConfiguration"},
-        "ObjectLockConfiguration":{"shape":"AwsS3BucketObjectLockConfiguration"}
+        "ObjectLockConfiguration":{"shape":"AwsS3BucketObjectLockConfiguration"},
+        "Name":{"shape":"NonEmptyString"}
       }
     },
     "AwsS3BucketLoggingConfiguration":{
@@ -9484,7 +9591,9 @@
         "AwsDmsReplicationTask":{"shape":"AwsDmsReplicationTaskDetails"},
         "AwsDmsReplicationInstance":{"shape":"AwsDmsReplicationInstanceDetails"},
         "AwsRoute53HostedZone":{"shape":"AwsRoute53HostedZoneDetails"},
-        "AwsMskCluster":{"shape":"AwsMskClusterDetails"}
+        "AwsMskCluster":{"shape":"AwsMskClusterDetails"},
+        "AwsS3AccessPoint":{"shape":"AwsS3AccessPointDetails"},
+        "AwsEc2ClientVpnEndpoint":{"shape":"AwsEc2ClientVpnEndpointDetails"}
       }
     },
     "ResourceInUseException":{
