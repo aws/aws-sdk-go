@@ -1215,6 +1215,66 @@
         "AwsDynamoDbTableDetails$StreamSpecification": "<p>The current DynamoDB Streams configuration for the table.</p>"
       }
     },
+    "AwsEc2ClientVpnEndpointAuthenticationOptionsActiveDirectoryDetails": {
+      "base": "<p> Provides details about an Active Directory that’s used to authenticate an Client VPN endpoint. </p>",
+      "refs": {
+        "AwsEc2ClientVpnEndpointAuthenticationOptionsDetails$ActiveDirectory": "<p> Information about the Active Directory, if applicable. With Active Directory authentication, clients are authenticated against existing Active Directory groups. </p>"
+      }
+    },
+    "AwsEc2ClientVpnEndpointAuthenticationOptionsDetails": {
+      "base": "<p> Information about the authentication method used by the Client VPN endpoint. </p>",
+      "refs": {
+        "AwsEc2ClientVpnEndpointAuthenticationOptionsList$member": null
+      }
+    },
+    "AwsEc2ClientVpnEndpointAuthenticationOptionsFederatedAuthenticationDetails": {
+      "base": "<p> Describes the IAM SAML identity providers used for federated authentication. </p>",
+      "refs": {
+        "AwsEc2ClientVpnEndpointAuthenticationOptionsDetails$FederatedAuthentication": "<p> Information about the IAM SAML identity provider, if applicable.</p>"
+      }
+    },
+    "AwsEc2ClientVpnEndpointAuthenticationOptionsList": {
+      "base": null,
+      "refs": {
+        "AwsEc2ClientVpnEndpointDetails$AuthenticationOptions": "<p> Information about the authentication method used by the Client VPN endpoint. </p>"
+      }
+    },
+    "AwsEc2ClientVpnEndpointAuthenticationOptionsMutualAuthenticationDetails": {
+      "base": "<p> Information about the client certificate used for authentication. </p>",
+      "refs": {
+        "AwsEc2ClientVpnEndpointAuthenticationOptionsDetails$MutualAuthentication": "<p> Information about the authentication certificates, if applicable.</p>"
+      }
+    },
+    "AwsEc2ClientVpnEndpointClientConnectOptionsDetails": {
+      "base": "<p> The options for managing connection authorization for new client connections. </p>",
+      "refs": {
+        "AwsEc2ClientVpnEndpointDetails$ClientConnectOptions": "<p> The options for managing connection authorization for new client connections. </p>"
+      }
+    },
+    "AwsEc2ClientVpnEndpointClientConnectOptionsStatusDetails": {
+      "base": "<p> Describes the status of the Client VPN endpoint attribute. </p>",
+      "refs": {
+        "AwsEc2ClientVpnEndpointClientConnectOptionsDetails$Status": "<p> The status of any updates to the client connect options. </p>"
+      }
+    },
+    "AwsEc2ClientVpnEndpointClientLoginBannerOptionsDetails": {
+      "base": "<p> Options for enabling a customizable text banner that will be displayed on Amazon Web Services provided clients when a VPN session is established. </p>",
+      "refs": {
+        "AwsEc2ClientVpnEndpointDetails$ClientLoginBannerOptions": "<p> Options for enabling a customizable text banner that will be displayed on Amazon Web Services provided clients when a VPN session is established. </p>"
+      }
+    },
+    "AwsEc2ClientVpnEndpointConnectionLogOptionsDetails": {
+      "base": "<p> Information about the client connection logging options for the Client VPN endpoint. </p>",
+      "refs": {
+        "AwsEc2ClientVpnEndpointDetails$ConnectionLogOptions": "<p> Information about the client connection logging options for the Client VPN endpoint. </p>"
+      }
+    },
+    "AwsEc2ClientVpnEndpointDetails": {
+      "base": "<p> Describes an Client VPN endpoint. A Client VPN endpoint is the resource that you create and configure to enable and manage client VPN sessions. It's the termination point for all client VPN sessions. </p>",
+      "refs": {
+        "ResourceDetails$AwsEc2ClientVpnEndpoint": "<p> Provides details about an Client VPN endpoint. A Client VPN endpoint is the resource that you create and configure to enable and manage client VPN sessions. It's the termination point for all client VPN sessions. </p>"
+      }
+    },
     "AwsEc2EipDetails": {
       "base": "<p>Information about an Elastic IP address.</p>",
       "refs": {
@@ -3019,7 +3079,7 @@
       }
     },
     "AwsMskClusterClusterInfoDetails": {
-      "base": "<p> Provide details about an Amazon MSK cluster.</p>",
+      "base": "<p> Provide details about an Amazon Managed Streaming for Apache Kafka (Amazon MSK) cluster.</p>",
       "refs": {
         "AwsMskClusterDetails$ClusterInfo": "<p> Provides information about a cluster.</p>"
       }
@@ -3571,9 +3631,22 @@
         "AwsRoute53HostedZoneDetails$QueryLoggingConfig": "<p> An array that contains one <code>QueryLoggingConfig</code> element for each DNS query logging configuration that is associated with the current Amazon Web Services account.</p>"
       }
     },
+    "AwsS3AccessPointDetails": {
+      "base": "<p> Returns configuration information about the specified Amazon S3 access point. S3 access points are named network endpoints that are attached to buckets that you can use to perform S3 object operations. </p>",
+      "refs": {
+        "ResourceDetails$AwsS3AccessPoint": "<p> Provides details about an Amazon Simple Storage Service (Amazon S3) access point. S3 access points are named network endpoints that are attached to S3 buckets that you can use to perform S3 object operations. </p>"
+      }
+    },
+    "AwsS3AccessPointVpcConfigurationDetails": {
+      "base": "<p> The virtual private cloud (VPC) configuration for an Amazon S3 access point. </p>",
+      "refs": {
+        "AwsS3AccessPointDetails$VpcConfiguration": "<p> Contains the virtual private cloud (VPC) configuration for the specified access point. </p>"
+      }
+    },
     "AwsS3AccountPublicAccessBlockDetails": {
       "base": "<p>provides information about the Amazon S3 Public Access Block configuration for accounts.</p>",
       "refs": {
+        "AwsS3AccessPointDetails$PublicAccessBlockConfiguration": null,
         "AwsS3BucketDetails$PublicAccessBlockConfiguration": "<p>Provides information about the Amazon S3 Public Access Block configuration for the S3 bucket.</p>",
         "ResourceDetails$AwsS3AccountPublicAccessBlock": "<p>Details about the Amazon S3 Public Access Block configuration for an account.</p>"
       }
@@ -3581,7 +3654,7 @@
     "AwsS3BucketBucketLifecycleConfigurationDetails": {
       "base": "<p>The lifecycle configuration for the objects in the S3 bucket.</p>",
       "refs": {
-        "AwsS3BucketDetails$BucketLifecycleConfiguration": "<p>The lifecycle configuration for objects in the S3 bucket.</p>"
+        "AwsS3BucketDetails$BucketLifecycleConfiguration": "<p>The lifecycle configuration for objects in the specified bucket.</p>"
       }
     },
     "AwsS3BucketBucketLifecycleConfigurationRulesAbortIncompleteMultipartUploadDetails": {
@@ -3669,7 +3742,7 @@
       }
     },
     "AwsS3BucketDetails": {
-      "base": "<p>The details of an Amazon S3 bucket.</p>",
+      "base": "<p>The details of an Amazon Simple Storage Service (Amazon S3) bucket.</p>",
       "refs": {
         "ResourceDetails$AwsS3Bucket": "<p>Details about an S3 bucket related to a finding.</p>"
       }
@@ -3737,7 +3810,7 @@
     "AwsS3BucketObjectLockConfiguration": {
       "base": "<p> The container element for S3 Object Lock configuration parameters. In Amazon S3, Object Lock can help prevent objects from being deleted or overwritten for a fixed amount of time or indefinitely. </p>",
       "refs": {
-        "AwsS3BucketDetails$ObjectLockConfiguration": "<p> Specifies which rule Amazon S3 applies by default to every new object placed in the specified bucket. </p>"
+        "AwsS3BucketDetails$ObjectLockConfiguration": "<p> Specifies which rule Amazon S3 applies by default to every new object placed in the bucket. </p>"
       }
     },
     "AwsS3BucketObjectLockConfigurationRuleDefaultRetentionDetails": {
@@ -4429,9 +4502,14 @@
         "AwsDmsReplicationInstanceDetails$AutoMinorVersionUpgrade": "<p> Indicates whether minor engine upgrades are applied automatically to the replication instance during the maintenance window. </p>",
         "AwsDmsReplicationInstanceDetails$MultiAZ": "<p> Specifies whether the replication instance is deployed across multiple Availability Zones (AZs). You can't set the <code>AvailabilityZone</code> parameter if the <code>MultiAZ</code> parameter is set to <code>true</code>.</p>",
         "AwsDmsReplicationInstanceDetails$PubliclyAccessible": "<p> Specifies the accessibility options for the replication instance. A value of <code>true</code> represents an instance with a public IP address. A value of <code>false</code> represents an instance with a private IP address. The default value is <code>true</code>.</p>",
+        "AwsDynamoDbTableDetails$DeletionProtectionEnabled": "<p> Indicates whether deletion protection is to be enabled (true) or disabled (false) on the table. </p>",
         "AwsDynamoDbTableGlobalSecondaryIndex$Backfilling": "<p>Whether the index is currently backfilling.</p>",
         "AwsDynamoDbTableRestoreSummary$RestoreInProgress": "<p>Whether a restore is currently in progress.</p>",
         "AwsDynamoDbTableStreamSpecification$StreamEnabled": "<p>Indicates whether DynamoDB Streams is enabled on the table.</p>",
+        "AwsEc2ClientVpnEndpointClientConnectOptionsDetails$Enabled": "<p> Indicates whether client connect options are enabled. </p>",
+        "AwsEc2ClientVpnEndpointClientLoginBannerOptionsDetails$Enabled": "<p> Current state of text banner feature. </p>",
+        "AwsEc2ClientVpnEndpointConnectionLogOptionsDetails$Enabled": "<p> Indicates whether client connection logging is enabled for the Client VPN endpoint. </p>",
+        "AwsEc2ClientVpnEndpointDetails$SplitTunnel": "<p> Indicates whether split-tunnel is enabled in the Client VPN endpoint. </p>",
         "AwsEc2LaunchTemplateDataBlockDeviceMappingSetEbsDetails$DeleteOnTermination": "<p> Indicates whether the EBS volume is deleted on instance termination. </p>",
         "AwsEc2LaunchTemplateDataBlockDeviceMappingSetEbsDetails$Encrypted": "<p> Indicates whether the EBS volume is encrypted. Encrypted volumes can only be attached to instances that support Amazon EBS encryption. If you're creating a volume from a snapshot, you can't specify an encryption value. </p>",
         "AwsEc2LaunchTemplateDataDetails$DisableApiStop": "<p> Indicates whether to enable the instance for stop protection. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Stop_Start.html#Using_StopProtection\">Enable stop protection</a> in the <i>Amazon EC2 User Guide</i>. </p>",
@@ -5575,6 +5653,8 @@
         "AwsDynamoDbTableProvisionedThroughput$ReadCapacityUnits": "<p>The maximum number of strongly consistent reads consumed per second before DynamoDB returns a <code>ThrottlingException</code>.</p>",
         "AwsDynamoDbTableProvisionedThroughput$WriteCapacityUnits": "<p>The maximum number of writes consumed per second before DynamoDB returns a <code>ThrottlingException</code>.</p>",
         "AwsDynamoDbTableProvisionedThroughputOverride$ReadCapacityUnits": "<p>The read capacity units for the replica.</p>",
+        "AwsEc2ClientVpnEndpointDetails$VpnPort": "<p> The port number for the Client VPN endpoint. </p>",
+        "AwsEc2ClientVpnEndpointDetails$SessionTimeoutHours": "<p> The maximum VPN session duration time in hours. </p>",
         "AwsEc2InstanceMetadataOptions$HttpPutResponseHopLimit": "<p>The desired HTTP PUT response hop limit for instance metadata requests. The larger the number, the further instance metadata requests can travel. </p>",
         "AwsEc2LaunchTemplateDataBlockDeviceMappingSetEbsDetails$Iops": "<p> The number of I/O operations per second (IOPS). </p>",
         "AwsEc2LaunchTemplateDataBlockDeviceMappingSetEbsDetails$Throughput": "<p> The throughput to provision for a gp3 volume, with a maximum of 1,000 MiB/s. </p>",
@@ -6613,6 +6693,24 @@
         "AwsDynamoDbTableSseDescription$SseType": "<p>The type of server-side encryption.</p>",
         "AwsDynamoDbTableSseDescription$KmsMasterKeyArn": "<p>The ARN of the KMS key that is used for the KMS encryption.</p>",
         "AwsDynamoDbTableStreamSpecification$StreamViewType": "<p>Determines the information that is written to the table.</p>",
+        "AwsEc2ClientVpnEndpointAuthenticationOptionsActiveDirectoryDetails$DirectoryId": "<p> The ID of the Active Directory used for authentication. </p>",
+        "AwsEc2ClientVpnEndpointAuthenticationOptionsDetails$Type": "<p> The authentication type used. </p>",
+        "AwsEc2ClientVpnEndpointAuthenticationOptionsFederatedAuthenticationDetails$SamlProviderArn": "<p> The Amazon Resource Name (ARN) of the IAM SAML identity provider. </p>",
+        "AwsEc2ClientVpnEndpointAuthenticationOptionsFederatedAuthenticationDetails$SelfServiceSamlProviderArn": "<p> The Amazon Resource Name (ARN) of the IAM SAML identity provider for the self-service portal. </p>",
+        "AwsEc2ClientVpnEndpointAuthenticationOptionsMutualAuthenticationDetails$ClientRootCertificateChain": "<p> The Amazon Resource Name (ARN) of the client certificate. </p>",
+        "AwsEc2ClientVpnEndpointClientConnectOptionsDetails$LambdaFunctionArn": "<p> The Amazon Resource Name (ARN) of the Lambda function used for connection authorization. </p>",
+        "AwsEc2ClientVpnEndpointClientConnectOptionsStatusDetails$Code": "<p> The status code. </p>",
+        "AwsEc2ClientVpnEndpointClientConnectOptionsStatusDetails$Message": "<p> The status message. </p>",
+        "AwsEc2ClientVpnEndpointClientLoginBannerOptionsDetails$BannerText": "<p> Customizable text that will be displayed in a banner on Amazon Web Services provided clients when a VPN session is established. </p>",
+        "AwsEc2ClientVpnEndpointConnectionLogOptionsDetails$CloudwatchLogGroup": "<p> The name of the Amazon CloudWatch Logs log group to which connection logging data is published. </p>",
+        "AwsEc2ClientVpnEndpointConnectionLogOptionsDetails$CloudwatchLogStream": "<p> The name of the Amazon CloudWatch Logs log stream to which connection logging data is published. </p>",
+        "AwsEc2ClientVpnEndpointDetails$ClientVpnEndpointId": "<p> The ID of the Client VPN endpoint. </p>",
+        "AwsEc2ClientVpnEndpointDetails$Description": "<p> A brief description of the endpoint. </p>",
+        "AwsEc2ClientVpnEndpointDetails$ClientCidrBlock": "<p> The IPv4 address range, in CIDR notation, from which client IP addresses are assigned. </p>",
+        "AwsEc2ClientVpnEndpointDetails$TransportProtocol": "<p> The transport protocol used by the Client VPN endpoint. </p>",
+        "AwsEc2ClientVpnEndpointDetails$ServerCertificateArn": "<p> The Amazon Resource Name (ARN) of the server certificate. </p>",
+        "AwsEc2ClientVpnEndpointDetails$VpcId": "<p> The ID of the VPC. </p>",
+        "AwsEc2ClientVpnEndpointDetails$SelfServicePortalUrl": "<p> The URL of the self-service portal. </p>",
         "AwsEc2EipDetails$InstanceId": "<p>The identifier of the EC2 instance.</p>",
         "AwsEc2EipDetails$PublicIp": "<p>A public IP address that is associated with the EC2 instance.</p>",
         "AwsEc2EipDetails$AllocationId": "<p>The identifier that Amazon Web Services assigns to represent the allocation of the Elastic IP address for use with Amazon VPC.</p>",
@@ -7107,8 +7205,9 @@
         "AwsLambdaLayerVersionDetails$CreatedDate": "<p>Indicates when the version was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces, and date and time should be separated by <code>T</code>. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "AwsMountPoint$SourceVolume": "<p>The name of the volume to mount. Must be a volume name referenced in the <code>name</code> parameter of task definition <code>volume</code>. </p>",
         "AwsMountPoint$ContainerPath": "<p>The path on the container to mount the host volume at. </p>",
-        "AwsMskClusterClusterInfoDetails$CurrentVersion": "<p> The current version of the MSK cluster.</p>",
+        "AwsMskClusterClusterInfoDetails$CurrentVersion": "<p> The current version of the cluster.</p>",
         "AwsMskClusterClusterInfoDetails$ClusterName": "<p> The name of the cluster.</p>",
+        "AwsMskClusterClusterInfoDetails$EnhancedMonitoring": "<p> Specifies the level of monitoring for the cluster. </p>",
         "AwsMskClusterClusterInfoEncryptionInfoEncryptionAtRestDetails$DataVolumeKMSKeyId": "<p> The Amazon Resource Name (ARN) of the KMS key for encrypting data at rest. If you don't specify a KMS key, MSK creates one for you and uses it.</p>",
         "AwsMskClusterClusterInfoEncryptionInfoEncryptionInTransitDetails$ClientBroker": "<p> Indicates the encryption setting for data in transit between clients and brokers.</p>",
         "AwsNetworkFirewallFirewallDetails$Description": "<p>A description of the firewall.</p>",
@@ -7353,6 +7452,13 @@
         "AwsRoute53HostedZoneObjectDetails$Name": "<p> The name of the domain. For public hosted zones, this is the name that you have registered with your DNS registrar.</p>",
         "AwsRoute53HostedZoneVpcDetails$Id": "<p> The identifier of an Amazon VPC. </p>",
         "AwsRoute53HostedZoneVpcDetails$Region": "<p> The Amazon Web Services Region that an Amazon VPC was created in.</p>",
+        "AwsS3AccessPointDetails$AccessPointArn": "<p> The Amazon Resource Name (ARN) of the access point. </p>",
+        "AwsS3AccessPointDetails$Alias": "<p> The name or alias of the access point. </p>",
+        "AwsS3AccessPointDetails$Bucket": "<p> The name of the S3 bucket associated with the specified access point. </p>",
+        "AwsS3AccessPointDetails$BucketAccountId": "<p> The Amazon Web Services account ID associated with the S3 bucket associated with this access point. </p>",
+        "AwsS3AccessPointDetails$Name": "<p> The name of the specified access point. </p>",
+        "AwsS3AccessPointDetails$NetworkOrigin": "<p> Indicates whether this access point allows access from the public internet. </p>",
+        "AwsS3AccessPointVpcConfigurationDetails$VpcId": "<p> If this field is specified, this access point will only allow connections from the specified VPC ID. </p>",
         "AwsS3BucketBucketLifecycleConfigurationRulesDetails$ExpirationDate": "<p>The date when objects are moved or deleted.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces, and date and time should be separated by <code>T</code>. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "AwsS3BucketBucketLifecycleConfigurationRulesDetails$ID": "<p>The unique identifier of the rule.</p>",
         "AwsS3BucketBucketLifecycleConfigurationRulesDetails$Prefix": "<p>A prefix that identifies one or more objects that the rule applies to.</p>",
@@ -7374,6 +7480,7 @@
         "AwsS3BucketDetails$OwnerAccountId": "<p>The Amazon Web Services account identifier of the account that owns the S3 bucket.</p>",
         "AwsS3BucketDetails$CreatedAt": "<p>Indicates when the S3 bucket was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces, and date and time should be separated by <code>T</code>. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "AwsS3BucketDetails$AccessControlList": "<p>The access control list for the S3 bucket.</p>",
+        "AwsS3BucketDetails$Name": "<p> The name of the bucket. </p>",
         "AwsS3BucketLoggingConfiguration$DestinationBucketName": "<p>The name of the S3 bucket where log files for the S3 bucket are stored.</p>",
         "AwsS3BucketLoggingConfiguration$LogFilePrefix": "<p>The prefix added to log files for the S3 bucket.</p>",
         "AwsS3BucketNotificationConfigurationDetail$Destination": "<p>The ARN of the Lambda function, Amazon SQS queue, or Amazon SNS topic that generates the notification.</p>",
@@ -7557,7 +7664,7 @@
         "ConfigurationPolicyAssociationSummary$AssociationStatusMessage": "<p> The explanation for a <code>FAILED</code> value for <code>AssociationStatus</code>. </p>",
         "ConfigurationPolicySummary$Arn": "<p> The Amazon Resource Name (ARN) of the configuration policy. </p>",
         "ConfigurationPolicySummary$Id": "<p> The universally unique identifier (UUID) of the configuration policy. </p>",
-        "ConfigurationPolicySummary$Name": "<p> The name of the configuration policy. </p>",
+        "ConfigurationPolicySummary$Name": "<p> The name of the configuration policy. Alphanumeric characters and the following ASCII characters are permitted: <code>-, ., !, *, /</code>. </p>",
         "ConfigurationPolicySummary$Description": "<p> The description of the configuration policy. </p>",
         "ContainerDetails$ContainerRuntime": "<p>The runtime of the container. </p>",
         "ContainerDetails$Name": "<p>The name of the container related to a finding.</p>",
@@ -7573,7 +7680,7 @@
         "CreateAutomationRuleRequest$RuleName": "<p> The name of the rule. </p>",
         "CreateAutomationRuleRequest$Description": "<p> A description of the rule. </p>",
         "CreateAutomationRuleResponse$RuleArn": "<p> The Amazon Resource Name (ARN) of the automation rule that you created. </p>",
-        "CreateConfigurationPolicyRequest$Name": "<p> The name of the configuration policy. </p>",
+        "CreateConfigurationPolicyRequest$Name": "<p> The name of the configuration policy. Alphanumeric characters and the following ASCII characters are permitted: <code>-, ., !, *, /</code>. </p>",
         "CreateConfigurationPolicyRequest$Description": "<p> The description of the configuration policy. </p>",
         "CreateConfigurationPolicyResponse$Arn": "<p> The Amazon Resource Name (ARN) of the configuration policy. </p>",
         "CreateConfigurationPolicyResponse$Id": "<p> The universally unique identifier (UUID) of the configuration policy. </p>",
@@ -7882,7 +7989,7 @@
         "UpdateAutomationRulesRequestItem$Description": "<p> A description of the rule. </p>",
         "UpdateAutomationRulesRequestItem$RuleName": "<p> The name of the rule. </p>",
         "UpdateConfigurationPolicyRequest$Identifier": "<p> The Amazon Resource Name (ARN) or universally unique identifier (UUID) of the configuration policy. </p>",
-        "UpdateConfigurationPolicyRequest$Name": "<p> The name of the configuration policy. </p>",
+        "UpdateConfigurationPolicyRequest$Name": "<p> The name of the configuration policy. Alphanumeric characters and the following ASCII characters are permitted: <code>-, ., !, *, /</code>. </p>",
         "UpdateConfigurationPolicyRequest$Description": "<p> The description of the configuration policy. </p>",
         "UpdateConfigurationPolicyRequest$UpdatedReason": "<p> The reason for updating the configuration policy. </p>",
         "UpdateConfigurationPolicyResponse$Arn": "<p> The ARN of the configuration policy. </p>",
@@ -8104,7 +8211,7 @@
     "ParameterValueType": {
       "base": null,
       "refs": {
-        "ParameterConfiguration$ValueType": "<p> Identifies whether a control parameter uses a custom user-defined value or the Security Hub default value. </p>"
+        "ParameterConfiguration$ValueType": "<p> Identifies whether a control parameter uses a custom user-defined value or subscribes to the default Security Hub behavior.</p> <p>When <code>ValueType</code> is set equal to <code>DEFAULT</code>, the default behavior can be a specific Security Hub default value, or the default behavior can be to ignore a specific parameter. When <code>ValueType</code> is set equal to <code>DEFAULT</code>, Security Hub ignores user-provided input for the <code>Value</code> field.</p> <p>When <code>ValueType</code> is set equal to <code>CUSTOM</code>, the <code>Value</code> field can't be empty.</p>"
       }
     },
     "Parameters": {
@@ -9063,6 +9170,8 @@
         "AwsCertificateManagerCertificateDetails$SubjectAlternativeNames": "<p>One or more domain names (subject alternative names) included in the certificate. This list contains the domain names that are bound to the public key that is contained in the certificate.</p> <p>The subject alternative names include the canonical domain name (CN) of the certificate and additional domain names that can be used to connect to the website.</p>",
         "AwsCertificateManagerCertificateDomainValidationOption$ValidationEmails": "<p>A list of email addresses that Certificate Manager uses to send domain validation emails.</p>",
         "AwsDynamoDbTableProjection$NonKeyAttributes": "<p>The nonkey attributes that are projected into the index. For each attribute, provide the attribute name.</p>",
+        "AwsEc2ClientVpnEndpointDetails$DnsServer": "<p> Information about the DNS servers to be used for DNS resolution. </p>",
+        "AwsEc2ClientVpnEndpointDetails$SecurityGroupIdSet": "<p> The IDs of the security groups for the target network. </p>",
         "AwsEc2InstanceDetails$IpV4Addresses": "<p>The IPv4 addresses associated with the instance.</p>",
         "AwsEc2InstanceDetails$IpV6Addresses": "<p>The IPv6 addresses associated with the instance.</p>",
         "AwsElbLoadBalancerBackendServerDescription$PolicyNames": "<p>The names of the policies that are enabled for the EC2 instance.</p>",

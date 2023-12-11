@@ -1,3 +1,17 @@
+Release v1.49.0 (2023-12-11)
+===
+
+### Service Client Updates
+* `service/neptune`: Updates service API and documentation
+  * This release adds a new parameter configuration setting to the Neptune cluster related APIs that can be leveraged to switch between the underlying supported storage modes.
+* `service/pinpoint`: Updates service documentation
+  * This release includes Amazon Pinpoint API documentation updates pertaining to campaign message sending rate limits.
+* `service/securityhub`: Updates service API and documentation
+
+### SDK Features
+* `service/sqs`: BREAKFIX: Revert SQS error constants to original state
+  * Values for SQS error constants were incorrectly changed. This reverts them back.
+
 Release v1.48.16 (2023-12-08)
 ===
 
