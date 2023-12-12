@@ -100,6 +100,10 @@ type ImagebuilderAPI interface {
 	CreateLifecyclePolicyWithContext(aws.Context, *imagebuilder.CreateLifecyclePolicyInput, ...request.Option) (*imagebuilder.CreateLifecyclePolicyOutput, error)
 	CreateLifecyclePolicyRequest(*imagebuilder.CreateLifecyclePolicyInput) (*request.Request, *imagebuilder.CreateLifecyclePolicyOutput)
 
+	CreateWorkflow(*imagebuilder.CreateWorkflowInput) (*imagebuilder.CreateWorkflowOutput, error)
+	CreateWorkflowWithContext(aws.Context, *imagebuilder.CreateWorkflowInput, ...request.Option) (*imagebuilder.CreateWorkflowOutput, error)
+	CreateWorkflowRequest(*imagebuilder.CreateWorkflowInput) (*request.Request, *imagebuilder.CreateWorkflowOutput)
+
 	DeleteComponent(*imagebuilder.DeleteComponentInput) (*imagebuilder.DeleteComponentOutput, error)
 	DeleteComponentWithContext(aws.Context, *imagebuilder.DeleteComponentInput, ...request.Option) (*imagebuilder.DeleteComponentOutput, error)
 	DeleteComponentRequest(*imagebuilder.DeleteComponentInput) (*request.Request, *imagebuilder.DeleteComponentOutput)
@@ -131,6 +135,10 @@ type ImagebuilderAPI interface {
 	DeleteLifecyclePolicy(*imagebuilder.DeleteLifecyclePolicyInput) (*imagebuilder.DeleteLifecyclePolicyOutput, error)
 	DeleteLifecyclePolicyWithContext(aws.Context, *imagebuilder.DeleteLifecyclePolicyInput, ...request.Option) (*imagebuilder.DeleteLifecyclePolicyOutput, error)
 	DeleteLifecyclePolicyRequest(*imagebuilder.DeleteLifecyclePolicyInput) (*request.Request, *imagebuilder.DeleteLifecyclePolicyOutput)
+
+	DeleteWorkflow(*imagebuilder.DeleteWorkflowInput) (*imagebuilder.DeleteWorkflowOutput, error)
+	DeleteWorkflowWithContext(aws.Context, *imagebuilder.DeleteWorkflowInput, ...request.Option) (*imagebuilder.DeleteWorkflowOutput, error)
+	DeleteWorkflowRequest(*imagebuilder.DeleteWorkflowInput) (*request.Request, *imagebuilder.DeleteWorkflowOutput)
 
 	GetComponent(*imagebuilder.GetComponentInput) (*imagebuilder.GetComponentOutput, error)
 	GetComponentWithContext(aws.Context, *imagebuilder.GetComponentInput, ...request.Option) (*imagebuilder.GetComponentOutput, error)
@@ -183,6 +191,10 @@ type ImagebuilderAPI interface {
 	GetLifecyclePolicy(*imagebuilder.GetLifecyclePolicyInput) (*imagebuilder.GetLifecyclePolicyOutput, error)
 	GetLifecyclePolicyWithContext(aws.Context, *imagebuilder.GetLifecyclePolicyInput, ...request.Option) (*imagebuilder.GetLifecyclePolicyOutput, error)
 	GetLifecyclePolicyRequest(*imagebuilder.GetLifecyclePolicyInput) (*request.Request, *imagebuilder.GetLifecyclePolicyOutput)
+
+	GetWorkflow(*imagebuilder.GetWorkflowInput) (*imagebuilder.GetWorkflowOutput, error)
+	GetWorkflowWithContext(aws.Context, *imagebuilder.GetWorkflowInput, ...request.Option) (*imagebuilder.GetWorkflowOutput, error)
+	GetWorkflowRequest(*imagebuilder.GetWorkflowInput) (*request.Request, *imagebuilder.GetWorkflowOutput)
 
 	GetWorkflowExecution(*imagebuilder.GetWorkflowExecutionInput) (*imagebuilder.GetWorkflowExecutionOutput, error)
 	GetWorkflowExecutionWithContext(aws.Context, *imagebuilder.GetWorkflowExecutionInput, ...request.Option) (*imagebuilder.GetWorkflowExecutionOutput, error)
@@ -316,6 +328,20 @@ type ImagebuilderAPI interface {
 	ListTagsForResourceWithContext(aws.Context, *imagebuilder.ListTagsForResourceInput, ...request.Option) (*imagebuilder.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*imagebuilder.ListTagsForResourceInput) (*request.Request, *imagebuilder.ListTagsForResourceOutput)
 
+	ListWaitingWorkflowSteps(*imagebuilder.ListWaitingWorkflowStepsInput) (*imagebuilder.ListWaitingWorkflowStepsOutput, error)
+	ListWaitingWorkflowStepsWithContext(aws.Context, *imagebuilder.ListWaitingWorkflowStepsInput, ...request.Option) (*imagebuilder.ListWaitingWorkflowStepsOutput, error)
+	ListWaitingWorkflowStepsRequest(*imagebuilder.ListWaitingWorkflowStepsInput) (*request.Request, *imagebuilder.ListWaitingWorkflowStepsOutput)
+
+	ListWaitingWorkflowStepsPages(*imagebuilder.ListWaitingWorkflowStepsInput, func(*imagebuilder.ListWaitingWorkflowStepsOutput, bool) bool) error
+	ListWaitingWorkflowStepsPagesWithContext(aws.Context, *imagebuilder.ListWaitingWorkflowStepsInput, func(*imagebuilder.ListWaitingWorkflowStepsOutput, bool) bool, ...request.Option) error
+
+	ListWorkflowBuildVersions(*imagebuilder.ListWorkflowBuildVersionsInput) (*imagebuilder.ListWorkflowBuildVersionsOutput, error)
+	ListWorkflowBuildVersionsWithContext(aws.Context, *imagebuilder.ListWorkflowBuildVersionsInput, ...request.Option) (*imagebuilder.ListWorkflowBuildVersionsOutput, error)
+	ListWorkflowBuildVersionsRequest(*imagebuilder.ListWorkflowBuildVersionsInput) (*request.Request, *imagebuilder.ListWorkflowBuildVersionsOutput)
+
+	ListWorkflowBuildVersionsPages(*imagebuilder.ListWorkflowBuildVersionsInput, func(*imagebuilder.ListWorkflowBuildVersionsOutput, bool) bool) error
+	ListWorkflowBuildVersionsPagesWithContext(aws.Context, *imagebuilder.ListWorkflowBuildVersionsInput, func(*imagebuilder.ListWorkflowBuildVersionsOutput, bool) bool, ...request.Option) error
+
 	ListWorkflowExecutions(*imagebuilder.ListWorkflowExecutionsInput) (*imagebuilder.ListWorkflowExecutionsOutput, error)
 	ListWorkflowExecutionsWithContext(aws.Context, *imagebuilder.ListWorkflowExecutionsInput, ...request.Option) (*imagebuilder.ListWorkflowExecutionsOutput, error)
 	ListWorkflowExecutionsRequest(*imagebuilder.ListWorkflowExecutionsInput) (*request.Request, *imagebuilder.ListWorkflowExecutionsOutput)
@@ -329,6 +355,13 @@ type ImagebuilderAPI interface {
 
 	ListWorkflowStepExecutionsPages(*imagebuilder.ListWorkflowStepExecutionsInput, func(*imagebuilder.ListWorkflowStepExecutionsOutput, bool) bool) error
 	ListWorkflowStepExecutionsPagesWithContext(aws.Context, *imagebuilder.ListWorkflowStepExecutionsInput, func(*imagebuilder.ListWorkflowStepExecutionsOutput, bool) bool, ...request.Option) error
+
+	ListWorkflows(*imagebuilder.ListWorkflowsInput) (*imagebuilder.ListWorkflowsOutput, error)
+	ListWorkflowsWithContext(aws.Context, *imagebuilder.ListWorkflowsInput, ...request.Option) (*imagebuilder.ListWorkflowsOutput, error)
+	ListWorkflowsRequest(*imagebuilder.ListWorkflowsInput) (*request.Request, *imagebuilder.ListWorkflowsOutput)
+
+	ListWorkflowsPages(*imagebuilder.ListWorkflowsInput, func(*imagebuilder.ListWorkflowsOutput, bool) bool) error
+	ListWorkflowsPagesWithContext(aws.Context, *imagebuilder.ListWorkflowsInput, func(*imagebuilder.ListWorkflowsOutput, bool) bool, ...request.Option) error
 
 	PutComponentPolicy(*imagebuilder.PutComponentPolicyInput) (*imagebuilder.PutComponentPolicyOutput, error)
 	PutComponentPolicyWithContext(aws.Context, *imagebuilder.PutComponentPolicyInput, ...request.Option) (*imagebuilder.PutComponentPolicyOutput, error)
@@ -345,6 +378,10 @@ type ImagebuilderAPI interface {
 	PutImageRecipePolicy(*imagebuilder.PutImageRecipePolicyInput) (*imagebuilder.PutImageRecipePolicyOutput, error)
 	PutImageRecipePolicyWithContext(aws.Context, *imagebuilder.PutImageRecipePolicyInput, ...request.Option) (*imagebuilder.PutImageRecipePolicyOutput, error)
 	PutImageRecipePolicyRequest(*imagebuilder.PutImageRecipePolicyInput) (*request.Request, *imagebuilder.PutImageRecipePolicyOutput)
+
+	SendWorkflowStepAction(*imagebuilder.SendWorkflowStepActionInput) (*imagebuilder.SendWorkflowStepActionOutput, error)
+	SendWorkflowStepActionWithContext(aws.Context, *imagebuilder.SendWorkflowStepActionInput, ...request.Option) (*imagebuilder.SendWorkflowStepActionOutput, error)
+	SendWorkflowStepActionRequest(*imagebuilder.SendWorkflowStepActionInput) (*request.Request, *imagebuilder.SendWorkflowStepActionOutput)
 
 	StartImagePipelineExecution(*imagebuilder.StartImagePipelineExecutionInput) (*imagebuilder.StartImagePipelineExecutionOutput, error)
 	StartImagePipelineExecutionWithContext(aws.Context, *imagebuilder.StartImagePipelineExecutionInput, ...request.Option) (*imagebuilder.StartImagePipelineExecutionOutput, error)

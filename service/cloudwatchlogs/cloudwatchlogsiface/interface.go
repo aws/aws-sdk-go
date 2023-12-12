@@ -352,6 +352,10 @@ type CloudWatchLogsAPI interface {
 	PutSubscriptionFilterWithContext(aws.Context, *cloudwatchlogs.PutSubscriptionFilterInput, ...request.Option) (*cloudwatchlogs.PutSubscriptionFilterOutput, error)
 	PutSubscriptionFilterRequest(*cloudwatchlogs.PutSubscriptionFilterInput) (*request.Request, *cloudwatchlogs.PutSubscriptionFilterOutput)
 
+	StartLiveTail(*cloudwatchlogs.StartLiveTailInput) (*cloudwatchlogs.StartLiveTailOutput, error)
+	StartLiveTailWithContext(aws.Context, *cloudwatchlogs.StartLiveTailInput, ...request.Option) (*cloudwatchlogs.StartLiveTailOutput, error)
+	StartLiveTailRequest(*cloudwatchlogs.StartLiveTailInput) (*request.Request, *cloudwatchlogs.StartLiveTailOutput)
+
 	StartQuery(*cloudwatchlogs.StartQueryInput) (*cloudwatchlogs.StartQueryOutput, error)
 	StartQueryWithContext(aws.Context, *cloudwatchlogs.StartQueryInput, ...request.Option) (*cloudwatchlogs.StartQueryOutput, error)
 	StartQueryRequest(*cloudwatchlogs.StartQueryInput) (*request.Request, *cloudwatchlogs.StartQueryOutput)

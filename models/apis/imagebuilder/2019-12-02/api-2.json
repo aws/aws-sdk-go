@@ -222,6 +222,28 @@
         {"shape":"ServiceQuotaExceededException"}
       ]
     },
+    "CreateWorkflow":{
+      "name":"CreateWorkflow",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/CreateWorkflow"
+      },
+      "input":{"shape":"CreateWorkflowRequest"},
+      "output":{"shape":"CreateWorkflowResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"IdempotentParameterMismatchException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"CallRateLimitExceededException"},
+        {"shape":"InvalidVersionNumberException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"InvalidParameterCombinationException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ]
+    },
     "DeleteComponent":{
       "name":"DeleteComponent",
       "http":{
@@ -361,6 +383,24 @@
         {"shape":"ClientException"},
         {"shape":"InvalidRequestException"},
         {"shape":"ServiceUnavailableException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"CallRateLimitExceededException"},
+        {"shape":"ResourceDependencyException"}
+      ]
+    },
+    "DeleteWorkflow":{
+      "name":"DeleteWorkflow",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/DeleteWorkflow"
+      },
+      "input":{"shape":"DeleteWorkflowRequest"},
+      "output":{"shape":"DeleteWorkflowResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InvalidRequestException"},
         {"shape":"ForbiddenException"},
         {"shape":"CallRateLimitExceededException"},
         {"shape":"ResourceDependencyException"}
@@ -578,6 +618,23 @@
       },
       "input":{"shape":"GetLifecyclePolicyRequest"},
       "output":{"shape":"GetLifecyclePolicyResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"CallRateLimitExceededException"}
+      ]
+    },
+    "GetWorkflow":{
+      "name":"GetWorkflow",
+      "http":{
+        "method":"GET",
+        "requestUri":"/GetWorkflow"
+      },
+      "input":{"shape":"GetWorkflowRequest"},
+      "output":{"shape":"GetWorkflowResponse"},
       "errors":[
         {"shape":"ServiceException"},
         {"shape":"ClientException"},
@@ -960,6 +1017,42 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "ListWaitingWorkflowSteps":{
+      "name":"ListWaitingWorkflowSteps",
+      "http":{
+        "method":"POST",
+        "requestUri":"/ListWaitingWorkflowSteps"
+      },
+      "input":{"shape":"ListWaitingWorkflowStepsRequest"},
+      "output":{"shape":"ListWaitingWorkflowStepsResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidPaginationTokenException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"CallRateLimitExceededException"}
+      ]
+    },
+    "ListWorkflowBuildVersions":{
+      "name":"ListWorkflowBuildVersions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/ListWorkflowBuildVersions"
+      },
+      "input":{"shape":"ListWorkflowBuildVersionsRequest"},
+      "output":{"shape":"ListWorkflowBuildVersionsResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidPaginationTokenException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"CallRateLimitExceededException"}
+      ]
+    },
     "ListWorkflowExecutions":{
       "name":"ListWorkflowExecutions",
       "http":{
@@ -986,6 +1079,24 @@
       },
       "input":{"shape":"ListWorkflowStepExecutionsRequest"},
       "output":{"shape":"ListWorkflowStepExecutionsResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidPaginationTokenException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"CallRateLimitExceededException"}
+      ]
+    },
+    "ListWorkflows":{
+      "name":"ListWorkflows",
+      "http":{
+        "method":"POST",
+        "requestUri":"/ListWorkflows"
+      },
+      "input":{"shape":"ListWorkflowsRequest"},
+      "output":{"shape":"ListWorkflowsResponse"},
       "errors":[
         {"shape":"ServiceException"},
         {"shape":"ClientException"},
@@ -1070,6 +1181,27 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ForbiddenException"},
         {"shape":"CallRateLimitExceededException"}
+      ]
+    },
+    "SendWorkflowStepAction":{
+      "name":"SendWorkflowStepAction",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/SendWorkflowStepAction"
+      },
+      "input":{"shape":"SendWorkflowStepActionRequest"},
+      "output":{"shape":"SendWorkflowStepActionResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"ClientException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"IdempotentParameterMismatchException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"CallRateLimitExceededException"},
+        {"shape":"ResourceInUseException"}
       ]
     },
     "StartImagePipelineExecution":{
@@ -1715,7 +1847,9 @@
           "shape":"ClientToken",
           "idempotencyToken":true
         },
-        "imageScanningConfiguration":{"shape":"ImageScanningConfiguration"}
+        "imageScanningConfiguration":{"shape":"ImageScanningConfiguration"},
+        "workflows":{"shape":"WorkflowConfigurationList"},
+        "executionRole":{"shape":"RoleNameOrArn"}
       }
     },
     "CreateImagePipelineResponse":{
@@ -1777,7 +1911,9 @@
           "shape":"ClientToken",
           "idempotencyToken":true
         },
-        "imageScanningConfiguration":{"shape":"ImageScanningConfiguration"}
+        "imageScanningConfiguration":{"shape":"ImageScanningConfiguration"},
+        "workflows":{"shape":"WorkflowConfigurationList"},
+        "executionRole":{"shape":"RoleNameOrArn"}
       }
     },
     "CreateImageResponse":{
@@ -1853,6 +1989,37 @@
       "members":{
         "clientToken":{"shape":"ClientToken"},
         "lifecyclePolicyArn":{"shape":"LifecyclePolicyArn"}
+      }
+    },
+    "CreateWorkflowRequest":{
+      "type":"structure",
+      "required":[
+        "name",
+        "semanticVersion",
+        "clientToken",
+        "type"
+      ],
+      "members":{
+        "name":{"shape":"ResourceName"},
+        "semanticVersion":{"shape":"VersionNumber"},
+        "description":{"shape":"NonEmptyString"},
+        "changeDescription":{"shape":"NonEmptyString"},
+        "data":{"shape":"InlineWorkflowData"},
+        "uri":{"shape":"Uri"},
+        "kmsKeyId":{"shape":"NonEmptyString"},
+        "tags":{"shape":"TagMap"},
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        },
+        "type":{"shape":"WorkflowType"}
+      }
+    },
+    "CreateWorkflowResponse":{
+      "type":"structure",
+      "members":{
+        "clientToken":{"shape":"ClientToken"},
+        "workflowBuildVersionArn":{"shape":"WorkflowBuildVersionArn"}
       }
     },
     "CvssScore":{
@@ -2033,6 +2200,23 @@
       "type":"structure",
       "members":{
         "lifecyclePolicyArn":{"shape":"LifecyclePolicyArn"}
+      }
+    },
+    "DeleteWorkflowRequest":{
+      "type":"structure",
+      "required":["workflowBuildVersionArn"],
+      "members":{
+        "workflowBuildVersionArn":{
+          "shape":"WorkflowBuildVersionArn",
+          "location":"querystring",
+          "locationName":"workflowBuildVersionArn"
+        }
+      }
+    },
+    "DeleteWorkflowResponse":{
+      "type":"structure",
+      "members":{
+        "workflowBuildVersionArn":{"shape":"WorkflowBuildVersionArn"}
       }
     },
     "DiskImageFormat":{
@@ -2477,7 +2661,25 @@
         "totalStepsFailed":{"shape":"WorkflowStepCount"},
         "totalStepsSkipped":{"shape":"WorkflowStepCount"},
         "startTime":{"shape":"DateTime"},
-        "endTime":{"shape":"DateTime"}
+        "endTime":{"shape":"DateTime"},
+        "parallelGroup":{"shape":"ParallelGroup"}
+      }
+    },
+    "GetWorkflowRequest":{
+      "type":"structure",
+      "required":["workflowBuildVersionArn"],
+      "members":{
+        "workflowBuildVersionArn":{
+          "shape":"WorkflowVersionArnOrBuildVersionArn",
+          "location":"querystring",
+          "locationName":"workflowBuildVersionArn"
+        }
+      }
+    },
+    "GetWorkflowResponse":{
+      "type":"structure",
+      "members":{
+        "workflow":{"shape":"Workflow"}
       }
     },
     "GetWorkflowStepExecutionRequest":{
@@ -2556,7 +2758,9 @@
         "scanState":{"shape":"ImageScanState"},
         "imageScanningConfiguration":{"shape":"ImageScanningConfiguration"},
         "deprecationTime":{"shape":"DateTimeTimestamp"},
-        "lifecycleExecutionId":{"shape":"LifecycleExecutionId"}
+        "lifecycleExecutionId":{"shape":"LifecycleExecutionId"},
+        "executionRole":{"shape":"RoleNameOrArn"},
+        "workflows":{"shape":"WorkflowConfigurationList"}
       }
     },
     "ImageAggregation":{
@@ -2610,7 +2814,9 @@
         "dateLastRun":{"shape":"DateTime"},
         "dateNextRun":{"shape":"DateTime"},
         "tags":{"shape":"TagMap"},
-        "imageScanningConfiguration":{"shape":"ImageScanningConfiguration"}
+        "imageScanningConfiguration":{"shape":"ImageScanningConfiguration"},
+        "executionRole":{"shape":"RoleNameOrArn"},
+        "workflows":{"shape":"WorkflowConfigurationList"}
       }
     },
     "ImagePipelineAggregation":{
@@ -2969,6 +3175,12 @@
       "pattern":"[^\\x00]+"
     },
     "InlineDockerFileTemplate":{
+      "type":"string",
+      "max":16000,
+      "min":1,
+      "pattern":"[^\\x00]+"
+    },
+    "InlineWorkflowData":{
       "type":"string",
       "max":16000,
       "min":1,
@@ -3731,6 +3943,42 @@
         "tags":{"shape":"TagMap"}
       }
     },
+    "ListWaitingWorkflowStepsRequest":{
+      "type":"structure",
+      "members":{
+        "maxResults":{
+          "shape":"RestrictedInteger",
+          "box":true
+        },
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListWaitingWorkflowStepsResponse":{
+      "type":"structure",
+      "members":{
+        "steps":{"shape":"WorkflowStepExecutionList"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListWorkflowBuildVersionsRequest":{
+      "type":"structure",
+      "required":["workflowVersionArn"],
+      "members":{
+        "workflowVersionArn":{"shape":"WorkflowWildcardVersionArn"},
+        "maxResults":{
+          "shape":"RestrictedInteger",
+          "box":true
+        },
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListWorkflowBuildVersionsResponse":{
+      "type":"structure",
+      "members":{
+        "workflowSummaryList":{"shape":"WorkflowSummaryList"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
     "ListWorkflowExecutionsRequest":{
       "type":"structure",
       "required":["imageBuildVersionArn"],
@@ -3777,6 +4025,26 @@
         "nextToken":{"shape":"PaginationToken"}
       }
     },
+    "ListWorkflowsRequest":{
+      "type":"structure",
+      "members":{
+        "owner":{"shape":"Ownership"},
+        "filters":{"shape":"FilterList"},
+        "byName":{"shape":"Boolean"},
+        "maxResults":{
+          "shape":"RestrictedInteger",
+          "box":true
+        },
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListWorkflowsResponse":{
+      "type":"structure",
+      "members":{
+        "workflowVersionList":{"shape":"WorkflowVersionList"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
     "Logging":{
       "type":"structure",
       "members":{
@@ -3802,6 +4070,13 @@
       "min":0
     },
     "NullableBoolean":{"type":"boolean"},
+    "OnWorkflowFailure":{
+      "type":"string",
+      "enum":[
+        "CONTINUE",
+        "ABORT"
+      ]
+    },
     "OrganizationArn":{
       "type":"string",
       "pattern":"^arn:aws[^:]*:organizations::[0-9]{12}:organization/o-[a-z0-9]{10,32}$"
@@ -3870,6 +4145,12 @@
       "type":"string",
       "max":65535,
       "min":1
+    },
+    "ParallelGroup":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"^[A-Za-z0-9][A-Za-z0-9-_+#]{0,99}$"
     },
     "PipelineExecutionStartCondition":{
       "type":"string",
@@ -4101,6 +4382,33 @@
     "SecurityGroupIds":{
       "type":"list",
       "member":{"shape":"NonEmptyString"}
+    },
+    "SendWorkflowStepActionRequest":{
+      "type":"structure",
+      "required":[
+        "stepExecutionId",
+        "imageBuildVersionArn",
+        "action",
+        "clientToken"
+      ],
+      "members":{
+        "stepExecutionId":{"shape":"WorkflowStepExecutionId"},
+        "imageBuildVersionArn":{"shape":"ImageBuildVersionArn"},
+        "action":{"shape":"WorkflowStepActionType"},
+        "reason":{"shape":"NonEmptyString"},
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "SendWorkflowStepActionResponse":{
+      "type":"structure",
+      "members":{
+        "stepExecutionId":{"shape":"WorkflowStepExecutionId"},
+        "imageBuildVersionArn":{"shape":"ImageBuildVersionArn"},
+        "clientToken":{"shape":"ClientToken"}
+      }
     },
     "ServiceException":{
       "type":"structure",
@@ -4336,7 +4644,9 @@
           "shape":"ClientToken",
           "idempotencyToken":true
         },
-        "imageScanningConfiguration":{"shape":"ImageScanningConfiguration"}
+        "imageScanningConfiguration":{"shape":"ImageScanningConfiguration"},
+        "workflows":{"shape":"WorkflowConfigurationList"},
+        "executionRole":{"shape":"RoleNameOrArn"}
       }
     },
     "UpdateImagePipelineResponse":{
@@ -4453,11 +4763,44 @@
       "type":"list",
       "member":{"shape":"VulnerablePackage"}
     },
+    "Workflow":{
+      "type":"structure",
+      "members":{
+        "arn":{"shape":"WorkflowBuildVersionArn"},
+        "name":{"shape":"ResourceName"},
+        "version":{"shape":"VersionNumber"},
+        "description":{"shape":"NonEmptyString"},
+        "changeDescription":{"shape":"NonEmptyString"},
+        "type":{"shape":"WorkflowType"},
+        "state":{"shape":"WorkflowState"},
+        "owner":{"shape":"NonEmptyString"},
+        "data":{"shape":"WorkflowData"},
+        "kmsKeyId":{"shape":"NonEmptyString"},
+        "dateCreated":{"shape":"DateTime"},
+        "tags":{"shape":"TagMap"},
+        "parameters":{"shape":"WorkflowParameterDetailList"}
+      }
+    },
     "WorkflowBuildVersionArn":{
       "type":"string",
       "max":1024,
       "pattern":"^arn:aws(?:-[a-z]+)*:imagebuilder:[a-z]{2,}(?:-[a-z]+)+-[0-9]+:(?:[0-9]{12}|aws):workflow/(build|test|distribution)/[a-z0-9-_]+/[0-9]+\\.[0-9]+\\.[0-9]+/[0-9]+$"
     },
+    "WorkflowConfiguration":{
+      "type":"structure",
+      "required":["workflowArn"],
+      "members":{
+        "workflowArn":{"shape":"WorkflowVersionArnOrBuildVersionArn"},
+        "parameters":{"shape":"WorkflowParameterList"},
+        "parallelGroup":{"shape":"ParallelGroup"},
+        "onFailure":{"shape":"OnWorkflowFailure"}
+      }
+    },
+    "WorkflowConfigurationList":{
+      "type":"list",
+      "member":{"shape":"WorkflowConfiguration"}
+    },
+    "WorkflowData":{"type":"string"},
     "WorkflowExecutionId":{
       "type":"string",
       "pattern":"^wf-[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
@@ -4480,7 +4823,8 @@
         "totalStepsFailed":{"shape":"WorkflowStepCount"},
         "totalStepsSkipped":{"shape":"WorkflowStepCount"},
         "startTime":{"shape":"DateTime"},
-        "endTime":{"shape":"DateTime"}
+        "endTime":{"shape":"DateTime"},
+        "parallelGroup":{"shape":"ParallelGroup"}
       }
     },
     "WorkflowExecutionStatus":{
@@ -4492,16 +4836,99 @@
         "COMPLETED",
         "FAILED",
         "ROLLBACK_IN_PROGRESS",
-        "ROLLBACK_COMPLETED"
+        "ROLLBACK_COMPLETED",
+        "CANCELLED"
       ]
     },
     "WorkflowExecutionsList":{
       "type":"list",
       "member":{"shape":"WorkflowExecutionMetadata"}
     },
+    "WorkflowNameArn":{
+      "type":"string",
+      "pattern":"^arn:aws(?:-[a-z]+)*:imagebuilder:[a-z]{2,}(?:-[a-z]+)+-[0-9]+:(?:[0-9]{12}|aws):workflow/(build|test|distribution)/[a-z0-9-_]+/x\\.x\\.x$"
+    },
+    "WorkflowParameter":{
+      "type":"structure",
+      "required":[
+        "name",
+        "value"
+      ],
+      "members":{
+        "name":{"shape":"WorkflowParameterName"},
+        "value":{"shape":"WorkflowParameterValueList"}
+      }
+    },
+    "WorkflowParameterDescription":{
+      "type":"string",
+      "max":1024,
+      "min":0,
+      "pattern":"[^\\x00]+"
+    },
+    "WorkflowParameterDetail":{
+      "type":"structure",
+      "required":[
+        "name",
+        "type"
+      ],
+      "members":{
+        "name":{"shape":"WorkflowParameterName"},
+        "type":{"shape":"WorkflowParameterType"},
+        "defaultValue":{"shape":"WorkflowParameterValueList"},
+        "description":{"shape":"WorkflowParameterDescription"}
+      }
+    },
+    "WorkflowParameterDetailList":{
+      "type":"list",
+      "member":{"shape":"WorkflowParameterDetail"}
+    },
+    "WorkflowParameterList":{
+      "type":"list",
+      "member":{"shape":"WorkflowParameter"},
+      "min":1
+    },
+    "WorkflowParameterName":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[^\\x00]+"
+    },
+    "WorkflowParameterType":{
+      "type":"string",
+      "max":20,
+      "min":1,
+      "pattern":"^string|integer|boolean|stringList$"
+    },
+    "WorkflowParameterValue":{
+      "type":"string",
+      "min":0,
+      "pattern":"[^\\x00]*"
+    },
+    "WorkflowParameterValueList":{
+      "type":"list",
+      "member":{"shape":"WorkflowParameterValue"}
+    },
+    "WorkflowState":{
+      "type":"structure",
+      "members":{
+        "status":{"shape":"WorkflowStatus"},
+        "reason":{"shape":"NonEmptyString"}
+      }
+    },
+    "WorkflowStatus":{
+      "type":"string",
+      "enum":["DEPRECATED"]
+    },
     "WorkflowStepAction":{
       "type":"string",
       "pattern":"^[A-Za-z][A-Za-z0-9-_]{1,99}$"
+    },
+    "WorkflowStepActionType":{
+      "type":"string",
+      "enum":[
+        "RESUME",
+        "STOP"
+      ]
     },
     "WorkflowStepCount":{"type":"integer"},
     "WorkflowStepDescription":{
@@ -4509,9 +4936,25 @@
       "max":500,
       "min":0
     },
+    "WorkflowStepExecution":{
+      "type":"structure",
+      "members":{
+        "stepExecutionId":{"shape":"WorkflowStepExecutionId"},
+        "imageBuildVersionArn":{"shape":"ImageBuildVersionArn"},
+        "workflowExecutionId":{"shape":"WorkflowExecutionId"},
+        "workflowBuildVersionArn":{"shape":"WorkflowBuildVersionArn"},
+        "name":{"shape":"WorkflowStepName"},
+        "action":{"shape":"WorkflowStepAction"},
+        "startTime":{"shape":"DateTime"}
+      }
+    },
     "WorkflowStepExecutionId":{
       "type":"string",
       "pattern":"^step-[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+    },
+    "WorkflowStepExecutionList":{
+      "type":"list",
+      "member":{"shape":"WorkflowStepExecution"}
     },
     "WorkflowStepExecutionRollbackStatus":{
       "type":"string",
@@ -4529,7 +4972,8 @@
         "SKIPPED",
         "RUNNING",
         "COMPLETED",
-        "FAILED"
+        "FAILED",
+        "CANCELLED"
       ]
     },
     "WorkflowStepExecutionsList":{
@@ -4568,6 +5012,25 @@
       "max":43200,
       "min":0
     },
+    "WorkflowSummary":{
+      "type":"structure",
+      "members":{
+        "arn":{"shape":"WorkflowNameArn"},
+        "name":{"shape":"ResourceName"},
+        "version":{"shape":"VersionNumber"},
+        "description":{"shape":"NonEmptyString"},
+        "changeDescription":{"shape":"NonEmptyString"},
+        "type":{"shape":"WorkflowType"},
+        "owner":{"shape":"NonEmptyString"},
+        "state":{"shape":"WorkflowState"},
+        "dateCreated":{"shape":"DateTime"},
+        "tags":{"shape":"TagMap"}
+      }
+    },
+    "WorkflowSummaryList":{
+      "type":"list",
+      "member":{"shape":"WorkflowSummary"}
+    },
     "WorkflowType":{
       "type":"string",
       "enum":[
@@ -4575,6 +5038,34 @@
         "TEST",
         "DISTRIBUTION"
       ]
+    },
+    "WorkflowVersion":{
+      "type":"structure",
+      "members":{
+        "arn":{"shape":"WorkflowVersionArn"},
+        "name":{"shape":"ResourceName"},
+        "version":{"shape":"VersionNumber"},
+        "description":{"shape":"NonEmptyString"},
+        "type":{"shape":"WorkflowType"},
+        "owner":{"shape":"NonEmptyString"},
+        "dateCreated":{"shape":"DateTime"}
+      }
+    },
+    "WorkflowVersionArn":{
+      "type":"string",
+      "pattern":"^arn:aws(?:-[a-z]+)*:imagebuilder:[a-z]{2,}(?:-[a-z]+)+-[0-9]+:(?:[0-9]{12}|aws):workflow/(build|test|distribution)/[a-z0-9-_]+/[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "WorkflowVersionArnOrBuildVersionArn":{
+      "type":"string",
+      "pattern":"^arn:aws(?:-[a-z]+)*:imagebuilder:[a-z]{2,}(?:-[a-z]+)+-[0-9]+:(?:[0-9]{12}|aws):workflow/(build|test|distribution)/[a-z0-9-_]+/(?:(?:([0-9]+|x)\\.([0-9]+|x)\\.([0-9]+|x))|(?:[0-9]+\\.[0-9]+\\.[0-9]+/[0-9]+))$"
+    },
+    "WorkflowVersionList":{
+      "type":"list",
+      "member":{"shape":"WorkflowVersion"}
+    },
+    "WorkflowWildcardVersionArn":{
+      "type":"string",
+      "pattern":"^arn:aws(?:-[a-z]+)*:imagebuilder:[a-z]{2,}(?:-[a-z]+)+-[0-9]+:(?:[0-9]{12}|aws):workflow/(build|test|distribution)/[a-z0-9-_]+/(?:[0-9]+|x)\\.(?:[0-9]+|x)\\.(?:[0-9]+|x)$"
     }
   }
 }

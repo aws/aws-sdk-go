@@ -12,6 +12,7 @@
     "CreateImageRecipe": "<p>Creates a new image recipe. Image recipes define how images are configured, tested, and assessed.</p>",
     "CreateInfrastructureConfiguration": "<p>Creates a new infrastructure configuration. An infrastructure configuration defines the environment in which your image will be built and tested.</p>",
     "CreateLifecyclePolicy": "<p>Create a lifecycle policy resource.</p>",
+    "CreateWorkflow": "<p>Create a new workflow or a new version of an existing workflow.</p>",
     "DeleteComponent": "<p>Deletes a component build version.</p>",
     "DeleteContainerRecipe": "<p>Deletes a container recipe.</p>",
     "DeleteDistributionConfiguration": "<p>Deletes a distribution configuration.</p>",
@@ -20,6 +21,7 @@
     "DeleteImageRecipe": "<p>Deletes an image recipe.</p>",
     "DeleteInfrastructureConfiguration": "<p>Deletes an infrastructure configuration.</p>",
     "DeleteLifecyclePolicy": "<p>Delete the specified lifecycle policy resource.</p>",
+    "DeleteWorkflow": "<p>Deletes a specific workflow resource.</p>",
     "GetComponent": "<p>Gets a component object.</p>",
     "GetComponentPolicy": "<p>Gets a component policy.</p>",
     "GetContainerRecipe": "<p>Retrieves a container recipe.</p>",
@@ -33,6 +35,7 @@
     "GetInfrastructureConfiguration": "<p>Gets an infrastructure configuration.</p>",
     "GetLifecycleExecution": "<p>Get the runtime information that was logged for a specific runtime instance of the lifecycle policy.</p>",
     "GetLifecyclePolicy": "<p>Get details for the specified image lifecycle policy.</p>",
+    "GetWorkflow": "<p>Get a workflow resource object.</p>",
     "GetWorkflowExecution": "<p>Get the runtime information that was logged for a specific runtime instance of the workflow.</p>",
     "GetWorkflowStepExecution": "<p>Get the runtime information that was logged for a specific runtime instance of the workflow step.</p>",
     "ImportComponent": "<p>Imports a component and transforms its data into a component document.</p>",
@@ -54,18 +57,22 @@
     "ListLifecycleExecutions": "<p>Get the lifecycle runtime history for the specified resource.</p>",
     "ListLifecyclePolicies": "<p>Get a list of lifecycle policies in your Amazon Web Services account.</p>",
     "ListTagsForResource": "<p>Returns the list of tags for the specified resource.</p>",
+    "ListWaitingWorkflowSteps": "<p>Get a list of workflow steps that are waiting for action for workflows in your Amazon Web Services account.</p>",
+    "ListWorkflowBuildVersions": "<p>Returns a list of build versions for a specific workflow resource.</p>",
     "ListWorkflowExecutions": "<p>Returns a list of workflow runtime instance metadata objects for a specific image build version.</p>",
-    "ListWorkflowStepExecutions": "<p>Shows runtime data for each step in a runtime instance of the workflow that you specify in the request.</p>",
+    "ListWorkflowStepExecutions": "<p>Returns runtime data for each step in a runtime instance of the workflow that you specify in the request.</p>",
+    "ListWorkflows": "<p>Lists workflow build versions based on filtering parameters.</p>",
     "PutComponentPolicy": "<p>Applies a policy to a component. We recommend that you call the RAM API <a href=\"https://docs.aws.amazon.com/ram/latest/APIReference/API_CreateResourceShare.html\">CreateResourceShare</a> to share resources. If you call the Image Builder API <code>PutComponentPolicy</code>, you must also call the RAM API <a href=\"https://docs.aws.amazon.com/ram/latest/APIReference/API_PromoteResourceShareCreatedFromPolicy.html\">PromoteResourceShareCreatedFromPolicy</a> in order for the resource to be visible to all principals with whom the resource is shared.</p>",
     "PutContainerRecipePolicy": "<p>Applies a policy to a container image. We recommend that you call the RAM API CreateResourceShare (https://docs.aws.amazon.com//ram/latest/APIReference/API_CreateResourceShare.html) to share resources. If you call the Image Builder API <code>PutContainerImagePolicy</code>, you must also call the RAM API PromoteResourceShareCreatedFromPolicy (https://docs.aws.amazon.com//ram/latest/APIReference/API_PromoteResourceShareCreatedFromPolicy.html) in order for the resource to be visible to all principals with whom the resource is shared.</p>",
     "PutImagePolicy": "<p>Applies a policy to an image. We recommend that you call the RAM API <a href=\"https://docs.aws.amazon.com/ram/latest/APIReference/API_CreateResourceShare.html\">CreateResourceShare</a> to share resources. If you call the Image Builder API <code>PutImagePolicy</code>, you must also call the RAM API <a href=\"https://docs.aws.amazon.com/ram/latest/APIReference/API_PromoteResourceShareCreatedFromPolicy.html\">PromoteResourceShareCreatedFromPolicy</a> in order for the resource to be visible to all principals with whom the resource is shared.</p>",
     "PutImageRecipePolicy": "<p>Applies a policy to an image recipe. We recommend that you call the RAM API <a href=\"https://docs.aws.amazon.com/ram/latest/APIReference/API_CreateResourceShare.html\">CreateResourceShare</a> to share resources. If you call the Image Builder API <code>PutImageRecipePolicy</code>, you must also call the RAM API <a href=\"https://docs.aws.amazon.com/ram/latest/APIReference/API_PromoteResourceShareCreatedFromPolicy.html\">PromoteResourceShareCreatedFromPolicy</a> in order for the resource to be visible to all principals with whom the resource is shared.</p>",
+    "SendWorkflowStepAction": "<p>Pauses or resumes image creation when the associated workflow runs a <code>WaitForAction</code> step.</p>",
     "StartImagePipelineExecution": "<p>Manually triggers a pipeline to create an image.</p>",
     "StartResourceStateUpdate": "<p>Begin asynchronous resource state update for lifecycle changes to the specified image resources.</p>",
     "TagResource": "<p>Adds a tag to a resource.</p>",
     "UntagResource": "<p>Removes a tag from a resource.</p>",
     "UpdateDistributionConfiguration": "<p>Updates a new distribution configuration. Distribution configurations define and configure the outputs of your pipeline.</p>",
-    "UpdateImagePipeline": "<p>Updates an image pipeline. Image pipelines enable you to automate the creation and distribution of images.</p> <note> <p>UpdateImagePipeline does not support selective updates for the pipeline. You must specify all of the required properties in the update request, not just the properties that have changed.</p> </note>",
+    "UpdateImagePipeline": "<p>Updates an image pipeline. Image pipelines enable you to automate the creation and distribution of images. You must specify exactly one recipe for your image, using either a <code>containerRecipeArn</code> or an <code>imageRecipeArn</code>.</p> <note> <p>UpdateImagePipeline does not support selective updates for the pipeline. You must specify all of the required properties in the update request, not just the properties that have changed.</p> </note>",
     "UpdateInfrastructureConfiguration": "<p>Updates a new infrastructure configuration. An infrastructure configuration defines the environment in which your image will be built and tested.</p>",
     "UpdateLifecyclePolicy": "<p>Update the specified lifecycle policy.</p>"
   },
@@ -89,7 +96,7 @@
       "refs": {
         "AmiDistributionConfiguration$targetAccountIds": "<p>The ID of an account to which you want to distribute an image.</p>",
         "LaunchPermissionConfiguration$userIds": "<p>The Amazon Web Services account ID.</p>",
-        "LifecyclePolicyDetailExclusionRulesAmis$sharedAccounts": "<p>Specifies configuration details for Image Builder to exclude the most recent resources from lifecycle actions.</p>"
+        "LifecyclePolicyDetailExclusionRulesAmis$sharedAccounts": "<p>Specifies Amazon Web Services accounts whose resources are excluded from the lifecycle action.</p>"
       }
     },
     "AdditionalInstanceConfiguration": {
@@ -148,6 +155,7 @@
         "LifecyclePolicyDetailExclusionRulesAmis$isPublic": "<p>Configures whether public AMIs are excluded from the lifecycle action.</p>",
         "ListComponentsRequest$byName": "<p>Returns the list of components for the specified name.</p>",
         "ListImagesRequest$byName": "<p>Requests a list of images with a specific recipe name.</p>",
+        "ListWorkflowsRequest$byName": "<p>Specify all or part of the workflow name to streamline results.</p>",
         "ResourceStateUpdateIncludeResources$amis": "<p>Specifies whether the lifecycle action should apply to distributed AMIs</p>",
         "ResourceStateUpdateIncludeResources$snapshots": "<p>Specifies whether the lifecycle action should apply to snapshots associated with distributed AMIs.</p>",
         "ResourceStateUpdateIncludeResources$containers": "<p>Specifies whether the lifecycle action should apply to distributed containers.</p>"
@@ -213,10 +221,14 @@
         "CreateInfrastructureConfigurationResponse$clientToken": "<p>The client token that uniquely identifies the request.</p>",
         "CreateLifecyclePolicyRequest$clientToken": "<p>Unique, case-sensitive identifier you provide to ensure idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>",
         "CreateLifecyclePolicyResponse$clientToken": "<p>The client token that uniquely identifies the request.</p>",
+        "CreateWorkflowRequest$clientToken": "<p>Unique, case-sensitive identifier you provide to ensure idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>",
+        "CreateWorkflowResponse$clientToken": "<p>The client token that uniquely identifies the request.</p>",
         "ImportComponentRequest$clientToken": "<p>Unique, case-sensitive identifier you provide to ensure idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>",
         "ImportComponentResponse$clientToken": "<p>The client token that uniquely identifies the request.</p>",
         "ImportVmImageRequest$clientToken": "<p>Unique, case-sensitive identifier you provide to ensure idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>",
         "ImportVmImageResponse$clientToken": "<p>The client token that uniquely identifies the request.</p>",
+        "SendWorkflowStepActionRequest$clientToken": "<p>Unique, case-sensitive identifier you provide to ensure idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>",
+        "SendWorkflowStepActionResponse$clientToken": "<p>The client token that uniquely identifies the request.</p>",
         "StartImagePipelineExecutionRequest$clientToken": "<p>Unique, case-sensitive identifier you provide to ensure idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>",
         "StartImagePipelineExecutionResponse$clientToken": "<p>The client token that uniquely identifies the request.</p>",
         "StartResourceStateUpdateRequest$clientToken": "<p>Unique, case-sensitive identifier you provide to ensure idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a> in the <i>Amazon EC2 API Reference</i>.</p>",
@@ -232,7 +244,7 @@
     "Component": {
       "base": "<p>A detailed view of a component.</p>",
       "refs": {
-        "GetComponentResponse$component": "<p>The component object associated with the specified ARN.</p>"
+        "GetComponentResponse$component": "<p>The component object specified in the request.</p>"
       }
     },
     "ComponentBuildVersionArn": {
@@ -331,7 +343,7 @@
       }
     },
     "ComponentState": {
-      "base": "<p>A group of fields that describe the current status of components that are no longer active.</p>",
+      "base": "<p>A group of fields that describe the current status of components.</p>",
       "refs": {
         "Component$state": "<p>Describes the current status of the component. This is used for components that are no longer active.</p>",
         "ComponentSummary$state": "<p>Describes the current status of the component.</p>"
@@ -535,6 +547,16 @@
       "refs": {
       }
     },
+    "CreateWorkflowRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateWorkflowResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CvssScore": {
       "base": "<p>Amazon Inspector generates a risk score for each finding. This score helps you to prioritize findings, to focus on the most critical findings and the most vulnerable resources. The score uses the Common Vulnerability Scoring System (CVSS) format. This format is a modification of the base CVSS score that the National Vulnerability Database (NVD) provides. For more information about severity levels, see <a href=\"https://docs.aws.amazon.com/inspector/latest/user/findings-understanding-severity.html\">Severity levels for Amazon Inspector findings</a> in the <i>Amazon Inspector User Guide</i>.</p>",
       "refs": {
@@ -594,10 +616,14 @@
         "InfrastructureConfiguration$dateUpdated": "<p>The date on which the infrastructure configuration was last updated.</p>",
         "InfrastructureConfigurationSummary$dateCreated": "<p>The date on which the infrastructure configuration was created.</p>",
         "InfrastructureConfigurationSummary$dateUpdated": "<p>The date on which the infrastructure configuration was last updated.</p>",
+        "Workflow$dateCreated": "<p>The timestamp when Image Builder created the workflow resource.</p>",
         "WorkflowExecutionMetadata$startTime": "<p>The timestamp when the runtime instance of this workflow started.</p>",
         "WorkflowExecutionMetadata$endTime": "<p>The timestamp when this runtime instance of the workflow finished.</p>",
+        "WorkflowStepExecution$startTime": "<p>The timestamp when the workflow step started.</p>",
         "WorkflowStepMetadata$startTime": "<p>The timestamp when the workflow step started.</p>",
-        "WorkflowStepMetadata$endTime": "<p>The timestamp when the workflow step finished.</p>"
+        "WorkflowStepMetadata$endTime": "<p>The timestamp when the workflow step finished.</p>",
+        "WorkflowSummary$dateCreated": "<p>The original creation date of the workflow resource.</p>",
+        "WorkflowVersion$dateCreated": "<p>The timestamp when Image Builder created the workflow version.</p>"
       }
     },
     "DateTimeTimestamp": {
@@ -696,6 +722,16 @@
       }
     },
     "DeleteLifecyclePolicyResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteWorkflowRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteWorkflowResponse": {
       "base": null,
       "refs": {
       }
@@ -872,7 +908,8 @@
         "ListImageRecipesRequest$filters": "<p>Use the following filters to streamline results:</p> <ul> <li> <p> <code>name</code> </p> </li> <li> <p> <code>parentImage</code> </p> </li> <li> <p> <code>platform</code> </p> </li> </ul>",
         "ListImagesRequest$filters": "<p>Use the following filters to streamline results:</p> <ul> <li> <p> <code>name</code> </p> </li> <li> <p> <code>osVersion</code> </p> </li> <li> <p> <code>platform</code> </p> </li> <li> <p> <code>type</code> </p> </li> <li> <p> <code>version</code> </p> </li> </ul>",
         "ListInfrastructureConfigurationsRequest$filters": "<p>You can filter on <code>name</code> to streamline results.</p>",
-        "ListLifecyclePoliciesRequest$filters": "<p>Streamline results based on one of the following values: <code>Name</code>, <code>Status</code>.</p>"
+        "ListLifecyclePoliciesRequest$filters": "<p>Streamline results based on one of the following values: <code>Name</code>, <code>Status</code>.</p>",
+        "ListWorkflowsRequest$filters": "<p>Used to streamline search results.</p>"
       }
     },
     "FilterName": {
@@ -1040,6 +1077,16 @@
       "refs": {
       }
     },
+    "GetWorkflowRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetWorkflowResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetWorkflowStepExecutionRequest": {
       "base": null,
       "refs": {
@@ -1105,9 +1152,12 @@
         "ListWorkflowStepExecutionsResponse$imageBuildVersionArn": "<p>The image build version resource ARN that's associated with the specified runtime instance of the workflow.</p>",
         "PutImagePolicyRequest$imageArn": "<p>The Amazon Resource Name (ARN) of the image that this policy should be applied to.</p>",
         "PutImagePolicyResponse$imageArn": "<p>The Amazon Resource Name (ARN) of the image that this policy was applied to.</p>",
+        "SendWorkflowStepActionRequest$imageBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the image build version to send action for.</p>",
+        "SendWorkflowStepActionResponse$imageBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the image build version that received the action request.</p>",
         "StartImagePipelineExecutionResponse$imageBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the image that the request created.</p>",
         "StartResourceStateUpdateRequest$resourceArn": "<p>The ARN of the Image Builder resource that is updated. The state update might also impact associated resources.</p>",
-        "StartResourceStateUpdateResponse$resourceArn": "<p>The requested ARN of the Image Builder resource for the asynchronous update.</p>"
+        "StartResourceStateUpdateResponse$resourceArn": "<p>The requested ARN of the Image Builder resource for the asynchronous update.</p>",
+        "WorkflowStepExecution$imageBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the image build version that ran the workflow.</p>"
       }
     },
     "ImageBuilderArn": {
@@ -1427,6 +1477,12 @@
         "CreateContainerRecipeRequest$dockerfileTemplateData": "<p>The Dockerfile template used to build your image as an inline data blob.</p>"
       }
     },
+    "InlineWorkflowData": {
+      "base": null,
+      "refs": {
+        "CreateWorkflowRequest$data": "<p>Contains the UTF-8 encoded YAML document content for the workflow. Alternatively, you can specify the <code>uri</code> of a YAML document file stored in Amazon S3. However, you cannot specify both properties.</p>"
+      }
+    },
     "InspectorScoreDetails": {
       "base": "<p>Information about the factors that influenced the score that Amazon Inspector assigned for a finding.</p>",
       "refs": {
@@ -1708,7 +1764,7 @@
     "LifecyclePolicyDetailExclusionRulesAmisLastLaunched": {
       "base": "<p>Defines criteria to exclude AMIs from lifecycle actions based on the last time they were used to launch an instance.</p>",
       "refs": {
-        "LifecyclePolicyDetailExclusionRulesAmis$lastLaunched": "<p>Configures Amazon Web Services Regions that are excluded from the lifecycle action.</p>"
+        "LifecyclePolicyDetailExclusionRulesAmis$lastLaunched": "<p>Specifies configuration details for Image Builder to exclude the most recent resources from lifecycle actions.</p>"
       }
     },
     "LifecyclePolicyDetailExclusionRulesAmisLastLaunchedValue": {
@@ -1976,6 +2032,26 @@
       "refs": {
       }
     },
+    "ListWaitingWorkflowStepsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListWaitingWorkflowStepsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListWorkflowBuildVersionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListWorkflowBuildVersionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListWorkflowExecutionsRequest": {
       "base": null,
       "refs": {
@@ -1992,6 +2068,16 @@
       }
     },
     "ListWorkflowStepExecutionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListWorkflowsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListWorkflowsResponse": {
       "base": null,
       "refs": {
       }
@@ -2023,7 +2109,7 @@
         "AmiDistributionConfiguration$kmsKeyId": "<p>The KMS key identifier used to encrypt the distributed image.</p>",
         "CancelImageCreationResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
         "Component$description": "<p>The description of the component.</p>",
-        "Component$changeDescription": "<p>The change description of the component.</p>",
+        "Component$changeDescription": "<p>Describes what change has been made in this version of the component, or what makes this version different from other versions of the component.</p>",
         "Component$owner": "<p>The owner of the component.</p>",
         "Component$kmsKeyId": "<p>The KMS key identifier used to encrypt the component.</p>",
         "Component$publisher": "<p>Contains the name of the publisher if this is a third-party component. Otherwise, this property is empty.</p>",
@@ -2044,7 +2130,7 @@
         "ContainerRecipeSummary$owner": "<p>The owner of the container recipe.</p>",
         "ContainerRecipeSummary$parentImage": "<p>The base image for the container recipe.</p>",
         "CreateComponentRequest$description": "<p>Describes the contents of the component.</p>",
-        "CreateComponentRequest$changeDescription": "<p>The change description of the component. Describes what change has been made in this version, or what makes this version different from other versions of this component.</p>",
+        "CreateComponentRequest$changeDescription": "<p>The change description of the component. Describes what change has been made in this version, or what makes this version different from other versions of the component.</p>",
         "CreateComponentRequest$kmsKeyId": "<p>The ID of the KMS key that is used to encrypt this component.</p>",
         "CreateComponentResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
         "CreateContainerRecipeRequest$description": "<p>The description of the container recipe.</p>",
@@ -2067,6 +2153,9 @@
         "CreateInfrastructureConfigurationRequest$keyPair": "<p>The key pair of the infrastructure configuration. You can use this to log on to and debug the instance used to create your image.</p>",
         "CreateInfrastructureConfigurationResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
         "CreateLifecyclePolicyRequest$description": "<p>Optional description for the lifecycle policy.</p>",
+        "CreateWorkflowRequest$description": "<p>Describes the workflow.</p>",
+        "CreateWorkflowRequest$changeDescription": "<p>Describes what change has been made in this version of the workflow, or what makes this version different from other versions of the workflow.</p>",
+        "CreateWorkflowRequest$kmsKeyId": "<p>The ID of the KMS key that is used to encrypt this workflow resource.</p>",
         "CvssScore$scoringVector": "<p>The vector string of the CVSS score.</p>",
         "CvssScore$version": "<p>The CVSS version that generated the score.</p>",
         "CvssScore$source": "<p>The source of the CVSS score.</p>",
@@ -2125,7 +2214,7 @@
         "ImageSummary$owner": "<p>The owner of the image.</p>",
         "ImageVersion$owner": "<p>The owner of the image version.</p>",
         "ImportComponentRequest$description": "<p>The description of the component. Describes the contents of the component.</p>",
-        "ImportComponentRequest$changeDescription": "<p>The change description of the component. This description indicates the change that has been made in this version, or what makes this version different from other versions of this component.</p>",
+        "ImportComponentRequest$changeDescription": "<p>The change description of the component. This description indicates the change that has been made in this version, or what makes this version different from other versions of the component.</p>",
         "ImportComponentRequest$data": "<p>The data of the component. Used to specify the data inline. Either <code>data</code> or <code>uri</code> can be used to specify the data within the component.</p>",
         "ImportComponentRequest$kmsKeyId": "<p>The ID of the KMS key that should be used to encrypt this component.</p>",
         "ImportComponentResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
@@ -2187,6 +2276,7 @@
         "S3Logs$s3KeyPrefix": "<p>The Amazon S3 path to the bucket where the logs are stored.</p>",
         "Schedule$scheduleExpression": "<p>The cron expression determines how often EC2 Image Builder evaluates your <code>pipelineExecutionStartCondition</code>.</p> <p>For information on how to format a cron expression in Image Builder, see <a href=\"https://docs.aws.amazon.com/imagebuilder/latest/userguide/image-builder-cron.html\">Use cron expressions in EC2 Image Builder</a>.</p>",
         "SecurityGroupIds$member": null,
+        "SendWorkflowStepActionRequest$reason": "<p>The reason why this action is sent.</p>",
         "StartImagePipelineExecutionResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
         "StringList$member": null,
         "TargetContainerRepository$repositoryName": "<p>The name of the container repository where the output container image is stored. This name is prefixed by the repository location.</p>",
@@ -2206,7 +2296,17 @@
         "VulnerablePackage$packageManager": "<p>The package manager of the vulnerable package.</p>",
         "VulnerablePackage$filePath": "<p>The file path of the vulnerable package.</p>",
         "VulnerablePackage$fixedInVersion": "<p>The version of the package that contains the vulnerability fix.</p>",
-        "VulnerablePackage$remediation": "<p>The code to run in your environment to update packages with a fix available.</p>"
+        "VulnerablePackage$remediation": "<p>The code to run in your environment to update packages with a fix available.</p>",
+        "Workflow$description": "<p>The description of the workflow.</p>",
+        "Workflow$changeDescription": "<p>Describes what change has been made in this version of the workflow, or what makes this version different from other versions of the workflow.</p>",
+        "Workflow$owner": "<p>The owner of the workflow resource.</p>",
+        "Workflow$kmsKeyId": "<p>The KMS key identifier used to encrypt the workflow resource.</p>",
+        "WorkflowState$reason": "<p>Describes how or why the workflow changed state.</p>",
+        "WorkflowSummary$description": "<p>Describes the workflow.</p>",
+        "WorkflowSummary$changeDescription": "<p>The change description for the current version of the workflow resource.</p>",
+        "WorkflowSummary$owner": "<p>The owner of the workflow resource.</p>",
+        "WorkflowVersion$description": "<p>Describes the workflow.</p>",
+        "WorkflowVersion$owner": "<p>The owner of the workflow resource.</p>"
       }
     },
     "NonEmptyStringList": {
@@ -2242,6 +2342,12 @@
         "SystemsManagerAgent$uninstallAfterBuild": "<p>Controls whether the Systems Manager agent is removed from your final build image, prior to creating the new AMI. If this is set to true, then the agent is removed from the final image. If it's set to false, then the agent is left in, so that it is included in the new AMI. The default value is false.</p>",
         "UpdateImagePipelineRequest$enhancedImageMetadataEnabled": "<p>Collects additional information about the image being created, including the operating system (OS) version and package list. This information is used to enhance the overall experience of using EC2 Image Builder. Enabled by default.</p>",
         "UpdateInfrastructureConfigurationRequest$terminateInstanceOnFailure": "<p>The terminate instance on failure setting of the infrastructure configuration. Set to false if you want Image Builder to retain the instance used to configure your AMI if the build or test phase of your workflow fails.</p>"
+      }
+    },
+    "OnWorkflowFailure": {
+      "base": null,
+      "refs": {
+        "WorkflowConfiguration$onFailure": "<p>The action to take if the workflow fails.</p>"
       }
     },
     "OrganizationArn": {
@@ -2300,7 +2406,8 @@
         "ListComponentsRequest$owner": "<p>Filters results based on the type of owner for the component. By default, this request returns a list of components that your account owns. To see results for other types of owners, you can specify components that Amazon manages, third party components, or components that other accounts have shared with you.</p>",
         "ListContainerRecipesRequest$owner": "<p>Returns container recipes belonging to the specified owner, that have been shared with you. You can omit this field to return container recipes belonging to your account.</p>",
         "ListImageRecipesRequest$owner": "<p>The owner defines which image recipes you want to list. By default, this request will only show image recipes owned by your account. You can use this field to specify if you want to view image recipes owned by yourself, by Amazon, or those image recipes that have been shared with you by other customers.</p>",
-        "ListImagesRequest$owner": "<p>The owner defines which images you want to list. By default, this request will only show images owned by your account. You can use this field to specify if you want to view images owned by yourself, by Amazon, or those images that have been shared with you by other customers.</p>"
+        "ListImagesRequest$owner": "<p>The owner defines which images you want to list. By default, this request will only show images owned by your account. You can use this field to specify if you want to view images owned by yourself, by Amazon, or those images that have been shared with you by other customers.</p>",
+        "ListWorkflowsRequest$owner": "<p>Used to get a list of workflow build version filtered by the identity of the creator.</p>"
       }
     },
     "PackageArchitecture": {
@@ -2354,10 +2461,24 @@
         "ListLifecycleExecutionsResponse$nextToken": "<p>The next token used for paginated responses. When this field isn't empty, there are additional elements that the service hasn't included in this request. Use this token with the next request to retrieve additional objects.</p>",
         "ListLifecyclePoliciesRequest$nextToken": "<p>A token to specify where to start paginating. This is the nextToken from a previously truncated response.</p>",
         "ListLifecyclePoliciesResponse$nextToken": "<p>The next token used for paginated responses. When this field isn't empty, there are additional elements that the service hasn't included in this request. Use this token with the next request to retrieve additional objects.</p>",
+        "ListWaitingWorkflowStepsRequest$nextToken": "<p>A token to specify where to start paginating. This is the nextToken from a previously truncated response.</p>",
+        "ListWaitingWorkflowStepsResponse$nextToken": "<p>The next token used for paginated responses. When this field isn't empty, there are additional elements that the service hasn't included in this request. Use this token with the next request to retrieve additional objects.</p>",
+        "ListWorkflowBuildVersionsRequest$nextToken": "<p>A token to specify where to start paginating. This is the nextToken from a previously truncated response.</p>",
+        "ListWorkflowBuildVersionsResponse$nextToken": "<p>The next token used for paginated responses. When this field isn't empty, there are additional elements that the service hasn't included in this request. Use this token with the next request to retrieve additional objects.</p>",
         "ListWorkflowExecutionsRequest$nextToken": "<p>A token to specify where to start paginating. This is the nextToken from a previously truncated response.</p>",
         "ListWorkflowExecutionsResponse$nextToken": "<p>The next token used for paginated responses. When this field isn't empty, there are additional elements that the service hasn't included in this request. Use this token with the next request to retrieve additional objects.</p>",
         "ListWorkflowStepExecutionsRequest$nextToken": "<p>A token to specify where to start paginating. This is the nextToken from a previously truncated response.</p>",
-        "ListWorkflowStepExecutionsResponse$nextToken": "<p>The next token used for paginated responses. When this field isn't empty, there are additional elements that the service hasn't included in this request. Use this token with the next request to retrieve additional objects.</p>"
+        "ListWorkflowStepExecutionsResponse$nextToken": "<p>The next token used for paginated responses. When this field isn't empty, there are additional elements that the service hasn't included in this request. Use this token with the next request to retrieve additional objects.</p>",
+        "ListWorkflowsRequest$nextToken": "<p>A token to specify where to start paginating. This is the nextToken from a previously truncated response.</p>",
+        "ListWorkflowsResponse$nextToken": "<p>The next token used for paginated responses. When this field isn't empty, there are additional elements that the service hasn't included in this request. Use this token with the next request to retrieve additional objects.</p>"
+      }
+    },
+    "ParallelGroup": {
+      "base": null,
+      "refs": {
+        "GetWorkflowExecutionResponse$parallelGroup": "<p>Test workflows are defined within named runtime groups. The parallel group is a named group that contains one or more test workflows.</p>",
+        "WorkflowConfiguration$parallelGroup": "<p>Test workflows are defined within named runtime groups called parallel groups. The parallel group is the named group that contains this test workflow. Test workflows within a parallel group can run at the same time. Image Builder starts up to five test workflows in the group at the same time, and starts additional workflows as others complete, until all workflows in the group have completed. This field only applies for test workflows.</p>",
+        "WorkflowExecutionMetadata$parallelGroup": "<p>The name of the test group that included the test workflow resource at runtime.</p>"
       }
     },
     "PipelineExecutionStartCondition": {
@@ -2482,6 +2603,7 @@
         "CreateImageRecipeRequest$name": "<p>The name of the image recipe.</p>",
         "CreateInfrastructureConfigurationRequest$name": "<p>The name of the infrastructure configuration.</p>",
         "CreateLifecyclePolicyRequest$name": "<p>The name of the lifecycle policy to create.</p>",
+        "CreateWorkflowRequest$name": "<p>The name of the workflow to create.</p>",
         "DistributionConfiguration$name": "<p>The name of the distribution configuration.</p>",
         "DistributionConfigurationSummary$name": "<p>The name of the distribution configuration.</p>",
         "Image$name": "<p>The name of the image.</p>",
@@ -2496,7 +2618,10 @@
         "InfrastructureConfigurationSummary$name": "<p>The name of the infrastructure configuration.</p>",
         "LifecyclePolicy$name": "<p>The name of the lifecycle policy.</p>",
         "LifecyclePolicyResourceSelectionRecipe$name": "<p>The name of an Image Builder recipe that the lifecycle policy uses for resource selection.</p>",
-        "LifecyclePolicySummary$name": "<p>The name of the lifecycle policy.</p>"
+        "LifecyclePolicySummary$name": "<p>The name of the lifecycle policy.</p>",
+        "Workflow$name": "<p>The name of the workflow resource.</p>",
+        "WorkflowSummary$name": "<p>The name of the workflow.</p>",
+        "WorkflowVersion$name": "<p>The name of the workflow.</p>"
       }
     },
     "ResourceNotFoundException": {
@@ -2568,18 +2693,26 @@
         "ListLifecycleExecutionResourcesRequest$maxResults": "<p>The maximum items to return in a request.</p>",
         "ListLifecycleExecutionsRequest$maxResults": "<p>The maximum items to return in a request.</p>",
         "ListLifecyclePoliciesRequest$maxResults": "<p>The maximum items to return in a request.</p>",
+        "ListWaitingWorkflowStepsRequest$maxResults": "<p>The maximum items to return in a request.</p>",
+        "ListWorkflowBuildVersionsRequest$maxResults": "<p>The maximum items to return in a request.</p>",
         "ListWorkflowExecutionsRequest$maxResults": "<p>The maximum items to return in a request.</p>",
-        "ListWorkflowStepExecutionsRequest$maxResults": "<p>The maximum items to return in a request.</p>"
+        "ListWorkflowStepExecutionsRequest$maxResults": "<p>The maximum items to return in a request.</p>",
+        "ListWorkflowsRequest$maxResults": "<p>The maximum items to return in a request.</p>"
       }
     },
     "RoleNameOrArn": {
       "base": null,
       "refs": {
-        "CreateLifecyclePolicyRequest$executionRole": "<p>The role name or Amazon Resource Name (ARN) for the IAM role that grants Image Builder access to run lifecycle actions.</p>",
-        "LifecyclePolicy$executionRole": "<p>The name of the IAM role that Image Builder uses to run the lifecycle policy. This is a custom role that you create.</p>",
-        "LifecyclePolicySummary$executionRole": "<p>The name of the IAM role that Image Builder uses to run the lifecycle policy.</p>",
+        "CreateImagePipelineRequest$executionRole": "<p>The name or Amazon Resource Name (ARN) for the IAM role you create that grants Image Builder access to perform workflow actions.</p>",
+        "CreateImageRequest$executionRole": "<p>The name or Amazon Resource Name (ARN) for the IAM role you create that grants Image Builder access to perform workflow actions.</p>",
+        "CreateLifecyclePolicyRequest$executionRole": "<p>The name or Amazon Resource Name (ARN) for the IAM role you create that grants Image Builder access to run lifecycle actions.</p>",
+        "Image$executionRole": "<p>The name or Amazon Resource Name (ARN) for the IAM role you create that grants Image Builder access to perform workflow actions.</p>",
+        "ImagePipeline$executionRole": "<p>The name or Amazon Resource Name (ARN) for the IAM role you create that grants Image Builder access to perform workflow actions.</p>",
+        "LifecyclePolicy$executionRole": "<p>The name or Amazon Resource Name (ARN) of the IAM role that Image Builder uses to run the lifecycle policy. This is a custom role that you create.</p>",
+        "LifecyclePolicySummary$executionRole": "<p>The name or Amazon Resource Name (ARN) of the IAM role that Image Builder uses to run the lifecycle policy.</p>",
         "StartResourceStateUpdateRequest$executionRole": "<p>The name or Amazon Resource Name (ARN) of the IAM role that’s used to update image state.</p>",
-        "UpdateLifecyclePolicyRequest$executionRole": "<p>The name of the IAM role that Image Builder should use to update the lifecycle policy.</p>"
+        "UpdateImagePipelineRequest$executionRole": "<p>The name or Amazon Resource Name (ARN) for the IAM role you create that grants Image Builder access to perform workflow actions.</p>",
+        "UpdateLifecyclePolicyRequest$executionRole": "<p>The name or Amazon Resource Name (ARN) of the IAM role that Image Builder uses to update the lifecycle policy.</p>"
       }
     },
     "S3ExportConfiguration": {
@@ -2595,7 +2728,7 @@
       }
     },
     "Schedule": {
-      "base": "<p>A schedule configures how often and when a pipeline will automatically create a new image.</p>",
+      "base": "<p>A schedule configures when and how often a pipeline will automatically create a new image.</p>",
       "refs": {
         "CreateImagePipelineRequest$schedule": "<p>The schedule of the image pipeline.</p>",
         "ImagePipeline$schedule": "<p>The schedule of the image pipeline.</p>",
@@ -2608,6 +2741,16 @@
         "CreateInfrastructureConfigurationRequest$securityGroupIds": "<p>The security group IDs to associate with the instance used to customize your Amazon EC2 AMI.</p>",
         "InfrastructureConfiguration$securityGroupIds": "<p>The security group IDs of the infrastructure configuration.</p>",
         "UpdateInfrastructureConfigurationRequest$securityGroupIds": "<p>The security group IDs to associate with the instance used to customize your Amazon EC2 AMI.</p>"
+      }
+    },
+    "SendWorkflowStepActionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SendWorkflowStepActionResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "ServiceException": {
@@ -2684,7 +2827,7 @@
         "EcrConfiguration$containerTags": "<p>Tags for Image Builder to apply to the output container image that &amp;INS; scans. Tags can help you identify and manage your scanned images.</p>",
         "LaunchPermissionConfiguration$userGroups": "<p>The name of the group.</p>",
         "LifecycleExecutionResource$imageUris": "<p>For an impacted container image, this identifies a list of URIs for associated container images distributed to ECR repositories.</p>",
-        "LifecyclePolicyDetailExclusionRulesAmis$regions": "<p>Specifies Amazon Web Services accounts whose resources are excluded from the lifecycle action.</p>"
+        "LifecyclePolicyDetailExclusionRulesAmis$regions": "<p>Configures Amazon Web Services Regions that are excluded from the lifecycle action.</p>"
       }
     },
     "SystemsManagerAgent": {
@@ -2723,6 +2866,7 @@
         "CreateImageRequest$tags": "<p>The tags of the image.</p>",
         "CreateInfrastructureConfigurationRequest$tags": "<p>The tags of the infrastructure configuration.</p>",
         "CreateLifecyclePolicyRequest$tags": "<p>Tags to apply to the lifecycle policy resource.</p>",
+        "CreateWorkflowRequest$tags": "<p>Tags that apply to the workflow resource.</p>",
         "DistributionConfiguration$tags": "<p>The tags of the distribution configuration.</p>",
         "DistributionConfigurationSummary$tags": "<p>The tags associated with the distribution configuration.</p>",
         "Image$tags": "<p>The tags that apply to this image.</p>",
@@ -2735,12 +2879,14 @@
         "InfrastructureConfiguration$tags": "<p>The tags of the infrastructure configuration.</p>",
         "InfrastructureConfigurationSummary$tags": "<p>The tags of the infrastructure configuration.</p>",
         "LifecyclePolicy$tags": "<p>To help manage your lifecycle policy resources, you can assign your own metadata to each resource in the form of tags. Each tag consists of a key and an optional value, both of which you define.</p>",
-        "LifecyclePolicyDetailExclusionRules$tagMap": "<p>Contains a list of tags that Image Builder uses to skip lifecycle actions for AMIs that have them.</p>",
+        "LifecyclePolicyDetailExclusionRules$tagMap": "<p>Contains a list of tags that Image Builder uses to skip lifecycle actions for resources that have them.</p>",
         "LifecyclePolicyDetailExclusionRulesAmis$tagMap": "<p>Lists tags that should be excluded from lifecycle actions for the AMIs that have them.</p>",
         "LifecyclePolicyResourceSelection$tagMap": "<p>A list of tags that are used as selection criteria for the resources that the lifecycle policy applies to.</p>",
         "LifecyclePolicySummary$tags": "<p>To help manage your lifecycle policy resources, you can assign your own metadata to each resource in the form of tags. Each tag consists of a key and an optional value, both of which you define.</p>",
         "ListTagsForResourceResponse$tags": "<p>The tags for the specified resource.</p>",
-        "TagResourceRequest$tags": "<p>The tags to apply to the resource.</p>"
+        "TagResourceRequest$tags": "<p>The tags to apply to the resource.</p>",
+        "Workflow$tags": "<p>The tags that apply to the workflow resource</p>",
+        "WorkflowSummary$tags": "<p>Contains a list of tags that are defined for the workflow.</p>"
       }
     },
     "TagResourceRequest": {
@@ -2835,6 +2981,7 @@
       "refs": {
         "CreateComponentRequest$uri": "<p>The <code>uri</code> of a YAML component document file. This must be an S3 URL (<code>s3://bucket/key</code>), and the requester must have permission to access the S3 bucket it points to. If you use Amazon S3, you can specify component content up to your service quota.</p> <p>Alternatively, you can specify the YAML document inline, using the component <code>data</code> property. You cannot specify both properties.</p>",
         "CreateContainerRecipeRequest$dockerfileTemplateUri": "<p>The Amazon S3 URI for the Dockerfile that will be used to build your container image.</p>",
+        "CreateWorkflowRequest$uri": "<p>The <code>uri</code> of a YAML component document file. This must be an S3 URL (<code>s3://bucket/key</code>), and the requester must have permission to access the S3 bucket it points to. If you use Amazon S3, you can specify component content up to your service quota.</p> <p>Alternatively, you can specify the YAML document inline, using the component <code>data</code> property. You cannot specify both properties.</p>",
         "ImportComponentRequest$uri": "<p>The uri of the component. Must be an Amazon S3 URL and the requester must have permission to access the Amazon S3 bucket. If you use Amazon S3, you can specify component content up to your service quota. Either <code>data</code> or <code>uri</code> can be used to specify the data within the component.</p>"
       }
     },
@@ -2854,13 +3001,17 @@
         "CreateComponentRequest$semanticVersion": "<p>The semantic version of the component. This version follows the semantic version syntax.</p> <note> <p>The semantic version has four nodes: &lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;/&lt;build&gt;. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Assignment:</b> For the first three nodes you can assign any positive integer value, including zero, with an upper limit of 2^30-1, or 1073741823 for each node. Image Builder automatically assigns the build number to the fourth node.</p> <p> <b>Patterns:</b> You can use any numeric pattern that adheres to the assignment requirements for the nodes that you can assign. For example, you might choose a software version pattern, such as 1.0.0, or a date, such as 2021.01.01.</p> </note>",
         "CreateContainerRecipeRequest$semanticVersion": "<p>The semantic version of the container recipe. This version follows the semantic version syntax.</p> <note> <p>The semantic version has four nodes: &lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;/&lt;build&gt;. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Assignment:</b> For the first three nodes you can assign any positive integer value, including zero, with an upper limit of 2^30-1, or 1073741823 for each node. Image Builder automatically assigns the build number to the fourth node.</p> <p> <b>Patterns:</b> You can use any numeric pattern that adheres to the assignment requirements for the nodes that you can assign. For example, you might choose a software version pattern, such as 1.0.0, or a date, such as 2021.01.01.</p> </note>",
         "CreateImageRecipeRequest$semanticVersion": "<p>The semantic version of the image recipe. This version follows the semantic version syntax.</p> <note> <p>The semantic version has four nodes: &lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;/&lt;build&gt;. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Assignment:</b> For the first three nodes you can assign any positive integer value, including zero, with an upper limit of 2^30-1, or 1073741823 for each node. Image Builder automatically assigns the build number to the fourth node.</p> <p> <b>Patterns:</b> You can use any numeric pattern that adheres to the assignment requirements for the nodes that you can assign. For example, you might choose a software version pattern, such as 1.0.0, or a date, such as 2021.01.01.</p> </note>",
+        "CreateWorkflowRequest$semanticVersion": "<p>The semantic version of this workflow resource. The semantic version syntax adheres to the following rules.</p> <note> <p>The semantic version has four nodes: &lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;/&lt;build&gt;. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Assignment:</b> For the first three nodes you can assign any positive integer value, including zero, with an upper limit of 2^30-1, or 1073741823 for each node. Image Builder automatically assigns the build number to the fourth node.</p> <p> <b>Patterns:</b> You can use any numeric pattern that adheres to the assignment requirements for the nodes that you can assign. For example, you might choose a software version pattern, such as 1.0.0, or a date, such as 2021.01.01.</p> </note>",
         "Image$version": "<p>The semantic version of the image.</p> <note> <p>The semantic version has four nodes: &lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;/&lt;build&gt;. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Assignment:</b> For the first three nodes you can assign any positive integer value, including zero, with an upper limit of 2^30-1, or 1073741823 for each node. Image Builder automatically assigns the build number to the fourth node.</p> <p> <b>Patterns:</b> You can use any numeric pattern that adheres to the assignment requirements for the nodes that you can assign. For example, you might choose a software version pattern, such as 1.0.0, or a date, such as 2021.01.01.</p> <p> <b>Filtering:</b> With semantic versioning, you have the flexibility to use wildcards (x) to specify the most recent versions or nodes when selecting the base image or components for your recipe. When you use a wildcard in any node, all nodes to the right of the first wildcard must also be wildcards.</p> </note>",
         "ImageRecipe$version": "<p>The version of the image recipe.</p>",
         "ImageSummary$version": "<p>The version of the image.</p>",
         "ImageVersion$version": "<p>Details for a specific version of an Image Builder image. This version follows the semantic version syntax.</p> <note> <p>The semantic version has four nodes: &lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;/&lt;build&gt;. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Assignment:</b> For the first three nodes you can assign any positive integer value, including zero, with an upper limit of 2^30-1, or 1073741823 for each node. Image Builder automatically assigns the build number to the fourth node.</p> <p> <b>Patterns:</b> You can use any numeric pattern that adheres to the assignment requirements for the nodes that you can assign. For example, you might choose a software version pattern, such as 1.0.0, or a date, such as 2021.01.01.</p> <p> <b>Filtering:</b> With semantic versioning, you have the flexibility to use wildcards (x) to specify the most recent versions or nodes when selecting the base image or components for your recipe. When you use a wildcard in any node, all nodes to the right of the first wildcard must also be wildcards.</p> </note>",
         "ImportComponentRequest$semanticVersion": "<p>The semantic version of the component. This version follows the semantic version syntax.</p> <note> <p>The semantic version has four nodes: &lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;/&lt;build&gt;. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Filtering:</b> With semantic versioning, you have the flexibility to use wildcards (x) to specify the most recent versions or nodes when selecting the base image or components for your recipe. When you use a wildcard in any node, all nodes to the right of the first wildcard must also be wildcards.</p> </note>",
         "ImportVmImageRequest$semanticVersion": "<p>The semantic version to attach to the base image that was created during the import process. This version follows the semantic version syntax.</p> <note> <p>The semantic version has four nodes: &lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;/&lt;build&gt;. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Assignment:</b> For the first three nodes you can assign any positive integer value, including zero, with an upper limit of 2^30-1, or 1073741823 for each node. Image Builder automatically assigns the build number to the fourth node.</p> <p> <b>Patterns:</b> You can use any numeric pattern that adheres to the assignment requirements for the nodes that you can assign. For example, you might choose a software version pattern, such as 1.0.0, or a date, such as 2021.01.01.</p> </note>",
-        "LifecyclePolicyResourceSelectionRecipe$semanticVersion": "<p>The version of the Image Builder recipe specified by the <code>name</code> field.</p>"
+        "LifecyclePolicyResourceSelectionRecipe$semanticVersion": "<p>The version of the Image Builder recipe specified by the <code>name</code> field.</p>",
+        "Workflow$version": "<p>The workflow resource version. Workflow resources are immutable. To make a change, you can clone a workflow or create a new version.</p>",
+        "WorkflowSummary$version": "<p>The version of the workflow.</p>",
+        "WorkflowVersion$version": "<p>The semantic version of the workflow resource. The format includes three nodes: &lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;.</p>"
       }
     },
     "VulnerabilityId": {
@@ -2894,13 +3045,46 @@
         "PackageVulnerabilityDetails$vulnerablePackages": "<p>The packages that this vulnerability impacts.</p>"
       }
     },
+    "Workflow": {
+      "base": "<p>Defines a process that Image Builder uses to build and test images during the image creation process.</p>",
+      "refs": {
+        "GetWorkflowResponse$workflow": "<p>The workflow resource specified in the request.</p>"
+      }
+    },
     "WorkflowBuildVersionArn": {
       "base": null,
       "refs": {
+        "CreateWorkflowResponse$workflowBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the workflow resource that the request created.</p>",
+        "DeleteWorkflowRequest$workflowBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the workflow resource to delete.</p>",
+        "DeleteWorkflowResponse$workflowBuildVersionArn": "<p>The ARN of the workflow resource that this request deleted.</p>",
         "GetWorkflowExecutionResponse$workflowBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the build version for the Image Builder workflow resource that defines the specified runtime instance of the workflow.</p>",
         "GetWorkflowStepExecutionResponse$workflowBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the build version for the Image Builder workflow resource that defines this workflow step.</p>",
         "ListWorkflowStepExecutionsResponse$workflowBuildVersionArn": "<p>The build version ARN for the Image Builder workflow resource that defines the steps for this runtime instance of the workflow.</p>",
-        "WorkflowExecutionMetadata$workflowBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the workflow resource build version that ran.</p>"
+        "Workflow$arn": "<p>The Amazon Resource Name (ARN) of the workflow resource.</p>",
+        "WorkflowExecutionMetadata$workflowBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the workflow resource build version that ran.</p>",
+        "WorkflowStepExecution$workflowBuildVersionArn": "<p>The ARN of the workflow resource that ran.</p>"
+      }
+    },
+    "WorkflowConfiguration": {
+      "base": "<p>Contains control settings and configurable inputs for a workflow resource.</p>",
+      "refs": {
+        "WorkflowConfigurationList$member": null
+      }
+    },
+    "WorkflowConfigurationList": {
+      "base": null,
+      "refs": {
+        "CreateImagePipelineRequest$workflows": "<p>Contains an array of workflow configuration objects.</p>",
+        "CreateImageRequest$workflows": "<p>Contains an array of workflow configuration objects.</p>",
+        "Image$workflows": "<p>Contains the build and test workflows that are associated with the image.</p>",
+        "ImagePipeline$workflows": "<p>Contains the workflows that run for the image pipeline.</p>",
+        "UpdateImagePipelineRequest$workflows": "<p>Contains the workflows to run for the pipeline.</p>"
+      }
+    },
+    "WorkflowData": {
+      "base": null,
+      "refs": {
+        "Workflow$data": "<p>Contains the YAML document content for the workflow.</p>"
       }
     },
     "WorkflowExecutionId": {
@@ -2911,7 +3095,8 @@
         "GetWorkflowStepExecutionResponse$workflowExecutionId": "<p>The unique identifier that Image Builder assigned to keep track of runtime details when it ran the workflow.</p>",
         "ListWorkflowStepExecutionsRequest$workflowExecutionId": "<p>The unique identifier that Image Builder assigned to keep track of runtime details when it ran the workflow.</p>",
         "ListWorkflowStepExecutionsResponse$workflowExecutionId": "<p>The unique identifier that Image Builder assigned to keep track of runtime details when it ran the workflow.</p>",
-        "WorkflowExecutionMetadata$workflowExecutionId": "<p>Unique identifier that Image Builder assigns to keep track of runtime resources each time it runs a workflow.</p>"
+        "WorkflowExecutionMetadata$workflowExecutionId": "<p>Unique identifier that Image Builder assigns to keep track of runtime resources each time it runs a workflow.</p>",
+        "WorkflowStepExecution$workflowExecutionId": "<p>Uniquely identifies the runtime instance of the workflow that contains the workflow step that ran for the associated image build version.</p>"
       }
     },
     "WorkflowExecutionMessage": {
@@ -2940,11 +3125,93 @@
         "ListWorkflowExecutionsResponse$workflowExecutions": "<p>Contains an array of runtime details that represents each time a workflow ran for the requested image build version.</p>"
       }
     },
+    "WorkflowNameArn": {
+      "base": null,
+      "refs": {
+        "WorkflowSummary$arn": "<p>The Amazon Resource Name (ARN) of the workflow resource.</p>"
+      }
+    },
+    "WorkflowParameter": {
+      "base": "<p>Contains a key/value pair that sets the named workflow parameter.</p>",
+      "refs": {
+        "WorkflowParameterList$member": null
+      }
+    },
+    "WorkflowParameterDescription": {
+      "base": null,
+      "refs": {
+        "WorkflowParameterDetail$description": "<p>Describes this parameter.</p>"
+      }
+    },
+    "WorkflowParameterDetail": {
+      "base": "<p>Defines a parameter that's used to provide configuration details for the workflow.</p>",
+      "refs": {
+        "WorkflowParameterDetailList$member": null
+      }
+    },
+    "WorkflowParameterDetailList": {
+      "base": null,
+      "refs": {
+        "Workflow$parameters": "<p>An array of input parameters that that the image workflow uses to control actions or configure settings.</p>"
+      }
+    },
+    "WorkflowParameterList": {
+      "base": null,
+      "refs": {
+        "WorkflowConfiguration$parameters": "<p>Contains parameter values for each of the parameters that the workflow document defined for the workflow resource.</p>"
+      }
+    },
+    "WorkflowParameterName": {
+      "base": null,
+      "refs": {
+        "WorkflowParameter$name": "<p>The name of the workflow parameter to set.</p>",
+        "WorkflowParameterDetail$name": "<p>The name of this input parameter.</p>"
+      }
+    },
+    "WorkflowParameterType": {
+      "base": null,
+      "refs": {
+        "WorkflowParameterDetail$type": "<p>The type of input this parameter provides. The currently supported value is \"string\".</p>"
+      }
+    },
+    "WorkflowParameterValue": {
+      "base": null,
+      "refs": {
+        "WorkflowParameterValueList$member": null
+      }
+    },
+    "WorkflowParameterValueList": {
+      "base": null,
+      "refs": {
+        "WorkflowParameter$value": "<p>Sets the value for the named workflow parameter.</p>",
+        "WorkflowParameterDetail$defaultValue": "<p>The default value of this parameter if no input is provided.</p>"
+      }
+    },
+    "WorkflowState": {
+      "base": "<p>A group of fields that describe the current status of workflow.</p>",
+      "refs": {
+        "Workflow$state": "<p>Describes the current status of the workflow and the reason for that status.</p>",
+        "WorkflowSummary$state": "<p>Describes the current state of the workflow resource.</p>"
+      }
+    },
+    "WorkflowStatus": {
+      "base": null,
+      "refs": {
+        "WorkflowState$status": "<p>The current state of the workflow.</p>"
+      }
+    },
     "WorkflowStepAction": {
       "base": null,
       "refs": {
         "GetWorkflowStepExecutionResponse$action": "<p>The name of the action that the specified step performs.</p>",
+        "WorkflowStepExecution$action": "<p>The name of the step action.</p>",
         "WorkflowStepMetadata$action": "<p>The step action name.</p>"
+      }
+    },
+    "WorkflowStepActionType": {
+      "base": null,
+      "refs": {
+        "SendWorkflowStepActionRequest$action": "<p>The action for the image creation process to take while a workflow <code>WaitForAction</code> step waits for an asynchronous action to complete.</p>"
       }
     },
     "WorkflowStepCount": {
@@ -2967,12 +3234,27 @@
         "WorkflowStepMetadata$description": "<p>Description of the workflow step.</p>"
       }
     },
+    "WorkflowStepExecution": {
+      "base": "<p>Contains runtime details for an instance of a workflow that ran for the associated image build version.</p>",
+      "refs": {
+        "WorkflowStepExecutionList$member": null
+      }
+    },
     "WorkflowStepExecutionId": {
       "base": null,
       "refs": {
         "GetWorkflowStepExecutionRequest$stepExecutionId": "<p>Use the unique identifier for a specific runtime instance of the workflow step to get runtime details for that step.</p>",
         "GetWorkflowStepExecutionResponse$stepExecutionId": "<p>The unique identifier for the runtime version of the workflow step that you specified in the request.</p>",
+        "SendWorkflowStepActionRequest$stepExecutionId": "<p>Uniquely identifies the workflow step that sent the step action.</p>",
+        "SendWorkflowStepActionResponse$stepExecutionId": "<p>The workflow step that sent the step action.</p>",
+        "WorkflowStepExecution$stepExecutionId": "<p>Uniquely identifies the workflow step that ran for the associated image build version.</p>",
         "WorkflowStepMetadata$stepExecutionId": "<p>A unique identifier for the workflow step, assigned at runtime.</p>"
+      }
+    },
+    "WorkflowStepExecutionList": {
+      "base": null,
+      "refs": {
+        "ListWaitingWorkflowStepsResponse$steps": "<p>An array of the workflow steps that are waiting for action in your Amazon Web Services account.</p>"
       }
     },
     "WorkflowStepExecutionRollbackStatus": {
@@ -3019,6 +3301,7 @@
       "base": null,
       "refs": {
         "GetWorkflowStepExecutionResponse$name": "<p>The name of the specified runtime instance of the workflow step.</p>",
+        "WorkflowStepExecution$name": "<p>The name of the workflow step.</p>",
         "WorkflowStepMetadata$name": "<p>The name of the workflow step.</p>"
       }
     },
@@ -3035,11 +3318,58 @@
         "GetWorkflowStepExecutionResponse$timeoutSeconds": "<p>The maximum duration in seconds for this step to complete its action.</p>"
       }
     },
+    "WorkflowSummary": {
+      "base": "<p>Contains metadata about the workflow resource.</p>",
+      "refs": {
+        "WorkflowSummaryList$member": null
+      }
+    },
+    "WorkflowSummaryList": {
+      "base": null,
+      "refs": {
+        "ListWorkflowBuildVersionsResponse$workflowSummaryList": "<p>A list that contains metadata for the workflow builds that have run for the workflow resource specified in the request.</p>"
+      }
+    },
     "WorkflowType": {
       "base": null,
       "refs": {
+        "CreateWorkflowRequest$type": "<p>The phase in the image build process for which the workflow resource is responsible.</p>",
         "GetWorkflowExecutionResponse$type": "<p>The type of workflow that Image Builder ran for the specified runtime instance of the workflow.</p>",
-        "WorkflowExecutionMetadata$type": "<p>Indicates what type of workflow that Image Builder ran for this runtime instance of the workflow.</p>"
+        "Workflow$type": "<p>Specifies the image creation stage that the workflow applies to. Image Builder currently supports build and test workflows.</p>",
+        "WorkflowExecutionMetadata$type": "<p>Indicates what type of workflow that Image Builder ran for this runtime instance of the workflow.</p>",
+        "WorkflowSummary$type": "<p>The image creation stage that this workflow applies to. Image Builder currently supports build and test stage workflows.</p>",
+        "WorkflowVersion$type": "<p>The image creation stage that this workflow applies to. Image Builder currently supports build and test stage workflows.</p>"
+      }
+    },
+    "WorkflowVersion": {
+      "base": "<p>Contains details about this version of the workflow.</p>",
+      "refs": {
+        "WorkflowVersionList$member": null
+      }
+    },
+    "WorkflowVersionArn": {
+      "base": null,
+      "refs": {
+        "WorkflowVersion$arn": "<p>The Amazon Resource Name (ARN) of the workflow resource.</p>"
+      }
+    },
+    "WorkflowVersionArnOrBuildVersionArn": {
+      "base": null,
+      "refs": {
+        "GetWorkflowRequest$workflowBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the workflow resource that you want to get.</p>",
+        "WorkflowConfiguration$workflowArn": "<p>The Amazon Resource Name (ARN) of the workflow resource.</p>"
+      }
+    },
+    "WorkflowVersionList": {
+      "base": null,
+      "refs": {
+        "ListWorkflowsResponse$workflowVersionList": "<p>A list of workflow build versions that match the request criteria.</p>"
+      }
+    },
+    "WorkflowWildcardVersionArn": {
+      "base": null,
+      "refs": {
+        "ListWorkflowBuildVersionsRequest$workflowVersionArn": "<p>The Amazon Resource Name (ARN) of the workflow resource for which to get a list of build versions.</p>"
       }
     }
   }

@@ -87,6 +87,9 @@ func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint,
 		protocol.NewUnmarshalErrorHandler(jsonrpc.NewUnmarshalTypedError(exceptionFromCode)).NamedHandler(),
 	)
 
+	svc.Handlers.BuildStream.PushBackNamed(jsonrpc.BuildHandler)
+	svc.Handlers.UnmarshalStream.PushBackNamed(jsonrpc.UnmarshalHandler)
+
 	// Run custom client initialization if present
 	if initClient != nil {
 		initClient(svc.Client)

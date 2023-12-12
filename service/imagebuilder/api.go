@@ -1136,6 +1136,121 @@ func (c *Imagebuilder) CreateLifecyclePolicyWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
+const opCreateWorkflow = "CreateWorkflow"
+
+// CreateWorkflowRequest generates a "aws/request.Request" representing the
+// client's request for the CreateWorkflow operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateWorkflow for more information on using the CreateWorkflow
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateWorkflowRequest method.
+//	req, resp := client.CreateWorkflowRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/CreateWorkflow
+func (c *Imagebuilder) CreateWorkflowRequest(input *CreateWorkflowInput) (req *request.Request, output *CreateWorkflowOutput) {
+	op := &request.Operation{
+		Name:       opCreateWorkflow,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/CreateWorkflow",
+	}
+
+	if input == nil {
+		input = &CreateWorkflowInput{}
+	}
+
+	output = &CreateWorkflowOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateWorkflow API operation for EC2 Image Builder.
+//
+// Create a new workflow or a new version of an existing workflow.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for EC2 Image Builder's
+// API operation CreateWorkflow for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ServiceException
+//     This exception is thrown when the service encounters an unrecoverable exception.
+//
+//   - ClientException
+//     These errors are usually caused by a client action, such as using an action
+//     or resource on behalf of a user that doesn't have permissions to use the
+//     action or resource, or specifying an invalid resource identifier.
+//
+//   - ServiceUnavailableException
+//     The service is unable to process your request at this time.
+//
+//   - InvalidRequestException
+//     You have requested an action that that the service doesn't support.
+//
+//   - IdempotentParameterMismatchException
+//     You have specified a client token for an operation using parameter values
+//     that differ from a previous request that used the same client token.
+//
+//   - ForbiddenException
+//     You are not authorized to perform the requested operation.
+//
+//   - CallRateLimitExceededException
+//     You have exceeded the permitted request rate for the specific operation.
+//
+//   - InvalidVersionNumberException
+//     Your version number is out of bounds or does not follow the required syntax.
+//
+//   - ResourceInUseException
+//     The resource that you are trying to operate on is currently in use. Review
+//     the message details and retry later.
+//
+//   - InvalidParameterCombinationException
+//     You have specified two or more mutually exclusive parameters. Review the
+//     error message for details.
+//
+//   - ServiceQuotaExceededException
+//     You have exceeded the number of permitted resources or operations for this
+//     service. For service quotas, see EC2 Image Builder endpoints and quotas (https://docs.aws.amazon.com/general/latest/gr/imagebuilder.html#limits_imagebuilder).
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/CreateWorkflow
+func (c *Imagebuilder) CreateWorkflow(input *CreateWorkflowInput) (*CreateWorkflowOutput, error) {
+	req, out := c.CreateWorkflowRequest(input)
+	return out, req.Send()
+}
+
+// CreateWorkflowWithContext is the same as CreateWorkflow with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateWorkflow for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Imagebuilder) CreateWorkflowWithContext(ctx aws.Context, input *CreateWorkflowInput, opts ...request.Option) (*CreateWorkflowOutput, error) {
+	req, out := c.CreateWorkflowRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteComponent = "DeleteComponent"
 
 // DeleteComponentRequest generates a "aws/request.Request" representing the
@@ -1943,6 +2058,106 @@ func (c *Imagebuilder) DeleteLifecyclePolicy(input *DeleteLifecyclePolicyInput) 
 // for more information on using Contexts.
 func (c *Imagebuilder) DeleteLifecyclePolicyWithContext(ctx aws.Context, input *DeleteLifecyclePolicyInput, opts ...request.Option) (*DeleteLifecyclePolicyOutput, error) {
 	req, out := c.DeleteLifecyclePolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteWorkflow = "DeleteWorkflow"
+
+// DeleteWorkflowRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteWorkflow operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteWorkflow for more information on using the DeleteWorkflow
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteWorkflowRequest method.
+//	req, resp := client.DeleteWorkflowRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/DeleteWorkflow
+func (c *Imagebuilder) DeleteWorkflowRequest(input *DeleteWorkflowInput) (req *request.Request, output *DeleteWorkflowOutput) {
+	op := &request.Operation{
+		Name:       opDeleteWorkflow,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/DeleteWorkflow",
+	}
+
+	if input == nil {
+		input = &DeleteWorkflowInput{}
+	}
+
+	output = &DeleteWorkflowOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteWorkflow API operation for EC2 Image Builder.
+//
+// Deletes a specific workflow resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for EC2 Image Builder's
+// API operation DeleteWorkflow for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ServiceException
+//     This exception is thrown when the service encounters an unrecoverable exception.
+//
+//   - ClientException
+//     These errors are usually caused by a client action, such as using an action
+//     or resource on behalf of a user that doesn't have permissions to use the
+//     action or resource, or specifying an invalid resource identifier.
+//
+//   - ServiceUnavailableException
+//     The service is unable to process your request at this time.
+//
+//   - InvalidRequestException
+//     You have requested an action that that the service doesn't support.
+//
+//   - ForbiddenException
+//     You are not authorized to perform the requested operation.
+//
+//   - CallRateLimitExceededException
+//     You have exceeded the permitted request rate for the specific operation.
+//
+//   - ResourceDependencyException
+//     You have attempted to mutate or delete a resource with a dependency that
+//     prohibits this action. See the error message for more details.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/DeleteWorkflow
+func (c *Imagebuilder) DeleteWorkflow(input *DeleteWorkflowInput) (*DeleteWorkflowOutput, error) {
+	req, out := c.DeleteWorkflowRequest(input)
+	return out, req.Send()
+}
+
+// DeleteWorkflowWithContext is the same as DeleteWorkflow with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteWorkflow for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Imagebuilder) DeleteWorkflowWithContext(ctx aws.Context, input *DeleteWorkflowInput, opts ...request.Option) (*DeleteWorkflowOutput, error) {
+	req, out := c.DeleteWorkflowRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3184,6 +3399,102 @@ func (c *Imagebuilder) GetLifecyclePolicy(input *GetLifecyclePolicyInput) (*GetL
 // for more information on using Contexts.
 func (c *Imagebuilder) GetLifecyclePolicyWithContext(ctx aws.Context, input *GetLifecyclePolicyInput, opts ...request.Option) (*GetLifecyclePolicyOutput, error) {
 	req, out := c.GetLifecyclePolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetWorkflow = "GetWorkflow"
+
+// GetWorkflowRequest generates a "aws/request.Request" representing the
+// client's request for the GetWorkflow operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetWorkflow for more information on using the GetWorkflow
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetWorkflowRequest method.
+//	req, resp := client.GetWorkflowRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/GetWorkflow
+func (c *Imagebuilder) GetWorkflowRequest(input *GetWorkflowInput) (req *request.Request, output *GetWorkflowOutput) {
+	op := &request.Operation{
+		Name:       opGetWorkflow,
+		HTTPMethod: "GET",
+		HTTPPath:   "/GetWorkflow",
+	}
+
+	if input == nil {
+		input = &GetWorkflowInput{}
+	}
+
+	output = &GetWorkflowOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetWorkflow API operation for EC2 Image Builder.
+//
+// Get a workflow resource object.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for EC2 Image Builder's
+// API operation GetWorkflow for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ServiceException
+//     This exception is thrown when the service encounters an unrecoverable exception.
+//
+//   - ClientException
+//     These errors are usually caused by a client action, such as using an action
+//     or resource on behalf of a user that doesn't have permissions to use the
+//     action or resource, or specifying an invalid resource identifier.
+//
+//   - ServiceUnavailableException
+//     The service is unable to process your request at this time.
+//
+//   - InvalidRequestException
+//     You have requested an action that that the service doesn't support.
+//
+//   - ForbiddenException
+//     You are not authorized to perform the requested operation.
+//
+//   - CallRateLimitExceededException
+//     You have exceeded the permitted request rate for the specific operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/GetWorkflow
+func (c *Imagebuilder) GetWorkflow(input *GetWorkflowInput) (*GetWorkflowOutput, error) {
+	req, out := c.GetWorkflowRequest(input)
+	return out, req.Send()
+}
+
+// GetWorkflowWithContext is the same as GetWorkflow with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetWorkflow for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Imagebuilder) GetWorkflowWithContext(ctx aws.Context, input *GetWorkflowInput, opts ...request.Option) (*GetWorkflowOutput, error) {
+	req, out := c.GetWorkflowRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -6212,6 +6523,319 @@ func (c *Imagebuilder) ListTagsForResourceWithContext(ctx aws.Context, input *Li
 	return out, req.Send()
 }
 
+const opListWaitingWorkflowSteps = "ListWaitingWorkflowSteps"
+
+// ListWaitingWorkflowStepsRequest generates a "aws/request.Request" representing the
+// client's request for the ListWaitingWorkflowSteps operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListWaitingWorkflowSteps for more information on using the ListWaitingWorkflowSteps
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListWaitingWorkflowStepsRequest method.
+//	req, resp := client.ListWaitingWorkflowStepsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/ListWaitingWorkflowSteps
+func (c *Imagebuilder) ListWaitingWorkflowStepsRequest(input *ListWaitingWorkflowStepsInput) (req *request.Request, output *ListWaitingWorkflowStepsOutput) {
+	op := &request.Operation{
+		Name:       opListWaitingWorkflowSteps,
+		HTTPMethod: "POST",
+		HTTPPath:   "/ListWaitingWorkflowSteps",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListWaitingWorkflowStepsInput{}
+	}
+
+	output = &ListWaitingWorkflowStepsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListWaitingWorkflowSteps API operation for EC2 Image Builder.
+//
+// Get a list of workflow steps that are waiting for action for workflows in
+// your Amazon Web Services account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for EC2 Image Builder's
+// API operation ListWaitingWorkflowSteps for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ServiceException
+//     This exception is thrown when the service encounters an unrecoverable exception.
+//
+//   - ClientException
+//     These errors are usually caused by a client action, such as using an action
+//     or resource on behalf of a user that doesn't have permissions to use the
+//     action or resource, or specifying an invalid resource identifier.
+//
+//   - ServiceUnavailableException
+//     The service is unable to process your request at this time.
+//
+//   - InvalidRequestException
+//     You have requested an action that that the service doesn't support.
+//
+//   - InvalidPaginationTokenException
+//     You have provided an invalid pagination token in your request.
+//
+//   - ForbiddenException
+//     You are not authorized to perform the requested operation.
+//
+//   - CallRateLimitExceededException
+//     You have exceeded the permitted request rate for the specific operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/ListWaitingWorkflowSteps
+func (c *Imagebuilder) ListWaitingWorkflowSteps(input *ListWaitingWorkflowStepsInput) (*ListWaitingWorkflowStepsOutput, error) {
+	req, out := c.ListWaitingWorkflowStepsRequest(input)
+	return out, req.Send()
+}
+
+// ListWaitingWorkflowStepsWithContext is the same as ListWaitingWorkflowSteps with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListWaitingWorkflowSteps for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Imagebuilder) ListWaitingWorkflowStepsWithContext(ctx aws.Context, input *ListWaitingWorkflowStepsInput, opts ...request.Option) (*ListWaitingWorkflowStepsOutput, error) {
+	req, out := c.ListWaitingWorkflowStepsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListWaitingWorkflowStepsPages iterates over the pages of a ListWaitingWorkflowSteps operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListWaitingWorkflowSteps method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListWaitingWorkflowSteps operation.
+//	pageNum := 0
+//	err := client.ListWaitingWorkflowStepsPages(params,
+//	    func(page *imagebuilder.ListWaitingWorkflowStepsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Imagebuilder) ListWaitingWorkflowStepsPages(input *ListWaitingWorkflowStepsInput, fn func(*ListWaitingWorkflowStepsOutput, bool) bool) error {
+	return c.ListWaitingWorkflowStepsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListWaitingWorkflowStepsPagesWithContext same as ListWaitingWorkflowStepsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Imagebuilder) ListWaitingWorkflowStepsPagesWithContext(ctx aws.Context, input *ListWaitingWorkflowStepsInput, fn func(*ListWaitingWorkflowStepsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListWaitingWorkflowStepsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListWaitingWorkflowStepsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListWaitingWorkflowStepsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListWorkflowBuildVersions = "ListWorkflowBuildVersions"
+
+// ListWorkflowBuildVersionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListWorkflowBuildVersions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListWorkflowBuildVersions for more information on using the ListWorkflowBuildVersions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListWorkflowBuildVersionsRequest method.
+//	req, resp := client.ListWorkflowBuildVersionsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/ListWorkflowBuildVersions
+func (c *Imagebuilder) ListWorkflowBuildVersionsRequest(input *ListWorkflowBuildVersionsInput) (req *request.Request, output *ListWorkflowBuildVersionsOutput) {
+	op := &request.Operation{
+		Name:       opListWorkflowBuildVersions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/ListWorkflowBuildVersions",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListWorkflowBuildVersionsInput{}
+	}
+
+	output = &ListWorkflowBuildVersionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListWorkflowBuildVersions API operation for EC2 Image Builder.
+//
+// Returns a list of build versions for a specific workflow resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for EC2 Image Builder's
+// API operation ListWorkflowBuildVersions for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ServiceException
+//     This exception is thrown when the service encounters an unrecoverable exception.
+//
+//   - ClientException
+//     These errors are usually caused by a client action, such as using an action
+//     or resource on behalf of a user that doesn't have permissions to use the
+//     action or resource, or specifying an invalid resource identifier.
+//
+//   - ServiceUnavailableException
+//     The service is unable to process your request at this time.
+//
+//   - InvalidRequestException
+//     You have requested an action that that the service doesn't support.
+//
+//   - InvalidPaginationTokenException
+//     You have provided an invalid pagination token in your request.
+//
+//   - ForbiddenException
+//     You are not authorized to perform the requested operation.
+//
+//   - CallRateLimitExceededException
+//     You have exceeded the permitted request rate for the specific operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/ListWorkflowBuildVersions
+func (c *Imagebuilder) ListWorkflowBuildVersions(input *ListWorkflowBuildVersionsInput) (*ListWorkflowBuildVersionsOutput, error) {
+	req, out := c.ListWorkflowBuildVersionsRequest(input)
+	return out, req.Send()
+}
+
+// ListWorkflowBuildVersionsWithContext is the same as ListWorkflowBuildVersions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListWorkflowBuildVersions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Imagebuilder) ListWorkflowBuildVersionsWithContext(ctx aws.Context, input *ListWorkflowBuildVersionsInput, opts ...request.Option) (*ListWorkflowBuildVersionsOutput, error) {
+	req, out := c.ListWorkflowBuildVersionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListWorkflowBuildVersionsPages iterates over the pages of a ListWorkflowBuildVersions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListWorkflowBuildVersions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListWorkflowBuildVersions operation.
+//	pageNum := 0
+//	err := client.ListWorkflowBuildVersionsPages(params,
+//	    func(page *imagebuilder.ListWorkflowBuildVersionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Imagebuilder) ListWorkflowBuildVersionsPages(input *ListWorkflowBuildVersionsInput, fn func(*ListWorkflowBuildVersionsOutput, bool) bool) error {
+	return c.ListWorkflowBuildVersionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListWorkflowBuildVersionsPagesWithContext same as ListWorkflowBuildVersionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Imagebuilder) ListWorkflowBuildVersionsPagesWithContext(ctx aws.Context, input *ListWorkflowBuildVersionsInput, fn func(*ListWorkflowBuildVersionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListWorkflowBuildVersionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListWorkflowBuildVersionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListWorkflowBuildVersionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListWorkflowExecutions = "ListWorkflowExecutions"
 
 // ListWorkflowExecutionsRequest generates a "aws/request.Request" representing the
@@ -6418,8 +7042,8 @@ func (c *Imagebuilder) ListWorkflowStepExecutionsRequest(input *ListWorkflowStep
 
 // ListWorkflowStepExecutions API operation for EC2 Image Builder.
 //
-// Shows runtime data for each step in a runtime instance of the workflow that
-// you specify in the request.
+// Returns runtime data for each step in a runtime instance of the workflow
+// that you specify in the request.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6519,6 +7143,162 @@ func (c *Imagebuilder) ListWorkflowStepExecutionsPagesWithContext(ctx aws.Contex
 
 	for p.Next() {
 		if !fn(p.Page().(*ListWorkflowStepExecutionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListWorkflows = "ListWorkflows"
+
+// ListWorkflowsRequest generates a "aws/request.Request" representing the
+// client's request for the ListWorkflows operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListWorkflows for more information on using the ListWorkflows
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListWorkflowsRequest method.
+//	req, resp := client.ListWorkflowsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/ListWorkflows
+func (c *Imagebuilder) ListWorkflowsRequest(input *ListWorkflowsInput) (req *request.Request, output *ListWorkflowsOutput) {
+	op := &request.Operation{
+		Name:       opListWorkflows,
+		HTTPMethod: "POST",
+		HTTPPath:   "/ListWorkflows",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListWorkflowsInput{}
+	}
+
+	output = &ListWorkflowsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListWorkflows API operation for EC2 Image Builder.
+//
+// Lists workflow build versions based on filtering parameters.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for EC2 Image Builder's
+// API operation ListWorkflows for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ServiceException
+//     This exception is thrown when the service encounters an unrecoverable exception.
+//
+//   - ClientException
+//     These errors are usually caused by a client action, such as using an action
+//     or resource on behalf of a user that doesn't have permissions to use the
+//     action or resource, or specifying an invalid resource identifier.
+//
+//   - ServiceUnavailableException
+//     The service is unable to process your request at this time.
+//
+//   - InvalidRequestException
+//     You have requested an action that that the service doesn't support.
+//
+//   - InvalidPaginationTokenException
+//     You have provided an invalid pagination token in your request.
+//
+//   - ForbiddenException
+//     You are not authorized to perform the requested operation.
+//
+//   - CallRateLimitExceededException
+//     You have exceeded the permitted request rate for the specific operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/ListWorkflows
+func (c *Imagebuilder) ListWorkflows(input *ListWorkflowsInput) (*ListWorkflowsOutput, error) {
+	req, out := c.ListWorkflowsRequest(input)
+	return out, req.Send()
+}
+
+// ListWorkflowsWithContext is the same as ListWorkflows with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListWorkflows for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Imagebuilder) ListWorkflowsWithContext(ctx aws.Context, input *ListWorkflowsInput, opts ...request.Option) (*ListWorkflowsOutput, error) {
+	req, out := c.ListWorkflowsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListWorkflowsPages iterates over the pages of a ListWorkflows operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListWorkflows method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListWorkflows operation.
+//	pageNum := 0
+//	err := client.ListWorkflowsPages(params,
+//	    func(page *imagebuilder.ListWorkflowsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Imagebuilder) ListWorkflowsPages(input *ListWorkflowsInput, fn func(*ListWorkflowsOutput, bool) bool) error {
+	return c.ListWorkflowsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListWorkflowsPagesWithContext same as ListWorkflowsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Imagebuilder) ListWorkflowsPagesWithContext(ctx aws.Context, input *ListWorkflowsInput, fn func(*ListWorkflowsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListWorkflowsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListWorkflowsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListWorkflowsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -6949,6 +7729,117 @@ func (c *Imagebuilder) PutImageRecipePolicy(input *PutImageRecipePolicyInput) (*
 // for more information on using Contexts.
 func (c *Imagebuilder) PutImageRecipePolicyWithContext(ctx aws.Context, input *PutImageRecipePolicyInput, opts ...request.Option) (*PutImageRecipePolicyOutput, error) {
 	req, out := c.PutImageRecipePolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opSendWorkflowStepAction = "SendWorkflowStepAction"
+
+// SendWorkflowStepActionRequest generates a "aws/request.Request" representing the
+// client's request for the SendWorkflowStepAction operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SendWorkflowStepAction for more information on using the SendWorkflowStepAction
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the SendWorkflowStepActionRequest method.
+//	req, resp := client.SendWorkflowStepActionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/SendWorkflowStepAction
+func (c *Imagebuilder) SendWorkflowStepActionRequest(input *SendWorkflowStepActionInput) (req *request.Request, output *SendWorkflowStepActionOutput) {
+	op := &request.Operation{
+		Name:       opSendWorkflowStepAction,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/SendWorkflowStepAction",
+	}
+
+	if input == nil {
+		input = &SendWorkflowStepActionInput{}
+	}
+
+	output = &SendWorkflowStepActionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SendWorkflowStepAction API operation for EC2 Image Builder.
+//
+// Pauses or resumes image creation when the associated workflow runs a WaitForAction
+// step.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for EC2 Image Builder's
+// API operation SendWorkflowStepAction for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ServiceException
+//     This exception is thrown when the service encounters an unrecoverable exception.
+//
+//   - ClientException
+//     These errors are usually caused by a client action, such as using an action
+//     or resource on behalf of a user that doesn't have permissions to use the
+//     action or resource, or specifying an invalid resource identifier.
+//
+//   - ResourceNotFoundException
+//     At least one of the resources referenced by your request does not exist.
+//
+//   - InvalidRequestException
+//     You have requested an action that that the service doesn't support.
+//
+//   - InvalidParameterValueException
+//     The value that you provided for the specified parameter is invalid.
+//
+//   - ServiceUnavailableException
+//     The service is unable to process your request at this time.
+//
+//   - IdempotentParameterMismatchException
+//     You have specified a client token for an operation using parameter values
+//     that differ from a previous request that used the same client token.
+//
+//   - ForbiddenException
+//     You are not authorized to perform the requested operation.
+//
+//   - CallRateLimitExceededException
+//     You have exceeded the permitted request rate for the specific operation.
+//
+//   - ResourceInUseException
+//     The resource that you are trying to operate on is currently in use. Review
+//     the message details and retry later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/SendWorkflowStepAction
+func (c *Imagebuilder) SendWorkflowStepAction(input *SendWorkflowStepActionInput) (*SendWorkflowStepActionOutput, error) {
+	req, out := c.SendWorkflowStepActionRequest(input)
+	return out, req.Send()
+}
+
+// SendWorkflowStepActionWithContext is the same as SendWorkflowStepAction with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SendWorkflowStepAction for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Imagebuilder) SendWorkflowStepActionWithContext(ctx aws.Context, input *SendWorkflowStepActionInput, opts ...request.Option) (*SendWorkflowStepActionOutput, error) {
+	req, out := c.SendWorkflowStepActionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -7496,7 +8387,8 @@ func (c *Imagebuilder) UpdateImagePipelineRequest(input *UpdateImagePipelineInpu
 // UpdateImagePipeline API operation for EC2 Image Builder.
 //
 // Updates an image pipeline. Image pipelines enable you to automate the creation
-// and distribution of images.
+// and distribution of images. You must specify exactly one recipe for your
+// image, using either a containerRecipeArn or an imageRecipeArn.
 //
 // UpdateImagePipeline does not support selective updates for the pipeline.
 // You must specify all of the required properties in the update request, not
@@ -8423,7 +9315,8 @@ type Component struct {
 	// The Amazon Resource Name (ARN) of the component.
 	Arn *string `locationName:"arn" type:"string"`
 
-	// The change description of the component.
+	// Describes what change has been made in this version of the component, or
+	// what makes this version different from other versions of the component.
 	ChangeDescription *string `locationName:"changeDescription" min:"1" type:"string"`
 
 	// Component data contains the YAML document content for the component.
@@ -8807,8 +9700,7 @@ func (s *ComponentParameterDetail) SetType(v string) *ComponentParameterDetail {
 	return s
 }
 
-// A group of fields that describe the current status of components that are
-// no longer active.
+// A group of fields that describe the current status of components.
 type ComponentState struct {
 	_ struct{} `type:"structure"`
 
@@ -9569,7 +10461,7 @@ type CreateComponentInput struct {
 
 	// The change description of the component. Describes what change has been made
 	// in this version, or what makes this version different from other versions
-	// of this component.
+	// of the component.
 	ChangeDescription *string `locationName:"changeDescription" min:"1" type:"string"`
 
 	// Unique, case-sensitive identifier you provide to ensure idempotency of the
@@ -10309,6 +11201,10 @@ type CreateImageInput struct {
 	// default.
 	EnhancedImageMetadataEnabled *bool `locationName:"enhancedImageMetadataEnabled" type:"boolean"`
 
+	// The name or Amazon Resource Name (ARN) for the IAM role you create that grants
+	// Image Builder access to perform workflow actions.
+	ExecutionRole *string `locationName:"executionRole" min:"1" type:"string"`
+
 	// The Amazon Resource Name (ARN) of the image recipe that defines how images
 	// are configured, tested, and assessed.
 	ImageRecipeArn *string `locationName:"imageRecipeArn" type:"string"`
@@ -10327,6 +11223,9 @@ type CreateImageInput struct {
 
 	// The tags of the image.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
+
+	// Contains an array of workflow configuration objects.
+	Workflows []*WorkflowConfiguration `locationName:"workflows" type:"list"`
 }
 
 // String returns the string representation.
@@ -10353,6 +11252,9 @@ func (s *CreateImageInput) Validate() error {
 	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
 	}
+	if s.ExecutionRole != nil && len(*s.ExecutionRole) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExecutionRole", 1))
+	}
 	if s.InfrastructureConfigurationArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("InfrastructureConfigurationArn"))
 	}
@@ -10367,6 +11269,16 @@ func (s *CreateImageInput) Validate() error {
 	if s.ImageTestsConfiguration != nil {
 		if err := s.ImageTestsConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("ImageTestsConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Workflows != nil {
+		for i, v := range s.Workflows {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Workflows", i), err.(request.ErrInvalidParams))
+			}
 		}
 	}
 
@@ -10400,6 +11312,12 @@ func (s *CreateImageInput) SetEnhancedImageMetadataEnabled(v bool) *CreateImageI
 	return s
 }
 
+// SetExecutionRole sets the ExecutionRole field's value.
+func (s *CreateImageInput) SetExecutionRole(v string) *CreateImageInput {
+	s.ExecutionRole = &v
+	return s
+}
+
 // SetImageRecipeArn sets the ImageRecipeArn field's value.
 func (s *CreateImageInput) SetImageRecipeArn(v string) *CreateImageInput {
 	s.ImageRecipeArn = &v
@@ -10427,6 +11345,12 @@ func (s *CreateImageInput) SetInfrastructureConfigurationArn(v string) *CreateIm
 // SetTags sets the Tags field's value.
 func (s *CreateImageInput) SetTags(v map[string]*string) *CreateImageInput {
 	s.Tags = v
+	return s
+}
+
+// SetWorkflows sets the Workflows field's value.
+func (s *CreateImageInput) SetWorkflows(v []*WorkflowConfiguration) *CreateImageInput {
+	s.Workflows = v
 	return s
 }
 
@@ -10504,6 +11428,10 @@ type CreateImagePipelineInput struct {
 	// default.
 	EnhancedImageMetadataEnabled *bool `locationName:"enhancedImageMetadataEnabled" type:"boolean"`
 
+	// The name or Amazon Resource Name (ARN) for the IAM role you create that grants
+	// Image Builder access to perform workflow actions.
+	ExecutionRole *string `locationName:"executionRole" min:"1" type:"string"`
+
 	// The Amazon Resource Name (ARN) of the image recipe that will be used to configure
 	// images created by this image pipeline.
 	ImageRecipeArn *string `locationName:"imageRecipeArn" type:"string"`
@@ -10533,6 +11461,9 @@ type CreateImagePipelineInput struct {
 
 	// The tags of the image pipeline.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
+
+	// Contains an array of workflow configuration objects.
+	Workflows []*WorkflowConfiguration `locationName:"workflows" type:"list"`
 }
 
 // String returns the string representation.
@@ -10562,6 +11493,9 @@ func (s *CreateImagePipelineInput) Validate() error {
 	if s.Description != nil && len(*s.Description) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
 	}
+	if s.ExecutionRole != nil && len(*s.ExecutionRole) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExecutionRole", 1))
+	}
 	if s.InfrastructureConfigurationArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("InfrastructureConfigurationArn"))
 	}
@@ -10584,6 +11518,16 @@ func (s *CreateImagePipelineInput) Validate() error {
 	if s.Schedule != nil {
 		if err := s.Schedule.Validate(); err != nil {
 			invalidParams.AddNested("Schedule", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Workflows != nil {
+		for i, v := range s.Workflows {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Workflows", i), err.(request.ErrInvalidParams))
+			}
 		}
 	}
 
@@ -10620,6 +11564,12 @@ func (s *CreateImagePipelineInput) SetDistributionConfigurationArn(v string) *Cr
 // SetEnhancedImageMetadataEnabled sets the EnhancedImageMetadataEnabled field's value.
 func (s *CreateImagePipelineInput) SetEnhancedImageMetadataEnabled(v bool) *CreateImagePipelineInput {
 	s.EnhancedImageMetadataEnabled = &v
+	return s
+}
+
+// SetExecutionRole sets the ExecutionRole field's value.
+func (s *CreateImagePipelineInput) SetExecutionRole(v string) *CreateImagePipelineInput {
+	s.ExecutionRole = &v
 	return s
 }
 
@@ -10668,6 +11618,12 @@ func (s *CreateImagePipelineInput) SetStatus(v string) *CreateImagePipelineInput
 // SetTags sets the Tags field's value.
 func (s *CreateImagePipelineInput) SetTags(v map[string]*string) *CreateImagePipelineInput {
 	s.Tags = v
+	return s
+}
+
+// SetWorkflows sets the Workflows field's value.
+func (s *CreateImagePipelineInput) SetWorkflows(v []*WorkflowConfiguration) *CreateImagePipelineInput {
+	s.Workflows = v
 	return s
 }
 
@@ -11254,7 +12210,7 @@ type CreateLifecyclePolicyInput struct {
 	// Optional description for the lifecycle policy.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
-	// The role name or Amazon Resource Name (ARN) for the IAM role that grants
+	// The name or Amazon Resource Name (ARN) for the IAM role you create that grants
 	// Image Builder access to run lifecycle actions.
 	//
 	// ExecutionRole is a required field
@@ -11451,6 +12407,226 @@ func (s *CreateLifecyclePolicyOutput) SetClientToken(v string) *CreateLifecycleP
 // SetLifecyclePolicyArn sets the LifecyclePolicyArn field's value.
 func (s *CreateLifecyclePolicyOutput) SetLifecyclePolicyArn(v string) *CreateLifecyclePolicyOutput {
 	s.LifecyclePolicyArn = &v
+	return s
+}
+
+type CreateWorkflowInput struct {
+	_ struct{} `type:"structure"`
+
+	// Describes what change has been made in this version of the workflow, or what
+	// makes this version different from other versions of the workflow.
+	ChangeDescription *string `locationName:"changeDescription" min:"1" type:"string"`
+
+	// Unique, case-sensitive identifier you provide to ensure idempotency of the
+	// request. For more information, see Ensuring idempotency (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html)
+	// in the Amazon EC2 API Reference.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// Contains the UTF-8 encoded YAML document content for the workflow. Alternatively,
+	// you can specify the uri of a YAML document file stored in Amazon S3. However,
+	// you cannot specify both properties.
+	Data *string `locationName:"data" min:"1" type:"string"`
+
+	// Describes the workflow.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// The ID of the KMS key that is used to encrypt this workflow resource.
+	KmsKeyId *string `locationName:"kmsKeyId" min:"1" type:"string"`
+
+	// The name of the workflow to create.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// The semantic version of this workflow resource. The semantic version syntax
+	// adheres to the following rules.
+	//
+	// The semantic version has four nodes: <major>.<minor>.<patch>/<build>. You
+	// can assign values for the first three, and can filter on all of them.
+	//
+	// Assignment: For the first three nodes you can assign any positive integer
+	// value, including zero, with an upper limit of 2^30-1, or 1073741823 for each
+	// node. Image Builder automatically assigns the build number to the fourth
+	// node.
+	//
+	// Patterns: You can use any numeric pattern that adheres to the assignment
+	// requirements for the nodes that you can assign. For example, you might choose
+	// a software version pattern, such as 1.0.0, or a date, such as 2021.01.01.
+	//
+	// SemanticVersion is a required field
+	SemanticVersion *string `locationName:"semanticVersion" type:"string" required:"true"`
+
+	// Tags that apply to the workflow resource.
+	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
+
+	// The phase in the image build process for which the workflow resource is responsible.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"WorkflowType"`
+
+	// The uri of a YAML component document file. This must be an S3 URL (s3://bucket/key),
+	// and the requester must have permission to access the S3 bucket it points
+	// to. If you use Amazon S3, you can specify component content up to your service
+	// quota.
+	//
+	// Alternatively, you can specify the YAML document inline, using the component
+	// data property. You cannot specify both properties.
+	Uri *string `locationName:"uri" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateWorkflowInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateWorkflowInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateWorkflowInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateWorkflowInput"}
+	if s.ChangeDescription != nil && len(*s.ChangeDescription) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ChangeDescription", 1))
+	}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.Data != nil && len(*s.Data) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Data", 1))
+	}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.KmsKeyId != nil && len(*s.KmsKeyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeyId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.SemanticVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("SemanticVersion"))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChangeDescription sets the ChangeDescription field's value.
+func (s *CreateWorkflowInput) SetChangeDescription(v string) *CreateWorkflowInput {
+	s.ChangeDescription = &v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateWorkflowInput) SetClientToken(v string) *CreateWorkflowInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetData sets the Data field's value.
+func (s *CreateWorkflowInput) SetData(v string) *CreateWorkflowInput {
+	s.Data = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateWorkflowInput) SetDescription(v string) *CreateWorkflowInput {
+	s.Description = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *CreateWorkflowInput) SetKmsKeyId(v string) *CreateWorkflowInput {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateWorkflowInput) SetName(v string) *CreateWorkflowInput {
+	s.Name = &v
+	return s
+}
+
+// SetSemanticVersion sets the SemanticVersion field's value.
+func (s *CreateWorkflowInput) SetSemanticVersion(v string) *CreateWorkflowInput {
+	s.SemanticVersion = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateWorkflowInput) SetTags(v map[string]*string) *CreateWorkflowInput {
+	s.Tags = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *CreateWorkflowInput) SetType(v string) *CreateWorkflowInput {
+	s.Type = &v
+	return s
+}
+
+// SetUri sets the Uri field's value.
+func (s *CreateWorkflowInput) SetUri(v string) *CreateWorkflowInput {
+	s.Uri = &v
+	return s
+}
+
+type CreateWorkflowOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The client token that uniquely identifies the request.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the workflow resource that the request
+	// created.
+	WorkflowBuildVersionArn *string `locationName:"workflowBuildVersionArn" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateWorkflowOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateWorkflowOutput) GoString() string {
+	return s.String()
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateWorkflowOutput) SetClientToken(v string) *CreateWorkflowOutput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetWorkflowBuildVersionArn sets the WorkflowBuildVersionArn field's value.
+func (s *CreateWorkflowOutput) SetWorkflowBuildVersionArn(v string) *CreateWorkflowOutput {
+	s.WorkflowBuildVersionArn = &v
 	return s
 }
 
@@ -12319,6 +13495,83 @@ func (s DeleteLifecyclePolicyOutput) GoString() string {
 // SetLifecyclePolicyArn sets the LifecyclePolicyArn field's value.
 func (s *DeleteLifecyclePolicyOutput) SetLifecyclePolicyArn(v string) *DeleteLifecyclePolicyOutput {
 	s.LifecyclePolicyArn = &v
+	return s
+}
+
+type DeleteWorkflowInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The Amazon Resource Name (ARN) of the workflow resource to delete.
+	//
+	// WorkflowBuildVersionArn is a required field
+	WorkflowBuildVersionArn *string `location:"querystring" locationName:"workflowBuildVersionArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteWorkflowInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteWorkflowInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteWorkflowInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteWorkflowInput"}
+	if s.WorkflowBuildVersionArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkflowBuildVersionArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetWorkflowBuildVersionArn sets the WorkflowBuildVersionArn field's value.
+func (s *DeleteWorkflowInput) SetWorkflowBuildVersionArn(v string) *DeleteWorkflowInput {
+	s.WorkflowBuildVersionArn = &v
+	return s
+}
+
+type DeleteWorkflowOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the workflow resource that this request deleted.
+	WorkflowBuildVersionArn *string `locationName:"workflowBuildVersionArn" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteWorkflowOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteWorkflowOutput) GoString() string {
+	return s.String()
+}
+
+// SetWorkflowBuildVersionArn sets the WorkflowBuildVersionArn field's value.
+func (s *DeleteWorkflowOutput) SetWorkflowBuildVersionArn(v string) *DeleteWorkflowOutput {
+	s.WorkflowBuildVersionArn = &v
 	return s
 }
 
@@ -13228,7 +14481,7 @@ func (s *GetComponentInput) SetComponentBuildVersionArn(v string) *GetComponentI
 type GetComponentOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The component object associated with the specified ARN.
+	// The component object specified in the request.
 	Component *Component `locationName:"component" type:"structure"`
 
 	// The request ID that uniquely identifies this request.
@@ -14349,6 +15602,10 @@ type GetWorkflowExecutionOutput struct {
 	// applicable.
 	Message *string `locationName:"message" type:"string"`
 
+	// Test workflows are defined within named runtime groups. The parallel group
+	// is a named group that contains one or more test workflows.
+	ParallelGroup *string `locationName:"parallelGroup" min:"1" type:"string"`
+
 	// The request ID that uniquely identifies this request.
 	RequestId *string `locationName:"requestId" min:"1" type:"string"`
 
@@ -14424,6 +15681,12 @@ func (s *GetWorkflowExecutionOutput) SetMessage(v string) *GetWorkflowExecutionO
 	return s
 }
 
+// SetParallelGroup sets the ParallelGroup field's value.
+func (s *GetWorkflowExecutionOutput) SetParallelGroup(v string) *GetWorkflowExecutionOutput {
+	s.ParallelGroup = &v
+	return s
+}
+
 // SetRequestId sets the RequestId field's value.
 func (s *GetWorkflowExecutionOutput) SetRequestId(v string) *GetWorkflowExecutionOutput {
 	s.RequestId = &v
@@ -14481,6 +15744,84 @@ func (s *GetWorkflowExecutionOutput) SetWorkflowBuildVersionArn(v string) *GetWo
 // SetWorkflowExecutionId sets the WorkflowExecutionId field's value.
 func (s *GetWorkflowExecutionOutput) SetWorkflowExecutionId(v string) *GetWorkflowExecutionOutput {
 	s.WorkflowExecutionId = &v
+	return s
+}
+
+type GetWorkflowInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The Amazon Resource Name (ARN) of the workflow resource that you want to
+	// get.
+	//
+	// WorkflowBuildVersionArn is a required field
+	WorkflowBuildVersionArn *string `location:"querystring" locationName:"workflowBuildVersionArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetWorkflowInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetWorkflowInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetWorkflowInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetWorkflowInput"}
+	if s.WorkflowBuildVersionArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkflowBuildVersionArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetWorkflowBuildVersionArn sets the WorkflowBuildVersionArn field's value.
+func (s *GetWorkflowInput) SetWorkflowBuildVersionArn(v string) *GetWorkflowInput {
+	s.WorkflowBuildVersionArn = &v
+	return s
+}
+
+type GetWorkflowOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The workflow resource specified in the request.
+	Workflow *Workflow `locationName:"workflow" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetWorkflowOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetWorkflowOutput) GoString() string {
+	return s.String()
+}
+
+// SetWorkflow sets the Workflow field's value.
+func (s *GetWorkflowOutput) SetWorkflow(v *Workflow) *GetWorkflowOutput {
+	s.Workflow = v
 	return s
 }
 
@@ -14830,6 +16171,10 @@ type Image struct {
 	// image, such as the operating system (OS) version and package list.
 	EnhancedImageMetadataEnabled *bool `locationName:"enhancedImageMetadataEnabled" type:"boolean"`
 
+	// The name or Amazon Resource Name (ARN) for the IAM role you create that grants
+	// Image Builder access to perform workflow actions.
+	ExecutionRole *string `locationName:"executionRole" min:"1" type:"string"`
+
 	// For images that distribute an AMI, this is the image recipe that Image Builder
 	// used to create the image. For container images, this is empty.
 	ImageRecipe *ImageRecipe `locationName:"imageRecipe" type:"structure"`
@@ -14900,6 +16245,9 @@ type Image struct {
 	// image or components for your recipe. When you use a wildcard in any node,
 	// all nodes to the right of the first wildcard must also be wildcards.
 	Version *string `locationName:"version" type:"string"`
+
+	// Contains the build and test workflows that are associated with the image.
+	Workflows []*WorkflowConfiguration `locationName:"workflows" type:"list"`
 }
 
 // String returns the string representation.
@@ -14959,6 +16307,12 @@ func (s *Image) SetDistributionConfiguration(v *DistributionConfiguration) *Imag
 // SetEnhancedImageMetadataEnabled sets the EnhancedImageMetadataEnabled field's value.
 func (s *Image) SetEnhancedImageMetadataEnabled(v bool) *Image {
 	s.EnhancedImageMetadataEnabled = &v
+	return s
+}
+
+// SetExecutionRole sets the ExecutionRole field's value.
+func (s *Image) SetExecutionRole(v string) *Image {
+	s.ExecutionRole = &v
 	return s
 }
 
@@ -15061,6 +16415,12 @@ func (s *Image) SetType(v string) *Image {
 // SetVersion sets the Version field's value.
 func (s *Image) SetVersion(v string) *Image {
 	s.Version = &v
+	return s
+}
+
+// SetWorkflows sets the Workflows field's value.
+func (s *Image) SetWorkflows(v []*WorkflowConfiguration) *Image {
+	s.Workflows = v
 	return s
 }
 
@@ -15183,6 +16543,10 @@ type ImagePipeline struct {
 	// default.
 	EnhancedImageMetadataEnabled *bool `locationName:"enhancedImageMetadataEnabled" type:"boolean"`
 
+	// The name or Amazon Resource Name (ARN) for the IAM role you create that grants
+	// Image Builder access to perform workflow actions.
+	ExecutionRole *string `locationName:"executionRole" min:"1" type:"string"`
+
 	// The Amazon Resource Name (ARN) of the image recipe associated with this image
 	// pipeline.
 	ImageRecipeArn *string `locationName:"imageRecipeArn" type:"string"`
@@ -15211,6 +16575,9 @@ type ImagePipeline struct {
 
 	// The tags of this image pipeline.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
+
+	// Contains the workflows that run for the image pipeline.
+	Workflows []*WorkflowConfiguration `locationName:"workflows" type:"list"`
 }
 
 // String returns the string representation.
@@ -15285,6 +16652,12 @@ func (s *ImagePipeline) SetEnhancedImageMetadataEnabled(v bool) *ImagePipeline {
 	return s
 }
 
+// SetExecutionRole sets the ExecutionRole field's value.
+func (s *ImagePipeline) SetExecutionRole(v string) *ImagePipeline {
+	s.ExecutionRole = &v
+	return s
+}
+
 // SetImageRecipeArn sets the ImageRecipeArn field's value.
 func (s *ImagePipeline) SetImageRecipeArn(v string) *ImagePipeline {
 	s.ImageRecipeArn = &v
@@ -15336,6 +16709,12 @@ func (s *ImagePipeline) SetStatus(v string) *ImagePipeline {
 // SetTags sets the Tags field's value.
 func (s *ImagePipeline) SetTags(v map[string]*string) *ImagePipeline {
 	s.Tags = v
+	return s
+}
+
+// SetWorkflows sets the Workflows field's value.
+func (s *ImagePipeline) SetWorkflows(v []*WorkflowConfiguration) *ImagePipeline {
+	s.Workflows = v
 	return s
 }
 
@@ -16423,7 +17802,7 @@ type ImportComponentInput struct {
 
 	// The change description of the component. This description indicates the change
 	// that has been made in this version, or what makes this version different
-	// from other versions of this component.
+	// from other versions of the component.
 	ChangeDescription *string `locationName:"changeDescription" min:"1" type:"string"`
 
 	// Unique, case-sensitive identifier you provide to ensure idempotency of the
@@ -18344,8 +19723,8 @@ type LifecyclePolicy struct {
 	// Optional description for the lifecycle policy.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
-	// The name of the IAM role that Image Builder uses to run the lifecycle policy.
-	// This is a custom role that you create.
+	// The name or Amazon Resource Name (ARN) of the IAM role that Image Builder
+	// uses to run the lifecycle policy. This is a custom role that you create.
 	ExecutionRole *string `locationName:"executionRole" min:"1" type:"string"`
 
 	// The name of the lifecycle policy.
@@ -18660,7 +20039,7 @@ type LifecyclePolicyDetailExclusionRules struct {
 	Amis *LifecyclePolicyDetailExclusionRulesAmis `locationName:"amis" type:"structure"`
 
 	// Contains a list of tags that Image Builder uses to skip lifecycle actions
-	// for AMIs that have them.
+	// for resources that have them.
 	TagMap map[string]*string `locationName:"tagMap" min:"1" type:"map"`
 }
 
@@ -18719,16 +20098,16 @@ type LifecyclePolicyDetailExclusionRulesAmis struct {
 	// Configures whether public AMIs are excluded from the lifecycle action.
 	IsPublic *bool `locationName:"isPublic" type:"boolean"`
 
+	// Specifies configuration details for Image Builder to exclude the most recent
+	// resources from lifecycle actions.
+	LastLaunched *LifecyclePolicyDetailExclusionRulesAmisLastLaunched `locationName:"lastLaunched" type:"structure"`
+
 	// Configures Amazon Web Services Regions that are excluded from the lifecycle
 	// action.
-	LastLaunched *LifecyclePolicyDetailExclusionRulesAmisLastLaunched `locationName:"lastLaunched" type:"structure"`
+	Regions []*string `locationName:"regions" type:"list"`
 
 	// Specifies Amazon Web Services accounts whose resources are excluded from
 	// the lifecycle action.
-	Regions []*string `locationName:"regions" type:"list"`
-
-	// Specifies configuration details for Image Builder to exclude the most recent
-	// resources from lifecycle actions.
 	SharedAccounts []*string `locationName:"sharedAccounts" min:"1" type:"list"`
 
 	// Lists tags that should be excluded from lifecycle actions for the AMIs that
@@ -19117,7 +20496,8 @@ type LifecyclePolicySummary struct {
 	// Optional description for the lifecycle policy.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
-	// The name of the IAM role that Image Builder uses to run the lifecycle policy.
+	// The name or Amazon Resource Name (ARN) of the IAM role that Image Builder
+	// uses to run the lifecycle policy.
 	ExecutionRole *string `locationName:"executionRole" min:"1" type:"string"`
 
 	// The name of the lifecycle policy.
@@ -21551,6 +22931,221 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 	return s
 }
 
+type ListWaitingWorkflowStepsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum items to return in a request.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// A token to specify where to start paginating. This is the nextToken from
+	// a previously truncated response.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListWaitingWorkflowStepsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListWaitingWorkflowStepsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListWaitingWorkflowStepsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListWaitingWorkflowStepsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListWaitingWorkflowStepsInput) SetMaxResults(v int64) *ListWaitingWorkflowStepsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListWaitingWorkflowStepsInput) SetNextToken(v string) *ListWaitingWorkflowStepsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListWaitingWorkflowStepsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The next token used for paginated responses. When this field isn't empty,
+	// there are additional elements that the service hasn't included in this request.
+	// Use this token with the next request to retrieve additional objects.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+
+	// An array of the workflow steps that are waiting for action in your Amazon
+	// Web Services account.
+	Steps []*WorkflowStepExecution `locationName:"steps" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListWaitingWorkflowStepsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListWaitingWorkflowStepsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListWaitingWorkflowStepsOutput) SetNextToken(v string) *ListWaitingWorkflowStepsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSteps sets the Steps field's value.
+func (s *ListWaitingWorkflowStepsOutput) SetSteps(v []*WorkflowStepExecution) *ListWaitingWorkflowStepsOutput {
+	s.Steps = v
+	return s
+}
+
+type ListWorkflowBuildVersionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum items to return in a request.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// A token to specify where to start paginating. This is the nextToken from
+	// a previously truncated response.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the workflow resource for which to get
+	// a list of build versions.
+	//
+	// WorkflowVersionArn is a required field
+	WorkflowVersionArn *string `locationName:"workflowVersionArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListWorkflowBuildVersionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListWorkflowBuildVersionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListWorkflowBuildVersionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListWorkflowBuildVersionsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.WorkflowVersionArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkflowVersionArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListWorkflowBuildVersionsInput) SetMaxResults(v int64) *ListWorkflowBuildVersionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListWorkflowBuildVersionsInput) SetNextToken(v string) *ListWorkflowBuildVersionsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetWorkflowVersionArn sets the WorkflowVersionArn field's value.
+func (s *ListWorkflowBuildVersionsInput) SetWorkflowVersionArn(v string) *ListWorkflowBuildVersionsInput {
+	s.WorkflowVersionArn = &v
+	return s
+}
+
+type ListWorkflowBuildVersionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The next token used for paginated responses. When this field isn't empty,
+	// there are additional elements that the service hasn't included in this request.
+	// Use this token with the next request to retrieve additional objects.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+
+	// A list that contains metadata for the workflow builds that have run for the
+	// workflow resource specified in the request.
+	WorkflowSummaryList []*WorkflowSummary `locationName:"workflowSummaryList" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListWorkflowBuildVersionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListWorkflowBuildVersionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListWorkflowBuildVersionsOutput) SetNextToken(v string) *ListWorkflowBuildVersionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetWorkflowSummaryList sets the WorkflowSummaryList field's value.
+func (s *ListWorkflowBuildVersionsOutput) SetWorkflowSummaryList(v []*WorkflowSummary) *ListWorkflowBuildVersionsOutput {
+	s.WorkflowSummaryList = v
+	return s
+}
+
 type ListWorkflowExecutionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -21854,6 +23449,146 @@ func (s *ListWorkflowStepExecutionsOutput) SetWorkflowBuildVersionArn(v string) 
 // SetWorkflowExecutionId sets the WorkflowExecutionId field's value.
 func (s *ListWorkflowStepExecutionsOutput) SetWorkflowExecutionId(v string) *ListWorkflowStepExecutionsOutput {
 	s.WorkflowExecutionId = &v
+	return s
+}
+
+type ListWorkflowsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specify all or part of the workflow name to streamline results.
+	ByName *bool `locationName:"byName" type:"boolean"`
+
+	// Used to streamline search results.
+	Filters []*Filter `locationName:"filters" min:"1" type:"list"`
+
+	// The maximum items to return in a request.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// A token to specify where to start paginating. This is the nextToken from
+	// a previously truncated response.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+
+	// Used to get a list of workflow build version filtered by the identity of
+	// the creator.
+	Owner *string `locationName:"owner" type:"string" enum:"Ownership"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListWorkflowsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListWorkflowsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListWorkflowsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListWorkflowsInput"}
+	if s.Filters != nil && len(s.Filters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Filters", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetByName sets the ByName field's value.
+func (s *ListWorkflowsInput) SetByName(v bool) *ListWorkflowsInput {
+	s.ByName = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ListWorkflowsInput) SetFilters(v []*Filter) *ListWorkflowsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListWorkflowsInput) SetMaxResults(v int64) *ListWorkflowsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListWorkflowsInput) SetNextToken(v string) *ListWorkflowsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetOwner sets the Owner field's value.
+func (s *ListWorkflowsInput) SetOwner(v string) *ListWorkflowsInput {
+	s.Owner = &v
+	return s
+}
+
+type ListWorkflowsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The next token used for paginated responses. When this field isn't empty,
+	// there are additional elements that the service hasn't included in this request.
+	// Use this token with the next request to retrieve additional objects.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+
+	// A list of workflow build versions that match the request criteria.
+	WorkflowVersionList []*WorkflowVersion `locationName:"workflowVersionList" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListWorkflowsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListWorkflowsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListWorkflowsOutput) SetNextToken(v string) *ListWorkflowsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetWorkflowVersionList sets the WorkflowVersionList field's value.
+func (s *ListWorkflowsOutput) SetWorkflowVersionList(v []*WorkflowVersion) *ListWorkflowsOutput {
+	s.WorkflowVersionList = v
 	return s
 }
 
@@ -23110,7 +24845,7 @@ func (s *S3Logs) SetS3KeyPrefix(v string) *S3Logs {
 	return s
 }
 
-// A schedule configures how often and when a pipeline will automatically create
+// A schedule configures when and how often a pipeline will automatically create
 // a new image.
 type Schedule struct {
 	_ struct{} `type:"structure"`
@@ -23188,6 +24923,158 @@ func (s *Schedule) SetScheduleExpression(v string) *Schedule {
 // SetTimezone sets the Timezone field's value.
 func (s *Schedule) SetTimezone(v string) *Schedule {
 	s.Timezone = &v
+	return s
+}
+
+type SendWorkflowStepActionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The action for the image creation process to take while a workflow WaitForAction
+	// step waits for an asynchronous action to complete.
+	//
+	// Action is a required field
+	Action *string `locationName:"action" type:"string" required:"true" enum:"WorkflowStepActionType"`
+
+	// Unique, case-sensitive identifier you provide to ensure idempotency of the
+	// request. For more information, see Ensuring idempotency (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html)
+	// in the Amazon EC2 API Reference.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// The Amazon Resource Name (ARN) of the image build version to send action
+	// for.
+	//
+	// ImageBuildVersionArn is a required field
+	ImageBuildVersionArn *string `locationName:"imageBuildVersionArn" type:"string" required:"true"`
+
+	// The reason why this action is sent.
+	Reason *string `locationName:"reason" min:"1" type:"string"`
+
+	// Uniquely identifies the workflow step that sent the step action.
+	//
+	// StepExecutionId is a required field
+	StepExecutionId *string `locationName:"stepExecutionId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendWorkflowStepActionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendWorkflowStepActionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SendWorkflowStepActionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SendWorkflowStepActionInput"}
+	if s.Action == nil {
+		invalidParams.Add(request.NewErrParamRequired("Action"))
+	}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.ImageBuildVersionArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ImageBuildVersionArn"))
+	}
+	if s.Reason != nil && len(*s.Reason) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Reason", 1))
+	}
+	if s.StepExecutionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("StepExecutionId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAction sets the Action field's value.
+func (s *SendWorkflowStepActionInput) SetAction(v string) *SendWorkflowStepActionInput {
+	s.Action = &v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *SendWorkflowStepActionInput) SetClientToken(v string) *SendWorkflowStepActionInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetImageBuildVersionArn sets the ImageBuildVersionArn field's value.
+func (s *SendWorkflowStepActionInput) SetImageBuildVersionArn(v string) *SendWorkflowStepActionInput {
+	s.ImageBuildVersionArn = &v
+	return s
+}
+
+// SetReason sets the Reason field's value.
+func (s *SendWorkflowStepActionInput) SetReason(v string) *SendWorkflowStepActionInput {
+	s.Reason = &v
+	return s
+}
+
+// SetStepExecutionId sets the StepExecutionId field's value.
+func (s *SendWorkflowStepActionInput) SetStepExecutionId(v string) *SendWorkflowStepActionInput {
+	s.StepExecutionId = &v
+	return s
+}
+
+type SendWorkflowStepActionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The client token that uniquely identifies the request.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the image build version that received the
+	// action request.
+	ImageBuildVersionArn *string `locationName:"imageBuildVersionArn" type:"string"`
+
+	// The workflow step that sent the step action.
+	StepExecutionId *string `locationName:"stepExecutionId" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendWorkflowStepActionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendWorkflowStepActionOutput) GoString() string {
+	return s.String()
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *SendWorkflowStepActionOutput) SetClientToken(v string) *SendWorkflowStepActionOutput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetImageBuildVersionArn sets the ImageBuildVersionArn field's value.
+func (s *SendWorkflowStepActionOutput) SetImageBuildVersionArn(v string) *SendWorkflowStepActionOutput {
+	s.ImageBuildVersionArn = &v
+	return s
+}
+
+// SetStepExecutionId sets the StepExecutionId field's value.
+func (s *SendWorkflowStepActionOutput) SetStepExecutionId(v string) *SendWorkflowStepActionOutput {
+	s.StepExecutionId = &v
 	return s
 }
 
@@ -24165,6 +26052,10 @@ type UpdateImagePipelineInput struct {
 	// default.
 	EnhancedImageMetadataEnabled *bool `locationName:"enhancedImageMetadataEnabled" type:"boolean"`
 
+	// The name or Amazon Resource Name (ARN) for the IAM role you create that grants
+	// Image Builder access to perform workflow actions.
+	ExecutionRole *string `locationName:"executionRole" min:"1" type:"string"`
+
 	// The Amazon Resource Name (ARN) of the image pipeline that you want to update.
 	//
 	// ImagePipelineArn is a required field
@@ -24191,6 +26082,9 @@ type UpdateImagePipelineInput struct {
 
 	// The status of the image pipeline.
 	Status *string `locationName:"status" type:"string" enum:"PipelineStatus"`
+
+	// Contains the workflows to run for the pipeline.
+	Workflows []*WorkflowConfiguration `locationName:"workflows" type:"list"`
 }
 
 // String returns the string representation.
@@ -24220,6 +26114,9 @@ func (s *UpdateImagePipelineInput) Validate() error {
 	if s.Description != nil && len(*s.Description) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
 	}
+	if s.ExecutionRole != nil && len(*s.ExecutionRole) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExecutionRole", 1))
+	}
 	if s.ImagePipelineArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("ImagePipelineArn"))
 	}
@@ -24239,6 +26136,16 @@ func (s *UpdateImagePipelineInput) Validate() error {
 	if s.Schedule != nil {
 		if err := s.Schedule.Validate(); err != nil {
 			invalidParams.AddNested("Schedule", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Workflows != nil {
+		for i, v := range s.Workflows {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Workflows", i), err.(request.ErrInvalidParams))
+			}
 		}
 	}
 
@@ -24275,6 +26182,12 @@ func (s *UpdateImagePipelineInput) SetDistributionConfigurationArn(v string) *Up
 // SetEnhancedImageMetadataEnabled sets the EnhancedImageMetadataEnabled field's value.
 func (s *UpdateImagePipelineInput) SetEnhancedImageMetadataEnabled(v bool) *UpdateImagePipelineInput {
 	s.EnhancedImageMetadataEnabled = &v
+	return s
+}
+
+// SetExecutionRole sets the ExecutionRole field's value.
+func (s *UpdateImagePipelineInput) SetExecutionRole(v string) *UpdateImagePipelineInput {
+	s.ExecutionRole = &v
 	return s
 }
 
@@ -24317,6 +26230,12 @@ func (s *UpdateImagePipelineInput) SetSchedule(v *Schedule) *UpdateImagePipeline
 // SetStatus sets the Status field's value.
 func (s *UpdateImagePipelineInput) SetStatus(v string) *UpdateImagePipelineInput {
 	s.Status = &v
+	return s
+}
+
+// SetWorkflows sets the Workflows field's value.
+func (s *UpdateImagePipelineInput) SetWorkflows(v []*WorkflowConfiguration) *UpdateImagePipelineInput {
+	s.Workflows = v
 	return s
 }
 
@@ -24643,8 +26562,8 @@ type UpdateLifecyclePolicyInput struct {
 	// Optional description for the lifecycle policy.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
-	// The name of the IAM role that Image Builder should use to update the lifecycle
-	// policy.
+	// The name or Amazon Resource Name (ARN) of the IAM role that Image Builder
+	// uses to update the lifecycle policy.
 	//
 	// ExecutionRole is a required field
 	ExecutionRole *string `locationName:"executionRole" min:"1" type:"string" required:"true"`
@@ -24978,6 +26897,247 @@ func (s *VulnerablePackage) SetVersion(v string) *VulnerablePackage {
 	return s
 }
 
+// Defines a process that Image Builder uses to build and test images during
+// the image creation process.
+type Workflow struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the workflow resource.
+	Arn *string `locationName:"arn" type:"string"`
+
+	// Describes what change has been made in this version of the workflow, or what
+	// makes this version different from other versions of the workflow.
+	ChangeDescription *string `locationName:"changeDescription" min:"1" type:"string"`
+
+	// Contains the YAML document content for the workflow.
+	Data *string `locationName:"data" type:"string"`
+
+	// The timestamp when Image Builder created the workflow resource.
+	DateCreated *string `locationName:"dateCreated" type:"string"`
+
+	// The description of the workflow.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// The KMS key identifier used to encrypt the workflow resource.
+	KmsKeyId *string `locationName:"kmsKeyId" min:"1" type:"string"`
+
+	// The name of the workflow resource.
+	Name *string `locationName:"name" type:"string"`
+
+	// The owner of the workflow resource.
+	Owner *string `locationName:"owner" min:"1" type:"string"`
+
+	// An array of input parameters that that the image workflow uses to control
+	// actions or configure settings.
+	Parameters []*WorkflowParameterDetail `locationName:"parameters" type:"list"`
+
+	// Describes the current status of the workflow and the reason for that status.
+	State *WorkflowState `locationName:"state" type:"structure"`
+
+	// The tags that apply to the workflow resource
+	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
+
+	// Specifies the image creation stage that the workflow applies to. Image Builder
+	// currently supports build and test workflows.
+	Type *string `locationName:"type" type:"string" enum:"WorkflowType"`
+
+	// The workflow resource version. Workflow resources are immutable. To make
+	// a change, you can clone a workflow or create a new version.
+	Version *string `locationName:"version" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Workflow) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Workflow) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *Workflow) SetArn(v string) *Workflow {
+	s.Arn = &v
+	return s
+}
+
+// SetChangeDescription sets the ChangeDescription field's value.
+func (s *Workflow) SetChangeDescription(v string) *Workflow {
+	s.ChangeDescription = &v
+	return s
+}
+
+// SetData sets the Data field's value.
+func (s *Workflow) SetData(v string) *Workflow {
+	s.Data = &v
+	return s
+}
+
+// SetDateCreated sets the DateCreated field's value.
+func (s *Workflow) SetDateCreated(v string) *Workflow {
+	s.DateCreated = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *Workflow) SetDescription(v string) *Workflow {
+	s.Description = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *Workflow) SetKmsKeyId(v string) *Workflow {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Workflow) SetName(v string) *Workflow {
+	s.Name = &v
+	return s
+}
+
+// SetOwner sets the Owner field's value.
+func (s *Workflow) SetOwner(v string) *Workflow {
+	s.Owner = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *Workflow) SetParameters(v []*WorkflowParameterDetail) *Workflow {
+	s.Parameters = v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *Workflow) SetState(v *WorkflowState) *Workflow {
+	s.State = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *Workflow) SetTags(v map[string]*string) *Workflow {
+	s.Tags = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *Workflow) SetType(v string) *Workflow {
+	s.Type = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *Workflow) SetVersion(v string) *Workflow {
+	s.Version = &v
+	return s
+}
+
+// Contains control settings and configurable inputs for a workflow resource.
+type WorkflowConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The action to take if the workflow fails.
+	OnFailure *string `locationName:"onFailure" type:"string" enum:"OnWorkflowFailure"`
+
+	// Test workflows are defined within named runtime groups called parallel groups.
+	// The parallel group is the named group that contains this test workflow. Test
+	// workflows within a parallel group can run at the same time. Image Builder
+	// starts up to five test workflows in the group at the same time, and starts
+	// additional workflows as others complete, until all workflows in the group
+	// have completed. This field only applies for test workflows.
+	ParallelGroup *string `locationName:"parallelGroup" min:"1" type:"string"`
+
+	// Contains parameter values for each of the parameters that the workflow document
+	// defined for the workflow resource.
+	Parameters []*WorkflowParameter `locationName:"parameters" min:"1" type:"list"`
+
+	// The Amazon Resource Name (ARN) of the workflow resource.
+	//
+	// WorkflowArn is a required field
+	WorkflowArn *string `locationName:"workflowArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WorkflowConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WorkflowConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *WorkflowConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "WorkflowConfiguration"}
+	if s.ParallelGroup != nil && len(*s.ParallelGroup) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ParallelGroup", 1))
+	}
+	if s.Parameters != nil && len(s.Parameters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Parameters", 1))
+	}
+	if s.WorkflowArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkflowArn"))
+	}
+	if s.Parameters != nil {
+		for i, v := range s.Parameters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Parameters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetOnFailure sets the OnFailure field's value.
+func (s *WorkflowConfiguration) SetOnFailure(v string) *WorkflowConfiguration {
+	s.OnFailure = &v
+	return s
+}
+
+// SetParallelGroup sets the ParallelGroup field's value.
+func (s *WorkflowConfiguration) SetParallelGroup(v string) *WorkflowConfiguration {
+	s.ParallelGroup = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *WorkflowConfiguration) SetParameters(v []*WorkflowParameter) *WorkflowConfiguration {
+	s.Parameters = v
+	return s
+}
+
+// SetWorkflowArn sets the WorkflowArn field's value.
+func (s *WorkflowConfiguration) SetWorkflowArn(v string) *WorkflowConfiguration {
+	s.WorkflowArn = &v
+	return s
+}
+
 // Metadata that includes details and status from this runtime instance of the
 // workflow.
 type WorkflowExecutionMetadata struct {
@@ -24988,6 +27148,9 @@ type WorkflowExecutionMetadata struct {
 
 	// The runtime output message from the workflow, if applicable.
 	Message *string `locationName:"message" type:"string"`
+
+	// The name of the test group that included the test workflow resource at runtime.
+	ParallelGroup *string `locationName:"parallelGroup" min:"1" type:"string"`
 
 	// The timestamp when the runtime instance of this workflow started.
 	StartTime *string `locationName:"startTime" type:"string"`
@@ -25051,6 +27214,12 @@ func (s *WorkflowExecutionMetadata) SetMessage(v string) *WorkflowExecutionMetad
 	return s
 }
 
+// SetParallelGroup sets the ParallelGroup field's value.
+func (s *WorkflowExecutionMetadata) SetParallelGroup(v string) *WorkflowExecutionMetadata {
+	s.ParallelGroup = &v
+	return s
+}
+
 // SetStartTime sets the StartTime field's value.
 func (s *WorkflowExecutionMetadata) SetStartTime(v string) *WorkflowExecutionMetadata {
 	s.StartTime = &v
@@ -25101,6 +27270,265 @@ func (s *WorkflowExecutionMetadata) SetWorkflowBuildVersionArn(v string) *Workfl
 
 // SetWorkflowExecutionId sets the WorkflowExecutionId field's value.
 func (s *WorkflowExecutionMetadata) SetWorkflowExecutionId(v string) *WorkflowExecutionMetadata {
+	s.WorkflowExecutionId = &v
+	return s
+}
+
+// Contains a key/value pair that sets the named workflow parameter.
+type WorkflowParameter struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the workflow parameter to set.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// Sets the value for the named workflow parameter.
+	//
+	// Value is a required field
+	Value []*string `locationName:"value" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WorkflowParameter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WorkflowParameter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *WorkflowParameter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "WorkflowParameter"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *WorkflowParameter) SetName(v string) *WorkflowParameter {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *WorkflowParameter) SetValue(v []*string) *WorkflowParameter {
+	s.Value = v
+	return s
+}
+
+// Defines a parameter that's used to provide configuration details for the
+// workflow.
+type WorkflowParameterDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The default value of this parameter if no input is provided.
+	DefaultValue []*string `locationName:"defaultValue" type:"list"`
+
+	// Describes this parameter.
+	Description *string `locationName:"description" type:"string"`
+
+	// The name of this input parameter.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The type of input this parameter provides. The currently supported value
+	// is "string".
+	//
+	// Type is a required field
+	Type *string `locationName:"type" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WorkflowParameterDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WorkflowParameterDetail) GoString() string {
+	return s.String()
+}
+
+// SetDefaultValue sets the DefaultValue field's value.
+func (s *WorkflowParameterDetail) SetDefaultValue(v []*string) *WorkflowParameterDetail {
+	s.DefaultValue = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *WorkflowParameterDetail) SetDescription(v string) *WorkflowParameterDetail {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *WorkflowParameterDetail) SetName(v string) *WorkflowParameterDetail {
+	s.Name = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *WorkflowParameterDetail) SetType(v string) *WorkflowParameterDetail {
+	s.Type = &v
+	return s
+}
+
+// A group of fields that describe the current status of workflow.
+type WorkflowState struct {
+	_ struct{} `type:"structure"`
+
+	// Describes how or why the workflow changed state.
+	Reason *string `locationName:"reason" min:"1" type:"string"`
+
+	// The current state of the workflow.
+	Status *string `locationName:"status" type:"string" enum:"WorkflowStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WorkflowState) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WorkflowState) GoString() string {
+	return s.String()
+}
+
+// SetReason sets the Reason field's value.
+func (s *WorkflowState) SetReason(v string) *WorkflowState {
+	s.Reason = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *WorkflowState) SetStatus(v string) *WorkflowState {
+	s.Status = &v
+	return s
+}
+
+// Contains runtime details for an instance of a workflow that ran for the associated
+// image build version.
+type WorkflowStepExecution struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the step action.
+	Action *string `locationName:"action" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the image build version that ran the workflow.
+	ImageBuildVersionArn *string `locationName:"imageBuildVersionArn" type:"string"`
+
+	// The name of the workflow step.
+	Name *string `locationName:"name" type:"string"`
+
+	// The timestamp when the workflow step started.
+	StartTime *string `locationName:"startTime" type:"string"`
+
+	// Uniquely identifies the workflow step that ran for the associated image build
+	// version.
+	StepExecutionId *string `locationName:"stepExecutionId" type:"string"`
+
+	// The ARN of the workflow resource that ran.
+	WorkflowBuildVersionArn *string `locationName:"workflowBuildVersionArn" type:"string"`
+
+	// Uniquely identifies the runtime instance of the workflow that contains the
+	// workflow step that ran for the associated image build version.
+	WorkflowExecutionId *string `locationName:"workflowExecutionId" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WorkflowStepExecution) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WorkflowStepExecution) GoString() string {
+	return s.String()
+}
+
+// SetAction sets the Action field's value.
+func (s *WorkflowStepExecution) SetAction(v string) *WorkflowStepExecution {
+	s.Action = &v
+	return s
+}
+
+// SetImageBuildVersionArn sets the ImageBuildVersionArn field's value.
+func (s *WorkflowStepExecution) SetImageBuildVersionArn(v string) *WorkflowStepExecution {
+	s.ImageBuildVersionArn = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *WorkflowStepExecution) SetName(v string) *WorkflowStepExecution {
+	s.Name = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *WorkflowStepExecution) SetStartTime(v string) *WorkflowStepExecution {
+	s.StartTime = &v
+	return s
+}
+
+// SetStepExecutionId sets the StepExecutionId field's value.
+func (s *WorkflowStepExecution) SetStepExecutionId(v string) *WorkflowStepExecution {
+	s.StepExecutionId = &v
+	return s
+}
+
+// SetWorkflowBuildVersionArn sets the WorkflowBuildVersionArn field's value.
+func (s *WorkflowStepExecution) SetWorkflowBuildVersionArn(v string) *WorkflowStepExecution {
+	s.WorkflowBuildVersionArn = &v
+	return s
+}
+
+// SetWorkflowExecutionId sets the WorkflowExecutionId field's value.
+func (s *WorkflowStepExecution) SetWorkflowExecutionId(v string) *WorkflowStepExecution {
 	s.WorkflowExecutionId = &v
 	return s
 }
@@ -25225,6 +27653,208 @@ func (s *WorkflowStepMetadata) SetStatus(v string) *WorkflowStepMetadata {
 // SetStepExecutionId sets the StepExecutionId field's value.
 func (s *WorkflowStepMetadata) SetStepExecutionId(v string) *WorkflowStepMetadata {
 	s.StepExecutionId = &v
+	return s
+}
+
+// Contains metadata about the workflow resource.
+type WorkflowSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the workflow resource.
+	Arn *string `locationName:"arn" type:"string"`
+
+	// The change description for the current version of the workflow resource.
+	ChangeDescription *string `locationName:"changeDescription" min:"1" type:"string"`
+
+	// The original creation date of the workflow resource.
+	DateCreated *string `locationName:"dateCreated" type:"string"`
+
+	// Describes the workflow.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// The name of the workflow.
+	Name *string `locationName:"name" type:"string"`
+
+	// The owner of the workflow resource.
+	Owner *string `locationName:"owner" min:"1" type:"string"`
+
+	// Describes the current state of the workflow resource.
+	State *WorkflowState `locationName:"state" type:"structure"`
+
+	// Contains a list of tags that are defined for the workflow.
+	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
+
+	// The image creation stage that this workflow applies to. Image Builder currently
+	// supports build and test stage workflows.
+	Type *string `locationName:"type" type:"string" enum:"WorkflowType"`
+
+	// The version of the workflow.
+	Version *string `locationName:"version" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WorkflowSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WorkflowSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *WorkflowSummary) SetArn(v string) *WorkflowSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetChangeDescription sets the ChangeDescription field's value.
+func (s *WorkflowSummary) SetChangeDescription(v string) *WorkflowSummary {
+	s.ChangeDescription = &v
+	return s
+}
+
+// SetDateCreated sets the DateCreated field's value.
+func (s *WorkflowSummary) SetDateCreated(v string) *WorkflowSummary {
+	s.DateCreated = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *WorkflowSummary) SetDescription(v string) *WorkflowSummary {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *WorkflowSummary) SetName(v string) *WorkflowSummary {
+	s.Name = &v
+	return s
+}
+
+// SetOwner sets the Owner field's value.
+func (s *WorkflowSummary) SetOwner(v string) *WorkflowSummary {
+	s.Owner = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *WorkflowSummary) SetState(v *WorkflowState) *WorkflowSummary {
+	s.State = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *WorkflowSummary) SetTags(v map[string]*string) *WorkflowSummary {
+	s.Tags = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *WorkflowSummary) SetType(v string) *WorkflowSummary {
+	s.Type = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *WorkflowSummary) SetVersion(v string) *WorkflowSummary {
+	s.Version = &v
+	return s
+}
+
+// Contains details about this version of the workflow.
+type WorkflowVersion struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the workflow resource.
+	Arn *string `locationName:"arn" type:"string"`
+
+	// The timestamp when Image Builder created the workflow version.
+	DateCreated *string `locationName:"dateCreated" type:"string"`
+
+	// Describes the workflow.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// The name of the workflow.
+	Name *string `locationName:"name" type:"string"`
+
+	// The owner of the workflow resource.
+	Owner *string `locationName:"owner" min:"1" type:"string"`
+
+	// The image creation stage that this workflow applies to. Image Builder currently
+	// supports build and test stage workflows.
+	Type *string `locationName:"type" type:"string" enum:"WorkflowType"`
+
+	// The semantic version of the workflow resource. The format includes three
+	// nodes: <major>.<minor>.<patch>.
+	Version *string `locationName:"version" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WorkflowVersion) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WorkflowVersion) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *WorkflowVersion) SetArn(v string) *WorkflowVersion {
+	s.Arn = &v
+	return s
+}
+
+// SetDateCreated sets the DateCreated field's value.
+func (s *WorkflowVersion) SetDateCreated(v string) *WorkflowVersion {
+	s.DateCreated = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *WorkflowVersion) SetDescription(v string) *WorkflowVersion {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *WorkflowVersion) SetName(v string) *WorkflowVersion {
+	s.Name = &v
+	return s
+}
+
+// SetOwner sets the Owner field's value.
+func (s *WorkflowVersion) SetOwner(v string) *WorkflowVersion {
+	s.Owner = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *WorkflowVersion) SetType(v string) *WorkflowVersion {
+	s.Type = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *WorkflowVersion) SetVersion(v string) *WorkflowVersion {
+	s.Version = &v
 	return s
 }
 
@@ -25669,6 +28299,22 @@ func LifecyclePolicyTimeUnit_Values() []string {
 }
 
 const (
+	// OnWorkflowFailureContinue is a OnWorkflowFailure enum value
+	OnWorkflowFailureContinue = "CONTINUE"
+
+	// OnWorkflowFailureAbort is a OnWorkflowFailure enum value
+	OnWorkflowFailureAbort = "ABORT"
+)
+
+// OnWorkflowFailure_Values returns all elements of the OnWorkflowFailure enum
+func OnWorkflowFailure_Values() []string {
+	return []string{
+		OnWorkflowFailureContinue,
+		OnWorkflowFailureAbort,
+	}
+}
+
+const (
 	// OwnershipSelf is a Ownership enum value
 	OwnershipSelf = "Self"
 
@@ -25785,6 +28431,9 @@ const (
 
 	// WorkflowExecutionStatusRollbackCompleted is a WorkflowExecutionStatus enum value
 	WorkflowExecutionStatusRollbackCompleted = "ROLLBACK_COMPLETED"
+
+	// WorkflowExecutionStatusCancelled is a WorkflowExecutionStatus enum value
+	WorkflowExecutionStatusCancelled = "CANCELLED"
 )
 
 // WorkflowExecutionStatus_Values returns all elements of the WorkflowExecutionStatus enum
@@ -25797,6 +28446,35 @@ func WorkflowExecutionStatus_Values() []string {
 		WorkflowExecutionStatusFailed,
 		WorkflowExecutionStatusRollbackInProgress,
 		WorkflowExecutionStatusRollbackCompleted,
+		WorkflowExecutionStatusCancelled,
+	}
+}
+
+const (
+	// WorkflowStatusDeprecated is a WorkflowStatus enum value
+	WorkflowStatusDeprecated = "DEPRECATED"
+)
+
+// WorkflowStatus_Values returns all elements of the WorkflowStatus enum
+func WorkflowStatus_Values() []string {
+	return []string{
+		WorkflowStatusDeprecated,
+	}
+}
+
+const (
+	// WorkflowStepActionTypeResume is a WorkflowStepActionType enum value
+	WorkflowStepActionTypeResume = "RESUME"
+
+	// WorkflowStepActionTypeStop is a WorkflowStepActionType enum value
+	WorkflowStepActionTypeStop = "STOP"
+)
+
+// WorkflowStepActionType_Values returns all elements of the WorkflowStepActionType enum
+func WorkflowStepActionType_Values() []string {
+	return []string{
+		WorkflowStepActionTypeResume,
+		WorkflowStepActionTypeStop,
 	}
 }
 
@@ -25839,6 +28517,9 @@ const (
 
 	// WorkflowStepExecutionStatusFailed is a WorkflowStepExecutionStatus enum value
 	WorkflowStepExecutionStatusFailed = "FAILED"
+
+	// WorkflowStepExecutionStatusCancelled is a WorkflowStepExecutionStatus enum value
+	WorkflowStepExecutionStatusCancelled = "CANCELLED"
 )
 
 // WorkflowStepExecutionStatus_Values returns all elements of the WorkflowStepExecutionStatus enum
@@ -25849,6 +28530,7 @@ func WorkflowStepExecutionStatus_Values() []string {
 		WorkflowStepExecutionStatusRunning,
 		WorkflowStepExecutionStatusCompleted,
 		WorkflowStepExecutionStatusFailed,
+		WorkflowStepExecutionStatusCancelled,
 	}
 }
 

@@ -97,6 +97,19 @@ const (
 	// The service cannot complete the request.
 	ErrCodeServiceUnavailableException = "ServiceUnavailableException"
 
+	// ErrCodeSessionStreamingException for service response error code
+	// "SessionStreamingException".
+	//
+	// his exception is returned if an unknown error occurs during a Live Tail session.
+	ErrCodeSessionStreamingException = "SessionStreamingException"
+
+	// ErrCodeSessionTimeoutException for service response error code
+	// "SessionTimeoutException".
+	//
+	// This exception is returned in a Live Tail stream when the Live Tail session
+	// times out. Live Tail sessions time out after three hours.
+	ErrCodeSessionTimeoutException = "SessionTimeoutException"
+
 	// ErrCodeThrottlingException for service response error code
 	// "ThrottlingException".
 	//
@@ -137,6 +150,8 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"ResourceNotFoundException":      newErrorResourceNotFoundException,
 	"ServiceQuotaExceededException":  newErrorServiceQuotaExceededException,
 	"ServiceUnavailableException":    newErrorServiceUnavailableException,
+	"SessionStreamingException":      newErrorSessionStreamingException,
+	"SessionTimeoutException":        newErrorSessionTimeoutException,
 	"ThrottlingException":            newErrorThrottlingException,
 	"TooManyTagsException":           newErrorTooManyTagsException,
 	"UnrecognizedClientException":    newErrorUnrecognizedClientException,

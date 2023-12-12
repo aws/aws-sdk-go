@@ -1,3 +1,12 @@
+Release v1.49.1 (2023-12-12)
+===
+
+### Service Client Updates
+* `service/imagebuilder`: Updates service API, documentation, and paginators
+* `service/location`: Updates service API and documentation
+* `service/logs`: Updates service API and documentation
+  * This release introduces the StartLiveTail API to tail ingested logs in near real time.
+
 Release v1.49.0 (2023-12-11)
 ===
 

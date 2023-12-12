@@ -7854,6 +7854,13 @@ func (s *CalculateRouteCarModeOptions) SetAvoidTolls(v bool) *CalculateRouteCarM
 type CalculateRouteInput struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies the desired time of arrival. Uses the given time to calculate the
+	// route. Otherwise, the best time of day to travel with the best traffic conditions
+	// is used to calculate the route.
+	//
+	// ArrivalTime is not supported Esri.
+	ArrivalTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
 	// The name of the route calculator resource that you want to use to calculate
 	// the route.
 	//
@@ -7899,8 +7906,6 @@ type CalculateRouteInput struct {
 	// the route. Otherwise, the best time of day to travel with the best traffic
 	// conditions is used to calculate the route.
 	//
-	// Setting a departure time in the past returns a 400 ValidationException error.
-	//
 	//    * In ISO 8601 (https://www.iso.org/iso-8601-date-and-time-format.html)
 	//    format: YYYY-MM-DDThh:mm:ss.sssZ. For example, 2020–07-2T12:15:20.000Z+01:00
 	DepartureTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
@@ -7943,6 +7948,9 @@ type CalculateRouteInput struct {
 	// replaced with "sensitive" in string returned by CalculateRouteInput's
 	// String and GoString methods.
 	Key *string `location:"querystring" locationName:"key" type:"string" sensitive:"true"`
+
+	// Specifies the distance to optimize for when calculating a route.
+	OptimizeFor *string `type:"string" enum:"OptimizationMode"`
 
 	// Specifies the mode of transport when calculating a route. Used in estimating
 	// the speed of travel and road compatibility. You can choose Car, Truck, Walking,
@@ -8038,6 +8046,12 @@ func (s *CalculateRouteInput) Validate() error {
 	return nil
 }
 
+// SetArrivalTime sets the ArrivalTime field's value.
+func (s *CalculateRouteInput) SetArrivalTime(v time.Time) *CalculateRouteInput {
+	s.ArrivalTime = &v
+	return s
+}
+
 // SetCalculatorName sets the CalculatorName field's value.
 func (s *CalculateRouteInput) SetCalculatorName(v string) *CalculateRouteInput {
 	s.CalculatorName = &v
@@ -8089,6 +8103,12 @@ func (s *CalculateRouteInput) SetIncludeLegGeometry(v bool) *CalculateRouteInput
 // SetKey sets the Key field's value.
 func (s *CalculateRouteInput) SetKey(v string) *CalculateRouteInput {
 	s.Key = &v
+	return s
+}
+
+// SetOptimizeFor sets the OptimizeFor field's value.
+func (s *CalculateRouteInput) SetOptimizeFor(v string) *CalculateRouteInput {
+	s.OptimizeFor = &v
 	return s
 }
 
@@ -13584,7 +13604,7 @@ func (s *LegGeometry) SetLineString(v [][]*float64) *LegGeometry {
 type ListDevicePositionsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The geomerty used to filter device positions.
+	// The geometry used to filter device positions.
 	FilterGeometry *TrackingFilterGeometry `type:"structure"`
 
 	// An optional limit for the number of entries returned in a single call.
@@ -15701,6 +15721,13 @@ type Place struct {
 	// Street.
 	Street *string `type:"string"`
 
+	// An area that's part of a larger municipality. For example, Blissville is
+	// a submunicipality in the Queen County in New York.
+	//
+	// This property supported by Esri and OpenData. The Esri property is district,
+	// and the OpenData property is borough.
+	SubMunicipality *string `type:"string"`
+
 	// A county, or an area that's part of a larger region. For example, Metro Vancouver.
 	SubRegion *string `type:"string"`
 
@@ -15806,6 +15833,12 @@ func (s *Place) SetRegion(v string) *Place {
 // SetStreet sets the Street field's value.
 func (s *Place) SetStreet(v string) *Place {
 	s.Street = &v
+	return s
+}
+
+// SetSubMunicipality sets the SubMunicipality field's value.
+func (s *Place) SetSubMunicipality(v string) *Place {
+	s.SubMunicipality = &v
 	return s
 }
 
@@ -19295,6 +19328,22 @@ func IntendedUse_Values() []string {
 	return []string{
 		IntendedUseSingleUse,
 		IntendedUseStorage,
+	}
+}
+
+const (
+	// OptimizationModeFastestRoute is a OptimizationMode enum value
+	OptimizationModeFastestRoute = "FastestRoute"
+
+	// OptimizationModeShortestRoute is a OptimizationMode enum value
+	OptimizationModeShortestRoute = "ShortestRoute"
+)
+
+// OptimizationMode_Values returns all elements of the OptimizationMode enum
+func OptimizationMode_Values() []string {
+	return []string{
+		OptimizationModeFastestRoute,
+		OptimizationModeShortestRoute,
 	}
 }
 
