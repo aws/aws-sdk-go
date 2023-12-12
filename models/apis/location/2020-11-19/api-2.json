@@ -1613,6 +1613,7 @@
         "DestinationPosition"
       ],
       "members":{
+        "ArrivalTime":{"shape":"Timestamp"},
         "CalculatorName":{
           "shape":"ResourceName",
           "location":"uri",
@@ -1630,6 +1631,7 @@
           "location":"querystring",
           "locationName":"key"
         },
+        "OptimizeFor":{"shape":"OptimizationMode"},
         "TravelMode":{"shape":"TravelMode"},
         "TruckModeOptions":{"shape":"CalculateRouteTruckModeOptions"},
         "WaypointPositions":{"shape":"CalculateRouteRequestWaypointPositionsList"}
@@ -3241,6 +3243,13 @@
       "min":1,
       "pattern":"^[-._\\w]+$"
     },
+    "OptimizationMode":{
+      "type":"string",
+      "enum":[
+        "FastestRoute",
+        "ShortestRoute"
+      ]
+    },
     "Place":{
       "type":"structure",
       "required":["Geometry"],
@@ -3256,6 +3265,7 @@
         "PostalCode":{"shape":"String"},
         "Region":{"shape":"String"},
         "Street":{"shape":"String"},
+        "SubMunicipality":{"shape":"String"},
         "SubRegion":{"shape":"String"},
         "SupplementalCategories":{"shape":"PlaceSupplementalCategoryList"},
         "TimeZone":{"shape":"TimeZone"},
