@@ -114,6 +114,13 @@
         "ListStagingAccountsResponse$accounts": "<p>An array of staging AWS Accounts.</p>"
       }
     },
+    "AgentVersion": {
+      "base": null,
+      "refs": {
+        "RecoveryInstance$agentVersion": "<p>The version of the DRS agent installed on the recovery instance</p>",
+        "SourceServer$agentVersion": "<p>The version of the DRS agent installed on the source server</p>"
+      }
+    },
     "AssociateSourceNetworkStackRequest": {
       "base": null,
       "refs": {

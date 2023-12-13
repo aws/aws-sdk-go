@@ -1,3 +1,9 @@
+Release v1.49.2 (2023-12-13)
+===
+
+### Service Client Updates
+* `service/drs`: Updates service API and documentation
+
 Release v1.49.1 (2023-12-12)
 ===
 

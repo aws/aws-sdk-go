@@ -8654,6 +8654,9 @@ func (s *DisconnectSourceServerInput) SetSourceServerID(v string) *DisconnectSou
 type DisconnectSourceServerOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The version of the DRS agent installed on the source server
+	AgentVersion *string `locationName:"agentVersion" type:"string"`
+
 	// The ARN of the Source Server.
 	Arn *string `locationName:"arn" min:"20" type:"string"`
 
@@ -8716,6 +8719,12 @@ func (s DisconnectSourceServerOutput) String() string {
 // value will be replaced with "sensitive".
 func (s DisconnectSourceServerOutput) GoString() string {
 	return s.String()
+}
+
+// SetAgentVersion sets the AgentVersion field's value.
+func (s *DisconnectSourceServerOutput) SetAgentVersion(v string) *DisconnectSourceServerOutput {
+	s.AgentVersion = &v
+	return s
 }
 
 // SetArn sets the Arn field's value.
@@ -11597,6 +11606,9 @@ func (s *PutLaunchActionOutput) SetType(v string) *PutLaunchActionOutput {
 type RecoveryInstance struct {
 	_ struct{} `type:"structure"`
 
+	// The version of the DRS agent installed on the recovery instance
+	AgentVersion *string `locationName:"agentVersion" type:"string"`
+
 	// The ARN of the Recovery Instance.
 	Arn *string `locationName:"arn" min:"20" type:"string"`
 
@@ -11663,6 +11675,12 @@ func (s RecoveryInstance) String() string {
 // value will be replaced with "sensitive".
 func (s RecoveryInstance) GoString() string {
 	return s.String()
+}
+
+// SetAgentVersion sets the AgentVersion field's value.
+func (s *RecoveryInstance) SetAgentVersion(v string) *RecoveryInstance {
+	s.AgentVersion = &v
+	return s
 }
 
 // SetArn sets the Arn field's value.
@@ -12799,6 +12817,9 @@ func (s *RetryDataReplicationInput) SetSourceServerID(v string) *RetryDataReplic
 type RetryDataReplicationOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The version of the DRS agent installed on the source server
+	AgentVersion *string `locationName:"agentVersion" type:"string"`
+
 	// The ARN of the Source Server.
 	Arn *string `locationName:"arn" min:"20" type:"string"`
 
@@ -12861,6 +12882,12 @@ func (s RetryDataReplicationOutput) String() string {
 // value will be replaced with "sensitive".
 func (s RetryDataReplicationOutput) GoString() string {
 	return s.String()
+}
+
+// SetAgentVersion sets the AgentVersion field's value.
+func (s *RetryDataReplicationOutput) SetAgentVersion(v string) *RetryDataReplicationOutput {
+	s.AgentVersion = &v
+	return s
 }
 
 // SetArn sets the Arn field's value.
@@ -13454,6 +13481,9 @@ func (s *SourceProperties) SetSupportsNitroInstances(v bool) *SourceProperties {
 type SourceServer struct {
 	_ struct{} `type:"structure"`
 
+	// The version of the DRS agent installed on the source server
+	AgentVersion *string `locationName:"agentVersion" type:"string"`
+
 	// The ARN of the Source Server.
 	Arn *string `locationName:"arn" min:"20" type:"string"`
 
@@ -13516,6 +13546,12 @@ func (s SourceServer) String() string {
 // value will be replaced with "sensitive".
 func (s SourceServer) GoString() string {
 	return s.String()
+}
+
+// SetAgentVersion sets the AgentVersion field's value.
+func (s *SourceServer) SetAgentVersion(v string) *SourceServer {
+	s.AgentVersion = &v
+	return s
 }
 
 // SetArn sets the Arn field's value.
