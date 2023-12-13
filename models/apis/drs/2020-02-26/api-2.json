@@ -924,6 +924,10 @@
       "max":50,
       "min":0
     },
+    "AgentVersion":{
+      "type":"string",
+      "pattern":"^[0-9]{1,5}.[0-9]{1,5}.[0-9]{1,5}(.[0-9]{4}.[0-9]{3}.[0-9]{4})?$"
+    },
     "AssociateSourceNetworkStackRequest":{
       "type":"structure",
       "required":[
@@ -2321,6 +2325,7 @@
     "RecoveryInstance":{
       "type":"structure",
       "members":{
+        "agentVersion":{"shape":"AgentVersion"},
         "arn":{"shape":"ARN"},
         "dataReplicationInfo":{"shape":"RecoveryInstanceDataReplicationInfo"},
         "ec2InstanceID":{"shape":"EC2InstanceID"},
@@ -2816,6 +2821,7 @@
     "SourceServer":{
       "type":"structure",
       "members":{
+        "agentVersion":{"shape":"AgentVersion"},
         "arn":{"shape":"ARN"},
         "dataReplicationInfo":{"shape":"DataReplicationInfo"},
         "lastLaunchResult":{"shape":"LastLaunchResult"},
